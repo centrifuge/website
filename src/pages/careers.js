@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "gatsby";
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import Jobs from "../components/Jobs";
 
 const CareersPage = () => (
   <Layout>
     <SEO title="Careers" />
-    <h1>hello world</h1>
+    <h1>
+      hello <s>world</s> jobs
+    </h1>
+    <Jobs />
   </Layout>
 );
 

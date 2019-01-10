@@ -8,11 +8,14 @@ const SEO = ({ description, lang, meta, title }) => (
     query={detailsQuery}
     render={data => {
       const metaDescription = description || data.site.siteMetadata.description;
+      const defaultTitle = data.site.siteMetadata.longTitle;
+
       return (
         <Helmet
           htmlAttributes={{
             lang
           }}
+          defaultTitle={defaultTitle}
           title={title}
           titleTemplate={`%s | ${data.site.siteMetadata.title}`}
           meta={[
@@ -74,6 +77,7 @@ const detailsQuery = graphql`
     site {
       siteMetadata {
         title
+        longTitle
         description
         author
       }
