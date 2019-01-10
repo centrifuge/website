@@ -12,6 +12,7 @@
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-netlify": "^2.0.6",
     "gatsby-plugin-react-helmet": "^3.0.2",
+    "gatsby-source-apiserver": "^2.1.0",
     "jsonframe-cheerio": "^3.0.1",
     "node-fetch": "^2.3.0",
     "prop-types": "^15.6.2",
@@ -20,9 +21,10 @@
     "react-helmet": "^5.2.0"
   },
   "scripts": {
+    "build:all": "yarn build && yarn build:lambda",
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "start": "npm run develop",
+    "start": "yarn develop",
     "format": "prettier --write \"./**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "start:lambda": "netlify-lambda serve lambda",
