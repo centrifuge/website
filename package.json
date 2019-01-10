@@ -25,8 +25,8 @@
     "start": "npm run develop",
     "format": "prettier --write \"./**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "start:lambda": "netlify-lambda serve functions",
-    "build:lambda": "netlify-lambda build functions"
+    "start:lambda": "netlify-lambda serve lambda",
+    "build:lambda": "netlify-lambda build lambda"
   },
   "devDependencies": {
     "netlify-lambda": "^1.1.1",
