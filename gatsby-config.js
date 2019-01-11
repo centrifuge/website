@@ -34,6 +34,7 @@ const gitcoinServerOptions = {
 module.exports = {
   siteMetadata: {
     title: `Centrifuge`,
+    siteUrl: process.env.URL || "http://localhost:8000",
     longTitle: `Centrifuge - The Operating System For Global Commerce`,
     description: `Centrifuge is an open, decentralized operating system to connect the global financial supply chain. It allows any business to transact on a global network while maintaining ownership of their data, including their validated company details, their reputation, business relationships, and subsequent transactions.`,
     author: `@centrifuge`
@@ -60,6 +61,7 @@ module.exports = {
       resolve: "gatsby-source-apiserver",
       options: gitcoinServerOptions
     },
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify`
   ],
   developMiddleware: app => {

@@ -12,6 +12,7 @@
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-netlify": "^2.0.6",
     "gatsby-plugin-react-helmet": "^3.0.2",
+    "gatsby-plugin-sitemap": "^2.0.4",
     "gatsby-source-apiserver": "^2.1.0",
     "jsonframe-cheerio": "^3.0.1",
     "node-fetch": "^2.3.0",
