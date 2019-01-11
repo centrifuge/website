@@ -1,28 +1,20 @@
 const proxy = require("http-proxy-middleware");
 
-const netlifyLambdaEndpoint = `${process.env.URL}/.netlify/functions`;
-
-const breezyServerOptions = {
-  // Type prefix of entities from server
+const lambdaServerDefaults = filename => ({
   typePrefix: "lambda__",
-
-  // The url, this should be the endpoint you are attempting to pull data from
-  url:
-    process.env.NODE_ENV == "production"
-      ? `${netlifyLambdaEndpoint}/getBreezyJobListings`
-      : `http://localhost:9000/getBreezyJobListings`,
-
   method: "GET",
-
   headers: {
     "Content-Type": "application/json"
   },
+  url:
+    process.env.NODE_ENV == "production"
+      ? `${process.env.URL}/.netlify/functions/${filename}`
+      : `http://localhost:9000/${filename}`
+});
 
-  // Name of the data to be downloaded.  Will show in graphQL or be saved to a file
-  // using this name. i.e. posts.json
+const breezyServerOptions = {
   name: `breezy`,
-
-  // Define schemaType to normalize blank values
+  ...lambdaServerDefaults("getBreezyJobListings"),
   schemaType: {
     id: 1,
     position: "String",
@@ -30,44 +22,13 @@ const breezyServerOptions = {
     location: "String",
     offering: "String"
   },
-
-  // Optionally include some output when building
-  // Default is false
-  verboseOutput: true // For debugging purposes
+  verboseOutput: true
 };
 
 const gitcoinServerOptions = {
-  // Type prefix of entities from server
-  typePrefix: "lambda__",
-
-  // The url, this should be the endpoint you are attempting to pull data from
-  url:
-    process.env.NODE_ENV == "production"
-      ? `${netlifyLambdaEndpoint}/getGitcoinBounties`
-      : `http://localhost:9000/getGitcoinBounties`,
-
-  method: "GET",
-
-  headers: {
-    "Content-Type": "application/json"
-  },
-
-  // Name of the data to be downloaded.  Will show in graphQL or be saved to a file
-  // using this name. i.e. posts.json
   name: `gitcoin`,
-
-  // Define schemaType to normalize blank values
-  // schemaType: {
-  //   id: 1,
-  //   position: "String",
-  //   link: "String",
-  //   location: "String",
-  //   offering: "String"
-  // },
-
-  // Optionally include some output when building
-  // Default is false
-  verboseOutput: true // For debugging purposes
+  ...lambdaServerDefaults("getGitcoinBounties"),
+  verboseOutput: true
 };
 
 module.exports = {
@@ -85,10 +46,10 @@ module.exports = {
         name: `centrifuge-website`,
         short_name: `centrifuge`,
         start_url: `/`,
-        background_color: `#fcba59`,
-        theme_color: `#fcba59`,
+        background_color: `#fff`,
+        theme_color: `#2762ff`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+        icon: `src/images/centrifuge-logo.png` // This path is relative to the root of the site.
       }
     },
     {
