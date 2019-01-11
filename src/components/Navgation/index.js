@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "gatsby";
 
+import wordmark from "../../images/centrifuge-wordmark.svg";
+
 const Navigation = () => (
   <nav style={{ display: "flex" }}>
     <div style={{ flex: 1 }}>
       <Link to="/">
-        <code>centrifuge logo</code>
+        <img src={wordmark} />
       </Link>
     </div>
     <Link to="/technology">Technology</Link>

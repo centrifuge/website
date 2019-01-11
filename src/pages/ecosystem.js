@@ -6,7 +6,7 @@ import SEO from "../components/SEO";
 const EcosystemPage = () => (
   <Layout>
     <SEO title="Ecosystem" />
-    <h1>hello world</h1>
+    <h1>Ecosystem</h1>
   </Layout>
 );
 

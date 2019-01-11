@@ -6,7 +6,7 @@ import SEO from "../components/SEO";
 const NewsPage = () => (
   <Layout>
     <SEO title="News" />
-    <h1>hello world</h1>
+    <h1>News</h1>
   </Layout>
 );
 

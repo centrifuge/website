@@ -7,9 +7,7 @@ import Jobs from "../components/Jobs";
 const CareersPage = () => (
   <Layout>
     <SEO title="Careers" />
-    <h1>
-      hello <s>world</s> jobs
-    </h1>
+    <h1>Jobs</h1>
     <Jobs />
   </Layout>
 );

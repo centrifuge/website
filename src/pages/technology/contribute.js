@@ -6,7 +6,7 @@ import SEO from "../../components/SEO";
 const ContributePage = () => (
   <Layout>
     <SEO title="Contribute" />
-    <h1>hello world</h1>
+    <h1>Contribute</h1>
   </Layout>
 );
 

@@ -6,7 +6,7 @@ import SEO from "../../components/SEO";
 const ProtocolPage = () => (
   <Layout>
     <SEO title="Protocol" />
-    <h1>hello world</h1>
+    <h1>Protocol</h1>
   </Layout>
 );
 

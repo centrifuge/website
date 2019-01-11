@@ -6,7 +6,7 @@ import SEO from "../../components/SEO";
 const TechnologyPage = () => (
   <Layout>
     <SEO title="Technology" />
-    <h1>hello world</h1>
+    <h1>Technology</h1>
   </Layout>
 );
 
