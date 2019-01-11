@@ -1,0 +1,55 @@
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+li {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+}
+
+li:hover,
+li:focus-within {
+  cursor: pointer;
+}
+
+ul li ul {
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(0, 0, 0, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  padding: 16px 0;
+  min-width: 8rem;
+  position: absolute;
+  transition: all 0.5s ease;
+  margin-top: 1rem;
+  left: 0;
+  display: none;
+}
+
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover,
+ul li ul:focus {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+ul li ul li {
+  width: 100%;
+}
+
+ul li ul li a {
+  line-height: 1.5;
+  display: block;
+  padding: 16px 32px;
+}

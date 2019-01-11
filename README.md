@@ -1,5 +1,10 @@
 # centrifuge website
 
+## urls
+
+[production](https://web.cntrfg.com/)
+[staging](https://staging.web.cntrfg.com/)
+
 ## startup
 
 ```sh
