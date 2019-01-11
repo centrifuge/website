@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
 
-import "./styles.css";
+// import "./styles.css";
 
 const Navigation = () => (
   <nav role="navigation">
@@ -15,7 +15,7 @@ const Navigation = () => (
       </li>
       <li>
         <Link to="/technology">Technology</Link>
-        <ul class="dropdown">
+        <ul className="dropdown">
           <li>
             <Link to="/technology/components">Components</Link>
           </li>
@@ -29,7 +29,7 @@ const Navigation = () => (
       </li>
       <li>
         <Link to="/ecosystem">Ecosystem</Link>
-        <ul class="dropdown">
+        <ul className="dropdown">
           <li>
             <Link to="/ecosystem/#sub-1">Sub-1</Link>
           </li>
