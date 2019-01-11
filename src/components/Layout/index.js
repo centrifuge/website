@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
 
-import Header from "../Header";
+// import Header from "../Header";
 import Footer from "../Footer";
+import Navigation from "../Navgation";
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -18,7 +19,9 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Navigation />
+
+        {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
 
         {children}
 
