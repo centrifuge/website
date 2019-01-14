@@ -21,6 +21,19 @@ export default {
       black: "#000000"
     }
   },
+  textInput: {
+    extend: css`
+      font-weight: var(--fw-medium);
+      color: white;
+      border: none;
+      border-bottom: ${borderWidth}px solid white;
+      border-radius: 0;
+
+      ::placeholder {
+        color: white;
+      }
+    `
+  },
   button: {
     padding: {
       horizontal: `${32 - borderWidth}px`,

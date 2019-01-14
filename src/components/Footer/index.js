@@ -1,9 +1,11 @@
 import React from "react";
 
+import { List, Item } from "../List";
+
 const Footer = () => (
   <footer>
-    <ul style={{ display: "flex", lsitStyle: "none" }}>
-      <li>
+    <List style={{ display: "flex" }}>
+      <Item>
         <address>
           San-Francisco
           <br />
@@ -11,33 +13,40 @@ const Footer = () => (
           <br />
           San Francisco, CA 94104
         </address>
-      </li>
-      <li>
+      </Item>
+      <Item>
         <address>
           Berlin
           <br />
-          Full Node, Skalitzer Strasse 85-86
+          FListl Node, Skalitzer Strasse 85-86
           <br />
           10997 Berlin
         </address>
-      </li>
-      <li>
-        <ul>
-          <li>Twitter</li>
-          <li>Medium</li>
-          <li>GitHub</li>
-          <li>Slack</li>
-        </ul>
-      </li>
-      <li>
-        <ul>
-          <li>hello@centrifuge.io</li>
-          <li>Imprint</li>
-          <li>Data Privacy Policy</li>
-          <li>Documentation</li>
-        </ul>
-      </li>
-    </ul>
+      </Item>
+      <Item>
+        <List>
+          <Item>Twitter</Item>
+          <Item>Medium</Item>
+          <Item>GitHub</Item>
+          <Item>Slack</Item>
+        </List>
+      </Item>
+      <Item>
+        <List>
+          <Item>
+            <a
+              target="_blank"
+              href={`mailto:hello@centrifuge.io?subject=Hello`}
+            >
+              hello@centrifuge.io
+            </a>
+          </Item>
+          <Item>Imprint</Item>
+          <Item>Data Privacy PoItemcy</Item>
+          <Item>Documentation</Item>
+        </List>
+      </Item>
+    </List>
     <p>Centrifuge Inc. © Copyright 2018</p>
   </footer>
 );

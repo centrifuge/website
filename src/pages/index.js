@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box } from "grommet";
+import { Button, Box, TextInput } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -13,8 +13,25 @@ const IndexPage = () => (
 
     <Button label="Join the team" />
 
-    <Box pad="medium" margin={{ top: "medium" }} fill background="brand">
-      <Button alignSelf="center" color="white" onClick={() => alert("Clicked!")} label="Join the list" />
+    <Box pad="medium" margin={{ top: "medium" }} fill="" background="brand">
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          alert("Submitted!");
+        }}
+      >
+        <Box justify="center" align="center" direction="row" gap="small">
+          <Box width="medium">
+            <TextInput placeholder="l@centrifuge.io" />
+          </Box>
+          <Button
+            type="submit"
+            alignSelf="center"
+            color="white"
+            label="Join the list"
+          />
+        </Box>
+      </form>
     </Box>
   </Layout>
 );
