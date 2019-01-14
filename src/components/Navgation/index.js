@@ -16,11 +16,15 @@ const NavLinkItem = ({ children, to, ...rest }) => (
 );
 
 const Navigation = () => (
-  <Box as="nav" role="navigation">
+  <Box as="nav" pad={{ top: "medium" }} role="navigation">
     <Container>
       <List style={{ display: "flex" }}>
         <NavLinkItem style={{ flex: 1 }} to="/">
-          <img alt="Centrifuge Wordmark" src={wordmark} />
+          <img
+            alt="Centrifuge Wordmark"
+            style={{ height: 32 }}
+            src={wordmark}
+          />
         </NavLinkItem>
         <Item>
           <Link to="/technology">Technology</Link>

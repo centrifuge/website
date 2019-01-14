@@ -53,7 +53,7 @@ export default {
     },
     primary: {
       color: {
-        dark: "black",
+        dark: "white",
         light: "black"
       }
     },
