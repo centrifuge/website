@@ -61,7 +61,15 @@ module.exports = {
       resolve: "gatsby-source-apiserver",
       options: gitcoinServerOptions
     },
+    `gatsby-plugin-catch-links`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: true
+      }
+    },
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-netlify`
   ],
   developMiddleware: app => {
