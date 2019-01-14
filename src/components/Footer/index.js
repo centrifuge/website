@@ -33,20 +33,24 @@ const Footer = () => (
       <Box direction="row" justify="between" as="ul">
         <FooterExternalLinkItem href="https://goo.gl/maps/MLDj8i2SwSv">
           <Address>
-            San-Francisco
+            Centrifuge Inc.
             <br />
             548 Market Street #67433
             <br />
             San Francisco, CA 94104
+            <br />
+            USA
           </Address>
         </FooterExternalLinkItem>
         <FooterExternalLinkItem href="https://goo.gl/maps/mopnb8LaTvt">
           <Address>
-            Berlin
+            Centrifuge GmbH
             <br />
             Full Node, Skalitzer Strasse 85-86
             <br />
             10997 Berlin
+            <br />
+            Germany
           </Address>
         </FooterExternalLinkItem>
         <Item>
@@ -70,8 +74,12 @@ const Footer = () => (
                 hello@centrifuge.io
               </MailLink>
             </Item>
-            <FooterLinkItem to="/data-privacy-policy">Data Privacy Policy</FooterLinkItem>
-            <FooterExternalLinkItem href="https://developer.centrifuge.io/">Documentation</FooterExternalLinkItem>
+            <FooterLinkItem to="/data-privacy-policy">
+              Data Privacy Policy
+            </FooterLinkItem>
+            <FooterExternalLinkItem href="https://developer.centrifuge.io/">
+              Documentation
+            </FooterExternalLinkItem>
             <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
           </List>
         </Item>
