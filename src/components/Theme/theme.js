@@ -24,13 +24,13 @@ export default {
   textInput: {
     extend: css`
       font-weight: var(--fw-medium);
-      color: white;
+      color: #fff;
       border: none;
-      border-bottom: ${borderWidth}px solid white;
+      border-bottom: ${borderWidth}px solid #fff;
       border-radius: 0;
 
       ::placeholder {
-        color: white;
+        color: rgba(255, 255, 255, 0.72);
       }
     `
   },
