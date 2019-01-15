@@ -7,6 +7,7 @@ import Container from "../components/Container";
 import EmailSubscription from "../components/EmailSubscription";
 import Column from "../components/Column";
 import Grid from "../components/Grid";
+import Paragraph from "../components/Paragraph";
 
 import block1Image from "../images/block1-image.svg";
 import block2Image from "../images/block2-image.svg";
@@ -38,19 +39,16 @@ const IndexPage = () => (
       </Box>
       <Grid>
         <Column span={4}>
-          <Heading>Ut labore adipisicing adipisicing deserunt.</Heading>
-          <Text as="p">
-            Fugiat aute magna nostrud incididunt labore ullamco excepteur elit
-            enim pariatur officia voluptate nisi nisi. Elit sit commodo ipsum
-            laborum elit commodo id enim adipisicing ex quis. Labore fugiat
-            Lorem reprehenderit culpa dolor veniam. Est id duis et voluptate
-            aute laborum consequat nostrud do pariatur proident non incididunt.
-            Fugiat ex cupidatat ea consequat occaecat proident dolore irure quis
-            sunt pariatur laborum. Ea Lorem occaecat nulla incididunt excepteur
-            aliqua adipisicing consectetur fugiat mollit deserunt non. Nostrud
-            in consectetur non minim fugiat tempor nisi occaecat non Lorem velit
-            dolore.
-          </Text>
+          <Heading size="large">
+            The Operating System for the Financial Supply Chain
+          </Heading>
+          <Paragraph>
+            Centrifuge is an open, decentralized operating system to connect the
+            global financial supply chain. It allows any business, no matter how
+            big, to transact on a global network while maintaining ownership of
+            their data, including their validated company details, their
+            reputation, business relationships, and subsequent transactions.
+          </Paragraph>
         </Column>
         <Column span={8}>
           <Image src={block1Image} />
@@ -63,7 +61,7 @@ const IndexPage = () => (
         </Column>
         <Column span={4}>
           <Heading>Ut labore adipisicing adipisicing deserunt.</Heading>
-          <p>
+          <Paragraph>
             Fugiat aute magna nostrud incididunt labore ullamco excepteur elit
             enim pariatur officia voluptate nisi nisi. Elit sit commodo ipsum
             laborum elit commodo id enim adipisicing ex quis. Labore fugiat
@@ -74,14 +72,14 @@ const IndexPage = () => (
             aliqua adipisicing consectetur fugiat mollit deserunt non. Nostrud
             in consectetur non minim fugiat tempor nisi occaecat non Lorem velit
             dolore.
-          </p>
+          </Paragraph>
         </Column>
       </Grid>
 
       <Grid>
         <Column span={4}>
           <Heading>Ut labore adipisicing adipisicing deserunt.</Heading>
-          <p>
+          <Paragraph>
             Fugiat aute magna nostrud incididunt labore ullamco excepteur elit
             enim pariatur officia voluptate nisi nisi. Elit sit commodo ipsum
             laborum elit commodo id enim adipisicing ex quis. Labore fugiat
@@ -92,7 +90,7 @@ const IndexPage = () => (
             aliqua adipisicing consectetur fugiat mollit deserunt non. Nostrud
             in consectetur non minim fugiat tempor nisi occaecat non Lorem velit
             dolore.
-          </p>
+          </Paragraph>
         </Column>
         <Column span={8}>
           <Image src={block3Image} />
@@ -105,7 +103,7 @@ const IndexPage = () => (
         </Column>
         <Column span={4}>
           <Heading>Ut labore adipisicing adipisicing deserunt.</Heading>
-          <p>
+          <Paragraph>
             Fugiat aute magna nostrud incididunt labore ullamco excepteur elit
             enim pariatur officia voluptate nisi nisi. Elit sit commodo ipsum
             laborum elit commodo id enim adipisicing ex quis. Labore fugiat
@@ -116,7 +114,7 @@ const IndexPage = () => (
             aliqua adipisicing consectetur fugiat mollit deserunt non. Nostrud
             in consectetur non minim fugiat tempor nisi occaecat non Lorem velit
             dolore.
-          </p>
+          </Paragraph>
         </Column>
       </Grid>
     </Container>
