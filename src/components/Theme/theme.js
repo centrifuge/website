@@ -1,5 +1,7 @@
 import { css } from "styled-components";
 
+import { headerStyles, subheaderStyles, headingLevels } from "./typography";
+
 const borderWidth = 1;
 
 export default {
@@ -32,6 +34,24 @@ export default {
       ::placeholder {
         color: rgba(255, 255, 255, 0.72);
       }
+    `
+  },
+  heading: {
+    weight: "var(--fw-demibold)",
+    level: headingLevels,
+    extend: props => css`
+      ${(props.level === 1 || !props.level) && headerStyles}
+      ${(props.level === 2 ||
+        props.level === 3 ||
+        props.level === 4 ||
+        props.level === 5 ||
+        props.level === 6) &&
+        subheaderStyles}
+
+      ${!props.noLine &&
+        css`
+          border-bottom: 1px solid black;
+        `}
     `
   },
   button: {
