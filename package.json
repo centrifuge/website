@@ -20,6 +20,7 @@
     "gatsby-source-apiserver": "^2.1.0",
     "grommet": "^2.3.1",
     "jsonframe-cheerio": "^3.0.1",
+    "lottie-react-web": "^2.1.4",
     "modern-normalize": "^0.5.0",
     "node-fetch": "^2.3.0",
     "prop-types": "^15.6.2",

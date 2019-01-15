@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Box, Heading, Text, Image } from "grommet";
+import Lottie from "lottie-react-web";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -13,6 +14,8 @@ import block1Image from "../images/block1-image.svg";
 import block2Image from "../images/block2-image.svg";
 import block3Image from "../images/block3-image.svg";
 import block4Image from "../images/block4-image.svg";
+
+import testAnimation from "../lottie/test-animation.json";
 
 const IndexPage = () => (
   <Layout>
@@ -51,7 +54,7 @@ const IndexPage = () => (
           </Paragraph>
         </Column>
         <Column span={8}>
-          <Image src={block1Image} />
+          <Lottie options={{ animationData: testAnimation }} />
         </Column>
       </Grid>
 
