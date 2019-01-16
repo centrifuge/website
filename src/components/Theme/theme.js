@@ -1,10 +1,11 @@
 import { css } from "styled-components";
-
+import { base } from "grommet/themes";
+import { deepMerge } from "grommet/utils";
 import { headerStyles, subheaderStyles, headingLevels } from "./typography";
 
 const borderWidth = 1;
 
-export default {
+const custom = {
   global: {
     font: {
       family: "Avenir Next, sans-serif",
@@ -21,6 +22,19 @@ export default {
       focus: "#2762FF",
       brand: "#2762FF",
       black: "#000000"
+    },
+    breakpoints: {
+      small: {
+        value: 768
+      },
+      medium: {
+        value: 992
+      }
+    },
+    deviceBreakpoints: {
+      phone: "small",
+      tablet: "medium",
+      computer: "medium"
     }
   },
   textInput: {
@@ -82,7 +96,12 @@ export default {
 
       &:hover {
         box-shadow: none;
+        opacity: 0.8;
       }
     `
   }
 };
+
+const theme = deepMerge(base, custom);
+
+export default theme;

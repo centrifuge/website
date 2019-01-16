@@ -6,6 +6,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@contentful/gatsby-transformer-contentful-richtext": "^12.1.2",
     "babel-plugin-styled-components": "^1.10.0",
     "cheerio": "^1.0.0-rc.2",
     "gatsby": "^2.0.76",
@@ -18,6 +19,7 @@
     "gatsby-plugin-sitemap": "^2.0.4",
     "gatsby-plugin-styled-components": "^3.0.4",
     "gatsby-source-apiserver": "^2.1.0",
+    "gatsby-source-contentful": "^2.0.26",
     "grommet": "^2.3.1",
     "jsonframe-cheerio": "^3.0.1",
     "lottie-react-web": "^2.1.4",

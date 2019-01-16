@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import { createGlobalStyle } from "styled-components";
 import { Grommet } from "grommet";
-import { base } from "grommet/themes";
-import { deepMerge } from "grommet/utils";
 
 import theme from "./theme";
 
@@ -19,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Theme = ({ children }) => (
-  <Grommet theme={deepMerge(base, theme)}>
+  <Grommet theme={theme}>
     <>
       <GlobalStyle />
       {children}

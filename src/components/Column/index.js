@@ -1,15 +1,24 @@
 import React from "react";
-import { Box } from "grommet";
+import { Box, ResponsiveContext } from "grommet";
 import PropTypes from "prop-types";
 
 const Column = ({ span, children, ...rest }) => (
-  <Box style={{ gridColumn: `${span} span` }} {...rest}>
-    <div>{children}</div>
-  </Box>
+  <ResponsiveContext.Consumer>
+    {size => (
+      <Box
+        style={{
+          gridColumn: `${span[size]} span`
+        }}
+        {...rest}
+      >
+        {children}
+      </Box>
+    )}
+  </ResponsiveContext.Consumer>
 );
 
 Column.propTypes = {
-  span: PropTypes.number.isRequired,
+  span: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired
 };
 
