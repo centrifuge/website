@@ -94,7 +94,7 @@ module.exports = {
                   const buttonFields = node.data.target.fields;
                   return `<a href='${buttonFields.link["en-US"]}'>${
                     buttonFields.text["en-US"]
-                  }</a`;
+                  }</a>`;
                 default:
                   return `ENTRY NOT MAPPED`;
               }
