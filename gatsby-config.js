@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const proxy = require("http-proxy-middleware");
 const {
   BLOCKS,
@@ -57,6 +59,12 @@ module.exports = {
         theme_color: `#2762ff`,
         display: `minimal-ui`,
         icon: `src/images/centrifuge-logo.png` // This path is relative to the root of the site.
+      }
+    },
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: {
+        endpoint: `https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&amp;id=e00b1ece80`
       }
     },
     {
