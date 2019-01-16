@@ -72,11 +72,11 @@ module.exports = {
       options: {
         spaceId: `pvsr19vg7gf2`,
         accessToken:
-          process.env.NODE_ENV === `production`
+          process.env.PRODUCTION === "true"
             ? `e3b22c70dea0a1a493bb6d9ad550b73d8ce287d6b47fd9a6d624a0229a92eb9b`
             : `ae1115a81ba7be43ad060bdc094f907aff4275e9776fc1d3de7e1cc963f73612`,
         host:
-          process.env.NODE_ENV === `production`
+          process.env.PRODUCTION === "true"
             ? `cdn.contentful.com`
             : `preview.contentful.com`
       }
