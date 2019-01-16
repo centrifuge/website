@@ -1,19 +1,18 @@
 import React from "react";
-import { Button, Box, Heading, Text, Image } from "grommet";
+import { graphql } from "gatsby";
+// import { Button, Box, Heading, Text, Image } from "grommet";
 import Lottie from "lottie-react-web";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
-import EmailSubscription from "../components/EmailSubscription";
 import Column from "../components/Column";
 import Grid from "../components/Grid";
-import Paragraph from "../components/Paragraph";
 
-import block1Image from "../images/block1-image.svg";
-import block2Image from "../images/block2-image.svg";
-import block3Image from "../images/block3-image.svg";
-import block4Image from "../images/block4-image.svg";
+// import block1Image from "../images/block1-image.svg";
+// import block2Image from "../images/block2-image.svg";
+// import block3Image from "../images/block3-image.svg";
+// import block4Image from "../images/block4-image.svg";
 
 import block1Animation from "../lottie/Main01.json";
 import block2Animation from "../lottie/Main02.json";
