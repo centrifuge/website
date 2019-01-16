@@ -91,7 +91,7 @@ const IndexPage = ({ data }) => {
 };
 
 export const query = graphql`
-  query {
+  query IndexPageQuery {
     allContentfulPageHome {
       edges {
         node {
