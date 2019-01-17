@@ -94,17 +94,28 @@ module.exports = {
       options: {
         renderOptions: {
           renderNode: {
-            [BLOCKS.EMBEDDED_ENTRY]: node => {
-              const entryId = node.data.target.sys.contentType.sys.id;
+            [BLOCKS.HEADING_1]: node =>
+              `<Heading level='1'>${node.content[0].value}</Heading>`,
+            [BLOCKS.HEADING_2]: node =>
+              `<Heading level='2'>${node.content[0].value}</Heading>`,
+            [BLOCKS.HEADING_3]: node =>
+              `<Heading level='3'>${node.content[0].value}</Heading>`,
+            [BLOCKS.HEADING_4]: node =>
+              `<Heading level='4'>${node.content[0].value}</Heading>`,
+            [BLOCKS.HEADING_5]: node =>
+              `<Heading level='5'>${node.content[0].value}</Heading>`,
+            [BLOCKS.HEADING_6]: node =>
+              `<Heading level='6'>${node.content[0].value}</Heading>`,
 
-              switch (entryId) {
+            [BLOCKS.EMBEDDED_ENTRY]: node => {
+              switch (node.data.target.sys.contentType.sys.id) {
                 case "componentButton":
                   const buttonFields = node.data.target.fields;
-                  return `<a href='${buttonFields.link["en-US"]}'>${
-                    buttonFields.text["en-US"]
-                  }</a>`;
+                  return `<Button primary href='${
+                    buttonFields.link["en-US"]
+                  }' label='${buttonFields.text["en-US"]}' />`;
                 default:
-                  return `ENTRY NOT MAPPED`;
+                  return `<p>ENTRY NOT MAPPED</p>`;
               }
             }
           }

@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-// import { Button, Box, Heading, Text, Image } from "grommet";
+import { Heading, Box } from "grommet";
 import Lottie from "lottie-react-web";
 
 import Layout from "../components/Layout";
@@ -9,7 +9,7 @@ import Container from "../components/Container";
 import Column from "../components/Column";
 import Grid from "../components/Grid";
 
-import { createMarkup } from "../helpers";
+import { ParseJSXToReact } from "../helpers";
 
 // import block1Image from "../images/block1-image.svg";
 // import block2Image from "../images/block2-image.svg";
@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO />
       <Container>
-        {/* <Box margin={{ bottom: "xlarge" }}>
+        <Box margin={{ bottom: "xlarge" }}>
           <div>
             <Heading size="large">Header Size Large</Heading>
             <Heading>Header Size</Heading>
@@ -46,41 +46,45 @@ const IndexPage = ({ data }) => {
               Subheader, No Line
             </Heading>
           </div>
-        </Box> */}
+        </Box>
+
         {/* Block 1 */}
         <Grid>
           <Column span={{ small: 12, medium: 6, large: 4 }}>
-            <div dangerouslySetInnerHTML={createMarkup(page.block1)} />
+            <ParseJSXToReact block={page.block1} />
           </Column>
           <Column span={{ small: 12, medium: 6, large: 8 }}>
             <Lottie options={{ animationData: block1Animation }} />
           </Column>
         </Grid>
+
         {/* Block 2 */}
         <Grid>
           <Column span={{ small: 12, medium: 6, large: 8 }}>
             <Lottie options={{ animationData: block2Animation }} />
           </Column>
           <Column span={{ small: 12, medium: 6, large: 4 }}>
-            <div dangerouslySetInnerHTML={createMarkup(page.block2)} />
+            <ParseJSXToReact block={page.block2} />
           </Column>
         </Grid>
+
         {/* Block 3 */}
         <Grid>
           <Column span={{ small: 12, medium: 6, large: 4 }}>
-            <div dangerouslySetInnerHTML={createMarkup(page.block3)} />
+            <ParseJSXToReact block={page.block3} />
           </Column>
           <Column span={{ small: 12, medium: 6, large: 8 }}>
             <Lottie options={{ animationData: block3Animation }} />
           </Column>
         </Grid>
+
         {/* Block 4 */}
         <Grid>
           <Column span={{ small: 12, medium: 6, large: 8 }}>
             <Lottie options={{ animationData: block4Animation }} />
           </Column>
           <Column span={{ small: 12, medium: 6, large: 4 }}>
-            <div dangerouslySetInnerHTML={createMarkup(page.block4)} />
+            <ParseJSXToReact block={page.block4} />
           </Column>
         </Grid>
       </Container>

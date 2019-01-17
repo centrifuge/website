@@ -8,7 +8,7 @@ import Container from "../../components/Container";
 import Grid from "../../components/Grid";
 import Column from "../../components/Column";
 
-import { createMarkup } from "../../helpers";
+import { ParseJSXToReact } from "../../helpers";
 
 const TechnologyPage = ({ data }) => {
   const page = data.allContentfulPageTechnology.edges[0].node;
@@ -19,19 +19,19 @@ const TechnologyPage = ({ data }) => {
       <Container>
         <Grid>
           <Column span={{ small: 12, medium: 6, large: 4 }}>
-            <div dangerouslySetInnerHTML={createMarkup(page.block1)} />
+            <ParseJSXToReact block={page.block1} />
           </Column>
         </Grid>
         <Grid align="start">
           {page.block2.map(block => (
             <Column span={{ small: 12, medium: 12, large: 4 }}>
-              <div dangerouslySetInnerHTML={createMarkup(block.content)} />
+              <ParseJSXToReact block={block.content} />
             </Column>
           ))}
         </Grid>
         <Grid>
           <Column span={{ small: 12, medium: 12, large: 12 }}>
-            <div dangerouslySetInnerHTML={createMarkup(page.block3)} />
+            <ParseJSXToReact block={page.block3} />
           </Column>
         </Grid>
       </Container>
