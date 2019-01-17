@@ -9,6 +9,8 @@ import Container from "../components/Container";
 import Column from "../components/Column";
 import Grid from "../components/Grid";
 
+import { createMarkup } from "../helpers";
+
 // import block1Image from "../images/block1-image.svg";
 // import block2Image from "../images/block2-image.svg";
 // import block3Image from "../images/block3-image.svg";
@@ -21,10 +23,6 @@ import block4Animation from "../lottie/Main04.json";
 
 const IndexPage = ({ data }) => {
   const page = data.allContentfulPageHome.edges[0].node;
-
-  const getRawHtml = block => block.childContentfulRichText.html;
-
-  const createMarkup = block => ({ __html: getRawHtml(block) });
 
   return (
     <Layout>
@@ -90,8 +88,8 @@ const IndexPage = ({ data }) => {
   );
 };
 
-export const query = graphql`
-  query IndexPageQuery {
+export const IndexPageQuery = graphql`
+  query {
     allContentfulPageHome {
       edges {
         node {
