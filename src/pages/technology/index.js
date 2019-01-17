@@ -1,13 +1,70 @@
 import React from "react";
+import { graphql } from "gatsby";
 
 import Layout from "../../components/Layout";
 import SEO from "../../components/SEO";
 
-const TechnologyPage = () => (
-  <Layout>
-    <SEO title="Technology" />
-    <h1>Technology</h1>
-  </Layout>
-);
+import Container from "../../components/Container";
+import Grid from "../../components/Grid";
+import Column from "../../components/Column";
+
+import { createMarkup } from "../../helpers";
+
+const TechnologyPage = ({ data }) => {
+  const page = data.allContentfulPageTechnology.edges[0].node;
+
+  return (
+    <Layout>
+      <SEO title="Technology" />
+      <Container>
+        <Grid>
+          <Column span={{ small: 12, medium: 6, large: 4 }}>
+            <div dangerouslySetInnerHTML={createMarkup(page.block1)} />
+          </Column>
+        </Grid>
+        <Grid align="start">
+          {page.block2.map(block => (
+            <Column span={{ small: 12, medium: 12, large: 4 }}>
+              <div dangerouslySetInnerHTML={createMarkup(block.content)} />
+            </Column>
+          ))}
+        </Grid>
+        <Grid>
+          <Column span={{ small: 12, medium: 12, large: 12 }}>
+            <div dangerouslySetInnerHTML={createMarkup(page.block3)} />
+          </Column>
+        </Grid>
+      </Container>
+    </Layout>
+  );
+};
+
+export const TechnologyPageQuery = graphql`
+  query {
+    allContentfulPageTechnology {
+      edges {
+        node {
+          block1 {
+            childContentfulRichText {
+              html
+            }
+          }
+          block2 {
+            content {
+              childContentfulRichText {
+                html
+              }
+            }
+          }
+          block3 {
+            childContentfulRichText {
+              html
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default TechnologyPage;
