@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Box } from "grommet";
-import { Link } from "gatsby";
 
 import { List, Item } from "../List";
-import ExternalLink, { MailLink } from "../ExternalLink";
+import { MailLink, ExternalLink, InternalLink } from "../Links";
 import Container from "../Container";
 
 const Address = styled.address`
@@ -21,9 +20,9 @@ const FooterExternalLinkItem = ({ children, href, ...rest }) => (
 
 const FooterLinkItem = ({ children, to, ...rest }) => (
   <Item>
-    <Link to={to} {...rest}>
+    <InternalLink to={to} {...rest}>
       {children}
-    </Link>
+    </InternalLink>
   </Item>
 );
 

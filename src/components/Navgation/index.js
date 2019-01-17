@@ -1,17 +1,17 @@
 import React from "react";
-import { Link } from "gatsby";
 import { Box } from "grommet";
 
 import Container from "../Container";
 import { List, Item } from "../List";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
+import { InternalLink } from "../Links";
 
 // import "./styles.css";
 
 const NavLinkItem = ({ children, to, ...rest }) => (
   <Item {...rest}>
-    <Link to={to}>{children}</Link>
+    <InternalLink to={to}>{children}</InternalLink>
   </Item>
 );
 
@@ -27,7 +27,7 @@ const Navigation = () => (
           />
         </NavLinkItem>
         <Item>
-          <Link to="/technology">Technology</Link>
+          <InternalLink to="/technology">Technology</InternalLink>
           <List>
             <NavLinkItem to="/technology/components">Components</NavLinkItem>
             <NavLinkItem to="/technology/contribute">Contribute</NavLinkItem>
@@ -35,7 +35,7 @@ const Navigation = () => (
           </List>
         </Item>
         <Item>
-          <Link to="/ecosystem">Ecosystem</Link>
+          <InternalLink to="/ecosystem">Ecosystem</InternalLink>
           <List>
             <NavLinkItem to="/ecosystem/#sub-1">Sub-1</NavLinkItem>
             <NavLinkItem to="/ecosystem/#sub-2">Sub-2</NavLinkItem>

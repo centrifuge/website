@@ -1,7 +1,7 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 
-import ExternalLink from "../ExternalLink";
+import {ExternalLink} from "../Links";
 
 const Jobs = () => (
   <StaticQuery
