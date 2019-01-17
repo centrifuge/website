@@ -22,17 +22,17 @@ class SubscriptionForm extends React.Component {
 
     addToMailchimp(this.state.email)
       .then(data => this.setState({ response: data }))
-      .then(() => this.setState({ submitDisabled: false }));
+      .then(() => this.setState({ submitDisabled: false, submitted: true }));
   };
 
   handleChange = e => this.setState({ email: e.target.value });
 
   render() {
-    return (
-      <>
-        <form disabled={this.state.submitted} onSubmit={this.handleSubmit}>
+    if (!this.state.submitted) {
+      return (
+        <form onSubmit={this.handleSubmit}>
           <Box justify="center" align="center" direction="row" gap="medium">
-            <Box width="medium">
+            <Box flex="grow">
               <TextInput
                 type="email"
                 value={this.state.email}
@@ -48,16 +48,21 @@ class SubscriptionForm extends React.Component {
             />
           </Box>
         </form>
-        <div>{JSON.stringify(this.state.response, null, 2)}</div>
-      </>
-    );
+      );
+    }
+
+    return <p style={{ textAlign: "center" }}>{this.state.response.msg}</p>;
   }
 }
 
 const EmailSubscription = () => (
   <Box pad={{ top: "large", bottom: "large" }} background="brand">
     <Container>
-      <SubscriptionForm />
+      <Box align="center">
+        <Box width="large">
+          <SubscriptionForm />
+        </Box>
+      </Box>
     </Container>
   </Box>
 );
