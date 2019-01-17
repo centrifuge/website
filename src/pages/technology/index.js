@@ -15,7 +15,7 @@ const TechnologyPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Technology" />
+      <SEO {...page.seo} />
       <Container>
         <Grid>
           <Column span={{ small: 12, medium: 6, large: 4 }}>
@@ -44,6 +44,10 @@ export const TechnologyPageQuery = graphql`
     allContentfulPageTechnology {
       edges {
         node {
+          seo {
+            title
+            description
+          }
           block1 {
             childContentfulRichText {
               html
