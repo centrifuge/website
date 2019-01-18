@@ -4,4 +4,7 @@ const getRawHtml = block => block.childContentfulRichText.html;
 
 const createDangerousMarkup = block => ({ __html: getRawHtml(block) });
 
-export { getRawHtml, createDangerousMarkup, ParseJSXToReact };
+const lastInArray = (block, index) =>
+  block.length === index + 1 ? true : false;
+
+export { lastInArray, getRawHtml, createDangerousMarkup, ParseJSXToReact };
