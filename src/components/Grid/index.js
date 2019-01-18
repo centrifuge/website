@@ -22,8 +22,8 @@ Grid.defaultProps = {
   align: "center",
   justify: "start",
   padding: {
-    top: "xlarge",
-    bottom: "xlarge"
+    top: "128px",
+    bottom: "128px"
   }
 };
 

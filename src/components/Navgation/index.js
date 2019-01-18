@@ -11,7 +11,9 @@ import { InternalLink } from "../Links";
 
 const NavLinkItem = ({ children, to, ...rest }) => (
   <Item {...rest}>
-    <InternalLink to={to}>{children}</InternalLink>
+    <InternalLink activeStyle={{ color: "var(--c-brand)" }} to={to}>
+      {children}
+    </InternalLink>
   </Item>
 );
 
@@ -26,15 +28,19 @@ const Navigation = () => (
             src={wordmark}
           />
         </NavLinkItem>
-        <Item>
+        <NavLinkItem to="/technology">Technology</NavLinkItem>
+        {/* Dropdown For Later */}
+        {/* <Item>
           <InternalLink to="/technology">Technology</InternalLink>
           <List>
             <NavLinkItem to="/technology/components">Components</NavLinkItem>
             <NavLinkItem to="/technology/contribute">Contribute</NavLinkItem>
             <NavLinkItem to="/technology/protocol">Protocol</NavLinkItem>
           </List>
-        </Item>
-        <Item>
+        </Item> */}
+        <NavLinkItem to="/ecosystem">Ecosystem</NavLinkItem>
+        {/* Dropdown For Later */}
+        {/* <Item>
           <InternalLink to="/ecosystem">Ecosystem</InternalLink>
           <List>
             <NavLinkItem to="/ecosystem/#sub-1">Sub-1</NavLinkItem>
@@ -42,7 +48,7 @@ const Navigation = () => (
             <NavLinkItem to="/ecosystem/#sub-3">Sub-3</NavLinkItem>
             <NavLinkItem to="/ecosystem/#sub-4">Sub-4</NavLinkItem>
           </List>
-        </Item>
+        </Item> */}
         <NavLinkItem to="/news">News</NavLinkItem>
         <NavLinkItem to="/about">About</NavLinkItem>
       </List>

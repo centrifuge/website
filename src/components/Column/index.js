@@ -46,7 +46,7 @@ Column.defaultProps = {
 
 Column.propTypes = {
   span: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 };
 
 export default Column;
