@@ -3,9 +3,7 @@ require("dotenv").config();
 const proxy = require("http-proxy-middleware");
 const {
   BLOCKS,
-  MARKS,
   INLINES,
-  EMBEDDED_ENTRY
 } = require("@contentful/rich-text-types");
 
 const lambdaServerDefaults = filename => ({
@@ -99,13 +97,16 @@ module.exports = {
             [BLOCKS.HEADING_2]: node =>
               `<Heading level='2'>${node.content[0].value}</Heading>`,
             [BLOCKS.HEADING_3]: node =>
-              `<Heading level='3'>${node.content[0].value}</Heading>`,
+              `<Heading level='3' noLine>${node.content[0].value}</Heading>`,
             [BLOCKS.HEADING_4]: node =>
-              `<Heading level='4'>${node.content[0].value}</Heading>`,
+              `<Heading level='4' noLine>${node.content[0].value}</Heading>`,
             [BLOCKS.HEADING_5]: node =>
-              `<Heading level='5'>${node.content[0].value}</Heading>`,
+              `<Heading level='5' noLine>${node.content[0].value}</Heading>`,
             [BLOCKS.HEADING_6]: node =>
-              `<Heading level='6'>${node.content[0].value}</Heading>`,
+              `<Heading level='6' noLine>${node.content[0].value}</Heading>`,
+
+            [INLINES.HYPERLINK]: node =>
+              `<a class='a' href='${node.data.uri}'>${node.content[0].value}</a>`,
 
             [BLOCKS.EMBEDDED_ENTRY]: node => {
               switch (node.data.target.sys.contentType.sys.id) {
