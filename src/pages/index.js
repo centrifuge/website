@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Heading, Box } from "grommet";
 import Lottie from "lottie-react-web";
 
 import Layout from "../components/Layout";

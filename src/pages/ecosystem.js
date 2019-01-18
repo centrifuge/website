@@ -71,9 +71,7 @@ const EcosystemPage = ({ data }) => {
         {/* Block 5 */}
         <Grid justify="center">
           <Column>
-            <div style={{ textAlign: "center" }}>
-              <ParseJSXToReact block={page.block5} />
-            </div>
+            <ParseJSXToReact block={page.block5} />
           </Column>
         </Grid>
       </Container>

@@ -10,7 +10,7 @@ import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 
-import { ParseJSXToReact, lastInArray } from "../helpers";
+import { ParseJSXToReact } from "../helpers";
 
 import block1Animation from "../lottie/About.json";
 import bigAnimation from "../lottie/About_BIG.json";
@@ -34,7 +34,7 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid>
+        <Grid justify="end">
           <Column span={{ small: 12, medium: 12, large: 8 }}>
             <ParseJSXToReact block={page.block2} />
           </Column>
@@ -85,6 +85,15 @@ const AboutPage = ({ data }) => {
             );
           })}
         </Grid>
+
+        {/* Block 6 - Investors */}
+
+        {/* Block 7 */}
+        <Grid justify="center">
+          <Column>
+            <ParseJSXToReact block={page.block7} />
+          </Column>
+        </Grid>
       </Container>
     </Layout>
   );
@@ -95,6 +104,10 @@ export const AboutPageQuery = graphql`
     allContentfulPageAbout {
       edges {
         node {
+          seo {
+            title
+            description
+          }
           block1 {
             childContentfulRichText {
               html
@@ -127,6 +140,11 @@ export const AboutPageQuery = graphql`
             }
             name
             title
+          }
+          block7 {
+            childContentfulRichText {
+              html
+            }
           }
         }
       }
