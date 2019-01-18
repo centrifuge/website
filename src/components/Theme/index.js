@@ -13,6 +13,22 @@ const GlobalStyle = createGlobalStyle`
     --fw-regular: 400;
     --fw-medium: 500;
     --fw-demibold: 600;
+
+    --c-black: #000000;
+    --c-brand: #2762FF;
+  }
+
+  .a {
+    color: var(--c-black);
+
+    &:hover,
+    &:focus {
+      color: var(--c-brand);
+    }
+
+    &:active {
+      opacity: 0.9
+    } 
   }
 `;
 
