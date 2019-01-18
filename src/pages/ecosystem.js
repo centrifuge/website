@@ -21,11 +21,11 @@ const EcosystemPage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid>
-          <Column span={{ small: 12, medium: 12, large: 7 }}>
+          <Column span={{ small: 12, medium: 6, large: 7 }}>
             <ParseJSXToReact block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ small: 12, medium: 12, large: 4 }}>
+          <Column span={{ small: 12, medium: 6, large: 4 }}>
             <Lottie options={{ animationData: block1Animation }} />
           </Column>
         </Grid>
@@ -50,14 +50,14 @@ const EcosystemPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid padding={{ top: "xlarge" }}>
+        <Grid padding={{ top: "128px", bottom: "large" }}>
           <Column>
             <ParseJSXToReact block={page.block3} />
           </Column>
         </Grid>
 
         {/* Block 4 */}
-        <Grid align="start">
+        <Grid align="start" padding={{ bottom: "128px" }}>
           {page.block4.map((block, index) => (
             <>
               <Column key={index} span={{ small: 12, medium: 4, large: 3 }}>

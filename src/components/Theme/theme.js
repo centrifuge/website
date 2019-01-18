@@ -23,17 +23,15 @@ const custom = {
       brand: "#2762FF",
       black: "#000000"
     },
-    // breakpoints: {
-    //   small: {
-    //     value: 768
-    //   },
-    //   medium: {
-    //     value: 992
-    //   },
-    //   large: {
-    //     value: 1400
-    //   }
-    // },
+    breakpoints: {
+      small: {
+        value: 768
+      },
+      medium: {
+        value: 1200
+      },
+      large: {}
+    },
     deviceBreakpoints: {
       phone: "small",
       tablet: "medium",
