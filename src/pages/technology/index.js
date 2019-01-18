@@ -27,7 +27,7 @@ const TechnologyPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ small: 12, medium: 12, large: 4 }}>
-            <Lottie options={{ animationData: block1Animation }} />
+            <Lottie options={{ animationData: block1Animation, loop: false }} />
           </Column>
         </Grid>
 
