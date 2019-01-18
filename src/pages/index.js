@@ -28,26 +28,6 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO />
       <Container>
-        <Box margin={{ bottom: "xlarge" }}>
-          <div>
-            <Heading size="large">Header Size Large</Heading>
-            <Heading>Header Size</Heading>
-            <Heading size="small">Header Size Small</Heading>
-
-            <Heading level="2" size="large">
-              Subheader Size Large
-            </Heading>
-            <Heading level="2">Subheader</Heading>
-
-            <Heading level="2" size="large" noLine>
-              Subheader Size Large, No Line
-            </Heading>
-            <Heading level="2" noLine>
-              Subheader, No Line
-            </Heading>
-          </div>
-        </Box>
-
         {/* Block 1 */}
         <Grid>
           <Column span={{ small: 12, medium: 6, large: 4 }}>
