@@ -1,10 +1,7 @@
 require("dotenv").config();
 
 const proxy = require("http-proxy-middleware");
-const {
-  BLOCKS,
-  INLINES,
-} = require("@contentful/rich-text-types");
+const { BLOCKS, INLINES } = require("@contentful/rich-text-types");
 
 const lambdaServerDefaults = filename => ({
   typePrefix: "lambda__",
@@ -106,7 +103,9 @@ module.exports = {
               `<Heading level='6' noLine>${node.content[0].value}</Heading>`,
 
             [INLINES.HYPERLINK]: node =>
-              `<a class='a' href='${node.data.uri}'>${node.content[0].value}</a>`,
+              `<a class='a' href='${node.data.uri}'>${
+                node.content[0].value
+              }</a>`,
 
             [BLOCKS.EMBEDDED_ENTRY]: node => {
               switch (node.data.target.sys.contentType.sys.id) {
