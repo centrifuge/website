@@ -25,9 +25,7 @@ const Column = ({ span, children, ...rest }) => (
 export const Spacer = ({ width }) => (
   <ResponsiveContext.Consumer>
     {size =>
-      size === "large" ? (
-        <Column span={{ small: 0, medium: 0, large: width }} />
-      ) : null
+      size === "large" ? <Column span={{ medium: 0, large: width }} /> : null
     }
   </ResponsiveContext.Consumer>
 );
@@ -38,7 +36,6 @@ Spacer.defaultProps = {
 
 Column.defaultProps = {
   span: {
-    small: 12,
     medium: 12,
     large: 12
   }

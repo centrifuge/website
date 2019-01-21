@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "react";
 import Lottie from "lottie-react-web";
-// @NOTE: need to remove this when Safari catches up
+import styled from "styled-components";
 import "intersection-observer";
 import Observer from "@researchgate/react-intersection-observer";
 
@@ -18,7 +19,6 @@ class Animation extends Component {
     return (
       <Observer onChange={this.handleChange}>
         <Lottie
-          height={384}
           isPaused={this.state.isPaused}
           options={{ animationData: file, loop: loop }}
         />
@@ -26,5 +26,9 @@ class Animation extends Component {
     );
   }
 }
+
+Animation.defaultProps = {
+  loop: true
+};
 
 export default Animation;

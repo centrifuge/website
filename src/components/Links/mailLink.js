@@ -1,17 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { StyledLink} from "./index";
+import { StyledLink } from "./index";
 
-const MailLink = ({
-  children,
-  email,
-  subject,
-  body,
-  bcc,
-  cc,
-  unstyled
-}) => (
+const MailLink = ({ children, email, subject, body, bcc, cc, unstyled }) => (
   <StyledLink
     href={`mailto:${email}?subject=${subject}&body=${body}&cc=${cc.join(
       ","

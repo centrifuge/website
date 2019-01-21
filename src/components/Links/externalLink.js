@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { StyledLink} from "./index";
+import { StyledLink } from "./index";
 
 const ExternalLink = ({ children, unstyled, ...rest }) => (
   <StyledLink

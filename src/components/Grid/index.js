@@ -3,7 +3,7 @@ import { Box } from "grommet";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const StyledGrid = styled.div`
+const StyledGrid = styled.section`
   display: flex;
   flex-direction: column;
 
@@ -16,14 +16,11 @@ const StyledGrid = styled.div`
   }
 `;
 
-const Grid = ({ children, align, justify, padding, ...rest }) => (
-  <Box pad={padding}>
+const Grid = ({ children, align, justify, padding, margin, ...rest }) => (
+  <Box pad={padding} margin={margin}>
     <StyledGrid
-      fill
-      as="section"
       align={align}
       justify={justify}
-      gap={{ column: "medium" }}
       columns={{ count: 12, size: "auto" }}
       {...rest}
     >
@@ -36,8 +33,12 @@ Grid.defaultProps = {
   align: "center",
   justify: "start",
   padding: {
-    top: "128px",
-    bottom: "128px"
+    top: "large",
+    bottom: "large"
+  },
+  margin: {
+    top: "xlarge",
+    bottom: "xlarge"
   }
 };
 

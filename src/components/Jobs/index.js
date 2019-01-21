@@ -1,7 +1,7 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 
-import {ExternalLink} from "../Links";
+import { ExternalLink } from "../Links";
 
 const Jobs = () => (
   <StaticQuery
@@ -11,19 +11,15 @@ const Jobs = () => (
 
       return (
         <>
-          <p>Jobs</p>
-          {jobs.map(job => {
+          {jobs.map((job, index) => {
             job = job.node;
 
             return (
-              <>
-                <h2>
+              <div key={index}>
+                <p>
                   <ExternalLink href={job.link}>{job.position}</ExternalLink>
-                </h2>
-                <pre>
-                  <code>{JSON.stringify(job, null, 2)}</code>
-                </pre>
-              </>
+                </p>
+              </div>
             );
           })}
         </>
