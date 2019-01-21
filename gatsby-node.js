@@ -6,6 +6,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
           {
             test: /intersection-observer/,
             use: loaders.null()
+          },
+          {
+            test: /react-intersection-observer/,
+            use: loaders.null()
           }
         ]
       }
