@@ -11,7 +11,11 @@ import { InternalLink } from "../Links";
 
 const NavLinkItem = ({ children, to, ...rest }) => (
   <Item {...rest}>
-    <InternalLink activeStyle={{ color: "var(--c-brand)" }} to={to}>
+    <InternalLink
+      style={{ fontWeight: "var(--fw-medium)" }}
+      activeStyle={{ color: "var(--c-brand)" }}
+      to={to}
+    >
       {children}
     </InternalLink>
   </Item>
@@ -20,7 +24,7 @@ const NavLinkItem = ({ children, to, ...rest }) => (
 const Navigation = () => (
   <Box as="nav" pad={{ top: "medium" }} role="navigation">
     <Container>
-      <List style={{ display: "flex" }}>
+      <List style={{ display: "flex", alignItems: "center" }}>
         <NavLinkItem style={{ flex: 1 }} to="/">
           <img
             alt="Centrifuge Wordmark"
@@ -28,9 +32,10 @@ const Navigation = () => (
             src={wordmark}
           />
         </NavLinkItem>
-        <NavLinkItem to="/technology">Technology</NavLinkItem>
-        {/* Dropdown For Later */}
-        {/* <Item>
+        <Box direction="" gap="large">
+          <NavLinkItem to="/technology">Technology</NavLinkItem>
+          {/* Dropdown For Later */}
+          {/* <Item>
           <InternalLink to="/technology">Technology</InternalLink>
           <List>
             <NavLinkItem to="/technology/components">Components</NavLinkItem>
@@ -38,9 +43,9 @@ const Navigation = () => (
             <NavLinkItem to="/technology/protocol">Protocol</NavLinkItem>
           </List>
         </Item> */}
-        <NavLinkItem to="/ecosystem">Ecosystem</NavLinkItem>
-        {/* Dropdown For Later */}
-        {/* <Item>
+          <NavLinkItem to="/ecosystem">Ecosystem</NavLinkItem>
+          {/* Dropdown For Later */}
+          {/* <Item>
           <InternalLink to="/ecosystem">Ecosystem</InternalLink>
           <List>
             <NavLinkItem to="/ecosystem/#sub-1">Sub-1</NavLinkItem>
@@ -49,8 +54,9 @@ const Navigation = () => (
             <NavLinkItem to="/ecosystem/#sub-4">Sub-4</NavLinkItem>
           </List>
         </Item> */}
-        <NavLinkItem to="/news">News</NavLinkItem>
-        <NavLinkItem to="/about">About</NavLinkItem>
+          <NavLinkItem to="/news">News</NavLinkItem>
+          <NavLinkItem to="/about">About</NavLinkItem>
+        </Box>
       </List>
     </Container>
   </Box>
