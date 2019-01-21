@@ -24,25 +24,25 @@ const AboutPage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid>
-          <Column span={{ small: 12, medium: 6, large: 7 }}>
+          <Column span={{ medium: 6, large: 7 }}>
             <ParseJSXToReact block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ small: 12, medium: 6, large: 4 }}>
+          <Column span={{ medium: 6, large: 4 }}>
             <Animation file={block1Animation} loop={false} />
           </Column>
         </Grid>
 
         {/* Block 2 */}
         <Grid justify="end">
-          <Column span={{ small: 12, medium: 12, large: 8 }}>
+          <Column span={{ medium: 12, large: 8 }}>
             <ParseJSXToReact block={page.block2} />
           </Column>
         </Grid>
 
         {/* Block 3 */}
         <Grid>
-          <Column span={{ small: 12, medium: 12, large: 4 }}>
+          <Column span={{ medium: 12, large: 4 }}>
             <ParseJSXToReact block={page.block3} />
           </Column>
         </Grid>
@@ -54,7 +54,7 @@ const AboutPage = ({ data }) => {
           </Column>
           {page.block4Team.map((member, index) => {
             return (
-              <Column key={index} span={{ small: 12, medium: 6, large: 3 }}>
+              <Column key={index} span={{ medium: 6, large: 3 }}>
                 <Image fixed={member.headshot.fixed} />
                 <div>{member.name}</div>
                 <div>{member.title}</div>
@@ -77,7 +77,7 @@ const AboutPage = ({ data }) => {
           </Column>
           {page.block5Advisors.map((advisor, index) => {
             return (
-              <Column key={index} span={{ small: 12, medium: 6, large: 3 }}>
+              <Column key={index} span={{ medium: 6, large: 3 }}>
                 <Image fixed={advisor.headshot.fixed} />
                 <div>{advisor.name}</div>
                 <div>{advisor.title}</div>

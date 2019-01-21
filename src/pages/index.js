@@ -29,40 +29,40 @@ const IndexPage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid>
-          <Column span={{ small: 12, medium: 6, large: 4 }}>
+          <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block1} />
           </Column>
-          <Column span={{ small: 12, medium: 6, large: 8 }}>
+          <Column span={{ medium: 6, large: 8 }}>
             <Animation file={block1Animation} />
           </Column>
         </Grid>
 
         {/* Block 2 */}
         <Grid>
-          <Column span={{ small: 12, medium: 6, large: 8 }}>
+          <Column span={{ medium: 6, large: 8 }}>
             <Animation file={block2Animation} />
           </Column>
-          <Column span={{ small: 12, medium: 6, large: 4 }}>
+          <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block2} />
           </Column>
         </Grid>
 
         {/* Block 3 */}
         <Grid>
-          <Column span={{ small: 12, medium: 6, large: 4 }}>
+          <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block3} />
           </Column>
-          <Column span={{ small: 12, medium: 6, large: 8 }}>
+          <Column span={{ medium: 6, large: 8 }}>
             <Animation file={block3Animation} />
           </Column>
         </Grid>
 
         {/* Block 4 */}
         <Grid>
-          <Column span={{ small: 12, medium: 6, large: 8 }}>
+          <Column span={{ medium: 6, large: 8 }}>
             <Animation file={block4Animation} />
           </Column>
-          <Column span={{ small: 12, medium: 6, large: 4 }}>
+          <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block4} />
           </Column>
         </Grid>

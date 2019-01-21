@@ -22,11 +22,11 @@ const TechnologyPage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid>
-          <Column span={{ small: 12, medium: 6, large: 7 }}>
+          <Column span={{ medium: 6, large: 7 }}>
             <ParseJSXToReact block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ small: 12, medium: 6, large: 4 }}>
+          <Column span={{ medium: 6, large: 4 }}>
             <Animation file={block1Animation} loop={false} />
           </Column>
         </Grid>
@@ -35,7 +35,7 @@ const TechnologyPage = ({ data }) => {
         <Grid justify="start" align="start">
           {page.block2.map((block, index) => (
             <>
-              <Column span={{ small: 12, medium: 4, large: 3 }}>
+              <Column span={{ medium: 4, large: 3 }}>
                 <ParseJSXToReact block={block.content} />
               </Column>
               {!lastInArray(page.block2, index) && <Spacer />}
@@ -52,7 +52,7 @@ const TechnologyPage = ({ data }) => {
 
         {/* Block 3 */}
         <Grid justify="center">
-          <Column span={{ small: 12, medium: 12, large: 12 }}>
+          <Column span={{ medium: 12, large: 12 }}>
             <ParseJSXToReact block={page.block3} />
           </Column>
         </Grid>
