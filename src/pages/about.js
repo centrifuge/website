@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "gatsby-image";
 import { graphql } from "gatsby";
-import Lottie from "lottie-react-web";
 import { Heading } from "grommet";
 
 import Layout from "../components/Layout";
@@ -9,6 +8,7 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
+import Animation from "../components/Animation";
 
 import { ParseJSXToReact } from "../helpers";
 
@@ -29,7 +29,7 @@ const AboutPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ small: 12, medium: 6, large: 4 }}>
-            <Lottie options={{ animationData: block1Animation, loop: false }} />
+            <Animation file={block1Animation} loop={false} />
           </Column>
         </Grid>
 
@@ -66,7 +66,7 @@ const AboutPage = ({ data }) => {
         {/* Animation Block */}
         <Grid>
           <Column>
-            <Lottie options={{ animationData: bigAnimation }} />
+            <Animation file={bigAnimation} />
           </Column>
         </Grid>
 

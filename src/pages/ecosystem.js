@@ -1,12 +1,13 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Lottie from "lottie-react-web";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
+import Animation from "../components/Animation";
+
 import { ParseJSXToReact, lastInArray } from "../helpers";
 
 import block1Animation from "../lottie/Ecosystem.json";
@@ -26,7 +27,7 @@ const EcosystemPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ small: 12, medium: 6, large: 4 }}>
-            <Lottie options={{ animationData: block1Animation }} />
+            <Animation file={block1Animation} />
           </Column>
         </Grid>
 
@@ -45,7 +46,7 @@ const EcosystemPage = ({ data }) => {
         {/* Animation Block */}
         <Grid>
           <Column>
-            <Lottie options={{ animationData: bigAnimation }} />
+            <Animation file={bigAnimation} />
           </Column>
         </Grid>
 
