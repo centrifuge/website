@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "react";
 import Lottie from "lottie-react-web";
 import styled from "styled-components";
-import "intersection-observer";
 import Observer from "@researchgate/react-intersection-observer";
 
 class Animation extends Component {
