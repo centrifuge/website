@@ -35,7 +35,7 @@ const CareersPage = ({ data }) => {
 
         {/* Block 2 */}
         <Grid>
-          <Column>
+          <Column justifySelf="stretch">
             <Heading level="2">{page.block2Title}</Heading>
           </Column>
           <Column>
@@ -52,7 +52,7 @@ const CareersPage = ({ data }) => {
 
         {/* Block 3 */}
         <Grid justify="start" align="start">
-          <Column>
+          <Column justifySelf="stretch">
             <Heading level="2">{page.block3Title}</Heading>
           </Column>
           {page.block3.map((block, index) => (
@@ -67,7 +67,7 @@ const CareersPage = ({ data }) => {
 
         {/* Block 4 */}
         <Grid justify="center">
-          <Column span={{ medium: 12, large: 12 }}>
+          <Column textAlign="center">
             <ParseJSXToReact block={page.block4} />
           </Column>
         </Grid>

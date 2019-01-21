@@ -49,7 +49,7 @@ const AboutPage = ({ data }) => {
 
         {/* Block 4 - Team */}
         <Grid>
-          <Column>
+          <Column justifySelf="stretch">
             <Heading level="2">Our team</Heading>
           </Column>
           {page.block4Team.map((member, index) => {
@@ -72,7 +72,7 @@ const AboutPage = ({ data }) => {
 
         {/* Block 5 - Advisors */}
         <Grid>
-          <Column>
+          <Column justifySelf="stretch">
             <Heading level="2">Advisory Board</Heading>
           </Column>
           {page.block5Advisors.map((advisor, index) => {
@@ -90,7 +90,7 @@ const AboutPage = ({ data }) => {
 
         {/* Block 7 */}
         <Grid justify="center">
-          <Column>
+          <Column textAlign="center">
             <ParseJSXToReact block={page.block7} />
           </Column>
         </Grid>

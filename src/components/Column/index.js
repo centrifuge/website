@@ -5,17 +5,33 @@ import styled, { css } from "styled-components";
 
 const StyledColumn = styled(Box)`
   ${props =>
-    props.span
-      ? css`
-          grid-column: span ${props.span} / auto;
-        `
-      : null}
+    props.span &&
+    css`
+      grid-column: span ${props.span} / auto;
+    `}
+
+  ${props =>
+    props.justifySelf &&
+    css`
+      justify-self: ${props.justifySelf};
+    `}
+
+  ${props =>
+    props.textAlign &&
+    css`
+      text-align: ${props.textAlign};
+    `}
 `;
 
-const Column = ({ span, children, ...rest }) => (
+const Column = ({ span, children, textAlign, justifySelf, ...rest }) => (
   <ResponsiveContext.Consumer>
     {size => (
-      <StyledColumn span={span[size]} {...rest}>
+      <StyledColumn
+        textAlign={textAlign}
+        justifySelf={justifySelf}
+        span={span[size]}
+        {...rest}
+      >
         {children}
       </StyledColumn>
     )}
@@ -43,6 +59,8 @@ Column.defaultProps = {
 
 Column.propTypes = {
   span: PropTypes.object.isRequired,
+  textAlign: PropTypes.string,
+  justifySelf: PropTypes.string,
   children: PropTypes.node
 };
 

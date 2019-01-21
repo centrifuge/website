@@ -52,7 +52,7 @@ const TechnologyPage = ({ data }) => {
 
         {/* Block 3 */}
         <Grid justify="center">
-          <Column span={{ medium: 12, large: 12 }}>
+          <Column span={{ medium: 12, large: 12 }} textAlign="center">
             <ParseJSXToReact block={page.block3} />
           </Column>
         </Grid>
