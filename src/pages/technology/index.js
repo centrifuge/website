@@ -11,7 +11,6 @@ import Animation from "../../components/Animation";
 import { ParseJSXToReact, lastInArray } from "../../helpers";
 
 import block1Animation from "../../lottie/Technology.json";
-import bigAnimation from "../../lottie/Technology_BIG.json";
 import technologyBig from "../../images/technology_big.svg";
 
 const TechnologyPage = ({ data }) => {

@@ -13,7 +13,6 @@ import Animation from "../components/Animation";
 import { ParseJSXToReact, lastInArray } from "../helpers";
 
 import block1Animation from "../lottie/Team.json";
-import bigAnimation from "../lottie/Team_BIG.json";
 import careersBig from "../images/careers_big.svg";
 
 const CareersPage = ({ data }) => {
