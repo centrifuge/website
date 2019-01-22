@@ -60,7 +60,12 @@ class SubscriptionForm extends React.Component {
       );
     }
 
-    return <p style={{ textAlign: "center" }}>{this.state.response.msg}</p>;
+    return (
+      <p
+        style={{ textAlign: "center" }}
+        dangerouslySetInnerHTML={{ __html: this.state.response.msg }}
+      />
+    );
   }
 }
 

@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     --c-brand: #2762FF;
   }
 
-  .a {
+  .a, a {
     color: var(--c-black);
 
     &:hover,
