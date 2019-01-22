@@ -66,6 +66,13 @@ const IndexPage = ({ data }) => {
             <ParseJSXToReact block={page.block4} />
           </Column>
         </Grid>
+
+        {/* Block 5 */}
+        <Grid>
+          <Column span={{ medium: 12, large: 8 }}>
+            <ParseJSXToReact block={page.block5} />
+          </Column>
+        </Grid>
       </Container>
     </Layout>
   );

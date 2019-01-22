@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "gatsby-image";
 import { graphql } from "gatsby";
 import { Heading } from "grommet";
 
@@ -9,11 +8,12 @@ import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
+import MVP from "../components/MVP";
 
 import { ParseJSXToReact } from "../helpers";
 
 import block1Animation from "../lottie/About.json";
-import bigAnimation from "../lottie/About_BIG.json";
+import aboutBig from "../images/about_big.svg";
 
 const AboutPage = ({ data }) => {
   const page = data.allContentfulPageAbout.edges[0].node;
@@ -55,18 +55,15 @@ const AboutPage = ({ data }) => {
           {page.block4Team.map((member, index) => {
             return (
               <Column key={index} span={{ medium: 6, large: 3 }}>
-                <Image fixed={member.headshot.fixed} />
-                <div>{member.name}</div>
-                <div>{member.title}</div>
+                <MVP {...member} />
               </Column>
             );
           })}
         </Grid>
 
-        {/* Animation Block */}
         <Grid>
           <Column>
-            <Animation file={bigAnimation} />
+            <img src={aboutBig} />
           </Column>
         </Grid>
 
@@ -78,9 +75,7 @@ const AboutPage = ({ data }) => {
           {page.block5Advisors.map((advisor, index) => {
             return (
               <Column key={index} span={{ medium: 6, large: 3 }}>
-                <Image fixed={advisor.headshot.fixed} />
-                <div>{advisor.name}</div>
-                <div>{advisor.title}</div>
+                <MVP {...advisor} />
               </Column>
             );
           })}
@@ -125,7 +120,7 @@ export const AboutPageQuery = graphql`
           }
           block4Team {
             headshot {
-              fixed(width: 250, height: 250) {
+              fixed(width: 128, height: 128, quality: 80) {
                 ...GatsbyContentfulFixed_withWebp
               }
             }
@@ -134,7 +129,7 @@ export const AboutPageQuery = graphql`
           }
           block5Advisors {
             headshot {
-              fixed(width: 250, height: 250) {
+              fixed(width: 128, height: 128, quality: 80) {
                 ...GatsbyContentfulFixed_withWebp
               }
             }

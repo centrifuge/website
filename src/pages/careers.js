@@ -14,6 +14,7 @@ import { ParseJSXToReact, lastInArray } from "../helpers";
 
 import block1Animation from "../lottie/Team.json";
 import bigAnimation from "../lottie/Team_BIG.json";
+import careersBig from "../images/careers_big.svg";
 
 const CareersPage = ({ data }) => {
   const page = data.allContentfulPageCareers.edges[0].node;
@@ -46,7 +47,7 @@ const CareersPage = ({ data }) => {
         {/* Animation Block */}
         <Grid>
           <Column>
-            <Animation file={bigAnimation} />
+            <img src={careersBig} />
           </Column>
         </Grid>
 

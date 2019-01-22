@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "react";
 import Lottie from "lottie-react-web";
-import styled from "styled-components";
 import Observer from "@researchgate/react-intersection-observer";
 
 class Animation extends Component {
@@ -13,21 +11,17 @@ class Animation extends Component {
     this.setState({ isPaused: e.isIntersecting ? false : true });
 
   render() {
-    const { file, loop } = this.props;
+    const { file } = this.props;
 
     return (
       <Observer onChange={this.handleChange}>
         <Lottie
           isPaused={this.state.isPaused}
-          options={{ animationData: file, loop: loop }}
+          options={{ animationData: file, loop: false }}
         />
       </Observer>
     );
   }
 }
-
-Animation.defaultProps = {
-  loop: true
-};
 
 export default Animation;

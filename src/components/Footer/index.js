@@ -63,6 +63,9 @@ const Footer = () => (
             <FooterExternalLinkItem href="https://github.com/centrifuge/">
               GitHub
             </FooterExternalLinkItem>
+            <FooterExternalLinkItem href="https://developer.centrifuge.io/">
+              Documentation
+            </FooterExternalLinkItem>
             {/* <FooterExternalLinkItem>Slack</FooterExternalLinkItem> */}
           </List>
         </Item>
@@ -76,9 +79,6 @@ const Footer = () => (
             <FooterLinkItem to="/data-privacy-policy">
               Data Privacy Policy
             </FooterLinkItem>
-            <FooterExternalLinkItem href="https://developer.centrifuge.io/">
-              Documentation
-            </FooterExternalLinkItem>
             <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
           </List>
         </Item>

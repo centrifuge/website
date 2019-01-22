@@ -11,7 +11,7 @@ import Animation from "../components/Animation";
 import { ParseJSXToReact, lastInArray } from "../helpers";
 
 import block1Animation from "../lottie/Ecosystem.json";
-import bigAnimation from "../lottie/Ecosystem_BIG.json";
+import ecosystemBig from "../images/ecosystem_big.svg";
 
 const EcosystemPage = ({ data }) => {
   const page = data.allContentfulPageEcosystem.edges[0].node;
@@ -43,10 +43,9 @@ const EcosystemPage = ({ data }) => {
           ))}
         </Grid>
 
-        {/* Animation Block */}
         <Grid>
           <Column>
-            <Animation file={bigAnimation} />
+            <img src={ecosystemBig} />
           </Column>
         </Grid>
 

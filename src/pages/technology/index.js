@@ -12,6 +12,7 @@ import { ParseJSXToReact, lastInArray } from "../../helpers";
 
 import block1Animation from "../../lottie/Technology.json";
 import bigAnimation from "../../lottie/Technology_BIG.json";
+import technologyBig from "../../images/technology_big.svg";
 
 const TechnologyPage = ({ data }) => {
   const page = data.allContentfulPageTechnology.edges[0].node;
@@ -43,10 +44,9 @@ const TechnologyPage = ({ data }) => {
           ))}
         </Grid>
 
-        {/* Animation Block */}
         <Grid>
           <Column>
-            <Animation file={bigAnimation} />
+            <img src={technologyBig} />
           </Column>
         </Grid>
 

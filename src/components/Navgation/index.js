@@ -21,41 +21,46 @@ const NavLinkItem = ({ children, to, ...rest }) => (
   </Item>
 );
 
+const Logo = () => (
+  <img alt="Centrifuge Wordmark" style={{ height: 32 }} src={wordmark} />
+);
+
 const Navigation = () => (
   <Box as="nav" pad={{ top: "medium" }} role="navigation">
     <Container>
       <List style={{ display: "flex", alignItems: "center" }}>
         <NavLinkItem style={{ flex: 1 }} to="/">
-          <img
-            alt="Centrifuge Wordmark"
-            style={{ height: 32 }}
-            src={wordmark}
-          />
+          <Logo />
         </NavLinkItem>
         <Box direction="" gap="large">
-          <NavLinkItem to="/technology">Technology</NavLinkItem>
-          {/* Dropdown For Later */}
-          {/* <Item>
           <InternalLink to="/technology">Technology</InternalLink>
-          <List>
-            <NavLinkItem to="/technology/components">Components</NavLinkItem>
-            <NavLinkItem to="/technology/contribute">Contribute</NavLinkItem>
-            <NavLinkItem to="/technology/protocol">Protocol</NavLinkItem>
-          </List>
-        </Item> */}
-          <NavLinkItem to="/ecosystem">Ecosystem</NavLinkItem>
-          {/* Dropdown For Later */}
           {/* <Item>
-          <InternalLink to="/ecosystem">Ecosystem</InternalLink>
-          <List>
-            <NavLinkItem to="/ecosystem/#sub-1">Sub-1</NavLinkItem>
-            <NavLinkItem to="/ecosystem/#sub-2">Sub-2</NavLinkItem>
-            <NavLinkItem to="/ecosystem/#sub-3">Sub-3</NavLinkItem>
-            <NavLinkItem to="/ecosystem/#sub-4">Sub-4</NavLinkItem>
-          </List>
-        </Item> */}
+            <InternalLink to="/technology">Technology</InternalLink>
+            <List>
+              <NavLinkItem to="/technology/components">Components</NavLinkItem>
+              <NavLinkItem to="/technology/contribute">Contribute</NavLinkItem>
+              <NavLinkItem to="/technology/protocol">Protocol</NavLinkItem>
+            </List>
+          </Item> */}
+
+          <Item>
+            <InternalLink to="/ecosystem">Ecosystem</InternalLink>
+            <List>
+              <NavLinkItem to="/ecosystem/#use-cases">Use Cases</NavLinkItem>
+            </List>
+          </Item>
+
           <NavLinkItem to="/news">News</NavLinkItem>
-          <NavLinkItem to="/about">About</NavLinkItem>
+
+          <Item>
+            <NavLinkItem to="/about">About</NavLinkItem>
+            <List>
+              <NavLinkItem to="/about/#mission">Mission</NavLinkItem>
+              <NavLinkItem to="/about/#team">Team</NavLinkItem>
+              {/* <NavLinkItem to="/about/#alliance">Mission</NavLinkItem> */}
+              <NavLinkItem to="/careers">Careers</NavLinkItem>
+            </List>
+          </Item>
         </Box>
       </List>
     </Container>
