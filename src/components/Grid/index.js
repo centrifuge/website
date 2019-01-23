@@ -7,7 +7,7 @@ const StyledGrid = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 769px) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 32px;

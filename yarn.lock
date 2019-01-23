@@ -5848,6 +5848,14 @@ gatsby-source-contentful@^2.0.26:
     lodash "^4.17.10"
     qs "^6.4.0"
 
+gatsby-source-medium@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-source-medium/-/gatsby-source-medium-2.0.2.tgz#d17c488c5525f1bfc5770d19380566f035f849a2"
+  integrity sha512-vIXNOAmxQd9Y6/n7a08ja7qfK8fFjsWIHAjo8S9hijy02C8XvYotvXkfc1S9GTFdudkrl409YFykMFFHKdodng==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    axios "^0.18.0"
+
 gatsby@^2.0.76:
   version "2.0.76"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.76.tgz#a28b975f4e80d80be6501d6ee15e4fae8d766342"

@@ -117,16 +117,26 @@ module.exports = {
                     buttonFields.buttonStyle &&
                     buttonFields.buttonStyle["en-US"] === "Outline"
                   )
-                    return `<Button href='${buttonFields.link["en-US"]}' label='${buttonFields.text["en-US"]}' />`;
-                  
+                    return `<Button href='${
+                      buttonFields.link["en-US"]
+                    }' label='${buttonFields.text["en-US"]}' />`;
+
                   // Primary Style Button
-                  return `<Button primary href='${buttonFields.link["en-US"]}' label='${buttonFields.text["en-US"]}' />`;
+                  return `<Button primary href='${
+                    buttonFields.link["en-US"]
+                  }' label='${buttonFields.text["en-US"]}' />`;
                 default:
                   return `<p>ENTRY NOT MAPPED</p>`;
               }
             }
           }
         }
+      }
+    },
+    {
+      resolve: `gatsby-source-medium`,
+      options: {
+        username: `centrifuge`
       }
     },
     `gatsby-plugin-styled-components`,

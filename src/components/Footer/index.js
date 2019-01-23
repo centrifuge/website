@@ -26,10 +26,32 @@ const FooterLinkItem = ({ children, to, ...rest }) => (
   </Item>
 );
 
+const FooterContent = styled(List)`
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (max-width: 768px) {
+    > li {
+      margin-bottom: 48px;
+    }
+  }
+
+  @media only screen and (min-width: 769px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 48px;
+  }
+
+  @media only screen and (min-width: 1201px) {
+    grid-template-columns: max-content 1fr repeat(2, max-content);
+    grid-gap: 64px;
+  }
+`;
+
 const Footer = () => (
   <Box background="black" as="footer" pad={{ top: "xlarge", bottom: "large" }}>
     <Container>
-      <Box direction="row" justify="between" as="ul">
+      <FooterContent>
         <FooterExternalLinkItem href="https://goo.gl/maps/MLDj8i2SwSv">
           <Address>
             Centrifuge Inc.
@@ -82,8 +104,8 @@ const Footer = () => (
             <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
           </List>
         </Item>
-      </Box>
-      <Box pad={{ top: "medium" }}>
+      </FooterContent>
+      <Box pad={{ top: "xlarge" }}>
         <p>Centrifuge Inc. © Copyright 2018</p>
       </Box>
     </Container>
