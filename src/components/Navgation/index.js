@@ -24,8 +24,11 @@ const Nav = styled(Box)`
     display: none;
   }
 
+  padding-top: 24px;
+
   @media only screen and (min-width: 768px) {
     position: sticky;
+    padding-top: 0;
     top: 24px;
 
     #dropdowns {
