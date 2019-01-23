@@ -46,7 +46,7 @@ const CareersPage = ({ data }) => {
         {/* Animation Block */}
         <Grid>
           <Column>
-            <img src={careersBig} />
+            <img alt="" src={careersBig} />
           </Column>
         </Grid>
 

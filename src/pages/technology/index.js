@@ -45,7 +45,7 @@ const TechnologyPage = ({ data }) => {
 
         <Grid>
           <Column>
-            <img src={technologyBig} />
+            <img alt="" src={technologyBig} />
           </Column>
         </Grid>
 

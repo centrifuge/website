@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
-import Column from "../components/Column";
+import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
 import Animation from "../components/Animation";
 
@@ -32,16 +32,18 @@ const IndexPage = ({ data }) => {
           <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block1} />
           </Column>
-          <Column span={{ medium: 6, large: 8 }}>
+          <Spacer />
+          <Column span={{ medium: 6, large: 7 }}>
             <Animation file={block1Animation} />
           </Column>
         </Grid>
 
         {/* Block 2 */}
         <Grid>
-          <Column span={{ medium: 6, large: 8 }}>
+          <Column span={{ medium: 6, large: 7 }}>
             <Animation file={block2Animation} />
           </Column>
+          <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block2} />
           </Column>
@@ -52,16 +54,18 @@ const IndexPage = ({ data }) => {
           <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block3} />
           </Column>
-          <Column span={{ medium: 6, large: 8 }}>
+          <Spacer />
+          <Column span={{ medium: 6, large: 7 }}>
             <Animation file={block3Animation} />
           </Column>
         </Grid>
 
         {/* Block 4 */}
         <Grid>
-          <Column span={{ medium: 6, large: 8 }}>
+          <Column span={{ medium: 6, large: 7 }}>
             <Animation file={block4Animation} />
           </Column>
+          <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block4} />
           </Column>

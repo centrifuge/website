@@ -20,8 +20,18 @@ const NavLink = ({ children, to, ...rest }) => (
 );
 
 const Nav = styled(Box)`
-  position: sticky;
-  top: 24px;
+  #dropdowns {
+    display: none;
+  }
+
+  @media only screen and (min-width: 768px) {
+    position: sticky;
+    top: 24px;
+
+    #dropdowns {
+      display: flex;
+    }
+  }
 
   li {
     display: block;
@@ -69,7 +79,7 @@ const Logo = () => (
 );
 
 const Navigation = () => (
-  <Nav as="nav" role="navigation">
+  <Nav as="nav" pad={{ top: "medium" }} role="navigation">
     <Container>
       <List style={{ display: "flex", alignItems: "center" }}>
         <Item style={{ flex: 1 }}>
@@ -77,8 +87,8 @@ const Navigation = () => (
             <Logo />
           </NavLink>
         </Item>
-        <Box direction="" gap="large">
-          <Item style={{padding: "1rem 0"}}>
+        <Box id="dropdowns" direction="" gap="large">
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/technology">Technology</NavLink>
           </Item>
           {/*  style={{padding: "1rem 0"}}>
@@ -90,7 +100,7 @@ const Navigation = () => (
             </List>
           </Item> */}
 
-          <Item style={{padding: "1rem 0"}}>
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/ecosystem">Ecosystem</NavLink>
             <List>
               <Item>
@@ -99,11 +109,11 @@ const Navigation = () => (
             </List>
           </Item>
 
-          <Item style={{padding: "1rem 0"}}>
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/news">News</NavLink>
           </Item>
 
-          <Item style={{padding: "1rem 0"}}>
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/about">About</NavLink>
             <List>
               <Item>

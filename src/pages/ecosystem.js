@@ -45,7 +45,7 @@ const EcosystemPage = ({ data }) => {
 
         <Grid>
           <Column>
-            <img src={ecosystemBig} />
+            <img alt="" src={ecosystemBig} />
           </Column>
         </Grid>
 

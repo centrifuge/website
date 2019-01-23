@@ -64,7 +64,7 @@ const AboutPage = ({ data }) => {
 
         <Grid>
           <Column>
-            <img src={aboutBig} />
+            <img alt="" src={aboutBig} />
           </Column>
         </Grid>
 
