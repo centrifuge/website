@@ -23,7 +23,7 @@ const AboutPage = ({ data }) => {
       <SEO {...page.seo} />
       <Container>
         {/* Block 1 */}
-        <Grid>
+        <Grid id="mission">
           <Column span={{ medium: 6, large: 7 }}>
             <ParseJSXToReact block={page.block1} />
           </Column>
@@ -35,6 +35,7 @@ const AboutPage = ({ data }) => {
 
         {/* Block 2 */}
         <Grid justify="end">
+          <Spacer width={4}></Spacer>
           <Column span={{ medium: 12, large: 8 }}>
             <ParseJSXToReact block={page.block2} />
           </Column>
@@ -48,7 +49,7 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 4 - Team */}
-        <Grid>
+        <Grid id="team">
           <Column justifySelf="stretch">
             <Heading level="2">Our team</Heading>
           </Column>

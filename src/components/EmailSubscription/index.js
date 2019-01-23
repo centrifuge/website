@@ -69,8 +69,19 @@ class SubscriptionForm extends React.Component {
   }
 }
 
+const EmailWrapper = styled(Box)`
+  /* Mailchimp Response Link Style */
+  a {
+    color: var(--c-white);
+
+    &:active {
+      opacity: 0.9;
+    }
+  }
+`;
+
 const EmailSubscription = () => (
-  <Box pad={{ top: "large", bottom: "large" }} background="brand">
+  <EmailWrapper pad={{ top: "large", bottom: "large" }} background="brand">
     <Container>
       <Box align="center">
         <Box width="large">
@@ -78,7 +89,7 @@ const EmailSubscription = () => (
         </Box>
       </Box>
     </Container>
-  </Box>
+  </EmailWrapper>
 );
 
 export default EmailSubscription;

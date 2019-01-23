@@ -45,6 +45,7 @@ const custom = {
       border: none;
       border-bottom: ${borderWidth}px solid #fff;
       border-radius: 0;
+      padding-bottom: calc(11px - 1px);
 
       ::placeholder {
         color: rgba(255, 255, 255, 0.72);

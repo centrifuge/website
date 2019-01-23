@@ -50,14 +50,14 @@ const EcosystemPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid>
+        <Grid id="use-cases" pb="0">
           <Column>
             <ParseJSXToReact block={page.block3} />
           </Column>
         </Grid>
 
         {/* Block 4 */}
-        <Grid align="start">
+        <Grid pt="0" align="start">
           {page.block4.map((block, index) => (
             <>
               <Column key={index} span={{ medium: 4, large: 3 }}>

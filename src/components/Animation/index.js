@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import Lottie from "lottie-react-web";
+import styled from "styled-components";
 import Observer from "@researchgate/react-intersection-observer";
+
+const AnimationWrapper = styled.div`
+  /* Fix issue w/ z-index for Dropdown */
+  svg {
+    transform: unset !important;
+  }
+`;
 
 class Animation extends Component {
   state = {
@@ -15,10 +23,12 @@ class Animation extends Component {
 
     return (
       <Observer onChange={this.handleChange}>
-        <Lottie
-          isPaused={this.state.isPaused}
-          options={{ animationData: file, loop: false }}
-        />
+        <AnimationWrapper>
+          <Lottie
+            isPaused={this.state.isPaused}
+            options={{ animationData: file, loop: false }}
+          />
+        </AnimationWrapper>
       </Observer>
     );
   }

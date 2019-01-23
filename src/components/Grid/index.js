@@ -16,8 +16,8 @@ const StyledGrid = styled.section`
   }
 `;
 
-const Grid = ({ children, align, justify, padding, margin, ...rest }) => (
-  <Box pad={padding} margin={margin}>
+const Grid = ({ children, align, justify, pt, pb, mt, mb, ...rest }) => (
+  <Box pad={{ top: pt, bottom: pb }} margin={{ top: mt, bottom: mb }}>
     <StyledGrid
       align={align}
       justify={justify}
@@ -32,21 +32,20 @@ const Grid = ({ children, align, justify, padding, margin, ...rest }) => (
 Grid.defaultProps = {
   align: "center",
   justify: "start",
-  padding: {
-    top: "large",
-    bottom: "large"
-  },
-  margin: {
-    top: "xlarge",
-    bottom: "xlarge"
-  }
+  pt: "large",
+  pb: "large",
+  mt: "xlarge",
+  mb: "xlarge"
 };
 
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
   align: PropTypes.string,
   justify: PropTypes.string,
-  padding: PropTypes.object
+  pt: PropTypes.string,
+  pb: PropTypes.string,
+  mt: PropTypes.string,
+  mb: PropTypes.string
 };
 
 export default Grid;
