@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "gatsby-image";
+import { Twitter, Linkedin } from "grommet-icons";
+
+import { ExternalLink } from "../Links";
+import { Box } from "grommet";
 
 const Name = styled.p`
   font-weight: var(--fw-medium);
@@ -20,7 +24,13 @@ const MVPWrapper = styled.div`
   align-items: center;
 `;
 
-const MVP = ({ headshot, name, title }) => (
+const MVP = ({
+  headshot,
+  name,
+  title,
+  socialMediaTwitter,
+  socialMediaLinkedIn
+}) => (
   <MVPWrapper>
     <Image
       imgStyle={{ borderRadius: 128 / 2 }}
@@ -30,6 +40,20 @@ const MVP = ({ headshot, name, title }) => (
     />
     <Name>{name}</Name>
     <Title>{title}</Title>
+    {(socialMediaTwitter || socialMediaLinkedIn) && (
+      <Box direction="row" gap="small">
+        {socialMediaTwitter && (
+          <ExternalLink href={socialMediaTwitter}>
+            <Twitter />
+          </ExternalLink>
+        )}
+        {socialMediaLinkedIn && (
+          <ExternalLink href={socialMediaLinkedIn}>
+            <Linkedin />
+          </ExternalLink>
+        )}
+      </Box>
+    )}
   </MVPWrapper>
 );
 

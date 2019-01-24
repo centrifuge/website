@@ -35,7 +35,7 @@ const AboutPage = ({ data }) => {
 
         {/* Block 2 */}
         <Grid justify="end">
-          <Spacer width={4}></Spacer>
+          <Spacer width={4} />
           <Column span={{ medium: 12, large: 8 }}>
             <ParseJSXToReact block={page.block2} />
           </Column>
@@ -127,6 +127,8 @@ export const AboutPageQuery = graphql`
             }
             name
             title
+            socialMediaTwitter
+            socialMediaLinkedIn
           }
           block5Advisors {
             headshot {
@@ -136,6 +138,8 @@ export const AboutPageQuery = graphql`
             }
             name
             title
+            socialMediaTwitter
+            socialMediaLinkedIn
           }
           block7 {
             childContentfulRichText {
