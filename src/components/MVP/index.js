@@ -2,14 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Image from "gatsby-image";
 
-const Headshot = styled(Image)`
-  max-width: 128px;
-  max-height: 128px;
-  width: 100%;
-
-  border-radius: ${128 / 2}px;
-`;
-
 const Name = styled.p`
   font-weight: var(--fw-medium);
   font-size: 16px;
@@ -30,7 +22,12 @@ const MVPWrapper = styled.div`
 
 const MVP = ({ headshot, name, title }) => (
   <MVPWrapper>
-    <Headshot fixed={headshot.fixed} alt={name} />
+    <Image
+      imgStyle={{ borderRadius: 128 / 2 }}
+      placeholderStyle={{ borderRadius: 128 / 2 }}
+      fixed={headshot.fixed}
+      alt={name}
+    />
     <Name>{name}</Name>
     <Title>{title}</Title>
   </MVPWrapper>
