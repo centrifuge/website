@@ -8,7 +8,7 @@ import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
 import Animation from "../components/Animation";
 
-import { ParseJSXToReact } from "../helpers";
+import RichTextRenderer from "../helpers/richTextRenderer";
 
 // import block1Image from "../images/block1-image.svg";
 // import block2Image from "../images/block2-image.svg";
@@ -30,7 +30,7 @@ const IndexPage = ({ data }) => {
         {/* Block 1 */}
         <Grid staggered>
           <Column span={{ medium: 6, large: 4 }}>
-            <ParseJSXToReact block={page.block1} />
+            <RichTextRenderer content={page.block1.contentAST} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 7 }}>
@@ -45,14 +45,14 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
-            <ParseJSXToReact block={page.block2} />
+            <RichTextRenderer content={page.block2.contentAST} />
           </Column>
         </Grid>
 
         {/* Block 3 */}
         <Grid staggered>
           <Column span={{ medium: 6, large: 4 }}>
-            <ParseJSXToReact block={page.block3} />
+            <RichTextRenderer content={page.block3.contentAST} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 7 }}>
@@ -67,14 +67,14 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
-            <ParseJSXToReact block={page.block4} />
+            <RichTextRenderer content={page.block4.contentAST} />
           </Column>
         </Grid>
 
         {/* Block 5 */}
         <Grid staggered>
           <Column span={{ medium: 12, large: 8 }}>
-            <ParseJSXToReact block={page.block5} />
+            <RichTextRenderer content={page.block5.contentAST} />
           </Column>
         </Grid>
       </Container>
@@ -88,29 +88,19 @@ export const IndexPageQuery = graphql`
       edges {
         node {
           block1 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block2 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block3 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block4 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block5 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
         }
       }
