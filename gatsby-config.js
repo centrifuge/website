@@ -34,6 +34,38 @@ const gitcoinServerOptions = {
   verboseOutput: true
 };
 
+const renderButton = target => {
+  const buttonFields = target.fields;
+
+  const style = buttonFields.buttonStyle
+    ? buttonFields.buttonStyle["en-US"]
+    : undefined;
+
+  const isInternal = () =>
+    buttonFields.link["en-US"].startsWith("/")
+      ? ""
+      : `rel="noopener norefferer" target="_blank"`;
+
+  switch (style) {
+    case "Outline":
+      return `<Button href='${
+        buttonFields.link["en-US"]
+      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
+    case "Github":
+      return `<Button plain icon={<Github/>} href='${
+        buttonFields.link["en-US"]
+      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
+    case "Slack":
+      return `<Button plain icon={<Slack/>} href='${
+        buttonFields.link["en-US"]
+      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
+    default:
+      return `<Button primary href='${
+        buttonFields.link["en-US"]
+      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
+  }
+};
+
 module.exports = {
   siteMetadata: {
     title: `Centrifuge`,
@@ -110,48 +142,13 @@ module.exports = {
             [BLOCKS.EMBEDDED_ENTRY]: node => {
               switch (node.data.target.sys.contentType.sys.id) {
                 case "componentButton":
-                  const buttonFields = node.data.target.fields;
-                  const style = buttonFields.buttonStyle
-                    ? buttonFields.buttonStyle["en-US"]
-                    : undefined;
-
-                  const isInternal = () =>
-                    buttonFields.link["en-US"].startsWith("/")
-                      ? null
-                      : `rel="noopener norefferer" target="_blank"`;
-
-                  // Styled Buttons
-                  if (style === "Outline") {
-                    return `<Button href='${
-                      buttonFields.link["en-US"]
-                    }' ${isInternal()} label='${
-                      buttonFields.text["en-US"]
-                    }' />`;
-                  } else if (style === "Github") {
-                    return `<Button plain icon={<Github/>} href='${
-                      buttonFields.link["en-US"]
-                    }' ${isInternal()} label='${
-                      buttonFields.text["en-US"]
-                    }' />`;
-                  } else if (style === "Slack") {
-                    return `<Button plain icon={<Slack/>} href='${
-                      buttonFields.link["en-US"]
-                    }' ${isInternal()} label='${
-                      buttonFields.text["en-US"]
-                    }' />`;
-                  }
-
-                  // Primary Style Button
-                  return `<Button primary href='${
-                    buttonFields.link["en-US"]
-                  }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
+                  renderButton(node.data.target);
+                  break;
 
                 case "componentButtonGroup":
-                  return `<code><pre>${JSON.stringify(
-                    node.data.target,
-                    null,
-                    2
-                  )}</pre></code>`;
+                  return `<Box direction='row' gap='small'>${node.data.target.fields.buttons[
+                    "en-US"
+                  ].map(button => renderButton(button))}</Box>`;
 
                 default:
                   return `<p>ENTRY NOT MAPPED</p>`;

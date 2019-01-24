@@ -60,6 +60,7 @@ const custom = {
   },
   heading: {
     weight: "var(--fw-demibold)",
+    responsiveBreakpoint: null,
     level: headingLevels,
     extend: props => css`
       ${(props.level === 1 || !props.level) && headerStyles}
