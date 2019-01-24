@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "grommet";
+import { Box, Button } from "grommet";
 import styled from "styled-components";
 
 import Container from "../Container";
@@ -18,6 +18,10 @@ const NavLink = ({ children, to, ...rest }) => (
     {children}
   </InternalLink>
 );
+
+const PaddedItem = styled(Item)`
+  padding: 1rem 0;
+`;
 
 const Nav = styled(Box)`
   #dropdowns {
@@ -41,10 +45,10 @@ const Nav = styled(Box)`
       background-color: white;
       z-index: -1;
       margin: 0 auto;
-      top: -16px;
+      top: -8px;
       left: 0;
       right: 0;
-      bottom: 0;
+      bottom: -8px;
     }
   }
 
@@ -102,33 +106,25 @@ const Navigation = () => (
             <Logo />
           </NavLink>
         </Item>
-        <Box id="dropdowns" direction="" gap="large">
-          <Item style={{ padding: "1rem 0" }}>
+        <Box id="dropdowns" direction="" align="center" gap="large">
+          <PaddedItem>
             <NavLink to="/technology">Technology</NavLink>
-          </Item>
-          {/*  style={{padding: "1rem 0"}}>
-            <InternalLink to="/technology">Technology</InternalLink>
-            <List>
-              <NavLink to="/technology/components">Components</NavLink>
-              <NavLink to="/technology/contribute">Contribute</NavLink>
-              <NavLink to="/technology/protocol">Protocol</NavLink>
-            </List>
-          </Item> */}
+          </PaddedItem>
 
-          <Item style={{ padding: "1rem 0" }}>
+          <PaddedItem>
             <NavLink to="/ecosystem">Ecosystem</NavLink>
             <List>
               <Item>
                 <NavLink to="/ecosystem/#use-cases">Use Cases</NavLink>
               </Item>
             </List>
-          </Item>
+          </PaddedItem>
 
-          <Item style={{ padding: "1rem 0" }}>
+          <PaddedItem>
             <NavLink to="/news">News</NavLink>
-          </Item>
+          </PaddedItem>
 
-          <Item style={{ padding: "1rem 0" }}>
+          <PaddedItem>
             <NavLink to="/about">About</NavLink>
             <List>
               <Item>
@@ -138,12 +134,15 @@ const Navigation = () => (
                 <NavLink to="/about/#team">Team</NavLink>
               </Item>
               <Item>
-                <NavLink to="/about/#alliance">Mission</NavLink>
+                <NavLink to="/about/#alliance">Alliance</NavLink>
               </Item>
               <Item>
                 <NavLink to="/careers">Careers</NavLink>
               </Item>
             </List>
+          </PaddedItem>
+          <Item>
+            <Button primary label="Sign up now" />
           </Item>
         </Box>
       </List>
