@@ -111,15 +111,35 @@ module.exports = {
               switch (node.data.target.sys.contentType.sys.id) {
                 case "componentButton":
                   const buttonFields = node.data.target.fields;
+                  const style = buttonFields.buttonStyle
+                    ? buttonFields.buttonStyle["en-US"]
+                    : undefined;
 
-                  // Outline Style Button
-                  if (
-                    buttonFields.buttonStyle &&
-                    buttonFields.buttonStyle["en-US"] === "Outline"
-                  )
+                  const linkIsInternal = () =>
+                    buttonFields.link["en-US"].startsWith("/")
+                      ? null
+                      : `rel="noopener norefferer" target="_blank"`;
+
+                  // Styled Buttons
+                  if (style === "Outline") {
                     return `<Button href='${
                       buttonFields.link["en-US"]
-                    }' label='${buttonFields.text["en-US"]}' />`;
+                    }' ${linkIsInternal()} label='${
+                      buttonFields.text["en-US"]
+                    }' />`;
+                  } else if (style === "Github") {
+                    return `<Button plain icon={<Github/>} href='${
+                      buttonFields.link["en-US"]
+                    }' ${linkIsInternal()} label='${
+                      buttonFields.text["en-US"]
+                    }' />`;
+                  } else if (style === "Slack") {
+                    return `<Button plain icon={<Slack/>} href='${
+                      buttonFields.link["en-US"]
+                    }' ${linkIsInternal()} label='${
+                      buttonFields.text["en-US"]
+                    }' />`;
+                  }
 
                   // Primary Style Button
                   return `<Button primary href='${

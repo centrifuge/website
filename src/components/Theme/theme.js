@@ -38,6 +38,12 @@ const custom = {
       computer: "medium"
     }
   },
+  icon: {
+    extend: css`
+      fill: #000000;
+      stroke: #000000;
+    `
+  },
   textInput: {
     extend: css`
       font-weight: var(--fw-medium);

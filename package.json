@@ -24,6 +24,7 @@
     "gatsby-source-contentful": "^2.0.26",
     "gatsby-source-medium": "^2.0.2",
     "grommet": "^2.3.1",
+    "grommet-icons": "^4.1.0",
     "intersection-observer": "^0.5.1",
     "jsonframe-cheerio": "^3.0.1",
     "lottie-react-web": "^2.1.4",
