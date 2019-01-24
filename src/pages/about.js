@@ -55,7 +55,12 @@ const AboutPage = ({ data }) => {
           </Column>
           {page.block4Team.map((member, index) => {
             return (
-              <Column key={index} span={{ medium: 6, large: 3 }}>
+              <Column
+                key={index}
+                justifySelf="center"
+                span={{ medium: 6, large: 3 }}
+                style={{ marginBottom: "2rem" }}
+              >
                 <VIP {...member} />
               </Column>
             );
@@ -75,7 +80,12 @@ const AboutPage = ({ data }) => {
           </Column>
           {page.block5Advisors.map((advisor, index) => {
             return (
-              <Column key={index} span={{ medium: 6, large: 3 }}>
+              <Column
+                key={index}
+                justifySelf="center"
+                span={{ medium: 6, large: 3 }}
+                style={{ marginBottom: "2rem" }}
+              >
                 <VIP {...advisor} />
               </Column>
             );

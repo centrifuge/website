@@ -1,12 +1,16 @@
 import React from "react";
 import { Box } from "grommet";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
 const GridWrapper = styled(Box)`
-  &:nth-child(even) > section  {
-    flex-direction: column-reverse;
-  }
+  ${props =>
+    props.staggered &&
+    css`
+      &:nth-child(even) > section {
+        flex-direction: column-reverse;
+      }
+    `}
 `;
 
 const StyledGrid = styled.section`
@@ -22,8 +26,22 @@ const StyledGrid = styled.section`
   }
 `;
 
-const Grid = ({ children, align, justify, pt, pb, mt, mb, ...rest }) => (
-  <GridWrapper pad={{ top: pt, bottom: pb }} margin={{ top: mt, bottom: mb }}>
+const Grid = ({
+  children,
+  align,
+  justify,
+  pt,
+  pb,
+  mt,
+  mb,
+  staggered,
+  ...rest
+}) => (
+  <GridWrapper
+    staggered={staggered}
+    pad={{ top: pt, bottom: pb }}
+    margin={{ top: mt, bottom: mb }}
+  >
     <StyledGrid
       align={align}
       justify={justify}
@@ -48,6 +66,7 @@ Grid.propTypes = {
   children: PropTypes.node.isRequired,
   align: PropTypes.string,
   justify: PropTypes.string,
+  staggered: PropTypes.bool,
   pt: PropTypes.string,
   pb: PropTypes.string,
   mt: PropTypes.string,

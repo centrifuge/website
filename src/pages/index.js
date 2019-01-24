@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => {
       <SEO />
       <Container>
         {/* Block 1 */}
-        <Grid>
+        <Grid staggered>
           <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block1} />
           </Column>
@@ -39,7 +39,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid>
+        <Grid staggered>
           <Column span={{ medium: 6, large: 7 }}>
             <Animation file={block2Animation} />
           </Column>
@@ -50,7 +50,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid>
+        <Grid staggered>
           <Column span={{ medium: 6, large: 4 }}>
             <ParseJSXToReact block={page.block3} />
           </Column>
@@ -61,7 +61,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 4 */}
-        <Grid>
+        <Grid staggered>
           <Column span={{ medium: 6, large: 7 }}>
             <Animation file={block4Animation} />
           </Column>
@@ -72,7 +72,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 5 */}
-        <Grid>
+        <Grid staggered>
           <Column span={{ medium: 12, large: 8 }}>
             <ParseJSXToReact block={page.block5} />
           </Column>
