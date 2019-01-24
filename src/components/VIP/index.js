@@ -17,21 +17,21 @@ const Title = styled.p`
   margin-top: 4px;
 `;
 
-const MVPWrapper = styled.div`
+const VIPWrapper = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const MVP = ({
+const VIP = ({
   headshot,
   name,
   title,
   socialMediaTwitter,
   socialMediaLinkedIn
 }) => (
-  <MVPWrapper>
+  <VIPWrapper>
     <Image
       imgStyle={{ borderRadius: 128 / 2 }}
       placeholderStyle={{ borderRadius: 128 / 2 }}
@@ -54,7 +54,7 @@ const MVP = ({
         )}
       </Box>
     )}
-  </MVPWrapper>
+  </VIPWrapper>
 );
 
-export default MVP;
+export default VIP;

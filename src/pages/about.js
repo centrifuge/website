@@ -8,7 +8,7 @@ import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
-import MVP from "../components/MVP";
+import VIP from "../components/VIP";
 
 import { ParseJSXToReact } from "../helpers";
 
@@ -56,7 +56,7 @@ const AboutPage = ({ data }) => {
           {page.block4Team.map((member, index) => {
             return (
               <Column key={index} span={{ medium: 6, large: 3 }}>
-                <MVP {...member} />
+                <VIP {...member} />
               </Column>
             );
           })}
@@ -76,7 +76,7 @@ const AboutPage = ({ data }) => {
           {page.block5Advisors.map((advisor, index) => {
             return (
               <Column key={index} span={{ medium: 6, large: 3 }}>
-                <MVP {...advisor} />
+                <VIP {...advisor} />
               </Column>
             );
           })}
