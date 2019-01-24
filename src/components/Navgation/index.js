@@ -24,15 +24,27 @@ const Nav = styled(Box)`
     display: none;
   }
 
-  padding-top: 24px;
+  padding-top: 16px;
 
   @media only screen and (min-width: 768px) {
-    position: sticky;
-    padding-top: 0;
-    top: 24px;
-
     #dropdowns {
       display: flex;
+    }
+
+    position: sticky;
+    padding-top: 0;
+    top: 16px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: white;
+      z-index: -1;
+      margin: 0 auto;
+      top: -16px;
+      left: 0;
+      right: 0;
+      bottom: 8px;
     }
   }
 
@@ -42,17 +54,17 @@ const Nav = styled(Box)`
   }
 
   ul li ul {
-    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(0, 0, 0, 0.15),
-      0 5px 15px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
     visibility: hidden;
     opacity: 0;
-    padding: 16px 0;
+    padding: 8px 0;
+    min-width: 120px;
     position: absolute;
     transition: all 0.5s ease;
-    margin-top: 1rem;
+    margin-top: 24px;
     border-radius: 8px;
-    left: 0;
+    left: -16px;
     display: none;
   }
 
@@ -73,7 +85,7 @@ const Nav = styled(Box)`
   ul li ul li a {
     line-height: 1.5;
     display: block;
-    padding: 16px 32px;
+    padding: 8px 16px;
   }
 `;
 
@@ -82,7 +94,7 @@ const Logo = () => (
 );
 
 const Navigation = () => (
-  <Nav as="nav" pad={{ top: "medium" }} role="navigation">
+  <Nav as="nav" role="navigation">
     <Container>
       <List style={{ display: "flex", alignItems: "center" }}>
         <Item style={{ flex: 1 }}>
@@ -91,10 +103,10 @@ const Navigation = () => (
           </NavLink>
         </Item>
         <Box id="dropdowns" direction="" gap="large">
-          <Item style={{ padding: "1rem 0" }}>
+          <Item style={{ padding: "24px 0" }}>
             <NavLink to="/technology">Technology</NavLink>
           </Item>
-          {/*  style={{padding: "1rem 0"}}>
+          {/*  style={{padding: "24px 0"}}>
             <InternalLink to="/technology">Technology</InternalLink>
             <List>
               <NavLink to="/technology/components">Components</NavLink>
@@ -103,7 +115,7 @@ const Navigation = () => (
             </List>
           </Item> */}
 
-          <Item style={{ padding: "1rem 0" }}>
+          <Item style={{ padding: "24px 0" }}>
             <NavLink to="/ecosystem">Ecosystem</NavLink>
             <List>
               <Item>
@@ -112,11 +124,11 @@ const Navigation = () => (
             </List>
           </Item>
 
-          <Item style={{ padding: "1rem 0" }}>
+          <Item style={{ padding: "24px 0" }}>
             <NavLink to="/news">News</NavLink>
           </Item>
 
-          <Item style={{ padding: "1rem 0" }}>
+          <Item style={{ padding: "24px 0" }}>
             <NavLink to="/about">About</NavLink>
             <List>
               <Item>
