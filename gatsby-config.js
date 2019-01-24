@@ -145,6 +145,14 @@ module.exports = {
                   return `<Button primary href='${
                     buttonFields.link["en-US"]
                   }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
+
+                case "componentButtonGroup":
+                  return `<code><pre>${JSON.stringify(
+                    node.data.target,
+                    null,
+                    2
+                  )}</pre></code>`;
+
                 default:
                   return `<p>ENTRY NOT MAPPED</p>`;
               }
