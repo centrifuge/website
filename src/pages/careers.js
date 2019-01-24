@@ -34,12 +34,19 @@ const CareersPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid>
+        <Grid pb="large" mb="large">
           <Column justifySelf="stretch">
             <Heading level="2">{page.block2Title}</Heading>
           </Column>
           <Column>
             <Jobs />
+          </Column>
+        </Grid>
+
+        {/* Block 4 */}
+        <Grid justify="center" mt="" pt="">
+          <Column textAlign="center">
+            <ParseJSXToReact block={page.block4} />
           </Column>
         </Grid>
 
@@ -63,13 +70,6 @@ const CareersPage = ({ data }) => {
               {!lastInArray(page.block3, index) && <Spacer />}
             </>
           ))}
-        </Grid>
-
-        {/* Block 4 */}
-        <Grid justify="center">
-          <Column textAlign="center">
-            <ParseJSXToReact block={page.block4} />
-          </Column>
         </Grid>
       </Container>
     </Layout>

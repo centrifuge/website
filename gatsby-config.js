@@ -115,7 +115,7 @@ module.exports = {
                     ? buttonFields.buttonStyle["en-US"]
                     : undefined;
 
-                  const linkIsInternal = () =>
+                  const isInternal = () =>
                     buttonFields.link["en-US"].startsWith("/")
                       ? null
                       : `rel="noopener norefferer" target="_blank"`;
@@ -124,19 +124,19 @@ module.exports = {
                   if (style === "Outline") {
                     return `<Button href='${
                       buttonFields.link["en-US"]
-                    }' ${linkIsInternal()} label='${
+                    }' ${isInternal()} label='${
                       buttonFields.text["en-US"]
                     }' />`;
                   } else if (style === "Github") {
                     return `<Button plain icon={<Github/>} href='${
                       buttonFields.link["en-US"]
-                    }' ${linkIsInternal()} label='${
+                    }' ${isInternal()} label='${
                       buttonFields.text["en-US"]
                     }' />`;
                   } else if (style === "Slack") {
                     return `<Button plain icon={<Slack/>} href='${
                       buttonFields.link["en-US"]
-                    }' ${linkIsInternal()} label='${
+                    }' ${isInternal()} label='${
                       buttonFields.text["en-US"]
                     }' />`;
                   }
@@ -144,7 +144,7 @@ module.exports = {
                   // Primary Style Button
                   return `<Button primary href='${
                     buttonFields.link["en-US"]
-                  }' label='${buttonFields.text["en-US"]}' />`;
+                  }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
                 default:
                   return `<p>ENTRY NOT MAPPED</p>`;
               }

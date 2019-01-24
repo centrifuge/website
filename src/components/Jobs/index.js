@@ -9,19 +9,27 @@ const Jobs = () => (
     render={data => {
       const jobs = data.allLambdaBreezy.edges;
 
+      if (jobs.length > 0) {
+        return (
+          <>
+            {jobs.map((job, index) => {
+              job = job.node;
+
+              return (
+                <div key={index}>
+                  <p>
+                    <ExternalLink href={job.link}>{job.position}</ExternalLink>
+                  </p>
+                </div>
+              );
+            })}
+          </>
+        );
+      }
+
       return (
         <>
-          {jobs.map((job, index) => {
-            job = job.node;
-
-            return (
-              <div key={index}>
-                <p>
-                  <ExternalLink href={job.link}>{job.position}</ExternalLink>
-                </p>
-              </div>
-            );
-          })}
+          <p>There are no open positions at this time.</p>
         </>
       );
     }}

@@ -44,7 +44,7 @@ const Nav = styled(Box)`
       top: -16px;
       left: 0;
       right: 0;
-      bottom: 8px;
+      bottom: 0;
     }
   }
 
@@ -62,7 +62,7 @@ const Nav = styled(Box)`
     min-width: 120px;
     position: absolute;
     transition: all 0.5s ease;
-    margin-top: 24px;
+    margin-top: 1rem;
     border-radius: 8px;
     left: -16px;
     display: none;
@@ -103,10 +103,10 @@ const Navigation = () => (
           </NavLink>
         </Item>
         <Box id="dropdowns" direction="" gap="large">
-          <Item style={{ padding: "24px 0" }}>
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/technology">Technology</NavLink>
           </Item>
-          {/*  style={{padding: "24px 0"}}>
+          {/*  style={{padding: "1rem 0"}}>
             <InternalLink to="/technology">Technology</InternalLink>
             <List>
               <NavLink to="/technology/components">Components</NavLink>
@@ -115,7 +115,7 @@ const Navigation = () => (
             </List>
           </Item> */}
 
-          <Item style={{ padding: "24px 0" }}>
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/ecosystem">Ecosystem</NavLink>
             <List>
               <Item>
@@ -124,11 +124,11 @@ const Navigation = () => (
             </List>
           </Item>
 
-          <Item style={{ padding: "24px 0" }}>
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/news">News</NavLink>
           </Item>
 
-          <Item style={{ padding: "24px 0" }}>
+          <Item style={{ padding: "1rem 0" }}>
             <NavLink to="/about">About</NavLink>
             <List>
               <Item>
