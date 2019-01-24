@@ -3,6 +3,12 @@ import { Box } from "grommet";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+const GridWrapper = styled(Box)`
+  &:nth-child(even) > section  {
+    flex-direction: column-reverse;
+  }
+`;
+
 const StyledGrid = styled.section`
   display: flex;
   flex-direction: column;
@@ -17,7 +23,7 @@ const StyledGrid = styled.section`
 `;
 
 const Grid = ({ children, align, justify, pt, pb, mt, mb, ...rest }) => (
-  <Box pad={{ top: pt, bottom: pb }} margin={{ top: mt, bottom: mb }}>
+  <GridWrapper pad={{ top: pt, bottom: pb }} margin={{ top: mt, bottom: mb }}>
     <StyledGrid
       align={align}
       justify={justify}
@@ -26,7 +32,7 @@ const Grid = ({ children, align, justify, pt, pb, mt, mb, ...rest }) => (
     >
       {children}
     </StyledGrid>
-  </Box>
+  </GridWrapper>
 );
 
 Grid.defaultProps = {
