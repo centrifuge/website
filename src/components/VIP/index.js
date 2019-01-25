@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "gatsby-image";
-import { Twitter, Linkedin } from "grommet-icons";
+import { Twitter, Linkedin, Medium, Github } from "grommet-icons";
 
 import { ExternalLink } from "../Links";
 import { Box } from "grommet";
@@ -29,7 +29,9 @@ const VIP = ({
   name,
   title,
   socialMediaTwitter,
-  socialMediaLinkedIn
+  socialMediaLinkedIn,
+  socialMediaGitHub,
+  socialMediaMedium
 }) => (
   <VIPWrapper>
     <Image
@@ -40,16 +42,29 @@ const VIP = ({
     />
     <Name>{name}</Name>
     <Title>{title}</Title>
-    {(socialMediaTwitter || socialMediaLinkedIn) && (
+    {(socialMediaTwitter ||
+      socialMediaLinkedIn ||
+      socialMediaGitHub ||
+      socialMediaMedium) && (
       <Box direction="row" gap="small">
         {socialMediaTwitter && (
           <ExternalLink href={socialMediaTwitter}>
-            <Twitter />
+            <Twitter size="small" />
+          </ExternalLink>
+        )}
+        {socialMediaGitHub && (
+          <ExternalLink href={socialMediaGitHub}>
+            <Github size="small" />
+          </ExternalLink>
+        )}
+        {socialMediaMedium && (
+          <ExternalLink href={socialMediaMedium}>
+            <Medium size="small" />
           </ExternalLink>
         )}
         {socialMediaLinkedIn && (
           <ExternalLink href={socialMediaLinkedIn}>
-            <Linkedin />
+            <Linkedin size="small" />
           </ExternalLink>
         )}
       </Box>

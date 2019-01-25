@@ -139,6 +139,8 @@ export const AboutPageQuery = graphql`
             title
             socialMediaTwitter
             socialMediaLinkedIn
+            socialMediaGitHub
+            socialMediaMedium
           }
           block5Advisors {
             headshot {
@@ -150,6 +152,8 @@ export const AboutPageQuery = graphql`
             title
             socialMediaTwitter
             socialMediaLinkedIn
+            socialMediaGitHub
+            socialMediaMedium
           }
           block7 {
             childContentfulRichText {
