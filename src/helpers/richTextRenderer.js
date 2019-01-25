@@ -1,7 +1,7 @@
 import React from "react";
 import { documentToReactTree } from "rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-import { Heading, Button, Box } from "grommet";
+import { Heading, Button, Box, Paragraph } from "grommet";
 import { Slack, Github } from "grommet-icons";
 
 const DebugData = ({ data }) => (
@@ -17,11 +17,12 @@ const renderButton = button => {
 
   switch (style) {
     case "Outline":
-      return <Button href={link} label={text} />;
+      return <Button margin={{ top: "medium" }} href={link} label={text} />;
 
     case "Github":
       return (
         <Button
+          margin={{ top: "medium" }}
           plain
           icon={<Github />}
           href={link}
@@ -34,6 +35,7 @@ const renderButton = button => {
     case "Slack":
       return (
         <Button
+          margin={{ top: "medium" }}
           plain
           icon={<Slack />}
           href={link}
@@ -44,7 +46,9 @@ const renderButton = button => {
       );
 
     default:
-      return <Button primary href={link} label={text} />;
+      return (
+        <Button margin={{ top: "medium" }} primary href={link} label={text} />
+      );
   }
 };
 
@@ -75,6 +79,10 @@ const embedRenderer = (id, node) => {
 
 const options = {
   renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => (
+      <Paragraph style={{ textAlign: "justify" }}>{children}</Paragraph>
+    ),
+
     [BLOCKS.HEADING_1]: (node, children) => (
       <Heading level="1">{children}</Heading>
     ),

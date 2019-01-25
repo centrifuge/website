@@ -94,7 +94,11 @@ const Nav = styled(Box)`
 `;
 
 const Logo = () => (
-  <img alt="Centrifuge Wordmark" style={{ height: 32 }} src={wordmark} />
+  <img
+    alt="Centrifuge Wordmark"
+    style={{ display: "block", height: 32 }}
+    src={wordmark}
+  />
 );
 
 const Navigation = () => (

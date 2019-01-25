@@ -9,7 +9,7 @@ const custom = {
   global: {
     font: {
       family: "Avenir Next, sans-serif",
-      size: "16px",
+      size: "14px",
       height: 1.5
     },
     focus: {
@@ -47,14 +47,14 @@ const custom = {
   textInput: {
     extend: css`
       font-weight: var(--fw-medium);
-      color: #fff;
+      color: black;
       border: none;
       border-bottom: ${borderWidth}px solid #fff;
       border-radius: 0;
       padding-bottom: calc(11px - 1px);
 
       ::placeholder {
-        color: rgba(255, 255, 255, 0.72);
+        color: black;
       }
     `
   },
@@ -76,6 +76,26 @@ const custom = {
           border-bottom: 1px solid black;
         `}
     `
+  },
+  paragraph: {
+    small: {
+      size: "20px",
+      height: "32px"
+    },
+    medium: {
+      size: "14px",
+      height: "24px"
+    }
+  },
+  text: {
+    small: {
+      size: "20px",
+      height: "32px"
+    },
+    medium: {
+      size: "14px",
+      height: "24px"
+    }
   },
   button: {
     padding: {
