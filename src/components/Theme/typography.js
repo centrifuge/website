@@ -2,14 +2,17 @@ import { css } from "styled-components";
 
 const headerSizeStyles = {
   large: css`
+    margin-top: 0;
     padding-bottom: 48px;
     margin-bottom: 96px;
   `,
   medium: css`
+    margin-top: 0;
     padding-bottom: 32px;
     margin-bottom: 64px;
   `,
   small: css`
+    margin-top: 0;
     padding-bottom: 28px;
     margin-bottom: 40px;
   `
@@ -41,19 +44,23 @@ const subheaderSizeStyles = {
   large: props =>
     !props.noLine
       ? css`
+          margin-top: 0;
           padding-bottom: 32px;
           margin-bottom: 48px;
         `
       : css`
+          margin-top: 0;
           margin-bottom: 32px;
         `,
   medium: props =>
     !props.noLine
       ? css`
+          margin-top: 0;
           padding-bottom: 24px;
           margin-bottom: 40px;
         `
       : css`
+          margin-top: 0;
           margin-bottom: 24px;
         `
 };

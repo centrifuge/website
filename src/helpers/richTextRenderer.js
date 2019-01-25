@@ -80,7 +80,9 @@ const embedRenderer = (id, node) => {
 const options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => (
-      <Paragraph style={{ textAlign: "justify" }}>{children}</Paragraph>
+      <Paragraph style={{ fontSize: "inherit", textAlign: "justify" }}>
+        {children}
+      </Paragraph>
     ),
 
     [BLOCKS.HEADING_1]: (node, children) => (
