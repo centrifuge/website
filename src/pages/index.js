@@ -8,7 +8,7 @@ import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
 import Animation from "../components/Animation";
 
-import RichTextRenderer from "../helpers/richTextRenderer";
+import { RichTextRenderer } from "../helpers";
 
 // import block1Image from "../images/block1-image.svg";
 // import block2Image from "../images/block2-image.svg";

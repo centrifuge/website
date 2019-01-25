@@ -53,7 +53,11 @@ const renderButton = button => {
 };
 
 const renderButtonGroup = buttons => (
-  <Box direction="row-responsive" gap="small">
+  <Box
+    direction="row-responsive"
+    align="center"
+    /* justify="between" */ gap="medium"
+  >
     {buttons.map(button => {
       return renderButton(button.fields);
     })}
