@@ -17,6 +17,12 @@ const custom = {
         color: "red"
       }
     },
+    hover: {
+      color: {
+        light: "var(--c-brand)",
+        dark: "white"
+      }
+    },
     colors: {
       "accent-1": "#FCBA59",
       focus: "#2762FF",
@@ -148,7 +154,25 @@ const custom = {
 
       &:hover {
         box-shadow: none;
+        border-color: var(--c-brand);
+
+        ${!props.primary &&
+          css`
+            color: var(--c-brand);
+          `}
       }
+
+      ${props.white &&
+        css`
+          &:hover {
+            background-color: white;
+            border-color: white;
+          }
+
+          &:active {
+            opacity: 0.9;
+          }
+        `}
 
       ${props.primary &&
         css`

@@ -50,6 +50,7 @@ class SubscriptionForm extends React.Component {
               placeholder="me@vitalik.ca"
             />
             <Button
+              white
               type="submit"
               disabled={this.state.submitDisabled}
               alignSelf="center"
