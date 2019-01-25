@@ -29,6 +29,7 @@ const Nav = styled(Box)`
   }
 
   padding-top: 16px;
+  z-index: 2000;
 
   @media only screen and (min-width: 768px) {
     #dropdowns {
