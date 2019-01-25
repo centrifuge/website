@@ -148,13 +148,18 @@ const custom = {
 
       &:hover {
         box-shadow: none;
-
-        ${props.primary &&
-          css`
-            background-color: var(--c-brand);
-            border-color: var(--c-brand);
-          `}
       }
+
+      ${props.primary &&
+        css`
+          &:hover {
+            background-color: var(--c-brand);
+          }
+
+          &:active {
+            opacity: 0.9;
+          }
+        `}
     `
   }
 };
