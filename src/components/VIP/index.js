@@ -41,7 +41,7 @@ const VIP = ({
       alt={name}
     />
     <Name>{name}</Name>
-    <Title>{title}</Title>
+    {title && <Title>{title}</Title>}
     {(socialMediaTwitter ||
       socialMediaLinkedIn ||
       socialMediaGitHub ||
