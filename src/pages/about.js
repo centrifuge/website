@@ -10,7 +10,7 @@ import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
 import VIP from "../components/VIP";
 
-import { ParseJSXToReact } from "../helpers";
+import { RichTextRenderer } from "../helpers";
 
 import block1Animation from "../lottie/About.json";
 import aboutBig from "../images/about_big.svg";
@@ -25,7 +25,7 @@ const AboutPage = ({ data }) => {
         {/* Block 1 */}
         <Grid id="mission">
           <Column span={{ medium: 6, large: 7 }}>
-            <ParseJSXToReact block={page.block1} />
+            <RichTextRenderer content={page.block1.contentAST} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
@@ -37,14 +37,14 @@ const AboutPage = ({ data }) => {
         <Grid justify="end">
           <Spacer width={4} />
           <Column span={{ medium: 12, large: 8 }}>
-            <ParseJSXToReact block={page.block2} />
+            <RichTextRenderer content={page.block2.contentAST} />
           </Column>
         </Grid>
 
         {/* Block 3 */}
         <Grid>
           <Column span={{ medium: 12, large: 4 }}>
-            <ParseJSXToReact block={page.block3} />
+            <RichTextRenderer content={page.block3.contentAST} />
           </Column>
         </Grid>
 
@@ -97,7 +97,7 @@ const AboutPage = ({ data }) => {
         {/* Block 7 */}
         <Grid justify="center">
           <Column textAlign="center">
-            <ParseJSXToReact block={page.block7} />
+            <RichTextRenderer content={page.block7.contentAST} />
           </Column>
         </Grid>
       </Container>
@@ -115,19 +115,13 @@ export const AboutPageQuery = graphql`
             description
           }
           block1 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block2 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block3 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block4Team {
             headshot {
@@ -156,9 +150,7 @@ export const AboutPageQuery = graphql`
             socialMediaMedium
           }
           block7 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
         }
       }
