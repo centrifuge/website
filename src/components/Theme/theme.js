@@ -143,12 +143,17 @@ const custom = {
         light: "black"
       }
     },
-    extend: css`
+    extend: props => css`
       font-weight: var(--fw-medium);
 
       &:hover {
         box-shadow: none;
-        opacity: 0.8;
+
+        ${props.primary &&
+          css`
+            background-color: var(--c-brand);
+            border-color: var(--c-brand);
+          `}
       }
     `
   }
