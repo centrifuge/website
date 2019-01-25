@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 import { base } from "grommet/themes";
-import { deepMerge } from "grommet/utils";
+import { deepMerge, breakpointStyle } from "grommet/utils";
 import { headerStyles, subheaderStyles, headingLevels } from "./typography";
 
 const borderWidth = 1;
@@ -80,23 +80,46 @@ const custom = {
   paragraph: {
     small: {
       size: "20px",
-      height: "32px"
+      height: "32px",
+      maxWidth: "unset"
     },
     medium: {
       size: "14px",
-      height: "24px"
+      height: "24px",
+      maxWidth: "unset"
     }
   },
   text: {
     small: {
       size: "20px",
-      height: "32px"
+      height: "32px",
+      maxWidth: "unset"
     },
     medium: {
       size: "14px",
-      height: "24px"
+      height: "24px",
+      maxWidth: "unset"
     }
   },
+  // grid: {
+  //   extend: props => css`
+  //     ${props.staggered &&
+  //       css`
+  //         ${breakpointStyle(
+  //           theme.breakpoints.small,
+  //           css`
+  //             display: flex;
+  //             flex-direction: column;
+  //           `
+  //         )}
+  //
+  //         ${props.reversed &&
+  //           css`
+  //             flex-direction: column-reverse;
+  //           `}
+  //       `}
+  //   `
+  // },
   button: {
     padding: {
       horizontal: `${32 - borderWidth}px`,
