@@ -10,7 +10,7 @@ import Animation from "../components/Animation";
 
 import RichTextRenderer from "../helpers/richTextRenderer";
 
-import block1Image from "../images/block1-image.svg";
+// import block1Image from "../images/block1-image.svg";
 // import block2Image from "../images/block2-image.svg";
 // import block3Image from "../images/block3-image.svg";
 // import block4Image from "../images/block4-image.svg";

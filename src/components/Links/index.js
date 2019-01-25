@@ -8,7 +8,8 @@ export const unstyledLinkStyles = css`
   color: inherit;
   text-decoration: none;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 `;

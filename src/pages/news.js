@@ -1,8 +1,7 @@
 import React from "react";
-import { Heading, Paragraph, Image, Box, Carousel } from "grommet";
+import { Heading, Paragraph, Image, Box } from "grommet";
 import { graphql } from "gatsby";
 import styled from "styled-components";
-import chunk from "lodash.chunk";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
