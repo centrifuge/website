@@ -20,25 +20,70 @@ const NavLink = ({ children, to, ...rest }) => (
 );
 
 const PaddedItem = styled(Item)`
-  padding: 1rem 0;
+  padding: 1.5rem 0;
+  line-height: 1rem;
+`;
+
+const Dropdowns = styled(Box)`
+  display: none;
+  @media only screen and (min-width: 768px) {
+    display: inherit;
+  }
+
+  /* Item (PaddedItem) */
+  > li {
+    display: block;
+    position: relative;
+
+    /* Item:Hover Targeting Dropdown */
+    &:hover > ul,
+    &:focus-within > ul,
+    > ul:hover,
+    > ul:focus {
+      visibility: visible;
+      opacity: 1;
+      display: block;
+    }
+  }
+
+  /* Dropdown Styles */
+  > li > ul {
+    background-color: #fff;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    padding: 0.5rem 0;
+    min-width: 120px;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    left: -16px;
+    display: none;
+
+    /* Dropdown Item Styles */
+    > li {
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    /* Dropdown Item Link Styles */
+    > li > a {
+      line-height: 1rem;
+      display: block;
+      padding: 0.5rem 1rem;
+    }
+  }
 `;
 
 const Nav = styled(Box)`
-  #dropdowns {
-    display: none;
-  }
-
-  padding-top: 16px;
+  padding-top: 1rem;
   z-index: 2000;
 
   @media only screen and (min-width: 768px) {
-    #dropdowns {
-      display: flex;
-    }
-
     position: sticky;
     padding-top: 0;
-    top: 16px;
+    top: 0;
 
     &::after {
       content: "";
@@ -46,51 +91,11 @@ const Nav = styled(Box)`
       background-color: white;
       z-index: -1;
       margin: 0 auto;
-      top: -8px;
+      top: 0;
       left: 0;
       right: 0;
-      bottom: -8px;
+      bottom: 0;
     }
-  }
-
-  li {
-    display: block;
-    position: relative;
-  }
-
-  ul li ul {
-    background-color: #fff;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
-    visibility: hidden;
-    opacity: 0;
-    padding: 8px 0;
-    min-width: 120px;
-    position: absolute;
-    transition: all 0.5s ease;
-    margin-top: 1rem;
-    border-radius: 8px;
-    left: -16px;
-    display: none;
-  }
-
-  ul li:hover > ul,
-  ul li:focus-within > ul,
-  ul li ul:hover,
-  ul li ul:focus {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-  }
-
-  ul li ul li {
-    white-space: nowrap;
-    width: 100%;
-  }
-
-  ul li ul li a {
-    line-height: 1.5;
-    display: block;
-    padding: 8px 16px;
   }
 `;
 
@@ -111,7 +116,7 @@ const Navigation = () => (
             <Logo />
           </NavLink>
         </Item>
-        <Box id="dropdowns" direction="" align="center" gap="large">
+        <Dropdowns direction="row" align="center" gap="large">
           <PaddedItem>
             <NavLink to="/technology">Technology</NavLink>
           </PaddedItem>
@@ -149,7 +154,7 @@ const Navigation = () => (
           <Item>
             <Button primary label="Sign up now" />
           </Item>
-        </Box>
+        </Dropdowns>
       </List>
     </Container>
   </Nav>
