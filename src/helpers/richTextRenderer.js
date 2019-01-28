@@ -64,6 +64,7 @@ const embedRenderer = (id, node) => {
   switch (id) {
     case "componentButtonGroup":
       const buttonGroupData = node.data.target.fields.buttons["en-US"];
+
       const buttonGroupJustify = node.data.target.fields.justifyContent
         ? node.data.target.fields.justifyContent["en-US"]
         : "initial";
@@ -82,7 +83,8 @@ const embedRenderer = (id, node) => {
 
 const options = {
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Paragraph>{children}</Paragraph>,
+    [BLOCKS.PARAGRAPH]: (node, children) =>
+      children != "" ? <Paragraph>{children}</Paragraph> : null,
 
     [BLOCKS.HEADING_1]: (node, children) => (
       <Heading level="1" lined>
