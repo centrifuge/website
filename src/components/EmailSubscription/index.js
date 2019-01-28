@@ -82,7 +82,11 @@ const EmailWrapper = styled(Box)`
 `;
 
 const EmailSubscription = () => (
-  <EmailWrapper pad={{ top: "large", bottom: "large" }} background="brand">
+  <EmailWrapper
+    tag="section"
+    pad={{ top: "large", bottom: "large" }}
+    background="brand"
+  >
     <Container>
       <Box align="center">
         <Box width="large">
