@@ -47,7 +47,7 @@ class SubscriptionForm extends React.Component {
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder="me@vitalik.ca"
+              placeholder="your@email.com"
             />
             <Button
               white
