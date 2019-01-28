@@ -1,12 +1,13 @@
 import React from "react";
-import { Box, Button } from "grommet";
+import { Box } from "grommet";
 import styled from "styled-components";
 
 import Container from "../Container";
 import { List, Item } from "../List";
+import { InternalLink } from "../Links";
+import CallToAction from "./callToAction";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
-import { InternalLink } from "../Links";
 
 const NavLink = ({ children, to, ...rest }) => (
   <InternalLink
@@ -151,9 +152,7 @@ const Navigation = () => (
               </Item>
             </List>
           </PaddedItem>
-          <Item>
-            <Button primary label="Sign up now" />
-          </Item>
+          <CallToAction />
         </Dropdowns>
       </List>
     </Container>
