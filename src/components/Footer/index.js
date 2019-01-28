@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Box } from "grommet";
+import { Box, Paragraph } from "grommet";
 
 import { List, Item } from "../List";
 import { MailLink, ExternalLink, InternalLink } from "../Links";
@@ -9,6 +9,7 @@ import Container from "../Container";
 const Address = styled.address`
   font-style: normal;
   line-height: 24px;
+  display: inline;
 `;
 
 const FooterExternalLinkItem = ({ children, href, ...rest }) => (
@@ -112,7 +113,9 @@ const Footer = () => (
         </Item>
       </FooterContent>
       <Box pad={{ top: "xlarge" }}>
-        <p>Centrifuge Inc. © Copyright 2018</p>
+        <Paragraph style={{ fontSize: 12 }}>
+          Centrifuge Inc. © Copyright 2018
+        </Paragraph>
       </Box>
     </Container>
   </Box>

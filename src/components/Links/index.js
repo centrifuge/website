@@ -12,6 +12,10 @@ export const unstyledLinkStyles = css`
   &:focus {
     text-decoration: underline;
   }
+
+  &:active {
+    opacity: 0.9;
+  }
 `;
 
 export const StyledLink = styled.a`
