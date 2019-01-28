@@ -14,6 +14,43 @@ const breakpoints = {
   large: {}
 };
 
+const isHeader = props => (props.level <= 2 || !props.level ? true : false);
+
+const isSubheader = props => (props.level >= 3 ? true : false);
+
+const headerSizes = {
+  medium: {
+    size: "20px",
+    height: "32px",
+    maxWidth: ""
+  }
+};
+
+const subheaderSizes = {
+  medium: {
+    size: "16px",
+    height: "24px",
+    maxWidth: ""
+  }
+};
+
+const textSizes = {
+  medium: {
+    size: "14px",
+    height: "24px",
+    maxWidth: ""
+  },
+  extend: css`
+    ${breakpointStyle(
+      breakpoints.small,
+      css`
+        font-size: 20px;
+        line-height: 32px;
+      `
+    )}
+  `
+};
+
 const custom = {
   global: {
     font: {
@@ -69,141 +106,82 @@ const custom = {
     weight: "var(--fw-demibold)",
     responsiveBreakpoint: null,
     level: {
-      1: {
-        medium: {
-          size: "20px",
-          height: "32px",
-          maxWidth: ""
-        }
-      },
-      2: {
-        medium: {
-          size: "16px",
-          height: "24px",
-          maxWidth: ""
-        }
-      },
-      3: {
-        medium: {
-          size: "16px",
-          height: "24px",
-          maxWidth: ""
-        }
-      },
-      4: {
-        medium: {
-          size: "16px",
-          height: "24px",
-          maxWidth: ""
-        }
-      },
-      5: {
-        medium: {
-          size: "16px",
-          height: "24px",
-          maxWidth: ""
-        }
-      },
-      6: {
-        medium: {
-          size: "16px",
-          height: "24px",
-          maxWidth: ""
-        }
-      }
+      1: headerSizes,
+      2: headerSizes,
+      3: subheaderSizes,
+      4: subheaderSizes,
+      5: subheaderSizes,
+      6: subheaderSizes
     },
     extend: props => css`
       text-align: left;
       margin-top: 0;
 
-      ${props.lined &&
+      /* Header */
+      ${isHeader(props) &&
         css`
-          /* Element Lined Style */
-          border-bottom: 1px solid black;
+          margin-bottom: 64px;
 
-          /* Not Mobile Styles */
-          ${(props.level === 1 || !props.level) &&
-            css`
-              padding-bottom: 32px;
-              margin-bottom: 64px;
-            `}
-
-          ${props.level === 2 &&
-            css`
-              padding-bottom: 24px;
-              margin-bottom: 40px;
-            `}
-
-          /* Mobile Styles */
           ${breakpointStyle(
             breakpoints.small,
             css`
-              ${(props.level === 1 || !props.level) &&
-                css`
-                  padding-bottom: 48px;
-                  margin-bottom: 96px;
-                `}
-
-              ${props.level === 2 &&
-                css`
-                  padding-bottom: 32px;
-                  margin-bottom: 48px;
-                `}
+              margin-bottom: 96px;
+              font-size: 28px;
+              line-height: 48px;
             `
           )}
         `}
 
-      /* Mobile Size Style */
-      ${breakpointStyle(
-        breakpoints.small,
+      /* Subheader */
+      ${isSubheader(props) &&
         css`
-          ${(props.level === 1 || !props.level) &&
-            css`
-              font-size: 28px;
-              line-height: 48px;
-            `}
+          margin-bottom: 40px;
 
-          ${props.level >= 2 &&
+          ${breakpointStyle(
+            breakpoints.small,
             css`
+              margin-bottom: 48px;
               font-size: 24px;
               line-height: 40px;
+            `
+          )}
+        `}
+
+        /* Lined Styles */
+        ${props.lined &&
+          css`
+          border-bottom: 1px solid black;
+
+          /* Lined Header */
+          ${isHeader(props) &&
+            css`
+              padding-bottom: 32px;
+
+              ${breakpointStyle(
+                breakpoints.small,
+                css`
+                  padding-bottom: 48px;
+                `
+              )}
             `}
-        `
-      )}
+
+          /* Lined Subheader */
+          ${isSubheader(props) &&
+            css`
+              padding-bottom: 24px;
+
+              ${breakpointStyle(
+                breakpoints.small,
+                css`
+                  padding-bottom: 32px;
+                `
+              )}
+            `}
+        `}
     `
   },
-  paragraph: {
-    medium: {
-      size: "14px",
-      height: "24px",
-      maxWidth: ""
-    },
-    extend: css`
-      ${breakpointStyle(
-        breakpoints.small,
-        css`
-          font-size: 20px;
-          line-height: 32px;
-        `
-      )}
-    `
-  },
-  text: {
-    medium: {
-      size: "14px",
-      height: "24px",
-      maxWidth: ""
-    },
-    extend: css`
-      ${breakpointStyle(
-        breakpoints.small,
-        css`
-          font-size: 20px;
-          line-height: 32px;
-        `
-      )}
-    `
-  },
+  paragraph: textSizes,
+  text: textSizes,
   // grid: {
   //   extend: props => css`
   //     ${props.staggered &&
