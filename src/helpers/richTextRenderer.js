@@ -17,12 +17,18 @@ const renderButton = button => {
 
   switch (style) {
     case "Outline":
-      return <Button margin={{ top: "medium" }} href={link} label={text} />;
+      return (
+        <Button
+          margin={{ top: "medium", bottom: "small" }}
+          href={link}
+          label={text}
+        />
+      );
 
     case "Github":
       return (
         <Button
-          margin={{ top: "medium" }}
+          margin={{ top: "medium", bottom: "small" }}
           plain
           icon={<Github />}
           href={link}
@@ -35,7 +41,7 @@ const renderButton = button => {
     case "Slack":
       return (
         <Button
-          margin={{ top: "medium" }}
+          margin={{ top: "medium", bottom: "small" }}
           plain
           icon={<Slack />}
           href={link}
@@ -47,7 +53,12 @@ const renderButton = button => {
 
     default:
       return (
-        <Button margin={{ top: "medium" }} primary href={link} label={text} />
+        <Button
+          margin={{ top: "medium", bottom: "small" }}
+          primary
+          href={link}
+          label={text}
+        />
       );
   }
 };
