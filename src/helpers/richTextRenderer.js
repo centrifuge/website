@@ -52,12 +52,8 @@ const renderButton = button => {
   }
 };
 
-const renderButtonGroup = buttons => (
-  <Box
-    direction="row-responsive"
-    align="center"
-    /* justify="between" */ gap="medium"
-  >
+const renderButtonGroup = (buttons, justify) => (
+  <Box direction="" justify={justify} align="center" gap="medium">
     {buttons.map(button => {
       return renderButton(button.fields);
     })}
@@ -68,8 +64,11 @@ const embedRenderer = (id, node) => {
   switch (id) {
     case "componentButtonGroup":
       const buttonGroupData = node.data.target.fields.buttons["en-US"];
+      const buttonGroupJustify = node.data.target.fields.justifyContent
+        ? node.data.target.fields.justifyContent["en-US"]
+        : "initial";
 
-      return renderButtonGroup(buttonGroupData);
+      return renderButtonGroup(buttonGroupData, buttonGroupJustify);
 
     case "componentButton":
       const buttonData = node.data.target.fields;
@@ -83,35 +82,29 @@ const embedRenderer = (id, node) => {
 
 const options = {
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => (
-      <Paragraph style={{ fontSize: "inherit" }}>{children}</Paragraph>
-    ),
+    [BLOCKS.PARAGRAPH]: (node, children) => <Paragraph>{children}</Paragraph>,
 
     [BLOCKS.HEADING_1]: (node, children) => (
-      <Heading level="1">{children}</Heading>
+      <Heading level="1" lined>
+        {children}
+      </Heading>
     ),
     [BLOCKS.HEADING_2]: (node, children) => (
-      <Heading level="2">{children}</Heading>
+      <Heading level="2" lined>
+        {children}
+      </Heading>
     ),
     [BLOCKS.HEADING_3]: (node, children) => (
-      <Heading level="3" noLine>
-        {children}
-      </Heading>
+      <Heading level="3">{children}</Heading>
     ),
     [BLOCKS.HEADING_4]: (node, children) => (
-      <Heading level="4" noLine>
-        {children}
-      </Heading>
+      <Heading level="4">{children}</Heading>
     ),
     [BLOCKS.HEADING_5]: (node, children) => (
-      <Heading level="5" noLine>
-        {children}
-      </Heading>
+      <Heading level="5">{children}</Heading>
     ),
     [BLOCKS.HEADING_6]: (node, children) => (
-      <Heading level="6" noLine>
-        {children}
-      </Heading>
+      <Heading level="6">{children}</Heading>
     ),
 
     [BLOCKS.EMBEDDED_ENTRY]: (node, children) =>
