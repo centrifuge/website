@@ -100,6 +100,14 @@ const custom = {
       ::placeholder {
         color: black;
       }
+
+      ${breakpointStyle(
+        breakpoints.small,
+        css`
+          font-size: 24px;
+          line-height: 40px;
+        `
+      )}
     `
   },
   heading: {
