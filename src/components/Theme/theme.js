@@ -1,7 +1,6 @@
 import { css } from "styled-components";
 import { base } from "grommet/themes";
 import { deepMerge, breakpointStyle } from "grommet/utils";
-import { headerStyles, subheaderStyles, headingLevels } from "./typography";
 
 const borderWidth = 1;
 
@@ -67,45 +66,141 @@ const custom = {
   heading: {
     weight: "var(--fw-demibold)",
     responsiveBreakpoint: null,
-    level: headingLevels,
+    level: {
+      1: {
+        medium: {
+          size: "20px",
+          height: "32px",
+          maxWidth: ""
+        }
+      },
+      2: {
+        medium: {
+          size: "16px",
+          height: "24px",
+          maxWidth: ""
+        }
+      },
+      3: {
+        medium: {
+          size: "16px",
+          height: "24px",
+          maxWidth: ""
+        }
+      },
+      4: {
+        medium: {
+          size: "16px",
+          height: "24px",
+          maxWidth: ""
+        }
+      },
+      5: {
+        medium: {
+          size: "16px",
+          height: "24px",
+          maxWidth: ""
+        }
+      },
+      6: {
+        medium: {
+          size: "16px",
+          height: "24px",
+          maxWidth: ""
+        }
+      }
+    },
     extend: props => css`
-      ${(props.level === 1 || !props.level) && headerStyles}
-      ${(props.level === 2 ||
-        props.level === 3 ||
-        props.level === 4 ||
-        props.level === 5 ||
-        props.level === 6) &&
-        subheaderStyles}
+      text-align: left;
+      margin-top: 0;
 
-      ${!props.noLine &&
+      ${props.lined &&
         css`
+          /* Element Lined Style */
           border-bottom: 1px solid black;
+
+          /* Not Mobile Styles */
+          ${(props.level === 1 || !props.level) &&
+            css`
+              padding-bottom: 32px;
+              margin-bottom: 64px;
+            `}
+
+          ${props.level === 2 &&
+            css`
+              padding-bottom: 24px;
+              margin-bottom: 40px;
+            `}
+
+          /* Mobile Styles */
+          ${breakpointStyle(
+            theme.global.breakpoints.small,
+            css`
+              ${(props.level === 1 || !props.level) &&
+                css`
+                  padding-bottom: 48px;
+                  margin-bottom: 96px;
+                `}
+
+              ${props.level === 2 &&
+                css`
+                  padding-bottom: 32px;
+                  margin-bottom: 48px;
+                `}
+            `
+          )}
         `}
+
+      /* Mobile Size Style */
+      ${breakpointStyle(
+        theme.global.breakpoints.small,
+        css`
+          ${(props.level === 1 || !props.level) &&
+            css`
+              font-size: 28px;
+              line-height: 48px;
+            `}
+
+          ${props.level >= 2 &&
+            css`
+              font-size: 24px;
+              line-height: 40px;
+            `}
+        `
+      )}
     `
   },
   paragraph: {
-    small: {
-      size: "20px",
-      height: "32px",
-      maxWidth: "unset"
-    },
     medium: {
       size: "14px",
       height: "24px",
-      maxWidth: "unset"
-    }
+      maxWidth: ""
+    },
+    extend: css`
+      ${breakpointStyle(
+        theme.global.breakpoints.small,
+        css`
+          font-size: 20px;
+          line-height: 32px;
+        `
+      )}
+    `
   },
   text: {
-    small: {
-      size: "20px",
-      height: "32px",
-      maxWidth: "unset"
-    },
     medium: {
       size: "14px",
       height: "24px",
-      maxWidth: "unset"
-    }
+      maxWidth: ""
+    },
+    extend: css`
+      ${breakpointStyle(
+        theme.global.breakpoints.small,
+        css`
+          font-size: 20px;
+          line-height: 32px;
+        `
+      )}
+    `
   },
   // grid: {
   //   extend: props => css`
@@ -151,7 +246,25 @@ const custom = {
     },
     extend: props => css`
       font-weight: var(--fw-medium);
+      font-size: 16px;
+      line-height: 24px;
 
+      /* Add underline for Plain type button */
+      ${props.plain &&
+        css`
+          text-decoration: underline;
+        `}
+
+      /* Mobile Button Size */
+      ${breakpointStyle(
+        theme.global.breakpoints.small,
+        css`
+          font-size: 24px;
+          line-height: 40px;
+        `
+      )}
+
+      /* Button Hover Styles */
       &:hover {
         box-shadow: none;
         border-color: var(--c-brand);
@@ -162,6 +275,7 @@ const custom = {
           `}
       }
 
+      /* White Button Styles */
       ${props.white &&
         css`
           &:hover {
@@ -174,6 +288,7 @@ const custom = {
           }
         `}
 
+      /* Primary Button Styles */
       ${props.primary &&
         css`
           &:hover {
