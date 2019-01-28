@@ -1,7 +1,6 @@
 import React from "react";
-import { Heading, Paragraph, Image, Box } from "grommet";
+import { Heading, Paragraph, Image, Box, Button } from "grommet";
 import { graphql } from "gatsby";
-import styled from "styled-components";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -34,7 +33,14 @@ const HighlightPost = ({ post }) => (
       />
       <Box margin={{ top: "medium" }}>
         <div>
-          <ReadMore href={MEDIUM_URL}>Centrifuge on Medium</ReadMore>
+          <Button
+            plain
+            target="_blank"
+            rel="noopener noreferrer"
+            href={MEDIUM_URL}
+          >
+            Centrifuge on Medium
+          </Button>
         </div>
       </Box>
     </Column>
@@ -49,29 +55,15 @@ const HighlightPost = ({ post }) => (
   </Grid>
 );
 
-const ReadMore = styled(ExternalLink)`
-  font-size: 16px;
-  font-weight: var(--fw-medium);
-  text-decoration: underline;
-  margin-bottom: 2rem;
-
-  &:hover,
-  &:focus {
-    color: var(--c-brand);
-  }
-
-  &:active {
-    opacity: 0.9;
-  }
-`;
-
 const PostInfo = ({ title, subtitle, link, heading }) => (
   <>
     <Heading level={heading || "1"} noLine={heading === "3" ? true : false}>
       {title}
     </Heading>
     <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
-    <ReadMore href={link}>Read more...</ReadMore>
+    <Button plain target="_blank" rel="noopener noreferrer" href={link}>
+      Read more...
+    </Button>
   </>
 );
 

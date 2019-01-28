@@ -28,7 +28,7 @@ const renderButton = button => {
           href={link}
           label={text}
           target="_blank"
-          rel="noopener norefferer"
+          rel="noopener noreferrer"
         />
       );
 
@@ -41,7 +41,7 @@ const renderButton = button => {
           href={link}
           label={text}
           target="_blank"
-          rel="noopener norefferer"
+          rel="noopener noreferrer"
         />
       );
 

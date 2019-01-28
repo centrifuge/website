@@ -6,7 +6,7 @@ import { StyledLink } from "./index";
 const ExternalLink = ({ children, unstyled, ...rest }) => (
   <StyledLink
     unstyled={unstyled}
-    rel="noopener norefferer"
+    rel="noopener noreferrer"
     target="_blank"
     {...rest}
   >
