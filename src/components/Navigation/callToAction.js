@@ -5,7 +5,19 @@ import { Item } from "../List";
 
 const CallToAction = () => (
   <StaticQuery
-    query={CallToActionQuery}
+    query={graphql`
+      query {
+        allContentfulControlCenterNavigationCta {
+          edges {
+            node {
+              enableNavigationCallToAction
+              buttonUrl
+              buttonText
+            }
+          }
+        }
+      }
+    `}
     render={data => {
       const {
         enableNavigationCallToAction,
@@ -25,19 +37,5 @@ const CallToAction = () => (
     }}
   />
 );
-
-export const CallToActionQuery = graphql`
-  query {
-    allContentfulControlCenterNavigationCta {
-      edges {
-        node {
-          enableNavigationCallToAction
-          buttonUrl
-          buttonText
-        }
-      }
-    }
-  }
-`;
 
 export default CallToAction;

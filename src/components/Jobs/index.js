@@ -5,7 +5,22 @@ import { ExternalLink } from "../Links";
 
 const Jobs = () => (
   <StaticQuery
-    query={query}
+    query={graphql`
+      query JobsQuery {
+        allLambdaBreezy(filter: { position: { ne: "String" } }) {
+          totalCount
+          edges {
+            node {
+              id
+              position
+              link
+              location
+              offering
+            }
+          }
+        }
+      }
+    `}
     render={data => {
       const jobs = data.allLambdaBreezy.edges;
 
@@ -35,22 +50,5 @@ const Jobs = () => (
     }}
   />
 );
-
-const query = graphql`
-  query JobsQuery {
-    allLambdaBreezy(filter: { position: { ne: "String" } }) {
-      totalCount
-      edges {
-        node {
-          id
-          position
-          link
-          location
-          offering
-        }
-      }
-    }
-  }
-`;
 
 export default Jobs;
