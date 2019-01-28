@@ -63,13 +63,13 @@ const Footer = () => (
             USA
           </Address>
         </FooterExternalLinkItem>
-        <FooterExternalLinkItem href="https://goo.gl/maps/mopnb8LaTvt">
+        <FooterExternalLinkItem href="https://goo.gl/maps/nKjRqRUnsDF2">
           <Address>
             Centrifuge GmbH
             <br />
-            Full Node, Skalitzer Strasse 85-86
+            Glogauer Straße 6
             <br />
-            10997 Berlin
+            10999 Berlin
             <br />
             Germany
           </Address>
