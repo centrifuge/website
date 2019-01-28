@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const proxy = require("http-proxy-middleware");
-const { BLOCKS, INLINES } = require("@contentful/rich-text-types");
 
 const lambdaServerDefaults = filename => ({
   typePrefix: "lambda__",
@@ -32,38 +31,6 @@ const gitcoinServerOptions = {
   name: `gitcoin`,
   ...lambdaServerDefaults("getGitcoinBounties"),
   verboseOutput: true
-};
-
-const renderButton = target => {
-  const buttonFields = target.fields;
-
-  const style = buttonFields.buttonStyle
-    ? buttonFields.buttonStyle["en-US"]
-    : undefined;
-
-  const isInternal = () =>
-    buttonFields.link["en-US"].startsWith("/")
-      ? ""
-      : `rel="noopener norefferer" target="_blank"`;
-
-  switch (style) {
-    case "Outline":
-      return `<Button href='${
-        buttonFields.link["en-US"]
-      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
-    case "Github":
-      return `<Button plain icon={<Github/>} href='${
-        buttonFields.link["en-US"]
-      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
-    case "Slack":
-      return `<Button plain icon={<Slack/>} href='${
-        buttonFields.link["en-US"]
-      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
-    default:
-      return `<Button primary href='${
-        buttonFields.link["en-US"]
-      }' ${isInternal()} label='${buttonFields.text["en-US"]}' />`;
-  }
 };
 
 module.exports = {
@@ -114,48 +81,6 @@ module.exports = {
           process.env.PRODUCTION === "true"
             ? `cdn.contentful.com`
             : `preview.contentful.com`
-      }
-    },
-    {
-      resolve: "@contentful/gatsby-transformer-contentful-richtext",
-      options: {
-        renderOptions: {
-          renderNode: {
-            [BLOCKS.HEADING_1]: node =>
-              `<Heading level='1'>${node.content[0].value}</Heading>`,
-            [BLOCKS.HEADING_2]: node =>
-              `<Heading level='2'>${node.content[0].value}</Heading>`,
-            [BLOCKS.HEADING_3]: node =>
-              `<Heading level='3' noLine>${node.content[0].value}</Heading>`,
-            [BLOCKS.HEADING_4]: node =>
-              `<Heading level='4' noLine>${node.content[0].value}</Heading>`,
-            [BLOCKS.HEADING_5]: node =>
-              `<Heading level='5' noLine>${node.content[0].value}</Heading>`,
-            [BLOCKS.HEADING_6]: node =>
-              `<Heading level='6' noLine>${node.content[0].value}</Heading>`,
-
-            [INLINES.HYPERLINK]: node =>
-              `<a class='a' href='${node.data.uri}'>${
-                node.content[0].value
-              }</a>`,
-
-            [BLOCKS.EMBEDDED_ENTRY]: node => {
-              switch (node.data.target.sys.contentType.sys.id) {
-                case "componentButton":
-                  renderButton(node.data.target);
-                  break;
-
-                case "componentButtonGroup":
-                  return `<Box direction='row' gap='small'>${node.data.target.fields.buttons[
-                    "en-US"
-                  ].map(button => renderButton(button))}</Box>`;
-
-                default:
-                  return `<p>ENTRY NOT MAPPED</p>`;
-              }
-            }
-          }
-        }
       }
     },
     {

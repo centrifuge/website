@@ -156,7 +156,7 @@ const NewsPage = ({ data }) => {
 
         <Grid justify="center">
           <Column textAlign="center" style={{ fontSize: 18 }}>
-            <RichTextRenderer content={page.blockMediaInquiry.contentAST} />
+            <RichTextRenderer block={page.blockMediaInquiry} />
           </Column>
         </Grid>
       </Container>

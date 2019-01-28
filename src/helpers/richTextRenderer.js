@@ -120,8 +120,8 @@ const options = {
   }
 };
 
-const RichTextRenderer = ({ content }) => (
-  <div>{documentToReactTree(content, options)}</div>
+const RichTextRenderer = ({ block }) => (
+  <div>{documentToReactTree(block.contentAST, options)}</div>
 );
 
 export default RichTextRenderer;

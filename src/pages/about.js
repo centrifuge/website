@@ -25,7 +25,7 @@ const AboutPage = ({ data }) => {
         {/* Block 1 */}
         <Grid id="mission">
           <Column span={{ medium: 6, large: 7 }}>
-            <RichTextRenderer content={page.block1.contentAST} />
+            <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
@@ -37,14 +37,14 @@ const AboutPage = ({ data }) => {
         <Grid justify="end">
           <Spacer width={4} />
           <Column span={{ medium: 12, large: 8 }}>
-            <RichTextRenderer content={page.block2.contentAST} />
+            <RichTextRenderer block={page.block2} />
           </Column>
         </Grid>
 
         {/* Block 3 */}
         <Grid>
           <Column span={{ medium: 12, large: 4 }}>
-            <RichTextRenderer content={page.block3.contentAST} />
+            <RichTextRenderer block={page.block3} />
           </Column>
         </Grid>
 
@@ -97,7 +97,7 @@ const AboutPage = ({ data }) => {
         {/* Block 7 */}
         <Grid justify="center">
           <Column textAlign="center">
-            <RichTextRenderer content={page.block7.contentAST} />
+            <RichTextRenderer block={page.block7} />
           </Column>
         </Grid>
       </Container>

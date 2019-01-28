@@ -30,7 +30,7 @@ const IndexPage = ({ data }) => {
         {/* Block 1 */}
         <Grid staggered>
           <Column span={{ medium: 6, large: 4 }}>
-            <RichTextRenderer content={page.block1.contentAST} />
+            <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 7 }}>
@@ -47,14 +47,14 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
-            <RichTextRenderer content={page.block2.contentAST} />
+            <RichTextRenderer block={page.block2} />
           </Column>
         </Grid>
 
         {/* Block 3 */}
         <Grid staggered>
           <Column span={{ medium: 6, large: 4 }}>
-            <RichTextRenderer content={page.block3.contentAST} />
+            <RichTextRenderer block={page.block3} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 7 }}>
@@ -71,14 +71,14 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
-            <RichTextRenderer content={page.block4.contentAST} />
+            <RichTextRenderer block={page.block4} />
           </Column>
         </Grid>
 
         {/* Block 5 */}
         <Grid staggered>
           <Column span={{ medium: 12, large: 8 }}>
-            <RichTextRenderer content={page.block5.contentAST} />
+            <RichTextRenderer block={page.block5} />
           </Column>
         </Grid>
       </Container>

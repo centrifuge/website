@@ -8,7 +8,7 @@ import Grid from "../../components/Grid";
 import Column, { Spacer } from "../../components/Column";
 import Animation from "../../components/Animation";
 
-import { ParseJSXToReact, lastInArray } from "../../helpers";
+import { RichTextRenderer, lastInArray } from "../../helpers";
 
 import block1Animation from "../../lottie/Technology.json";
 import technologyBig from "../../images/technology_big.svg";
@@ -23,7 +23,7 @@ const TechnologyPage = ({ data }) => {
         {/* Block 1 */}
         <Grid>
           <Column span={{ medium: 6, large: 7 }}>
-            <ParseJSXToReact block={page.block1} />
+            <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
@@ -36,7 +36,7 @@ const TechnologyPage = ({ data }) => {
           {page.block2.map((block, index) => (
             <>
               <Column span={{ medium: 4, large: 3 }}>
-                <ParseJSXToReact block={block.content} />
+                <RichTextRenderer block={block.content} />
               </Column>
               {!lastInArray(page.block2, index) && <Spacer />}
             </>
@@ -52,7 +52,7 @@ const TechnologyPage = ({ data }) => {
         {/* Block 3 */}
         <Grid justify="center">
           <Column span={{ medium: 12, large: 12 }} textAlign="center">
-            <ParseJSXToReact block={page.block3} />
+            <RichTextRenderer block={page.block3} />
           </Column>
         </Grid>
       </Container>
@@ -70,21 +70,15 @@ export const TechnologyPageQuery = graphql`
             description
           }
           block1 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block2 {
             content {
-              childContentfulRichText {
-                html
-              }
+              contentAST
             }
           }
           block3 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
         }
       }

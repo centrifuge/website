@@ -8,7 +8,7 @@ import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
 
-import { ParseJSXToReact, lastInArray } from "../helpers";
+import { RichTextRenderer, lastInArray } from "../helpers";
 
 import block1Animation from "../lottie/Ecosystem.json";
 import ecosystemBig from "../images/ecosystem_big.svg";
@@ -23,7 +23,7 @@ const EcosystemPage = ({ data }) => {
         {/* Block 1 */}
         <Grid>
           <Column span={{ medium: 6, large: 7 }}>
-            <ParseJSXToReact block={page.block1} />
+            <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
@@ -36,7 +36,7 @@ const EcosystemPage = ({ data }) => {
           {page.block2.map((block, index) => (
             <>
               <Column key={index} span={{ medium: 4, large: 3 }}>
-                <ParseJSXToReact block={block.content} />
+                <RichTextRenderer block={block.content} />
               </Column>
               {!lastInArray(page.block2, index) && <Spacer />}
             </>
@@ -52,7 +52,7 @@ const EcosystemPage = ({ data }) => {
         {/* Block 3 */}
         <Grid id="use-cases" pb="0">
           <Column>
-            <ParseJSXToReact block={page.block3} />
+            <RichTextRenderer block={page.block3} />
           </Column>
         </Grid>
 
@@ -61,7 +61,7 @@ const EcosystemPage = ({ data }) => {
           {page.block4.map((block, index) => (
             <>
               <Column key={index} span={{ medium: 4, large: 3 }}>
-                <ParseJSXToReact block={block.content} />
+                <RichTextRenderer block={block.content} />
               </Column>
               {!lastInArray(page.block4, index) && <Spacer />}
             </>
@@ -71,7 +71,7 @@ const EcosystemPage = ({ data }) => {
         {/* Block 5 */}
         <Grid justify="center">
           <Column textAlign="center">
-            <ParseJSXToReact block={page.block5} />
+            <RichTextRenderer block={page.block5} />
           </Column>
         </Grid>
       </Container>
@@ -89,33 +89,23 @@ export const EcosystemPageQuery = graphql`
             description
           }
           block1 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block2 {
             content {
-              childContentfulRichText {
-                html
-              }
+              contentAST
             }
           }
           block3 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
           block4 {
             content {
-              childContentfulRichText {
-                html
-              }
+              contentAST
             }
           }
           block5 {
-            childContentfulRichText {
-              html
-            }
+            contentAST
           }
         }
       }
