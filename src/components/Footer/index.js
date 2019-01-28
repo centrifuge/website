@@ -8,23 +8,28 @@ import Container from "../Container";
 
 const Address = styled.address`
   font-style: normal;
+  line-height: 24px;
 `;
 
 const FooterExternalLinkItem = ({ children, href, ...rest }) => (
-  <Item>
+  <FooterItem>
     <ExternalLink href={href} {...rest}>
       {children}
     </ExternalLink>
-  </Item>
+  </FooterItem>
 );
 
 const FooterLinkItem = ({ children, to, ...rest }) => (
-  <Item>
+  <FooterItem>
     <InternalLink to={to} {...rest}>
       {children}
     </InternalLink>
-  </Item>
+  </FooterItem>
 );
+
+const FooterItem = styled(Item)`
+  margin-bottom: 0.5rem;
+`;
 
 const FooterContent = styled(List)`
   display: flex;
@@ -94,11 +99,11 @@ const Footer = () => (
         </Item>
         <Item>
           <List>
-            <Item>
+            <FooterItem>
               <MailLink email="hello@centrifuge.io" subject="Hey there!">
                 hello@centrifuge.io
               </MailLink>
-            </Item>
+            </FooterItem>
             <FooterLinkItem to="/data-privacy-policy">
               Data Privacy Policy
             </FooterLinkItem>

@@ -20,6 +20,14 @@ const NavLink = ({ children, to, ...rest }) => (
   </InternalLink>
 );
 
+const Logo = () => (
+  <img
+    alt="Centrifuge Wordmark"
+    style={{ verticalAlign: "middle", height: 32 }}
+    src={wordmark}
+  />
+);
+
 const PaddedItem = styled(Item)`
   padding: 1.5rem 0;
   line-height: 1rem;
@@ -99,14 +107,6 @@ const Nav = styled(Box)`
     }
   }
 `;
-
-const Logo = () => (
-  <img
-    alt="Centrifuge Wordmark"
-    style={{ display: "block", height: 32 }}
-    src={wordmark}
-  />
-);
 
 const Navigation = () => (
   <Nav as="nav" role="navigation">
