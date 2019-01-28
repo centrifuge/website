@@ -1,11 +1,13 @@
 import React from "react";
 import { Box } from "grommet";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { breakpointStyle } from "grommet/utils";
 
 import Container from "../Container";
 import { List, Item } from "../List";
 import { InternalLink } from "../Links";
 import CallToAction from "./callToAction";
+import { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
 
@@ -20,13 +22,17 @@ const NavLink = ({ children, to, ...rest }) => (
   </InternalLink>
 );
 
-const Logo = () => (
-  <img
-    alt="Centrifuge Wordmark"
-    style={{ verticalAlign: "middle", height: 32 }}
-    src={wordmark}
-  />
-);
+const Logo = styled.img`
+  vertical-align: middle;
+  height: 32px;
+
+  ${breakpointStyle(
+    breakpoints.small,
+    css`
+      height: 48px;
+    `
+  )}
+`;
 
 const PaddedItem = styled(Item)`
   padding: 1.5rem 0;
@@ -114,7 +120,7 @@ const Navigation = () => (
       <List style={{ display: "flex", alignItems: "center" }}>
         <Item style={{ flex: 1 }}>
           <NavLink to="/">
-            <Logo />
+            <Logo alt="Centrifuge Wordmark" src={wordmark} />
           </NavLink>
         </Item>
         <Dropdowns direction="row" align="center" gap="large">
