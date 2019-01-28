@@ -4,6 +4,16 @@ import { deepMerge, breakpointStyle } from "grommet/utils";
 
 const borderWidth = 1;
 
+const breakpoints = {
+  small: {
+    value: 768
+  },
+  medium: {
+    value: 1200
+  },
+  large: {}
+};
+
 const custom = {
   global: {
     font: {
@@ -28,15 +38,7 @@ const custom = {
       brand: "#2762FF",
       black: "#000000"
     },
-    breakpoints: {
-      small: {
-        value: 768
-      },
-      medium: {
-        value: 1200
-      },
-      large: {}
-    },
+    breakpoints: { ...breakpoints },
     deviceBreakpoints: {
       phone: "small",
       tablet: "medium",
@@ -134,7 +136,7 @@ const custom = {
 
           /* Mobile Styles */
           ${breakpointStyle(
-            theme.global.breakpoints.small,
+            breakpoints.small,
             css`
               ${(props.level === 1 || !props.level) &&
                 css`
@@ -153,7 +155,7 @@ const custom = {
 
       /* Mobile Size Style */
       ${breakpointStyle(
-        theme.global.breakpoints.small,
+        breakpoints.small,
         css`
           ${(props.level === 1 || !props.level) &&
             css`
@@ -178,7 +180,7 @@ const custom = {
     },
     extend: css`
       ${breakpointStyle(
-        theme.global.breakpoints.small,
+        breakpoints.small,
         css`
           font-size: 20px;
           line-height: 32px;
@@ -194,7 +196,7 @@ const custom = {
     },
     extend: css`
       ${breakpointStyle(
-        theme.global.breakpoints.small,
+        breakpoints.small,
         css`
           font-size: 20px;
           line-height: 32px;
@@ -207,7 +209,7 @@ const custom = {
   //     ${props.staggered &&
   //       css`
   //         ${breakpointStyle(
-  //           theme.breakpoints.small,
+  //           custom.breakpoints.small,
   //           css`
   //             display: flex;
   //             flex-direction: column;
@@ -257,7 +259,7 @@ const custom = {
 
       /* Mobile Button Size */
       ${breakpointStyle(
-        theme.global.breakpoints.small,
+        breakpoints.small,
         css`
           font-size: 24px;
           line-height: 40px;
