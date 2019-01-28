@@ -8,8 +8,10 @@ import EmailSubscription from "../EmailSubscription";
 
 const Layout = ({ children }) => (
   <Theme>
-    <Navigation />
-    {children}
+    <heading>
+      <Navigation />
+    </heading>
+    <main>{children}</main>
     <EmailSubscription />
     <Footer />
   </Theme>
