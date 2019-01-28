@@ -4,7 +4,7 @@ import { deepMerge, breakpointStyle } from "grommet/utils";
 
 const borderWidth = 1;
 
-const breakpoints = {
+export const breakpoints = {
   small: {
     value: 768
   },
@@ -226,6 +226,7 @@ const custom = {
     },
     extend: props => css`
       font-weight: var(--fw-medium);
+      text-align: center;
       font-size: 16px;
       line-height: 24px;
 
