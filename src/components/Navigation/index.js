@@ -97,6 +97,7 @@ const Nav = styled(Box)`
 
   @media only screen and (min-width: 768px) {
     position: sticky;
+    -webkit-position: sticky;
     padding-top: 0;
     top: 0;
 
