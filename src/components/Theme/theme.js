@@ -6,7 +6,11 @@ const borderWidth = 1;
 
 export const breakpoints = {
   small: {
-    value: 768
+    value: 768,
+    edgeSize: {
+      xxlarge: "96px",
+      xxxlarge: "144px"
+    }
   },
   medium: {
     value: 1200

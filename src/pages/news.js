@@ -25,13 +25,13 @@ const LinkedMediumImage = ({ imageId, slug }) => (
 );
 
 const HighlightPost = ({ post }) => (
-  <Grid align="start" mt="" pt="">
-    <Column span={{ medium: 12, large: 6 }}>
+  <Grid align="start" mt="">
+    <Column span={{ medium: 10, large: 6 }}>
       <LinkedMediumImage
         imageId={post.virtuals.previewImage.imageId}
         slug={post.uniqueSlug}
       />
-      <Box margin={{ top: "medium" }}>
+      <Box margin={{ top: "medium", bottom: "medium" }}>
         <div>
           <Button
             plain
@@ -45,7 +45,7 @@ const HighlightPost = ({ post }) => (
       </Box>
     </Column>
     <Spacer width={2} />
-    <Column span={{ medium: 12, large: 4 }}>
+    <Column span={{ medium: 10, large: 4 }}>
       <PostInfo
         title={post.title}
         subtitle={post.virtuals.subtitle}
@@ -83,7 +83,7 @@ const NewsPage = ({ data }) => {
     <Layout>
       <SEO {...page.seo} />
       <Container>
-        <Grid mb="medium" pb="medium">
+        <Grid mb="medium">
           <Column>
             <h1 hidden>News</h1>
             <MediumWordmark />
@@ -92,7 +92,7 @@ const NewsPage = ({ data }) => {
 
         <HighlightPost post={highlightPost} />
 
-        <Grid justify="start" align="start">
+        <Grid align="start">
           {mediumPosts.map((post, index) => {
             if (index === 0) return null;
 
