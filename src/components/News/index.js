@@ -1,14 +1,35 @@
 import React from "react";
 import { Heading, Paragraph, Image, Box, Button } from "grommet";
+import styled from "styled-components";
 
 import { ExternalLink } from "../Links";
 import { MEDIUM_URL, MEDIUM_CDN } from "../../helpers";
 import Column, { Spacer } from "../Column";
 import Grid from "../Grid";
 
+const ImageWrapper = styled.div`
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+`;
+
 const LinkedMediumImage = ({ imageId, slug }) => (
   <ExternalLink href={`${MEDIUM_URL}${slug}`}>
-    <Image style={{ maxWidth: "100%" }} src={`${MEDIUM_CDN}/${imageId}`} />
+    <ImageWrapper>
+      <Image
+        style={{ maxWidth: "100%", verticalAlign: "middle" }}
+        src={`${MEDIUM_CDN}/${imageId}`}
+      />
+    </ImageWrapper>
   </ExternalLink>
 );
 
