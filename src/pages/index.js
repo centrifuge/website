@@ -6,7 +6,7 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
-// import Animation from "../components/Animation";
+import Animation from "../components/Animation";
 
 import { RichTextRenderer } from "../helpers";
 
@@ -15,7 +15,7 @@ import block2Image from "../images/block2-image.svg";
 import block3Image from "../images/block3-image.svg";
 import block4Image from "../images/block4-image.svg";
 
-// import block1Animation from "../lottie/Main01.json";
+import block1Animation from "../lottie/Main01.json";
 // import block2Animation from "../lottie/Main02.json";
 // import block3Animation from "../lottie/Main03.json";
 // import block4Animation from "../lottie/Main04.json";
@@ -34,8 +34,8 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 7 }}>
-            {/* <Animation file={block1Animation} /> */}
-            <img alt="" src={block1Image} />
+            <Animation file={block1Animation} />
+            {/* <img alt="" src={block1Image} /> */}
           </Column>
         </Grid>
 
