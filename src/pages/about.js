@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Heading } from "grommet";
+import { Heading, Image, Box } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -11,7 +11,7 @@ import Animation from "../components/Animation";
 import VIP from "../components/VIP";
 import FullWidthImage from "../components/FullWidthImage";
 
-import { RichTextRenderer } from "../helpers";
+import { RichTextRenderer, lastInArray } from "../helpers";
 
 import block1Animation from "../lottie/About.json";
 import aboutBig from "../images/about_big.svg";
@@ -64,7 +64,7 @@ const AboutPage = ({ data }) => {
                 key={index}
                 justifySelf="center"
                 span={{ medium: 6, large: 3 }}
-                style={{ marginBottom: "2rem" }}
+                margin={{ bottom: "large" }}
               >
                 <VIP {...member} />
               </Column>
@@ -90,7 +90,7 @@ const AboutPage = ({ data }) => {
                 key={index}
                 justifySelf="center"
                 span={{ medium: 6, large: 3 }}
-                style={{ marginBottom: "2rem" }}
+                margin={{ bottom: "large" }}
               >
                 <VIP {...advisor} />
               </Column>
@@ -99,6 +99,32 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 6 - Investors */}
+        <Grid mb="" justify="">
+          <Column span={{ medium: 3, large: 3 }}>
+            <Heading level="2" lined>
+              Investors
+            </Heading>
+          </Column>
+        </Grid>
+        <Grid mt="" align="center" justify="center">
+          <Spacer width={2} />
+          {page.block6Investors.map((investor, index) => {
+            return (
+              <React.Fragment key={index}>
+                <Column span={{ medium: 4, large: 2 }}>
+                  <Box align="center" margin={{ bottom: "large" }}>
+                    <Image
+                      style={{ maxWidth: "100%", width: 160 }}
+                      alt={investor.internalName}
+                      src={investor.logoMonotone.file.url}
+                    />
+                  </Box>
+                </Column>
+                {!lastInArray(page.block6Investors, index) && <Spacer />}
+              </React.Fragment>
+            );
+          })}
+        </Grid>
 
         {/* Block 7 */}
         <Grid justify="center">
@@ -154,6 +180,14 @@ export const AboutPageQuery = graphql`
             socialMediaLinkedIn
             socialMediaGitHub
             socialMediaMedium
+          }
+          block6Investors {
+            internalName
+            logoMonotone {
+              file {
+                url
+              }
+            }
           }
           block7 {
             contentAST
