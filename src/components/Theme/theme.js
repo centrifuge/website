@@ -78,8 +78,8 @@ const custom = {
     breakpoints: { ...breakpoints },
     deviceBreakpoints: {
       phone: "small",
-      tablet: "medium",
-      computer: "medium"
+      tablet: "large",
+      computer: "large"
     },
     edgeSize: {
       xxlarge: "144px",
