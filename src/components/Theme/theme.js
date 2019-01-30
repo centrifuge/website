@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 import { base } from "grommet/themes";
-import { deepMerge, breakpointStyle } from "grommet/utils";
+import { deepMerge } from "grommet/utils";
 
 const borderWidth = 1;
 
@@ -43,16 +43,7 @@ const textSizes = {
     size: "14px",
     height: "24px",
     maxWidth: ""
-  },
-  extend: css`
-    ${breakpointStyle(
-      breakpoints.small,
-      css`
-        font-size: 20px;
-        line-height: 32px;
-      `
-    )}
-  `
+  }
 };
 
 const custom = {
@@ -108,14 +99,6 @@ const custom = {
       ::placeholder {
         color: black;
       }
-
-      ${breakpointStyle(
-        breakpoints.small,
-        css`
-          font-size: 24px;
-          line-height: 40px;
-        `
-      )}
     `
   },
   heading: {
@@ -137,30 +120,12 @@ const custom = {
       ${isHeader(props) &&
         css`
           margin-bottom: 64px;
-
-          ${breakpointStyle(
-            breakpoints.small,
-            css`
-              margin-bottom: 96px;
-              font-size: 28px;
-              line-height: 48px;
-            `
-          )}
         `}
 
       /* Subheader */
       ${isSubheader(props) &&
         css`
           margin-bottom: 40px;
-
-          ${breakpointStyle(
-            breakpoints.small,
-            css`
-              margin-bottom: 48px;
-              font-size: 24px;
-              line-height: 40px;
-            `
-          )}
         `}
 
         /* Lined Styles */
@@ -172,26 +137,12 @@ const custom = {
           ${isHeader(props) &&
             css`
               padding-bottom: 32px;
-
-              ${breakpointStyle(
-                breakpoints.small,
-                css`
-                  padding-bottom: 48px;
-                `
-              )}
             `}
 
           /* Lined Subheader */
           ${isSubheader(props) &&
             css`
               padding-bottom: 24px;
-
-              ${breakpointStyle(
-                breakpoints.small,
-                css`
-                  padding-bottom: 32px;
-                `
-              )}
             `}
         `}
     `
@@ -251,15 +202,6 @@ const custom = {
         css`
           text-decoration: underline;
         `}
-
-      /* Mobile Button Size */
-      ${breakpointStyle(
-        breakpoints.small,
-        css`
-          font-size: 24px;
-          line-height: 40px;
-        `
-      )}
 
       /* Button Hover Styles */
       &:hover {
