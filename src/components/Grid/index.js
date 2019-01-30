@@ -30,8 +30,6 @@ const Grid = ({
   children,
   align,
   justify,
-  pt,
-  pb,
   mt,
   mb,
   staggered,
@@ -39,7 +37,6 @@ const Grid = ({
 }) => (
   <GridWrapper
     staggered={staggered}
-    pad={{ top: pt, bottom: pb }}
     margin={{ top: mt, bottom: mb }}
   >
     <StyledGrid
@@ -56,10 +53,8 @@ const Grid = ({
 Grid.defaultProps = {
   align: "center",
   justify: "start",
-  pt: "large",
-  pb: "large",
-  mt: "xlarge",
-  mb: "xlarge"
+  mt: "xxlarge",
+  mb: "xxxlarge"
 };
 
 Grid.propTypes = {
@@ -67,8 +62,6 @@ Grid.propTypes = {
   align: PropTypes.string,
   justify: PropTypes.string,
   staggered: PropTypes.bool,
-  pt: PropTypes.string,
-  pb: PropTypes.string,
   mt: PropTypes.string,
   mb: PropTypes.string
 };

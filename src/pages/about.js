@@ -49,10 +49,14 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 4 - Team */}
-        <Grid id="team">
-          <Column justifySelf="stretch">
-            <Heading level="2" lined>Our team</Heading>
+        <Grid mb="" justify="">
+          <Column span={{ medium: 3, large: 3 }}>
+            <Heading level="2" lined>
+              Our team
+            </Heading>
           </Column>
+        </Grid>
+        <Grid id="team" mt="">
           {page.block4Team.map((member, index) => {
             return (
               <Column
@@ -67,6 +71,7 @@ const AboutPage = ({ data }) => {
           })}
         </Grid>
 
+        {/* Image */}
         <Grid>
           <Column>
             <img alt="" src={aboutBig} />
@@ -74,10 +79,14 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 5 - Advisors */}
-        <Grid>
-          <Column justifySelf="stretch">
-            <Heading level="2" lined>Advisory Board</Heading>
+        <Grid mb="" justify="">
+          <Column span={{ medium: 3, large: 3 }}>
+            <Heading level="2" lined>
+              Advisory Board
+            </Heading>
           </Column>
+        </Grid>
+        <Grid mt="">
           {page.block5Advisors.map((advisor, index) => {
             return (
               <Column

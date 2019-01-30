@@ -50,14 +50,14 @@ const EcosystemPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid id="use-cases" pb="0">
+        <Grid id="use-cases" mb="xlarge">
           <Column>
             <RichTextRenderer block={page.block3} />
           </Column>
         </Grid>
 
         {/* Block 4 */}
-        <Grid pt="0" align="start">
+        <Grid mt="" align="start">
           {page.block4.map((block, index) => (
             <>
               <Column key={index} span={{ medium: 4, large: 3 }}>

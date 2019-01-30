@@ -80,6 +80,10 @@ const custom = {
       phone: "small",
       tablet: "medium",
       computer: "medium"
+    },
+    edgeSize: {
+      xxlarge: "144px",
+      xxxlarge: "192px"
     }
   },
   icon: {

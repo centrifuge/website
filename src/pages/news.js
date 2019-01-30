@@ -118,13 +118,13 @@ const NewsPage = ({ data }) => {
           })}
         </Grid>
 
-        <Grid mb="medium" pb="medium" justify="">
+        <Grid mb="" justify="">
           <Column span={{ medium: 6, large: 4 }}>
-            <Heading level="2">Press about Centrifuge</Heading>
+            <Heading lined level="2">Press about Centrifuge</Heading>
           </Column>
         </Grid>
 
-        <Grid mt="" pt="" align="start">
+        <Grid mt="" align="start">
           {page.blockPress.map((article, index) => (
             <Column key={index} span={{ medium: 6, large: 6 }}>
               <Box direction="row" gap="large">
