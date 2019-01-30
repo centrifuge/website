@@ -95,7 +95,8 @@ const embedRenderer = (id, node) => {
 const options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) =>
-      children != "" ? <Paragraph>{children}</Paragraph> : null,
+    // eslint-disable-next-line
+      children != "" ? <Paragraph>{children}</Paragraph> : null, 
 
     [BLOCKS.HEADING_1]: (node, children) => (
       <Heading level="1" lined>
