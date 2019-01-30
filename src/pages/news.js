@@ -135,10 +135,10 @@ const NewsPage = ({ data }) => {
         <Grid mt="" align="start">
           {page.blockPress.map((article, index) => (
             <Column key={index} span={{ medium: 6, large: 6 }}>
-              <Box direction="row" gap="large">
+              <Box direction="row-responsive" gap="large">
                 <Box basis="1/4">
                   <Image
-                    style={{ width: "100%", maxWidth: "100%" }}
+                    style={{ width: "100%", maxWidth: "128px" }}
                     src={article.agency.logo.file.url}
                     alt={article.agency.logo.file.fileName}
                   />
