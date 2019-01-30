@@ -7,6 +7,7 @@ import Container from "../../components/Container";
 import Grid from "../../components/Grid";
 import Column, { Spacer } from "../../components/Column";
 import Animation from "../../components/Animation";
+import FullWidthImage from "../../components/FullWidthImage";
 
 import { RichTextRenderer, lastInArray } from "../../helpers";
 
@@ -43,11 +44,8 @@ const TechnologyPage = ({ data }) => {
           ))}
         </Grid>
 
-        <Grid>
-          <Column>
-            <img alt="" src={technologyBig} />
-          </Column>
-        </Grid>
+        {/* Image */}
+        <FullWidthImage src={technologyBig} />
 
         {/* Block 3 */}
         <Grid justify="center">

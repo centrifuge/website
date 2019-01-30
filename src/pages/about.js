@@ -9,6 +9,7 @@ import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
 import VIP from "../components/VIP";
+import FullWidthImage from "../components/FullWidthImage";
 
 import { RichTextRenderer } from "../helpers";
 
@@ -72,11 +73,7 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Image */}
-        <Grid>
-          <Column>
-            <img alt="" src={aboutBig} />
-          </Column>
-        </Grid>
+        <FullWidthImage src={aboutBig} />
 
         {/* Block 5 - Advisors */}
         <Grid mb="" justify="">

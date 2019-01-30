@@ -9,6 +9,7 @@ import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
 import Animation from "../components/Animation";
+import FullWidthImage from "../components/FullWidthImage";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
@@ -54,12 +55,8 @@ const CareersPage = ({ data }) => {
           </Column>
         </Grid>
 
-        {/* Animation Block */}
-        <Grid>
-          <Column>
-            <img alt="" src={careersBig} />
-          </Column>
-        </Grid>
+        {/* Image */}
+        <FullWidthImage src={careersBig} />
 
         {/* Block 3 */}
         <Grid mb="small" pb="small" justify="">
