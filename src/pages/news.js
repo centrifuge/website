@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Paragraph, Image, Box, Button } from "grommet";
+import { Heading } from "grommet";
 import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
@@ -7,73 +7,12 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
-import { ExternalLink } from "../components/Links";
+import { HighlightPost, MediumPost, PressArticle } from "../components/News";
 
 import { lastInArray } from "../helpers";
 import RichTextRenderer from "../helpers/richTextRenderer";
 
 import medium from "../images/medium-wordmark.svg";
-
-const MEDIUM_CDN = "https://cdn-images-1.medium.com/max/400";
-
-const MEDIUM_URL = "https://medium.com/centrifuge/";
-
-const LinkedMediumImage = ({ imageId, slug }) => (
-  <ExternalLink href={`${MEDIUM_URL}${slug}`}>
-    <Image style={{ maxWidth: "100%" }} src={`${MEDIUM_CDN}/${imageId}`} />
-  </ExternalLink>
-);
-
-const HighlightPost = ({ post }) => (
-  <Grid align="start" mt="">
-    <Column span={{ medium: 10, large: 6 }}>
-      <LinkedMediumImage
-        imageId={post.virtuals.previewImage.imageId}
-        slug={post.uniqueSlug}
-      />
-      <Box margin={{ top: "medium", bottom: "medium" }}>
-        <div>
-          <Button
-            plain
-            target="_blank"
-            rel="noopener noreferrer"
-            href={MEDIUM_URL}
-          >
-            Centrifuge on Medium
-          </Button>
-        </div>
-      </Box>
-    </Column>
-    <Spacer width={2} />
-    <Column span={{ medium: 10, large: 4 }}>
-      <PostInfo
-        title={post.title}
-        subtitle={post.virtuals.subtitle}
-        link={`${MEDIUM_URL}${post.uniqueSlug}`}
-      />
-    </Column>
-  </Grid>
-);
-
-const PostInfo = ({ title, subtitle, link, heading }) => (
-  <>
-    <Heading level={heading || "1"} lined={heading !== "3" ? true : false}>
-      {title}
-    </Heading>
-    <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
-    <div>
-      <Button
-        margin={{ bottom: "medium" }}
-        plain
-        target="_blank"
-        rel="noopener noreferrer"
-        href={link}
-      >
-        Read more...
-      </Button>
-    </div>
-  </>
-);
 
 const MediumWordmark = () => (
   <img style={{ width: 98 }} alt="Medium Wordmark" src={medium} />
@@ -105,18 +44,7 @@ const NewsPage = ({ data }) => {
             return (
               <>
                 <Column span={{ medium: 4, large: 3 }}>
-                  <Box margin={{ bottom: "medium" }}>
-                    <LinkedMediumImage
-                      imageId={post.node.virtuals.previewImage.imageId}
-                      slug={post.node.uniqueSlug}
-                    />
-                  </Box>
-                  <PostInfo
-                    title={post.node.title}
-                    subtitle={post.node.virtuals.subtitle}
-                    link={`${MEDIUM_URL}${post.node.uniqueSlug}`}
-                    heading="3"
-                  />
+                  <MediumPost post={post} />
                 </Column>
                 {!lastInArray(mediumPosts, index) && <Spacer />}
               </>
@@ -135,23 +63,7 @@ const NewsPage = ({ data }) => {
         <Grid mt="" align="start">
           {page.blockPress.map((article, index) => (
             <Column key={index} span={{ medium: 6, large: 6 }}>
-              <Box direction="row-responsive" gap="large">
-                <Box basis="1/4">
-                  <Image
-                    style={{ width: "100%", maxWidth: "128px" }}
-                    src={article.agency.logo.file.url}
-                    alt={article.agency.logo.file.fileName}
-                  />
-                </Box>
-                <Box basis="3/4">
-                  <PostInfo
-                    title={article.articleTitle}
-                    subtitle={article.articleSummary.articleSummary}
-                    link={article.articleLink}
-                    heading="3"
-                  />
-                </Box>
-              </Box>
+              <PressArticle article={article} />
             </Column>
           ))}
         </Grid>
