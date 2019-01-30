@@ -1,7 +1,6 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-
-import { ExternalLink } from "../Links";
+import { Button } from "grommet";
 
 const Jobs = () => (
   <StaticQuery
@@ -33,7 +32,7 @@ const Jobs = () => (
               return (
                 <div key={index}>
                   <p>
-                    <ExternalLink href={job.link}>{job.position}</ExternalLink>
+                    <Button plain link href={job.link}>{job.position}</Button >
                   </p>
                 </div>
               );

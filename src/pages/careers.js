@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Heading } from "grommet";
+import { Heading, Box } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -11,7 +11,7 @@ import Grid from "../components/Grid";
 import Animation from "../components/Animation";
 import FullWidthImage from "../components/FullWidthImage";
 
-import { RichTextRenderer, lastInArray } from "../helpers";
+import { RichTextRenderer } from "../helpers";
 
 import block1Animation from "../lottie/Team.json";
 import careersBig from "../images/careers_big.svg";
@@ -35,21 +35,22 @@ const CareersPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid mb="small" pb="small" justify="">
-          <Column span={{ medium: 4, large: 3 }} justifySelf="stretch">
+        <Grid mb="" justify="">
+          <Column span={{ medium: 4, large: 4 }}>
             <Heading level="2" lined>
               {page.block2Title}
             </Heading>
           </Column>
         </Grid>
-        <Grid mt="" pt="" pb="large" mb="large" align="start" justify="start">
-          <Column>
+        <Grid mt="" mb="" align="start" justify="start">
+          <Spacer />
+          <Column span={{ large: 11 }}>
             <Jobs />
           </Column>
         </Grid>
 
-        {/* Block 4 */}
-        <Grid justify="center" mt="" pt="">
+        {/* Block 2 (4) - Continued */}
+        <Grid justify="center" mt="xlarge">
           <Column textAlign="center">
             <RichTextRenderer block={page.block4} />
           </Column>
@@ -59,21 +60,23 @@ const CareersPage = ({ data }) => {
         <FullWidthImage src={careersBig} />
 
         {/* Block 3 */}
-        <Grid mb="small" pb="small" justify="">
-          <Column span={{ medium: 4, large: 3 }} justifySelf="stretch">
+        <Grid mb="" justify="">
+          <Column span={{ medium: 4, large: 4 }}>
             <Heading level="2" lined>
               {page.block3Title}
             </Heading>
           </Column>
         </Grid>
-        <Grid mt="" pt="" align="start" justify="start">
+        <Grid mt="" align="start" justify="start">
           {page.block3.map((block, index) => (
-            <>
+            <React.Fragment key={index}>
+              <Spacer />
               <Column span={{ medium: 6, large: 5 }}>
-                <RichTextRenderer block={block.content} />
+                <Box margin={{ bottom: "large" }}>
+                  <RichTextRenderer block={block.content} />
+                </Box>
               </Column>
-              {!lastInArray(page.block3, index) && <Spacer />}
-            </>
+            </React.Fragment>
           ))}
         </Grid>
       </Container>
