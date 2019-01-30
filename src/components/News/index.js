@@ -9,6 +9,7 @@ import Grid from "../Grid";
 
 const ImageWrapper = styled.div`
   position: relative;
+  display: inline-block;
 
   &::before {
     content: "";
@@ -34,7 +35,7 @@ const LinkedMediumImage = ({ imageId, slug }) => (
 );
 
 const PressArticle = ({ article }) => (
-  <Box direction="row-responsive" gap="large">
+  <Box direction="row-responsive" gap="large" margin={{ bottom: "large" }}>
     <Box basis="1/4">
       <Image
         style={{ width: "100%", maxWidth: "128px" }}
@@ -54,7 +55,7 @@ const PressArticle = ({ article }) => (
 );
 
 const MediumPost = ({ post }) => (
-  <>
+  <Box margin={{ bottom: "large" }}>
     <Box margin={{ bottom: "medium" }}>
       <LinkedMediumImage
         imageId={post.node.virtuals.previewImage.imageId}
@@ -67,27 +68,17 @@ const MediumPost = ({ post }) => (
       link={`${MEDIUM_URL}${post.node.uniqueSlug}`}
       heading="3"
     />
-  </>
+  </Box>
 );
 
 const HighlightPost = ({ post }) => (
   <Grid align="start" mt="">
     <Column span={{ medium: 10, large: 6 }}>
-      <LinkedMediumImage
-        imageId={post.virtuals.previewImage.imageId}
-        slug={post.uniqueSlug}
-      />
-      <Box margin={{ top: "medium", bottom: "medium" }}>
-        <div>
-          <Button
-            plain
-            target="_blank"
-            rel="noopener noreferrer"
-            href={MEDIUM_URL}
-          >
-            Centrifuge on Medium
-          </Button>
-        </div>
+      <Box margin={{ bottom: "medium" }}>
+        <LinkedMediumImage
+          imageId={post.virtuals.previewImage.imageId}
+          slug={post.uniqueSlug}
+        />
       </Box>
     </Column>
     <Spacer width={2} />
@@ -102,23 +93,21 @@ const HighlightPost = ({ post }) => (
 );
 
 const PostInfo = ({ title, subtitle, link, heading }) => (
-  <>
+  <div>
     <Heading level={heading || "1"} lined={heading !== "3" ? true : false}>
       {title}
     </Heading>
     <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
-    <div>
-      <Button
-        margin={{ bottom: "medium" }}
-        plain
-        target="_blank"
-        rel="noopener noreferrer"
-        href={link}
-      >
-        Read more...
-      </Button>
-    </div>
-  </>
+    <Button
+      margin={{ bottom: "medium" }}
+      plain
+      target="_blank"
+      rel="noopener noreferrer"
+      href={link}
+    >
+      Read more...
+    </Button>
+  </div>
 );
 
 export { PostInfo, HighlightPost, MediumPost, PressArticle, LinkedMediumImage };

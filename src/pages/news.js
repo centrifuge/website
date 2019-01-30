@@ -7,10 +7,9 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
+import { ExternalLink } from "../components/Links";
 import { HighlightPost, MediumPost, PressArticle } from "../components/News";
-
-import { lastInArray } from "../helpers";
-import RichTextRenderer from "../helpers/richTextRenderer";
+import { lastInArray, MEDIUM_URL, RichTextRenderer } from "../helpers";
 
 import medium from "../images/medium-wordmark.svg";
 
@@ -28,15 +27,18 @@ const NewsPage = ({ data }) => {
     <Layout>
       <SEO {...page.seo} />
       <Container>
+        {/* Hero Block */}
         <Grid mb="medium">
           <Column>
             <h1 hidden>News</h1>
-            <MediumWordmark />
+            <ExternalLink href={MEDIUM_URL}>
+              <MediumWordmark />
+            </ExternalLink>
           </Column>
         </Grid>
-
         <HighlightPost post={highlightPost} />
 
+        {/* Medium Posts */}
         <Grid align="start">
           {mediumPosts.map((post, index) => {
             if (index === 0) return null;
@@ -52,6 +54,7 @@ const NewsPage = ({ data }) => {
           })}
         </Grid>
 
+        {/* Press Block */}
         <Grid mb="" justify="">
           <Column span={{ medium: 6, large: 4 }}>
             <Heading lined level="2">
@@ -59,7 +62,6 @@ const NewsPage = ({ data }) => {
             </Heading>
           </Column>
         </Grid>
-
         <Grid mt="" align="start">
           {page.blockPress.map((article, index) => (
             <Column key={index} span={{ medium: 6, large: 6 }}>
@@ -68,8 +70,9 @@ const NewsPage = ({ data }) => {
           ))}
         </Grid>
 
+        {/* CTA Block */}
         <Grid justify="center">
-          <Column textAlign="center" style={{ fontSize: 18 }}>
+          <Column textAlign="center">
             <RichTextRenderer block={page.blockMediaInquiry} />
           </Column>
         </Grid>
