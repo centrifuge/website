@@ -62,7 +62,13 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
     </Heading>
     <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
     <div>
-      <Button plain target="_blank" rel="noopener noreferrer" href={link}>
+      <Button
+        margin={{ bottom: "medium" }}
+        plain
+        target="_blank"
+        rel="noopener noreferrer"
+        href={link}
+      >
         Read more...
       </Button>
     </div>
@@ -120,7 +126,9 @@ const NewsPage = ({ data }) => {
 
         <Grid mb="" justify="">
           <Column span={{ medium: 6, large: 4 }}>
-            <Heading lined level="2">Press about Centrifuge</Heading>
+            <Heading lined level="2">
+              Press about Centrifuge
+            </Heading>
           </Column>
         </Grid>
 
