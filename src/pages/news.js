@@ -57,13 +57,15 @@ const HighlightPost = ({ post }) => (
 
 const PostInfo = ({ title, subtitle, link, heading }) => (
   <>
-    <Heading level={heading || "1"} noLine={heading === "3" ? true : false}>
+    <Heading level={heading || "1"} lined={heading !== "3" ? true : false}>
       {title}
     </Heading>
     <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
-    <Button plain target="_blank" rel="noopener noreferrer" href={link}>
-      Read more...
-    </Button>
+    <div>
+      <Button plain target="_blank" rel="noopener noreferrer" href={link}>
+        Read more...
+      </Button>
+    </div>
   </>
 );
 

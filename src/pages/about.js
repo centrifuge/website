@@ -51,7 +51,7 @@ const AboutPage = ({ data }) => {
         {/* Block 4 - Team */}
         <Grid id="team">
           <Column justifySelf="stretch">
-            <Heading level="2">Our team</Heading>
+            <Heading level="2" lined>Our team</Heading>
           </Column>
           {page.block4Team.map((member, index) => {
             return (
@@ -76,7 +76,7 @@ const AboutPage = ({ data }) => {
         {/* Block 5 - Advisors */}
         <Grid>
           <Column justifySelf="stretch">
-            <Heading level="2">Advisory Board</Heading>
+            <Heading level="2" lined>Advisory Board</Heading>
           </Column>
           {page.block5Advisors.map((advisor, index) => {
             return (
