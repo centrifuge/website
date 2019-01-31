@@ -6,7 +6,7 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
-import Animation from "../components/Animation";
+// import Animation from "../components/Animation";
 
 import { RichTextRenderer } from "../helpers";
 
