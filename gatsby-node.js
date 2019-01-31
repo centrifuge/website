@@ -1,7 +1,17 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const { GraphQLJSON } = require("gatsby/graphql");
 
-// You can delete this file if you're not using it
+exports.setFieldsOnGraphQLNodeType = ({ type }) => {
+  if (type.name.match(/contentful.*RichTextNode/)) {
+    return {
+      contentAST: {
+        type: GraphQLJSON,
+        resolve: source => {
+          // Can also use source.content here, not sure what is best practice vs. most performant
+          // or if there are gotchas with one or the other
+          return JSON.parse(source.internal.content);
+        }
+      }
+    };
+  }
+  return {};
+};
