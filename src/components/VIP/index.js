@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "gatsby-image";
-import { Twitter, Linkedin, Medium, Github } from "grommet-icons";
+import { Box } from "grommet";
 
 import { ExternalLink } from "../Links";
-import { Box } from "grommet";
+import Icon from "../Icon";
+
+import twitter from "../../images/icons/twitter-3.svg";
+import github from "../../images/icons/github-3.svg";
+import linkedin from "../../images/icons/linkedin-3.svg";
+import medium from "../../images/icons/medium-3.svg";
 
 const Name = styled.p`
   font-weight: var(--fw-medium);
@@ -49,22 +54,22 @@ const VIP = ({
       <Box direction="row" gap="small">
         {socialMediaTwitter && (
           <ExternalLink href={socialMediaTwitter}>
-            <Twitter size="small" />
+            <Icon src={twitter} alt="Twitter" size={20} />
           </ExternalLink>
         )}
         {socialMediaGitHub && (
           <ExternalLink href={socialMediaGitHub}>
-            <Github size="small" />
+            <Icon src={github} alt="GitHub" size={20} />
           </ExternalLink>
         )}
         {socialMediaMedium && (
           <ExternalLink href={socialMediaMedium}>
-            <Medium size="small" />
+            <Icon src={medium} alt="Medium" size={20} />
           </ExternalLink>
         )}
         {socialMediaLinkedIn && (
           <ExternalLink href={socialMediaLinkedIn}>
-            <Linkedin size="small" />
+            <Icon src={linkedin} alt="LinkedIn" size={20} />
           </ExternalLink>
         )}
       </Box>
