@@ -1,12 +1,12 @@
 import React from "react";
-import { Box } from "grommet";
+import { Box, Button } from "grommet";
+import { StaticQuery, graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
 
 import Container from "../Container";
 import { List, Item } from "../List";
 import { InternalLink } from "../Links";
-import CallToAction from "./callToAction";
 import { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
@@ -116,54 +116,85 @@ const Nav = styled(Box)`
 `;
 
 const Navigation = () => (
-  <Nav as="nav" role="navigation">
-    <Container>
-      <List style={{ display: "flex", alignItems: "center" }}>
-        <Item style={{ flex: 1 }}>
-          <NavLink to="/">
-            <Logo alt="Centrifuge Wordmark" src={wordmark} />
-          </NavLink>
-        </Item>
-        <Dropdowns direction="row" align="center" gap="large">
-          <PaddedItem>
-            <NavLink to="/technology">Technology</NavLink>
-          </PaddedItem>
+  <StaticQuery
+    query={graphql`
+      query {
+        allContentfulControlCenterNavigationCta {
+          edges {
+            node {
+              enableNavigationCallToAction
+              buttonUrl
+              buttonText
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      const {
+        enableNavigationCallToAction,
+        buttonText,
+        buttonUrl
+      } = data.allContentfulControlCenterNavigationCta.edges[0].node;
 
-          <PaddedItem>
-            <NavLink to="/ecosystem">Ecosystem</NavLink>
-            <List>
-              <Item>
-                <NavLink to="/ecosystem/#use-cases">Use Cases</NavLink>
+      return (
+        <Nav as="nav" role="navigation">
+          <Container>
+            <List style={{ display: "flex", alignItems: "center" }}>
+              <Item style={{ flex: 1 }}>
+                <NavLink to="/">
+                  <Logo alt="Centrifuge Wordmark" src={wordmark} />
+                </NavLink>
               </Item>
+              <Dropdowns direction="row" align="center" gap="large">
+                <PaddedItem>
+                  <NavLink to="/technology">Technology</NavLink>
+                </PaddedItem>
+
+                <PaddedItem>
+                  <NavLink to="/ecosystem">Ecosystem</NavLink>
+                  <List>
+                    <Item>
+                      <NavLink to="/ecosystem/#use-cases">Use Cases</NavLink>
+                    </Item>
+                  </List>
+                </PaddedItem>
+
+                <PaddedItem>
+                  <NavLink to="/news">News</NavLink>
+                </PaddedItem>
+
+                <PaddedItem>
+                  <NavLink to="/about">About</NavLink>
+                  <List>
+                    <Item>
+                      <NavLink to="/about/#mission">Mission</NavLink>
+                    </Item>
+                    <Item>
+                      <NavLink to="/about/#team">Team</NavLink>
+                    </Item>
+                    <Item>
+                      <NavLink to="/about/#alliance">Alliance</NavLink>
+                    </Item>
+                    <Item>
+                      <NavLink to="/careers">Careers</NavLink>
+                    </Item>
+                  </List>
+                </PaddedItem>
+
+                {/* Call To Action */}
+                {enableNavigationCallToAction && (
+                  <Item>
+                    <Button primary label={buttonText} href={buttonUrl} />
+                  </Item>
+                )}
+              </Dropdowns>
             </List>
-          </PaddedItem>
-
-          <PaddedItem>
-            <NavLink to="/news">News</NavLink>
-          </PaddedItem>
-
-          <PaddedItem>
-            <NavLink to="/about">About</NavLink>
-            <List>
-              <Item>
-                <NavLink to="/about/#mission">Mission</NavLink>
-              </Item>
-              <Item>
-                <NavLink to="/about/#team">Team</NavLink>
-              </Item>
-              <Item>
-                <NavLink to="/about/#alliance">Alliance</NavLink>
-              </Item>
-              <Item>
-                <NavLink to="/careers">Careers</NavLink>
-              </Item>
-            </List>
-          </PaddedItem>
-          <CallToAction />
-        </Dropdowns>
-      </List>
-    </Container>
-  </Nav>
+          </Container>
+        </Nav>
+      );
+    }}
+  />
 );
 
 export default Navigation;
