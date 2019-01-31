@@ -48,9 +48,9 @@ const EcosystemPage = ({ data }) => {
         <FullWidthImage src={ecosystemBig} />
 
         {/* Block 3 */}
-        <Grid id="use-cases"mb="xlarge" justify="">
+        <Grid id="use-cases" mb="xlarge" justify="">
           <Column span={{ medium: 6, large: 7 }}>
-          <RichTextRenderer block={page.block3} />
+            <RichTextRenderer block={page.block3} />
           </Column>
         </Grid>
 

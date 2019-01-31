@@ -200,18 +200,20 @@ const custom = {
       line-height: 24px;
 
       /* Add underline for Plain type button */
-      ${(props.plain && !props.link) &&
+      ${props.plain &&
+        !props.link &&
         css`
           text-decoration: underline;
         `}
 
-      ${props.link && css`
-        font-weight: var(--fw-demibold);
-        
-        &:hover {
-          text-decoration: underline
-        }
-      `}
+      ${props.link &&
+        css`
+          font-weight: var(--fw-demibold);
+
+          &:hover {
+            text-decoration: underline;
+          }
+        `}
 
       /* Button Hover Styles */
       &:hover {
