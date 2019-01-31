@@ -10,7 +10,7 @@ const lambdaServerDefaults = filename => ({
   },
   url:
     process.env.NODE_ENV == "production"
-      ? `https://staging.web.cntrfg.com/.netlify/functions/${filename}`
+      ? `${process.env.URL}/.netlify/functions/${filename}`
       : `http://localhost:9000/${filename}`
 });
 
