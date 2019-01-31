@@ -25,6 +25,16 @@ const renderButton = button => {
         />
       );
 
+    case "Plain":
+      return (
+        <Button
+          margin={{ top: "medium", bottom: "small" }}
+          plain
+          href={link}
+          label={text}
+        />
+      );
+
     case "Github":
       return (
         <Button
