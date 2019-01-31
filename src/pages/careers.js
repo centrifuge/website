@@ -44,7 +44,7 @@ const CareersPage = ({ data }) => {
         </Grid>
         <Grid mt="" mb="" align="start" justify="start">
           <Spacer />
-          <Column span={{ large: 11 }}>
+          <Column span={{ medium: 12, large: 11 }}>
             <Jobs />
           </Column>
         </Grid>

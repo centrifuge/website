@@ -51,7 +51,6 @@ Spacer.defaultProps = {
 };
 
 Column.defaultProps = {
-  textAlign: "justify",
   span: {
     medium: 12,
     large: 12
