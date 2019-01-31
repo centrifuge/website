@@ -2,6 +2,8 @@ import React from "react";
 import { Box } from "grommet";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
+import { breakpointStyle } from "grommet/utils";
+import { breakpoints } from "../Theme/theme";
 
 const GridWrapper = styled(Box)`
   ${props =>
@@ -14,16 +16,19 @@ const GridWrapper = styled(Box)`
 `;
 
 const StyledGrid = styled.section`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 32px;
+  align-items: ${props => props.align && props.align};
+  justify-items: ${props => props.justify && props.justify};
 
-  @media only screen and (min-width: 769px) {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: 32px;
-    align-items: ${props => props.align && props.align};
-    justify-items: ${props => props.justify && props.justify};
-  }
+  ${breakpointStyle(
+    breakpoints.small,
+    css`
+      display: flex;
+      flex-direction: column;
+    `
+  )}
 `;
 
 const Grid = ({ children, align, justify, mt, mb, staggered, ...rest }) => (

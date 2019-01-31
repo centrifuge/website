@@ -128,7 +128,8 @@ const AboutPage = ({ data }) => {
 
         {/* Block 7 */}
         <Grid justify="center">
-          <Column textAlign="center">
+          <Spacer width={3} />
+          <Column span={{ medium: 12, large: 6 }} textAlign="center">
             <RichTextRenderer block={page.block7} />
           </Column>
         </Grid>
