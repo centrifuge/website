@@ -43,7 +43,10 @@ const textSizes = {
     size: "14px",
     height: "24px",
     maxWidth: ""
-  }
+  },
+  extend: css`
+    text-align: justify;
+  `
 };
 
 const custom = {
@@ -113,7 +116,6 @@ const custom = {
       6: subheaderSizes
     },
     extend: props => css`
-      text-align: left;
       margin-top: 0;
 
       /* Header */
