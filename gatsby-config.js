@@ -28,9 +28,21 @@ const breezyServerOptions = {
 };
 
 const gitcoinServerOptions = {
-  name: `gitcoin`,
-  ...lambdaServerDefaults("getGitcoinBounties"),
-  verboseOutput: true
+  openBounties: {
+    name: `gitcoinOpenBounties`,
+    ...lambdaServerDefaults("getGitcoinOpenBounties"),
+    verboseOutput: true
+  },
+  hallOfFame: {
+    name: `gitcoinHallOfFame`,
+    ...lambdaServerDefaults("getGitcoinHallOfFame"),
+    verboseOutput: true
+  },
+  completedBounties: {
+    name: `gitcoinCompletedBounties`,
+    ...lambdaServerDefaults("getGitcoinCompletedBounties"),
+    verboseOutput: true
+  }
 };
 
 module.exports = {
@@ -67,7 +79,15 @@ module.exports = {
     },
     {
       resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions
+      options: gitcoinServerOptions.openBounties
+    },
+    {
+      resolve: "gatsby-source-apiserver",
+      options: gitcoinServerOptions.hallOfFame
+    },
+    {
+      resolve: "gatsby-source-apiserver",
+      options: gitcoinServerOptions.completedBounties
     },
     {
       resolve: "gatsby-source-contentful",
