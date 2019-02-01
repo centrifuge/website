@@ -36,7 +36,7 @@ const CareersPage = ({ data }) => {
 
         {/* Block 2 */}
         <Grid mb="" justify="">
-          <Column span={{ medium: 4, large: 4 }}>
+          <Column span={{ medium: 4, large: 3 }}>
             <Heading level="2" lined>
               {page.block2Title}
             </Heading>
@@ -50,8 +50,8 @@ const CareersPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 (4) - Continued */}
-        <Grid justify="center" mt="xlarge">
-          <Column textAlign="center">
+        <Grid mt="large">
+          <Column span={{ medium: 4, large: 4 }}>
             <RichTextRenderer block={page.block4} />
           </Column>
         </Grid>
