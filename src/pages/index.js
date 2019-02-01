@@ -6,19 +6,14 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
-// import Animation from "../components/Animation";
+import Animation from "../components/Animation";
 
 import { RichTextRenderer } from "../helpers";
 
-import block1Image from "../images/block1-image.svg";
+import block1Animation from "../lottie/Main01.json";
 import block2Image from "../images/block2-image.svg";
-import block3Image from "../images/block3-image.svg";
-import block4Image from "../images/block4-image.svg";
-
-// import block1Animation from "../lottie/Main01.json";
-// import block2Animation from "../lottie/Main02.json";
-// import block3Animation from "../lottie/Main03.json";
-// import block4Animation from "../lottie/Main04.json";
+import block3Animation from "../lottie/Main03.json";
+import block4Animation from "../lottie/Main04.json";
 
 const IndexPage = ({ data }) => {
   const page = data.allContentfulPageHome.edges[0].node;
@@ -34,15 +29,13 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 7 }}>
-            {/* <Animation file={block1Animation} /> */}
-            <img alt="" src={block1Image} />
+            <Animation file={block1Animation} />
           </Column>
         </Grid>
 
         {/* Block 2 */}
         <Grid staggered>
           <Column span={{ medium: 6, large: 7 }}>
-            {/* <Animation file={block2Animation} /> */}
             <img alt="" src={block2Image} />
           </Column>
           <Spacer />
@@ -58,16 +51,14 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 7 }}>
-            {/* <Animation file={block3Animation} /> */}
-            <img alt="" src={block3Image} />
+            <Animation file={block3Animation} />
           </Column>
         </Grid>
 
         {/* Block 4 */}
         <Grid staggered>
           <Column span={{ medium: 6, large: 7 }}>
-            {/* <Animation file={block4Animation} /> */}
-            <img alt="" src={block4Image} />
+            <Animation file={block4Animation} />
           </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 4 }}>
