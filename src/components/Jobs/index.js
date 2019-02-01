@@ -32,7 +32,13 @@ const Jobs = () => (
               return (
                 <div key={index}>
                   <p>
-                    <Button plain link href={job.link}>
+                    <Button
+                      plain
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      link
+                      href={job.link}
+                    >
                       {job.position}
                     </Button>
                   </p>
