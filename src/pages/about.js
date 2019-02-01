@@ -24,7 +24,7 @@ const AboutPage = ({ data }) => {
       <SEO {...page.seo} />
       <Container>
         {/* Block 1 */}
-        <Grid id="mission">
+        <Grid>
           <Column span={{ medium: 6, large: 6 }}>
             <RichTextRenderer block={page.block1} />
           </Column>
@@ -35,7 +35,7 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid justify="end">
+        <Grid id="mission">
           <Spacer width={4} />
           <Column span={{ medium: 12, large: 8 }}>
             <RichTextRenderer block={page.block2} />
@@ -43,21 +43,21 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid>
+        <Grid id="alliance">
           <Column span={{ medium: 12, large: 4 }}>
             <RichTextRenderer block={page.block3} />
           </Column>
         </Grid>
 
         {/* Block 4 - Team */}
-        <Grid mb="" justify="">
+        <Grid id="team" mb="" justify="">
           <Column span={{ medium: 3, large: 3 }}>
             <Heading level="2" lined>
               Our team
             </Heading>
           </Column>
         </Grid>
-        <Grid id="team" mt="">
+        <Grid mt="">
           {page.block4Team.map((member, index) => {
             return (
               <Column
