@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 
+import image from "../../images/ogimage.png";
+
 const SEO = ({ description, meta, title }) => (
   <StaticQuery
     query={graphql`
@@ -11,6 +13,7 @@ const SEO = ({ description, meta, title }) => (
           siteMetadata {
             title
             longTitle
+            siteUrl
             description
             author
           }
@@ -35,6 +38,14 @@ const SEO = ({ description, meta, title }) => (
               content: metaDescription
             },
             {
+              name: `title`,
+              content: defaultTitle
+            },
+            {
+              name: `author`,
+              content: data.site.siteMetadata.author
+            },
+            {
               property: `og:title`,
               content: title
             },
@@ -47,19 +58,35 @@ const SEO = ({ description, meta, title }) => (
               content: `website`
             },
             {
-              name: `twitter:card`,
-              content: `summary`
+              property: `og:image`,
+              content: `${data.site.siteMetadata.siteUrl}${image}`
             },
             {
-              name: `twitter:creator`,
+              propert: `og:image:width`,
+              content: `600`
+            },
+            {
+              propert: `og:image:height`,
+              content: `315`
+            },
+            {
+              property: `twitter:card`,
+              content: `summary_large_image`
+            },
+            {
+              property: `twitter:creator`,
               content: data.site.siteMetadata.author
             },
             {
-              name: `twitter:title`,
+              property: `twitter:title`,
               content: title
             },
             {
-              name: `twitter:description`,
+              property: `twitter:image`,
+              content: `${data.site.siteMetadata.siteUrl}${image}`
+            },
+            {
+              property: `twitter:description`,
               content: metaDescription
             }
           ].concat(meta)}

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="738px" height="354px" viewBox="0 0 738 354" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+<svg width="768px" height="384px" viewBox="0 0 768 384" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
     <title>Group 5</title>
     <desc>Created with Sketch.</desc>
     <g id="Web-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="01.5-Main-XL---1200px" transform="translate(-39.000000, -783.000000)">
+        <g id="01.5-Main-XL---1200px" transform="translate(-24.000000, -768.000000)">
             <g id="Group-5" transform="translate(24.000000, 768.000000)">
                 <g id="Group-195" transform="translate(384.000000, 0.000000)">
-                    <path d="M384,192 C384,298.039 298.039,384 192,384 C85.961,384 0,298.039 0,192 C0,85.961 85.961,0 192,0 C298.039,0 384,85.961 384,192" id="Fill-1"></path>
+                    <path d="M192,384 C85.961,384 0,298.039 0,192 C0,85.961 85.961,0 192,0 C298.039,0 384,85.961 384,192 C384,298.039 298.039,384 192,384 Z" id="Fill-1" fill="#FFFFFF"></path>
                     <path d="M16,192 L368,192" id="Stroke-3" stroke="#666666" stroke-linecap="round"></path>
                     <path d="M192,368 L192,16" id="Stroke-5" stroke="#666666" stroke-linecap="round"></path>
                     <path d="M39.5795,280 L344.4205,104" id="Stroke-7" stroke="#666666" stroke-linecap="round"></path>
@@ -106,7 +106,7 @@
                     <path d="M367.9058,197.7586 L16.0938,186.2416" id="Stroke-193" stroke="#666666" stroke-linecap="round"></path>
                 </g>
                 <g id="Group-195-Copy">
-                    <path d="M384,192 C384,298.039 298.039,384 192,384 C85.961,384 0,298.039 0,192 C0,85.961 85.961,0 192,0 C298.039,0 384,85.961 384,192" id="Fill-1"></path>
+                    <path d="M384,192 C384,298.039 298.039,384 192,384 C85.961,384 0,298.039 0,192 C0,85.961 85.961,0 192,0 C298.039,0 384,85.961 384,192" id="Fill-1" fill="#FFFFFF"></path>
                     <path d="M16,192 L368,192" id="Stroke-3" stroke="#666666" stroke-linecap="round"></path>
                     <path d="M192,368 L192,16" id="Stroke-5" stroke="#666666" stroke-linecap="round"></path>
                     <path d="M39.5795,280 L344.4205,104" id="Stroke-7" stroke="#666666" stroke-linecap="round"></path>

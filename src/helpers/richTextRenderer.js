@@ -10,7 +10,7 @@ const DebugData = ({ data }) => (
   </pre>
 );
 
-const renderButton = button => {
+const renderButton = (button, index) => {
   const style = button.buttonStyle ? button.buttonStyle["en-US"] : undefined;
   const link = button.link["en-US"];
   const text = button.text["en-US"];
@@ -19,7 +19,19 @@ const renderButton = button => {
     case "Outline":
       return (
         <Button
+          key={index}
           margin={{ top: "medium", bottom: "small" }}
+          href={link}
+          label={text}
+        />
+      );
+
+    case "Plain":
+      return (
+        <Button
+          key={index}
+          margin={{ top: "medium", bottom: "small" }}
+          plain
           href={link}
           label={text}
         />
@@ -28,6 +40,7 @@ const renderButton = button => {
     case "Github":
       return (
         <Button
+          key={index}
           margin={{ top: "medium", bottom: "small" }}
           plain
           icon={<Github />}
@@ -41,6 +54,7 @@ const renderButton = button => {
     case "Slack":
       return (
         <Button
+          key={index}
           margin={{ top: "medium", bottom: "small" }}
           plain
           icon={<Slack />}
@@ -54,6 +68,7 @@ const renderButton = button => {
     default:
       return (
         <Button
+          key={index}
           margin={{ top: "medium", bottom: "small" }}
           primary
           href={link}
@@ -64,9 +79,9 @@ const renderButton = button => {
 };
 
 const renderButtonGroup = (buttons, justify) => (
-  <Box direction="row-responsive" justify={justify} align="center" gap="medium">
-    {buttons.map(button => {
-      return renderButton(button.fields);
+  <Box direction="row-responsive" justify={justify} align="center">
+    {buttons.map((button, index) => {
+      return renderButton(button.fields, index);
     })}
   </Box>
 );
@@ -78,7 +93,7 @@ const embedRenderer = (id, node) => {
 
       const buttonGroupJustify = node.data.target.fields.justifyContent
         ? node.data.target.fields.justifyContent["en-US"]
-        : "initial";
+        : "start";
 
       return renderButtonGroup(buttonGroupData, buttonGroupJustify);
 
@@ -92,11 +107,13 @@ const embedRenderer = (id, node) => {
   }
 };
 
-const options = {
+const options = noHyphen => ({
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) =>
       // eslint-disable-next-line
-      children != "" ? <Paragraph>{children}</Paragraph> : null,
+      children != "" ? (
+        <Paragraph noHyphen={noHyphen ? noHyphen : false}>{children}</Paragraph>
+      ) : null,
 
     [BLOCKS.HEADING_1]: (node, children) => (
       <Heading level="1" lined>
@@ -130,10 +147,10 @@ const options = {
       </a>
     )
   }
-};
+});
 
-const RichTextRenderer = ({ block }) => (
-  <div>{documentToReactTree(block.contentAST, options)}</div>
+const RichTextRenderer = ({ block, noHyphen }) => (
+  <div>{documentToReactTree(block.contentAST, options(noHyphen))}</div>
 );
 
 export default RichTextRenderer;

@@ -3,7 +3,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
-import { Heading, Text, Box, Button } from "grommet";
+import { Heading, Paragraph, Box, Button } from "grommet";
 
 const NotFoundPage = () => (
   <Layout>
@@ -11,10 +11,12 @@ const NotFoundPage = () => (
     <Container>
       <Box fill pad={{ top: "large", bottom: "xlarge" }} align="center">
         <div>
-          <Heading textAlign="center">This page doesn’t exist</Heading>
-          <Text textAlign="center" as="p">
+          <Heading lined textAlign="center" level={1}>
+            This page doesn’t exist
+          </Heading>
+          <Paragraph textAlign="center">
             You might have mistyped the address, or the page might have moved.
-          </Text>
+          </Paragraph>
         </div>
         <Button margin={{ top: "small" }} primary href="/" label="Back home" />
       </Box>

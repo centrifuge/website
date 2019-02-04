@@ -44,12 +44,12 @@ const NewsPage = ({ data }) => {
             if (index === 0) return null;
 
             return (
-              <>
-                <Column span={{ medium: 4, large: 3 }}>
+              <React.Fragment key={index}>
+                <Column mobileSpaced span={{ medium: 4, large: 3 }}>
                   <MediumPost post={post} />
                 </Column>
                 {!lastInArray(mediumPosts, index) && <Spacer />}
-              </>
+              </React.Fragment>
             );
           })}
         </Grid>
@@ -64,7 +64,7 @@ const NewsPage = ({ data }) => {
         </Grid>
         <Grid mt="" align="start">
           {page.blockPress.map((article, index) => (
-            <Column key={index} span={{ medium: 6, large: 6 }}>
+            <Column mobileSpaced key={index} span={{ medium: 6, large: 6 }}>
               <PressArticle article={article} />
             </Column>
           ))}

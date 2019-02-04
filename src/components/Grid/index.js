@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "grommet";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
+import { breakpoints } from "../Theme/theme";
 
 const GridWrapper = styled(Box)`
   ${props =>
@@ -17,7 +18,7 @@ const StyledGrid = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media only screen and (min-width: 769px) {
+  @media only screen and (min-width: ${breakpoints.small.value}px) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 32px;
@@ -41,7 +42,7 @@ const Grid = ({ children, align, justify, mt, mb, staggered, ...rest }) => (
 
 Grid.defaultProps = {
   align: "center",
-  justify: "start",
+  justify: "flex-start",
   mt: "xxlarge",
   mb: "xxxlarge"
 };

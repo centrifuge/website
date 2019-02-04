@@ -8,12 +8,11 @@ import Jobs from "../components/Jobs";
 import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
-import Animation from "../components/Animation";
 import FullWidthImage from "../components/FullWidthImage";
 
 import { RichTextRenderer } from "../helpers";
 
-import block1Animation from "../lottie/Team.json";
+import block1Image from "../images/Careers.svg";
 import careersBig from "../images/careers_big.svg";
 
 const CareersPage = ({ data }) => {
@@ -25,18 +24,18 @@ const CareersPage = ({ data }) => {
       <Container>
         {/* Block 2 */}
         <Grid>
-          <Column span={{ medium: 6, large: 7 }}>
+          <Column span={{ medium: 6, large: 6 }}>
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ medium: 6, large: 4 }}>
-            <Animation file={block1Animation} />
+          <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
+            <img alt="" src={block1Image} />
           </Column>
         </Grid>
 
         {/* Block 2 */}
         <Grid mb="" justify="">
-          <Column span={{ medium: 4, large: 4 }}>
+          <Column span={{ medium: 4, large: 3 }}>
             <Heading level="2" lined>
               {page.block2Title}
             </Heading>
@@ -44,21 +43,23 @@ const CareersPage = ({ data }) => {
         </Grid>
         <Grid mt="" mb="" align="start" justify="start">
           <Spacer />
-          <Column span={{ large: 11 }}>
+          <Column span={{ medium: 12, large: 11 }}>
             <Jobs />
           </Column>
         </Grid>
 
         {/* Block 2 (4) - Continued */}
-        <Grid justify="center" mt="xlarge">
-          <Column textAlign="center">
+        <Grid mt="large">
+          <Column span={{ medium: 4, large: 4 }}>
             <RichTextRenderer block={page.block4} />
           </Column>
         </Grid>
+      </Container>
 
-        {/* Image */}
-        <FullWidthImage src={careersBig} />
+      {/* Image */}
+      <FullWidthImage src={careersBig} />
 
+      <Container>
         {/* Block 3 */}
         <Grid mb="" justify="">
           <Column span={{ medium: 4, large: 4 }}>

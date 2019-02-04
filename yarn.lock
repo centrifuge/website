@@ -716,6 +716,13 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@babel/runtime@^7.3.0":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.1.tgz#574b03e8e8a9898eaf4a872a92ea20b7846f6f2a"
+  integrity sha512-7jGW8ppV0ant637pIqAcFfQDDH1orEPGJb8aXfUozuCU3QqX7rX4DA8iwrbPrR1hcH0FTTHz47yQnk+bl5xHQA==
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.44.tgz#f8832f4fdcee5d59bf515e595fc5106c529b394f"
@@ -5709,6 +5716,13 @@ gatsby-plugin-catch-links@^2.0.9:
     "@babel/runtime" "^7.0.0"
     escape-string-regexp "^1.0.5"
 
+gatsby-plugin-google-analytics@^2.0.13:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.0.13.tgz#31ecf6be05815ba2047ec8cd5129f0bea9d7fd75"
+  integrity sha512-cOfQ+f3FRl0yPm5J9atj23Xp7uGILMpYuPXHpm9nh74Tgg9R8rJyaLZaHpEiA2jdnqGvfLIBsqm6Sh0x/wepGQ==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
 gatsby-plugin-mailchimp@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-mailchimp/-/gatsby-plugin-mailchimp-4.0.0.tgz#9747949b3c4dadea8406e087d83da43106e34b05"
@@ -6376,7 +6390,7 @@ graphql@^0.13.0, graphql@^0.13.2:
   dependencies:
     iterall "^1.2.1"
 
-grommet-icons@^4.0.0, grommet-icons@^4.1.0:
+grommet-icons@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.1.0.tgz#4705d2828461348ff38ddd2c42b8cd551e0569a0"
   integrity sha512-S9TqY4R/J/xG6++xNXa5JoQeZ9/jO8b6FgmDOhHAD8Vdx/btPswp2hUliTdQiFZFxne4ILldQoCK0w1xwN9eSA==
@@ -12046,6 +12060,14 @@ styled-components@^4.1.3:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
     supports-color "^5.5.0"
+
+styled-icons@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/styled-icons/-/styled-icons-6.8.0.tgz#2bd02d9ecb85890908fdeee09d01a8751e676f8f"
+  integrity sha512-ANlpJIJaKeXuKjyaJz6fUWdOBQLny4e/fGUvC1kB4jSI9UmXALq9fanc/pslUQRjL0UATb5BEA9xvE3goh2/XQ==
+  dependencies:
+    "@babel/runtime" "^7.3.0"
+    "@emotion/is-prop-valid" "^0.7.3"
 
 stylehacks@^4.0.0:
   version "4.0.1"

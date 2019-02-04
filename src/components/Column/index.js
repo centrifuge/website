@@ -2,6 +2,9 @@ import React from "react";
 import { Box, ResponsiveContext } from "grommet";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { breakpointStyle } from "grommet/utils";
+
+import theme, { breakpoints } from "../Theme/theme";
 
 const StyledColumn = styled(Box)`
   ${props =>
@@ -20,6 +23,19 @@ const StyledColumn = styled(Box)`
     props.textAlign &&
     css`
       text-align: ${props.textAlign};
+    `}
+
+  ${props =>
+    props.mobileSpaced &&
+    css`
+      ${breakpointStyle(
+        breakpoints.small,
+        css`
+          &:not(:last-child) {
+            margin-bottom: ${theme.global.edgeSize.xlarge};
+          }
+        `
+      )}
     `}
 `;
 
@@ -51,7 +67,6 @@ Spacer.defaultProps = {
 };
 
 Column.defaultProps = {
-  textAlign: "justify",
   span: {
     medium: 12,
     large: 12

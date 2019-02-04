@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "gatsby-image";
-import { Twitter, Linkedin, Medium, Github } from "grommet-icons";
+
+import { TwitterSquare } from "styled-icons/fa-brands/TwitterSquare";
+import { Medium } from "styled-icons/fa-brands/Medium";
+import { Linkedin } from "styled-icons/fa-brands/Linkedin";
+import { GithubSquare } from "styled-icons/fa-brands/GithubSquare";
 
 import { ExternalLink } from "../Links";
 import { Box } from "grommet";
@@ -46,25 +50,26 @@ const VIP = ({
       socialMediaLinkedIn ||
       socialMediaGitHub ||
       socialMediaMedium) && (
-      <Box direction="row" gap="small">
+      <Box direction="row" gap="small" style={{ color: "black" }}>
         {socialMediaTwitter && (
           <ExternalLink href={socialMediaTwitter}>
-            <Twitter size="small" />
+            <TwitterSquare color="rgba(0, 0, 0, 0.5)" size={20} />
           </ExternalLink>
         )}
         {socialMediaGitHub && (
           <ExternalLink href={socialMediaGitHub}>
-            <Github size="small" />
+            <GithubSquare color="rgba(0, 0, 0, 0.5)" size={20} />
           </ExternalLink>
         )}
         {socialMediaMedium && (
           <ExternalLink href={socialMediaMedium}>
-            <Medium size="small" />
+            {/* Need to do to counteract the bigger icon margin */}
+            <Medium color="rgba(0, 0, 0, 0.5)" size={20}  />
           </ExternalLink>
         )}
         {socialMediaLinkedIn && (
           <ExternalLink href={socialMediaLinkedIn}>
-            <Linkedin size="small" />
+            <Linkedin color="rgba(0, 0, 0, 0.5)" size={20} />
           </ExternalLink>
         )}
       </Box>

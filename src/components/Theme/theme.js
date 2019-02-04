@@ -43,13 +43,21 @@ const textSizes = {
     size: "14px",
     height: "24px",
     maxWidth: ""
-  }
+  },
+  extend: props => css`
+    text-align: justify;
+    ${!props.noHyphen &&
+      css`
+        hyphens: auto;
+      `}
+  `
 };
 
 const custom = {
   global: {
     font: {
-      family: "Avenir Next, sans-serif",
+      family: `var(--f-stack)`,
+      weight: 400,
       size: "14px",
       height: 1.5
     },
@@ -90,6 +98,7 @@ const custom = {
   textInput: {
     extend: css`
       font-weight: var(--fw-medium);
+      font-family: var(--f-stack);
       color: black;
       border: none;
       border-bottom: ${borderWidth}px solid #fff;
@@ -113,8 +122,8 @@ const custom = {
       6: subheaderSizes
     },
     extend: props => css`
-      text-align: left;
       margin-top: 0;
+      font-family: var(--f-stack);
 
       /* Header */
       ${isHeader(props) &&
@@ -193,23 +202,26 @@ const custom = {
     },
     extend: props => css`
       font-weight: var(--fw-medium);
+      font-family: var(--f-stack);
       text-align: center;
       font-size: 16px;
       line-height: 24px;
 
       /* Add underline for Plain type button */
-      ${(props.plain && !props.link) &&
+      ${props.plain &&
+        !props.link &&
         css`
           text-decoration: underline;
         `}
 
-      ${props.link && css`
-        font-weight: var(--fw-demibold);
-        
-        &:hover {
-          text-decoration: underline
-        }
-      `}
+      ${props.link &&
+        css`
+          font-weight: var(--fw-demibold);
+
+          &:hover {
+            text-decoration: underline;
+          }
+        `}
 
       /* Button Hover Styles */
       &:hover {

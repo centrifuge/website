@@ -1,19 +1,19 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Heading, Image, Box } from "grommet";
+import { Heading, Image, Box, Grid as GrommetGrid } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
-import Animation from "../components/Animation";
 import VIP from "../components/VIP";
 import FullWidthImage from "../components/FullWidthImage";
+import DeepLink from "../components/DeepLink";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
-import block1Animation from "../lottie/About.json";
+import block1Image from "../images/About.svg";
 import aboutBig from "../images/about_big.svg";
 
 const AboutPage = ({ data }) => {
@@ -24,40 +24,66 @@ const AboutPage = ({ data }) => {
       <SEO {...page.seo} />
       <Container>
         {/* Block 1 */}
-        <Grid id="mission">
-          <Column span={{ medium: 6, large: 7 }}>
+        <Grid>
+          <Column span={{ medium: 6, large: 6 }}>
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ medium: 6, large: 4 }}>
-            <Animation file={block1Animation} loop={false} />
+          <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
+            <img alt="" src={block1Image} />
           </Column>
         </Grid>
 
         {/* Block 2 */}
-        <Grid justify="end">
+        <Grid>
           <Spacer width={4} />
           <Column span={{ medium: 12, large: 8 }}>
-            <RichTextRenderer block={page.block2} />
+            <DeepLink id="mission">
+              <RichTextRenderer block={page.block2} />
+            </DeepLink>
           </Column>
         </Grid>
 
         {/* Block 3 */}
-        <Grid>
+
+        <Grid justify="center" align="center">
           <Column span={{ medium: 12, large: 4 }}>
-            <RichTextRenderer block={page.block3} />
+            <DeepLink id="partners">
+              <RichTextRenderer block={page.block3} />
+            </DeepLink>
+          </Column>
+          <Spacer />
+          <Column span={{ medium: 12, large: 6 }}>
+            <GrommetGrid
+              gap={{ row: "large", column: "xlarge" }}
+              columns={["flex", "flex"]}
+              rows={["flex", "flex"]}
+            >
+              {page.block3Partners.map((partner, index) => (
+                <Box key={index}>
+                  <Image
+                    style={{ maxWidth: 180 }}
+                    fit="contain"
+                    alt={partner.name}
+                    src={partner.logo.file.url}
+                  />
+                </Box>
+              ))}
+            </GrommetGrid>
           </Column>
         </Grid>
 
         {/* Block 4 - Team */}
         <Grid mb="" justify="">
           <Column span={{ medium: 3, large: 3 }}>
-            <Heading level="2" lined>
-              Our team
-            </Heading>
+            <DeepLink id="team">
+              <Heading level="2" lined>
+                Our team
+              </Heading>
+            </DeepLink>
           </Column>
         </Grid>
-        <Grid id="team" mt="">
+        <Grid mt="" align="start">
           {page.block4Team.map((member, index) => {
             return (
               <Column
@@ -71,10 +97,12 @@ const AboutPage = ({ data }) => {
             );
           })}
         </Grid>
+      </Container>
 
-        {/* Image */}
-        <FullWidthImage src={aboutBig} />
+      {/* Image */}
+      <FullWidthImage src={aboutBig} />
 
+      <Container>
         {/* Block 5 - Advisors */}
         <Grid mb="" justify="">
           <Column span={{ medium: 3, large: 3 }}>
@@ -83,7 +111,7 @@ const AboutPage = ({ data }) => {
             </Heading>
           </Column>
         </Grid>
-        <Grid mt="">
+        <Grid mt="" align="start">
           {page.block5Advisors.map((advisor, index) => {
             return (
               <Column
@@ -128,7 +156,8 @@ const AboutPage = ({ data }) => {
 
         {/* Block 7 */}
         <Grid justify="center">
-          <Column textAlign="center">
+          <Spacer width={3} />
+          <Column span={{ medium: 12, large: 6 }} textAlign="center">
             <RichTextRenderer block={page.block7} />
           </Column>
         </Grid>
@@ -154,6 +183,14 @@ export const AboutPageQuery = graphql`
           }
           block3 {
             contentAST
+          }
+          block3Partners {
+            name
+            logo {
+              file {
+                url
+              }
+            }
           }
           block4Team {
             headshot {

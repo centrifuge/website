@@ -35,10 +35,10 @@ const LinkedMediumImage = ({ imageId, slug }) => (
 );
 
 const PressArticle = ({ article }) => (
-  <Box direction="row-responsive" gap="large" margin={{ bottom: "large" }}>
+  <Box direction="row-responsive" gap="large">
     <Box basis="1/4">
       <Image
-        style={{ width: "100%", maxWidth: "128px" }}
+        style={{ width: "100%", maxWidth: 128 }}
         src={article.agency.logo.file.url}
         alt={article.agency.logo.file.fileName}
       />
@@ -55,7 +55,7 @@ const PressArticle = ({ article }) => (
 );
 
 const MediumPost = ({ post }) => (
-  <Box margin={{ bottom: "large" }}>
+  <>
     <Box margin={{ bottom: "medium" }}>
       <LinkedMediumImage
         imageId={post.node.virtuals.previewImage.imageId}
@@ -68,7 +68,7 @@ const MediumPost = ({ post }) => (
       link={`${MEDIUM_URL}${post.node.uniqueSlug}`}
       heading="3"
     />
-  </Box>
+  </>
 );
 
 const HighlightPost = ({ post }) => (
@@ -98,13 +98,7 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
       {title}
     </Heading>
     <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
-    <Button
-      margin={{ bottom: "medium" }}
-      plain
-      target="_blank"
-      rel="noopener noreferrer"
-      href={link}
-    >
+    <Button plain target="_blank" rel="noopener noreferrer" href={link}>
       Read more...
     </Button>
   </div>

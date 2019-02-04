@@ -8,6 +8,7 @@ import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
 import FullWidthImage from "../components/FullWidthImage";
+import DeepLink from "../components/DeepLink";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
@@ -23,11 +24,11 @@ const EcosystemPage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid>
-          <Column span={{ medium: 6, large: 7 }}>
+          <Column span={{ medium: 6, large: 6 }}>
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ medium: 6, large: 4 }}>
+          <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
             <Animation file={block1Animation} />
           </Column>
         </Grid>
@@ -35,34 +36,38 @@ const EcosystemPage = ({ data }) => {
         {/* Block 2 */}
         <Grid align="start">
           {page.block2.map((block, index) => (
-            <>
-              <Column key={index} span={{ medium: 4, large: 3 }}>
+            <React.Fragment key={index}>
+              <Column mobileSpaced span={{ medium: 4, large: 3 }}>
                 <RichTextRenderer block={block.content} />
               </Column>
               {!lastInArray(page.block2, index) && <Spacer />}
-            </>
+            </React.Fragment>
           ))}
         </Grid>
+      </Container>
 
-        {/* Image */}
-        <FullWidthImage src={ecosystemBig} />
+      {/* Image */}
+      <FullWidthImage src={ecosystemBig} />
 
+      <Container>
         {/* Block 3 */}
-        <Grid id="use-cases" mb="xlarge">
-          <Column>
-            <RichTextRenderer block={page.block3} />
+        <Grid mb="xlarge" justify="">
+          <Column span={{ medium: 6, large: 6 }}>
+            <DeepLink id="use-cases">
+              <RichTextRenderer block={page.block3} />
+            </DeepLink>
           </Column>
         </Grid>
 
         {/* Block 4 */}
         <Grid mt="" align="start">
           {page.block4.map((block, index) => (
-            <>
-              <Column key={index} span={{ medium: 4, large: 3 }}>
+            <React.Fragment key={index}>
+              <Column mobileSpaced span={{ medium: 4, large: 3 }}>
                 <RichTextRenderer block={block.content} />
               </Column>
               {!lastInArray(page.block4, index) && <Spacer />}
-            </>
+            </React.Fragment>
           ))}
         </Grid>
 

@@ -6,6 +6,7 @@ const Wrapper = styled(Box)`
   position: relative;
   height: 356px;
   display: flex;
+  overflow: hidden;
   place-content: center;
 `;
 
@@ -13,7 +14,7 @@ const Image = styled(GrommetImage)`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 1080px;
+  width: 1120px;
 `;
 
 const FullWidthImage = ({ src, alt, ...rest }) => (

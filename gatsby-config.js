@@ -37,7 +37,7 @@ module.exports = {
   siteMetadata: {
     title: `Centrifuge`,
     siteUrl: process.env.URL || "http://localhost:8000",
-    longTitle: `Centrifuge - The Operating System For Global Commerce`,
+    longTitle: `Centrifuge - The Operating System for the Financial Supply Chain`,
     description: `Centrifuge is an open, decentralized operating system to connect the global financial supply chain. It allows any business to transact on a global network while maintaining ownership of their data, including their validated company details, their reputation, business relationships, and subsequent transactions.`,
     author: `@centrifuge`
   },
@@ -89,11 +89,33 @@ module.exports = {
         username: `centrifuge`
       }
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId:
+          process.env.URL === "https://centrifuge.io" ? `UA-100764518-2` : ``,
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "centrifuge.io"
+      }
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify-cache`,
-    `gatsby-plugin-netlify`
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        allPageHeaders: [
+          "Link: </fonts/721263/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush",
+          "Link: </fonts/721275/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush",
+          "Link: </fonts/721269/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush"
+        ]
+      }
+    }
   ],
   developMiddleware: app => {
     app.use(
