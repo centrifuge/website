@@ -1,4 +1,5 @@
 import React from "react";
+import { Heading } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -13,6 +14,9 @@ const ImprintPage = () => (
     <Container>
       <Grid justify="center">
         <Column justifySelf="center" span={{ medium: 8, large: 8 }}>
+          <Heading level={1} lined>
+            Imprint
+          </Heading>
           <p>
             <strong>Centrifuge Inc.</strong>
             <br />

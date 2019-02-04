@@ -1,4 +1,5 @@
 import React from "react";
+import { Heading } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -13,6 +14,9 @@ const DataPrivacyPolicyPage = () => (
     <Container>
       <Grid justify="center">
         <Column justifySelf="center" span={{ medium: 8, large: 8 }}>
+          <Heading level={1} lined>
+            Privacy Policy
+          </Heading>
           <p>
             Centrifuge complies with statutory data protection regulations.
             Personal data is treated with confidentiality. It is only disclosed
