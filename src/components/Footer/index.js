@@ -114,7 +114,7 @@ const Footer = () => (
       </FooterContent>
       <Box pad={{ top: "xlarge" }}>
         <Paragraph style={{ fontSize: 12 }}>
-          Centrifuge Inc. © Copyright 2018
+          Centrifuge Inc. © Copyright {(new Date).getFullYear()}
         </Paragraph>
       </Box>
     </Container>
