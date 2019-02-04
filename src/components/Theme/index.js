@@ -21,21 +21,21 @@ const GlobalStyle = createGlobalStyle`
     font-family: "AvenirNextLTW01";
     font-display: swap;
     font-style: normal;
-    src: url("fonts/721263/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2")
+    src: url("/fonts/721263/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2")
       format("woff2");
   }
   @font-face {
     font-family: "AvenirNextLTW01";
     font-display: swap;
     font-weight: 500;
-    src: url("fonts/721275/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2")
+    src: url("/fonts/721275/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2")
       format("woff2");
   }
   @font-face {
     font-family: "AvenirNextLTW01";
     font-display: swap;
     font-weight: 600;
-    src: url("fonts/721269/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2")
+    src: url("/fonts/721269/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2")
       format("woff2");
   }
 
