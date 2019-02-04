@@ -8,12 +8,11 @@ import Jobs from "../components/Jobs";
 import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
-import Animation from "../components/Animation";
 import FullWidthImage from "../components/FullWidthImage";
 
 import { RichTextRenderer } from "../helpers";
 
-import block1Animation from "../lottie/Team.json";
+import block1Image from "../images/Careers.svg";
 import careersBig from "../images/careers_big.svg";
 
 const CareersPage = ({ data }) => {
@@ -25,12 +24,12 @@ const CareersPage = ({ data }) => {
       <Container>
         {/* Block 2 */}
         <Grid>
-          <Column span={{ medium: 6, large: 7 }}>
+          <Column span={{ medium: 6, large: 6 }}>
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
-            <Animation file={block1Animation} />
+            <img alt="" src={block1Image} />
           </Column>
         </Grid>
 

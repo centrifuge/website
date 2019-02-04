@@ -7,13 +7,12 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
-import Animation from "../components/Animation";
 import VIP from "../components/VIP";
 import FullWidthImage from "../components/FullWidthImage";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
-import block1Animation from "../lottie/About.json";
+import block1Image from "../images/About.svg";
 import aboutBig from "../images/about_big.svg";
 
 const AboutPage = ({ data }) => {
@@ -30,7 +29,7 @@ const AboutPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
-            <Animation file={block1Animation} loop={false} />
+            <img alt="" src={block1Image} />
           </Column>
         </Grid>
 
