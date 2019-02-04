@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Heading, Image, Box } from "grommet";
+import { Heading, Image, Box, Grid as GrommetGrid } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -42,9 +42,28 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid id="partners">
+        <Grid id="partners" justify="center" align="center">
           <Column span={{ medium: 12, large: 4 }}>
             <RichTextRenderer block={page.block3} />
+          </Column>
+          <Spacer />
+          <Column span={{ medium: 12, large: 6 }}>
+            <GrommetGrid
+              gap={{ row: "large", column: "xlarge" }}
+              columns={["flex", "flex"]}
+              rows={["flex", "flex"]}
+            >
+              {page.block3Partners.map((partner, index) => (
+                <Box key={index}>
+                  <Image
+                    style={{ maxWidth: 180 }}
+                    fit="contain"
+                    alt={partner.name}
+                    src={partner.logo.file.url}
+                  />
+                </Box>
+              ))}
+            </GrommetGrid>
           </Column>
         </Grid>
 
@@ -156,6 +175,14 @@ export const AboutPageQuery = graphql`
           }
           block3 {
             contentAST
+          }
+          block3Partners {
+            name
+            logo {
+              file {
+                url
+              }
+            }
           }
           block4Team {
             headshot {
