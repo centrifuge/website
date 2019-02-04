@@ -43,7 +43,7 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid id="alliance">
+        <Grid id="partners">
           <Column span={{ medium: 12, large: 4 }}>
             <RichTextRenderer block={page.block3} />
           </Column>
