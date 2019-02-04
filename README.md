@@ -1,30 +1,17 @@
-# centrifuge website
+# website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2a6f2fd1-0d97-413a-9e1a-3468f1467542/deploy-status)](https://app.netlify.com/sites/staging-centrifuge-website/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2a6f2fd1-0d97-413a-9e1a-3468f1467542/deploy-status)](https://app.netlify.com/sites/staging-centrifuge-website/deploys) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-## urls
+The official website for Centrifuge
 
-[production](https://web.cntrfg.com/)
-[staging](https://staging.web.cntrfg.com/)
+## Contribution
 
-## startup
+### Getting Started
 
 ```sh
+# install dependencies
 yarn
 
-# start gatsby
+# starts lambda and gatsby servers
 yarn start
-
-# start lambda functions
-yarn start:lambda
-```
-
-## build
-
-```sh
-# build gatsby
-yarn build
-
-# build lambda functions
-yarn build:lambda
 ```
