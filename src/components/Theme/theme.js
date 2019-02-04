@@ -46,6 +46,7 @@ const textSizes = {
   },
   extend: css`
     text-align: justify;
+    hyphens: auto;
   `
 };
 
