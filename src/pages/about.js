@@ -9,6 +9,7 @@ import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import VIP from "../components/VIP";
 import FullWidthImage from "../components/FullWidthImage";
+import DeepLink from "../components/DeepLink";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
@@ -34,17 +35,22 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid id="mission">
+        <Grid>
           <Spacer width={4} />
           <Column span={{ medium: 12, large: 8 }}>
-            <RichTextRenderer block={page.block2} />
+            <DeepLink id="mission">
+              <RichTextRenderer block={page.block2} />
+            </DeepLink>
           </Column>
         </Grid>
 
         {/* Block 3 */}
-        <Grid id="partners" justify="center" align="center">
+
+        <Grid justify="center" align="center">
           <Column span={{ medium: 12, large: 4 }}>
-            <RichTextRenderer block={page.block3} />
+            <DeepLink id="partners">
+              <RichTextRenderer block={page.block3} />
+            </DeepLink>
           </Column>
           <Spacer />
           <Column span={{ medium: 12, large: 6 }}>
@@ -68,11 +74,13 @@ const AboutPage = ({ data }) => {
         </Grid>
 
         {/* Block 4 - Team */}
-        <Grid id="team" mb="" justify="">
+        <Grid mb="" justify="">
           <Column span={{ medium: 3, large: 3 }}>
-            <Heading level="2" lined>
-              Our team
-            </Heading>
+            <DeepLink id="team">
+              <Heading level="2" lined>
+                Our team
+              </Heading>
+            </DeepLink>
           </Column>
         </Grid>
         <Grid mt="" align="start">

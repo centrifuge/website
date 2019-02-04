@@ -8,6 +8,7 @@ import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
 import FullWidthImage from "../components/FullWidthImage";
+import DeepLink from "../components/DeepLink";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
@@ -50,9 +51,11 @@ const EcosystemPage = ({ data }) => {
 
       <Container>
         {/* Block 3 */}
-        <Grid id="use-cases" mb="xlarge" justify="">
+        <Grid mb="xlarge" justify="">
           <Column span={{ medium: 6, large: 6 }}>
-            <RichTextRenderer block={page.block3} />
+            <DeepLink id="use-cases">
+              <RichTextRenderer block={page.block3} />
+            </DeepLink>
           </Column>
         </Grid>
 
