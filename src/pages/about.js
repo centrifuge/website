@@ -57,7 +57,7 @@ const AboutPage = ({ data }) => {
             </Heading>
           </Column>
         </Grid>
-        <Grid mt="">
+        <Grid mt="" align="start">
           {page.block4Team.map((member, index) => {
             return (
               <Column
@@ -83,7 +83,7 @@ const AboutPage = ({ data }) => {
             </Heading>
           </Column>
         </Grid>
-        <Grid mt="">
+        <Grid mt="" align="start">
           {page.block5Advisors.map((advisor, index) => {
             return (
               <Column
