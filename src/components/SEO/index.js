@@ -41,6 +41,10 @@ const SEO = ({ description, meta, title }) => (
               content: defaultTitle
             },
             {
+              name: `author`,
+              content: data.site.siteMetadata.author
+            },
+            {
               property: `og:title`,
               content: title
             },
