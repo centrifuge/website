@@ -58,7 +58,7 @@ const SEO = ({ description, meta, title }) => (
             },
             {
               property: `og:image`,
-              content: image
+              content: `${process.env.URL}${image}`
             },
             {
               propert: `og:image:width`,
@@ -82,7 +82,7 @@ const SEO = ({ description, meta, title }) => (
             },
             {
               property: `twitter:image`,
-              content: image
+              content: `${process.env.URL}${image}`
             },
             {
               property: `twitter:description`,
