@@ -89,6 +89,19 @@ module.exports = {
         username: `centrifuge`
       }
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId:
+          process.env.URL === "https://centrifuge.io" ? `UA-100764518-2` : ``,
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "centrifuge.io"
+      }
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
