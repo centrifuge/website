@@ -53,7 +53,8 @@ const textSizes = {
 const custom = {
   global: {
     font: {
-      family: "Avenir Next, sans-serif",
+      family: `var(--f-stack)`,
+      weight: 400,
       size: "14px",
       height: 1.5
     },
@@ -94,6 +95,7 @@ const custom = {
   textInput: {
     extend: css`
       font-weight: var(--fw-medium);
+      font-family: var(--f-stack);
       color: black;
       border: none;
       border-bottom: ${borderWidth}px solid #fff;
@@ -118,6 +120,7 @@ const custom = {
     },
     extend: props => css`
       margin-top: 0;
+      font-family: var(--f-stack);
 
       /* Header */
       ${isHeader(props) &&
@@ -196,6 +199,7 @@ const custom = {
     },
     extend: props => css`
       font-weight: var(--fw-medium);
+      font-family: var(--f-stack);
       text-align: center;
       font-size: 16px;
       line-height: 24px;
