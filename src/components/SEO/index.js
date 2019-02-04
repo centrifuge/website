@@ -13,6 +13,7 @@ const SEO = ({ description, meta, title }) => (
           siteMetadata {
             title
             longTitle
+            siteUrl
             description
             author
           }
@@ -58,7 +59,7 @@ const SEO = ({ description, meta, title }) => (
             },
             {
               property: `og:image`,
-              content: `${process.env.URL}${image}`
+              content: `${data.site.siteMetadata.siteUrl}${image}`
             },
             {
               propert: `og:image:width`,
@@ -82,7 +83,7 @@ const SEO = ({ description, meta, title }) => (
             },
             {
               property: `twitter:image`,
-              content: `${process.env.URL}${image}`
+              content: `${data.site.siteMetadata.siteUrl}${image}`
             },
             {
               property: `twitter:description`,
