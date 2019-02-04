@@ -24,7 +24,10 @@ const IndexPage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid staggered>
-          <Column span={{ medium: 6, large: 4 }} style={{ hyphens: "unset !important" }}>
+          <Column
+            span={{ medium: 6, large: 4 }}
+            style={{ hyphens: "unset !important" }}
+          >
             <RichTextRenderer noHyphen block={page.block1} />
           </Column>
           <Spacer />

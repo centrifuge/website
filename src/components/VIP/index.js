@@ -64,7 +64,7 @@ const VIP = ({
         {socialMediaMedium && (
           <ExternalLink href={socialMediaMedium}>
             {/* Need to do to counteract the bigger icon margin */}
-            <Medium color="rgba(0, 0, 0, 0.5)" size={20}  />
+            <Medium color="rgba(0, 0, 0, 0.5)" size={20} />
           </ExternalLink>
         )}
         {socialMediaLinkedIn && (
