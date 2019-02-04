@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Image from "gatsby-image";
 
 import { TwitterSquare } from "styled-icons/fa-brands/TwitterSquare";
-import { MediumSquare } from "styled-icons/boxicons-logos/MediumSquare";
+import { Medium } from "styled-icons/fa-brands/Medium";
 import { Linkedin } from "styled-icons/fa-brands/Linkedin";
 import { GithubSquare } from "styled-icons/fa-brands/GithubSquare";
 
@@ -53,23 +53,23 @@ const VIP = ({
       <Box direction="row" gap="small" style={{ color: "black" }}>
         {socialMediaTwitter && (
           <ExternalLink href={socialMediaTwitter}>
-            <TwitterSquare size={24} />
+            <TwitterSquare color="rgba(0, 0, 0, 0.5)" size={20} />
           </ExternalLink>
         )}
         {socialMediaGitHub && (
           <ExternalLink href={socialMediaGitHub}>
-            <GithubSquare size={24} />
+            <GithubSquare color="rgba(0, 0, 0, 0.5)" size={20} />
           </ExternalLink>
         )}
         {socialMediaMedium && (
           <ExternalLink href={socialMediaMedium}>
             {/* Need to do to counteract the bigger icon margin */}
-            <MediumSquare size={28} style={{ margin: -2 }} />
+            <Medium color="rgba(0, 0, 0, 0.5)" size={20}  />
           </ExternalLink>
         )}
         {socialMediaLinkedIn && (
           <ExternalLink href={socialMediaLinkedIn}>
-            <Linkedin size={24} />
+            <Linkedin color="rgba(0, 0, 0, 0.5)" size={20} />
           </ExternalLink>
         )}
       </Box>
