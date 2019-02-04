@@ -36,7 +36,6 @@ const Jobs = () => (
                       plain
                       rel="noopener noreferrer"
                       target="_blank"
-                      link
                       href={job.link}
                     >
                       {job.position}
