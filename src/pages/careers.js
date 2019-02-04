@@ -54,10 +54,12 @@ const CareersPage = ({ data }) => {
             <RichTextRenderer block={page.block4} />
           </Column>
         </Grid>
+      </Container>
 
-        {/* Image */}
-        <FullWidthImage src={careersBig} />
+      {/* Image */}
+      <FullWidthImage src={careersBig} />
 
+      <Container>
         {/* Block 3 */}
         <Grid mb="" justify="">
           <Column span={{ medium: 4, large: 4 }}>

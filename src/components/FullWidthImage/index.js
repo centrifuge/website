@@ -6,6 +6,7 @@ const Wrapper = styled(Box)`
   position: relative;
   height: 356px;
   display: flex;
+  overflow: hidden;
   place-content: center;
 `;
 

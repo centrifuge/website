@@ -70,10 +70,12 @@ const AboutPage = ({ data }) => {
             );
           })}
         </Grid>
+      </Container>
 
-        {/* Image */}
-        <FullWidthImage src={aboutBig} />
+      {/* Image */}
+      <FullWidthImage src={aboutBig} />
 
+      <Container>
         {/* Block 5 - Advisors */}
         <Grid mb="" justify="">
           <Column span={{ medium: 3, large: 3 }}>

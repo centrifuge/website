@@ -43,10 +43,12 @@ const EcosystemPage = ({ data }) => {
             </React.Fragment>
           ))}
         </Grid>
+      </Container>
 
-        {/* Image */}
-        <FullWidthImage src={ecosystemBig} />
+      {/* Image */}
+      <FullWidthImage src={ecosystemBig} />
 
+      <Container>
         {/* Block 3 */}
         <Grid id="use-cases" mb="xlarge" justify="">
           <Column span={{ medium: 6, large: 6 }}>

@@ -43,10 +43,12 @@ const TechnologyPage = ({ data }) => {
             </React.Fragment>
           ))}
         </Grid>
+      </Container>
 
-        {/* Image */}
-        <FullWidthImage src={technologyBig} />
+      {/* Image */}
+      <FullWidthImage src={technologyBig} />
 
+      <Container>
         {/* Block 3 */}
         <Grid justify="center">
           <Column span={{ medium: 12, large: 12 }} textAlign="center">
