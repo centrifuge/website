@@ -24,8 +24,8 @@ const IndexPage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid staggered>
-          <Column span={{ medium: 6, large: 4 }}>
-            <RichTextRenderer block={page.block1} />
+          <Column span={{ medium: 6, large: 4 }} style={{ hyphens: "unset !important" }}>
+            <RichTextRenderer noHyphen block={page.block1} />
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>

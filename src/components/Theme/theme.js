@@ -44,9 +44,12 @@ const textSizes = {
     height: "24px",
     maxWidth: ""
   },
-  extend: css`
+  extend: props => css`
     text-align: justify;
-    hyphens: auto;
+    ${!props.noHyphen &&
+      css`
+        hyphens: auto;
+      `}
   `
 };
 
