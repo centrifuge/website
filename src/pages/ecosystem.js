@@ -27,7 +27,7 @@ const EcosystemPage = ({ data }) => {
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ medium: 6, large: 4 }}>
+          <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
             <Animation file={block1Animation} />
           </Column>
         </Grid>

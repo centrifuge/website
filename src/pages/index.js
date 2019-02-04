@@ -28,7 +28,7 @@ const IndexPage = ({ data }) => {
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ medium: 6, large: 7 }}>
+          <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>
             <Animation file={block1Animation} />
           </Column>
         </Grid>
@@ -50,14 +50,14 @@ const IndexPage = ({ data }) => {
             <RichTextRenderer block={page.block3} />
           </Column>
           <Spacer />
-          <Column span={{ medium: 6, large: 7 }}>
+          <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>
             <Animation file={block3Animation} />
           </Column>
         </Grid>
 
         {/* Block 4 */}
         <Grid staggered>
-          <Column span={{ medium: 6, large: 7 }}>
+          <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>
             <Animation file={block4Animation} />
           </Column>
           <Spacer />
