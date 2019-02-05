@@ -15,6 +15,7 @@ import { RichTextRenderer, lastInArray } from "../helpers";
 
 import block1Image from "../images/About.svg";
 import aboutBig from "../images/about_big.svg";
+import { ExternalLink } from "../components/Links";
 
 const AboutPage = ({ data }) => {
   const page = data.allContentfulPageAbout.edges[0].node;
@@ -55,6 +56,7 @@ const AboutPage = ({ data }) => {
           <Spacer />
           <Column span={{ medium: 12, large: 6 }}>
             <GrommetGrid
+              fill
               gap={{ row: "large", column: "xlarge" }}
               columns={["flex", "flex"]}
               rows={["flex", "flex"]}
@@ -140,13 +142,15 @@ const AboutPage = ({ data }) => {
             return (
               <React.Fragment key={index}>
                 <Column span={{ medium: 4, large: 2 }}>
-                  <Box align="center" margin={{ bottom: "large" }}>
-                    <Image
-                      style={{ maxWidth: "100%", width: 160 }}
-                      alt={investor.internalName}
-                      src={investor.logoMonotone.file.url}
-                    />
-                  </Box>
+                  <ExternalLink href={investor.articleLink}>
+                    <Box align="center" margin={{ bottom: "large" }}>
+                      <Image
+                        style={{ maxWidth: "100%", width: 160 }}
+                        alt={investor.internalName}
+                        src={investor.logoMonotone.file.url}
+                      />
+                    </Box>
+                  </ExternalLink>
                 </Column>
                 {!lastInArray(page.block6Investors, index) && <Spacer />}
               </React.Fragment>
@@ -220,6 +224,7 @@ export const AboutPageQuery = graphql`
           }
           block6Investors {
             internalName
+            articleLink
             logoMonotone {
               file {
                 url
