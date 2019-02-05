@@ -7,7 +7,8 @@ import {
   Button,
   Paragraph,
   Heading,
-  Grid as GrommetGrid
+  Grid as GrommetGrid,
+  Image
 } from "grommet";
 
 import Layout from "../../components/Layout";
@@ -20,6 +21,11 @@ import theme from "../../components/Theme/theme";
 import { RichTextRenderer } from "../../helpers";
 import { ExternalLink } from "../../components/Links";
 
+import hof1 from "../../images/hof1.svg";
+import hof2 from "../../images/hof2.svg";
+import hof3 from "../../images/hof3.svg";
+import hof4 from "../../images/hof4.svg";
+
 const HoverBox = styled(Box)`
   transition-property: box-shadow;
   transition-duration: 0.25s;
@@ -28,6 +34,18 @@ const HoverBox = styled(Box)`
     box-shadow: ${theme.global.elevation.light.medium};
   }
 `;
+
+const HoFImage = ({ index }) => {
+  const images = [hof1, hof2, hof3, hof4];
+
+  return (
+    <Image
+      src={images[(index = (index + 1) % images.length)]}
+      width={120}
+      height={120}
+    />
+  );
+};
 
 const CardLink = ({ children, link, ...rest }) => (
   <ExternalLink style={{ textDecoration: "none" }} href={link}>
