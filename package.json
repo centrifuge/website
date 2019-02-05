@@ -27,6 +27,8 @@
     "grommet": "^2.3.1",
     "intersection-observer": "^0.5.1",
     "jsonframe-cheerio": "^3.0.1",
+    "lodash.countby": "^4.6.0",
+    "lodash.uniqby": "^4.7.0",
     "lottie-react-web": "^2.1.4",
     "node-fetch": "^2.3.0",
     "prop-types": "^15.6.2",
