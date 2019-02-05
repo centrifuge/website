@@ -89,7 +89,9 @@ const ContributePage = ({ data }) => {
               {page.block1Repos.map(repo => (
                 <CardLink link={repo.link}>
                   <div>
-                    <Button link plain label={repo.name} />
+                    <Text weight={600} size="large">
+                      {repo.name}
+                    </Text>
                     <Paragraph margin={{ bottom: "none" }}>
                       {repo.description}
                     </Paragraph>
@@ -137,12 +139,9 @@ const ContributePage = ({ data }) => {
                   align="center"
                 >
                   <Box basis="3/4">
-                    <Button
-                      textAlign="left"
-                      link
-                      plain
-                      label={bounty.node.title}
-                    />
+                    <Text textAlign="left" weight={600} size="large">
+                      {bounty.node.title}
+                    </Text>
                   </Box>
                   <Box basis="1/4" align="end">
                     <Text weight="600">${bounty.node.value_in_usdt_now}</Text>
