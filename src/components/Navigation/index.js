@@ -13,12 +13,11 @@ import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
 
-const NavLink = ({ children, to, ...rest }) => (
+const NavLink = ({ children, to }) => (
   <InternalLink
     style={{ fontWeight: "var(--fw-medium)" }}
     activeStyle={{ color: "var(--c-brand)" }}
     to={to}
-    {...rest}
   >
     {children}
   </InternalLink>

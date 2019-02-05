@@ -97,7 +97,7 @@ const renderButton = (button, index) => {
 const renderButtonGroup = (buttons, justify) => (
   <Box direction="row-responsive" gap="medium" justify={justify} align="center">
     {buttons.map((button, index) => {
-      return renderButton(button.fields, index);
+      return renderButton(button.fields, `Button_${index}`);
     })}
   </Box>
 );
