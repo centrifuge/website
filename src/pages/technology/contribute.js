@@ -64,10 +64,10 @@ const CardLink = ({ children, link, ...rest }) => (
 
 const ContributePage = ({ data }) => {
   const page = data.allContentfulPageTechnologyContribute.edges[0].node;
+
   const openBounties = data.allLambdaGitcoinOpenBounties.edges;
-  const openBounties = edges;
+
   const hallOfFame = data.allLambdaGitcoinHallOfFame.edges;
-  const hallOfFame = data.allLambdaGitcoinHallOfFame;
 
   const {
     compensationPaid,
@@ -80,7 +80,7 @@ const ContributePage = ({ data }) => {
       <Container>
         {/* Block 1 */}
         <Grid align="start" justify="stretch">
-          <Column span={{ medium: 6, large: 3 }}>
+          <Column mobileSpaced span={{ medium: 6, large: 3 }}>
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
@@ -102,21 +102,21 @@ const ContributePage = ({ data }) => {
 
         {/* Block 2 */}
         <Grid align="flex-start" justify="stretch">
-          <Column span={{ medium: 6, large: 4 }}>
+          <Column mobileSpaced span={{ medium: 6, large: 4 }}>
             <RichTextRenderer block={page.block2} />
             <Box direction="row" margin={{ top: "large" }} justify="between">
-              <div>
+              <Box>
                 <Heading margin={{ bottom: "none" }} level="2">
                   {bountiesCompleted}
                 </Heading>
                 <Text>Bounties Completed</Text>
-              </div>
-              <div>
+              </Box>
+              <Box>
                 <Heading margin={{ bottom: "none" }} level="2">
                   ${compensationPaid.toFixed(2)}
                 </Heading>
                 <Text>Compensation Paid</Text>
-              </div>
+              </Box>
             </Box>
           </Column>
 
@@ -153,8 +153,8 @@ const ContributePage = ({ data }) => {
             <div>
               <Button
                 plain
-                label="Gitcoin"
                 icon={<Gitcoin />}
+                label="Gitcoin"
                 href="https://gitcoin.co/explorer?network=mainnet&order_by=-_val_usd_db&org=centrifuge"
               />
             </div>
