@@ -204,6 +204,13 @@ class Navigation extends React.Component {
                   <Dropdowns direction="row" align="center" gap="large">
                     <PaddedItem>
                       <NavLink to="/technology">Technology</NavLink>
+                      <List>
+                        <Item>
+                          <NavLink to="/technology/contribute">
+                            Contribute
+                          </NavLink>
+                        </Item>
+                      </List>
                     </PaddedItem>
 
                     <PaddedItem>
