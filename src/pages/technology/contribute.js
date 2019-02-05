@@ -17,9 +17,10 @@ import Container from "../../components/Container";
 import Grid from "../../components/Grid";
 import Column, { Spacer } from "../../components/Column";
 import theme from "../../components/Theme/theme";
+import { Gitcoin } from "../../components/Icons";
+import { ExternalLink } from "../../components/Links";
 
 import { RichTextRenderer } from "../../helpers";
-import { ExternalLink } from "../../components/Links";
 
 import hof1 from "../../images/hof1.svg";
 import hof2 from "../../images/hof2.svg";
@@ -63,11 +64,9 @@ const CardLink = ({ children, link, ...rest }) => (
 
 const ContributePage = ({ data }) => {
   const page = data.allContentfulPageTechnologyContribute.edges[0].node;
-
-  const { totalCount, edges } = data.allLambdaGitcoinOpenBounties;
-  const bountiesCount = totalCount;
+  const openBounties = data.allLambdaGitcoinOpenBounties.edges;
   const openBounties = edges;
-
+  const hallOfFame = data.allLambdaGitcoinHallOfFame.edges;
   const hallOfFame = data.allLambdaGitcoinHallOfFame;
 
   const {
@@ -155,6 +154,7 @@ const ContributePage = ({ data }) => {
               <Button
                 plain
                 label="Gitcoin"
+                icon={<Gitcoin />}
                 href="https://gitcoin.co/explorer?network=mainnet&order_by=-_val_usd_db&org=centrifuge"
               />
             </div>
@@ -162,14 +162,38 @@ const ContributePage = ({ data }) => {
         </Grid>
 
         {/* Block Hall Of Fame */}
-        {/* <Grid mb="" justify="">
+        <Grid mb="" justify="">
           <Column span={{ medium: 3, large: 3 }}>
             <Heading level="2" lined>
               Hall of Fame
             </Heading>
           </Column>
         </Grid>
-        <Grid mt="" align="center" justify="center" /> */}
+        <Grid mt="">
+          {hallOfFame.map((famous, index) => {
+            return (
+              <React.Fragment key={index}>
+                <Spacer />
+                <Column mobileSpaced span={{ medium: 6, large: 2 }}>
+                  <Box align="center">
+                    <HoFImage index={index} />
+                    <Text margin={{ top: "small" }} weight={600} size="large">
+                      {famous.node.name}
+                    </Text>
+                    <Text margin={{ bottom: "small" }}>
+                      {famous.node.count} bounties
+                    </Text>
+                    <ExternalLink
+                      href={`https://gitcoin.co/profile/${famous.node.name}`}
+                    >
+                      <Gitcoin />
+                    </ExternalLink>
+                  </Box>
+                </Column>
+              </React.Fragment>
+            );
+          })}
+        </Grid>
 
         {/* Block 3 */}
         <Grid>
