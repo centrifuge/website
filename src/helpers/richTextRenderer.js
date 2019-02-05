@@ -4,7 +4,7 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { Heading, Button, Box, Paragraph } from "grommet";
 
 import { Slack, Github } from "grommet-icons";
-import { Gitcoin } from "../components/icons/";
+import { Gitcoin } from "../components/Icons/";
 
 const DebugData = ({ data }) => (
   <pre>
