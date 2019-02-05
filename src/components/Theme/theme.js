@@ -76,7 +76,11 @@ const custom = {
       "accent-1": "#FCBA59",
       focus: "#2762FF",
       brand: "#2762FF",
-      black: "#000000"
+      black: "#000",
+      text: {
+        light: "#000",
+        dark: "#fff"
+      }
     },
     breakpoints: { ...breakpoints },
     deviceBreakpoints: {
@@ -128,13 +132,19 @@ const custom = {
       /* Header */
       ${isHeader(props) &&
         css`
-          margin-bottom: 64px;
+          ${!props.margin &&
+            css`
+              margin-bottom: 64px;
+            `}
         `}
 
       /* Subheader */
       ${isSubheader(props) &&
         css`
-          margin-bottom: 40px;
+          ${!props.margin &&
+            css`
+              margin-bottom: 40px;
+            `}
         `}
 
         /* Lined Styles */
@@ -206,6 +216,16 @@ const custom = {
       text-align: center;
       font-size: 16px;
       line-height: 24px;
+
+      ${
+        !props.textAlign
+          ? css`
+              text-align: center;
+            `
+          : css`
+              text-align: ${props.textAlign};
+            `
+      }
 
       /* Add underline for Plain type button */
       ${props.plain &&
