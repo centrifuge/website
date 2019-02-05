@@ -10,10 +10,11 @@ import Column, { Spacer } from "../components/Column";
 import VIP from "../components/VIP";
 import FullWidthImage from "../components/FullWidthImage";
 import DeepLink from "../components/DeepLink";
+import Animation from "../components/Animation";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
-import block1Image from "../images/About.svg";
+import about from "../lottie/About.json";
 import aboutBig from "../images/about_big.svg";
 import { ExternalLink } from "../components/Links";
 
@@ -31,7 +32,7 @@ const AboutPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
-            <img alt="" src={block1Image} />
+            <Animation file={about} />
           </Column>
         </Grid>
 
