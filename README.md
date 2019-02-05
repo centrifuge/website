@@ -6,6 +6,8 @@ The official website for Centrifuge
 
 ## Contribution
 
+**NOTE**: Please only branch off of, and merge into `develop`. `master` is reserved for production.
+
 ### Getting Started
 
 ```sh
