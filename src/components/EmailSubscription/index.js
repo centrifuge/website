@@ -73,7 +73,7 @@ class SubscriptionForm extends React.Component {
 const EmailWrapper = styled(Box)`
   /* Mailchimp Response Link Style */
   a {
-    color: var(--c-white);
+    color: #fff;
 
     &:active {
       opacity: 0.9;

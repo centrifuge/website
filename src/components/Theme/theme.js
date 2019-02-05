@@ -44,6 +44,11 @@ const textSizes = {
     height: "24px",
     maxWidth: ""
   },
+  large: {
+    size: "16px",
+    height: "32px",
+    maxWidth: ""
+  },
   extend: props => css`
     text-align: justify;
     ${!props.noHyphen &&
@@ -61,15 +66,10 @@ const custom = {
       size: "14px",
       height: 1.5
     },
-    focus: {
-      border: {
-        color: "red"
-      }
-    },
     hover: {
       color: {
-        light: "var(--c-brand)",
-        dark: "white"
+        light: "#2762FF",
+        dark: "#fff"
       }
     },
     colors: {
@@ -95,8 +95,8 @@ const custom = {
   },
   icon: {
     extend: css`
-      fill: #000000;
-      stroke: #000000;
+      fill: #000;
+      stroke: #000;
     `
   },
   textInput: {
@@ -196,18 +196,18 @@ const custom = {
       radius: "40px",
       width: `${borderWidth}px`,
       color: {
-        dark: "white",
-        light: "black"
+        dark: "#fff",
+        light: "#000"
       }
     },
     color: {
-      dark: "white",
-      light: "black"
+      dark: "#fff",
+      light: "#000"
     },
     primary: {
       color: {
-        dark: "white",
-        light: "black"
+        dark: "#fff",
+        light: "#000"
       }
     },
     extend: props => css`
@@ -246,11 +246,11 @@ const custom = {
       /* Button Hover Styles */
       &:hover {
         box-shadow: none;
-        border-color: var(--c-brand);
+        border-color: #2762FF;
 
         ${!props.primary &&
           css`
-            color: var(--c-brand);
+            color: #2762ff;
           `}
       }
 
@@ -258,8 +258,8 @@ const custom = {
       ${props.white &&
         css`
           &:hover {
-            background-color: white;
-            border-color: white;
+            background-color: #fff;
+            border-color: #fff;
           }
 
           &:active {
@@ -271,7 +271,7 @@ const custom = {
       ${props.primary &&
         css`
           &:hover {
-            background-color: var(--c-brand);
+            background-color: #2762ff;
           }
 
           &:active {
