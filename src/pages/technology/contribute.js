@@ -8,7 +8,8 @@ import {
   Paragraph,
   Heading,
   Grid as GrommetGrid,
-  Image
+  Image,
+  ResponsiveContext
 } from "grommet";
 
 import Layout from "../../components/Layout";
@@ -16,12 +17,15 @@ import SEO from "../../components/SEO";
 import Container from "../../components/Container";
 import Grid from "../../components/Grid";
 import Column, { Spacer } from "../../components/Column";
+import Animation from "../../components/Animation";
 import theme from "../../components/Theme/theme";
 import { Gitcoin } from "../../components/Icons";
 import { ExternalLink } from "../../components/Links";
 import Tag from "../../components/Tag";
 
 import { RichTextRenderer } from "../../helpers";
+
+import block1Animation from "../../lottie/Ecosystem.json";
 
 const HoverBox = styled(Box)`
   transition-property: box-shadow;
@@ -35,6 +39,7 @@ const HoverBox = styled(Box)`
 const CardLink = ({ children, link, ...rest }) => (
   <ExternalLink style={{ textDecoration: "none" }} href={link}>
     <HoverBox
+      fill="vertical"
       round="xsmall"
       elevation="small"
       pad={{ left: "medium", vertical: "medium", right: "large" }}
@@ -63,26 +68,53 @@ const ContributePage = ({ data }) => {
       <SEO {...page.seo} />
       <Container>
         {/* Block 1 */}
-        <Grid align="start" justify="stretch">
-          <Column mobileSpaced span={{ medium: 6, large: 3 }}>
+        <Grid align="start" justify="stretch" mb="xlarge">
+          <Column mobileSpaced span={{ medium: 6, large: 6 }}>
             <RichTextRenderer block={page.block1} />
           </Column>
           <Spacer />
-          <Column span={{ medium: 6, large: 8 }}>
-            <GrommetGrid gap="medium" columns={["1fr", "1fr"]}>
-              {page.block1Repos.map(repo => (
-                <CardLink link={repo.link}>
-                  <div>
-                    <Text weight={600} size="large">
-                      {repo.name}
-                    </Text>
-                    <Paragraph margin={{ bottom: "none" }}>
-                      {repo.description}
-                    </Paragraph>
-                  </div>
-                </CardLink>
-              ))}
-            </GrommetGrid>
+          <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
+            <Animation file={block1Animation} />
+          </Column>
+        </Grid>
+
+        {/* Block 1.5 */}
+        <Grid mt="">
+          <Column>
+            <ResponsiveContext.Consumer>
+              {size => {
+                let columns;
+
+                switch (size) {
+                  case "large":
+                    columns = ["1fr", "1fr", "1fr"];
+                    break;
+                  case "medium":
+                    columns = ["1fr", "1fr"];
+                    break;
+                  case "small":
+                    columns = ["1fr"];
+                    break;
+                }
+
+                return (
+                  <GrommetGrid fill="horizontal" gap="medium" columns={columns}>
+                    {page.block1Repos.map((repo, index) => (
+                      <CardLink key={index} link={repo.link}>
+                        <div>
+                          <Text weight={600} size="large">
+                            {repo.name}
+                          </Text>
+                          <Paragraph margin={{ bottom: "none" }}>
+                            {repo.description}
+                          </Paragraph>
+                        </div>
+                      </CardLink>
+                    ))}
+                  </GrommetGrid>
+                );
+              }}
+            </ResponsiveContext.Consumer>
           </Column>
         </Grid>
 
@@ -90,6 +122,8 @@ const ContributePage = ({ data }) => {
         <Grid align="flex-start" justify="stretch">
           <Column mobileSpaced span={{ medium: 6, large: 4 }}>
             <RichTextRenderer block={page.block2} />
+
+            {/* Gitcoin Stats */}
             <Box direction="row" margin={{ top: "large" }} justify="between">
               <Box>
                 <Heading margin={{ bottom: "none" }} level="2">
@@ -108,6 +142,7 @@ const ContributePage = ({ data }) => {
 
           <Spacer width={2} />
 
+          {/* Bounties */}
           <Column span={{ medium: 6, large: 6 }}>
             <Box
               fill="horizontal"
@@ -128,10 +163,26 @@ const ContributePage = ({ data }) => {
                       <Tag background={bounty.node.bounty_type}>
                         {bounty.node.bounty_type}
                       </Tag>{" "}
-                      <Tag background={bounty.node.status}>
-                        {bounty.node.status}
-                      </Tag>
                     </Text>
+                    <Box margin={{ top: "small" }}>
+                      <div>
+                        <Box
+                          as="span"
+                          style={{ display: "inline-flex" }}
+                          margin={{ right: "xsmall" }}
+                          height="8px"
+                          width="8px"
+                          round="full"
+                          background={bounty.node.status}
+                        />
+                        <Text
+                          weight={600}
+                          style={{ textTransform: "capitalize" }}
+                        >
+                          {bounty.node.status}
+                        </Text>
+                      </div>
+                    </Box>
                   </Box>
                   <Box basis="1/4" align="end">
                     <Text weight="600">${bounty.node.value_in_usdt_now}</Text>
@@ -143,7 +194,7 @@ const ContributePage = ({ data }) => {
               <Button
                 plain
                 icon={<Gitcoin />}
-                label="Gitcoin"
+                label="See all Gitcoin bounties"
                 href="https://gitcoin.co/explorer?network=mainnet&order_by=-_val_usd_db&org=centrifuge"
               />
             </div>
@@ -153,7 +204,7 @@ const ContributePage = ({ data }) => {
         {/* Block Hall Of Fame */}
         <Grid mb="" justify="">
           <Column span={{ medium: 3, large: 3 }}>
-            <Heading level="2" lined>
+            <Heading level="3" lined>
               Hall of Fame
             </Heading>
           </Column>
@@ -170,9 +221,9 @@ const ContributePage = ({ data }) => {
                         famous.node.name
                       }/`}
                       alt={`${famous.node.name} avatar`}
-                      width={120}
-                      height={120}
-                      style={{ borderRadius: 120 / 2 }}
+                      width={96}
+                      height={96}
+                      style={{ borderRadius: 96 / 2 }}
                     />
                     <Text margin={{ top: "small" }} weight={600} size="large">
                       {famous.node.name}
@@ -255,7 +306,10 @@ export const ContributePageQuery = graphql`
         }
       }
     }
-    allLambdaGitcoinHallOfFame(filter: { name: { ne: null } }) {
+    allLambdaGitcoinHallOfFame(
+      filter: { name: { ne: null } }
+      sort: { fields: count, order: DESC }
+    ) {
       edges {
         node {
           name
