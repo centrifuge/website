@@ -44,8 +44,17 @@ const textSizes = {
     height: "24px",
     maxWidth: ""
   },
+  large: {
+    size: "16px",
+    height: "32px",
+    maxWidth: ""
+  },
   extend: props => css`
-    text-align: justify;
+    ${!props.textAlign &&
+      css`
+        text-align: justify;
+      `};
+
     ${!props.noHyphen &&
       css`
         hyphens: auto;
@@ -61,22 +70,31 @@ const custom = {
       size: "14px",
       height: 1.5
     },
-    focus: {
-      border: {
-        color: "red"
-      }
-    },
     hover: {
       color: {
-        light: "var(--c-brand)",
-        dark: "white"
+        light: "#2762FF",
+        dark: "#fff"
       }
     },
     colors: {
       "accent-1": "#FCBA59",
       focus: "#2762FF",
       brand: "#2762FF",
-      black: "#000000"
+      black: "#000",
+      text: {
+        light: "#000",
+        dark: "#fff"
+      },
+      open: "#7ED321",
+      started: "#FCBA59",
+      Feature: "#FFC2D2",
+      Bug: "#FFB5AE",
+      Improvement: "#9EFFF7",
+      Security: "#95FF94",
+      Documentation: "#94FFED",
+      Design: "#FF85C9",
+      "Code Review": "#FFCE9E",
+      Other: "#C2DBFF"
     },
     breakpoints: { ...breakpoints },
     deviceBreakpoints: {
@@ -87,27 +105,34 @@ const custom = {
     edgeSize: {
       xxlarge: "144px",
       xxxlarge: "192px"
+    },
+    input: {
+      weight: 500
     }
   },
   icon: {
     extend: css`
-      fill: #000000;
-      stroke: #000000;
+      fill: #000;
+      stroke: #000;
     `
   },
   textInput: {
     extend: css`
-      font-weight: var(--fw-medium);
-      font-family: var(--f-stack);
-      color: black;
-      border: none;
-      border-bottom: ${borderWidth}px solid #fff;
-      border-radius: 0;
-      padding-bottom: calc(11px - 1px);
+      ${props =>
+        props.newsletter &&
+        css`
+          font-weight: var(--fw-medium);
+          font-family: var(--f-stack);
+          color: black;
+          border: none;
+          border-bottom: ${borderWidth}px solid #fff;
+          border-radius: 0;
+          padding-bottom: calc(11px - 1px);
 
-      ::placeholder {
-        color: black;
-      }
+          ::placeholder {
+            color: black;
+          }
+        `}
     `
   },
   heading: {
@@ -128,13 +153,19 @@ const custom = {
       /* Header */
       ${isHeader(props) &&
         css`
-          margin-bottom: 64px;
+          ${!props.margin &&
+            css`
+              margin-bottom: 64px;
+            `}
         `}
 
       /* Subheader */
       ${isSubheader(props) &&
         css`
-          margin-bottom: 40px;
+          ${!props.margin &&
+            css`
+              margin-bottom: 40px;
+            `}
         `}
 
         /* Lined Styles */
@@ -186,18 +217,18 @@ const custom = {
       radius: "40px",
       width: `${borderWidth}px`,
       color: {
-        dark: "white",
-        light: "black"
+        dark: "#fff",
+        light: "#000"
       }
     },
     color: {
-      dark: "white",
-      light: "black"
+      dark: "#fff",
+      light: "#000"
     },
     primary: {
       color: {
-        dark: "white",
-        light: "black"
+        dark: "#fff",
+        light: "#000"
       }
     },
     extend: props => css`
@@ -206,6 +237,16 @@ const custom = {
       text-align: center;
       font-size: 16px;
       line-height: 24px;
+
+      ${
+        !props.textAlign
+          ? css`
+              text-align: center;
+            `
+          : css`
+              text-align: ${props.textAlign};
+            `
+      }
 
       /* Add underline for Plain type button */
       ${props.plain &&
@@ -226,11 +267,11 @@ const custom = {
       /* Button Hover Styles */
       &:hover {
         box-shadow: none;
-        border-color: var(--c-brand);
+        border-color: #2762FF;
 
         ${!props.primary &&
           css`
-            color: var(--c-brand);
+            color: #2762ff;
           `}
       }
 
@@ -238,8 +279,8 @@ const custom = {
       ${props.white &&
         css`
           &:hover {
-            background-color: white;
-            border-color: white;
+            background-color: #fff;
+            border-color: #fff;
           }
 
           &:active {
@@ -251,7 +292,7 @@ const custom = {
       ${props.primary &&
         css`
           &:hover {
-            background-color: var(--c-brand);
+            background-color: #2762ff;
           }
 
           &:active {
