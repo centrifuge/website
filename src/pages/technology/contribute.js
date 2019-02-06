@@ -22,11 +22,6 @@ import { ExternalLink } from "../../components/Links";
 
 import { RichTextRenderer } from "../../helpers";
 
-import hof1 from "../../images/hof1.svg";
-import hof2 from "../../images/hof2.svg";
-import hof3 from "../../images/hof3.svg";
-import hof4 from "../../images/hof4.svg";
-
 const HoverBox = styled(Box)`
   transition-property: box-shadow;
   transition-duration: 0.25s;
@@ -35,18 +30,6 @@ const HoverBox = styled(Box)`
     box-shadow: ${theme.global.elevation.light.medium};
   }
 `;
-
-const HoFImage = ({ index }) => {
-  const images = [hof1, hof2, hof3, hof4];
-
-  return (
-    <Image
-      src={images[(index = (index + 1) % images.length)]}
-      width={120}
-      height={120}
-    />
-  );
-};
 
 const CardLink = ({ children, link, ...rest }) => (
   <ExternalLink style={{ textDecoration: "none" }} href={link}>
@@ -175,7 +158,13 @@ const ContributePage = ({ data }) => {
                 <Spacer />
                 <Column mobileSpaced span={{ medium: 6, large: 2 }}>
                   <Box align="center">
-                    <HoFImage index={index} />
+                    <Image
+                      src={`https://gitcoin.co/dynamic/avatar/${
+                        famous.node.name
+                      }/`}
+                      width={120}
+                      height={120}
+                    />
                     <Text margin={{ top: "small" }} weight={600} size="large">
                       {famous.node.name}
                     </Text>
