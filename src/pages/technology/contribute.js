@@ -23,7 +23,7 @@ import { Gitcoin } from "../../components/Icons";
 import { ExternalLink } from "../../components/Links";
 import Tag from "../../components/Tag";
 
-import { RichTextRenderer } from "../../helpers";
+import { RichTextRenderer, responsiveGrid } from "../../helpers";
 
 import block1Animation from "../../lottie/Ecosystem.json";
 
@@ -82,38 +82,26 @@ const ContributePage = ({ data }) => {
         <Grid mt="">
           <Column>
             <ResponsiveContext.Consumer>
-              {size => {
-                let columns;
-
-                switch (size) {
-                  case "large":
-                    columns = ["1fr", "1fr", "1fr"];
-                    break;
-                  case "medium":
-                    columns = ["1fr", "1fr"];
-                    break;
-                  case "small":
-                    columns = ["1fr"];
-                    break;
-                }
-
-                return (
-                  <GrommetGrid fill="horizontal" gap="medium" columns={columns}>
-                    {page.block1Repos.map((repo, index) => (
-                      <CardLink key={index} link={repo.link}>
-                        <div>
-                          <Text weight={600} size="large">
-                            {repo.name}
-                          </Text>
-                          <Paragraph margin={{ bottom: "none" }}>
-                            {repo.description}
-                          </Paragraph>
-                        </div>
-                      </CardLink>
-                    ))}
-                  </GrommetGrid>
-                );
-              }}
+              {size => (
+                <GrommetGrid
+                  fill="horizontal"
+                  gap="medium"
+                  columns={responsiveGrid.ThreeTwoOne(size)}
+                >
+                  {page.block1Repos.map((repo, index) => (
+                    <CardLink key={index} link={repo.link}>
+                      <div>
+                        <Text weight={600} size="large">
+                          {repo.name}
+                        </Text>
+                        <Paragraph margin={{ bottom: "none" }}>
+                          {repo.description}
+                        </Paragraph>
+                      </div>
+                    </CardLink>
+                  ))}
+                </GrommetGrid>
+              )}
             </ResponsiveContext.Consumer>
           </Column>
         </Grid>
