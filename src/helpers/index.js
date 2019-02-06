@@ -15,6 +15,7 @@ const responsiveGrid = {
       case "medium":
         return ["1fr", "1fr"];
       case "small":
+      default:
         return ["1fr"];
     }
   },
@@ -24,6 +25,7 @@ const responsiveGrid = {
       case "medium":
         return ["1fr", "1fr"];
       case "small":
+      default:
         return ["1fr"];
     }
   }
