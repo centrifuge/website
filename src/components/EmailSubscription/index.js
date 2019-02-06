@@ -44,6 +44,7 @@ class SubscriptionForm extends React.Component {
           <FormWrapper>
             <TextInput
               required
+              newsletter
               type="email"
               value={this.state.email}
               onChange={this.handleChange}

@@ -85,8 +85,8 @@ const custom = {
         light: "#000",
         dark: "#fff"
       },
-      open: "#D4FFB3",
-      started: "#C68FFF",
+      open: "#7ED321",
+      started: "#FCBA59",
       Feature: "#FFC2D2",
       Bug: "#FFB5AE",
       Improvement: "#9EFFF7",
@@ -105,6 +105,9 @@ const custom = {
     edgeSize: {
       xxlarge: "144px",
       xxxlarge: "192px"
+    },
+    input: {
+      weight: 500
     }
   },
   icon: {
@@ -115,17 +118,21 @@ const custom = {
   },
   textInput: {
     extend: css`
-      font-weight: var(--fw-medium);
-      font-family: var(--f-stack);
-      color: black;
-      border: none;
-      border-bottom: ${borderWidth}px solid #fff;
-      border-radius: 0;
-      padding-bottom: calc(11px - 1px);
+      ${props =>
+        props.newsletter &&
+        css`
+          font-weight: var(--fw-medium);
+          font-family: var(--f-stack);
+          color: black;
+          border: none;
+          border-bottom: ${borderWidth}px solid #fff;
+          border-radius: 0;
+          padding-bottom: calc(11px - 1px);
 
-      ::placeholder {
-        color: black;
-      }
+          ::placeholder {
+            color: black;
+          }
+        `}
     `
   },
   heading: {
