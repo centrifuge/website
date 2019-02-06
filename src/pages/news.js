@@ -28,12 +28,6 @@ const YouTubeWordmark = () => (
   <img style={{ width: 98 }} alt="YouTube Wordmark" src={youtube} />
 );
 
-const ResponsiveWrapper = props => (
-  <div style={{ position: "relative", paddingTop: "56.25%" }}>
-    {props.children}
-  </div>
-);
-
 const ResponsivePlayer = ({ url }) => (
   <div style={{ position: "relative", paddingTop: `${100 / (16 / 9)}%` }}>
     <YoutubePlayer
