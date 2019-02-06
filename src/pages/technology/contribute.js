@@ -19,6 +19,7 @@ import Column, { Spacer } from "../../components/Column";
 import theme from "../../components/Theme/theme";
 import { Gitcoin } from "../../components/Icons";
 import { ExternalLink } from "../../components/Links";
+import Tag from "../../components/Tag";
 
 import { RichTextRenderer } from "../../helpers";
 
@@ -122,8 +123,14 @@ const ContributePage = ({ data }) => {
                   align="center"
                 >
                   <Box basis="3/4">
-                    <Text textAlign="left" weight={600} size="large">
-                      {bounty.node.title}
+                    <Text textAlign="start" weight={600} size="large">
+                      {bounty.node.title}{" "}
+                      <Tag background={bounty.node.bounty_type}>
+                        {bounty.node.bounty_type}
+                      </Tag>{" "}
+                      <Tag background={bounty.node.status}>
+                        {bounty.node.status}
+                      </Tag>
                     </Text>
                   </Box>
                   <Box basis="1/4" align="end">
@@ -162,8 +169,10 @@ const ContributePage = ({ data }) => {
                       src={`https://gitcoin.co/dynamic/avatar/${
                         famous.node.name
                       }/`}
+                      alt={`${famous.node.name} avatar`}
                       width={120}
                       height={120}
+                      style={{ borderRadius: 120 / 2 }}
                     />
                     <Text margin={{ top: "small" }} weight={600} size="large">
                       {famous.node.name}
@@ -231,11 +240,15 @@ export const ContributePageQuery = graphql`
         }
       }
     }
-    allLambdaGitcoinOpenBounties(filter: { title: { ne: null } }) {
+    allLambdaGitcoinOpenBounties(
+      filter: { title: { ne: null } }
+      sort: { fields: status, order: ASC }
+    ) {
       totalCount
       edges {
         node {
           status
+          bounty_type
           title
           url
           value_in_usdt_now

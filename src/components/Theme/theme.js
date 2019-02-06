@@ -50,7 +50,11 @@ const textSizes = {
     maxWidth: ""
   },
   extend: props => css`
-    text-align: justify;
+    ${!props.textAlign &&
+      css`
+        text-align: justify;
+      `};
+
     ${!props.noHyphen &&
       css`
         hyphens: auto;
@@ -80,7 +84,17 @@ const custom = {
       text: {
         light: "#000",
         dark: "#fff"
-      }
+      },
+      open: "#D4FFB3",
+      started: "#C68FFF",
+      Feature: "#FFC2D2",
+      Bug: "#FFB5AE",
+      Improvement: "#9EFFF7",
+      Security: "#95FF94",
+      Documentation: "#94FFED",
+      Design: "#FF85C9",
+      "Code Review": "#FFCE9E",
+      Other: "#C2DBFF"
     },
     breakpoints: { ...breakpoints },
     deviceBreakpoints: {
