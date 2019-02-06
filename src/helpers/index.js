@@ -8,6 +8,16 @@ const MEDIUM_CDN = "https://cdn-images-1.medium.com/max/720";
 const MEDIUM_URL = "https://medium.com/centrifuge/";
 
 const responsiveGrid = {
+  FourTwo: size => {
+    switch (size) {
+      case "large":
+      case "medium":
+        return ["1fr", "1fr", "1fr", "1fr"];
+      case "small":
+      default:
+        return ["1fr", "1fr"];
+    }
+  },
   ThreeTwoOne: size => {
     switch (size) {
       case "large":
