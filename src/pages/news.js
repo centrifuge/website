@@ -64,7 +64,12 @@ const NewsPage = ({ data }) => {
         </Grid>
         <Grid mt="" align="start">
           {page.blockPress.map((article, index) => (
-            <Column mobileSpaced key={index} span={{ medium: 6, large: 6 }}>
+            <Column
+              mobileSpaced
+              margin={{ bottom: "large" }}
+              key={index}
+              span={{ medium: 6, large: 6 }}
+            >
               <PressArticle article={article} />
             </Column>
           ))}
