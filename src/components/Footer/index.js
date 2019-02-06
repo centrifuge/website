@@ -95,7 +95,7 @@ const Footer = () => (
               Documentation
             </FooterExternalLinkItem>
             <FooterExternalLinkItem href="/whitepaper">Whitepaper</FooterExternalLinkItem>
-            {/* <FooterExternalLinkItem>Slack</FooterExternalLinkItem> */}
+            <FooterExternalLinkItem href="https://join.slack.com/t/centrifuge-io/shared_invite/enQtNDk1MzkwODM4OTgxLWRlNTU4NDQzOWIwYWEzNGRhN2UzMzQwNThjZjI0ZmIxMTU4NmQwMjc2ZDBkOTEyNWJhMjE4MzA2NTE5MWU1NWE">Slack</FooterExternalLinkItem>
           </List>
         </Item>
         <Item>
