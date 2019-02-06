@@ -37,7 +37,7 @@ class Animation extends Component {
 }
 
 Animation.propTypes = {
-  file: PropTypes.array,
+  file: PropTypes.object,
   loop: PropTypes.bool
 };
 

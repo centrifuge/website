@@ -44,6 +44,7 @@ class SubscriptionForm extends React.Component {
           <FormWrapper>
             <TextInput
               required
+              newsletter
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
@@ -73,7 +74,7 @@ class SubscriptionForm extends React.Component {
 const EmailWrapper = styled(Box)`
   /* Mailchimp Response Link Style */
   a {
-    color: var(--c-white);
+    color: #fff;
 
     &:active {
       opacity: 0.9;
