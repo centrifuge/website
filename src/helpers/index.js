@@ -7,6 +7,8 @@ const MEDIUM_CDN = "https://cdn-images-1.medium.com/max/720";
 
 const MEDIUM_URL = "https://medium.com/centrifuge/";
 
+const YOUTUBE_URL = "https://www.youtube.com/channel/UCfNkoq7YLrr8MeSJ3a6jVcA";
+
 const responsiveGrid = {
   FourTwo: size => {
     switch (size) {
@@ -45,6 +47,7 @@ export {
   lastInArray,
   MEDIUM_CDN,
   MEDIUM_URL,
+  YOUTUBE_URL,
   RichTextRenderer,
   responsiveGrid
 };
