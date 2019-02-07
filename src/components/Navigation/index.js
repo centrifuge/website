@@ -23,6 +23,19 @@ const NavLink = ({ children, to }) => (
   </InternalLink>
 );
 
+const BrandLink = () => (
+  <div
+    onContextMenu={e => {
+      e.preventDefault();
+      window.location = "https://axis.centrifuge.io";
+    }}
+  >
+    <NavLink to="/">
+      <Logo alt="Centrifuge Wordmark" src={wordmark} />
+    </NavLink>
+  </div>
+);
+
 const MobileLink = styled(NavLink)`
   padding: 1rem 0 1rem 3rem;
 `;
@@ -185,9 +198,7 @@ class Navigation extends React.Component {
                 <List style={{ display: "flex", alignItems: "center" }}>
                   {/* Logo */}
                   <Item style={{ flex: 1 }}>
-                    <NavLink to="/">
-                      <Logo alt="Centrifuge Wordmark" src={wordmark} />
-                    </NavLink>
+                    <BrandLink />
                   </Item>
 
                   {/* Mobile Nav Toggle */}
