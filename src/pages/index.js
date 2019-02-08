@@ -32,7 +32,7 @@ const IndexPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>
-            <Animation file={block1Animation} />
+            <Animation file={block1Animation} loop={true} />
           </Column>
         </Grid>
 
