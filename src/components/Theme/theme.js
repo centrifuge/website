@@ -8,8 +8,8 @@ export const breakpoints = {
   small: {
     value: 768,
     edgeSize: {
-      xxlarge: "96px",
-      xxxlarge: "144px"
+      xxlarge: "72px",
+      xxxlarge: "120px"
     }
   },
   medium: {
