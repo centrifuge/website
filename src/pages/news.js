@@ -2,6 +2,7 @@ import React from "react";
 import { Heading, Box, Button } from "grommet";
 import { graphql } from "gatsby";
 import YoutubePlayer from "react-player/lib/players/YouTube";
+import chunk from "lodash.chunk";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -10,6 +11,8 @@ import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import { ExternalLink } from "../components/Links";
 import { HighlightPost, MediumPost, PressArticle } from "../components/News";
+import Carousel from "../components/Carousel";
+
 import {
   lastInArray,
   MEDIUM_URL,
@@ -85,18 +88,13 @@ const NewsPage = ({ data }) => {
             </Heading>
           </Column>
         </Grid>
-        <Grid mt="" align="start">
+        <Carousel cellSpacing={64}>
           {page.blockPress.map((article, index) => (
-            <Column
-              mobileSpaced
-              margin={{ bottom: "large" }}
-              key={index}
-              span={{ medium: 6, large: 6 }}
-            >
+            <Box height="280px" key={index}>
               <PressArticle article={article} />
-            </Column>
+            </Box>
           ))}
-        </Grid>
+        </Carousel>
 
         {/* Video Block */}
         <Grid mb="large">
