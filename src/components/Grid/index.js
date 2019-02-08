@@ -18,7 +18,7 @@ const StyledGrid = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media only screen and (min-width: ${breakpoints.small.value}px) {
+  @media only screen and (min-width: ${breakpoints.small.value + 1}px) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 32px;

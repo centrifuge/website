@@ -2,7 +2,9 @@ import React from "react";
 import { documentToReactTree } from "rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { Heading, Button, Box, Paragraph } from "grommet";
+
 import { Slack, Github } from "grommet-icons";
+import { Gitcoin } from "../components/Icons/";
 
 const DebugData = ({ data }) => (
   <pre>
@@ -34,6 +36,20 @@ const renderButton = (button, index) => {
           plain
           href={link}
           label={text}
+        />
+      );
+
+    case "Gitcoin":
+      return (
+        <Button
+          key={index}
+          margin={{ top: "medium", bottom: "small" }}
+          plain
+          icon={<Gitcoin />}
+          href={link}
+          label={text}
+          target="_blank"
+          rel="noopener noreferrer"
         />
       );
 
@@ -81,7 +97,7 @@ const renderButton = (button, index) => {
 const renderButtonGroup = (buttons, justify) => (
   <Box direction="row-responsive" gap="medium" justify={justify} align="center">
     {buttons.map((button, index) => {
-      return renderButton(button.fields, index);
+      return renderButton(button.fields, `Button_${index}`);
     })}
   </Box>
 );

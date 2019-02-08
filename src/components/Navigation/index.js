@@ -9,16 +9,15 @@ import { Menu } from "styled-icons/feather/Menu";
 import Container from "../Container";
 import { List, Item } from "../List";
 import { InternalLink } from "../Links";
-import { breakpoints } from "../Theme/theme";
+import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
 
-const NavLink = ({ children, to, ...rest }) => (
+const NavLink = ({ children, to }) => (
   <InternalLink
     style={{ fontWeight: "var(--fw-medium)" }}
     activeStyle={{ color: "var(--c-brand)" }}
     to={to}
-    {...rest}
   >
     {children}
   </InternalLink>
@@ -76,7 +75,7 @@ const Dropdowns = styled(Box)`
   /* Dropdown Styles */
   > li > ul {
     background-color: #fff;
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: ${theme.global.elevation.light.small};
     visibility: hidden;
     opacity: 0;
     padding: 0.5rem 0;
@@ -84,7 +83,7 @@ const Dropdowns = styled(Box)`
     position: absolute;
     transition: all 0.5s ease;
     margin-top: 1.5rem;
-    border-radius: 8px;
+    border-radius: ${theme.global.edgeSize.xsmall};
     left: -16px;
     display: none;
 
@@ -204,6 +203,13 @@ class Navigation extends React.Component {
                   <Dropdowns direction="row" align="center" gap="large">
                     <PaddedItem>
                       <NavLink to="/technology">Technology</NavLink>
+                      <List>
+                        <Item>
+                          <NavLink to="/technology/contribute">
+                            Contribute
+                          </NavLink>
+                        </Item>
+                      </List>
                     </PaddedItem>
 
                     <PaddedItem>
