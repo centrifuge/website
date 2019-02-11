@@ -36,6 +36,16 @@ const HoverBox = styled(Box)`
   }
 `;
 
+const calculateFullBountyValue = bounty => {
+  if (bounty.additional_funding_summary.DAI)
+    return (
+      Number(bounty.additional_funding_summary.DAI.amount) +
+      Number(bounty.value_in_usdt_now)
+    ).toFixed(2);
+
+  return bounty.value_in_usdt_now;
+};
+
 const CardLink = ({ children, link, ...rest }) => (
   <ExternalLink style={{ textDecoration: "none" }} href={link}>
     <HoverBox
@@ -173,7 +183,9 @@ const ContributePage = ({ data }) => {
                     </Box>
                   </Box>
                   <Box basis="1/4" align="end">
-                    <Text weight="600">${bounty.node.value_in_usdt_now}</Text>
+                    <Text weight="600">
+                      ${calculateFullBountyValue(bounty.node)}
+                    </Text>
                   </Box>
                 </CardLink>
               ))}
@@ -217,7 +229,9 @@ const ContributePage = ({ data }) => {
                       {famous.node.name}
                     </Text>
                     <Text margin={{ bottom: "small" }}>
-                      {famous.node.count} bounties
+                      {`${famous.node.count} ${
+                        famous.node.count > 1 ? "bounties" : "bounty"
+                      }`}
                     </Text>
                     <ExternalLink
                       href={`https://gitcoin.co/profile/${famous.node.name}`}
@@ -280,6 +294,7 @@ export const ContributePageQuery = graphql`
       }
     }
     allLambdaGitcoinOpenBounties(
+      limit: 4
       filter: { title: { ne: null } }
       sort: { fields: status, order: ASC }
     ) {
@@ -291,6 +306,11 @@ export const ContributePageQuery = graphql`
           title
           url
           value_in_usdt_now
+          additional_funding_summary {
+            DAI {
+              amount
+            }
+          }
         }
       }
     }
