@@ -29,7 +29,7 @@ const GDPR = () => {
       <Box direction="row-responsive" justify="between" align="center">
         <Paragraph margin={{ vertical: "xsmall" }}>
           By continuing your visit on this site, you accept the use of cookies
-          from Google Analytics so we can improve the site for you.{" "}
+          from Google Analytics.{" "}
           <Anchor underline href="/data-privacy-policy">
             Read more
           </Anchor>
