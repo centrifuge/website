@@ -85,6 +85,7 @@ const custom = {
         light: "#000",
         dark: "#fff"
       },
+      alert: "#e6f5ff",
       open: "#7ED321",
       started: "#FCBA59",
       Feature: "#FFC2D2",
@@ -208,6 +209,17 @@ const custom = {
   //       `}
   //   `
   // },
+  anchor: {
+    fontWeight: props =>
+      props.bold ? "var(--fw-demibold)" : "var(--fw-regular)",
+    textDecoration: props => props.underline && "underline",
+    color: { dark: "white", light: "black" },
+    hover: {
+      extend: css`
+        color: #2762ff;
+      `
+    }
+  },
   button: {
     padding: {
       horizontal: `${32 - borderWidth}px`,

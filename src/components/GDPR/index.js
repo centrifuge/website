@@ -23,16 +23,19 @@ const GDPR = () => {
 
   return (
     <Banner
-      background="#e6f5ff"
+      background="alert"
       pad={{ vertical: "small", horizontal: "medium" }}
     >
       <Box direction="row-responsive" justify="between" align="center">
         <Paragraph margin={{ vertical: "xsmall" }}>
           By continuing your visit on this site, you accept the use of cookies
           from Google Analytics so we can improve the site for you.{" "}
-          <Anchor href="/data-privacy-policy">Read more</Anchor>
+          <Anchor underline href="/data-privacy-policy">
+            Read more
+          </Anchor>
         </Paragraph>
         <Anchor
+          underline
           margin={{ vertical: "xsmall" }}
           onClick={() => {
             setBannerEnabled(false);
