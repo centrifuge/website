@@ -5,6 +5,7 @@ import Theme from "../Theme";
 import Footer from "../Footer";
 import Navigation from "../Navigation";
 import EmailSubscription from "../EmailSubscription";
+import GDPR from "../GDPR";
 
 const Layout = ({ children }) => (
   <Theme>
@@ -12,6 +13,7 @@ const Layout = ({ children }) => (
     <main>{children}</main>
     <EmailSubscription />
     <Footer />
+    <GDPR />
   </Theme>
 );
 

@@ -48,25 +48,6 @@ const GlobalStyle = createGlobalStyle`
     --f-stack: AvenirNextLTW01, 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   }
 
-  /* Debug Focus */
-  /* *:focus {
-    box-shadow: inset 0 0 0 1px red;
-  } */
-
-  /* TODO: refactor into Grommet Anchor and style */
-  .a {
-    color: #000;
-
-    &:hover,
-    &:focus {
-      color: #2762FF;
-    }
-
-    &:active {
-      opacity: 0.9
-    } 
-  }
-
   b, strong {
     font-weight: var(--fw-demibold);
     font-family: var(--f-stack);

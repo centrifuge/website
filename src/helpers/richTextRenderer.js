@@ -1,7 +1,7 @@
 import React from "react";
 import { documentToReactTree } from "rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-import { Heading, Button, Box, Paragraph } from "grommet";
+import { Heading, Button, Box, Paragraph, Anchor } from "grommet";
 
 import { Slack, Github } from "grommet-icons";
 import { Gitcoin } from "../components/Icons/";
@@ -158,9 +158,7 @@ const options = noHyphen => ({
       embedRenderer(node.data.target.sys.contentType.sys.id, node),
 
     [INLINES.HYPERLINK]: (node, children) => (
-      <a className="a" href={node.data.uri}>
-        {children}
-      </a>
+      <Anchor href={node.data.uri}>{children}</Anchor>
     )
   }
 });
