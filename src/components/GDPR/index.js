@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Paragraph, Anchor, Button } from "grommet";
+import { Box, Paragraph, Anchor } from "grommet";
 import styled from "styled-components";
 import Cookie from "js-cookie";
 
@@ -26,11 +26,7 @@ const GDPR = () => {
       background="#e6f5ff"
       pad={{ vertical: "small", horizontal: "medium" }}
     >
-      <Box
-        direction="row-responsive"
-        justify="between"
-        align="center"
-      >
+      <Box direction="row-responsive" justify="between" align="center">
         <Paragraph margin={{ vertical: "xsmall" }}>
           By continuing your visit on this site, you accept the use of cookies
           from Google Analytics so we can improve the site for you.{" "}
