@@ -218,7 +218,12 @@ const custom = {
       extend: css`
         color: #2762ff;
       `
-    }
+    },
+    extend: css`
+      &:active {
+        opacity: 0.9;
+      }
+    `
   },
   button: {
     padding: {
