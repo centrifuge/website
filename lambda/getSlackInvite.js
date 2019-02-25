@@ -1,4 +1,6 @@
 import fetch from "node-fetch";
+import dotenv from "dotenv";
+dotenv.config();
 
 exports.handler = async (event, context) => {
   const payload = JSON.parse(event.body);

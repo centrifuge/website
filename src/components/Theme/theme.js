@@ -126,7 +126,8 @@ const custom = {
           font-family: var(--f-stack);
           color: black;
           border: none;
-          border-bottom: ${borderWidth}px solid #fff;
+          border-bottom: ${borderWidth}px solid
+            ${props.newsletter && props.dark ? "black" : "#fff"};
           border-radius: 0;
           padding-bottom: calc(11px - 1px);
 
