@@ -295,7 +295,7 @@ export const ContributePageQuery = graphql`
     }
     allLambdaGitcoinOpenBounties(
       limit: 4
-      filter: { title: { ne: null } }
+      filter: { title: { ne: "String" } }
       sort: { fields: status, order: ASC }
     ) {
       totalCount

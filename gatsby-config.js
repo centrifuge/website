@@ -31,7 +31,20 @@ const gitcoinServerOptions = {
   openBounties: {
     name: `gitcoinOpenBounties`,
     ...lambdaServerDefaults("getGitcoinOpenBounties"),
-    verboseOutput: true
+    verboseOutput: true,
+    schemaType: {
+      id: 1,
+      status: "String",
+      bounty_type: "String",
+      title: "String",
+      url: "String",
+      value_in_usdt_now: "0.00",
+      additional_funding_summary: {
+        DAI: {
+          amount: "0.00"
+        }
+      }
+    }
   },
   hallOfFame: {
     name: `gitcoinHallOfFame`,
