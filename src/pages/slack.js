@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Heading, Box } from "grommet";
+import { Heading, Box, Image } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -11,6 +11,8 @@ import SlackForm from "../components/SlackForm";
 
 import { RichTextRenderer } from "../helpers";
 
+import slackImage from "../images/slack-image.svg";
+
 const SlackPage = ({ data }) => {
   const page = data.allContentfulPageSlackInvite.edges[0].node;
 
@@ -18,8 +20,10 @@ const SlackPage = ({ data }) => {
     <Layout>
       <SEO {...page.seo} />
       <Container>
-        <Grid align="end">
-          <Column span={{ medium: 6, large: 5 }} />
+        <Grid align="center" justify="center">
+          <Column span={{ medium: 6, large: 5 }} mobileSpaced>
+            <Image src={slackImage} />
+          </Column>
           <Spacer />
           <Column span={{ medium: 6, large: 6 }}>
             <Heading level={1}>{page.headline}</Heading>

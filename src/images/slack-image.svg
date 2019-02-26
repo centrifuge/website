@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="352" height="352" viewBox="0 0 352 352">
+  <g fill="#FCBA59" fill-rule="evenodd">
+    <g transform="translate(0 144)">
+      <circle cx="32" cy="32" r="32"/>
+      <circle cx="320" cy="32" r="32"/>
+    </g>
+    <g transform="rotate(30 -92.708 104)">
+      <circle cx="32" cy="32" r="32"/>
+      <circle cx="320" cy="32" r="32"/>
+    </g>
+    <g transform="rotate(60 51.292 104)">
+      <circle cx="32" cy="32" r="32"/>
+      <circle cx="320" cy="32" r="32"/>
+    </g>
+    <g transform="rotate(90 104 104)">
+      <circle cx="32" cy="32" r="32"/>
+      <circle cx="320" cy="32" r="32"/>
+    </g>
+    <g transform="rotate(120 134.43 104)">
+      <circle cx="32" cy="32" r="32"/>
+      <circle cx="320" cy="32" r="32"/>
+    </g>
+    <g transform="rotate(150 156.708 104)">
+      <circle cx="32" cy="32" r="32"/>
+      <circle cx="320" cy="32" r="32"/>
+    </g>
+  </g>
+</svg>
