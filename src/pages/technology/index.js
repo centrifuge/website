@@ -11,7 +11,7 @@ import FullWidthImage from "../../components/FullWidthImage";
 
 import { RichTextRenderer, lastInArray } from "../../helpers";
 
-import block1Animation from "../../lottie/Technology.json";
+import block1Animation from "../../lottie/Technology_Q.json";
 import technologyBig from "../../images/technology_big.svg";
 
 const TechnologyPage = ({ data }) => {

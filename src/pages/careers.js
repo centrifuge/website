@@ -9,10 +9,11 @@ import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
 import FullWidthImage from "../components/FullWidthImage";
+import Animation from "../components/Animation";
 
 import { RichTextRenderer } from "../helpers";
 
-import block1Image from "../images/Careers.svg";
+import block1Animation from "../lottie/Team_Q.json";
 import careersBig from "../images/careers_big.svg";
 
 const CareersPage = ({ data }) => {
@@ -29,7 +30,7 @@ const CareersPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
-            <img alt="" src={block1Image} />
+            <Animation file={block1Animation}/>
           </Column>
         </Grid>
 

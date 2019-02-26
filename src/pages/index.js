@@ -12,8 +12,8 @@ import { RichTextRenderer } from "../helpers";
 
 import block1Animation from "../lottie/Main01.json";
 import block2Image from "../images/block2-image.svg";
-import block3Animation from "../lottie/Main03.json";
-import block4Animation from "../lottie/Main04.json";
+import block3Animation from "../lottie/Main03_Q.json";
+import block4Animation from "../lottie/Main04_Q.json";
 
 const IndexPage = ({ data }) => {
   const page = data.allContentfulPageHome.edges[0].node;

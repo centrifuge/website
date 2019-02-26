@@ -25,7 +25,7 @@ import Tag from "../../components/Tag";
 
 import { RichTextRenderer, responsiveGrid } from "../../helpers";
 
-import block1Animation from "../../lottie/Ecosystem.json";
+import block1Animation from "../../lottie/Ecosystem_Q.json";
 
 const HoverBox = styled(Box)`
   transition-property: box-shadow;

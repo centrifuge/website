@@ -28,7 +28,7 @@ class Animation extends Component {
           <Lottie
             height={384}
             isPaused={this.state.isPaused}
-            options={{ animationData: file, loop: loop ? loop : false }}
+            options={{ animationData: file, loop: loop }}
           />
         </AnimationWrapper>
       </Observer>
@@ -39,6 +39,10 @@ class Animation extends Component {
 Animation.propTypes = {
   file: PropTypes.object,
   loop: PropTypes.bool
+};
+
+Animation.defaultProps = {
+  loop: false
 };
 
 export default Animation;
