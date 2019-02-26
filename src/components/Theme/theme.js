@@ -55,9 +55,9 @@ const textSizes = {
         text-align: justify;
       `};
 
-    ${!props.noHyphen &&
+    ${props.hyphens &&
       css`
-        hyphens: auto;
+        hyphens: ${hyphens};
       `}
   `
 };
@@ -86,6 +86,7 @@ const custom = {
         dark: "#fff"
       },
       alert: "#e6f5ff",
+      // Contribute Gitcoin Colors
       open: "#7ED321",
       started: "#FCBA59",
       Feature: "#FFC2D2",
@@ -97,6 +98,7 @@ const custom = {
       "Code Review": "#FFCE9E",
       Other: "#C2DBFF"
     },
+    
     breakpoints: { ...breakpoints },
     deviceBreakpoints: {
       phone: "small",
