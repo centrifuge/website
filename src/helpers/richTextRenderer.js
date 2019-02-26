@@ -123,12 +123,12 @@ const embedRenderer = (id, node) => {
   }
 };
 
-const options = noHyphen => ({
+const options = hyphens => ({
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) =>
       // eslint-disable-next-line
       children != "" ? (
-        <Paragraph noHyphen={noHyphen ? noHyphen : false}>{children}</Paragraph>
+        <Paragraph hyphens={hyphens ? hyphens : "auto"}>{children}</Paragraph>
       ) : null,
 
     [BLOCKS.HEADING_1]: (node, children) => (
