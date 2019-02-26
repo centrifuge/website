@@ -8,7 +8,7 @@ import Grid from "../components/Grid";
 import Column from "../components/Column";
 
 import wordmark from "../images/centrifuge-wordmark.svg";
-import developerWorkmark from "../images/centrifuge-developer-wordmark.svg";
+import developerWordmark from "../images/centrifuge-developer-wordmark.svg";
 import wordmarkLight from "../images/centrifuge-wordmark-light.svg";
 
 const DataPrivacyPolicyPage = () => (
@@ -46,7 +46,7 @@ const DataPrivacyPolicyPage = () => (
             <Paragraph>Dark Developer Wordmark on Light Background</Paragraph>
             <Stack fill anchor="center" margin={{ bottom: "large" }}>
               <Box round="xsmall" elevation="small" height="medium" />
-              <Image height={48} src={developerWorkmark} />
+              <Image height={48} src={developerWordmark} />
             </Stack>
           </Box>
 
