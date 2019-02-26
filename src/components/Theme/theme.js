@@ -57,7 +57,7 @@ const textSizes = {
 
     ${props.hyphens &&
       css`
-        hyphens: ${hyphens};
+        hyphens: ${props.hyphens};
       `}
   `
 };
