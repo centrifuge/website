@@ -12,7 +12,7 @@ import DeepLink from "../components/DeepLink";
 
 import { RichTextRenderer, lastInArray } from "../helpers";
 
-import block1Animation from "../lottie/Ecosystem.json";
+import block1Animation from "../lottie/Ecosystem_Q.json";
 import ecosystemBig from "../images/ecosystem_big.svg";
 
 const EcosystemPage = ({ data }) => {
