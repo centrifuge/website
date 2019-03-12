@@ -123,7 +123,7 @@ const NewsPage = ({ data }) => {
                 margin={{ top: "large" }}
                 plain
                 label="More videos"
-                href="https://www.youtube.com/channel/UCfNkoq7YLrr8MeSJ3a6jVcA/videos"
+                href="https://www.youtube.com/channel/UCfNkoq7YLrr8MeSJ3a6jVcA"
               />
             </div>
           </Column>
