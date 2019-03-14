@@ -220,8 +220,12 @@ const ContributePage = ({ data }) => {
             return (
               <React.Fragment key={index}>
                 <Spacer />
-                <Column justifySelf="center" mobileSpaced span={{ medium: 6, large: 2 }}>
-                  <Box align="center" margin={{bottom: "medium"}}>
+                <Column
+                  justifySelf="center"
+                  mobileSpaced
+                  span={{ medium: 6, large: 2 }}
+                >
+                  <Box align="center" margin={{ bottom: "medium" }}>
                     <Image
                       src={`https://gitcoin.co/dynamic/avatar/${
                         famous.node.name
