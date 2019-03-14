@@ -64,7 +64,7 @@ const CardLink = ({ children, link, ...rest }) => (
 const ContributePage = ({ data }) => {
   const page = data.allContentfulPageTechnologyContribute.edges[0].node;
 
-  const openBounties = data.allLambdaGitcoinOpenBounties.edges;
+  const openBounties = data.allLambdaGitcoinOpenBounties;
 
   const hallOfFame = data.allLambdaGitcoinHallOfFame.edges;
 
@@ -142,54 +142,60 @@ const ContributePage = ({ data }) => {
 
           {/* Bounties */}
           <Column span={{ medium: 6, large: 6 }}>
-            <Box
-              fill="horizontal"
-              direction="column"
-              gap="medium"
-              margin={{ bottom: "large" }}
-            >
-              {openBounties.map(bounty => (
-                <CardLink
-                  link={bounty.node.url}
-                  direction="row"
-                  justify="between"
-                  align="center"
-                >
-                  <Box basis="3/4">
-                    <Text textAlign="start" weight={600} size="large">
-                      {bounty.node.title}{" "}
-                      <Tag background={bounty.node.bounty_type}>
-                        {bounty.node.bounty_type}
-                      </Tag>{" "}
-                    </Text>
-                    <Box margin={{ top: "small" }}>
-                      <div>
-                        <Box
-                          as="span"
-                          style={{ display: "inline-flex" }}
-                          margin={{ right: "xsmall" }}
-                          height="8px"
-                          width="8px"
-                          round="full"
-                          background={bounty.node.status}
-                        />
-                        <Text
-                          weight={600}
-                          style={{ textTransform: "capitalize" }}
-                        >
-                          {bounty.node.status}
-                        </Text>
-                      </div>
+            {openBounties !== null ? (
+              <Box
+                fill="horizontal"
+                direction="column"
+                gap="medium"
+                margin={{ bottom: "large" }}
+              >
+                {openBounties.edges.map(bounty => (
+                  <CardLink
+                    link={bounty.node.url}
+                    direction="row"
+                    justify="between"
+                    align="center"
+                  >
+                    <Box basis="3/4">
+                      <Text textAlign="start" weight={600} size="large">
+                        {bounty.node.title}{" "}
+                        <Tag background={bounty.node.bounty_type}>
+                          {bounty.node.bounty_type}
+                        </Tag>{" "}
+                      </Text>
+                      <Box margin={{ top: "small" }}>
+                        <div>
+                          <Box
+                            as="span"
+                            style={{ display: "inline-flex" }}
+                            margin={{ right: "xsmall" }}
+                            height="8px"
+                            width="8px"
+                            round="full"
+                            background={bounty.node.status}
+                          />
+                          <Text
+                            weight={600}
+                            style={{ textTransform: "capitalize" }}
+                          >
+                            {bounty.node.status}
+                          </Text>
+                        </div>
+                      </Box>
                     </Box>
-                  </Box>
-                  <Box basis="1/4" align="end">
-                    <Text weight="600">
-                      ${calculateFullBountyValue(bounty.node)}
-                    </Text>
-                  </Box>
-                </CardLink>
-              ))}
-            </Box>
+                    <Box basis="1/4" align="end">
+                      <Text weight="600">
+                        ${calculateFullBountyValue(bounty.node)}
+                      </Text>
+                    </Box>
+                  </CardLink>
+                ))}
+              </Box>
+            ) : (
+              <Paragraph margin={{ top: "none" }}>
+                There are no open bounties at this time. Check again soon.
+              </Paragraph>
+            )}
             <div>
               <Button
                 plain
@@ -214,8 +220,8 @@ const ContributePage = ({ data }) => {
             return (
               <React.Fragment key={index}>
                 <Spacer />
-                <Column mobileSpaced span={{ medium: 6, large: 2 }}>
-                  <Box align="center">
+                <Column justifySelf="center" mobileSpaced span={{ medium: 6, large: 2 }}>
+                  <Box align="center" margin={{bottom: "medium"}}>
                     <Image
                       src={`https://gitcoin.co/dynamic/avatar/${
                         famous.node.name
