@@ -256,10 +256,6 @@ class Navigation extends React.Component {
                         </Item>
                       </List>
                     </PaddedItem>
-                    <PaddedItem>
-                      <RoutedButton label="Get Started" path="/getstarted" />
-                    </PaddedItem>
-
                     {/* Call To Action */}
                     {enableNavigationCallToAction && (
                       <Item>
