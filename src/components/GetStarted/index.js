@@ -1,25 +1,10 @@
 import React from "react";
-import { Heading, Paragraph, Image, Box, Button } from "grommet";
+import { Heading, Paragraph, Image, Box, Button, ResponsiveContext } from "grommet";
 
 import Column, { Spacer } from "../Column";
 import Grid from "../Grid";
 import imgGetStarted2 from "../../images/getstarted/getstarted2.png";
-import { breakpoints } from "../Theme/theme";
-import styled from "styled-components";
 import { RichTextRenderer } from "../../helpers";
-
-const MobileBuildBox = styled(Box)`
-  display: block;
-  @media only screen and (min-width: ${breakpoints.medium.value + 1}px) {
-    display: none;
-  }
-`
-const ScreenBuildBox = styled(Box)`
-  display: none;
-  @media only screen and (min-width: ${breakpoints.medium.value + 1}px) {
-  display: block;
-}
-`
 
 const ProvidedFunctionality = ({ functionality, img }) => (
   <Box direction="column" gap="large">
@@ -63,57 +48,62 @@ const BuildInfo = ({ title, subtitle, link, heading }) => (
 );
 
 const BuildItem = ({blocks }) => (
-  <React.Fragment>
-    <MobileBuildBox>
-      <ImageGetStartedSub />
-      <Grid mt="" mb="" align="start">
-        <Spacer />
-        {blocks.map((block, index) => (
-          <React.Fragment key={index}>
-            <Column span={{ medium: 1 }} />
-            <Column mobileSpaced span={{ medium: 5, large: 3 }}>
-              <RichTextRenderer block={block.content} />
-            </Column>
-          </React.Fragment>
-        ))}
+  <ResponsiveContext.Consumer>
+    {size => 
+      (size === "small") || (size === "medium") 
+      ? (
+        <React.Fragment>
+          <ImageGetStartedSub />
+          <Grid noMargin align="start">
+            <Spacer />
+            {blocks.map((block, index) => (
+              <React.Fragment key={index}>
+                <Column span={{ medium: 1 }} />
+                <Column mobileSpaced span={{ medium: 5, large: 3 }}>
+                  <RichTextRenderer block={block.content} />
+                </Column>
+              </React.Fragment>
+            ))}
 
-        <Spacer />
-        {blocks.map((block, index) => (
-          <React.Fragment key={index}>
-            <Column span={{ medium: 1 }} />
-            <Column mobileSpaced span={{ medium: 5, large: 3 }}>
-              <RichTextRenderer block={block.content} />
-            </Column>
-          </React.Fragment>
-        ))}
-      </Grid>
-    </MobileBuildBox>
-    <ScreenBuildBox>
-      <Grid mt="" mb="" align="start">
-        {blocks.map((block, index) => (
-          <React.Fragment key={index}>
-            <Column span={{ medium: 1 }} />
-            <Column mobileSpaced span={{ medium: 5, large: 3 }}>
-              <RichTextRenderer block={block.content} />
-            </Column>
-          </React.Fragment>
-        ))}
-      </Grid>
-      <ImageGetStartedSub />
-      <Grid mt="" mb="" align="start">
-        {blocks.map((block, index) => (
-          <React.Fragment key={index}>
-            <Column span={{ medium: 1 }} />
-            <Column mobileSpaced span={{ medium: 5, large: 3 }}>
-              <RichTextRenderer block={block.content} />
-            </Column>
-          </React.Fragment>
-        ))}
-      </Grid>
-    </ScreenBuildBox>
-
-  </React.Fragment>
-
+            <Spacer />
+            {blocks.map((block, index) => (
+              <React.Fragment key={index}>
+                <Column span={{ medium: 1 }} />
+                <Column mobileSpaced span={{ medium: 5, large: 3 }}>
+                  <RichTextRenderer block={block.content} />
+                </Column>
+              </React.Fragment>
+            ))}
+          </Grid>          
+        </React.Fragment>
+      )
+      : (
+        <React.Fragment>
+          <Grid mt="" mb="" align="start">
+            {blocks.map((block, index) => (
+              <React.Fragment key={index}>
+                <Column span={{ medium: 1 }} />
+                <Column mobileSpaced span={{ medium: 5, large: 3 }}>
+                  <RichTextRenderer block={block.content} />
+                </Column>
+              </React.Fragment>
+            ))}
+          </Grid>
+          <ImageGetStartedSub />
+          <Grid mt="" mb="" align="start">
+            {blocks.map((block, index) => (
+              <React.Fragment key={index}>
+                <Column span={{ medium: 1 }} />
+                <Column mobileSpaced span={{ medium: 5, large: 3 }}>
+                  <RichTextRenderer block={block.content} />
+                </Column>
+              </React.Fragment>
+            ))}
+          </Grid>
+        </React.Fragment>
+      )
+    }
+  </ResponsiveContext.Consumer>
 )
 
 const ImageGetStartedSub = () => (

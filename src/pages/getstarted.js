@@ -371,7 +371,7 @@ const GetStartedPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid mt="" mb="" align="start">
+        <Grid noMargin align="start">
           {block2.map((functionality, index) => (
             <React.Fragment key={index}>
               <Column span={{ medium: 1 }} />
