@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
+import { Box, Button, Layer as GrommetLayer, ResponsiveContext, RoutedButton } from "grommet";
 import { StaticQuery, graphql, navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -255,6 +255,9 @@ class Navigation extends React.Component {
                         </Item>
                       </List>
                     </PaddedItem>
+                    <PaddedItem>
+                      <RoutedButton label="Get Started" path="/getstarted" />
+                    </PaddedItem>
 
                     {/* Call To Action */}
                     {enableNavigationCallToAction && (
@@ -302,6 +305,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
             <MobileLink to="/ecosystem">Ecosystem</MobileLink>
             <MobileLink to="/news">News</MobileLink>
             <MobileLink to="/about">About</MobileLink>
+            <MobileLink to="/getstarted">Get Started</MobileLink>
           </Box>
         </Layer>
       )
