@@ -48,6 +48,7 @@ const Logo = styled.img`
 const PaddedItem = styled(Item)`
   padding: 1.5rem 0;
   line-height: 1rem;
+  
 `;
 
 const Layer = styled(GrommetLayer)`
