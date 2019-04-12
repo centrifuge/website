@@ -138,10 +138,10 @@ const GrandPage = ({ data }) => {
             <RichTextRenderer block={page.block2} />
           </Column>
           <Column mediumSpaced justifySelf="center" span={{ medium: 10, large: 4 }} mediumOrder={5}>
-            <Box style={{width: 150}}>
+            <Box style={{width: 170}}>
               <Image style={{width: '100%',maxWidth:106}} src={imgGrandEUFlag}/>
-              <Text style={{lineHeight:"2px"}} weight={500} size="medium" >EUROPAISCHE UNION</Text>
-              <Text style={{lineHeight:"2px"}} size="small">Europaishcer Fonds fur regionale Entwicklung</Text>
+              <Text style={{lineHeight:"21px"}} weight={500} size="large" >EUROPAISCHE UNION</Text>
+              <Text style={{lineHeight:"15px"}} size="small">Europaishcer Fonds fur regionale Entwicklung</Text>
             </Box>
           </Column>
           <Column mediumSpaced span={{ medium: 10, large: 4 }} mediumOrder={8}>
