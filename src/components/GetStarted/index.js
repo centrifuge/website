@@ -79,7 +79,7 @@ const BuildItem = ({blocks }) => (
       )
       : (
         <React.Fragment>
-          <Grid mt="" mb="" align="start">
+          <Grid noMargin align="start">
             {blocks.map((block, index) => (
               <React.Fragment key={index}>
                 <Column span={{ medium: 1 }} />
@@ -90,7 +90,7 @@ const BuildItem = ({blocks }) => (
             ))}
           </Grid>
           <ImageGetStartedSub />
-          <Grid mt="" mb="" align="start">
+          <Grid noMargin align="start">
             {blocks.map((block, index) => (
               <React.Fragment key={index}>
                 <Column span={{ medium: 1 }} />
