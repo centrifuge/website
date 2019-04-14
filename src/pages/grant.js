@@ -110,7 +110,7 @@ const staticPage = {
   },      
   }
 
-const GrandPage = ({ data }) => {
+const GrantPage = ({ data }) => {
   //const page = data.allContentfulPageTechnology.edges[0].node;
   const page = staticPage;
   return (
@@ -158,7 +158,7 @@ const GrandPage = ({ data }) => {
   );
 };
 
-export const GrandPageQuery = graphql`
+export const GrantPageQuery = graphql`
   query {
     allContentfulPageTechnology {
       edges {
@@ -184,4 +184,4 @@ export const GrandPageQuery = graphql`
   }
 `;
 
-export default GrandPage;
+export default GrantPage;
