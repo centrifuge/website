@@ -50,11 +50,22 @@ const TechnologyPage = ({ data }) => {
 
       <Container>
         {/* Block 3 */}
+        <Grid justify="start" align="start">
+          {page.block2.map((block, index) => (
+            <React.Fragment key={index}>
+              <Column span={{ medium: 4, large: 3 }} mobileSpaced>
+                <RichTextRenderer block={block.content} />
+              </Column>
+              {!lastInArray(page.block2, index) && <Spacer />}
+            </React.Fragment>
+          ))}
+        </Grid>
+{/* 
         <Grid justify="center">
           <Column span={{ medium: 12, large: 12 }} textAlign="center">
             <RichTextRenderer block={page.block3} />
           </Column>
-        </Grid>
+        </Grid> */}
       </Container>
     </Layout>
   );
