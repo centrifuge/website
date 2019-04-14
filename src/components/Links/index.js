@@ -11,10 +11,12 @@ export const unstyledLinkStyles = css`
   &:hover,
   &:focus {
     text-decoration: underline;
+    color : #2762FF;
   }
 
   &:active {
-    opacity: 0.9;
+    /* opacity: 0.9; */
+    color : #2762FF;
   }
 `;
 

@@ -12,6 +12,12 @@ const GridWrapper = styled(Box)`
         flex-direction: column-reverse;
       }
     `}
+  ${props =>
+    props.noMargin &&
+    css`
+      margin-top: 0;
+      margin-bottom: 0;
+    `}    
 `;
 
 const StyledGrid = styled.section`
@@ -27,8 +33,8 @@ const StyledGrid = styled.section`
   }
 `;
 
-const Grid = ({ children, align, justify, mt, mb, staggered, ...rest }) => (
-  <GridWrapper staggered={staggered} margin={{ top: mt, bottom: mb }}>
+const Grid = ({ children, align, justify, mt, mb, staggered, noMargin, ...rest }) => (
+  <GridWrapper staggered={staggered} noMargin={noMargin} margin={{ top: mt, bottom: mb }}>
     <StyledGrid
       align={align}
       justify={justify}

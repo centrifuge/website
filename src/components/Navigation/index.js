@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
+import { Box, Button, Layer as GrommetLayer, ResponsiveContext, RoutedButton } from "grommet";
 import { StaticQuery, graphql, navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -48,6 +48,7 @@ const Logo = styled.img`
 const PaddedItem = styled(Item)`
   padding: 1.5rem 0;
   line-height: 1rem;
+  
 `;
 
 const Layer = styled(GrommetLayer)`
@@ -255,7 +256,6 @@ class Navigation extends React.Component {
                         </Item>
                       </List>
                     </PaddedItem>
-
                     {/* Call To Action */}
                     {enableNavigationCallToAction && (
                       <Item>
@@ -302,6 +302,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
             <MobileLink to="/ecosystem">Ecosystem</MobileLink>
             <MobileLink to="/news">News</MobileLink>
             <MobileLink to="/about">About</MobileLink>
+            <MobileLink to="/getstarted">Get Started</MobileLink>
           </Box>
         </Layer>
       )
