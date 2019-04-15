@@ -87,10 +87,10 @@ const BlockInternalLink = () => (
   <Item>
     <List>
       <FooterLinkItem to="/data-privacy-policy">Data Privacy Policy</FooterLinkItem>
-      <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
       <FooterLinkItem to="/security">Security</FooterLinkItem>
+      <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
       <br/><br/><br/>
-      <FooterLinkItem to="/grand">
+      <FooterLinkItem to="/grant">
         <Box direction="row">
           <Image height={24} src={imgGrandEUFlag}/>
           <Box direction="column" margin={{"top":"2px","left":"11px"}}>

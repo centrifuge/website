@@ -16,7 +16,6 @@ import technologyBig from "../../images/technology_big.svg";
 
 const TechnologyPage = ({ data }) => {
   const page = data.allContentfulPageTechnology.edges[0].node;
-
   return (
     <Layout>
       <SEO {...page.seo} />
@@ -51,7 +50,7 @@ const TechnologyPage = ({ data }) => {
       <Container>
         {/* Block 3 */}
         <Grid justify="start" align="start">
-          {page.block2.map((block, index) => (
+          {page.block3.map((block, index) => (
             <React.Fragment key={index}>
               <Column span={{ medium: 4, large: 3 }} mobileSpaced>
                 <RichTextRenderer block={block.content} />
@@ -60,12 +59,6 @@ const TechnologyPage = ({ data }) => {
             </React.Fragment>
           ))}
         </Grid>
-{/* 
-        <Grid justify="center">
-          <Column span={{ medium: 12, large: 12 }} textAlign="center">
-            <RichTextRenderer block={page.block3} />
-          </Column>
-        </Grid> */}
       </Container>
     </Layout>
   );
@@ -89,7 +82,9 @@ export const TechnologyPageQuery = graphql`
             }
           }
           block3 {
-            contentAST
+            content {
+              contentAST
+            }
           }
         }
       }

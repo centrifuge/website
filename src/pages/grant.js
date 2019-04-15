@@ -7,112 +7,23 @@ import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import Animation from "../components/Animation";
-import { RichTextRenderer, lastInArray } from "../helpers";
-
+import { RichTextRenderer } from "../helpers";
 import imgGrandEU from "../images/grand/grand_eu.png";
-import imgGrandEUFlag from "../images/grand/grand_eu_flag.png";
-const staticPage = {
-  block1: {
-    "contentAST": {
-      "data": {},
-      "content": [
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Centrifuge  is  partially  supported  by  the  European  Regional  Development Fund (ERDF) to develop a scalable blockchain for the financial supply chain.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-1"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Centrifuge Forschungsprojekt dcosp (Decentralized Centrifuge OS Sidechain Project). Gefördert vom Pro FIT Programm der Investitionsbank Berlin erforscht und entwickelt Centrifuge ein dezentralisiertes Operating System für die Financial Supply Chain. Dieses Projekt wird kofinanziert durch den Europäischen Fonds für regionale Entwicklung (EFRE).",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-      ],
-      "nodeType": "document"
-    }
-  },
-  block2: {
-    "contentAST": {
-      "data": {},
-      "content": [
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Projektbeschreibung",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-1"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Das Centrifuge OS ist eine dezentrale Plattform, die eine neue Generation von Anwendungen für die Financial Supply Chain unterstützt. Sie fungiert einerseits als digitales und manipulationssicheres System für Unternehmen zum Austausch von Geschäftsdokumenten (z. B. Rechnungen, Bestellungen) und bietet gleichzeitig die Möglichkeit, dokumentierte Unternehmensbeziehungen neutral zu evaluieren. Die dezentrale Datenschicht gepaart mit öffentlicher Verifizierbarkeit und nachweisbaren Geschäftsbeziehungen bildet die Grundlage, die Art und Weise wie Unternehmen in der globalen Lieferkette miteinander interagieren zu revolutionieren.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        }
-      ],
-      "nodeType": "document"
-    }
-  },    
-  block3: {
-    "contentAST": {
-      "data": {},
-      "content": [
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Projektziele und -ergebnisse:",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-1"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Ziel des Projekts ist es, die Financial Supply Chain auf die Blockchain zu bringen, damit Ineffizienzen beseitigt, unnötigen Mittelsmännern zuvorgekommen und eine uneingeschränkte Datensouveränität geschaffen wird. Als Ergebnis liegt eine dezentrale Plattform vor, die durch ein Netzwerk von Centrifuge Nodes den Datenaustausch auf P2P-Ebene verwaltet und Daten in der öffentlichen Blockchain verankert. Die Centrifuge Sidechain garantiert dabei einen schnellen Durchsatz zu niedrigen Kosten und der neuartige Einsatz von zk-SNARKs ermöglicht die kenntnisfreie Verifizierung von Transaktionen",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        }
-      ],
-      "nodeType": "document"
-    }
-  },      
-  }
+
+const EUSubItem = ({block}) =>  {
+  console.log(block);
+  return (
+    <Box style={{width: 170}}>
+    <Image style={{width: '100%',maxWidth:106}} src={block.mark.file.url} alt={block.mark.file.fileName}/>
+    <Text style={{lineHeight:"21px"}} weight={500} size="large" >{block.title}</Text>
+    <Text style={{lineHeight:"15px"}} size="small">{block.description}</Text>
+  </Box>    
+  )
+}
 
 const GrantPage = ({ data }) => {
-  //const page = data.allContentfulPageTechnology.edges[0].node;
-  const page = staticPage;
+  const page = data.allContentfulPageGrant.edges[0].node;
+  console.log(page);
   return (
     <Layout>
       <SEO {...page.seo} />
@@ -138,14 +49,10 @@ const GrantPage = ({ data }) => {
             <RichTextRenderer block={page.block2} />
           </Column>
           <Column mediumSpaced justifySelf="center" span={{ medium: 10, large: 4 }} mediumOrder={5}>
-            <Box style={{width: 170}}>
-              <Image style={{width: '100%',maxWidth:106}} src={imgGrandEUFlag}/>
-              <Text style={{lineHeight:"21px"}} weight={500} size="large" >EUROPAISCHE UNION</Text>
-              <Text style={{lineHeight:"15px"}} size="small">Europaishcer Fonds fur regionale Entwicklung</Text>
-            </Box>
+            <EUSubItem block={page.block3} />
           </Column>
           <Column mediumSpaced span={{ medium: 10, large: 4 }} mediumOrder={8}>
-            <RichTextRenderer block={page.block3} />
+            <RichTextRenderer block={page.block4} />
           </Column>
           <Column span={{medium:1}} mediumOrder={1} />
           <Column span={{medium:1}} mediumOrder={3} />
@@ -160,7 +67,7 @@ const GrantPage = ({ data }) => {
 
 export const GrantPageQuery = graphql`
   query {
-    allContentfulPageTechnology {
+    allContentfulPageGrant {
       edges {
         node {
           seo {
@@ -171,11 +78,19 @@ export const GrantPageQuery = graphql`
             contentAST
           }
           block2 {
-            content {
-              contentAST
-            }
+            contentAST
           }
           block3 {
+            mark {
+              file {
+                url
+                fileName
+              }
+            }
+            title
+            description
+          }
+          block4 {
             contentAST
           }
         }
