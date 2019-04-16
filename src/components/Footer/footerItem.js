@@ -49,9 +49,9 @@ const BlockFirstAddress = () => (
 const BlockSecondAddress = () => (
   <FooterExternalLinkItem href="https://goo.gl/maps/nKjRqRUnsDF2">
     <Address>
-      Berlin
+      Centrifuge GmbH
       <br />
-      Full Node, Skalitzer Strasse 85-86
+      Glogauer Straße 6
       <br />
       10999 Berlin
     </Address>
