@@ -31,7 +31,7 @@ const FooterLinkItem = ({ children, to, ...rest }) => (
 );
 
 const FooterItem = styled(Item)`
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 `;
 
 const BlockFirstAddress = () => (
@@ -93,7 +93,7 @@ const BlockInternalLink = () => (
       <FooterLinkItem to="/grant">
         <Box direction="row">
           <Image height={24} src={imgGrandEUFlag}/>
-          <Box direction="column" margin={{"top":"2px","left":"11px"}}>
+          <Box direction="column" margin={{"top":"2px","left":"12px"}}>
             <Text size='6px'>EUROPÄISCHE UNION</Text>
             <Text size='5px'>Europäischer Fonds für<br/>regionale Entwicklung</Text>
           </Box>
