@@ -15,6 +15,7 @@ const FooterContent = styled(List)`
     > li {
       margin-bottom: 48px;
     }
+    margin-bottom: 70px;
   }
 
   @media only screen and (min-width: 769px) {

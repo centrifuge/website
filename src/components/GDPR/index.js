@@ -19,12 +19,12 @@ const GDPR = () => {
       : setBannerEnabled(true)
   );
 
-  if (!bannerEnabled) return null;
+  // if (!bannerEnabled) return null;
 
   return (
     <Banner
       background="alert"
-      pad={{ vertical: "small", horizontal: "medium" }}
+      pad={{ vertical: "xsmall", horizontal: "medium" }}
     >
       <Box direction="row-responsive" justify="between" align="center">
         <Paragraph margin={{ vertical: "xsmall" }}>

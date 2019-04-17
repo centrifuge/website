@@ -62,7 +62,7 @@ const GetStartedPage = ({ data }) => {
           <Column span={{ medium: 6, large: 6 }}>
             <DeepLink id="use-cases">
               <RichTextRenderer block={page.block4} />
-              <Button plain target="_blank" rel="noopener noreferrer" href={'#'}>
+              <Button plain target="_blank" rel="noopener noreferrer" href={'/ecosystem/#use-cases'}>
                 See our Usecases
               </Button>
             </DeepLink>
