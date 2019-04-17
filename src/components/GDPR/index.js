@@ -19,7 +19,7 @@ const GDPR = () => {
       : setBannerEnabled(true)
   );
 
-  // if (!bannerEnabled) return null;
+  if (!bannerEnabled) return null;
 
   return (
     <Banner

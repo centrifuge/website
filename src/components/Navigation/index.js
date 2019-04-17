@@ -8,7 +8,7 @@ import { Menu } from "styled-icons/feather/Menu";
 
 import Container from "../Container";
 import { List, Item } from "../List";
-import { InternalLink } from "../Links";
+import { InternalLink, ExternalLink } from "../Links";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
@@ -21,6 +21,15 @@ const NavLink = ({ children, to }) => (
   >
     {children}
   </InternalLink>
+);
+
+const ExternalNavLink = ({ children, href, ...rest }) => (
+  <ExternalLink 
+    style={{ fontWeight: "var(--fw-medium)" }}
+    activeStyle={{ color: "var(--c-brand)" }}
+    href={href} {...rest}>
+    {children}
+  </ExternalLink>
 );
 
 const BrandLink = () => (
@@ -217,6 +226,12 @@ class Navigation extends React.Component {
                       <NavLink to="/technology">Technology</NavLink>
                       <List>
                         <Item>
+                          <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
+                            Developer Docs
+                          </ExternalNavLink>
+                          <NavLink to="/technology/download">
+                            Download
+                          </NavLink>
                           <NavLink to="/technology/contribute">
                             Contribute
                           </NavLink>
