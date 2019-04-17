@@ -229,7 +229,7 @@ class Navigation extends React.Component {
                           <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
                             Developer Docs
                           </ExternalNavLink>
-                          <NavLink to="/technology/download">
+                          <NavLink to="/technology#last-section">
                             Download
                           </NavLink>
                           <NavLink to="/technology/contribute">
