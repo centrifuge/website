@@ -76,12 +76,12 @@ const GetStartedPage = ({ data }) => {
 
         {/* Block 6 */}        
         <Grid align="start">
-          <Column mediumSpaced span={{ medium: 9, large: 4 }}>
+          <Column mediumSpaced span={{ medium: 9, large: 5 }}>
             <RichTextRenderer block={page.block6[0].content} />
           </Column>
-          <Column span={{ medium: 3, large: 2 }}/>
-          <Column span={{ medium: 3, large: 2 }}/>
-          <Column mediumSpaced span={{ medium: 9, large: 4 }}>
+          <Column span={{ medium: 3, large: 1 }}/>
+          <Column span={{ medium: 3, large: 1 }}/>
+          <Column mediumSpaced span={{ medium: 9, large: 5 }}>
             <RichTextRenderer block={page.block6[1].content} />
           </Column>
         </Grid>

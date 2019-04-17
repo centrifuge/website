@@ -47,7 +47,7 @@ const TechnologyPage = ({ data }) => {
       {/* Image */}
       <FullWidthImage src={technologyBig} />
 
-      <Container>
+      <Container id="last-section">
         {/* Block 3 */}
         <Grid justify="start" align="start">
           {page.block3.map((block, index) => (

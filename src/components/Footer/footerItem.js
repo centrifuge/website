@@ -76,9 +76,11 @@ const BlockExternalLink = () => (
       <FooterExternalLinkItem href="https://developer.centrifuge.io/">
         Documentation
       </FooterExternalLinkItem>
-      <FooterExternalLinkItem href="/centrifuge_os_white_paper.pdf">
+      {/* <FooterExternalLinkItem href="/centrifuge_os_white_paper.pdf"> */}
+      {/* <FooterExternalLinkItem href="/centrifuge_os_white_paper.pdf">
         Technical papers
-      </FooterExternalLinkItem>
+      </FooterExternalLinkItem> */}
+      <FooterLinkItem to="/technology#last-section">Technical papers</FooterLinkItem>
     </List>
   </Item>
 )
