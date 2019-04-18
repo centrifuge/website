@@ -12,6 +12,7 @@ import { InternalLink, ExternalLink } from "../Links";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
+import { fontSize } from "grommet/utils/mixins";
 
 const NavLink = ({ children, to }) => (
   <InternalLink
@@ -274,7 +275,17 @@ class Navigation extends React.Component {
                     {/* Call To Action */}
                     {enableNavigationCallToAction && (
                       <Item>
-                        <Button size="small" label={buttonText} href={buttonUrl} />
+                        <Button 
+                          label={buttonText} 
+                          href={buttonUrl} 
+                          style={{
+                            paddingTop: '5px',
+                            paddingBottom: '5px',
+                            paddingLeft: '30px',
+                            paddingRight: '30px',
+                            fontSize: 14
+                          }}
+                          />
                       </Item>
                     )}
                   </Dropdowns>

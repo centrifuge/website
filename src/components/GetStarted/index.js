@@ -54,7 +54,7 @@ const BuildItem = ({blocks }) => (
       ? (
         <React.Fragment>
           <ImageGetStartedSub src={imgGetStartedSmall}/>
-          <Grid noMargin align="start">
+          <Grid noMargin align="start" >
             <Spacer />
             {blocks.slice(0,2).map((block, index) => (
               <React.Fragment key={index}>
