@@ -274,7 +274,7 @@ class Navigation extends React.Component {
                     {/* Call To Action */}
                     {enableNavigationCallToAction && (
                       <Item>
-                        <Button label={buttonText} href={buttonUrl} />
+                        <Button size="small" label={buttonText} href={buttonUrl} />
                       </Item>
                     )}
                   </Dropdowns>
