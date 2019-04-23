@@ -120,7 +120,7 @@ module.exports = {
             : `preview.contentful.com`,
         environment:
           process.env.PRODUCTION === "true"
-            ? `staging`
+            ? `master`
             : `staging`
       }
     },
