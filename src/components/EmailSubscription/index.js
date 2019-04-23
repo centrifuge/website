@@ -49,7 +49,6 @@ class SubscriptionForm extends React.Component {
               value={this.state.email}
               onChange={this.handleChange}
               placeholder="Your E-email"
-              // size={16}
               style={{
                 fontSize: 16,
               }}
@@ -59,7 +58,6 @@ class SubscriptionForm extends React.Component {
               type="submit"
               disabled={this.state.submitDisabled}
               alignSelf="center"
-              // size={16}
               style={{
                 fontSize:16,
                 paddingTop: 8,

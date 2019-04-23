@@ -45,7 +45,7 @@ const TechnologyPage = ({ data }) => {
       </Container>
 
       {/* Image */}
-      <FullWidthImage src={technologyBig} id="last-section"/>
+      <FullWidthImage src={technologyBig} id="download"/>
 
       <Container >
         {/* Block 3 */}

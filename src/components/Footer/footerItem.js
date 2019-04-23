@@ -80,7 +80,7 @@ const BlockExternalLink = () => (
       {/* <FooterExternalLinkItem href="/centrifuge_os_white_paper.pdf">
         Technical papers
       </FooterExternalLinkItem> */}
-      <FooterLinkItem to="/technology#last-section">Technical papers</FooterLinkItem>
+      <FooterLinkItem to="/technology#download">Technical papers</FooterLinkItem>
     </List>
   </Item>
 )
