@@ -16,10 +16,10 @@ import technologyBig from "../../images/technology_big.svg";
 
 const TechnologyPage = ({ data }) => {
   const page = data.allContentfulPageTechnology.edges[0].node;
-
   return (
     <Layout>
       <SEO {...page.seo} />
+
       <Container>
         {/* Block 1 */}
         <Grid>
@@ -46,14 +46,19 @@ const TechnologyPage = ({ data }) => {
       </Container>
 
       {/* Image */}
-      <FullWidthImage src={technologyBig} />
+      <FullWidthImage src={technologyBig} id="download"/>
 
-      <Container>
+      <Container > 
         {/* Block 3 */}
-        <Grid justify="center">
-          <Column span={{ medium: 12, large: 12 }} textAlign="center">
-            <RichTextRenderer block={page.block3} />
-          </Column>
+        <Grid justify="start" align="start">
+          {page.block3.map((block, index) => (
+            <React.Fragment key={index}>
+              <Column span={{ medium: 4, large: 3 }} mobileSpaced>
+                <RichTextRenderer block={block.content} />
+              </Column>
+              {!lastInArray(page.block2, index) && <Spacer />}
+            </React.Fragment>
+          ))}
         </Grid>
       </Container>
     </Layout>
@@ -78,7 +83,9 @@ export const TechnologyPageQuery = graphql`
             }
           }
           block3 {
-            contentAST
+            content {
+              contentAST
+            }
           }
         }
       }

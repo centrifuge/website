@@ -12,6 +12,12 @@ const GridWrapper = styled(Box)`
         flex-direction: column-reverse;
       }
     `}
+  ${props =>
+    props.noMargin &&
+    css`
+      margin-top: 0;
+      margin-bottom: 0;
+    `}    
 `;
 
 const StyledGrid = styled.section`
@@ -21,18 +27,19 @@ const StyledGrid = styled.section`
   @media only screen and (min-width: ${breakpoints.small.value + 1}px) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: 32px;
+    grid-column-gap: ${props => props.gap ? props.gap : 21}px;
     align-items: ${props => props.align && props.align};
     justify-items: ${props => props.justify && props.justify};
   }
 `;
 
-const Grid = ({ children, align, justify, mt, mb, staggered, ...rest }) => (
-  <GridWrapper staggered={staggered} margin={{ top: mt, bottom: mb }}>
+const Grid = ({ children, align, justify, mt, mb, staggered, noMargin, gap, ...rest }) => (
+  <GridWrapper staggered={staggered} noMargin={noMargin} margin={{ top: mt, bottom: mb }}>
     <StyledGrid
       align={align}
       justify={justify}
       columns={{ count: 12, size: "auto" }}
+      gap = {gap}
       {...rest}
     >
       {children}

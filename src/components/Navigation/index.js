@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
+import { Box, Button, Layer as GrommetLayer, ResponsiveContext, RoutedButton } from "grommet";
 import { StaticQuery, graphql, navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -8,10 +8,11 @@ import { Menu } from "styled-icons/feather/Menu";
 
 import Container from "../Container";
 import { List, Item } from "../List";
-import { InternalLink } from "../Links";
+import { InternalLink, ExternalLink } from "../Links";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
+import { fontSize } from "grommet/utils/mixins";
 
 const NavLink = ({ children, to }) => (
   <InternalLink
@@ -21,6 +22,15 @@ const NavLink = ({ children, to }) => (
   >
     {children}
   </InternalLink>
+);
+
+const ExternalNavLink = ({ children, href, ...rest }) => (
+  <ExternalLink 
+    style={{ fontWeight: "var(--fw-medium)" }}
+    activeStyle={{ color: "var(--c-brand)" }}
+    href={href} {...rest}>
+    {children}
+  </ExternalLink>
 );
 
 const BrandLink = () => (
@@ -48,6 +58,7 @@ const Logo = styled.img`
 const PaddedItem = styled(Item)`
   padding: 1.5rem 0;
   line-height: 1rem;
+  
 `;
 
 const Layer = styled(GrommetLayer)`
@@ -216,6 +227,12 @@ class Navigation extends React.Component {
                       <NavLink to="/technology">Technology</NavLink>
                       <List>
                         <Item>
+                          <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
+                            Developer Docs
+                          </ExternalNavLink>
+                          <NavLink to="/technology#download">
+                            Download
+                          </NavLink>
                           <NavLink to="/technology/contribute">
                             Contribute
                           </NavLink>
@@ -255,11 +272,20 @@ class Navigation extends React.Component {
                         </Item>
                       </List>
                     </PaddedItem>
-
                     {/* Call To Action */}
                     {enableNavigationCallToAction && (
                       <Item>
-                        <Button primary label={buttonText} href={buttonUrl} />
+                        <Button 
+                          label={buttonText} 
+                          href={buttonUrl} 
+                          style={{
+                            paddingTop: '5px',
+                            paddingBottom: '5px',
+                            paddingLeft: '30px',
+                            paddingRight: '30px',
+                            fontSize: 14
+                          }}
+                          />
                       </Item>
                     )}
                   </Dropdowns>
@@ -302,6 +328,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
             <MobileLink to="/ecosystem">Ecosystem</MobileLink>
             <MobileLink to="/news">News</MobileLink>
             <MobileLink to="/about">About</MobileLink>
+            <MobileLink to="/getstarted">Get Started</MobileLink>
           </Box>
         </Layer>
       )

@@ -48,14 +48,25 @@ class SubscriptionForm extends React.Component {
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder="your@email.com"
+              placeholder="Your E-email"
+              style={{
+                fontSize: 16,
+              }}
             />
             <Button
               white
               type="submit"
               disabled={this.state.submitDisabled}
               alignSelf="center"
-              label="Join the list"
+              style={{
+                fontSize:16,
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 52,
+                paddingRight: 52
+
+              }}
+              label="Subscribe"
             />
           </FormWrapper>
         </form>

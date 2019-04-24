@@ -37,6 +37,31 @@ const StyledColumn = styled(Box)`
         `
       )}
     `}
+
+  ${props =>
+    props.mediumSpaced &&
+    css`
+      ${breakpointStyle(
+        breakpoints.medium,
+        css`
+          &:not(:last-child) {
+            margin-bottom: ${theme.global.edgeSize.xlarge};
+          }
+        `
+      )}
+    `}
+
+  ${props =>
+    props.mediumOrder &&
+    css`
+      ${breakpointStyle(
+        breakpoints.medium,
+        css`
+          order: ${props.mediumOrder};
+        `
+      )}
+    `}
+    
 `;
 
 const Column = ({ span, children, textAlign, justifySelf, ...rest }) => (
