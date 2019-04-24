@@ -19,6 +19,7 @@ const TechnologyPage = ({ data }) => {
   return (
     <Layout>
       <SEO {...page.seo} />
+      
       <Container>
         {/* Block 1 */}
         <Grid>
@@ -47,7 +48,7 @@ const TechnologyPage = ({ data }) => {
       {/* Image */}
       <FullWidthImage src={technologyBig} id="download"/>
 
-      <Container >
+      <Container > 
         {/* Block 3 */}
         <Grid justify="start" align="start">
           {page.block3.map((block, index) => (
