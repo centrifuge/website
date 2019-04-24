@@ -117,7 +117,11 @@ module.exports = {
         host:
           process.env.PRODUCTION === "true"
             ? `cdn.contentful.com`
-            : `preview.contentful.com`
+            : `preview.contentful.com`,
+        environment:
+          process.env.PRODUCTION === "true"
+            ? `master`
+            : `staging`
       }
     },
     {
