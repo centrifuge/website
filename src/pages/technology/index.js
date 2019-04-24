@@ -19,7 +19,8 @@ const TechnologyPage = ({ data }) => {
   return (
     <Layout>
       <SEO {...page.seo} />
-     <Container>
+
+      <Container>
         {/* Block 1 */}
         <Grid>
           <Column span={{ medium: 6, large: 6 }}>
