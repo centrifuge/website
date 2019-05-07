@@ -240,7 +240,7 @@ const SecurityPage = () => (
           </ul>
 
           <p>
-            We encourage (but don’t require) you to encrypt the information, with our.
+            We encourage (but don’t require) you to encrypt the information, with our <ExternalLink href="/security_at_centrifuge_io.asc">PGP Key</ExternalLink>.
           </p>
         </Column>
       </Grid>
