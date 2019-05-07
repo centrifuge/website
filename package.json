@@ -45,7 +45,7 @@
   },
   "scripts": {
     "build:all": "yarn build && yarn build:lambda",
-    "build": "gatsby build",
+    "build": "node utils/prefetch_urls.js && gatsby build",
     "develop": "gatsby develop",
     "start": "run-p -l start:gatsby start:lambda",
     "start:gatsby": "yarn develop",
