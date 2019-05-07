@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
     process.env.SLACK_TOKEN
   }&set_active=true`;
 
-  return await fetch(`${SLACK_INVITE_ENDPOINT}?${toSlack}`)
+  return fetch(`${SLACK_INVITE_ENDPOINT}?${toSlack}`)
     .then(res => res.json())
     .then(json => ({
       statusCode: 200,
