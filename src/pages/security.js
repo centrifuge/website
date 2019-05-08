@@ -77,6 +77,16 @@ const SecurityPage = () => (
             </li>
           </ul>
           <p>
+            <strong>Rewards</strong>
+          </p>
+          <p>
+            The minimum reward is 100 DAI. The reward amount depends on the vulnerability severity and ease of exploit.
+          </p>
+          <p>
+            Payments are made via our <ExternalLink href="https://gitcoin.co/funding/details/?url=https://github.com/centrifuge/security/issues/1">Security Gitcoin bounty</ExternalLink> only.
+            Rewards will only be granted for the first submission of a valid in-scope vulnerability. 
+          </p>
+          <p>
             <strong>Scope</strong>
           </p>
           <p>
@@ -230,7 +240,7 @@ const SecurityPage = () => (
           </ul>
 
           <p>
-            We encourage (but don’t require) you to encrypt the information, with our [PGP key].
+            We encourage (but don’t require) you to encrypt the information, with our PGP Key <ExternalLink href="http://keys.gnupg.net/pks/lookup?op=vindex&fingerprint=on&search=0x0A646339E40C2151">[D5B9 6F0E 091A 0ABE 2A7D  F620 0A64 6339 E40C 2151]</ExternalLink>.
           </p>
         </Column>
       </Grid>
