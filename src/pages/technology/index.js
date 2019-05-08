@@ -46,11 +46,11 @@ const TechnologyPage = ({ data }) => {
       </Container>
 
       {/* Image */}
-      <FullWidthImage src={technologyBig} id="download"/>
+      <FullWidthImage src={technologyBig} />
 
-      <Container > 
+      <Container id="download" css={`margin-top: -100px; padding-top: 100px;`} > 
         {/* Block 3 */}
-        <Grid justify="start" align="start">
+        <Grid justify="start" align="start" mt={0}>
           {page.block3.map((block, index) => (
             <React.Fragment key={index}>
               <Column span={{ medium: 4, large: 3 }} mobileSpaced>
