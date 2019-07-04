@@ -84,7 +84,7 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/centrifuge-logo.png` // This path is relative to the root of the site.
       },
-    }
+    },
     {
       resolve: "gatsby-plugin-mailchimp",
       options: {

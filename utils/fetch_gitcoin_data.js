@@ -61,7 +61,7 @@ function getGitcoinOpenBounties() {
   const isEmpty = require('lodash.isempty')
 
   return fetchData(
-    `https://gitcoin.co/api/v0.1/bounties/?network=mainnet&org=centrifuge&order_by=-_val_usd_db&limit=30`,
+    `https://gitcoin.co/api/v0.1/bounties/?network=mainnet&org=centrifuge&order_by=-_val_usd_db&limit=20`,
   )
     .then(res => res.filter(bounty => !['cancelled', 'done'].includes(bounty.status)))
     .then(res =>
