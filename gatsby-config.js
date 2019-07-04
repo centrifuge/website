@@ -102,7 +102,7 @@ module.exports = {
         path:
           process.env.NODE_ENV == "production"
             ? path.join("/", "opt", "build", "cache", "gitcoinData")
-            : "./utils/gitcoinData/",
+            : "./gitcoinData/",
       },
     },
     {

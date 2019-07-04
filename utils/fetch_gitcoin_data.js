@@ -4,11 +4,11 @@ const fetch = require('node-fetch')
 const path = require('path')
 const { writeFile } = require('fs-extra')
 
-const isProduction = process.env.NODE_ENV == 'production'
+const isProduction = process.env.NODE_ENV == "production"
 
 const CACHE_FOLDER = isProduction
   ? path.join('/', 'opt', 'build', 'cache', 'gitcoinData')
-  : path.resolve(__dirname, 'gitcoinData')
+  : path.resolve(__dirname, '', 'gitcoinData')
 
 async function fetchData(url) {
   return fetch(url).then(res => res.json())
