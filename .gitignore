@@ -56,7 +56,7 @@ typings/
 
 # gatsby files
 .cache/
-# public
+public
 functions
 
 # Mac files
