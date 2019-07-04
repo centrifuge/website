@@ -44,7 +44,7 @@
     "styled-icons": "^6.8.0"
   },
   "scripts": {
-    "build:all": "yarn build && yarn build:lambda",
+    "build:all": "yarn build:lambda && yarn build",
     "build": "node utils/prefetch_urls.js && gatsby build",
     "develop": "gatsby develop",
     "start": "run-p -l start:gatsby start:lambda",

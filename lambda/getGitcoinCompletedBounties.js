@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 exports.handler = async (event, context) =>
   fetch(
-    `https://gitcoin.co/api/v0.1/bounties/?network=mainnet&idx_status=done&order_by=-_val_usd_db&org=centrifuge&limit=100`
+    `https://gitcoin.co/api/v0.1/bounties/?network=mainnet&idx_status=done&order_by=-_val_usd_db&org=centrifuge`
   )
     .then(res => res.json())
     .then(res => {
