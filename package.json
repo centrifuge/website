@@ -51,8 +51,8 @@
     "start:gatsby": "yarn develop",
     "format": "prettier --write \"./**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "start:lambda": "netlify-lambda serve lambda -t 45",
-    "build:lambda": "netlify-lambda build lambda -t 45"
+    "start:lambda": "netlify-lambda serve lambda",
+    "build:lambda": "netlify-lambda build lambda"
   },
   "devDependencies": {
     "dotenv": "^6.2.0",
