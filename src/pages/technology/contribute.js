@@ -1,6 +1,6 @@
-import React from "react";
-import { graphql } from "gatsby";
-import styled from "styled-components";
+import React from 'react'
+import { graphql } from 'gatsby'
+import styled from 'styled-components'
 import {
   Box,
   Text,
@@ -9,23 +9,23 @@ import {
   Heading,
   Grid as GrommetGrid,
   Image,
-  ResponsiveContext
-} from "grommet";
+  ResponsiveContext,
+} from 'grommet'
 
-import Layout from "../../components/Layout";
-import SEO from "../../components/SEO";
-import Container from "../../components/Container";
-import Grid from "../../components/Grid";
-import Column, { Spacer } from "../../components/Column";
-import Animation from "../../components/Animation";
-import theme from "../../components/Theme/theme";
-import { Gitcoin } from "../../components/Icons";
-import { ExternalLink } from "../../components/Links";
-import Tag from "../../components/Tag";
+import Layout from '../../components/Layout'
+import SEO from '../../components/SEO'
+import Container from '../../components/Container'
+import Grid from '../../components/Grid'
+import Column, { Spacer } from '../../components/Column'
+import Animation from '../../components/Animation'
+import theme from '../../components/Theme/theme'
+import { Gitcoin } from '../../components/Icons'
+import { ExternalLink } from '../../components/Links'
+import Tag from '../../components/Tag'
 
-import { RichTextRenderer, responsiveGrid } from "../../helpers";
+import { RichTextRenderer, responsiveGrid } from '../../helpers'
 
-import block1Animation from "../../lottie/Ecosystem_Q.json";
+import block1Animation from '../../lottie/Ecosystem_Q.json'
 
 const HoverBox = styled(Box)`
   transition-property: box-shadow;
@@ -34,44 +34,42 @@ const HoverBox = styled(Box)`
   &:hover {
     box-shadow: ${theme.global.elevation.light.medium};
   }
-`;
+`
 
 const calculateFullBountyValue = bounty => {
   if (bounty.additional_funding_summary.DAI)
     return (
-      Number(bounty.additional_funding_summary.DAI.amount) +
-      Number(bounty.value_in_usdt_now)
-    ).toFixed(2);
+      Number(bounty.additional_funding_summary.DAI.amount) + Number(bounty.value_in_usdt_now)
+    ).toFixed(2)
 
-  return bounty.value_in_usdt_now;
-};
+  return bounty.value_in_usdt_now
+}
 
 const CardLink = ({ children, link, ...rest }) => (
-  <ExternalLink style={{ textDecoration: "none" }} href={link}>
+  <ExternalLink style={{ textDecoration: 'none' }} href={link}>
     <HoverBox
       fill="vertical"
       round="xsmall"
       elevation="small"
-      pad={{ left: "medium", vertical: "medium", right: "large" }}
+      pad={{ left: 'medium', vertical: 'medium', right: 'large' }}
       background="white"
-      {...rest}
-    >
+      {...rest}>
       {children}
     </HoverBox>
   </ExternalLink>
-);
+)
 
 const ContributePage = ({ data }) => {
-  const page = data.allContentfulPageTechnologyContribute.edges[0].node;
+  const page = data.allContentfulPageTechnologyContribute.edges[0].node
 
-  const openBounties = data.allLambdaGitcoinOpenBounties;
+  const openBounties = data.allLambdaGitcoinOpenBountiesJson
 
-  const hallOfFame = data.allLambdaGitcoinHallOfFame.edges;
+  const hallOfFame = data.allLambdaGitcoinHallOfFameJson.edges
 
   const {
     compensationPaid,
-    bountiesCompleted
-  } = data.allLambdaGitcoinCompletedBounties.edges[0].node;
+    bountiesCompleted,
+  } = data.allLambdaGitcoinCompletedBountiesJson.edges[0].node
 
   return (
     <Layout>
@@ -96,17 +94,14 @@ const ContributePage = ({ data }) => {
                 <GrommetGrid
                   fill="horizontal"
                   gap="medium"
-                  columns={responsiveGrid.ThreeTwoOne(size)}
-                >
+                  columns={responsiveGrid.ThreeTwoOne(size)}>
                   {page.block1Repos.map((repo, index) => (
                     <CardLink key={index} link={repo.link}>
                       <div>
                         <Text weight={600} size="large">
                           {repo.name}
                         </Text>
-                        <Paragraph margin={{ bottom: "none" }}>
-                          {repo.description}
-                        </Paragraph>
+                        <Paragraph margin={{ bottom: 'none' }}>{repo.description}</Paragraph>
                       </div>
                     </CardLink>
                   ))}
@@ -122,15 +117,15 @@ const ContributePage = ({ data }) => {
             <RichTextRenderer block={page.block2} />
 
             {/* Gitcoin Stats */}
-            <Box direction="row" margin={{ top: "large" }} justify="between">
+            <Box direction="row" margin={{ top: 'large' }} justify="between">
               <Box>
-                <Heading margin={{ bottom: "none" }} level="2">
+                <Heading margin={{ bottom: 'none' }} level="2">
                   {bountiesCompleted}
                 </Heading>
                 <Text>Bounties Completed</Text>
               </Box>
               <Box>
-                <Heading margin={{ bottom: "none" }} level="2">
+                <Heading margin={{ bottom: 'none' }} level="2">
                   ${compensationPaid.toFixed(2)}
                 </Heading>
                 <Text>Compensation Paid</Text>
@@ -143,56 +138,39 @@ const ContributePage = ({ data }) => {
           {/* Bounties */}
           <Column span={{ medium: 6, large: 6 }}>
             {openBounties !== null ? (
-              <Box
-                fill="horizontal"
-                direction="column"
-                gap="medium"
-                margin={{ bottom: "large" }}
-              >
+              <Box fill="horizontal" direction="column" gap="medium" margin={{ bottom: 'large' }}>
                 {openBounties.edges.map(bounty => (
-                  <CardLink
-                    link={bounty.node.url}
-                    direction="row"
-                    justify="between"
-                    align="center"
-                  >
+                  <CardLink link={bounty.node.url} direction="row" justify="between" align="center">
                     <Box basis="3/4">
                       <Text textAlign="start" weight={600} size="large">
-                        {bounty.node.title}{" "}
-                        <Tag background={bounty.node.bounty_type}>
-                          {bounty.node.bounty_type}
-                        </Tag>{" "}
+                        {bounty.node.title}{' '}
+                        <Tag background={bounty.node.bounty_type}>{bounty.node.bounty_type}</Tag>{' '}
                       </Text>
-                      <Box margin={{ top: "small" }}>
+                      <Box margin={{ top: 'small' }}>
                         <div>
                           <Box
                             as="span"
-                            style={{ display: "inline-flex" }}
-                            margin={{ right: "xsmall" }}
+                            style={{ display: 'inline-flex' }}
+                            margin={{ right: 'xsmall' }}
                             height="8px"
                             width="8px"
                             round="full"
                             background={bounty.node.status}
                           />
-                          <Text
-                            weight={600}
-                            style={{ textTransform: "capitalize" }}
-                          >
+                          <Text weight={600} style={{ textTransform: 'capitalize' }}>
                             {bounty.node.status}
                           </Text>
                         </div>
                       </Box>
                     </Box>
                     <Box basis="1/4" align="end">
-                      <Text weight="600">
-                        ${calculateFullBountyValue(bounty.node)}
-                      </Text>
+                      <Text weight="600">${calculateFullBountyValue(bounty.node)}</Text>
                     </Box>
                   </CardLink>
                 ))}
               </Box>
             ) : (
-              <Paragraph margin={{ top: "none" }}>
+              <Paragraph margin={{ top: 'none' }}>
                 There are no open bounties at this time. Check again soon.
               </Paragraph>
             )}
@@ -220,38 +198,28 @@ const ContributePage = ({ data }) => {
             return (
               <React.Fragment key={index}>
                 <Spacer />
-                <Column
-                  justifySelf="center"
-                  mobileSpaced
-                  span={{ medium: 6, large: 2 }}
-                >
-                  <Box align="center" margin={{ bottom: "medium" }}>
+                <Column justifySelf="center" mobileSpaced span={{ medium: 6, large: 2 }}>
+                  <Box align="center" margin={{ bottom: 'medium' }}>
                     <Image
-                      src={`https://gitcoin.co/dynamic/avatar/${
-                        famous.node.name
-                      }/`}
+                      src={`https://gitcoin.co/dynamic/avatar/${famous.node.name}/`}
                       alt={`${famous.node.name} avatar`}
                       width={96}
                       height={96}
                       style={{ borderRadius: 96 / 2 }}
                     />
-                    <Text margin={{ top: "small" }} weight={600} size="large">
+                    <Text margin={{ top: 'small' }} weight={600} size="large">
                       {famous.node.name}
                     </Text>
-                    <Text margin={{ bottom: "small" }}>
-                      {`${famous.node.count} ${
-                        famous.node.count > 1 ? "bounties" : "bounty"
-                      }`}
+                    <Text margin={{ bottom: 'small' }}>
+                      {`${famous.node.count} ${famous.node.count > 1 ? 'bounties' : 'bounty'}`}
                     </Text>
-                    <ExternalLink
-                      href={`https://gitcoin.co/profile/${famous.node.name}`}
-                    >
+                    <ExternalLink href={`https://gitcoin.co/profile/${famous.node.name}`}>
                       <Gitcoin />
                     </ExternalLink>
                   </Box>
                 </Column>
               </React.Fragment>
-            );
+            )
           })}
         </Grid>
 
@@ -272,8 +240,8 @@ const ContributePage = ({ data }) => {
         </Grid>
       </Container>
     </Layout>
-  );
-};
+  )
+}
 
 export const ContributePageQuery = graphql`
   query {
@@ -303,7 +271,7 @@ export const ContributePageQuery = graphql`
         }
       }
     }
-    allLambdaGitcoinOpenBounties(
+    allLambdaGitcoinOpenBountiesJson(
       limit: 4
       filter: { title: { ne: "String" } }
       sort: { fields: status, order: ASC }
@@ -324,7 +292,7 @@ export const ContributePageQuery = graphql`
         }
       }
     }
-    allLambdaGitcoinHallOfFame(
+    allLambdaGitcoinHallOfFameJson(
       filter: { name: { ne: null } }
       sort: { fields: count, order: DESC }
     ) {
@@ -335,9 +303,7 @@ export const ContributePageQuery = graphql`
         }
       }
     }
-    allLambdaGitcoinCompletedBounties(
-      filter: { compensationPaid: { ne: null } }
-    ) {
+    allLambdaGitcoinCompletedBountiesJson(filter: { compensationPaid: { ne: null } }) {
       edges {
         node {
           compensationPaid
@@ -346,6 +312,6 @@ export const ContributePageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default ContributePage;
+export default ContributePage

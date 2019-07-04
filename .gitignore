@@ -58,6 +58,7 @@ typings/
 .cache/
 public
 functions
+gitcoinData
 
 # Mac files
 .DS_Store

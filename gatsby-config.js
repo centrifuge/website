@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 
 const proxy = require("http-proxy-middleware");
 
@@ -25,7 +26,7 @@ const breezyServerOptions = {
     offering: "String"
   },
   verboseOutput: true
-};
+}
 
 const gitcoinServerOptions = {
   openBounties: {
@@ -82,29 +83,27 @@ module.exports = {
         theme_color: `#2762ff`,
         display: `minimal-ui`,
         icon: `src/images/centrifuge-logo.png` // This path is relative to the root of the site.
-      }
-    },
+      },
+    }
     {
       resolve: "gatsby-plugin-mailchimp",
       options: {
-        endpoint: `https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&amp;id=e00b1ece80`
-      }
+        endpoint: `https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&amp;id=e00b1ece80`,
+      },
     },
     {
       resolve: "gatsby-source-apiserver",
       options: breezyServerOptions
     },
+    `gatsby-transformer-json`,
     {
-      resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions.openBounties
-    },
-    {
-      resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions.hallOfFame
-    },
-    {
-      resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions.completedBounties
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path:
+          process.env.NODE_ENV == "production"
+            ? path.join("/", "opt", "build", "cache", "gitcoinData")
+            : "./utils/gitcoinData/",
+      },
     },
     {
       resolve: "gatsby-source-contentful",
@@ -114,14 +113,8 @@ module.exports = {
           process.env.PRODUCTION === "true"
             ? `e3b22c70dea0a1a493bb6d9ad550b73d8ce287d6b47fd9a6d624a0229a92eb9b`
             : `ae1115a81ba7be43ad060bdc094f907aff4275e9776fc1d3de7e1cc963f73612`,
-        host:
-          process.env.PRODUCTION === "true"
-            ? `cdn.contentful.com`
-            : `preview.contentful.com`,
-        environment:
-          process.env.PRODUCTION === "true"
-            ? `master`
-            : `staging`
+        host: process.env.PRODUCTION === "true" ? `cdn.contentful.com` : `preview.contentful.com`,
+        environment: process.env.PRODUCTION === "true" ? `master` : `staging`,
       }
     },
     {
@@ -133,8 +126,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId:
-          process.env.URL === "https://centrifuge.io" ? `UA-100764518-2` : ``,
+        trackingId: process.env.URL === "https://centrifuge.io" ? `UA-100764518-2` : ``,
         head: false,
         anonymize: true,
         respectDNT: true,
@@ -153,7 +145,7 @@ module.exports = {
         allPageHeaders: [
           "Link: </fonts/721263/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush",
           "Link: </fonts/721275/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush",
-          "Link: </fonts/721269/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush"
+          "Link: </fonts/721269/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush",
         ]
       }
     }
