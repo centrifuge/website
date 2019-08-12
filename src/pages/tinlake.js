@@ -10,6 +10,7 @@ import Hero from "../partials/tinlake/Hero"
 import WhatIsTinlake from "../partials/tinlake/WhatIsTinlake"
 import TinlakeWork from "../partials/tinlake/TinlakeWork"
 import TinlakeAssets from "../partials/tinlake/TinlakeAssets"
+import TinlakeFlow from "../partials/tinlake/TinlakeFlow"
 
 
 
@@ -32,8 +33,9 @@ const TinlakePage = () => {
            
            {/* Block 4 */}
            <TinlakeAssets />
-           
+
            {/* Block 5 */}
+           <TinlakeFlow />
 
          </Container>
       </ThemeContext.Extend>
