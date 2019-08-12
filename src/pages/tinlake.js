@@ -4,11 +4,11 @@ import { Heading, Paragraph, Image, Box, Grid as GrommetGrid , ThemeContext} fro
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
-import Grid from "../components/Grid";
-import Column, { Spacer } from "../components/Column";
-
 import tinlakeTheme from '../components/Theme/tinlakeTheme'
-import block2Image from "../images/Careers.svg";
+
+import Hero from '../partials/tinlake/Hero'
+
+
 
 const TinlakePage = () => {
 
@@ -19,18 +19,7 @@ const TinlakePage = () => {
          <Container>
 
            {/* Block 1 */}
-           <Grid>
-            <Column span={{ medium: 7, large: 7 }}>
-               <img alt="" src={block2Image} />
-            </Column>
-            <Spacer/>
-            <Column span={{ medium: 4, large: 4 }}>
-               <div>
-                  <Heading level={1} size="medium" margin={{bottom: "tinlakeH1MarginBt"}}>Tokenized Assets in DeFi</Heading>
-                  <Paragraph>Unlock the value of your real-world assets in the decentralized finance ecosystem. </Paragraph>
-               </div>
-            </Column>
-           </Grid>
+            <Hero />
 
            {/* Block 2 */}
            {/* Block 3 */}
