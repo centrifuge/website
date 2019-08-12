@@ -9,6 +9,7 @@ import tinlakeTheme from "../components/Theme/tinlakeTheme"
 import Hero from "../partials/tinlake/Hero"
 import WhatIsTinlake from "../partials/tinlake/WhatIsTinlake"
 import TinlakeWork from "../partials/tinlake/TinlakeWork"
+import TinlakeAssets from "../partials/tinlake/TinlakeAssets"
 
 
 
@@ -30,6 +31,8 @@ const TinlakePage = () => {
            <TinlakeWork />
            
            {/* Block 4 */}
+           <TinlakeAssets />
+           
            {/* Block 5 */}
 
          </Container>
