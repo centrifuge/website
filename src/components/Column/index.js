@@ -26,6 +26,26 @@ const StyledColumn = styled(Box)`
     `}
 
   ${props =>
+    props.mobileHide &&
+    css`
+      ${breakpointStyle(
+        breakpoints.small,
+        css`
+         display: none;
+        `
+      )}
+    `}
+
+  ${props =>
+    props.tabletHide &&
+    css`
+      display: flex;
+      @media only screen and (min-width: 769px) {
+         display: none; 
+      }
+    `}
+
+  ${props =>
     props.mobileSpaced &&
     css`
       ${breakpointStyle(
