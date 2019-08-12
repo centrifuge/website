@@ -1,12 +1,13 @@
 import React from "react";
-import { Heading, Paragraph, Image, Box, Grid as GrommetGrid , ThemeContext} from "grommet";
+import { ThemeContext } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
-import tinlakeTheme from '../components/Theme/tinlakeTheme'
+import tinlakeTheme from "../components/Theme/tinlakeTheme"
 
-import Hero from '../partials/tinlake/Hero'
+import Hero from "../partials/tinlake/Hero"
+import WhatIsTinlake from "../partials/tinlake/WhatIsTinlake"
 
 
 
@@ -19,9 +20,11 @@ const TinlakePage = () => {
          <Container>
 
            {/* Block 1 */}
-            <Hero />
+           <Hero />
 
            {/* Block 2 */}
+           <WhatIsTinlake />
+           
            {/* Block 3 */}
            {/* Block 4 */}
            {/* Block 5 */}
