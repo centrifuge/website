@@ -1,8 +1,8 @@
 import React from 'react'
-import { Heading, Paragraph, Box } from "grommet";
+import { Heading, Paragraph } from "grommet";
 
 import Grid from "../../../components/Grid";
-import Column, { Spacer } from "../../../components/Column";
+import Column from "../../../components/Column";
 
 import Image from './Image'
 

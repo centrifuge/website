@@ -6,7 +6,6 @@ import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
-import Animation from "../components/Animation";
 import { RichTextRenderer } from "../helpers";
 import imgGrandEU from "../images/grand/grand_eu.png";
 

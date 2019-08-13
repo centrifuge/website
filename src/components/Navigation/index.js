@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext, RoutedButton } from "grommet";
+import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
 import { StaticQuery, graphql, navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -12,7 +12,6 @@ import { InternalLink, ExternalLink } from "../Links";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
-import { fontSize } from "grommet/utils/mixins";
 
 const NavLink = ({ children, to }) => (
   <InternalLink
@@ -236,7 +235,7 @@ class Navigation extends React.Component {
                           <NavLink to="/technology/contribute">
                             Contribute
                           </NavLink>
-                          <NavLink to="/tinlake">
+                          <NavLink to="/technology/tinlake">
                             Tinlake
                           </NavLink>
                         </Item>

@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import { unstyledLinkStyles } from "./index";
 
 export const StyledGatsbyLink = styled(Link)`
-  ${props => props.unstyled && unstyledLinkStyles}
+  ${props => props.unstyled ? unstyledLinkStyles : ''}
 `;
 
 const InternalLink = ({ children, unstyled, ...rest }) => (
@@ -16,12 +16,12 @@ const InternalLink = ({ children, unstyled, ...rest }) => (
 );
 
 InternalLink.defaultProps = {
-  unstyled: true
+  unstyled: 1
 };
 
 InternalLink.propTypes = {
   children: PropTypes.node.isRequired,
-  unstyled: PropTypes.bool
+  unstyled: PropTypes.number
 };
 
 export default InternalLink;

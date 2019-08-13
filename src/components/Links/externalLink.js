@@ -15,12 +15,12 @@ const ExternalLink = ({ children, unstyled, ...rest }) => (
 );
 
 ExternalLink.defaultProps = {
-  unstyled: true
+  unstyled: 1
 };
 
 ExternalLink.propTypes = {
   children: PropTypes.node.isRequired,
-  unstyled: PropTypes.bool
+  unstyled: PropTypes.number
 };
 
 export default ExternalLink;

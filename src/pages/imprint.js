@@ -44,7 +44,7 @@ const ImprintPage = () => (
           <p>Content responsibility by names and addresses mentioned above.</p>
 
           <p>
-            <MailLink unstyled={false} email="info@centrifuge.io">
+            <MailLink unstyled={0} email="info@centrifuge.io">
               info@centrifuge.io
             </MailLink>
           </p>
