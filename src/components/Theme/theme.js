@@ -161,6 +161,17 @@ const custom = {
             css`
               margin-bottom: 64px;
             `}
+
+            &.tinlake_heading {
+               border-bottom: ${props.lined ? '1px solid #0828be' : 'none'};
+               padding-bottom: ${props.lined ? '37px' : '0'};
+
+               @media only screen and (max-width: 768px) {
+                  font-size: 28px;
+                  line-height: 48px;
+                  padding-bottom: 48px;
+               }
+            }
         `}
 
       /* Subheader */
@@ -191,7 +202,20 @@ const custom = {
         `}
     `
   },
-  paragraph: textSizes,
+  paragraph: {
+     ...textSizes,
+     extend: props => css`
+      &.tinlake_paragraph {
+         font-size: 20px;
+         line-height: 32px;
+
+         @media only screen and (min-width: 769px) {
+            font-size: 14px;
+            line-height: 24px;            
+         }
+      }
+     `
+  },
   text: textSizes,
   // grid: {
   //   extend: props => css`
