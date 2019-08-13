@@ -236,6 +236,9 @@ class Navigation extends React.Component {
                           <NavLink to="/technology/contribute">
                             Contribute
                           </NavLink>
+                          <NavLink to="/technology/tinlake">
+                            Tinlake
+                          </NavLink>
                         </Item>
                       </List>
                     </PaddedItem>
