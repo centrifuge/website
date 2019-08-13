@@ -10,7 +10,7 @@ export default function List({span ={ medium: 4, large: 4 }}) {
          {listContent.map(({heading, paragraphs}, index) => (
             <Wrapper key={`flow_list_${index}`}>
                <Heading level={3}>{heading}</Heading>
-               {paragraphs.map( (p, index) => <Paragraph key={`flow_p_${index}`}>{p}</Paragraph>)}
+               {paragraphs.map( (p, index) => <Paragraph key={`flow_p_${index}`} className="tinlake_paragraph" >{p}</Paragraph>)}
             </Wrapper>
          ))}
       </StyledColumn>

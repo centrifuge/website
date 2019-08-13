@@ -16,16 +16,16 @@ export default function TinlakeWork() {
          <Column span={{ medium: 8, large: 8 }}>
             <div>
                <Heading className="tinlake_heading" level={2} lined >How does Tinlake work?</Heading>
-               <Paragraph>
+               <Paragraph className="tinlake_paragraph">
                   Tinlake is a framework of smart contracts on Ethereum that turns digital representations of real-world assets (Non-Fungible Tokens) into ERC-20 tokens, which then gives access to decentralized lending protocols. 
                </Paragraph>
-               <Paragraph>
+               <Paragraph className="tinlake_paragraph">
                   Any asset that can be represented on-chain as Non-Fungible Tokens (NFTs) can be financed using the Tinlake infrastructure. 
                </Paragraph>
-               <Paragraph>
+               <Paragraph className="tinlake_paragraph">
                   Tinlake enables platforms to pool NFTs in a smart contract and use them as collateral to borrow money in a stable currency such as DAI. In turn for locking in NFTs, the contract mints fungible ERC-20 tokens, called Collateral Value Tokens (CVTs), that each represents a fraction of the bundled collateral.
                </Paragraph>
-               <Paragraph>
+               <Paragraph className="tinlake_paragraph">
                   The CVTs are then used as collateral and locked into DeFi lending protocols, such as Compound and Maker, to allow instant smart contract based lending.
                </Paragraph>
             </div>

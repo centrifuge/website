@@ -202,7 +202,20 @@ const custom = {
         `}
     `
   },
-  paragraph: textSizes,
+  paragraph: {
+     ...textSizes,
+     extend: props => css`
+      &.tinlake_paragraph {
+         font-size: 20px;
+         line-height: 32px;
+
+         @media only screen and (min-width: 769px) {
+            font-size: 14px;
+            line-height: 24px;            
+         }
+      }
+     `
+  },
   text: textSizes,
   // grid: {
   //   extend: props => css`

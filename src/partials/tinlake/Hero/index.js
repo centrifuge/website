@@ -19,7 +19,7 @@ export default function Hero() {
          <Column span={{ medium: 4, large: 3 }}>
             <Content>
                <Heading level={1} className="tinlake_heading" margin={{bottom: "tinlakeH1MarginBt", top: "0px"}}>Tokenized Assets in DeFi</Heading>
-               <Paragraph>Unlock the value of your real-world assets in the decentralized finance ecosystem. </Paragraph>
+               <Paragraph className="tinlake_paragraph" >Unlock the value of your real-world assets in the decentralized finance ecosystem. </Paragraph>
             </Content>
          </Column>
       </Grid>
