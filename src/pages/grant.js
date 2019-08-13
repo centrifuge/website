@@ -14,7 +14,7 @@ const EUSubItem = ({block}) =>  {
   console.log(block);
   return (
     <Box style={{width: 170}}>
-    <Image style={{width: '100%',maxWidth:106}} src={block.mark.file.url} alt={block.mark.file.fileName}/>
+    <Image style={{width: '100%',maxWidth:106, objectFit: 'contain'}} src={block.mark.file.url} alt={block.mark.file.fileName}/>
     <Text style={{lineHeight:"21px"}} weight={500} size="large" >{block.title}</Text>
     <Text style={{lineHeight:"15px"}} size="small">{block.description}</Text>
   </Box>    
