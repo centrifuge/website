@@ -62,7 +62,7 @@ const AboutPage = ({ data }) => {
               columns={["flex", "flex"]}
               rows={["flex", "flex"]}
             >
-              {page.block3Partners.map((partner, index) => (
+              {page.block3Partners.filter(partner => partner.internalName !== 'empty').map((partner, index) => (
                 <Box key={index}>
                   <Image
                     style={{ maxWidth: 180 }}
@@ -189,7 +189,8 @@ export const AboutPageQuery = graphql`
           block3 {
             contentAST
           }
-          block3Partners {
+          block3Partners{
+            internalName
             name
             logo {
               file {
