@@ -1,16 +1,16 @@
 import React from "react";
 import { ThemeContext } from "grommet";
 
-import Layout from "../../components/Layout";
-import SEO from "../../components/SEO";
-import Container from "../../components/Container";
-import tinlakeTheme from "../../components/Theme/tinlakeTheme"
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import Container from "../components/Container";
+import tinlakeTheme from "../components/Theme/tinlakeTheme"
 
-import Hero from "../../partials/tinlake/Hero"
-import WhatIsTinlake from "../../partials/tinlake/WhatIsTinlake"
-import TinlakeWork from "../../partials/tinlake/TinlakeWork"
-import TinlakeAssets from "../../partials/tinlake/TinlakeAssets"
-import TinlakeFlow from "../../partials/tinlake/TinlakeFlow"
+import Hero from "../partials/tinlake/Hero"
+import WhatIsTinlake from "../partials/tinlake/WhatIsTinlake"
+import TinlakeWork from "../partials/tinlake/TinlakeWork"
+import TinlakeAssets from "../partials/tinlake/TinlakeAssets"
+import TinlakeFlow from "../partials/tinlake/TinlakeFlow"
 
 
 

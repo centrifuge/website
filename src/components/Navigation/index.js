@@ -236,7 +236,7 @@ class Navigation extends React.Component {
                           <NavLink to="/technology/contribute">
                             Contribute
                           </NavLink>
-                          <NavLink to="/technology/tinlake">
+                          <NavLink to="/tinlake">
                             Tinlake
                           </NavLink>
                         </Item>
