@@ -15,9 +15,12 @@ export default function TinlakeWork() {
       <Grid align="start">
          <Column span={{ medium: 8, large: 8 }}>
             <div>
-               <Heading className="tinlake_heading" level={2} lined >Borrower Flow?</Heading>
+               <Heading className="tinlake_heading" level={2} lined >The Borrowing Experience</Heading>
                <Paragraph className="tinlake_paragraph">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  Imagine the following scenario: Alice owns a small company in Madrid. She delivers goods and sends an invoice to her client, to be paid within 30 days. Simultaneously, Alice receives inventory and needs to pay her suppliers immediately, but she doesn’t have enough money. She needs a short term loan, and can use her outstanding invoice as collateral in Tinlake. 
+               </Paragraph>
+               <Paragraph className="tinlake_paragraph">
+                  Below you can see what the borrowing process looks like
                </Paragraph>
             </div>
          </Column>
