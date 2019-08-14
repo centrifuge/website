@@ -54,50 +54,50 @@ const Wrapper = styled.div`
 
 const listContent = [
    {
-      heading: "1. Transfer 100 NFT",
+      heading: "1. Alice deposits collateral",
       paragraphs: [
-         "Alice converts her real-world asset worth $100 into a digital representation of this asset, a non-fungible token (NFT) ",
+         "Alice converts her invoice worth $100 into a digital representation of this asset, a non-fungible token (NFT) ",
          "Alice transfers this NFT into Tinlake as collateral for a loan in DAI"
       ]
    },
    {
-      heading: "2. Lock 100 CVT",
+      heading: "2. Tinlake mints CVT",
       paragraphs: [
          "Tinlake mints 100 CVT (a fungible ERC20 token) and locks the CVTs into a crypto Lending Facility, such as a Maker CDP or Compound"
       ]
    },
    {
-      heading: "3. Draw 90 DAI",
+      heading: "3. Dai is drawn",
       paragraphs: [
          "In return, Tinlake draws 90 DAI. The 10 DAI difference is covering the financing fees and is creating a risk retention buffer"
       ]
    },
    {
-      heading: "4. Lend 90 DAI",
+      heading: "4. Dai is lent to Alice",
       paragraphs: [
          "The 90 DAI are forwarded to Alice’s wallet"
       ]
    },
    {
-      heading: "5. Repay 95 DAI",
+      heading: "5. Alice repays debt",
       paragraphs: [
          "Assuming 5 DAI interest, Alice is repaying 95 DAI at the maturity date of her loan to Tinlake"
       ]
    },
    {
-      heading: "6. Repay 92 DAI",
+      heading: "6. Tinlake repays debt to funder",
       paragraphs: [
          "3 DAI remain at Tinlake for the SPV as service charge and 92 DAI are forwarded to the Lending Facility covering also the interest of 2 DAI"
       ]
    },
    {
-      heading: "7. Return 100 CVT",
+      heading: "7. CVT is returned to tinlake and burned",
       paragraphs: [
          "The 100 CVT are unlocked from the Lending facility and returned to Tinlake."
       ]
    },
    {
-      heading: "8. Return 100 NFT",
+      heading: "8. Collateral is returned to Alice",
       paragraphs: [
          "Tinlake burns the 100 CVT, unlocks the NFT and returns it to Alice "
       ]
