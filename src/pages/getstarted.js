@@ -17,7 +17,6 @@ import imgGetStarted3 from "../images/getstarted/getstarted3.png";
 
 const GetStartedPage = ({ data }) => {
   const page = data.allContentfulPageGetStarted.edges[0].node;
-	console.log(page);
   return (
     <Layout>
       <SEO {...page.seo} />

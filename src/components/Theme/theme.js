@@ -169,7 +169,7 @@ const custom = {
                @media only screen and (max-width: 768px) {
                   font-size: 28px;
                   line-height: 48px;
-                  padding-bottom: 48px;
+                  padding-bottom: ${props.lined ? '48px' : '0'};
                }
             }
         `}
