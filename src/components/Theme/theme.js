@@ -208,6 +208,7 @@ const custom = {
       &.tinlake_paragraph {
          font-size: 20px;
          line-height: 32px;
+         text-align: justify;
 
          @media only screen and (min-width: 769px) {
             font-size: 14px;
