@@ -226,18 +226,18 @@ class Navigation extends React.Component {
                       <NavLink to="/technology">Technology</NavLink>
                       <List>
                         <Item>
-                          <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
-                            Developer Docs
-                          </ExternalNavLink>
-                          <NavLink to="/technology#download">
-                            Download
-                          </NavLink>
-                          <NavLink to="/technology/contribute">
-                            Contribute
-                          </NavLink>
-                          <NavLink to="/technology/tinlake">
-                            Tinlake
-                          </NavLink>
+                           <NavLink to="/technology/tinlake">
+                              Tinlake
+                           </NavLink>
+                           <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
+                              Developer Docs
+                           </ExternalNavLink>
+                           <NavLink to="/technology/contribute">
+                             Contribute
+                           </NavLink>
+                           <NavLink to="/technology#download">
+                              Download
+                           </NavLink>
                         </Item>
                       </List>
                     </PaddedItem>
