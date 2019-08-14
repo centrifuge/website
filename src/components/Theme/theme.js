@@ -163,7 +163,7 @@ const custom = {
             `}
 
             &.tinlake_heading {
-               border-bottom: ${props.lined ? '1px solid #0828be' : 'none'};
+               border-bottom: ${props.lined ? '2px solid #0828be' : 'none'};
                padding-bottom: ${props.lined ? '37px' : '0'};
 
                @media only screen and (max-width: 768px) {
@@ -208,6 +208,7 @@ const custom = {
       &.tinlake_paragraph {
          font-size: 20px;
          line-height: 32px;
+         text-align: justify;
 
          @media only screen and (min-width: 769px) {
             font-size: 14px;
