@@ -163,7 +163,7 @@ const custom = {
             `}
 
             &.tinlake_heading {
-               border-bottom: ${props.lined ? '1px solid #0828be' : 'none'};
+               border-bottom: ${props.lined ? '2px solid #0828be' : 'none'};
                padding-bottom: ${props.lined ? '37px' : '0'};
 
                @media only screen and (max-width: 768px) {
