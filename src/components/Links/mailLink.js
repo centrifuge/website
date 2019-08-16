@@ -19,7 +19,7 @@ MailLink.defaultProps = {
   body: ``,
   bcc: [],
   cc: [],
-  unstyled: true
+  unstyled: 1
 };
 
 MailLink.propTypes = {

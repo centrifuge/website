@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext, RoutedButton } from "grommet";
+import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
 import { StaticQuery, graphql, navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -12,7 +12,6 @@ import { InternalLink, ExternalLink } from "../Links";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
-import { fontSize } from "grommet/utils/mixins";
 
 const NavLink = ({ children, to }) => (
   <InternalLink
@@ -227,15 +226,18 @@ class Navigation extends React.Component {
                       <NavLink to="/technology">Technology</NavLink>
                       <List>
                         <Item>
-                          <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
-                            Developer Docs
-                          </ExternalNavLink>
-                          <NavLink to="/technology#download">
-                            Download
-                          </NavLink>
-                          <NavLink to="/technology/contribute">
-                            Contribute
-                          </NavLink>
+                           <NavLink to="/technology/tinlake">
+                              Tinlake
+                           </NavLink>
+                           <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
+                              Developer Docs
+                           </ExternalNavLink>
+                           <NavLink to="/technology/contribute">
+                             Contribute
+                           </NavLink>
+                           <NavLink to="/technology#download">
+                              Download
+                           </NavLink>
                         </Item>
                       </List>
                     </PaddedItem>

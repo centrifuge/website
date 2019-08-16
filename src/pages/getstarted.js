@@ -1,16 +1,15 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Heading, Button, Image } from "grommet";
+import { Button, Image } from "grommet";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
-import Animation from "../components/Animation";
 import FullWidthImage from "../components/FullWidthImage";
 import DeepLink from "../components/DeepLink";
-import { RichTextRenderer, lastInArray } from "../helpers";
+import { RichTextRenderer } from "../helpers";
 import { ProvidedFunctionality, BuildItem } from "../components/GetStarted";
 
 import imgGetStarted1 from "../images/getstarted/getstarted1.png";
@@ -18,7 +17,6 @@ import imgGetStarted3 from "../images/getstarted/getstarted3.png";
 
 const GetStartedPage = ({ data }) => {
   const page = data.allContentfulPageGetStarted.edges[0].node;
-	console.log(page);
   return (
     <Layout>
       <SEO {...page.seo} />

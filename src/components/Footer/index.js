@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, ResponsiveContext, Grid } from "grommet";
+import { Box, ResponsiveContext } from "grommet";
 
 import { List } from "../List";
 import Container from "../Container";
 import { BlockFirstAddress, BlockHello, BlockCopyRight, BlockSecondAddress, BlockExternalLink, BlockInternalLink } from "./footerItem";
-import Column from "../Column";
 
 const FooterContent = styled(List)`
   display: flex;

@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { Box, Paragraph, Image, Text } from "grommet";
 
 import { List, Item } from "../List";
-import { MailLink, ExternalLink, InternalLink } from "../Links";
-import Container from "../Container";
+import { ExternalLink, InternalLink } from "../Links";
 
 import imgGrandEUFlag from "../../images/grand/grand_eu_flag.png";
 
@@ -106,9 +105,9 @@ const BlockInternalLink = () => (
 )
 
 const BlockHello = () => (
-  <FooterLinkItem to="hello@centrifuge.io">
+  <FooterExternalLinkItem href="mailto:hello@centrifuge.io">
     hello@centrifuge.io
-  </FooterLinkItem>
+  </FooterExternalLinkItem>
 )
 const BlockCopyRight = () => (
   <Paragraph style={{ fontSize: 12 }}>
