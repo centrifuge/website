@@ -1,4 +1,5 @@
 import React from "react";
+import {Box } from "grommet";
 
 import Layout from "../../components/Layout";
 import SEO from "../../components/SEO";
@@ -9,7 +10,7 @@ import WhatIsTinlake from "../../partials/tinlake/WhatIsTinlake"
 import TinlakeWork from "../../partials/tinlake/TinlakeWork"
 import TinlakeAssets from "../../partials/tinlake/TinlakeAssets"
 import TinlakeFlow from "../../partials/tinlake/TinlakeFlow"
-
+import Disclaimer from "../../partials/tinlake/Disclaimer"
 
 
 const TinlakePage = () => {
@@ -24,17 +25,23 @@ const TinlakePage = () => {
 
          {/* Block 2 */}
          <WhatIsTinlake />
-         
+
          {/* Block 3 */}
          <TinlakeWork />
-         
+
          {/* Block 4 */}
          <TinlakeAssets />
 
          {/* Block 5 */}
          <TinlakeFlow />
-
       </Container>
+
+      {/* Disclaimer section 5 */}
+      <Box background="light-2" pad="medium">
+        <Container>
+          <Disclaimer />
+        </Container>
+      </Box>
     </Layout>
   );
 };
