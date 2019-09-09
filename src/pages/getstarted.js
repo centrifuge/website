@@ -16,31 +16,36 @@ import imgGetStarted1 from "../images/getstarted/getstarted1.png";
 import imgGetStarted3 from "../images/getstarted/getstarted3.png";
 
 const GetStartedPage = ({ data }) => {
+  const metadata = {
+    title: "Get Started",
+    description: null
+  };
+
   const page = data.allContentfulPageGetStarted.edges[0].node;
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         {/* Block 1 */}
         <Grid>
-          <Column span={{medium:6, large: 1}} mediumOrder={1} />
+          <Column span={{ medium: 6, large: 1 }} mediumOrder={1} />
           <Column mediumSpaced span={{ medium: 8, large: 6 }} mediumOrder={4}>
             {/* <Animation file={block1Animation} /> */}
-            <Image style={{width: '100%'}} src={imgGetStarted1}/>
+            <Image style={{ width: "100%" }} src={imgGetStarted1} />
           </Column>
-          <Column span={{medium:2}} mediumOrder={3} />
-          <Column  mediumSpaced span={{ medium: 6, large: 4 }} mediumOrder={2}>
+          <Column span={{ medium: 2 }} mediumOrder={3} />
+          <Column mediumSpaced span={{ medium: 6, large: 4 }} mediumOrder={2}>
             <RichTextRenderer block={page.block1} />
           </Column>
-          <Column></Column>
+          <Column />
           <Spacer />
         </Grid>
 
-				{/* Block 2 */}
+        {/* Block 2 */}
         <Grid mb="" justify="">
           <Column span={{ medium: 6, large: 4 }}>
-						<RichTextRenderer block={page.block2} />          
-					</Column>
+            <RichTextRenderer block={page.block2} />
+          </Column>
         </Grid>
 
         {/* Block 3 */}
@@ -55,35 +60,40 @@ const GetStartedPage = ({ data }) => {
           ))}
         </Grid>
 
-        {/* Block 4 */}        
+        {/* Block 4 */}
         <Grid mb="xlarge" justify="">
           <Column span={{ medium: 6, large: 6 }}>
             <DeepLink id="use-cases">
               <RichTextRenderer block={page.block4} />
-              <Button plain target="_blank" rel="noopener noreferrer" href={'/ecosystem/#use-cases'}>
+              <Button
+                plain
+                target="_blank"
+                rel="noopener noreferrer"
+                href={"/ecosystem/#use-cases"}
+              >
                 See our Usecases
               </Button>
             </DeepLink>
           </Column>
         </Grid>
 
-				{/* Block 5 */}        
+        {/* Block 5 */}
         {/* Build Item Container For Mobile Responsive */}
         <BuildItem blocks={page.block5} />
-        <FullWidthImage src={imgGetStarted3}/>
+        <FullWidthImage src={imgGetStarted3} />
 
-        {/* Block 6 */}        
+        {/* Block 6 */}
         <Grid align="start">
           <Column mediumSpaced span={{ medium: 9, large: 5 }}>
             <RichTextRenderer block={page.block6[0].content} />
           </Column>
-          <Column span={{ medium: 3, large: 1 }}/>
-          <Column span={{ medium: 3, large: 1 }}/>
+          <Column span={{ medium: 3, large: 1 }} />
+          <Column span={{ medium: 3, large: 1 }} />
           <Column mediumSpaced span={{ medium: 9, large: 5 }}>
             <RichTextRenderer block={page.block6[1].content} />
           </Column>
         </Grid>
-      </Container>      
+      </Container>
     </Layout>
   );
 };
@@ -93,26 +103,22 @@ export const GetStartedPageQuery = graphql`
     allContentfulPageGetStarted {
       edges {
         node {
-          seo {
-            title
-            description
-          }
           block1 {
             contentAST
           }
           block2 {
             contentAST
           }
-					block3 {
-							image {
-								file {
-									url
-									fileName
-								}
-							}
-							functionality {
-								contentAST
-							}
+          block3 {
+            image {
+              file {
+                url
+                fileName
+              }
+            }
+            functionality {
+              contentAST
+            }
           }
           block4 {
             contentAST

@@ -16,11 +16,16 @@ import block1Animation from "../lottie/Ecosystem_Q.json";
 import ecosystemBig from "../images/ecosystem_big.svg";
 
 const EcosystemPage = ({ data }) => {
+  const metadata = {
+    title: "Ecosystem",
+    description: null
+  };
+
   const page = data.allContentfulPageEcosystem.edges[0].node;
 
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         {/* Block 1 */}
         <Grid>
@@ -87,10 +92,6 @@ export const EcosystemPageQuery = graphql`
     allContentfulPageEcosystem {
       edges {
         node {
-          seo {
-            title
-            description
-          }
           block1 {
             contentAST
           }

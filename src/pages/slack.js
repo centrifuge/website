@@ -14,11 +14,16 @@ import { RichTextRenderer } from "../helpers";
 import slackImage from "../images/slack-image.svg";
 
 const SlackPage = ({ data }) => {
+  const metadata = {
+    title: "Centrifuge Slack Community",
+    description: null
+  };
+
   const page = data.allContentfulPageSlackInvite.edges[0].node;
 
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         <Grid align="center" justify="center">
           <Column span={{ medium: 6, large: 5 }} mobileSpaced>
@@ -43,9 +48,6 @@ export const SlackPageQuery = graphql`
     allContentfulPageSlackInvite {
       edges {
         node {
-          seo {
-            title
-          }
           headline
           content {
             contentAST

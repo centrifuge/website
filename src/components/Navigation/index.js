@@ -229,7 +229,7 @@ class Navigation extends React.Component {
                            <NavLink to="/technology/tinlake">
                               Tinlake
                            </NavLink>
-                           <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
+                           <ExternalNavLink href="https://developer.centrifuge.io/">
                               Developer Docs
                            </ExternalNavLink>
                            <NavLink to="/technology/contribute">

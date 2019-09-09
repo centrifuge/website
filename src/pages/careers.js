@@ -17,11 +17,16 @@ import block1Animation from "../lottie/Team_Q.json";
 import careersBig from "../images/careers_big.svg";
 
 const CareersPage = ({ data }) => {
+  const metadata = {
+    title: "Careers",
+    description: null
+  };
+
   const page = data.allContentfulPageCareers.edges[0].node;
 
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         {/* Block 2 */}
         <Grid>
@@ -30,7 +35,7 @@ const CareersPage = ({ data }) => {
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
-            <Animation file={block1Animation}/>
+            <Animation file={block1Animation} />
           </Column>
         </Grid>
 
@@ -91,10 +96,6 @@ export const CareersPageQuery = graphql`
     allContentfulPageCareers {
       edges {
         node {
-          seo {
-            title
-            description
-          }
           block1 {
             contentAST
           }
