@@ -48,8 +48,8 @@ const NewsPage = ({ data }) => {
 
   const page = data.allContentfulPageNews.edges[0].node;
 
-  const mediumPosts = data.allMediumPost.edges;
-  const highlightPost = data.allMediumPost.edges[0].node;
+  const mediumPosts = data.mediumFeed.posts.slice(0, 4);
+  const highlightPost = data.mediumFeed.posts[0];
 
   return (
     <Layout>
@@ -185,18 +185,12 @@ export const NewsPageQuery = graphql`
       }
     }
 
-    allMediumPost(limit: 4, sort: { fields: [createdAt], order: DESC }) {
-      edges {
-        node {
-          title
-          uniqueSlug
-          virtuals {
-            subtitle
-            previewImage {
-              imageId
-            }
-          }
-        }
+    mediumFeed: rss2JsonMediumPosts {
+      posts: items {
+        title
+        link
+        thumbnail
+        description
       }
     }
   }

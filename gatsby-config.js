@@ -1,6 +1,6 @@
-require('dotenv').config({
-   path: `.env.${process.env.NODE_ENV}`
- })
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`
+});
 
 const proxy = require("http-proxy-middleware");
 
@@ -109,6 +109,20 @@ module.exports = {
       options: gitcoinServerOptions.completedBounties
     },
     {
+      resolve: "gatsby-source-apiserver",
+      options: {
+        name: "mediumPosts",
+        typePrefix: "rss2json__",
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        url:
+          "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fcentrifuge%2F",
+        verboseOutput: true
+      }
+    },
+    {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: `pvsr19vg7gf2`,
@@ -120,16 +134,7 @@ module.exports = {
           process.env.PRODUCTION === "true"
             ? `cdn.contentful.com`
             : `preview.contentful.com`,
-        environment:
-          process.env.PRODUCTION === "true"
-            ? `master`
-            : `staging`
-      }
-    },
-    {
-      resolve: `gatsby-source-medium`,
-      options: {
-        username: `centrifuge`
+        environment: process.env.PRODUCTION === "true" ? `master` : `staging`
       }
     },
     {
