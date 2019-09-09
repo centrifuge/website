@@ -62,6 +62,11 @@ const CardLink = ({ children, link, ...rest }) => (
 );
 
 const ContributePage = ({ data }) => {
+  const metadata = {
+    title: "Contribute",
+    description: null
+  };
+
   const page = data.allContentfulPageTechnologyContribute.edges[0].node;
 
   const openBounties = data.allLambdaGitcoinOpenBounties;
@@ -75,7 +80,7 @@ const ContributePage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         {/* Block 1 */}
         <Grid align="start" justify="stretch" mb="xlarge">
@@ -280,9 +285,6 @@ export const ContributePageQuery = graphql`
     allContentfulPageTechnologyContribute {
       edges {
         node {
-          seo {
-            title
-          }
           block1 {
             contentAST
           }

@@ -41,6 +41,11 @@ const ResponsivePlayer = ({ url }) => (
 );
 
 const NewsPage = ({ data }) => {
+  const metadata = {
+    title: "News",
+    description: null
+  };
+
   const page = data.allContentfulPageNews.edges[0].node;
 
   const mediumPosts = data.allMediumPost.edges;
@@ -48,7 +53,7 @@ const NewsPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         {/* Hero Block */}
         <Grid mb="large">
@@ -145,9 +150,6 @@ export const NewsPageQuery = graphql`
     allContentfulPageNews {
       edges {
         node {
-          seo {
-            title
-          }
           blockPress {
             agency {
               name
