@@ -68,12 +68,7 @@ const MediumPost = ({ post }) => (
     <Box margin={{ bottom: "medium" }}>
       <LinkedMediumImage imageId={post.thumbnail} slug={post.link} />
     </Box>
-    <PostInfo
-      title={post.title}
-      subtitle={truncate(stripHtml(post.description))}
-      link={post.link}
-      heading="3"
-    />
+    <PostInfo title={post.title} subtitle={""} link={post.link} heading="3" />
   </>
 );
 
@@ -86,11 +81,7 @@ const HighlightPost = ({ post }) => (
     </Column>
     <Spacer width={2} />
     <Column span={{ medium: 10, large: 4 }}>
-      <PostInfo
-        title={post.title}
-        subtitle={truncate(stripHtml(post.description), 240)}
-        link={post.link}
-      />
+      <PostInfo title={post.title} subtitle={""} link={post.link} />
     </Column>
   </Grid>
 );
