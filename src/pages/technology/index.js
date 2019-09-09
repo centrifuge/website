@@ -15,10 +15,15 @@ import block1Animation from "../../lottie/Technology_Q.json";
 import technologyBig from "../../images/technology_big.svg";
 
 const TechnologyPage = ({ data }) => {
+  const metadata = {
+    title: "Technology",
+    description: null
+  };
+
   const page = data.allContentfulPageTechnology.edges[0].node;
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
 
       <Container>
         {/* Block 1 */}
@@ -48,7 +53,13 @@ const TechnologyPage = ({ data }) => {
       {/* Image */}
       <FullWidthImage src={technologyBig} />
 
-      <Container id="download" css={`margin-top: -100px; padding-top: 100px;`} > 
+      <Container
+        id="download"
+        css={`
+          margin-top: -100px;
+          padding-top: 100px;
+        `}
+      >
         {/* Block 3 */}
         <Grid justify="start" align="start" mt={0}>
           {page.block3.map((block, index) => (
@@ -70,10 +81,6 @@ export const TechnologyPageQuery = graphql`
     allContentfulPageTechnology {
       edges {
         node {
-          seo {
-            title
-            description
-          }
           block1 {
             contentAST
           }

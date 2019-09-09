@@ -23,6 +23,7 @@ const SEO = ({ description, meta, title }) => (
     render={data => {
       const metaDescription = description || data.site.siteMetadata.description;
       const defaultTitle = data.site.siteMetadata.longTitle;
+      const pageTitle = title || defaultTitle;
 
       return (
         <Helmet
@@ -30,7 +31,7 @@ const SEO = ({ description, meta, title }) => (
             lang: "en"
           }}
           defaultTitle={defaultTitle}
-          title={title}
+          title={pageTitle}
           titleTemplate={`%s | ${data.site.siteMetadata.title}`}
           meta={[
             {
@@ -39,7 +40,7 @@ const SEO = ({ description, meta, title }) => (
             },
             {
               name: `title`,
-              content: defaultTitle
+              content: pageTitle
             },
             {
               name: `author`,
@@ -47,7 +48,7 @@ const SEO = ({ description, meta, title }) => (
             },
             {
               property: `og:title`,
-              content: defaultTitle
+              content: pageTitle
             },
             {
               property: `og:description`,

@@ -3,7 +3,6 @@ import { Heading, Paragraph, Image, Box, Button } from "grommet";
 import styled from "styled-components";
 
 import { ExternalLink } from "../Links";
-import { MEDIUM_URL, MEDIUM_CDN } from "../../helpers";
 import Column, { Spacer } from "../Column";
 import Grid from "../Grid";
 
@@ -24,11 +23,11 @@ const ImageWrapper = styled.div`
 `;
 
 const LinkedMediumImage = ({ imageId, slug }) => (
-  <ExternalLink href={`${MEDIUM_URL}${slug}`}>
+  <ExternalLink href={slug}>
     <ImageWrapper>
       <Image
         style={{ maxWidth: "100%", verticalAlign: "middle" }}
-        src={`${MEDIUM_CDN}/${imageId}`}
+        src={imageId}
       />
     </ImageWrapper>
   </ExternalLink>
@@ -54,20 +53,22 @@ const PressArticle = ({ article }) => (
   </Box>
 );
 
+const stripHtml = html => {
+  var tmp = document.createElement("DIV");
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || "";
+};
+
+const truncate = (desc, length = 120) => {
+  return `${String(desc).substring(0, length)}...`;
+};
+
 const MediumPost = ({ post }) => (
   <>
     <Box margin={{ bottom: "medium" }}>
-      <LinkedMediumImage
-        imageId={post.node.virtuals.previewImage.imageId}
-        slug={post.node.uniqueSlug}
-      />
+      <LinkedMediumImage imageId={post.thumbnail} slug={post.link} />
     </Box>
-    <PostInfo
-      title={post.node.title}
-      subtitle={post.node.virtuals.subtitle}
-      link={`${MEDIUM_URL}${post.node.uniqueSlug}`}
-      heading="3"
-    />
+    <PostInfo title={post.title} subtitle={""} link={post.link} heading="3" />
   </>
 );
 
@@ -75,19 +76,12 @@ const HighlightPost = ({ post }) => (
   <Grid align="start" mt="">
     <Column span={{ medium: 10, large: 6 }}>
       <Box margin={{ bottom: "medium" }}>
-        <LinkedMediumImage
-          imageId={post.virtuals.previewImage.imageId}
-          slug={post.uniqueSlug}
-        />
+        <LinkedMediumImage imageId={post.thumbnail} slug={post.link} />
       </Box>
     </Column>
     <Spacer width={2} />
     <Column span={{ medium: 10, large: 4 }}>
-      <PostInfo
-        title={post.title}
-        subtitle={post.virtuals.subtitle}
-        link={`${MEDIUM_URL}${post.uniqueSlug}`}
-      />
+      <PostInfo title={post.title} subtitle={""} link={post.link} />
     </Column>
   </Grid>
 );

@@ -12,10 +12,10 @@ This repo builds the centrifuge.io website with Gatsby, Contentful & Netlify.
 
 ```sh
 # install dependencies
-yarn
+npm install
 
 # starts lambda and gatsby servers
-yarn start
+npm run start
 ```
 
 ## Gotchas
