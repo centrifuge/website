@@ -17,7 +17,7 @@ export default function TinlakeWork() {
             <div>
                <Heading className="tinlake_heading" level={2} lined >How does Tinlake work?</Heading>
                <Paragraph className="tinlake_paragraph">
-                  Tinlake is a framework of smart contracts on Ethereum that turns digital representations of real-world assets (Non-Fungible Tokens) into ERC-20 tokens, which then gives access to decentralized lending protocols. 
+                  Tinlake is a framework of smart contracts on Ethereum, that turns digital representations of real-world assets (Non-Fungible Tokens) into ERC-20 tokens, which then gives access to decentralized lending protocols. 
                </Paragraph>
                <Paragraph className="tinlake_paragraph">
                   Any asset that can be represented on-chain as Non-Fungible Tokens (NFTs) can be financed using the Tinlake infrastructure. 
