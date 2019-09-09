@@ -44,11 +44,11 @@
     "styled-icons": "6.8.0"
   },
   "scripts": {
-    "build:all": "yarn build:lambda && yarn build",
+    "build:all": "npm run build:lambda && npm run build",
     "build": "node utils/prefetch_urls.js && gatsby build",
     "develop": "gatsby develop",
     "start": "run-p -l start:gatsby start:lambda",
-    "start:gatsby": "yarn develop",
+    "start:gatsby": "npm run develop",
     "format": "prettier --write \"./**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "start:lambda": "netlify-lambda serve lambda",
