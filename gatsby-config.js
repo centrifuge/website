@@ -6,6 +6,7 @@ const proxy = require("http-proxy-middleware");
 
 const lambdaServerDefaults = filename => ({
   typePrefix: "lambda__",
+  data: {},
   method: "GET",
   headers: {
     "Content-Type": "application/json"
