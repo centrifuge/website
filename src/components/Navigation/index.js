@@ -179,6 +179,18 @@ const SubItem = styled(Item)`
   padding: 0.5rem 1rem;
 `;
 
+const MobileBox = styled(Box)`
+  background: white;
+  
+  ${breakpointStyle(
+    breakpoints.small,
+    css`
+        height: 100vh;
+        overflow-y: scroll;
+      `
+  )}
+`;
+
 class Navigation extends React.Component {
   state = {
     mobileNavIsOpen: false
@@ -331,8 +343,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
           animate={true}
           modal
         >
-          <Box
-            background="white"
+          <MobileBox
             direction="column"
             pad={{ top: "xxlarge", bottom: "xlarge", left: "large", right: "large" }}
             gap="medium"
@@ -342,16 +353,16 @@ const MobilePanel = ({ state, toggleFunc }) => (
                 <NavLink to="/technology">Technology</NavLink>
 
                 <SubItem>
-                  <NavLink to="/technology/tinlake">- Tinlake</NavLink>
+                  <NavLink to="/technology/tinlake">Tinlake</NavLink>
                 </SubItem>
                 <SubItem>
-                  <ExternalNavLink href="https://developer.centrifuge.io/">- Developer Docs</ExternalNavLink>
+                  <ExternalNavLink href="https://developer.centrifuge.io/">Developer Docs</ExternalNavLink>
                 </SubItem>
                 <SubItem>
-                  <NavLink to="/technology/contribute">- Contribute</NavLink>
+                  <NavLink to="/technology/contribute">Contribute</NavLink>
                 </SubItem>
                 <SubItem>
-                  <NavLink to="/technology#download">- Download</NavLink>
+                  <NavLink to="/technology#download">Download</NavLink>
                 </SubItem>
               </MenuItem>
 
@@ -359,7 +370,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
                 <NavLink to="/ecosystem">Ecosystem</NavLink>
 
                 <SubItem>
-                  <NavLink to="/ecosystem/#use-cases">- Use Cases</NavLink>
+                  <NavLink to="/ecosystem/#use-cases">Use Cases</NavLink>
                 </SubItem>
               </MenuItem>
 
@@ -371,16 +382,16 @@ const MobilePanel = ({ state, toggleFunc }) => (
                 <NavLink to="/about">About</NavLink>
 
                 <SubItem>
-                  <NavLink to="/about/#mission">- Mission</NavLink>
+                  <NavLink to="/about/#mission">Mission</NavLink>
                 </SubItem>
                 <SubItem>
-                  <NavLink to="/about/#team">- Team</NavLink>
+                  <NavLink to="/about/#team">Team</NavLink>
                 </SubItem>
                 <SubItem>
-                  <NavLink to="/about/#partners">- Partners</NavLink>
+                  <NavLink to="/about/#partners">Partners</NavLink>
                 </SubItem>
                 <SubItem>
-                  <NavLink to="/careers">- Careers</NavLink>
+                  <NavLink to="/careers">Careers</NavLink>
                 </SubItem>
               </MenuItem>
 
@@ -388,7 +399,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
                 <NavLink to="/getstarted">Get Started</NavLink>
               </MenuItem>
             </List>
-          </Box>
+          </MobileBox>
         </Layer>
       )
     }
