@@ -1,5 +1,5 @@
 {
-  "name": "webstie",
+  "name": "website",
   "private": false,
   "description": "",
   "version": "0.1.0",
@@ -29,6 +29,7 @@
     "jsonframe-cheerio": "3.0.1",
     "lodash.countby": "4.6.0",
     "lodash.uniqby": "4.7.0",
+    "lottie-api": "^1.0.2",
     "lottie-react-web": "2.1.4",
     "node-fetch": "2.3.0",
     "prop-types": "15.6.2",
