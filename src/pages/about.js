@@ -19,11 +19,16 @@ import aboutBig from "../images/about_big.svg";
 import { ExternalLink } from "../components/Links";
 
 const AboutPage = ({ data }) => {
+  const metadata = {
+    title: "About",
+    description: null
+  };
+
   const page = data.allContentfulPageAbout.edges[0].node;
 
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         {/* Block 1 */}
         <Grid>
@@ -176,10 +181,6 @@ export const AboutPageQuery = graphql`
     allContentfulPageAbout {
       edges {
         node {
-          seo {
-            title
-            description
-          }
           block1 {
             contentAST
           }
@@ -189,7 +190,7 @@ export const AboutPageQuery = graphql`
           block3 {
             contentAST
           }
-          block3Partners{
+          block3Partners {
             internalName
             name
             logo {

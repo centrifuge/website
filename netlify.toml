@@ -1,4 +1,4 @@
 [build]
-  command = "yarn build:all"
+  command = "npm run build:all"
   functions = "functions"
   publish = "public"

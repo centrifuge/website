@@ -41,14 +41,19 @@ const ResponsivePlayer = ({ url }) => (
 );
 
 const NewsPage = ({ data }) => {
+  const metadata = {
+    title: "News",
+    description: null
+  };
+
   const page = data.allContentfulPageNews.edges[0].node;
 
-  const mediumPosts = data.allMediumPost.edges;
-  const highlightPost = data.allMediumPost.edges[0].node;
+  const mediumPosts = data.mediumFeed.posts.slice(0, 4);
+  const highlightPost = data.mediumFeed.posts[0];
 
   return (
     <Layout>
-      <SEO {...page.seo} />
+      <SEO {...metadata} />
       <Container>
         {/* Hero Block */}
         <Grid mb="large">
@@ -145,9 +150,6 @@ export const NewsPageQuery = graphql`
     allContentfulPageNews {
       edges {
         node {
-          seo {
-            title
-          }
           blockPress {
             agency {
               name
@@ -183,18 +185,12 @@ export const NewsPageQuery = graphql`
       }
     }
 
-    allMediumPost(limit: 4, sort: { fields: [createdAt], order: DESC }) {
-      edges {
-        node {
-          title
-          uniqueSlug
-          virtuals {
-            subtitle
-            previewImage {
-              imageId
-            }
-          }
-        }
+    mediumFeed: rss2JsonMediumPosts {
+      posts: items {
+        title
+        link
+        thumbnail
+        description
       }
     }
   }

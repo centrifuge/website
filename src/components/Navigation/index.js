@@ -24,7 +24,7 @@ const NavLink = ({ children, to }) => (
 );
 
 const ExternalNavLink = ({ children, href, ...rest }) => (
-  <ExternalLink 
+  <ExternalLink
     style={{ fontWeight: "var(--fw-medium)" }}
     activeStyle={{ color: "var(--c-brand)" }}
     href={href} {...rest}>
@@ -45,10 +45,6 @@ const BrandLink = () => (
   </div>
 );
 
-const MobileLink = styled(NavLink)`
-  padding: 1rem 0 1rem 3rem;
-`;
-
 const Logo = styled.img`
   vertical-align: middle;
   height: 32px;
@@ -57,7 +53,6 @@ const Logo = styled.img`
 const PaddedItem = styled(Item)`
   padding: 1.5rem 0;
   line-height: 1rem;
-  
 `;
 
 const Layer = styled(GrommetLayer)`
@@ -169,6 +164,33 @@ const NavButton = styled(Button)`
   )}
 `;
 
+const MenuItem = styled(Item)`
+  display: block;
+  padding: 0.5rem 0;
+  
+  /* Item (SubItem) */
+  > li:last-child {
+    padding-bottom: 0;
+  }
+`;
+
+const SubItem = styled(Item)`
+  display: block;
+  padding: 0.5rem 1rem;
+`;
+
+const MobileBox = styled(Box)`
+  background: white;
+  
+  ${breakpointStyle(
+    breakpoints.small,
+    css`
+        height: 100vh;
+        overflow-y: scroll;
+      `
+  )}
+`;
+
 class Navigation extends React.Component {
   state = {
     mobileNavIsOpen: false
@@ -229,7 +251,7 @@ class Navigation extends React.Component {
                            <NavLink to="/technology/tinlake">
                               Tinlake
                            </NavLink>
-                           <ExternalNavLink href="https://developer.centrifuge.io/docs/overview/introduction/">
+                           <ExternalNavLink href="https://developer.centrifuge.io/">
                               Developer Docs
                            </ExternalNavLink>
                            <NavLink to="/technology/contribute">
@@ -277,9 +299,9 @@ class Navigation extends React.Component {
                     {/* Call To Action */}
                     {enableNavigationCallToAction && (
                       <Item>
-                        <Button 
-                          label={buttonText} 
-                          href={buttonUrl} 
+                        <Button
+                          label={buttonText}
+                          href={buttonUrl}
                           style={{
                             paddingTop: '5px',
                             paddingBottom: '5px',
@@ -293,6 +315,7 @@ class Navigation extends React.Component {
                   </Dropdowns>
                 </List>
               </Container>
+
               {/* Mobile Nav */}
               <MobilePanel
                 state={this.state.mobileNavIsOpen}
@@ -320,18 +343,63 @@ const MobilePanel = ({ state, toggleFunc }) => (
           animate={true}
           modal
         >
-          <Box
-            background="white"
+          <MobileBox
             direction="column"
-            pad={{ top: "xxlarge", bottom: "xlarge" }}
+            pad={{ top: "xxlarge", bottom: "xlarge", left: "large", right: "large" }}
             gap="medium"
           >
-            <MobileLink to="/technology">Technology</MobileLink>
-            <MobileLink to="/ecosystem">Ecosystem</MobileLink>
-            <MobileLink to="/news">News</MobileLink>
-            <MobileLink to="/about">About</MobileLink>
-            <MobileLink to="/getstarted">Get Started</MobileLink>
-          </Box>
+            <List>
+              <MenuItem>
+                <NavLink to="/technology">Technology</NavLink>
+
+                <SubItem>
+                  <NavLink to="/technology/tinlake">Tinlake</NavLink>
+                </SubItem>
+                <SubItem>
+                  <ExternalNavLink href="https://developer.centrifuge.io/">Developer Docs</ExternalNavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/technology/contribute">Contribute</NavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/technology#download">Download</NavLink>
+                </SubItem>
+              </MenuItem>
+
+              <MenuItem>
+                <NavLink to="/ecosystem">Ecosystem</NavLink>
+
+                <SubItem>
+                  <NavLink to="/ecosystem/#use-cases">Use Cases</NavLink>
+                </SubItem>
+              </MenuItem>
+
+              <MenuItem>
+                <NavLink to="/news">News</NavLink>
+              </MenuItem>
+
+              <MenuItem>
+                <NavLink to="/about">About</NavLink>
+
+                <SubItem>
+                  <NavLink to="/about/#mission">Mission</NavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/about/#team">Team</NavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/about/#partners">Partners</NavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/careers">Careers</NavLink>
+                </SubItem>
+              </MenuItem>
+
+              <MenuItem>
+                <NavLink to="/getstarted">Get Started</NavLink>
+              </MenuItem>
+            </List>
+          </MobileBox>
         </Layer>
       )
     }
