@@ -19,161 +19,162 @@ import aboutBig from "../images/about_big.svg";
 import { ExternalLink } from "../components/Links";
 
 const AboutPage = ({ data }) => {
-  const metadata = {
-    title: "About",
-    description: null
-  };
+   const metadata = {
+      title: "About",
+      description: null
+   };
 
-  const page = data.allContentfulPageAbout.edges[0].node;
+   const page = data.allContentfulPageAbout.edges[0].node;
 
-  return (
-    <Layout>
-      <SEO {...metadata} />
-      <Container>
-        {/* Block 1 */}
-        <Grid>
-          <Column span={{ medium: 6, large: 6 }}>
-            <RichTextRenderer block={page.block1} />
-          </Column>
-          <Spacer />
-          <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
-            <Animation file={about} />
-          </Column>
-        </Grid>
+   return (
+      <Layout>
+         <SEO {...metadata} />
+         <Container>
+            {/* Block 1 */}
+            <Grid>
+               <Column span={{ medium: 6, large: 6 }}>
+                  <RichTextRenderer block={page.block1} />
+               </Column>
+               <Spacer />
+               <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
+                  <Animation file={about} />
+               </Column>
+            </Grid>
 
-        {/* Block 2 */}
-        <Grid>
-          <Spacer width={4} />
-          <Column span={{ medium: 12, large: 8 }}>
-            <DeepLink id="mission">
-              <RichTextRenderer block={page.block2} />
-            </DeepLink>
-          </Column>
-        </Grid>
+            {/* Block 2 */}
+            <Grid>
+               <Spacer width={4} />
+               <Column span={{ medium: 12, large: 8 }}>
+                  <DeepLink id="mission">
+                     <RichTextRenderer block={page.block2} />
+                  </DeepLink>
+               </Column>
+            </Grid>
 
-        {/* Block 3 */}
+            {/* Block 3 */}
 
-        <Grid justify="center" align="center">
-          <Column span={{ medium: 12, large: 4 }}>
-            <DeepLink id="partners">
-              <RichTextRenderer block={page.block3} />
-            </DeepLink>
-          </Column>
-          <Spacer />
-          <Column span={{ medium: 12, large: 6 }}>
-            <GrommetGrid
-              fill
-              gap={{ row: "large", column: "xlarge" }}
-              columns={["flex", "flex"]}
-              rows={["flex", "flex"]}
-            >
-              {page.block3Partners.filter(partner => partner.internalName !== 'empty').map((partner, index) => (
-                <Box key={index}>
-                  <Image
-                    style={{ maxWidth: 180 }}
-                    fit="contain"
-                    alt={partner.name}
-                    src={partner.logo.file.url}
-                  />
-                </Box>
-              ))}
-            </GrommetGrid>
-          </Column>
-        </Grid>
+            <Grid justify="center" align="center">
+               <Column span={{ medium: 12, large: 4 }}>
+                  <DeepLink id="partners">
+                     <RichTextRenderer block={page.block3} />
+                  </DeepLink>
+               </Column>
+               <Spacer />
+               <Column span={{ medium: 12, large: 6 }}>
+                  <GrommetGrid
+                     fill
+                     gap={{ row: "medium", column: "xlarge" }}
+                     columns={["180px", "180px"]}
+                     rows={["90px", "90px"]}
+                  >
+                     {page.block3Partners.filter(partner => partner.internalName !== 'empty').map((partner, index) => (
+                        <Box key={index}>
+                           <Image
+                              style={{ maxHeight: '90px' }}
+                              fit="contain"
+                              alt={partner.name}
+                              src={partner.logo.file.url}
 
-        {/* Block 4 - Team */}
-        <Grid mb="" justify="">
-          <Column span={{ medium: 3, large: 3 }}>
-            <DeepLink id="team">
-              <Heading level="2" lined>
-                Our team
+                           />
+                        </Box>
+                     ))}
+                  </GrommetGrid>
+               </Column>
+            </Grid>
+
+            {/* Block 4 - Team */}
+            <Grid mb="" justify="">
+               <Column span={{ medium: 3, large: 3 }}>
+                  <DeepLink id="team">
+                     <Heading level="2" lined>
+                        Our team
               </Heading>
-            </DeepLink>
-          </Column>
-        </Grid>
-        <Grid mt="" align="start">
-          {page.block4Team.map((member, index) => {
-            return (
-              <Column
-                key={index}
-                justifySelf="center"
-                span={{ medium: 6, large: 3 }}
-                margin={{ bottom: "large" }}
-              >
-                <VIP {...member} />
-              </Column>
-            );
-          })}
-        </Grid>
-      </Container>
+                  </DeepLink>
+               </Column>
+            </Grid>
+            <Grid mt="" align="start">
+               {page.block4Team.map((member, index) => {
+                  return (
+                     <Column
+                        key={index}
+                        justifySelf="center"
+                        span={{ medium: 6, large: 3 }}
+                        margin={{ bottom: "large" }}
+                     >
+                        <VIP {...member} />
+                     </Column>
+                  );
+               })}
+            </Grid>
+         </Container>
 
-      {/* Image */}
-      <FullWidthImage src={aboutBig} />
+         {/* Image */}
+         <FullWidthImage src={aboutBig} />
 
-      <Container>
-        {/* Block 5 - Advisors */}
-        <Grid mb="" justify="">
-          <Column span={{ medium: 3, large: 3 }}>
-            <Heading level="2" lined>
-              Advisory Board
+         <Container>
+            {/* Block 5 - Advisors */}
+            <Grid mb="" justify="">
+               <Column span={{ medium: 3, large: 3 }}>
+                  <Heading level="2" lined>
+                     Advisory Board
             </Heading>
-          </Column>
-        </Grid>
-        <Grid mt="" align="start">
-          {page.block5Advisors.map((advisor, index) => {
-            return (
-              <Column
-                key={index}
-                justifySelf="center"
-                span={{ medium: 6, large: 3 }}
-                margin={{ bottom: "large" }}
-              >
-                <VIP {...advisor} />
-              </Column>
-            );
-          })}
-        </Grid>
+               </Column>
+            </Grid>
+            <Grid mt="" align="start">
+               {page.block5Advisors.map((advisor, index) => {
+                  return (
+                     <Column
+                        key={index}
+                        justifySelf="center"
+                        span={{ medium: 6, large: 3 }}
+                        margin={{ bottom: "large" }}
+                     >
+                        <VIP {...advisor} />
+                     </Column>
+                  );
+               })}
+            </Grid>
 
-        {/* Block 6 - Investors */}
-        <Grid mb="" justify="">
-          <Column span={{ medium: 3, large: 3 }}>
-            <Heading level="2" lined>
-              Investors
+            {/* Block 6 - Investors */}
+            <Grid mb="" justify="">
+               <Column span={{ medium: 3, large: 3 }}>
+                  <Heading level="2" lined>
+                     Investors
             </Heading>
-          </Column>
-        </Grid>
-        <Grid mt="" align="center" justify="center">
-          <Spacer width={2} />
-          {page.block6Investors.map((investor, index) => {
-            return (
-              <React.Fragment key={index}>
-                <Column span={{ medium: 4, large: 2 }}>
-                  <ExternalLink href={investor.articleLink}>
-                    <Box align="center" margin={{ bottom: "large" }}>
-                      <Image
-                        style={{ maxWidth: "100%", width: 160 }}
-                        alt={investor.internalName}
-                        src={investor.logoMonotone.file.url}
-                      />
-                    </Box>
-                  </ExternalLink>
-                </Column>
-                {!lastInArray(page.block6Investors, index) && <Spacer />}
-              </React.Fragment>
-            );
-          })}
-        </Grid>
+               </Column>
+            </Grid>
+            <Grid mt="" align="center" justify="center">
+               <Spacer width={2} />
+               {page.block6Investors.map((investor, index) => {
+                  return (
+                     <React.Fragment key={index}>
+                        <Column span={{ medium: 4, large: 2 }}>
+                           <ExternalLink href={investor.articleLink}>
+                              <Box align="center" margin={{ bottom: "large" }}>
+                                 <Image
+                                    style={{ maxWidth: "100%", width: 160 }}
+                                    alt={investor.internalName}
+                                    src={investor.logoMonotone.file.url}
+                                 />
+                              </Box>
+                           </ExternalLink>
+                        </Column>
+                        {!lastInArray(page.block6Investors, index) && <Spacer />}
+                     </React.Fragment>
+                  );
+               })}
+            </Grid>
 
-        {/* Block 7 */}
-        <Grid justify="center">
-          <Spacer width={3} />
-          <Column span={{ medium: 12, large: 6 }} textAlign="center">
-            <RichTextRenderer block={page.block7} />
-          </Column>
-        </Grid>
-      </Container>
-    </Layout>
-  );
+            {/* Block 7 */}
+            <Grid justify="center">
+               <Spacer width={3} />
+               <Column span={{ medium: 12, large: 6 }} textAlign="center">
+                  <RichTextRenderer block={page.block7} />
+               </Column>
+            </Grid>
+         </Container>
+      </Layout>
+   );
 };
 
 export const AboutPageQuery = graphql`
