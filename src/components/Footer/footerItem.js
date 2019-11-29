@@ -75,9 +75,9 @@ const BlockHello = () => (
 const BlockCopyRight = ({ size }) => (
   <Paragraph style={{ fontSize: 12 }}>
     Except where otherwise noted, content on this site is licensed under {size === "small" ? null : <br />} a{' '}
-    <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer noopener">
+    <ExternalLink href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer noopener">
       Creative Commons Attribution-ShareAlike 4.0 International
-    </a>
+    </ExternalLink>
     {' '}license
   </Paragraph>
 );
