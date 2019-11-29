@@ -4,7 +4,7 @@ import { Box, ResponsiveContext } from "grommet";
 
 import { List } from "../List";
 import Container from "../Container";
-import { BlockFirstAddress, BlockHello, BlockCopyRight, BlockSecondAddress, BlockExternalLink, BlockInternalLink } from "./footerItem";
+import { BlockHello, BlockCopyRight, BlockExternalLink, BlockInternalLink } from "./footerItem";
 
 const FooterContent = styled(List)`
   display: flex;
@@ -24,7 +24,6 @@ const FooterContent = styled(List)`
   }
 
   @media only screen and (min-width: 1201px) {
-    grid-template-columns: max-content 1fr repeat(2, max-content);
     grid-gap: 64px;
   }
 `;
@@ -37,15 +36,12 @@ const TwoColumnBox = styled(Box)`
 const Footer = () => (
   <Box background="black" as="footer" pad={{ top: "xlarge", bottom: "large" }}>
     <Container>
-      
+
       <ResponsiveContext.Consumer>
         {size =>
-          size === "small" 
+          size === "small"
           ? (
             <FooterContent>
-              <BlockFirstAddress/>
-              <BlockSecondAddress/>
-              <br/>
               <BlockHello/>
               <br/>
               <TwoColumnBox>
@@ -53,41 +49,20 @@ const Footer = () => (
                 <BlockInternalLink/>
               </TwoColumnBox>
               <br/>
-              <BlockCopyRight/>
+              <BlockCopyRight size={size} />
             </FooterContent>
-          )
-          : size === "medium"
-          ? (
+          ) : (
             <FooterContent>
               <Box>
-                <BlockFirstAddress/>
-                <br/><br/>
-                <BlockSecondAddress/>
-                <br/><br/>
                 <BlockHello/>
                 <br/>
-                <BlockCopyRight/>
+                <BlockCopyRight size={size} />
               </Box>
               <BlockExternalLink/>
               <BlockInternalLink/>
             </FooterContent>
           )
-          : (
-            <FooterContent>
-              <Box>
-                <BlockFirstAddress/>
-                <br/>
-                <BlockHello/>
-                <br/>
-                <BlockCopyRight/>
-              </Box>
-              <BlockSecondAddress/>
-              <BlockExternalLink/>
-              <BlockInternalLink/>
-            </FooterContent>            
-          )
-
-        }          
+        }
       </ResponsiveContext.Consumer>
 
     </Container>

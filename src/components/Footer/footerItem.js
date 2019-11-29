@@ -5,13 +5,7 @@ import { Box, Paragraph, Image, Text } from "grommet";
 import { List, Item } from "../List";
 import { ExternalLink, InternalLink } from "../Links";
 
-import imgGrandEUFlag from "../../images/grand/grand_eu_flag.png";
-
-const Address = styled.address`
-  font-style: normal;
-  line-height: 24px;
-  display: inline;
-`;
+import euFlagImage from "../../images/eu-flag.svg";
 
 const FooterExternalLinkItem = ({ children, href, ...rest }) => (
   <FooterItem>
@@ -33,30 +27,6 @@ const FooterItem = styled(Item)`
   margin-bottom: 8px;
 `;
 
-const BlockFirstAddress = () => (
-  <FooterExternalLinkItem href="https://goo.gl/maps/MLDj8i2SwSv">
-    <Address>
-      San-Francisco
-      <br />
-      548 Market Street #67433
-      <br />
-      San Francisco, CA 94104
-      <br />
-    </Address>
-  </FooterExternalLinkItem>
-)
-const BlockSecondAddress = () => (
-  <FooterExternalLinkItem href="https://goo.gl/maps/nKjRqRUnsDF2">
-    <Address>
-      Centrifuge GmbH
-      <br />
-      Glogauer Straße 6
-      <br />
-      10999 Berlin
-    </Address>
-  </FooterExternalLinkItem>
-
-)
 const BlockExternalLink = () => (
   <Item>
     <List>
@@ -75,14 +45,10 @@ const BlockExternalLink = () => (
       <FooterExternalLinkItem href="https://developer.centrifuge.io/">
         Documentation
       </FooterExternalLinkItem>
-      {/* <FooterExternalLinkItem href="/centrifuge_os_white_paper.pdf"> */}
-      {/* <FooterExternalLinkItem href="/centrifuge_os_white_paper.pdf">
-        Technical papers
-      </FooterExternalLinkItem> */}
       <FooterLinkItem to="/technology#download">Technical papers</FooterLinkItem>
     </List>
   </Item>
-)
+);
 
 const BlockInternalLink = () => (
   <Item>
@@ -93,26 +59,27 @@ const BlockInternalLink = () => (
       <br/><br/><br/>
       <FooterLinkItem to="/grant">
         <Box direction="row">
-          <Image height={24} src={imgGrandEUFlag}/>
-          <Box direction="column" margin={{"top":"2px","left":"12px"}}>
-            <Text size='6px'>EUROPÄISCHE UNION</Text>
-            <Text size='5px'>Europäischer Fonds für<br/>regionale Entwicklung</Text>
-          </Box>
+          <Image height={42} src={euFlagImage}/>
         </Box>
       </FooterLinkItem>
     </List>
   </Item>
-)
+);
 
 const BlockHello = () => (
   <FooterExternalLinkItem href="mailto:hello@centrifuge.io">
     hello@centrifuge.io
   </FooterExternalLinkItem>
-)
-const BlockCopyRight = () => (
-  <Paragraph style={{ fontSize: 12 }}>
-    Centrifuge Inc. © Copyright {new Date().getFullYear()}
-  </Paragraph>
-)
+);
 
-export {BlockFirstAddress, BlockSecondAddress, BlockExternalLink, BlockInternalLink, BlockHello,BlockCopyRight};
+const BlockCopyRight = ({ size }) => (
+  <Paragraph style={{ fontSize: 12 }}>
+    Except where otherwise noted, content on this site is licensed under {size === "small" ? null : <br />} a{' '}
+    <ExternalLink href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer noopener">
+      Creative Commons Attribution-ShareAlike 4.0 International
+    </ExternalLink>
+    {' '}license
+  </Paragraph>
+);
+
+export { BlockExternalLink, BlockInternalLink, BlockHello, BlockCopyRight };
