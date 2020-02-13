@@ -1,13 +1,13 @@
 import React from 'react'
 import { Box, Heading, Paragraph } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Column from '../../../components/Column'
+import Grid from 'components/Grid'
+import Column from 'components/Column'
 
 import Image from './Image'
 import Content from './Content'
 
-import tinlakeLogo from '../../../images/tinlake/tinlake-logo.svg'
+import tinlakeLogo from 'images/tinlake/tinlake-logo.svg'
 
 export default function Hero() {
   return (

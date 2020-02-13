@@ -1,9 +1,9 @@
 import React from 'react'
 import { Heading, Paragraph } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Column from '../../../components/Column'
-import Container from '../../../components/Container'
+import Grid from 'components/Grid'
+import Column from 'components/Column'
+import Container from 'components/Container'
 
 import Disclaimer from './Disclaimer'
 

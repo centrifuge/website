@@ -1,14 +1,14 @@
 import React from 'react'
 import { Box, Heading, Paragraph, ResponsiveContext } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Container from '../../../components/Container'
-import Column from '../../../components/Column'
+import Grid from 'components/Grid'
+import Container from 'components/Container'
+import Column from 'components/Column'
 
 import HeroTitle from './HeroTitle'
 import Image from './Image'
 
-import graph_circle_img from '../../../images/deep-tier-finance/graph_circle.svg'
+import graph_circle_img from 'images/deep-tier-finance/graph_circle.svg'
 
 export default function Hero() {
   const heroDescription = (

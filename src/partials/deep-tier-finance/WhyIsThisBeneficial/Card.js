@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Column from '../../../components/Column'
+import Column from 'components/Column'
 
 const Card = styled(Column)`
   & + & {

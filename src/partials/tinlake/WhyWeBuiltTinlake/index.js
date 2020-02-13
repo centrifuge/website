@@ -1,14 +1,14 @@
 import React from 'react'
 import { Box, Heading, Paragraph } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Column from '../../../components/Column'
-import Container from '../../../components/Container'
+import Grid from 'components/Grid'
+import Column from 'components/Column'
+import Container from 'components/Container'
 
 import Image from './Image'
 
-import tinlake_overview_desktop_img from '../../../images/tinlake/tinlake-overview-desktop.svg'
-import tinlake_overview_mobile_img from '../../../images/tinlake/tinlake-overview-mobile.svg'
+import tinlake_overview_desktop_img from 'images/tinlake/tinlake-overview-desktop.svg'
+import tinlake_overview_mobile_img from 'images/tinlake/tinlake-overview-mobile.svg'
 
 export default function WhyWeBuiltTinlake() {
   return (

@@ -1,15 +1,15 @@
 import React from 'react'
 import { Box, Heading, Text } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Column from '../../../components/Column'
+import Grid from 'components/Grid'
+import Column from 'components/Column'
 
 import Card from './Card'
 import Images from './Images'
 
-import benefits_originators_img from '../../../images/tinlake/benefits_originators.svg'
-import benefits_lenders_img from '../../../images/tinlake/benefits_lenders.svg'
-import benefits_investors_img from '../../../images/tinlake/benefits_investors.svg'
+import benefits_originators_img from 'images/tinlake/benefits_originators.svg'
+import benefits_lenders_img from 'images/tinlake/benefits_lenders.svg'
+import benefits_investors_img from 'images/tinlake/benefits_investors.svg'
 
 export default function Benefits() {
   return (

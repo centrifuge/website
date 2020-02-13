@@ -1,19 +1,19 @@
 import React from 'react'
 import { Box, Heading, Paragraph, Text } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Container from '../../../components/Container'
-import Column from '../../../components/Column'
+import Grid from 'components/Grid'
+import Container from 'components/Container'
+import Column from 'components/Column'
 
 import Card from './Card'
 import Images from './Images'
 import Disclaimer from './Disclaimer'
 
-import buyers_img from '../../../images/deep-tier-finance/buyers.svg'
-import funders_img from '../../../images/deep-tier-finance/funders.svg'
-import suppliers_1_img from '../../../images/deep-tier-finance/suppliers_1.svg'
-import suppliers_2_img from '../../../images/deep-tier-finance/suppliers_3.svg'
-import suppliers_3_img from '../../../images/deep-tier-finance/suppliers_2.svg'
+import buyers_img from 'images/deep-tier-finance/buyers.svg'
+import funders_img from 'images/deep-tier-finance/funders.svg'
+import suppliers_1_img from 'images/deep-tier-finance/suppliers_1.svg'
+import suppliers_2_img from 'images/deep-tier-finance/suppliers_3.svg'
+import suppliers_3_img from 'images/deep-tier-finance/suppliers_2.svg'
 
 export default function WhyIsThisBeneficial() {
   return (

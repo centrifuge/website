@@ -1,14 +1,14 @@
 import React from 'react'
 import { Heading, Paragraph } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Column from '../../../components/Column'
-import Container from '../../../components/Container'
+import Grid from 'components/Grid'
+import Column from 'components/Column'
+import Container from 'components/Container'
 
 import Image from './Image'
 
-import tinlake_work_mobile_img from '../../../images/tinlake/tinlake-work-mobile.svg'
-import tinlake_work_desktop_img from '../../../images/tinlake/tinlake-work-desktop.svg'
+import tinlake_work_mobile_img from 'images/tinlake/tinlake-work-mobile.svg'
+import tinlake_work_desktop_img from 'images/tinlake/tinlake-work-desktop.svg'
 
 export default function TinlakeWork() {
   return (
