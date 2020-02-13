@@ -8,7 +8,7 @@ import Column from '../../../components/Column'
 import HeroTitle from './HeroTitle'
 import Image from './Image'
 
-import DTF_graph_circle_img from '../../../images/DTF_graph_circle.svg'
+import graph_circle_img from '../../../images/deep-tier-finance/graph_circle.svg'
 
 export default function Hero() {
   const heroDescription = (
@@ -39,7 +39,7 @@ export default function Hero() {
             </Column>
 
             <Column justifySelf='stretch' span={{ medium: 6, large: 6 }}>
-              <Image src={DTF_graph_circle_img} />
+              <Image src={graph_circle_img} />
             </Column>
 
             {size === 'small' && (

@@ -17,10 +17,10 @@ import Slider from './Slider'
 import Collapse from './Collapse'
 import VerticalSteps from './VerticalSteps'
 
-import DTF_graph_how_it_works_desktop_img from '../../../images/DTF_graph_how_it_works_desktop.svg'
-import DTF_graph_how_it_works_desktop_detailed_img from '../../../images/DTF_graph_how_it_works_desktop_detailed.svg'
-import DTF_graph_how_it_works_mobile_img from '../../../images/DTF_graph_how_it_works_mobile.svg'
-import DTF_graph_how_it_works_mobile_detailed_img from '../../../images/DTF_graph_how_it_works_mobile_detailed.svg'
+import graph_how_it_works_desktop_img from '../../../images/deep-tier-finance/graph_how_it_works_desktop.svg'
+import graph_how_it_works_desktop_detailed_img from '../../../images/deep-tier-finance/graph_how_it_works_desktop_detailed.svg'
+import graph_how_it_works_mobile_img from '../../../images/deep-tier-finance/graph_how_it_works_mobile.svg'
+import graph_how_it_works_mobile_detailed_img from '../../../images/deep-tier-finance/graph_how_it_works_mobile_detailed.svg'
 
 export default function HowDoesDTFWork() {
   const [is_more_details_open, set_is_more_details_open] = React.useState()
@@ -62,7 +62,7 @@ export default function HowDoesDTFWork() {
                   {data.aboveImage}
                 </Text>
                 <img
-                  src={DTF_graph_how_it_works_mobile_img}
+                  src={graph_how_it_works_mobile_img}
                   style={{ margin: '0 15%' }}
                 />
                 <Text
@@ -81,7 +81,7 @@ export default function HowDoesDTFWork() {
             ) : (
               <Box pad={{ top: '144px' }} align='center'>
                 <Text style={{ marginBottom: 12 }}>{data.aboveImage}</Text>
-                <img src={DTF_graph_how_it_works_desktop_img} />
+                <img src={graph_how_it_works_desktop_img} />
                 <Text style={{ marginTop: 12 }}>{data.belowImage}</Text>
               </Box>
             )}
@@ -107,7 +107,7 @@ export default function HowDoesDTFWork() {
               {size === 'small' ? (
                 <Slider
                   data={data}
-                  image={DTF_graph_how_it_works_desktop_detailed_img}
+                  image={graph_how_it_works_desktop_detailed_img}
                 />
               ) : size === 'medium' ? (
                 <VerticalSteps>
@@ -117,7 +117,7 @@ export default function HowDoesDTFWork() {
                     ))}
                   </div>
                   <div>
-                    <Image src={DTF_graph_how_it_works_mobile_detailed_img} />
+                    <Image src={graph_how_it_works_mobile_detailed_img} />
                   </div>
                   <div>
                     {data.belowSteps.map((step, i) => (
@@ -138,7 +138,7 @@ export default function HowDoesDTFWork() {
                     ))}
                   </Grid>
 
-                  <Image src={DTF_graph_how_it_works_desktop_detailed_img} />
+                  <Image src={graph_how_it_works_desktop_detailed_img} />
 
                   <Grid noMargin>
                     {data.belowSteps.map((step, i) => (

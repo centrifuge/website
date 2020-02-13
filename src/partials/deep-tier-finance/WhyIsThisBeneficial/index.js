@@ -9,11 +9,11 @@ import Card from './Card'
 import Images from './Images'
 import Disclaimer from './Disclaimer'
 
-import DTF_buyers_img from '../../../images/DTF_buyers.svg'
-import DTF_funders_img from '../../../images/DTF_funders.svg'
-import DTF_suppliers_1_img from '../../../images/DTF_suppliers_1.svg'
-import DTF_suppliers_2_img from '../../../images/DTF_suppliers_3.svg'
-import DTF_suppliers_3_img from '../../../images/DTF_suppliers_2.svg'
+import buyers_img from '../../../images/deep-tier-finance/buyers.svg'
+import funders_img from '../../../images/deep-tier-finance/funders.svg'
+import suppliers_1_img from '../../../images/deep-tier-finance/suppliers_1.svg'
+import suppliers_2_img from '../../../images/deep-tier-finance/suppliers_3.svg'
+import suppliers_3_img from '../../../images/deep-tier-finance/suppliers_2.svg'
 
 export default function WhyIsThisBeneficial() {
   return (
@@ -79,19 +79,19 @@ const data = {
       heading: 'Suppliers',
       paragraph:
         'Suppliers finance their working capital at significantly lower rates than before.',
-      images: [DTF_suppliers_1_img, DTF_suppliers_2_img, DTF_suppliers_3_img]
+      images: [suppliers_1_img, suppliers_2_img, suppliers_3_img]
     },
     {
       heading: 'Buyers',
       paragraph:
         'Buyers secure their supplier’s financial health, protect their supply chains and benefit from cost savings created from better supply chain management, lower costs of credit and better liquidity for their entire supply. chain. ',
-      images: [DTF_buyers_img]
+      images: [buyers_img]
     },
     {
       heading: 'Funders',
       paragraph:
         'Funders extend their business across the entire supply chain at lower the risk of a reputable buyer',
-      images: [DTF_funders_img]
+      images: [funders_img]
     }
   ]
 }
