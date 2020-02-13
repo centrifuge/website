@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
 const Image = styled.img`
-   width: 100%;
-   margin: 0 auto 106px;
+  margin-bottom: 70px;
 
-   @media only screen and (min-width: 550px) {
-      width: 80%;
-      margin: 0 auto 56px;
-   }
+  @media only screen and (min-width: 769px) {
+    margin-bottom: 0;
+  }
 `
 
 export default Image

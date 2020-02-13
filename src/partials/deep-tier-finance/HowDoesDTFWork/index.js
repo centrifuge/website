@@ -8,8 +8,8 @@ import {
   ResponsiveContext
 } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Container from '../../../components/Container'
+import Grid from 'components/Grid'
+import Container from 'components/Container'
 
 import Step from './Step'
 import Image from './Image'
@@ -17,10 +17,10 @@ import Slider from './Slider'
 import Collapse from './Collapse'
 import VerticalSteps from './VerticalSteps'
 
-import graph_how_it_works_desktop_img from '../../../images/deep-tier-finance/graph_how_it_works_desktop.svg'
-import graph_how_it_works_desktop_detailed_img from '../../../images/deep-tier-finance/graph_how_it_works_desktop_detailed.svg'
-import graph_how_it_works_mobile_img from '../../../images/deep-tier-finance/graph_how_it_works_mobile.svg'
-import graph_how_it_works_mobile_detailed_img from '../../../images/deep-tier-finance/graph_how_it_works_mobile_detailed.svg'
+import graph_how_it_works_desktop_img from 'images/deep-tier-finance/graph_how_it_works_desktop.svg'
+import graph_how_it_works_desktop_detailed_img from 'images/deep-tier-finance/graph_how_it_works_desktop_detailed.svg'
+import graph_how_it_works_mobile_img from 'images/deep-tier-finance/graph_how_it_works_mobile.svg'
+import graph_how_it_works_mobile_detailed_img from 'images/deep-tier-finance/graph_how_it_works_mobile_detailed.svg'
 
 export default function HowDoesDTFWork() {
   const [is_more_details_open, set_is_more_details_open] = React.useState()

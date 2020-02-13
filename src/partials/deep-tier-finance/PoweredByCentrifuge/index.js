@@ -1,13 +1,13 @@
 import React from 'react'
 import { Box, Heading, Paragraph, Text } from 'grommet'
 
-import Grid from '../../../components/Grid'
-import Column from '../../../components/Column'
-import Container from '../../../components/Container'
+import Grid from 'components/Grid'
+import Column from 'components/Column'
+import Container from 'components/Container'
 
 import Logo from './Logo'
 
-import logo from '../../../images/centrifuge-wordmark-light.svg'
+import logo from 'images/centrifuge-wordmark-light.svg'
 
 export default function PoweredByCentrifuge() {
   return (

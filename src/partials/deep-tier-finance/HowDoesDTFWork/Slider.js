@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Image from './Image'
 
-import slide_right_arrows_img from '../../../images/deep-tier-finance/slide_right_arrows.svg'
+import slide_right_arrows_img from 'images/deep-tier-finance/slide_right_arrows.svg'
 
 const Slider = ({ image, data }) => {
   const STEPS = 4
