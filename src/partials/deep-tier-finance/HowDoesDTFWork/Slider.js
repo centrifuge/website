@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Image from './Image'
 
-import DTF_slide_right_arrows_img from '../../../images/DTF_slide_right_arrows.svg'
+import slide_right_arrows_img from '../../../images/deep-tier-finance/slide_right_arrows.svg'
 
 const Slider = ({ image, data }) => {
   const STEPS = 4
@@ -34,7 +34,7 @@ const Slider = ({ image, data }) => {
         {current_step !== 0 && (
           <Button onClick={prevStep}>
             <img
-              src={DTF_slide_right_arrows_img}
+              src={slide_right_arrows_img}
               style={{ transform: 'rotate(180deg)' }}
             />
             <span>Slide left</span>
@@ -44,7 +44,7 @@ const Slider = ({ image, data }) => {
         {current_step !== STEPS - 1 && (
           <Button onClick={nextStep}>
             <span>Slide right</span>
-            <img src={DTF_slide_right_arrows_img} />
+            <img src={slide_right_arrows_img} />
           </Button>
         )}
       </Buttons>
