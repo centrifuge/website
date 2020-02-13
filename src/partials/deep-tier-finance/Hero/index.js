@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Paragraph, ResponsiveContext } from 'grommet'
+import { Box, Heading, Paragraph, ResponsiveContext } from 'grommet'
 
 import Grid from '../../../components/Grid'
 import Container from '../../../components/Container'
@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <Container>
+        <Box pad={{ horizontal: '40px' }}>
           <Grid>
             <Column
               style={{ alignSelf: 'flex-start' }}
@@ -46,7 +46,7 @@ export default function Hero() {
               <Column span={{ medium: 6, large: 6 }}>{heroDescription}</Column>
             )}
           </Grid>
-        </Container>
+        </Box>
       )}
     </ResponsiveContext.Consumer>
   )
