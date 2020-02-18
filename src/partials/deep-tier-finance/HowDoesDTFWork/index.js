@@ -49,7 +49,7 @@ export default function HowDoesDTFWork() {
 
           <Container>
             {size === 'small' ? (
-              <Box style={{ position: 'relative' }}>
+              <Box pad={{ top: '60px' }} style={{ position: 'relative' }}>
                 <Text
                   style={{
                     position: 'absolute',
