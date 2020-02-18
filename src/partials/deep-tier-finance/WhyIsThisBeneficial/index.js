@@ -60,7 +60,7 @@ export default function WhyIsThisBeneficial() {
               <br />
               please get in touch:{' '}
               <a href='mailto:deeptierfinance@centrifuge.io'>
-                deeptierfinance@centrifuge.io.
+                deeptierfinance@centrifuge.io
               </a>
             </Disclaimer>
           </Column>

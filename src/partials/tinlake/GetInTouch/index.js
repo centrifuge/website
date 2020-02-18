@@ -30,7 +30,7 @@ export default function GetInTouch() {
           <Disclaimer>
             Any questions left?
             <br />
-            please get in touch:{' '}
+            Please get in touch:{' '}
             <a href='mailto:tinlake@centrifuge.io'>tinlake@centrifuge.io.</a>
           </Disclaimer>
         </Column>

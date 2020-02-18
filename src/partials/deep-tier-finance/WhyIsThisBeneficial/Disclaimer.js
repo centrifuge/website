@@ -4,11 +4,12 @@ const Disclaimer = styled.div`
   font-size: 20px;
   line-height: 32px;
 
-  padding: 46px 100px 0 100px;
+  padding-top: 46px;
   border-top: 1px solid #000;
 
   a {
     color: black;
+    word-break: break-word;
   }
 `
 
