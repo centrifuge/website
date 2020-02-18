@@ -54,7 +54,7 @@ export default function WhyIsThisBeneficial() {
 
       <Container>
         <Grid justify='center'>
-          <Column>
+          <Column style={{ width: '100%' }}>
             <Disclaimer>
               If you are interested in Deep Tier Finance,
               <br />
