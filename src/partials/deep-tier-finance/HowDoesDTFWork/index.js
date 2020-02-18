@@ -63,7 +63,7 @@ export default function HowDoesDTFWork() {
                 </Text>
                 <img
                   src={graph_how_it_works_mobile_img}
-                  style={{ margin: '0 15%' }}
+                  style={{ margin: '0 auto', width: '70%' }}
                 />
                 <Text
                   style={{
