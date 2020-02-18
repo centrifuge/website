@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import Column from 'components/Column'
 
 const Card = styled(Column)`
+  span {
+    text-align: start;
+  }
+
   & + & {
     padding-top: 50px;
   }

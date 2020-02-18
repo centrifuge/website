@@ -13,7 +13,7 @@ export default function GetInTouch() {
       <Grid align='start'>
         <Column>
           <div>
-            <Heading className='tinlake_heading' level={2} lined>
+            <Heading level={2} lined>
               {data.heading}
             </Heading>
             {data.paragraphs.map((paragraph, i) => (
@@ -30,10 +30,8 @@ export default function GetInTouch() {
           <Disclaimer>
             Any questions left?
             <br />
-            please get in touch:{' '}
-            <a href='mailto:hello@centrifuge.io'>
-              deeptierfinance@centrifuge.io.
-            </a>
+            Please get in touch:{' '}
+            <a href='mailto:tinlake@centrifuge.io'>tinlake@centrifuge.io.</a>
           </Disclaimer>
         </Column>
       </Grid>

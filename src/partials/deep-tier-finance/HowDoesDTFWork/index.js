@@ -35,7 +35,7 @@ export default function HowDoesDTFWork() {
         <>
           <Box pad={{ top: '144px' }}>
             <Container>
-              <Heading className='tinlake_heading' level={2} lined>
+              <Heading level={2} lined>
                 {data.heading}
               </Heading>
 
@@ -49,7 +49,7 @@ export default function HowDoesDTFWork() {
 
           <Container>
             {size === 'small' ? (
-              <Box style={{ position: 'relative' }}>
+              <Box pad={{ top: '60px' }} style={{ position: 'relative' }}>
                 <Text
                   style={{
                     position: 'absolute',

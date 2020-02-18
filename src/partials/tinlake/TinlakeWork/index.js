@@ -16,7 +16,7 @@ export default function TinlakeWork() {
       <Grid mb='0px'>
         <Column>
           <div>
-            <Heading className='tinlake_heading' level={2} lined>
+            <Heading level={2} lined>
               {data.heading}
             </Heading>
             {data.paragraphs.map((paragraph, i) => (

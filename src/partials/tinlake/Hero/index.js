@@ -11,7 +11,7 @@ import tinlakeLogo from 'images/tinlake/tinlake-logo.svg'
 
 export default function Hero() {
   return (
-    <Box pad={{ horizontal: '40px' }}>
+    <Box pad={{ horizontal: '10%' }}>
       <Grid>
         <Column justifySelf='stretch' span={{ medium: 7, large: 7 }}>
           <Image src={tinlakeLogo} />
@@ -21,9 +21,7 @@ export default function Hero() {
 
         <Column span={{ medium: 4, large: 4 }}>
           <Content>
-            <Heading level={1} className='tinlake_heading'>
-              {data.heading}
-            </Heading>
+            <Heading level={1}>{data.heading}</Heading>
             <Paragraph>{data.paragraph}</Paragraph>
           </Content>
         </Column>

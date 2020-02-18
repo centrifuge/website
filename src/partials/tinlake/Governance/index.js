@@ -11,7 +11,7 @@ export default function Governance() {
       <Grid align='start'>
         <Column>
           <div>
-            <Heading className='tinlake_heading' level={2} lined>
+            <Heading level={2} lined>
               {data.heading}
             </Heading>
             <Paragraph>{data.paragraph}</Paragraph>

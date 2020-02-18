@@ -7,6 +7,10 @@ const Card = styled(Box)`
   border-radius: 16px;
   padding: 32px;
 
+  span {
+    text-align: start;
+  }
+
   @media only screen and (max-width: 768px) {
     margin-top: 70px;
   }

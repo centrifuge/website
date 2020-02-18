@@ -17,7 +17,7 @@ export default function WhatIsTinlake() {
         <Grid align='start' mb='0px'>
           <Column>
             <div>
-              <Heading className='tinlake_heading' level={2} lined>
+              <Heading level={2} lined>
                 {data.heading}
               </Heading>
               <Paragraph>{data.paragraph}</Paragraph>
@@ -26,7 +26,7 @@ export default function WhatIsTinlake() {
         </Grid>
       </Container>
 
-      <Box pad={{ horizontal: '40px' }}>
+      <Box pad={{ horizontal: '10%' }}>
         <Grid>
           <Column mobileHide justifySelf='stretch'>
             <Image src={tinlake_flow_desktop_img} />

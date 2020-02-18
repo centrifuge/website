@@ -21,7 +21,7 @@ export default function WhyIsThisBeneficial() {
       <Container>
         <Grid>
           <Column>
-            <Heading className='tinlake_heading' lined level={2}>
+            <Heading lined level={2}>
               {data.heading}
             </Heading>
             <Paragraph>{data.paragraph}</Paragraph>
@@ -29,7 +29,7 @@ export default function WhyIsThisBeneficial() {
         </Grid>
       </Container>
 
-      <Box pad={{ horizontal: '40px' }}>
+      <Box pad={{ horizontal: '10%' }}>
         <Grid noMargin>
           {data.cards.map((card, i) => (
             <Card
@@ -59,8 +59,8 @@ export default function WhyIsThisBeneficial() {
               If you are interested in Deep Tier Finance,
               <br />
               please get in touch:{' '}
-              <a href='mailto:hello@centrifuge.io'>
-                deeptierfinance@centrifuge.io.
+              <a href='mailto:deeptierfinance@centrifuge.io'>
+                deeptierfinance@centrifuge.io
               </a>
             </Disclaimer>
           </Column>
