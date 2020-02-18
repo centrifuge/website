@@ -14,7 +14,7 @@ import benefits_investors_img from 'images/tinlake/benefits_investors.svg'
 export default function Benefits() {
   return (
     <>
-      <Box pad={{ horizontal: '40px' }}>
+      <Box pad={{ horizontal: '10%' }}>
         <Grid noMargin>
           <Column span={{ medium: 3, large: 3 }} style={{ width: '100%' }}>
             <Heading lined level={2}>

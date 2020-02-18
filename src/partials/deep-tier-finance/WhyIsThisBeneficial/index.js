@@ -29,7 +29,7 @@ export default function WhyIsThisBeneficial() {
         </Grid>
       </Container>
 
-      <Box pad={{ horizontal: '40px' }}>
+      <Box pad={{ horizontal: '10%' }}>
         <Grid noMargin>
           {data.cards.map((card, i) => (
             <Card

@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <Box pad={{ horizontal: '40px' }}>
+        <Box pad={{ horizontal: '10%' }}>
           <Grid>
             <Column
               style={{ alignSelf: 'flex-start' }}

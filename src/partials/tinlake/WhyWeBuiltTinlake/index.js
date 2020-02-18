@@ -26,7 +26,7 @@ export default function WhyWeBuiltTinlake() {
         </Grid>
       </Container>
 
-      <Box pad={{ horizontal: '40px' }}>
+      <Box pad={{ horizontal: '10%' }}>
         <Grid>
           <Column mobileHide justifySelf='stretch'>
             <Image src={tinlake_overview_desktop_img} />
