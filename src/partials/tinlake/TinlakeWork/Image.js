@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const Image = styled.img`
+  width: 100%;
   margin-top: 70px;
 
   @media only screen and (min-width: 769px) {
