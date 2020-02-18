@@ -31,9 +31,7 @@ export default function GetInTouch() {
             Any questions left?
             <br />
             please get in touch:{' '}
-            <a href='mailto:hello@centrifuge.io'>
-              deeptierfinance@centrifuge.io.
-            </a>
+            <a href='mailto:tinlake@centrifuge.io'>tinlake@centrifuge.io.</a>
           </Disclaimer>
         </Column>
       </Grid>

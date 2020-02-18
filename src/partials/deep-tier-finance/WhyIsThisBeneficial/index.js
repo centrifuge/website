@@ -59,7 +59,7 @@ export default function WhyIsThisBeneficial() {
               If you are interested in Deep Tier Finance,
               <br />
               please get in touch:{' '}
-              <a href='mailto:hello@centrifuge.io'>
+              <a href='mailto:deeptierfinance@centrifuge.io'>
                 deeptierfinance@centrifuge.io.
               </a>
             </Disclaimer>
