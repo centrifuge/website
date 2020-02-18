@@ -5,7 +5,7 @@ const Disclaimer = styled.div`
   line-height: 32px;
 
   padding: 46px 100px 0 100px;
-  border-top: 2px solid #0828be;
+  border-top: 1px solid #000;
 
   a {
     color: black;

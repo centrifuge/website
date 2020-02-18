@@ -6,7 +6,7 @@ const Disclaimer = styled.div`
   text-align: center;
 
   padding-top: 46px;
-  border-top: 2px solid #0828be;
+  border-top: 1px solid #000;
 
   a {
     color: black;

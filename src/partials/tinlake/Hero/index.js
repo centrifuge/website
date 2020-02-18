@@ -21,9 +21,7 @@ export default function Hero() {
 
         <Column span={{ medium: 4, large: 4 }}>
           <Content>
-            <Heading level={1} className='tinlake_heading'>
-              {data.heading}
-            </Heading>
+            <Heading level={1}>{data.heading}</Heading>
             <Paragraph>{data.paragraph}</Paragraph>
           </Content>
         </Column>

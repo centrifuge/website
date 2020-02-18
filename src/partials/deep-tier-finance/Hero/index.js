@@ -13,7 +13,7 @@ import graph_circle_img from 'images/deep-tier-finance/graph_circle.svg'
 export default function Hero() {
   const heroDescription = (
     <>
-      <Heading className='tinlake_heading' level={2} lined>
+      <Heading level={2} lined>
         {data.heading}
       </Heading>
       <Paragraph>{data.paragraph}</Paragraph>

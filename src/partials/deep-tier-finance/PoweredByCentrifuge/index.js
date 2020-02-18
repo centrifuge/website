@@ -16,7 +16,6 @@ export default function PoweredByCentrifuge() {
         <Grid>
           <Column>
             <Heading
-              className='tinlake_heading'
               lined
               level={2}
               style={{ display: 'flex', borderBottomColor: '#d8d8d8' }}

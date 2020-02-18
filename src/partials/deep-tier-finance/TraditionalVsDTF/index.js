@@ -13,12 +13,7 @@ export default function TraditionalVsDTF() {
       <Container>
         <Grid>
           <Column>
-            <Heading
-              className='tinlake_heading'
-              lined
-              level={2}
-              style={{ borderBottomColor: '#d8d8d8' }}
-            >
+            <Heading lined level={2} style={{ borderBottomColor: '#d8d8d8' }}>
               {data.heading}
             </Heading>
             <Paragraph style={{ paddingBottom: 50 }}>

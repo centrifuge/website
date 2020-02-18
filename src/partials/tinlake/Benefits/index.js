@@ -17,7 +17,7 @@ export default function Benefits() {
       <Box pad={{ horizontal: '40px' }}>
         <Grid noMargin>
           <Column span={{ medium: 3, large: 3 }} style={{ width: '100%' }}>
-            <Heading className='tinlake_heading' lined level={2}>
+            <Heading lined level={2}>
               {data.heading}
             </Heading>
           </Column>

@@ -21,7 +21,7 @@ export default function WhyIsThisBeneficial() {
       <Container>
         <Grid>
           <Column>
-            <Heading className='tinlake_heading' lined level={2}>
+            <Heading lined level={2}>
               {data.heading}
             </Heading>
             <Paragraph>{data.paragraph}</Paragraph>

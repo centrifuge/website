@@ -13,7 +13,7 @@ export default function GetInTouch() {
       <Grid align='start'>
         <Column>
           <div>
-            <Heading className='tinlake_heading' level={2} lined>
+            <Heading level={2} lined>
               {data.heading}
             </Heading>
             {data.paragraphs.map((paragraph, i) => (
