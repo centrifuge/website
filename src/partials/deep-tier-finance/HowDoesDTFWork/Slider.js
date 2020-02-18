@@ -68,8 +68,15 @@ const Steps = styled.div`
   width: 100%;
   justify-content: space-between;
 
+  > div:first-child {
+    margin-left: -30px;
+  }
+  > div:last-child {
+    margin-right: -30px;
+  }
   > div {
     width: 300px;
+    padding: 10px 30px;
   }
 `
 
