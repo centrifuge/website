@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Image from './Image'
-
 import slide_right_arrows_img from 'images/deep-tier-finance/slide_right_arrows.svg'
 
 const Slider = ({ image, data }) => {
@@ -53,6 +51,10 @@ const Slider = ({ image, data }) => {
 }
 
 export default Slider
+
+const Image = styled.img`
+  width: 100%;
+`
 
 const Wrapper = styled.div`
   position: relative;

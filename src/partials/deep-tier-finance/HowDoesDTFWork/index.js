@@ -1,4 +1,5 @@
 import React from 'react'
+import styled, { css } from 'styled-components'
 import {
   Box,
   Button,
@@ -9,13 +10,10 @@ import {
 } from 'grommet'
 
 import Grid from 'components/Grid'
+import Column from 'components/Column'
 import Container from 'components/Container'
 
-import Step from './Step'
-import Image from './Image'
 import Slider from './Slider'
-import Collapse from './Collapse'
-import VerticalSteps from './VerticalSteps'
 
 import graph_how_it_works_desktop_img from 'images/deep-tier-finance/graph_how_it_works_desktop.svg'
 import graph_how_it_works_desktop_detailed_img from 'images/deep-tier-finance/graph_how_it_works_desktop_detailed.svg'
@@ -186,3 +184,40 @@ const data = {
     'Sneakers confirms the early payment request to Laces and settles the transaction by paying the invoice from Laces early. '
   ]
 }
+
+const Image = styled.img`
+  width: 100%;
+`
+
+const Collapse = styled.div`
+  width: 100%;
+  overflow: hidden;
+
+  ${({ isOpen }) =>
+    isOpen
+      ? css`
+          height: auto;
+          padding: 144px 40px;
+        `
+      : css`
+          height: 0;
+          margin: 144px 40px 0 40px;
+        `};
+`
+
+const VerticalSteps = styled.div`
+  width: 100%;
+  display: flex;
+
+  > div {
+    width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+  }
+`
+
+const Step = styled(Column)`
+  padding: 30px;
+`

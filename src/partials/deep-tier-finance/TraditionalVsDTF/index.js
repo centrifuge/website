@@ -1,11 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Heading, Paragraph, Text } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
 import Container from 'components/Container'
-
-import Card from './Card'
 
 export default function TraditionalVsDTF() {
   return (
@@ -73,3 +72,17 @@ const data = {
     ]
   }
 }
+
+const Card = styled(Box)`
+  width: 100%;
+  border-radius: 16px;
+  padding: 32px;
+
+  span {
+    text-align: start;
+  }
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 70px;
+  }
+`
