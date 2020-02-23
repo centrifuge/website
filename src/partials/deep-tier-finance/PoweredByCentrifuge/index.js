@@ -12,7 +12,7 @@ export default function PoweredByCentrifuge() {
   return (
     <Box tag='section' background='black'>
       <Container>
-        <Grid>
+        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
           <Column>
             <Heading
               lined

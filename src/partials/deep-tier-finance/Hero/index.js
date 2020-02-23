@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Heading, Paragraph, ResponsiveContext } from 'grommet'
+import { Heading, Paragraph, ResponsiveContext } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
@@ -19,34 +19,29 @@ export default function Hero() {
   )
 
   return (
-    <ResponsiveContext.Consumer>
-      {size => (
-        <FullWidthContainer>
-          <Grid noMargin>
-            <Column
-              style={{ alignSelf: 'flex-start' }}
-              span={{ medium: 6, large: 6 }}
-            >
-              <HeroTitle>
-                <span style={{ fontWeight: '600' }}>Deep </span>
-                <span style={{ fontWeight: '500' }}>Tier </span>
-                Finance
-              </HeroTitle>
+    <FullWidthContainer>
+      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Column span={{ medium: 6, large: 6 }} alignSelf='start'>
+          <HeroTitle>
+            <span style={{ fontWeight: '600' }}>Deep </span>
+            <span style={{ fontWeight: '500' }}>Tier </span>
+            Finance
+          </HeroTitle>
 
-              {size !== 'small' && heroDescription}
-            </Column>
+          <ResponsiveContext.Consumer>
+            {size => size !== 'small' && heroDescription}
+          </ResponsiveContext.Consumer>
+        </Column>
 
-            <Column justifySelf='stretch' span={{ medium: 6, large: 6 }}>
-              <Image src={graph_circle_img} />
-            </Column>
+        <Column span={{ medium: 6, large: 6 }} justifySelf='stretch'>
+          <Image src={graph_circle_img} />
+        </Column>
 
-            {size === 'small' && (
-              <Column span={{ medium: 6, large: 6 }}>{heroDescription}</Column>
-            )}
-          </Grid>
-        </FullWidthContainer>
-      )}
-    </ResponsiveContext.Consumer>
+        <Column tabletHide span={{ medium: 6, large: 6 }}>
+          {heroDescription}
+        </Column>
+      </Grid>
+    </FullWidthContainer>
   )
 }
 

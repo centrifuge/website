@@ -10,30 +10,26 @@ export default function TraditionalVsDTF() {
   return (
     <Box tag='section' background='brand'>
       <Container>
-        <Grid>
+        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
           <Column>
             <Heading lined level={2} style={{ borderBottomColor: '#d8d8d8' }}>
               {data.heading}
             </Heading>
-            <Paragraph style={{ paddingBottom: 50 }}>
-              {data.paragraph}
-            </Paragraph>
+            <Paragraph>{data.paragraph}</Paragraph>
           </Column>
 
-          <Column span={{ medium: 6, large: 6 }}>
-            <Text size='large' style={{ paddingBottom: 25 }}>
-              {data.column1.heading}
-            </Text>
-            {data.column1.bulletPoints.map((line, i) => (
-              <Text key={`TraditionalVsDTF-column1-${i}`}>{line}</Text>
-            ))}
+          <Column span={{ medium: 6, large: 6 }} alignSelf='start' width='100%'>
+            <Card background='brand' style={{ marginLeft: -32 }}>
+              <Text size='large'>{data.column1.heading}</Text>
+              {data.column1.bulletPoints.map((line, i) => (
+                <Text key={`TraditionalVsDTF-column1-${i}`}>{line}</Text>
+              ))}
+            </Card>
           </Column>
 
-          <Column span={{ medium: 6, large: 6 }} width='100%'>
+          <Column span={{ medium: 6, large: 6 }} alignSelf='start' width='100%'>
             <Card background='white'>
-              <Text size='large' style={{ paddingBottom: 25 }}>
-                {data.column2.heading}
-              </Text>
+              <Text size='large'>{data.column2.heading}</Text>
               {data.column2.bulletPoints.map((line, i) => (
                 <Text key={`TraditionalVsDTF-column3_${i}`}>{line}</Text>
               ))}
@@ -77,12 +73,14 @@ const Card = styled(Box)`
   width: 100%;
   border-radius: 16px;
   padding: 32px;
+  margin-top: 32px;
 
   span {
     text-align: start;
   }
 
-  @media only screen and (max-width: 768px) {
-    margin-top: 70px;
+  span:first-child {
+    padding-bottom: 25px;
+    line-height: 1.35;
   }
 `
