@@ -12,7 +12,7 @@ import tinlake_work_desktop_img from 'images/tinlake/tinlake-work-desktop.svg'
 export default function TinlakeWork() {
   return (
     <Container>
-      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+      <Grid noMargin pt="50px" pb="50px">
         <Column>
           <div>
             <Heading level={2} lined>
@@ -27,7 +27,7 @@ export default function TinlakeWork() {
         </Column>
       </Grid>
 
-      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+      <Grid noMargin pt="50px" pb="50px">
         <Column
           justifySelf='stretch'
           span={{ medium: 5, large: 5 }}

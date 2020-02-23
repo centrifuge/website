@@ -17,7 +17,7 @@ export default function WhyIsThisBeneficial() {
   return (
     <>
       <Container>
-        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Grid noMargin pt="50px" pb="50px">
           <Column width='100%'>
             <Heading lined level={2}>
               {data.heading}
@@ -28,7 +28,7 @@ export default function WhyIsThisBeneficial() {
       </Container>
 
       <FullWidthContainer>
-        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Grid noMargin pt="50px" pb="50px">
           {data.cards.map((card, i) => (
             <Card
               key={`WhyIsThisBeneficial-card-${i}`}
@@ -51,7 +51,7 @@ export default function WhyIsThisBeneficial() {
       </FullWidthContainer>
 
       <Container>
-        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Grid noMargin pt="50px" pb="50px">
           <Column width='100%'>
             <Disclaimer>
               If you are interested in Deep Tier Finance,

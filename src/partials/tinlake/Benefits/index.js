@@ -13,7 +13,7 @@ import benefits_investors_img from 'images/tinlake/benefits_investors.svg'
 export default function Benefits() {
   return (
     <FullWidthContainer>
-      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+      <Grid noMargin pt="50px" pb="50px">
         <Column span={{ medium: 11, large: 11 }} style={{ width: '100%' }}>
           <Heading lined level={2}>
             {data.heading}

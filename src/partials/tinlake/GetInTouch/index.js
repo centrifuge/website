@@ -11,7 +11,7 @@ export default function GetInTouch() {
     <Container>
       <Grid
         noMargin
-        style={{ paddingTop: '50px', paddingBottom: '50px' }}
+        pt="50px" pb="50px"
         align='start'
       >
         <Column>
@@ -30,7 +30,7 @@ export default function GetInTouch() {
 
       <Grid
         noMargin
-        style={{ paddingTop: '50px', paddingBottom: '50px' }}
+        pt="50px" pb="50px"
         justify='center'
       >
         <Column>

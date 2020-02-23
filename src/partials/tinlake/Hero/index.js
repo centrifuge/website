@@ -11,7 +11,7 @@ import tinlakeLogo from 'images/tinlake/tinlake-logo.svg'
 export default function Hero() {
   return (
     <FullWidthContainer>
-      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+      <Grid noMargin pt="50px" pb="50px">
         <Column justifySelf='stretch' span={{ medium: 7, large: 7 }}>
           <Image src={tinlakeLogo} />
         </Column>

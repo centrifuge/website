@@ -20,7 +20,7 @@ export default function Hero() {
 
   return (
     <FullWidthContainer>
-      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+      <Grid noMargin pt="50px" pb="50px">
         <Column span={{ medium: 6, large: 6 }} alignSelf='start'>
           <HeroTitle>
             <span style={{ fontWeight: '600' }}>Deep </span>

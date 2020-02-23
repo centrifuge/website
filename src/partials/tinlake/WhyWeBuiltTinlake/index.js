@@ -16,7 +16,7 @@ export default function WhyWeBuiltTinlake() {
       <Container>
         <Grid
           noMargin
-          style={{ paddingTop: '50px', paddingBottom: '50px' }}
+          pt="50px" pb="50px"
           align='start'
         >
           <Column>
@@ -31,7 +31,7 @@ export default function WhyWeBuiltTinlake() {
       </Container>
 
       <FullWidthContainer>
-        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Grid noMargin pt="50px" pb="50px">
           <Column mobileHide justifySelf='stretch'>
             <Image src={tinlake_overview_desktop_img} />
           </Column>

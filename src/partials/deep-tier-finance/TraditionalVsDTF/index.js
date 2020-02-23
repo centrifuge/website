@@ -10,7 +10,7 @@ export default function TraditionalVsDTF() {
   return (
     <Box tag='section' background='brand'>
       <Container>
-        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Grid noMargin pt="50px" pb="50px">
           <Column>
             <Heading lined level={2} style={{ borderBottomColor: '#d8d8d8' }}>
               {data.heading}

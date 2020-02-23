@@ -10,7 +10,7 @@ import graph_supplychain_img from 'images/deep-tier-finance/graph_supplychain.sv
 export default function DTFImage() {
   return (
     <Container>
-      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+      <Grid noMargin pt="50px" pb="50px">
         <Column justifySelf='stretch'>
           <Image src={graph_supplychain_img} />
         </Column>
