@@ -1,11 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Heading, Text } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
-
-import Card from './Card'
-import Images from './Images'
 
 import benefits_originators_img from 'images/tinlake/benefits_originators.svg'
 import benefits_lenders_img from 'images/tinlake/benefits_lenders.svg'
@@ -92,3 +90,33 @@ const data = {
     }
   ]
 }
+
+const Images = styled.div`
+  display: flex;
+
+  img {
+    height: 64px;
+    width: auto;
+    margin-bottom: 20px;
+  }
+
+  img + img {
+    margin-left: 16px;
+  }
+`
+
+const Card = styled(Column)`
+  span {
+    text-align: start;
+  }
+
+  & + & {
+    padding-top: 50px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    & + & {
+      padding-top: 0px;
+    }
+  }
+`

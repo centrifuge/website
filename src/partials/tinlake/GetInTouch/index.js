@@ -1,11 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Heading, Paragraph } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
 import Container from 'components/Container'
-
-import Disclaimer from './Disclaimer'
 
 export default function GetInTouch() {
   return (
@@ -47,3 +46,16 @@ const data = {
     'In order to learn more about Tinlake please take a look at the Developer Documentation and corresponding blog posts on our Medium site.'
   ]
 }
+
+const Disclaimer = styled.div`
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+
+  padding-top: 46px;
+  border-top: 1px solid #000;
+
+  a {
+    color: black;
+  }
+`

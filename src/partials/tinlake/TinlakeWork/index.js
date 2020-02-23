@@ -1,11 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Heading, Paragraph } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
 import Container from 'components/Container'
-
-import Image from './Image'
 
 import tinlake_work_mobile_img from 'images/tinlake/tinlake-work-mobile.svg'
 import tinlake_work_desktop_img from 'images/tinlake/tinlake-work-desktop.svg'
@@ -56,3 +55,16 @@ const data = {
   imageDescription:
     'Tinlake can be deployed with a two-token structure that allows investors to invest in two different kinds of fungible, interesting bearing tokens: TIN and DROP. Both tokens represent the liquidity deposited into Tinlake and accrue interest over time. TIN takes the risk of defaults first but also receives higher returns. DROP is protected against defaults by the TIN token and receives stable (but usually lower) returns. This is similar to common Junior/Senior investment structures.'
 }
+
+const Image = styled.img`
+  width: 100%;
+  margin-top: 70px;
+
+  @media only screen and (min-width: 769px) {
+    margin-top: 0;
+  }
+
+  @media only screen and (min-width: 1140px) {
+    margin-right: calc((100vw - 1140px) / -2 + 10vw);
+  }
+`

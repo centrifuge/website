@@ -1,11 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Heading, Paragraph } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
-
-import Image from './Image'
-import Content from './Content'
 
 import tinlakeLogo from 'images/tinlake/tinlake-logo.svg'
 
@@ -35,3 +33,30 @@ const data = {
   paragraph:
     'Unlock the value of your real-world assets in the decentralized finance ecosystem. '
 }
+
+const Image = styled.img`
+  width: 100%;
+  margin-bottom: 70px;
+
+  @media only screen and (min-width: 769px) {
+    margin-bottom: 0;
+  }
+`
+
+const Content = styled.div`
+  h1 {
+    margin-top: 0;
+    margin-bottom: 23px;
+
+    @media only screen and (max-width: 768px) {
+      margin-bottom: 31px;
+    }
+  }
+
+  h1,
+  p {
+    @media only screen and (max-width: 768px) {
+      text-align: center;
+    }
+  }
+`
