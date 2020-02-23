@@ -4,13 +4,14 @@ import { Box, Heading, Paragraph } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
+import FullWidthContainer from 'components/FullWidthContainer'
 
 import tinlakeLogo from 'images/tinlake/tinlake-logo.svg'
 
 export default function Hero() {
   return (
-    <Box pad={{ horizontal: '10%' }}>
-      <Grid>
+    <FullWidthContainer>
+      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
         <Column justifySelf='stretch' span={{ medium: 7, large: 7 }}>
           <Image src={tinlakeLogo} />
         </Column>
@@ -24,7 +25,7 @@ export default function Hero() {
           </Content>
         </Column>
       </Grid>
-    </Box>
+    </FullWidthContainer>
   )
 }
 
@@ -37,10 +38,6 @@ const data = {
 const Image = styled.img`
   width: 100%;
   margin-bottom: 70px;
-
-  @media only screen and (min-width: 769px) {
-    margin-bottom: 0;
-  }
 `
 
 const Content = styled.div`

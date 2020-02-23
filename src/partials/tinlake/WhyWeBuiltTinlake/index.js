@@ -5,6 +5,7 @@ import { Box, Heading, Paragraph } from 'grommet'
 import Grid from 'components/Grid'
 import Column from 'components/Column'
 import Container from 'components/Container'
+import FullWidthContainer from 'components/FullWidthContainer'
 
 import tinlake_overview_desktop_img from 'images/tinlake/tinlake-overview-desktop.svg'
 import tinlake_overview_mobile_img from 'images/tinlake/tinlake-overview-mobile.svg'
@@ -13,7 +14,11 @@ export default function WhyWeBuiltTinlake() {
   return (
     <>
       <Container>
-        <Grid align='start' mb='0px'>
+        <Grid
+          noMargin
+          style={{ paddingTop: '50px', paddingBottom: '50px' }}
+          align='start'
+        >
           <Column>
             <div>
               <Heading level={2} lined>
@@ -25,8 +30,8 @@ export default function WhyWeBuiltTinlake() {
         </Grid>
       </Container>
 
-      <Box pad={{ horizontal: '10%' }}>
-        <Grid>
+      <FullWidthContainer>
+        <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
           <Column mobileHide justifySelf='stretch'>
             <Image src={tinlake_overview_desktop_img} />
           </Column>
@@ -34,7 +39,7 @@ export default function WhyWeBuiltTinlake() {
             <Image src={tinlake_overview_mobile_img} />
           </Column>
         </Grid>
-      </Box>
+      </FullWidthContainer>
     </>
   )
 }

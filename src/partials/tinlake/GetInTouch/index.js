@@ -9,7 +9,11 @@ import Container from 'components/Container'
 export default function GetInTouch() {
   return (
     <Container>
-      <Grid align='start'>
+      <Grid
+        noMargin
+        style={{ paddingTop: '50px', paddingBottom: '50px' }}
+        align='start'
+      >
         <Column>
           <div>
             <Heading level={2} lined>
@@ -24,8 +28,12 @@ export default function GetInTouch() {
         </Column>
       </Grid>
 
-      <Grid justify='center'>
-        <Column style={{ width: '100%' }}>
+      <Grid
+        noMargin
+        style={{ paddingTop: '50px', paddingBottom: '50px' }}
+        justify='center'
+      >
+        <Column>
           <Disclaimer>
             Any questions left?
             <br />
@@ -51,9 +59,6 @@ const Disclaimer = styled.div`
   font-size: 20px;
   line-height: 32px;
   text-align: center;
-
-  padding-top: 46px;
-  border-top: 1px solid #000;
 
   a {
     color: black;

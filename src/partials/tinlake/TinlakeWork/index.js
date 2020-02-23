@@ -12,7 +12,7 @@ import tinlake_work_desktop_img from 'images/tinlake/tinlake-work-desktop.svg'
 export default function TinlakeWork() {
   return (
     <Container>
-      <Grid mb='0px'>
+      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
         <Column>
           <div>
             <Heading level={2} lined>
@@ -27,8 +27,12 @@ export default function TinlakeWork() {
         </Column>
       </Grid>
 
-      <Grid>
-        <Column justifySelf='stretch' span={{ medium: 5, large: 5 }}>
+      <Grid noMargin style={{ paddingTop: '50px', paddingBottom: '50px' }}>
+        <Column
+          justifySelf='stretch'
+          span={{ medium: 5, large: 5 }}
+          mediumOrder={2}
+        >
           <Paragraph>{data.imageDescription}</Paragraph>
         </Column>
 
@@ -38,7 +42,12 @@ export default function TinlakeWork() {
           <Image src={tinlake_work_desktop_img} />
         </Column>
 
-        <Column tabletHide justifySelf='stretch' span={{ medium: 6, large: 6 }}>
+        <Column
+          tabletHide
+          justifySelf='stretch'
+          span={{ medium: 6, large: 6 }}
+          mediumOrder={1}
+        >
           <Image src={tinlake_work_mobile_img} />
         </Column>
       </Grid>
@@ -58,13 +67,9 @@ const data = {
 
 const Image = styled.img`
   width: 100%;
-  margin-top: 70px;
+  margin-bottom: 70px;
 
   @media only screen and (min-width: 769px) {
-    margin-top: 0;
-  }
-
-  @media only screen and (min-width: 1140px) {
-    margin-right: calc((100vw - 1140px) / -2 + 10vw);
+    margin-bottom: 0;
   }
 `
