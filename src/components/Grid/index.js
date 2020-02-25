@@ -33,8 +33,8 @@ const StyledGrid = styled.section`
   }
 `;
 
-const Grid = ({ children, align, justify, mt, mb, staggered, noMargin, gap, ...rest }) => (
-  <GridWrapper staggered={staggered} noMargin={noMargin} margin={{ top: mt, bottom: mb }}>
+const Grid = ({ children, align, justify, mt, mb, pt, pb, staggered, noMargin, gap, ...rest }) => (
+  <GridWrapper staggered={staggered} noMargin={noMargin} margin={{ top: mt, bottom: mb }} pad={{ top: pt, bottom: pb }}>
     <StyledGrid
       align={align}
       justify={justify}
