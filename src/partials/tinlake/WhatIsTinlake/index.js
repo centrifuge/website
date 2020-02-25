@@ -14,11 +14,7 @@ export default function WhatIsTinlake() {
   return (
     <>
       <Container>
-        <Grid
-          noMargin
-          pt="50px" pb="50px"
-          align='start'
-        >
+        <Grid noMargin pt='50px' align='start'>
           <Column>
             <div>
               <Heading level={2} lined>
@@ -31,7 +27,7 @@ export default function WhatIsTinlake() {
       </Container>
 
       <FullWidthContainer>
-        <Grid noMargin pt="50px" pb="50px">
+        <Grid noMargin pt='50px' pb='50px'>
           <Column mobileHide justifySelf='stretch'>
             <Image src={tinlake_flow_desktop_img} />
           </Column>
