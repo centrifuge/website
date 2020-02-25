@@ -42,12 +42,7 @@ export default function TinlakeWork() {
           <Image src={tinlake_work_desktop_img} />
         </Column>
 
-        <Column
-          tabletHide
-          justifySelf='stretch'
-          span={{ medium: 6, large: 6 }}
-          mediumOrder={1}
-        >
+        <Column tabletHide justifySelf='stretch' mediumOrder={1}>
           <Image src={tinlake_work_mobile_img} />
         </Column>
       </Grid>
@@ -66,8 +61,8 @@ const data = {
 }
 
 const Image = styled.img`
-  width: 100%;
-  margin-bottom: 70px;
+  width: 80%;
+  margin: 0 auto 70px auto;
 
   @media only screen and (min-width: 769px) {
     margin-bottom: 0;

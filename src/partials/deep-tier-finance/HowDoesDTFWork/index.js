@@ -52,7 +52,7 @@ export default function HowDoesDTFWork() {
             <Text textAlign='center'>{data.aboveImage}</Text>
             <img
               src={graph_how_it_works_desktop_img}
-              style={{ margin: '12px 0' }}
+              style={{ margin: '12px auto', width: '80%' }}
             />
             <Text textAlign='center'>{data.belowImage}</Text>
           </Column>
