@@ -31,7 +31,7 @@ export default function HowDoesDTFWork() {
   return (
     <>
       <Container>
-        <Grid noMargin pt="50px" pb="50px">
+        <Grid noMargin pb='50px'>
           <Column>
             <Heading level={2} lined>
               {data.heading}
@@ -47,12 +47,12 @@ export default function HowDoesDTFWork() {
       </Container>
 
       <FullWidthContainer>
-        <Grid noMargin pt="50px" pb="50px">
+        <Grid noMargin pt='50px' pb='50px'>
           <Column mobileHide width='100%'>
             <Text textAlign='center'>{data.aboveImage}</Text>
             <img
               src={graph_how_it_works_desktop_img}
-              style={{ margin: '12px 0' }}
+              style={{ margin: '12px auto', width: '80%' }}
             />
             <Text textAlign='center'>{data.belowImage}</Text>
           </Column>

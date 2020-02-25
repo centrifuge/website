@@ -14,11 +14,7 @@ export default function WhatIsTinlake() {
   return (
     <>
       <Container>
-        <Grid
-          noMargin
-          pt="50px" pb="50px"
-          align='start'
-        >
+        <Grid noMargin pt='50px' align='start'>
           <Column>
             <div>
               <Heading level={2} lined>
@@ -31,7 +27,7 @@ export default function WhatIsTinlake() {
       </Container>
 
       <FullWidthContainer>
-        <Grid noMargin pt="50px" pb="50px">
+        <Grid noMargin pt='50px' pb='50px'>
           <Column mobileHide justifySelf='stretch'>
             <Image src={tinlake_flow_desktop_img} />
           </Column>
@@ -51,7 +47,7 @@ const data = {
 }
 
 const Image = styled.img`
-  @media only screen and (min-width: 424px) and (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     width: 30%;
     margin: 0 auto;
   }
