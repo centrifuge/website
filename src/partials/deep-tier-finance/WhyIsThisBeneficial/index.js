@@ -1,13 +1,11 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Heading, Paragraph, Text } from 'grommet'
 
 import Grid from 'components/Grid'
-import Container from 'components/Container'
 import Column from 'components/Column'
-
-import Card from './Card'
-import Images from './Images'
-import Disclaimer from './Disclaimer'
+import Container from 'components/Container'
+import FullWidthContainer from 'components/FullWidthContainer'
 
 import buyers_img from 'images/deep-tier-finance/buyers.svg'
 import funders_img from 'images/deep-tier-finance/funders.svg'
@@ -19,8 +17,8 @@ export default function WhyIsThisBeneficial() {
   return (
     <>
       <Container>
-        <Grid>
-          <Column>
+        <Grid noMargin pt="50px" pb="50px">
+          <Column width='100%'>
             <Heading lined level={2}>
               {data.heading}
             </Heading>
@@ -29,8 +27,8 @@ export default function WhyIsThisBeneficial() {
         </Grid>
       </Container>
 
-      <Box pad={{ horizontal: '10%' }}>
-        <Grid noMargin>
+      <FullWidthContainer>
+        <Grid noMargin pt="50px" pb="50px">
           {data.cards.map((card, i) => (
             <Card
               key={`WhyIsThisBeneficial-card-${i}`}
@@ -50,11 +48,11 @@ export default function WhyIsThisBeneficial() {
             </Card>
           ))}
         </Grid>
-      </Box>
+      </FullWidthContainer>
 
       <Container>
-        <Grid justify='center'>
-          <Column style={{ width: '100%' }}>
+        <Grid noMargin pt="50px" pb="50px">
+          <Column width='100%'>
             <Disclaimer>
               If you are interested in Deep Tier Finance,
               <br />
@@ -95,3 +93,45 @@ const data = {
     }
   ]
 }
+
+const Images = styled.div`
+  display: flex;
+
+  img {
+    height: 64px;
+    width: auto;
+    margin-bottom: 20px;
+  }
+
+  img + img {
+    margin-left: 16px;
+  }
+`
+
+const Disclaimer = styled.div`
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+
+  padding-top: 46px;
+  border-top: 1px solid #000;
+
+  a {
+    color: black;
+    word-break: break-word;
+  }
+`
+
+const Card = styled(Column)`
+  & + & {
+    padding-left: 0px;
+    padding-top: 50px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    & + & {
+      padding-left: 50px;
+      padding-top: 0px;
+    }
+  }
+`

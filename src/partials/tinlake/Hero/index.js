@@ -1,18 +1,17 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Heading, Paragraph } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
-
-import Image from './Image'
-import Content from './Content'
+import FullWidthContainer from 'components/FullWidthContainer'
 
 import tinlakeLogo from 'images/tinlake/tinlake-logo.svg'
 
 export default function Hero() {
   return (
-    <Box pad={{ horizontal: '10%' }}>
-      <Grid>
+    <FullWidthContainer>
+      <Grid noMargin pt="50px" pb="50px">
         <Column justifySelf='stretch' span={{ medium: 7, large: 7 }}>
           <Image src={tinlakeLogo} />
         </Column>
@@ -26,7 +25,7 @@ export default function Hero() {
           </Content>
         </Column>
       </Grid>
-    </Box>
+    </FullWidthContainer>
   )
 }
 
@@ -35,3 +34,26 @@ const data = {
   paragraph:
     'Unlock the value of your real-world assets in the decentralized finance ecosystem. '
 }
+
+const Image = styled.img`
+  width: 100%;
+  margin-bottom: 70px;
+`
+
+const Content = styled.div`
+  h1 {
+    margin-top: 0;
+    margin-bottom: 23px;
+
+    @media only screen and (max-width: 768px) {
+      margin-bottom: 31px;
+    }
+  }
+
+  h1,
+  p {
+    @media only screen and (max-width: 768px) {
+      text-align: center;
+    }
+  }
+`

@@ -8,7 +8,11 @@ import Container from 'components/Container'
 export default function Governance() {
   return (
     <Container>
-      <Grid align='start'>
+      <Grid
+        noMargin
+        pt="50px" pb="50px"
+        align='start'
+      >
         <Column>
           <div>
             <Heading level={2} lined>

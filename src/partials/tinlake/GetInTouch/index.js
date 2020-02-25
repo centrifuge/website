@@ -1,16 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Heading, Paragraph } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
 import Container from 'components/Container'
 
-import Disclaimer from './Disclaimer'
-
 export default function GetInTouch() {
   return (
     <Container>
-      <Grid align='start'>
+      <Grid
+        noMargin
+        pt="50px" pb="50px"
+        align='start'
+      >
         <Column>
           <div>
             <Heading level={2} lined>
@@ -25,8 +28,12 @@ export default function GetInTouch() {
         </Column>
       </Grid>
 
-      <Grid justify='center'>
-        <Column style={{ width: '100%' }}>
+      <Grid
+        noMargin
+        pt="50px" pb="50px"
+        justify='center'
+      >
+        <Column>
           <Disclaimer>
             Any questions left?
             <br />
@@ -47,3 +54,13 @@ const data = {
     'In order to learn more about Tinlake please take a look at the Developer Documentation and corresponding blog posts on our Medium site.'
   ]
 }
+
+const Disclaimer = styled.div`
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+
+  a {
+    color: black;
+  }
+`

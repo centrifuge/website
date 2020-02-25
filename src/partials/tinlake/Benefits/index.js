@@ -1,11 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Heading, Text } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
-
-import Card from './Card'
-import Images from './Images'
+import FullWidthContainer from 'components/FullWidthContainer'
 
 import benefits_originators_img from 'images/tinlake/benefits_originators.svg'
 import benefits_lenders_img from 'images/tinlake/benefits_lenders.svg'
@@ -13,46 +12,42 @@ import benefits_investors_img from 'images/tinlake/benefits_investors.svg'
 
 export default function Benefits() {
   return (
-    <>
-      <Box pad={{ horizontal: '10%' }}>
-        <Grid noMargin>
-          <Column span={{ medium: 3, large: 3 }} style={{ width: '100%' }}>
-            <Heading lined level={2}>
-              {data.heading}
-            </Heading>
-          </Column>
+    <FullWidthContainer>
+      <Grid noMargin pt="50px" pb="50px">
+        <Column span={{ medium: 11, large: 11 }} style={{ width: '100%' }}>
+          <Heading lined level={2}>
+            {data.heading}
+          </Heading>
+        </Column>
 
-          <Column span={{ medium: 9, large: 9 }} />
-
-          {data.cards.map((card, i) => (
-            <Card
-              key={`Benefits-card-${i}`}
-              span={{ medium: 4, large: 4 }}
-              alignSelf='start'
-            >
-              <Images>
-                {card.images.map((image, j) => (
-                  <img key={`Benefits-card-${i}-image-${j}`} src={image} />
-                ))}
-              </Images>
-
-              <Text size='large' style={{ paddingBottom: 20 }}>
-                {card.heading}
-              </Text>
-
-              {card.bullet_points.map((bullet_point, j) => (
-                <Text
-                  key={`Benefits-card-${i}-bullet-point-${j}`}
-                  style={{ paddingBottom: 10 }}
-                >
-                  {bullet_point}
-                </Text>
+        {data.cards.map((card, i) => (
+          <Card
+            key={`Benefits-card-${i}`}
+            span={{ medium: 4, large: 4 }}
+            alignSelf='start'
+          >
+            <Images>
+              {card.images.map((image, j) => (
+                <img key={`Benefits-card-${i}-image-${j}`} src={image} />
               ))}
-            </Card>
-          ))}
-        </Grid>
-      </Box>
-    </>
+            </Images>
+
+            <Text size='large' style={{ paddingBottom: 20 }}>
+              {card.heading}
+            </Text>
+
+            {card.bullet_points.map((bullet_point, j) => (
+              <Text
+                key={`Benefits-card-${i}-bullet-point-${j}`}
+                style={{ paddingBottom: 10 }}
+              >
+                {bullet_point}
+              </Text>
+            ))}
+          </Card>
+        ))}
+      </Grid>
+    </FullWidthContainer>
   )
 }
 
@@ -60,7 +55,7 @@ const data = {
   heading: 'Benefits',
   cards: [
     {
-      heading: 'Benefits for Originators',
+      heading: 'Originators',
       images: [benefits_originators_img],
       bullet_points: [
         '• Fast access to capital',
@@ -71,7 +66,7 @@ const data = {
       ]
     },
     {
-      heading: 'Benefits for DeFi Lending',
+      heading: 'DeFi Lending',
       images: [benefits_lenders_img],
       bullet_points: [
         '• Significant asset scalability',
@@ -81,7 +76,7 @@ const data = {
       ]
     },
     {
-      heading: 'Benefits for (traditional) Investors',
+      heading: 'Traditional Investors',
       images: [benefits_investors_img],
       bullet_points: [
         '• Improved loan level transparency',
@@ -92,3 +87,37 @@ const data = {
     }
   ]
 }
+
+const Images = styled.div`
+  display: flex;
+  align-items: flex-end;
+
+  @media only screen and (min-width: 768px) {
+    min-height: 120px;
+  }
+
+  img {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+
+  img + img {
+    margin-left: 16px;
+  }
+`
+
+const Card = styled(Column)`
+  span {
+    text-align: start;
+  }
+
+  & + & {
+    padding-top: 50px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    & + & {
+      padding-top: 0px;
+    }
+  }
+`

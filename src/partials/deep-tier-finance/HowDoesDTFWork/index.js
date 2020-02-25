@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import {
   Box,
   Button,
@@ -9,13 +10,11 @@ import {
 } from 'grommet'
 
 import Grid from 'components/Grid'
+import Column from 'components/Column'
 import Container from 'components/Container'
+import FullWidthContainer from 'components/FullWidthContainer'
 
-import Step from './Step'
-import Image from './Image'
 import Slider from './Slider'
-import Collapse from './Collapse'
-import VerticalSteps from './VerticalSteps'
 
 import graph_how_it_works_desktop_img from 'images/deep-tier-finance/graph_how_it_works_desktop.svg'
 import graph_how_it_works_desktop_detailed_img from 'images/deep-tier-finance/graph_how_it_works_desktop_detailed.svg'
@@ -30,81 +29,67 @@ export default function HowDoesDTFWork() {
   }
 
   return (
-    <ResponsiveContext.Consumer>
-      {size => (
-        <>
-          <Box pad={{ top: '144px' }}>
-            <Container>
-              <Heading level={2} lined>
-                {data.heading}
-              </Heading>
+    <>
+      <Container>
+        <Grid noMargin pt="50px" pb="50px">
+          <Column>
+            <Heading level={2} lined>
+              {data.heading}
+            </Heading>
 
-              {data.paragraphs.map((paragraph, i) => (
-                <Paragraph key={`HowDoesDTFWork-paragraph-${i}`}>
-                  {paragraph}
-                </Paragraph>
-              ))}
-            </Container>
-          </Box>
+            {data.paragraphs.map((paragraph, i) => (
+              <Paragraph key={`HowDoesDTFWork-paragraph-${i}`}>
+                {paragraph}
+              </Paragraph>
+            ))}
+          </Column>
+        </Grid>
+      </Container>
 
-          <Container>
-            {size === 'small' ? (
-              <Box pad={{ top: '60px' }} style={{ position: 'relative' }}>
-                <Text
-                  style={{
-                    position: 'absolute',
-                    top: '45%',
-                    width: '30%',
-                    background: 'white',
-                    padding: '20px 0'
-                  }}
-                >
-                  {data.aboveImage}
-                </Text>
-                <img
-                  src={graph_how_it_works_mobile_img}
-                  style={{ margin: '0 auto', width: '70%' }}
-                />
-                <Text
-                  style={{
-                    position: 'absolute',
-                    top: '45%',
-                    width: '30%',
-                    right: 0,
-                    background: 'white',
-                    padding: '20px 0'
-                  }}
-                >
-                  {data.belowImage}
-                </Text>
-              </Box>
-            ) : (
-              <Box pad={{ top: '144px' }} align='center'>
-                <Text style={{ marginBottom: 12 }}>{data.aboveImage}</Text>
-                <img src={graph_how_it_works_desktop_img} />
-                <Text style={{ marginTop: 12 }}>{data.belowImage}</Text>
-              </Box>
-            )}
-          </Container>
-
-          <Box pad={{ top: '60px' }} align='center'>
-            <Button
-              onClick={onMoreDetailsClick}
-              type='button'
-              primary
-              alignSelf='center'
-              style={{
-                fontSize: 16,
-                paddingTop: 8,
-                paddingBottom: 8,
-                paddingLeft: 52,
-                paddingRight: 52
-              }}
-              label={is_more_details_open ? 'Less Details' : 'More Details'}
+      <FullWidthContainer>
+        <Grid noMargin pt="50px" pb="50px">
+          <Column mobileHide width='100%'>
+            <Text textAlign='center'>{data.aboveImage}</Text>
+            <img
+              src={graph_how_it_works_desktop_img}
+              style={{ margin: '12px 0' }}
             />
+            <Text textAlign='center'>{data.belowImage}</Text>
+          </Column>
 
-            <Collapse isOpen={is_more_details_open}>
-              {size === 'small' ? (
+          <Column tabletHide style={{ position: 'relative' }}>
+            <FloatingDescription>{data.aboveImage}</FloatingDescription>
+            <img
+              src={graph_how_it_works_mobile_img}
+              style={{ margin: '0 auto', width: '70%' }}
+            />
+            <FloatingDescription style={{ right: 0 }}>
+              {data.belowImage}
+            </FloatingDescription>
+          </Column>
+        </Grid>
+      </FullWidthContainer>
+
+      <Box align='center'>
+        <Button
+          onClick={onMoreDetailsClick}
+          type='button'
+          primary
+          alignSelf='center'
+          style={{
+            fontSize: 16,
+            paddingTop: 8,
+            paddingLeft: 52,
+            paddingRight: 52,
+            marginBottom: 50
+          }}
+          label={is_more_details_open ? 'Less Details' : 'More Details'}
+        />
+
+        <Collapse isOpen={is_more_details_open}>
+          <ResponsiveContext.Consumer>
+            {size =>
+              size === 'small' ? (
                 <Slider
                   data={data}
                   image={graph_how_it_works_desktop_detailed_img}
@@ -116,9 +101,10 @@ export default function HowDoesDTFWork() {
                       <div key={`HowDoesDTFWork-aboveSteps-${i}`}>{step}</div>
                     ))}
                   </div>
-                  <div>
-                    <Image src={graph_how_it_works_mobile_detailed_img} />
-                  </div>
+                  <img
+                    src={graph_how_it_works_mobile_detailed_img}
+                    style={{ width: '60%' }}
+                  />
                   <div>
                     {data.belowSteps.map((step, i) => (
                       <div key={`HowDoesDTFWork-aboveSteps-${i}`}>{step}</div>
@@ -138,7 +124,10 @@ export default function HowDoesDTFWork() {
                     ))}
                   </Grid>
 
-                  <Image src={graph_how_it_works_desktop_detailed_img} />
+                  <img
+                    src={graph_how_it_works_desktop_detailed_img}
+                    style={{ width: '100%' }}
+                  />
 
                   <Grid noMargin>
                     {data.belowSteps.map((step, i) => (
@@ -151,12 +140,12 @@ export default function HowDoesDTFWork() {
                     ))}
                   </Grid>
                 </>
-              )}
-            </Collapse>
-          </Box>
-        </>
-      )}
-    </ResponsiveContext.Consumer>
+              )
+            }
+          </ResponsiveContext.Consumer>
+        </Collapse>
+      </Box>
+    </>
   )
 }
 
@@ -186,3 +175,38 @@ const data = {
     'Sneakers confirms the early payment request to Laces and settles the transaction by paying the invoice from Laces early. '
   ]
 }
+
+const Collapse = styled.div`
+  padding: 0 40px;
+  margin-bottom: 50px;
+  width: 100%;
+  height: ${({ isOpen }) => (isOpen ? 'auto' : 0)};
+  overflow: hidden;
+`
+
+const VerticalSteps = styled.div`
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+
+  > div {
+    width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+  }
+`
+
+const Step = styled(Column)`
+  padding: 30px;
+`
+
+const FloatingDescription = styled(Text)`
+  position: absolute;
+  top: 45%;
+  width: 30%;
+  padding: 20px 0;
+  background: white;
+  text-align: left;
+`

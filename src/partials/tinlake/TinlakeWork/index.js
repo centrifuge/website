@@ -1,11 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Heading, Paragraph } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
 import Container from 'components/Container'
-
-import Image from './Image'
 
 import tinlake_work_mobile_img from 'images/tinlake/tinlake-work-mobile.svg'
 import tinlake_work_desktop_img from 'images/tinlake/tinlake-work-desktop.svg'
@@ -13,7 +12,7 @@ import tinlake_work_desktop_img from 'images/tinlake/tinlake-work-desktop.svg'
 export default function TinlakeWork() {
   return (
     <Container>
-      <Grid mb='0px'>
+      <Grid noMargin pt="50px" pb="50px">
         <Column>
           <div>
             <Heading level={2} lined>
@@ -28,8 +27,12 @@ export default function TinlakeWork() {
         </Column>
       </Grid>
 
-      <Grid>
-        <Column justifySelf='stretch' span={{ medium: 5, large: 5 }}>
+      <Grid noMargin pt="50px" pb="50px">
+        <Column
+          justifySelf='stretch'
+          span={{ medium: 5, large: 5 }}
+          mediumOrder={2}
+        >
           <Paragraph>{data.imageDescription}</Paragraph>
         </Column>
 
@@ -39,7 +42,12 @@ export default function TinlakeWork() {
           <Image src={tinlake_work_desktop_img} />
         </Column>
 
-        <Column tabletHide justifySelf='stretch' span={{ medium: 6, large: 6 }}>
+        <Column
+          tabletHide
+          justifySelf='stretch'
+          span={{ medium: 6, large: 6 }}
+          mediumOrder={1}
+        >
           <Image src={tinlake_work_mobile_img} />
         </Column>
       </Grid>
@@ -56,3 +64,12 @@ const data = {
   imageDescription:
     'Tinlake can be deployed with a two-token structure that allows investors to invest in two different kinds of fungible, interesting bearing tokens: TIN and DROP. Both tokens represent the liquidity deposited into Tinlake and accrue interest over time. TIN takes the risk of defaults first but also receives higher returns. DROP is protected against defaults by the TIN token and receives stable (but usually lower) returns. This is similar to common Junior/Senior investment structures.'
 }
+
+const Image = styled.img`
+  width: 100%;
+  margin-bottom: 70px;
+
+  @media only screen and (min-width: 769px) {
+    margin-bottom: 0;
+  }
+`
