@@ -1,7 +1,6 @@
 const path = require('path')
 const { GraphQLJSON } = require('gatsby/graphql')
 
-
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   if (type.name.match(/contentful.*RichTextNode/)) {
     return {
