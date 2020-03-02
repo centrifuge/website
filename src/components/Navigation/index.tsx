@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-import { AxisTheme } from "@centrifuge/axis-theme";
 import { Box, Image } from "grommet";
 import { NavBar } from "@centrifuge/axis-nav-bar";
 import { MenuItem } from "@centrifuge/axis-nav-bar";
@@ -115,4 +113,4 @@ const Logo = styled(Image)`
     return <Comp />;
   };
 
-export default Nav;
+export default Navigation;
