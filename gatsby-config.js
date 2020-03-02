@@ -90,7 +90,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-mailchimp",
       options: {
-        endpoint: `https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&amp;id=e00b1ece80`
+        endpoint: `https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=e00b1ece80`
       }
     },
     {
@@ -154,6 +154,7 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-netlify-cache`,
     {
       resolve: `gatsby-plugin-netlify`,

@@ -6,6 +6,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@centrifuge/axis-nav-bar": "^0.3.2-develop.47",
     "@contentful/gatsby-transformer-contentful-richtext": "12.1.2",
     "@researchgate/react-intersection-observer": "0.7.4",
     "babel-plugin-styled-components": "1.10.0",
@@ -21,6 +22,7 @@
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-sitemap": "^2.0.4",
     "gatsby-plugin-styled-components": "^3.0.4",
+    "gatsby-plugin-typescript": "^2.2.0",
     "gatsby-source-apiserver": "^2.1.0",
     "gatsby-source-contentful": "^2.0.26",
     "grommet": "2.3.1",
