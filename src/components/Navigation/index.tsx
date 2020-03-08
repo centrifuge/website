@@ -3,7 +3,6 @@ import { Box, Image } from "grommet";
 import { NavBar } from "@centrifuge/axis-nav-bar";
 import { MenuItem } from "@centrifuge/axis-nav-bar";
 import { Menu as MenuIcon, User as UserIcon, Close as CloseIcon } from "grommet-icons";
-import Search from "../Search";
 import styled from "styled-components";
 import { navigate } from "gatsby";
 const wordmark = require("../../images/centrifuge-wordmark.svg") as string;
@@ -15,8 +14,7 @@ const Logo = styled(Image)`
   margin: 16px 0;
 `;
 
-  const Nav = (props) => {
-    const Comp = (props) => {
+  const Navigation = (props) => {
       const [selectedRoute, setSelectedRoute] = useState("/");
       const menuItems: MenuItem[] = [
         {
@@ -57,7 +55,7 @@ const Logo = styled(Image)`
         },
         {
           label: 'Mission',
-          route: "/about/#mission"
+          route: "/about/#mission",
           secondary: true
         },
         {
@@ -101,16 +99,13 @@ const Logo = styled(Image)`
               theme={theme}
               selectedRoute={selectedRoute}
               onRouteClick={(item: MenuItem) => {onRouteClick(item.route);}}
-              logo={<Logo src={wordmark}/>}
+              logo={<Logo src={wordmark} onClick={() => onRouteClick("/")} />}
               width={"100%"}
             />
-            <Search />
+          
         </Box>
 
       );
     };
-
-    return <Comp />;
-  };
 
 export default Navigation;
