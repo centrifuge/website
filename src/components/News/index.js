@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heading, Paragraph, Image, Box, Button } from "grommet";
 import styled from "styled-components";
 
@@ -22,11 +22,32 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const LinkedMediumImage = ({ imageId, slug }) => (
+const LinkedMediumImage = ({ imageId, slug, highlight }) => (
   <ExternalLink href={slug}>
-    <ImageWrapper>
+    <ImageWrapper
+      style={
+        !highlight
+          ? {
+              width: "100%",
+              paddingTop: "50%",
+              margin: "0",
+              overflow: "hidden"
+            }
+          : {}
+      }
+    >
       <Image
-        style={{ maxWidth: "100%", verticalAlign: "middle" }}
+        style={
+          !highlight
+            ? {
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "100%"
+              }
+            : { maxWidth: "100%", verticalAlign: "middle" }
+        }
         src={imageId}
       />
     </ImageWrapper>
@@ -68,20 +89,24 @@ const MediumPost = ({ post }) => (
     <Box margin={{ bottom: "medium" }}>
       <LinkedMediumImage imageId={post.thumbnail} slug={post.link} />
     </Box>
-    <PostInfo title={post.title} subtitle={""} link={post.link} heading="3" />
+    <PostInfo title={post.title} subtitle={post.description} link={post.link} heading="3" />
   </>
 );
 
 const HighlightPost = ({ post }) => (
-  <Grid align="start" mt="">
+  <Grid align="start">
     <Column span={{ medium: 10, large: 6 }}>
       <Box margin={{ bottom: "medium" }}>
-        <LinkedMediumImage imageId={post.thumbnail} slug={post.link} />
+        <LinkedMediumImage
+          highlight
+          imageId={post.thumbnail}
+          slug={post.link}
+        />
       </Box>
     </Column>
     <Spacer width={2} />
     <Column span={{ medium: 10, large: 4 }}>
-      <PostInfo title={post.title} subtitle={""} link={post.link} />
+      <PostInfo title={post.title} subtitle={post.description} link={post.link} />
     </Column>
   </Grid>
 );
