@@ -9,9 +9,8 @@ import Grid from "../Grid";
 const ImageWrapper = styled.div`
   position: relative;
   display: inline-block;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
 
-  &::before {
+  &::after {
     content: "";
     position: absolute;
     top: 0;
@@ -19,7 +18,8 @@ const ImageWrapper = styled.div`
     left: 0;
     bottom: 0;
     pointer-events: none;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
   }
 `;
 
@@ -45,9 +45,14 @@ const LinkedMediumImage = ({ imageId, slug, highlight }) => (
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: "100%"
+                width: "100%",
+                zIndex: 1
               }
-            : { maxWidth: "100%", verticalAlign: "middle" }
+            : {
+                maxWidth: "100%",
+                verticalAlign: "middle",
+                zIndex: 1
+              }
         }
         src={imageId}
       />
@@ -100,7 +105,7 @@ const MediumPost = ({ post }) => (
 );
 
 const HighlightPost = ({ post }) => (
-  <Grid mt="" mb="xlarge" justify="" align="flex-start">
+  <Grid mt="" mb="large" justify="" align="flex-start">
     <Column span={{ medium: 10, large: 6 }}>
       <Box margin={{ bottom: "medium" }}>
         <LinkedMediumImage

@@ -80,27 +80,6 @@ const NewsPage = ({ data }) => {
           })}
         </Grid>
 
-        {/* Press Block */}
-        <Grid mb="" justify="">
-          <Column span={{ medium: 6, large: 4 }}>
-            <Heading lined level="2">
-              Press about Centrifuge
-            </Heading>
-          </Column>
-        </Grid>
-        <Grid mt="" align="start">
-          {page.blockPress.map((article, index) => (
-            <Column
-              mobileSpaced
-              margin={{ bottom: "large" }}
-              key={index}
-              span={{ medium: 6, large: 6 }}
-            >
-              <PressArticle article={article} />
-            </Column>
-          ))}
-        </Grid>
-
         {/* Video Block */}
         <Grid mb="large">
           <Column>
@@ -125,7 +104,7 @@ const NewsPage = ({ data }) => {
               <Button
                 margin={{ top: "large" }}
                 plain
-                label="More videos"
+                label="Please find more videos in our YouTube channel"
                 href="https://www.youtube.com/channel/UCfNkoq7YLrr8MeSJ3a6jVcA"
               />
             </div>
@@ -148,22 +127,6 @@ export const NewsPageQuery = graphql`
     allContentfulPageNews {
       edges {
         node {
-          blockPress {
-            agency {
-              name
-              logo {
-                file {
-                  url
-                  fileName
-                }
-              }
-            }
-            articleTitle
-            articleSummary {
-              articleSummary
-            }
-            articleLink
-          }
           blockVideo {
             thumbnail {
               file {
