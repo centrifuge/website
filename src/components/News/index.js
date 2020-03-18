@@ -102,7 +102,7 @@ const MediumPost = ({ post }) => (
 const HighlightPost = ({ post }) => (
   <Grid mt="" mb="xlarge" justify="" align="flex-start">
     <Column span={{ medium: 10, large: 6 }}>
-      <Box>
+      <Box margin={{ bottom: "medium" }}>
         <LinkedMediumImage
           highlight
           imageId={post.thumbnail}
