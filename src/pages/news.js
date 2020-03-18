@@ -48,10 +48,8 @@ const NewsPage = ({ data }) => {
 
   const page = data.allContentfulPageNews.edges[0].node;
 
-  const mediumPosts = data.mediumFeed.items.slice(0, 4);
-  const highlightPost = data.mediumFeed.items[0];
-
-  console.log(mediumPosts, highlightPost);
+  const mediumPosts = data.mediumFeed.posts.slice(0, 4);
+  const highlightPost = data.mediumFeed.posts[0];
 
   return (
     <Layout>
@@ -187,12 +185,12 @@ export const NewsPageQuery = graphql`
       }
     }
 
-    mediumFeed: lambdaMediumPosts {
-      items {
+    mediumFeed: rss2JsonMediumPosts {
+      posts: items {
         title
-        description
-        thumbnail
         link
+        thumbnail
+        description
       }
     }
   }
