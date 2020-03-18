@@ -11,7 +11,6 @@ import Column, { Spacer } from "../components/Column";
 import { ExternalLink } from "../components/Links";
 import { HighlightPost, MediumPost, PressArticle } from "../components/News";
 import {
-  lastInArray,
   MEDIUM_URL,
   YOUTUBE_URL,
   RichTextRenderer
@@ -67,16 +66,15 @@ const NewsPage = ({ data }) => {
         <HighlightPost post={highlightPost} />
 
         {/* Medium Posts */}
-        <Grid align="start">
+        <Grid mt="" justify="" align="flex-start">
           {mediumPosts.map((post, index) => {
             if (index === 0) return null;
 
             return (
               <React.Fragment key={index}>
-                <Column mobileSpaced span={{ medium: 4, large: 3 }}>
+                <Column mobileSpaced span={{ medium: 4, large: 4 }}>
                   <MediumPost post={post} />
                 </Column>
-                {!lastInArray(mediumPosts, index) && <Spacer />}
               </React.Fragment>
             );
           })}
@@ -185,7 +183,7 @@ export const NewsPageQuery = graphql`
       }
     }
 
-    mediumFeed: rss2JsonMediumPosts {
+    mediumFeed: lambdaMediumPosts {
       posts: items {
         title
         link
