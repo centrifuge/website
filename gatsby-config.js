@@ -61,12 +61,6 @@ const gitcoinServerOptions = {
   }
 };
 
-const mediumPostsServerOptions = {
-  name: `mediumPosts`,
-  ...lambdaServerDefaults("getMediumPosts"),
-  verboseOutput: true
-};
-
 module.exports = {
   siteMetadata: {
     title: `Centrifuge`,
@@ -117,7 +111,17 @@ module.exports = {
     },
     {
       resolve: "gatsby-source-apiserver",
-      options: mediumPostsServerOptions
+      options: {
+        name: "mediumPosts",
+        typePrefix: "rss2json__",
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        url:
+          "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fcentrifuge%2F",
+        verboseOutput: true
+      }
     },
     {
       resolve: "gatsby-source-contentful",
