@@ -1,4 +1,5 @@
 import React from "react";
+import { Heading, Box, Button } from "grommet";
 import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
@@ -7,6 +8,7 @@ import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
 import Animation from "../components/Animation";
+import { LatestNews } from "../components/News";
 
 import { RichTextRenderer } from "../helpers";
 
@@ -17,6 +19,7 @@ import block4Animation from "../lottie/Main04_Q.json";
 
 const IndexPage = ({ data }) => {
   const page = data.allContentfulPageHome.edges[0].node;
+  const mediumPosts = data.mediumFeed.posts.slice(0, 3);
 
   return (
     <Layout>
@@ -30,6 +33,19 @@ const IndexPage = ({ data }) => {
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>
             <Animation file={block1Animation} loop={true} />
+          </Column>
+        </Grid>
+
+        {/* Medium Articles */}
+        <Grid staggered>
+          <Column>
+            <Heading level={2} lined>
+              Latest News
+            </Heading>
+            <LatestNews posts={mediumPosts} />
+            <Box align="center" margin={{ top: "large" }}>
+              <Button primary href="/news" label="More news" />
+            </Box>
           </Column>
         </Grid>
 
@@ -98,6 +114,15 @@ export const IndexPageQuery = graphql`
             contentAST
           }
         }
+      }
+    }
+
+    mediumFeed: lambdaMediumPosts {
+      posts: items {
+        title
+        link
+        thumbnail
+        description
       }
     }
   }

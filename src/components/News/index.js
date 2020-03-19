@@ -25,8 +25,31 @@ const ImageWrapper = styled.div`
 
 const LinkWrapper = styled.a`
   text-decoration: none;
-  color: inherit;    
+  color: inherit;
 `;
+
+const NewsCard = ({ link, children }) => (
+  <LinkWrapper href={link}>
+    <Box gap="xsmall" pad="" round="xsmall" elevation="medium">
+      {children}
+    </Box>
+  </LinkWrapper>
+);
+
+const CardImage = ({ src }) => (
+  <Box
+    round={{ corner: "top", size: "xsmall" }}
+    height="200px"
+    width="100%"
+    justify="center"
+    style={{
+      backgroundImage: `url("${src}")`,
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"
+    }}
+  />
+);
 
 const LinkedMediumImage = ({ imageId, slug, highlight }) => (
   <ExternalLink href={slug}>
@@ -143,4 +166,59 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
   </LinkWrapper>
 );
 
-export { PostInfo, HighlightPost, MediumPost, PressArticle, LinkedMediumImage };
+const LatestNews = ({ posts }) => (
+  <Grid mt="" mb="">
+    {posts.map((post, index) => (
+      <Column span={{ small: 12, medium: 4, large: 4 }} key={index}>
+        <NewsCard link={post.link}>
+          <CardImage src={post.thumbnail} />
+          <Box
+            justify="center"
+            align="center"
+            height="96px"
+            pad={{
+              horizontal: "medium",
+              top: "medium",
+              bottom: "0px"
+            }}
+          >
+            <Heading level={3} margin="0px">
+              {post.title}
+            </Heading>
+          </Box>
+          <Box
+            justify="center"
+            align="center"
+            height="96px"
+            pad={{
+              horizontal: "medium",
+              top: "medium",
+              bottom: "0px"
+            }}
+          >
+            <Paragraph margin="0px">{post.description}</Paragraph>
+          </Box>
+          <Box justify="center" align="start" pad="medium">
+            <Button
+              plain
+              target="_blank"
+              rel="noopener noreferrer"
+              href={post.link}
+            >
+              Read more...
+            </Button>
+          </Box>
+        </NewsCard>
+      </Column>
+    ))}
+  </Grid>
+);
+
+export {
+  PostInfo,
+  HighlightPost,
+  MediumPost,
+  PressArticle,
+  LinkedMediumImage,
+  LatestNews
+};
