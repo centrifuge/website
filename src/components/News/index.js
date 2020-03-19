@@ -23,6 +23,11 @@ const ImageWrapper = styled.div`
   }
 `;
 
+const LinkWrapper = styled.a`
+  text-decoration: none;
+  color: inherit;    
+`;
+
 const LinkedMediumImage = ({ imageId, slug, highlight }) => (
   <ExternalLink href={slug}>
     <ImageWrapper
@@ -127,7 +132,7 @@ const HighlightPost = ({ post }) => (
 );
 
 const PostInfo = ({ title, subtitle, link, heading }) => (
-  <div>
+  <LinkWrapper target="_blank" rel="noopener noreferrer" href={link}>
     <Heading level={heading || "1"} lined={heading !== "3" ? true : false}>
       {title}
     </Heading>
@@ -135,7 +140,7 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
     <Button plain target="_blank" rel="noopener noreferrer" href={link}>
       Read more...
     </Button>
-  </div>
+  </LinkWrapper>
 );
 
 export { PostInfo, HighlightPost, MediumPost, PressArticle, LinkedMediumImage };
