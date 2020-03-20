@@ -1,4 +1,5 @@
 import React from "react";
+import { Heading, Box, Button } from "grommet";
 import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
@@ -7,6 +8,7 @@ import Container from "../components/Container";
 import Column, { Spacer } from "../components/Column";
 import Grid from "../components/Grid";
 import Animation from "../components/Animation";
+import { LatestNews } from "../components/News";
 
 import { RichTextRenderer } from "../helpers";
 
@@ -17,13 +19,14 @@ import block4Animation from "../lottie/Main04_Q.json";
 
 const IndexPage = ({ data }) => {
   const page = data.allContentfulPageHome.edges[0].node;
+  const mediumPosts = data.mediumFeed.posts.slice(0, 3);
 
   return (
     <Layout>
       <SEO />
       <Container>
         {/* Block 1 */}
-        <Grid staggered>
+        <Grid staggered mt="large" mb="large">
           <Column span={{ medium: 6, large: 4 }}>
             <RichTextRenderer hyphens="unset" block={page.block1} />
           </Column>
@@ -33,8 +36,21 @@ const IndexPage = ({ data }) => {
           </Column>
         </Grid>
 
+        {/* Medium Articles */}
+        <Grid staggered mt="" mb="large">
+          <Column>
+            <Heading level={2} lined>
+              Latest News
+            </Heading>
+            <LatestNews posts={mediumPosts} />
+            <Box align="center">
+              <Button primary href="/news" label="More news" />
+            </Box>
+          </Column>
+        </Grid>
+
         {/* Block 2 */}
-        <Grid staggered>
+        <Grid staggered mt="" mb="large">
           <Column span={{ medium: 6, large: 7 }}>
             <img alt="" src={block2Image} />
           </Column>
@@ -45,7 +61,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid staggered>
+        <Grid staggered mt="" mb="large">
           <Column span={{ medium: 6, large: 4 }}>
             <RichTextRenderer block={page.block3} />
           </Column>
@@ -56,7 +72,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 4 */}
-        <Grid staggered>
+        <Grid staggered mt="" mb="large">
           <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>
             <Animation file={block4Animation} />
           </Column>
@@ -67,7 +83,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 5 */}
-        <Grid staggered>
+        <Grid staggered mt="" mb="large">
           <Column span={{ medium: 12, large: 8 }}>
             <RichTextRenderer block={page.block5} />
           </Column>
@@ -98,6 +114,15 @@ export const IndexPageQuery = graphql`
             contentAST
           }
         }
+      }
+    }
+
+    mediumFeed: lambdaMediumPosts {
+      posts: items {
+        title
+        link
+        thumbnail
+        description
       }
     }
   }
