@@ -9,9 +9,8 @@ import Grid from "../Grid";
 const ImageWrapper = styled.div`
   position: relative;
   display: inline-block;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
 
-  &::before {
+  &::after {
     content: "";
     position: absolute;
     top: 0;
@@ -19,9 +18,44 @@ const ImageWrapper = styled.div`
     left: 0;
     bottom: 0;
     pointer-events: none;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
   }
 `;
+
+const LinkWrapper = styled.a`
+  text-decoration: none;
+  color: inherit;
+`;
+
+const NewsCard = ({ link, children }) => (
+  <LinkWrapper href={link}>
+    <Box
+      gap="xsmall"
+      pad=""
+      round="xsmall"
+      elevation="medium"
+      margin={{ bottom: "large" }}
+    >
+      {children}
+    </Box>
+  </LinkWrapper>
+);
+
+const CardImage = ({ src }) => (
+  <Box
+    round={{ corner: "top", size: "xsmall" }}
+    height="200px"
+    width="100%"
+    justify="center"
+    style={{
+      backgroundImage: `url("${src}")`,
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover"
+    }}
+  />
+);
 
 const LinkedMediumImage = ({ imageId, slug, highlight }) => (
   <ExternalLink href={slug}>
@@ -45,9 +79,14 @@ const LinkedMediumImage = ({ imageId, slug, highlight }) => (
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: "100%"
+                width: "100%",
+                zIndex: 1
               }
-            : { maxWidth: "100%", verticalAlign: "middle" }
+            : {
+                maxWidth: "100%",
+                verticalAlign: "middle",
+                zIndex: 1
+              }
         }
         src={imageId}
       />
@@ -100,9 +139,9 @@ const MediumPost = ({ post }) => (
 );
 
 const HighlightPost = ({ post }) => (
-  <Grid mt="" mb="xlarge" justify="" align="flex-start">
+  <Grid mt="" mb="large" justify="" align="flex-start">
     <Column span={{ medium: 10, large: 6 }}>
-      <Box>
+      <Box margin={{ bottom: "medium" }}>
         <LinkedMediumImage
           highlight
           imageId={post.thumbnail}
@@ -122,7 +161,7 @@ const HighlightPost = ({ post }) => (
 );
 
 const PostInfo = ({ title, subtitle, link, heading }) => (
-  <div>
+  <LinkWrapper target="_blank" rel="noopener noreferrer" href={link}>
     <Heading level={heading || "1"} lined={heading !== "3" ? true : false}>
       {title}
     </Heading>
@@ -130,7 +169,62 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
     <Button plain target="_blank" rel="noopener noreferrer" href={link}>
       Read more...
     </Button>
-  </div>
+  </LinkWrapper>
 );
 
-export { PostInfo, HighlightPost, MediumPost, PressArticle, LinkedMediumImage };
+const LatestNews = ({ posts }) => (
+  <Grid mt="" mb="">
+    {posts.map((post, index) => (
+      <Column span={{ small: 12, medium: 4, large: 4 }} key={index}>
+        <NewsCard link={post.link}>
+          <CardImage src={post.thumbnail} />
+          <Box
+            justify="center"
+            align="center"
+            height="96px"
+            pad={{
+              horizontal: "medium",
+              top: "medium",
+              bottom: "0px"
+            }}
+          >
+            <Heading level={3} margin="0px">
+              {post.title}
+            </Heading>
+          </Box>
+          <Box
+            justify="center"
+            align="center"
+            height="96px"
+            pad={{
+              horizontal: "medium",
+              top: "medium",
+              bottom: "0px"
+            }}
+          >
+            <Paragraph margin="0px">{post.description}</Paragraph>
+          </Box>
+          <Box justify="center" align="start" pad="medium">
+            <Button
+              plain
+              target="_blank"
+              rel="noopener noreferrer"
+              href={post.link}
+            >
+              Read more...
+            </Button>
+          </Box>
+        </NewsCard>
+      </Column>
+    ))}
+  </Grid>
+);
+
+export {
+  PostInfo,
+  HighlightPost,
+  MediumPost,
+  PressArticle,
+  LinkedMediumImage,
+  LatestNews
+};
