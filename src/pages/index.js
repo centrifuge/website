@@ -26,7 +26,7 @@ const IndexPage = ({ data }) => {
       <SEO />
       <Container>
         {/* Block 1 */}
-        <Grid staggered>
+        <Grid staggered mt="small" mb="xlarge">
           <Column span={{ medium: 6, large: 4 }}>
             <RichTextRenderer hyphens="unset" block={page.block1} />
           </Column>
@@ -37,7 +37,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Medium Articles */}
-        <Grid staggered>
+        <Grid staggered mt="small" mb="xlarge">
           <Column>
             <Heading level={2} lined>
               Latest News
@@ -50,7 +50,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid staggered>
+        <Grid staggered mt="small" mb="xlarge">
           <Column span={{ medium: 6, large: 7 }}>
             <img alt="" src={block2Image} />
           </Column>
@@ -61,7 +61,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 3 */}
-        <Grid staggered>
+        <Grid staggered mt="small" mb="xlarge">
           <Column span={{ medium: 6, large: 4 }}>
             <RichTextRenderer block={page.block3} />
           </Column>
@@ -72,7 +72,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 4 */}
-        <Grid staggered>
+        <Grid staggered mt="small" mb="xlarge">
           <Column justifySelf="stretch" span={{ medium: 6, large: 7 }}>
             <Animation file={block4Animation} />
           </Column>
@@ -83,7 +83,7 @@ const IndexPage = ({ data }) => {
         </Grid>
 
         {/* Block 5 */}
-        <Grid staggered>
+        <Grid staggered mt="small" mb="xlarge">
           <Column span={{ medium: 12, large: 8 }}>
             <RichTextRenderer block={page.block5} />
           </Column>
