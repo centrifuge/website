@@ -30,7 +30,13 @@ const LinkWrapper = styled.a`
 
 const NewsCard = ({ link, children }) => (
   <LinkWrapper href={link}>
-    <Box gap="xsmall" pad="" round="xsmall" elevation="medium">
+    <Box
+      gap="xsmall"
+      pad=""
+      round="xsmall"
+      elevation="medium"
+      margin={{ bottom: "large" }}
+    >
       {children}
     </Box>
   </LinkWrapper>

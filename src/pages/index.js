@@ -43,7 +43,7 @@ const IndexPage = ({ data }) => {
               Latest News
             </Heading>
             <LatestNews posts={mediumPosts} />
-            <Box align="center" margin={{ top: "large" }}>
+            <Box align="center">
               <Button primary href="/news" label="More news" />
             </Box>
           </Column>
