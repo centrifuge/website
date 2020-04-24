@@ -1,17 +1,17 @@
 import React from "react";
 import { Heading, Paragraph, Box, Button, Image, Text } from "grommet";
 
-import Layout from "../components/Layout";
-import SEO from "../components/SEO";
-import Container from "../components/Container";
-import FullWidthContainer from "../components/FullWidthContainer";
-import Column, { Spacer } from "../components/Column";
-import Grid from "../components/Grid";
+import Layout from "components/Layout";
+import SEO from "components/SEO";
+import Container from "components/Container";
+import FullWidthContainer from "components/FullWidthContainer";
+import Column, { Spacer } from "components/Column";
+import Grid from "components/Grid";
 
-import chain from "../images/chain/chain.svg";
-import why_we_built_chain from "../images/chain/why-we-built-chain.svg";
-import how_does_chain_work from "../images/chain/how-does-chain-work.svg";
-import radial_token_logo from "../images/radial-token-logo.svg";
+import chain from "images/chain/chain.svg";
+import why_we_built_chain from "images/chain/why-we-built-chain.svg";
+import how_does_chain_work from "images/chain/how-does-chain-work.svg";
+import radial_token_logo from "images/radial-token-logo.svg";
 
 const ChainPage = () => (
   <Layout>
@@ -19,7 +19,11 @@ const ChainPage = () => (
     {/* What */}
     <Container>
       <Grid staggered mt="large" mb="xlarge">
-        <Column span={{ medium: 6, large: 4 }} align="start">
+        <Column
+          span={{ medium: 6, large: 4 }}
+          align="start"
+          margin={{ bottom: "large" }}
+        >
           <Text size="xxlarge" weight="bold" margin={{ bottom: "large" }}>
             Centrifuge Chain — The Gateway for Real-World Assets into DeFi
           </Text>
@@ -149,7 +153,11 @@ const ChainPage = () => (
     {/* Radial Token */}
     <Container>
       <Grid staggered mt="large" mb="xlarge">
-        <Column justifySelf="stretch" span={{ medium: 3, large: 2 }}>
+        <Column
+          justifySelf="stretch"
+          span={{ medium: 3, large: 2 }}
+          margin={{ bottom: "medium" }}
+        >
           <Image src={radial_token_logo} />
         </Column>
         <Spacer />
