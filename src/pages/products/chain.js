@@ -18,13 +18,18 @@ const ChainPage = () => (
     <SEO />
     {/* What */}
     <Container>
-      <Grid staggered mt="large" mb="xlarge">
+      <Grid staggered mt="large" mb="xlarge" align="flex-start">
         <Column
           span={{ medium: 6, large: 4 }}
           align="start"
           margin={{ bottom: "large" }}
         >
-          <Text size="xxlarge" weight="bold" margin={{ bottom: "large" }}>
+          <Text
+            size="xxlarge"
+            weight="bold"
+            margin={{ bottom: "large" }}
+            textAlign="start"
+          >
             Centrifuge Chain — The Gateway for Real-World Assets into DeFi
           </Text>
           <Image src={chain} />
