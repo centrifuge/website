@@ -109,10 +109,6 @@ module.exports = {
     },
     {
       resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions.hallOfFame
-    },
-    {
-      resolve: "gatsby-source-apiserver",
       options: gitcoinServerOptions.completedBounties
     },
     {
