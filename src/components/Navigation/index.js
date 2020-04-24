@@ -259,6 +259,10 @@ class Navigation extends React.Component {
                     </PaddedItem>
 
                     <PaddedItem>
+                      <NavLink to='/chain'>Chain</NavLink>
+                    </PaddedItem>
+
+                    <PaddedItem>
                       <NavLink to='/technology'>Technology</NavLink>
                       <List>
                         <Item>
@@ -375,6 +379,10 @@ const MobilePanel = ({ state, toggleFunc }) => (
                     Deep Tier Finance
                   </NavLink>
                 </SubItem>
+              </MenuItem>
+
+              <MenuItem>
+                <NavLink to='/chain'>Chain</NavLink>
               </MenuItem>
 
               <MenuItem>
