@@ -30,16 +30,22 @@ const Question = ({ value, open, onClick }) => (
       width="12px"
       margin={{ right: "small" }}
     />
-    <Text size="large" onClick={onClick} style={{ cursor: "pointer" }}>
-      {value}
-    </Text>
+    <Text
+      size="large"
+      onClick={onClick}
+      style={{ cursor: "pointer" }}
+      dangerouslySetInnerHTML={{ __html: value.replace(/<\/?p>/g, "") }}
+    />
   </Box>
 );
 
 const Answer = ({ value, open }) => (
   <>
     {open ? (
-      <Text margin={{ top: "xsmall", left: "medium" }}>{value}</Text>
+      <Text
+        margin={{ top: "xsmall", left: "medium" }}
+        dangerouslySetInnerHTML={{ __html: value.replace(/<\/?p>/g, "") }}
+      />
     ) : null}
   </>
 );
@@ -75,10 +81,10 @@ const TOC = ({ data }) => (
     <Heading level={2} margin={{ bottom: "medium" }} lined>
       Table of Contents
     </Heading>
-    {data.map((topic, key) => (
+    {data.map((edge, key) => (
       <Anchor
-        href={`#${toUnderscoreCase(topic.title)}`}
-        label={topic.title}
+        href={`#${toUnderscoreCase(edge.node.title)}`}
+        label={edge.node.title}
         primary
         key={key}
       />
@@ -86,40 +92,28 @@ const TOC = ({ data }) => (
   </Box>
 );
 
-const DesktopFAQBlock = ({ data }) => (
+const FAQBlock = ({ data, size }) => (
   <Grid staggered mt="large" mb="xlarge" align="flex-start">
-    {/* FAQ Groups */}
-    <Column justifySelf="stretch" span={{ medium: 8, large: 8 }}>
-      {data.map((topic, key) => (
-        <FAQGroup {...topic} key={key} id={toUnderscoreCase(topic.title)} />
-      ))}
-    </Column>
-    <Spacer />
     {/* Table of Contents */}
     <StickyColumn
       justifySelf="stretch"
       span={{ medium: 4, large: 3 }}
-      screenSize="large"
+      screenSize={size}
     >
-      <TOC data={data} />
-    </StickyColumn>
-  </Grid>
-);
-
-const MobileFAQBlock = ({ data }) => (
-  <Grid staggered mt="large" mb="xlarge" align="flex-start">
-    {/* Table of Contents */}
-    <StickyColumn justifySelf="stretch" screenSize="small">
       <TOC data={data} />
     </StickyColumn>
     <Spacer />
     {/* FAQ Groups */}
-    <Column justifySelf="stretch">
-      {data.map((topic, key) => (
-        <FAQGroup {...topic} key={key} id={toUnderscoreCase(topic.title)} />
+    <Column justifySelf="stretch" span={{ medium: 8, large: 8 }}>
+      {data.map((edge, key) => (
+        <FAQGroup
+          {...edge.node}
+          key={key}
+          id={toUnderscoreCase(edge.node.title)}
+        />
       ))}
     </Column>
   </Grid>
 );
 
-export { DesktopFAQBlock, MobileFAQBlock };
+export default FAQBlock;
