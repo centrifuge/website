@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Anchor, Image, Heading, Text } from "grommet";
+import { Box, Button, Image, Heading, Text } from "grommet";
 import styled, { css } from "styled-components";
 
 import Column, { Spacer } from "../Column";
@@ -13,6 +13,26 @@ const toUnderscoreCase = (text) =>
     .toLowerCase()
     .split(" ")
     .join("_");
+
+const ScrollToSection = ({ targetId, label }) => {
+  const goToSection = () => {
+    var el = document.getElementById(targetId);
+    el.scrollIntoView();
+    window.scrollBy(0, -100);
+  };
+
+  return (
+    <Button
+      alignSelf="start"
+      size="small"
+      onClick={goToSection}
+      margin={{ bottom: "xsmall" }}
+      focusIndicator={false}
+    >
+      {label}
+    </Button>
+  );
+};
 
 const StickyColumn = styled(Column)`
   ${(props) =>
@@ -82,10 +102,9 @@ const TOC = ({ data }) => (
       Table of Contents
     </Heading>
     {data.map((edge, key) => (
-      <Anchor
-        href={`#${toUnderscoreCase(edge.node.title)}`}
+      <ScrollToSection
+        targetId={toUnderscoreCase(edge.node.title)}
         label={edge.node.title}
-        primary
         key={key}
       />
     ))}
