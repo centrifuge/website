@@ -1,12 +1,24 @@
 import React, { useState } from "react";
-import { Box, Button, Image, Heading, Text } from "grommet";
+import {
+  Box,
+  Button,
+  Image,
+  Heading,
+  Text,
+  ResponsiveContext,
+  Paragraph,
+  Anchor,
+} from "grommet";
 import styled, { css } from "styled-components";
 
 import Column, { Spacer } from "../Column";
 import Grid from "../Grid";
 
-import open_polygon from "../../images/question-open-polygon.svg";
-import closed_polygon from "../../images/question-closed-polygon.svg";
+import chevron_right from "../../images/chevron-right.svg";
+import chevron_down from "../../images/chevron-down.svg";
+import chevron_up from "../../images/chevron-up.svg";
+import tinlake_logo_small from "../../images/tinlake/tinlake-logo-small.svg";
+import faq_placeholder from "../../images/faq-placeholder.svg";
 
 const toUnderscoreCase = (text) =>
   text
@@ -14,7 +26,69 @@ const toUnderscoreCase = (text) =>
     .split(" ")
     .join("_");
 
-const ScrollToSection = ({ targetId, label }) => {
+const StickyColumn = styled(Column)`
+  ${(props) =>
+    !(props.screenSize === "small") &&
+    css`
+      position: sticky;
+      top: 100px;
+    `}
+`;
+
+const FAQPageHeader = () => (
+  <ResponsiveContext.Consumer>
+    {(size) => {
+      const image = <Image src={faq_placeholder} />;
+      const faqHeading = (
+        <>
+          <Image
+            src={tinlake_logo_small}
+            margin={{ top: "medium", bottom: "small" }}
+            alignSelf="start"
+          />
+          <Heading level={2} margin={{ bottom: "medium" }} lined>
+            Frequently Asked Questions
+          </Heading>
+          <Paragraph>
+            Find a list of frequently asked questions on how Tinlake works
+            below. Is your question not answered, feel free to reach out to us
+            at{" "}
+            <Anchor
+              href="mailto:tinlake@centrifuge.io"
+              primary
+              label="tinlake@centrifuge.io"
+            />
+            .
+          </Paragraph>
+        </>
+      );
+      return size === "small" ? (
+        <Box
+          direction="row"
+          margin={{ top: "xlarge", bottom: "xlarge" }}
+          alignContent="center"
+          gap="medium"
+        >
+          <Box justify="center" width="100vw">
+            {image}
+          </Box>
+          <Box>{faqHeading}</Box>
+        </Box>
+      ) : (
+        <Grid staggered mt="xlarge" mb="xlarge">
+          <Column span={{ medium: 4, large: 4 }} justifySelf="center">
+            {image}
+          </Column>
+          <Column justifySelf="stretch" span={{ medium: 8, large: 8 }}>
+            {faqHeading}
+          </Column>
+        </Grid>
+      );
+    }}
+  </ResponsiveContext.Consumer>
+);
+
+const ScrollToSection = ({ targetId, label, ...rest }) => {
   const goToSection = () => {
     var el = document.getElementById(targetId);
     el.scrollIntoView();
@@ -26,27 +100,19 @@ const ScrollToSection = ({ targetId, label }) => {
       alignSelf="start"
       size="small"
       onClick={goToSection}
-      margin={{ bottom: "xsmall" }}
+      // margin={{ bottom: "xsmall" }}
       focusIndicator={false}
+      {...rest}
     >
       {label}
     </Button>
   );
 };
 
-const StickyColumn = styled(Column)`
-  ${(props) =>
-    !(props.screenSize === "small") &&
-    css`
-      position: sticky;
-      top: 100px;
-    `}
-`;
-
 const Question = ({ value, open, onClick }) => (
   <Box direction="row">
     <Image
-      src={open ? open_polygon : closed_polygon}
+      src={open ? chevron_down : chevron_right}
       width="12px"
       margin={{ right: "small" }}
     />
@@ -86,14 +152,30 @@ const FAQItem = ({ q, a }) => {
 };
 
 const FAQGroup = ({ title, faqs, ...rest }) => (
-  <Box margin={{ bottom: "large" }} {...rest}>
-    <Heading level={2} margin={{ bottom: "medium" }} lined>
-      {title}
-    </Heading>
-    {faqs.map((faq, key) => (
-      <FAQItem {...faq} key={key} />
-    ))}
-  </Box>
+  <ResponsiveContext.Consumer>
+    {(size) => (
+      <Box margin={{ bottom: "large" }} {...rest}>
+        <Heading level={2} margin={{ bottom: "medium" }} lined>
+          <Box direction="row" justify="between">
+            <Box>{title}</Box>
+            {size === "small" ? (
+              <Box direction="row" gap="xsmall">
+                <Image src={chevron_up} />
+                <ScrollToSection
+                  targetId="table_of_contents"
+                  label="TOP"
+                  alignSelf="center"
+                />
+              </Box>
+            ) : null}
+          </Box>
+        </Heading>
+        {faqs.map((faq, key) => (
+          <FAQItem {...faq} key={key} />
+        ))}
+      </Box>
+    )}
+  </ResponsiveContext.Consumer>
 );
 
 const TOC = ({ data }) => (
@@ -106,33 +188,39 @@ const TOC = ({ data }) => (
         targetId={toUnderscoreCase(edge.node.title)}
         label={edge.node.title}
         key={key}
+        margin={{ bottom: "xsmall" }}
       />
     ))}
   </Box>
 );
 
-const FAQBlock = ({ data, size }) => (
-  <Grid staggered mt="large" mb="xlarge" align="flex-start">
-    {/* Table of Contents */}
-    <StickyColumn
-      justifySelf="stretch"
-      span={{ medium: 4, large: 3 }}
-      screenSize={size}
-    >
-      <TOC data={data} />
-    </StickyColumn>
-    <Spacer />
-    {/* FAQ Groups */}
-    <Column justifySelf="stretch" span={{ medium: 8, large: 8 }}>
-      {data.map((edge, key) => (
-        <FAQGroup
-          {...edge.node}
-          key={key}
-          id={toUnderscoreCase(edge.node.title)}
-        />
-      ))}
-    </Column>
-  </Grid>
+const FAQBlock = ({ data }) => (
+  <ResponsiveContext.Consumer>
+    {(size) => (
+      <Grid staggered mt="large" mb="xlarge" align="flex-start">
+        {/* Table of Contents */}
+        <StickyColumn
+          justifySelf="stretch"
+          span={{ medium: 4, large: 3 }}
+          screenSize={size}
+          id="table_of_contents"
+        >
+          <TOC data={data} />
+        </StickyColumn>
+        <Spacer />
+        {/* FAQ Groups */}
+        <Column justifySelf="stretch" span={{ medium: 8, large: 8 }}>
+          {data.map((edge, key) => (
+            <FAQGroup
+              {...edge.node}
+              key={key}
+              id={toUnderscoreCase(edge.node.title)}
+            />
+          ))}
+        </Column>
+      </Grid>
+    )}
+  </ResponsiveContext.Consumer>
 );
 
-export default FAQBlock;
+export { FAQPageHeader, FAQBlock };
