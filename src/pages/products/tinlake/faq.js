@@ -26,6 +26,7 @@ export const FAQPageQuery = graphql`
       edges {
         node {
           title
+          expand
           faqs {
             q
             a

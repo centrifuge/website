@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -139,22 +139,26 @@ const Answer = ({ value, open }) => (
   </>
 );
 
-const FAQItem = ({ q, a }) => {
-  const [open, setOpen] = useState(false);
+const FAQItem = ({ q, a, open }) => {
+  const [_open, setOpen] = useState(open ? true : false);
 
   const toggleOpen = () => {
-    setOpen(!open);
+    setOpen(!_open);
   };
 
   return (
     <Box margin={{ bottom: "small" }}>
-      <Question value={q} open={open} onClick={toggleOpen} />
-      <Answer value={a} open={open} />
+      <Question value={q} open={_open} onClick={toggleOpen} />
+      <Answer value={a} open={_open} />
     </Box>
   );
 };
 
-const FAQGroup = ({ title, faqs, ...rest }) => (
+FAQItem.defaultProps = {
+  open: false,
+};
+
+const FAQGroup = ({ title, faqs, expand, ...rest }) => (
   <ResponsiveContext.Consumer>
     {(size) => (
       <Box margin={{ bottom: "large" }} {...rest}>
@@ -174,12 +178,16 @@ const FAQGroup = ({ title, faqs, ...rest }) => (
           </Box>
         </Heading>
         {faqs.map((faq, key) => (
-          <FAQItem {...faq} key={key} />
+          <FAQItem open={expand} {...faq} key={key} />
         ))}
       </Box>
     )}
   </ResponsiveContext.Consumer>
 );
+
+FAQGroup.defaultProps = {
+  expand: false,
+};
 
 const TOC = ({ data }) => (
   <Box margin={{ bottom: "large" }}>
