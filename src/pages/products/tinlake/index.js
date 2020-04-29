@@ -1,16 +1,16 @@
 import React from 'react'
 import { Box } from 'grommet'
 
-import Layout from '../../components/Layout'
-import SEO from '../../components/SEO'
+import Layout from '../../../components/Layout'
+import SEO from '../../../components/SEO'
 
-import Hero from '../../partials/tinlake/Hero'
-import WhatIsTinlake from '../../partials/tinlake/WhatIsTinlake'
-import WhyWeBuiltTinlake from '../../partials/tinlake/WhyWeBuiltTinlake'
-import TinlakeWork from '../../partials/tinlake/TinlakeWork'
-import Governance from '../../partials/tinlake/Governance'
-import Benefits from '../../partials/tinlake/Benefits'
-import GetInTouch from '../../partials/tinlake/GetInTouch'
+import Hero from '../../../partials/tinlake/Hero'
+import WhatIsTinlake from '../../../partials/tinlake/WhatIsTinlake'
+import WhyWeBuiltTinlake from '../../../partials/tinlake/WhyWeBuiltTinlake'
+import TinlakeWork from '../../../partials/tinlake/TinlakeWork'
+import Governance from '../../../partials/tinlake/Governance'
+import Benefits from '../../../partials/tinlake/Benefits'
+import GetInTouch from '../../../partials/tinlake/GetInTouch'
 
 const TinlakePage = () => {
   const metadata = {

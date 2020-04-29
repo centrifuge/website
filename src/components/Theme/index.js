@@ -52,6 +52,14 @@ const GlobalStyle = createGlobalStyle`
     font-weight: var(--fw-demibold);
     font-family: var(--f-stack);
   }
+
+  a {
+    color: ${theme.global.colors.text.light};
+  }
+
+  a:hover {
+    color: ${theme.global.hover.color.light};
+  }
 `;
 
 const Theme = ({ children }) => (

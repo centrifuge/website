@@ -109,10 +109,6 @@ module.exports = {
     },
     {
       resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions.hallOfFame
-    },
-    {
-      resolve: "gatsby-source-apiserver",
       options: gitcoinServerOptions.completedBounties
     },
     {
@@ -133,6 +129,19 @@ module.exports = {
             : `preview.contentful.com`,
         environment: process.env.PRODUCTION === "true" ? `master` : `staging`
       }
+    },
+    {
+      resolve: `gatsby-transformer-yaml-plus`,
+      options: {
+        enableRemark: true,
+        markdownPreface: 'md//',
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./content/`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
