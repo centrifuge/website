@@ -1,3 +1,11 @@
+# To edit the FAQ, this file is grouped by sections and then `q` and `a`. The 
+# order of sections and questions determines how they are rendered on the page.
+#
+# - title: Section Title
+#   faqs:
+#    - q: Question
+#      a: Answer
+# 
 - title: Asset Originators
   faqs:
     - q: What is an asset originator?
