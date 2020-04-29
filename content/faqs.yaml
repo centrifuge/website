@@ -6,6 +6,10 @@
 #    - q: Question
 #      a: Answer
 # 
+# If you want to use Markdown syntax in an answer or question, prefix the text with `md//`:
+#  - q: md// **Bold Question**
+#    a: md// _Italics Answer_
+
 - title: Asset Originators
   faqs:
     - q: What is an asset originator?
