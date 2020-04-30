@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -18,7 +18,7 @@ import chevron_right from "../../images/chevron-right.svg";
 import chevron_down from "../../images/chevron-down.svg";
 import chevron_up from "../../images/chevron-up.svg";
 import tinlake_logo_small from "../../images/tinlake/tinlake-logo-small.svg";
-import faq_placeholder from "../../images/faq-placeholder.svg";
+import faq_graphic from "../../images/faq-graphic.svg";
 
 const toUnderscoreCase = (text) =>
   text
@@ -38,49 +38,52 @@ const StickyColumn = styled(Column)`
 const FAQPageHeader = () => (
   <ResponsiveContext.Consumer>
     {(size) => {
-      const image = <Image src={faq_placeholder} />;
-      const faqHeading = (
-        <>
-          <Image
-            src={tinlake_logo_small}
-            margin={{ top: "medium", bottom: "small" }}
-            alignSelf="start"
-          />
-          <Heading level={2} margin={{ bottom: "medium" }} lined>
-            Frequently Asked Questions
-          </Heading>
-          <Paragraph>
-            Find a list of frequently asked questions on how Tinlake works
-            below. Is your question not answered, feel free to reach out to us
-            at{" "}
-            <Anchor
-              href="mailto:tinlake@centrifuge.io"
-              primary
-              label="tinlake@centrifuge.io"
-            />
-            .
-          </Paragraph>
-        </>
+      const faqGraphic = <Image src={faq_graphic} />;
+      const tinlakeLogo = (
+        <Image
+          src={tinlake_logo_small}
+          margin={{ top: "medium", bottom: "small" }}
+          alignSelf="start"
+        />
       );
+      const faqParagraph = (
+        <Paragraph>
+          Find a list of frequently asked questions on how Tinlake works below.
+          Is your question not answered, feel free to reach out to us at{" "}
+          <Anchor
+            href="mailto:tinlake@centrifuge.io"
+            primary
+            label="tinlake@centrifuge.io"
+          />
+          .
+        </Paragraph>
+      );
+      const faqHeadingText = "Frequently Asked Questions";
+
       return size === "small" ? (
-        <Box
-          direction="row"
-          margin={{ top: "xlarge", bottom: "xlarge" }}
-          alignContent="center"
-          gap="medium"
-        >
-          <Box justify="center" width="100vw">
-            {image}
-          </Box>
-          <Box>{faqHeading}</Box>
+        <Box margin={{ top: "xlarge", bottom: "xlarge" }} gap="medium">
+          <Heading level={2} margin={{ bottom: "medium" }} lined>
+            <Box direction="row" gap="small" justify="between">
+              <Box justify="center">
+                {tinlakeLogo}
+                {faqHeadingText}
+              </Box>
+              <Box width="15%">{faqGraphic}</Box>
+            </Box>
+          </Heading>
+          {faqParagraph}
         </Box>
       ) : (
         <Grid staggered mt="xlarge" mb="xlarge">
           <Column span={{ medium: 4, large: 4 }} justifySelf="center">
-            {image}
+            {faqGraphic}
           </Column>
           <Column justifySelf="stretch" span={{ medium: 8, large: 8 }}>
-            {faqHeading}
+            {tinlakeLogo}
+            <Heading level={2} margin={{ bottom: "medium" }} lined>
+              {faqHeadingText}
+            </Heading>
+            {faqParagraph}
           </Column>
         </Grid>
       );
@@ -136,22 +139,26 @@ const Answer = ({ value, open }) => (
   </>
 );
 
-const FAQItem = ({ q, a }) => {
-  const [open, setOpen] = useState(false);
+const FAQItem = ({ q, a, open }) => {
+  const [_open, setOpen] = useState(open ? true : false);
 
   const toggleOpen = () => {
-    setOpen(!open);
+    setOpen(!_open);
   };
 
   return (
     <Box margin={{ bottom: "small" }}>
-      <Question value={q} open={open} onClick={toggleOpen} />
-      <Answer value={a} open={open} />
+      <Question value={q} open={_open} onClick={toggleOpen} />
+      <Answer value={a} open={_open} />
     </Box>
   );
 };
 
-const FAQGroup = ({ title, faqs, ...rest }) => (
+FAQItem.defaultProps = {
+  open: false,
+};
+
+const FAQGroup = ({ title, faqs, expand, ...rest }) => (
   <ResponsiveContext.Consumer>
     {(size) => (
       <Box margin={{ bottom: "large" }} {...rest}>
@@ -171,12 +178,16 @@ const FAQGroup = ({ title, faqs, ...rest }) => (
           </Box>
         </Heading>
         {faqs.map((faq, key) => (
-          <FAQItem {...faq} key={key} />
+          <FAQItem open={expand} {...faq} key={key} />
         ))}
       </Box>
     )}
   </ResponsiveContext.Consumer>
 );
+
+FAQGroup.defaultProps = {
+  expand: false,
+};
 
 const TOC = ({ data }) => (
   <Box margin={{ bottom: "large" }}>

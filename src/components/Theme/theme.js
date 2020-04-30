@@ -134,7 +134,7 @@ const custom = {
           padding-bottom: calc(11px - 1px);
 
           ::placeholder {
-            color: black;
+            color: white;
           }
         `}
     `

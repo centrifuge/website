@@ -50,7 +50,8 @@ class SubscriptionForm extends React.Component {
               onChange={this.handleChange}
               placeholder='Your E-mail'
               style={{
-                fontSize: 16
+                fontSize: 16,
+                color: "white",
               }}
             />
             <Button
