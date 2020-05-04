@@ -171,13 +171,10 @@ const ChainPage = () => (
             The Radial Token
           </Heading>
           <Paragraph>
-            The Radial token powers Centrifuge Chain. RAD is designed to incentivize desirable behavior on Centrifuge Chain — so called mechanism design — to create a robust, decentralized system. Owning RAD gives businesses a stake in the Centrifuge network and can be used to pay for transaction fees, stake towards Validators, and participate in Centrifuge Chain governance. It will also incentivize Validators and Nominators to participate through a block reward.
-          </Paragraph>
-          <Paragraph>
-            Learn more in the Token Design Specification...
+            The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize desirable behavior on Centrifuge Chain — so called mechanism design — to create a robust, decentralized system. Owning RAD gives users a stake in the Centrifuge network and can be used to pay for transaction fees, stake towards Validators, and participate in Centrifuge on-chain governance. It will also incentivize Validators and Nominators to participate through a block reward.
           </Paragraph>
           <Box align="start" margin={{ top: "medium" }}>
-            <Button href="/" label="Read Token Summary" />
+            <Button href="https://ctrf-tk-ppr.s3-us-west-1.amazonaws.com/Centrifuge+Token+Design+Spec+v0.5.pdf" label="Read Token Summary" />
           </Box>
         </Column>
       </Grid>
