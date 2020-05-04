@@ -30,7 +30,7 @@
 - title: Using Tinlake
   faqs:
     - q: Can multiple entities make use of the TIN/DROP system or is this a proprietary solution for Tinlake use only? 
-      a: A: Yes, the contracts are open source. We are standardizing and automating our technical framework, legal, oracles, etc. as much as possible so it’s easier to start your own deployments.
+      a: Yes, the contracts are open source. We are standardizing and automating our technical framework, legal, oracles, etc. as much as possible so it’s easier to start your own deployments.
 
 - title: Risk Assessment
   faqs:
