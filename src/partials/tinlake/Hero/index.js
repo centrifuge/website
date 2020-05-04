@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Heading, Paragraph } from 'grommet'
+import { Box, Heading, Paragraph, Button } from 'grommet'
 
 import Grid from 'components/Grid'
 import Column from 'components/Column'
@@ -19,10 +19,13 @@ export default function Hero() {
         <Column span={{ medium: 1, large: 1 }} />
 
         <Column span={{ medium: 4, large: 4 }}>
-          <Content>
+          <Content margin={{ bottom: "large" }}>
             <Heading level={1}>{data.heading}</Heading>
             <Paragraph>{data.paragraph}</Paragraph>
           </Content>
+          <Box align="start">
+            <Button label="Explore Tinlake" href="#" />
+          </Box>
         </Column>
       </Grid>
     </FullWidthContainer>
@@ -40,7 +43,7 @@ const Image = styled.img`
   margin-bottom: 70px;
 `
 
-const Content = styled.div`
+const Content = styled(Box)`
   h1 {
     margin-top: 0;
     margin-bottom: 23px;
