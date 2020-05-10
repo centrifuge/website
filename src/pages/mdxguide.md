@@ -1,6 +1,7 @@
 ---
 description: This is the guide to all supported components.
 title: MDX Guide
+noindex: true
 ---
 
 <FullWidthSection>
@@ -25,6 +26,8 @@ World!
 
 </FullWidthSection>
 ```
+
+Grommet components that can be used are [`Image`](https://v2.grommet.io/image), [`Text`](https://v2.grommet.io/text) and [`Box`](https://v2.grommet.io/box).
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -110,6 +113,10 @@ Goto [Tinlake](/products/tinlake)!
 This is **bold**, even __this__ is, but *this* is _italic_.
 
 ~~Oh and did I forget to mention something?~~
+
+<Button href="/" label="align can be set to stretch, center, start, end" margin={{ top: "medium" }} align="end" />
+
+<Text weight={800}>this is the grommet text component</Text>
 ```
 
 Goto [Tinlake](/products/tinlake)!
@@ -117,5 +124,9 @@ Goto [Tinlake](/products/tinlake)!
 This is **bold**, even __this__ is, but *this* is _italic_.
 
 ~~Oh and did I forget to mention something?~~
+
+<Button href="/" label="align can be set to stretch, center, start, end" margin={{ top: "medium" }} align="stretch" />
+
+<Text weight={800}>this is the grommet text component</Text>
 
 </Section>
