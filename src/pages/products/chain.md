@@ -11,7 +11,7 @@ description: Centrifuge Chain is the gateway for real-world assets to the Blockc
 Centrifuge Chain — The Gateway for Real-World Assets into DeFi
 </Text>
 
-<Image src="../../images/chain/chain.svg" alignSelf="start" />
+<Image src="../../images/chain/chain.svg" alignSelf="start" margin={{ bottom: "small" }} />
 
 </Col>
 <Col span={1}></Col>
@@ -87,7 +87,7 @@ Thanks to BlockXLabs, you can get Centrifuge testnet tokens from their faucet!
 <Row>
 <Col span={3}>
 
-<Image src="../../images/radial-token-logo.svg" />
+<Image src="../../images/radial-token-logo.svg" margin={{ bottom: "small" }} />
 
 </Col>
 <Col span={9}>

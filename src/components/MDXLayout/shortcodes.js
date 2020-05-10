@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Box, Image, Button, ResponsiveContext } from "grommet";
+import { Text, Box, Image, Button, Heading, ResponsiveContext } from "grommet";
 
 import Container from "../Container";
 import FullWidthContainer from "../FullWidthContainer";
@@ -78,6 +78,8 @@ ResponsiveContent.defaultProps = {
 export {
   Image,
   Text,
+  Box,
+  Heading,
   CustomButton as Button,
   Section,
   FullWidthSection,
