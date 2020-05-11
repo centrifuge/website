@@ -19,7 +19,7 @@ description: Tinlake is a platform that enables you to draw loans against non-fu
 Unlock the value of your real-world assets in the decentralized finance ecosystem.
 
 <!-- Uncomment this whenever necessary -->
-<!-- <Button label="Explore Tinlake" href="#" align="start" margin={{ top: "medium" }} /> -->
+<!-- <Button label="Explore Tinlake" href="https://tinlake.centrifuge.io" align="start" margin={{ top: "medium" }} /> -->
 
 </Col>
 </Row>
