@@ -18,6 +18,9 @@ npm install
 npm run start
 ```
 
+## MDX Pages
+To see what layout elements are available on MDX pages, launch the site in dev mode and go to `/mdxguide/`
+
 ## Gotchas
 
 When adding a new lambda function to work on a feature, the lambda must be merged into `develop` and then to `master` before any usage of of the lambda function is implemented. This is due to during the `gatsby build` step the lambda functions are called to pull in data, since the function is not callable the build completes and passes, its not avaiable during the build step.
