@@ -31,10 +31,15 @@ const components = {
 
 export default ({ children, pageContext: { frontmatter } }) => {
   const { description, title } = frontmatter;
+  const noIndexMeta = { name: "robots", content: "noindex" };
 
   return (
     <Layout>
-      <SEO description={description} title={title} />
+      <SEO
+        description={description}
+        title={title}
+        meta={frontmatter.noindex ? [noIndexMeta] : []}
+      />
       <MDXProvider components={{ ...components, ...shortcodes }}>
         {children}
       </MDXProvider>
