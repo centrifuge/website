@@ -251,6 +251,7 @@ class Navigation extends React.Component {
                       <List>
                         <Item>
                           <NavLink to='/products/tinlake'>Tinlake</NavLink>
+                          <NavLink to='/products/chain'>Chain</NavLink>
                           <NavLink to='/products/deep-tier-finance'>
                             Deep Tier Finance
                           </NavLink>
@@ -367,6 +368,9 @@ const MobilePanel = ({ state, toggleFunc }) => (
               <MenuItem>
                 <NavLink to='/products/tinlake'>Products</NavLink>
 
+                <SubItem>
+                  <NavLink to='/products/chain'>Chain</NavLink>
+                </SubItem>
                 <SubItem>
                   <NavLink to='/products/tinlake'>Tinlake</NavLink>
                 </SubItem>

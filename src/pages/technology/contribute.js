@@ -71,8 +71,6 @@ const ContributePage = ({ data }) => {
 
   const openBounties = data.allLambdaGitcoinOpenBounties;
 
-  const hallOfFame = data.allLambdaGitcoinHallOfFame.edges;
-
   const {
     compensationPaid,
     bountiesCompleted
@@ -212,57 +210,9 @@ const ContributePage = ({ data }) => {
           </Column>
         </Grid>
 
-        {/* Block Hall Of Fame */}
-        <Grid mb="" justify="">
-          <Column span={{ medium: 3, large: 3 }}>
-            <Heading level="3" lined>
-              Hall of Fame
-            </Heading>
-          </Column>
-        </Grid>
-        <Grid mt="">
-          {hallOfFame.map((famous, index) => {
-            return (
-              <React.Fragment key={index}>
-                <Spacer />
-                <Column
-                  justifySelf="center"
-                  mobileSpaced
-                  span={{ medium: 6, large: 2 }}
-                >
-                  <Box align="center" margin={{ bottom: "medium" }}>
-                    <Image
-                      src={`https://gitcoin.co/dynamic/avatar/${
-                        famous.node.name
-                      }/`}
-                      alt={`${famous.node.name} avatar`}
-                      width={96}
-                      height={96}
-                      style={{ borderRadius: 96 / 2 }}
-                    />
-                    <Text margin={{ top: "small" }} weight={600} size="large">
-                      {famous.node.name}
-                    </Text>
-                    <Text margin={{ bottom: "small" }}>
-                      {`${famous.node.count} ${
-                        famous.node.count > 1 ? "bounties" : "bounty"
-                      }`}
-                    </Text>
-                    <ExternalLink
-                      href={`https://gitcoin.co/profile/${famous.node.name}`}
-                    >
-                      <Gitcoin />
-                    </ExternalLink>
-                  </Box>
-                </Column>
-              </React.Fragment>
-            );
-          })}
-        </Grid>
-
         {/* Block 3 */}
         <Grid>
-          <Spacer width={4} />
+          <Spacer width={2} />
           <Column span={{ medium: 12, large: 8 }}>
             <RichTextRenderer block={page.block3} />
           </Column>
@@ -323,17 +273,6 @@ export const ContributePageQuery = graphql`
               amount
             }
           }
-        }
-      }
-    }
-    allLambdaGitcoinHallOfFame(
-      filter: { name: { ne: null } }
-      sort: { fields: count, order: DESC }
-    ) {
-      edges {
-        node {
-          name
-          count
         }
       }
     }

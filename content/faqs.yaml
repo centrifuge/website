@@ -1,0 +1,42 @@
+# To edit the FAQ, this file is grouped by sections and then `q` and `a`. The 
+# order of sections and questions determines how they are rendered on the page.
+#
+# - title: Section Title
+#   faqs:
+#    - q: Question
+#      a: Answer
+# 
+# If you want to use Markdown syntax in an answer or question, prefix the text with `md//`:
+#  - q: md// **Bold Question**
+#    a: md// _Italics Answer_
+
+- title: Index
+  expand: true
+  faqs:
+    - q: Asset Originator
+      a: Companies that provide advance financing to multiple businesses. Asset Originators get financed via lenders in Tinlake Pools. 
+    - q: RWA
+      a: Real-World Assets; these are non native crypto assets, such as invoices or music streaming royalties.
+    - q: SPV
+      a: Special Purpose Vehicle - a legal entity created to fulfill narrow, specific or temporary objectives. Typically used by companies to isolate the firm from financial risk. In Centrifuge, SPVs enforce that legal recourse is available to holders of DROP and TIN.
+    - q: DROP & TIN
+      a: Based on each NFT pool, ERC20 tokens (TIN and DROP) are minted. These two tokens represent the underlying collateral. DROP is the Senior token with a fixed interest rate and stable returns, loss protected by TIN. TIN is the Junior token with higher yield and risk; takes loss first. You can read more [here.] (https://developer.centrifuge.io/tinlake/overview/tranches/)
+- title: Borrowers
+  expand: true
+  faqs:
+    - q: What kind of collateral do you support?
+      a: Anything which the risk and price of the collateral can be assessed. The collateral needs to be in the format of an NFT, which is a unique token readable by the blockchain. Centrifuge Chain specializes in converting real-world collateral to the NFT format. 
+
+- title: Using Tinlake
+  faqs:
+    - q: Can multiple entities make use of the TIN/DROP system or is this a proprietary solution for Tinlake use only? 
+      a: Yes, the contracts are open source. We are standardizing and automating our technical framework, legal, oracles, etc. as much as possible so it’s easier to start your own deployments.
+
+- title: Risk Assessment
+  faqs:
+    - q: Who verifies for the asset before the NFT is issued? 
+      a: For Tinlake the risk assessment happens based on the NFT before it is locked as collateral into Tinlake. There will be a provenance oracle which verifies the claim upon the underlying collateral. Then, the risk assessment will be conducted by the underwriter, e.g. valuation firms and pushed on-chain through a pricing oracle. In the future we envisage this process to be decentralized as well. We have to work together with the asset originators to build an underwriting process that the lenders are comfortable with.
+    - q: What is the collateralization level on the NFT portfolio relative to the loan amount? 
+      a: That depends on the asset class, e.g. if you buy a home in the US you can get as low as 10% of down payment, sometimes 20%. That eventually translates down to the collateralization rate. For supply chain finance with invoices as an asset you usually have a 80% advance rate as industry standard, sometimes up to 100%. That would be the collateralization ratio for invoice NFTs. One important part to keep in mind, the Tinlake smart contracts are intended to be deployed for each individual asset class with specific parameters.
+    - q: How is a pool priced? Both at an initial issuance and later during the pool's life? 
+      a: There is no generic answer to what a pricing oracle looks like in particular. We built Tinlake with both crypto native and real-world assets in mind; these assets are priced very differently. For example, a house is priced very differently from an invoice, which is priced very differently from ETH. When setting up the pool, the Asset Originator who wants to create the pool will work with data sources that exist today, such as underwriters, risk modelers, fraud prevention companies in order to build the safest oracle for that pool. You can read more about pricing real-world assets [here.] (https://developer.centrifuge.io/tinlake/overview/pricing_rwa/) 
