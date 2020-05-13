@@ -180,7 +180,7 @@ const LatestNews = ({ posts }) => (
           <CardImage src={post.thumbnail} />
           <Box
             justify="center"
-            align="center"
+            // align="center"
             height="96px"
             pad={{
               horizontal: "medium",
@@ -193,8 +193,8 @@ const LatestNews = ({ posts }) => (
             </Heading>
           </Box>
           <Box
-            justify="center"
-            align="center"
+            // justify="center"
+            // align="center"
             height="96px"
             pad={{
               horizontal: "medium",
