@@ -56,6 +56,7 @@ const BlockInternalLink = () => (
       <FooterLinkItem to="/data-privacy-policy">Data Privacy Policy</FooterLinkItem>
       <FooterLinkItem to="/security">Security</FooterLinkItem>
       <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
+      <FooterLinkItem to="/brand">Brand Assets</FooterLinkItem>
       <br/><br/><br/>
       <FooterLinkItem to="/grant">
         <Box direction="row">

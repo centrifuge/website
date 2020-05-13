@@ -119,6 +119,8 @@ Our community is different from anything the financial world has seen before. To
 
 We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way.
 
+<Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} />
+
 </Col>
 <Col span={1}></Col>
 <Col span={5}>

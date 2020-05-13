@@ -11,7 +11,7 @@ import wordmark from "../images/centrifuge-wordmark.svg";
 import developerWordmark from "../images/centrifuge-developer-wordmark.svg";
 import wordmarkLight from "../images/centrifuge-wordmark-light.svg";
 
-const DesignPage = () => {
+const BrandPage = () => {
   const metadata = {
     title: "Brand",
     description: null
@@ -85,4 +85,4 @@ const DesignPage = () => {
   );
 };
 
-export default DesignPage;
+export default BrandPage;
