@@ -17,7 +17,7 @@ The Open Lending Protocol
 <Text size="20px" textAlign="center" weight={500} margin={{ bottom: "large" }}>
 Access a new source of liquidity. Use Centrifuge to bring your assets into DeFi.
 </Text>
-<Button primary label="Borrow" />
+<Button primary href="/borrower" label="Borrow" />
 </Col>
 <Col span={4}>
 
@@ -28,7 +28,7 @@ Access a new source of liquidity. Use Centrifuge to bring your assets into DeFi.
 <Text size="20px" textAlign="center" weight={500} margin={{ bottom: "large" }}>
 Invest in diversified asset-backed pools. Generate a return on stable assets.
 </Text>
-<Button primary label="Lend" />
+<Button primary href="/investor" label="Invest" />
 </Col>
 </Row>
 </Section>
