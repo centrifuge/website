@@ -5,31 +5,21 @@ import {
   Box,
   Heading,
   TextInput,
-  Select,
   TextArea,
   Button,
 } from "grommet";
-import styled from "styled-components";
 import { isEmail } from "validator";
 
 import Grid from "../../components/Grid";
 import Column from "../../components/Column";
+import CTAForm from "../../components/CTAForm";
 
-const BorderlessSelectWrapper = styled.div`
-  button {
-    border: none !important;
-    border-radius: 0 !important;
-    width: 100%;
-    text-decoration: none;
-  }
-`;
-
-const BorrowerContact = () => {
+const BorrowerContactForm = ({ toggleModal }) => {
   const [value, setValue] = useState({
     email: "",
     company: "",
-    status: "",
-    size: "",
+    work: "",
+    time: "",
     interest: "",
   });
   const [emailError, setEmailError] = useState({
@@ -60,88 +50,92 @@ const BorrowerContact = () => {
   );
 
   return (
-    <>
-      <Box
-        elevation="small"
-        round="xsmall"
-        pad="medium"
-      >
-        <Heading margin={{ bottom: "large" }}>Contact us</Heading>
-        <Form
-          value={value}
-          onChange={(nextValue) => setValue(nextValue)}
-          onSubmit={({ value }) => console.log(value)}
-        >
-          <Grid mt="small" mb="medium" justify="stretch" gap="90">
-            <Column
-              span={{ large: 6, medium: 6, small: 12 }}
-              gap="medium"
-              alignSelf="stretch"
-              margin={{ bottom: "medium" }}
-            >
-              <FormField
-                name="email"
-                htmlfor="email-text-input"
-                label="Your E-mail*"
-                error={!emailError.isValid ? emailError.message : false}
+    <Box round="xsmall" pad="large">
+      <Heading margin={{ bottom: "large" }}>Contact us</Heading>
+      <CTAForm>
+        {(sendEmail) => (
+          <Form
+            value={value}
+            onChange={(nextValue) => setValue(nextValue)}
+            onSubmit={async ({ value }) => {
+              toggleModal();
+              const status = await sendEmail("Borrower", value);
+              if (!status) console.log("Mail sending failed");
+              else console.log("Mail sent successfully");
+            }}
+          >
+            <Grid mt="small" mb="medium" justify="stretch" gap="90">
+              <Column
+                span={{ large: 6, medium: 6, small: 12 }}
+                gap="medium"
+                alignSelf="stretch"
+                margin={{ bottom: "medium" }}
               >
-                <TextInput name="email" id="email-text-input" />
-              </FormField>
-              <FormField
-                name="company"
-                htmlfor="company-text-input"
-                label="Company Name"
+                <FormField
+                  name="email"
+                  htmlfor="email-text-input"
+                  label="Your E-mail*"
+                  error={!emailError.isValid ? emailError.message : false}
+                >
+                  <TextInput name="email" id="email-text-input" />
+                </FormField>
+                <FormField
+                  name="company"
+                  htmlfor="company-text-input"
+                  label="Company Name"
+                >
+                  <TextInput name="company" id="company-text-input" />
+                </FormField>
+                <FormField
+                  name="work"
+                  htmlfor="work-text-input"
+                  label="What do you do?"
+                >
+                  <TextInput name="work" id="work-text-input" />
+                </FormField>
+              </Column>
+              <Column
+                span={{ large: 6, medium: 6, small: 12 }}
+                gap="medium"
+                alignSelf="start"
+                margin={{ bottom: "medium" }}
               >
-                <TextInput name="company" id="company-text-input" />
-              </FormField>
-              <FormField
-                name="work"
-                htmlfor="work-text-input"
-                label="What do you do?"
-              >
-                <TextInput name="work" id="work-text-input" />
-              </FormField>
-            </Column>
-            <Column
-              span={{ large: 6, medium: 6, small: 12 }}
-              gap="medium"
-              alignSelf="start"
-              margin={{ bottom: "medium" }}
-            >
-              <FormField
-                name="time"
-                htmlfor="time-text-input"
-                label="How long have you been in operation?"
-              >
-                <TextInput name="time" id="time-text-input" />
-              </FormField>
-              <FormField
-                name="interest"
-                htmlfor="interest-textarea"
-                label="Why DeFi?"
-              >
-                <TextArea
+                <FormField
+                  name="time"
+                  htmlfor="time-text-input"
+                  label="How long have you been in operation?"
+                >
+                  <TextInput name="time" id="time-text-input" />
+                </FormField>
+                <FormField
                   name="interest"
-                  placeholder="DeFi because"
-                  style={{
-                    height: "150px",
-                  }}
-                />
-              </FormField>
-            </Column>
-          </Grid>
-          <Box align="center">
-            <Button
-              primary
-              disabled={!emailError.isValid}
-              type="submit"
-              label="Send"
-            />
-          </Box>
-        </Form>
-      </Box>
-    </>
+                  htmlfor="interest-textarea"
+                  label="Why DeFi?"
+                >
+                  <TextArea
+                    name="interest"
+                    placeholder="DeFi because"
+                    style={{
+                      height: "150px",
+                    }}
+                  />
+                </FormField>
+              </Column>
+            </Grid>
+            <Box direction="row" justify="center" gap="medium">
+              <Button onClick={toggleModal} label="Go Back" />
+              <Button
+                primary
+                disabled={!emailError.isValid}
+                type="submit"
+                label="Send"
+              />
+            </Box>
+          </Form>
+        )}
+      </CTAForm>
+    </Box>
   );
 };
 
-export default BorrowerContact;
+export default BorrowerContactForm;

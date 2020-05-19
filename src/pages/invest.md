@@ -1,12 +1,13 @@
 <!-- Imports -->
 
-import HorizontalSteps from "../../partials/home/HorizontalSteps";
-import InvestorContactForm from "../../partials/home/InvestorContactForm";
+import HorizontalSteps from "../components/HorizontalSteps";
+import ReachOutSection from "../partials/home/ReachOutSection";
+import InvestorContactForm from "../partials/home/InvestorContactForm";
 
-import investor_1 from "../../images/home/step_images/investor_1.svg";
-import investor_2 from "../../images/home/step_images/investor_2.svg";
-import investor_3 from "../../images/home/step_images/investor_3.svg";
-import investor_4 from "../../images/home/step_images/investor_4.svg";
+import investor_1 from "../images/home/step_images/investor_1.svg";
+import investor_2 from "../images/home/step_images/investor_2.svg";
+import investor_3 from "../images/home/step_images/investor_3.svg";
+import investor_4 from "../images/home/step_images/investor_4.svg";
 
 <!-- Intro -->
 <Section>
@@ -37,14 +38,7 @@ We are providing some of the most powerful finanical tools to help investors mak
 <HorizontalSteps steps={[{ image: investor_1, text: "Choose a Tinlake pool to invest in" }, { image: investor_2, text: "Build your risk / return portfolio" }, { image: investor_3, text: "Lend against tokenized collateral assets" }, { image: investor_4, text: "Redeem after repayment to earn an attractive yield" }]} />
 </Section>
 
-<!-- Buttons -->
-<Section>
-<Box direction="row" gap="medium" justify="center">
-<Button primary href="/products/tinlake" label="Learn More" />
-</Box>
-</Section>
-
-<!-- Form -->
-<Section>
-<InvestorContactForm />
-</Section>
+<!-- Reach Out -->
+<ReachOutSection>
+{(toggleModal) => <InvestorContactForm toggleModal={toggleModal} />}
+</ReachOutSection>

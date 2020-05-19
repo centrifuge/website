@@ -1,9 +1,9 @@
 <!-- Imports -->
 
-import LatestNews from '../partials/home/LatestNews';
-import TinlakeCard from '../partials/home/TinlakeCard';
+import LatestNewsSection from '../partials/home/LatestNewsSection';
+import TinlakeCard from '../components/TinlakeCard';
 
-<!-- The Open Lending Protocol -->
+<!-- Intro -->
 <Section>
 <Row>
 <Col span={4}>
@@ -74,16 +74,7 @@ We are a team of innovators from both traditional Fintech and DeFi. Together, we
 </TinlakeCard>
 
 <!-- Latest News -->
-<Section>
-<Row>
-<Col span={4}>
-<Heading level={1} lined>
-Latest News
-</Heading>
-</Col>
-</Row>
-<LatestNews />
-</Section>
+<LatestNewsSection />
 
 <!-- The Open Protocol to Access Decentralized Future -->
 <Section>

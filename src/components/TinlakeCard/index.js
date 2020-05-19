@@ -2,10 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Box, Image, Text, Button, Heading } from "grommet";
 
-import { Section, Row, Col } from "../../components/MDXLayout/shortcodes";
+import { Section, Row, Col } from "../MDXLayout/shortcodes";
+import theme from "../Theme/theme";
 import star from "../../images/home/star.svg";
 import tinlake from "../../images/home/tinlake_logo_inverse.svg";
-import theme from "../../components/Theme/theme";
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
