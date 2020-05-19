@@ -1,10 +1,11 @@
 <!-- Imports -->
 
-import HorizontalSteps from "../partials/home/HorizontalSteps";
+import HorizontalSteps from "../../partials/home/HorizontalSteps";
+import BorrowerContactForm from "../../partials/home/BorrowerContactForm";
 
-import borrower_1 from "../images/home/step_images/borrower_1.svg";
-import borrower_2 from "../images/home/step_images/borrower_2.svg";
-import borrower_3 from "../images/home/step_images/borrower_3.svg";
+import borrower_1 from "../../images/home/step_images/borrower_1.svg";
+import borrower_2 from "../../images/home/step_images/borrower_2.svg";
+import borrower_3 from "../../images/home/step_images/borrower_3.svg";
 
 <!-- Intro -->
 <Section>
@@ -16,12 +17,12 @@ import borrower_3 from "../images/home/step_images/borrower_3.svg";
 </Col>
 <Col span={4} align="start">
 <p margin="0">
-Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now.
+Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now. 
 </p>
 </Col>
 <Col span={4} align="start">
 <p margin="0">
-At any given moment, $30 Trillion is locked up in invoices and other non liquid assets. Together with DeFi, Centrifuge helps make these illiquid assets accessible.
+At any given moment,  $30 Trillion is locked up in invoices and other non liquid assets. Together with DeFi, Centrifuge helps make these illiquid assets accessible.
 </p>
 </Col>
 </Row>
@@ -35,9 +36,13 @@ At any given moment, $30 Trillion is locked up in invoices and other non liquid 
 <!-- Buttons -->
 <Section>
 <Box direction="row" gap="medium" justify="center">
-<Button label="Reach Out" />
-<Button primary label="Learn More" />
+<Button primary href="/products/tinlake" label="Learn More" />
 </Box>
+</Section>
+
+<!-- Form -->
+<Section>
+<BorrowerContactForm />
 </Section>
 
 <!-- User Stories -->
@@ -51,13 +56,13 @@ At any given moment, $30 Trillion is locked up in invoices and other non liquid 
 </Row>
 <Row gap="100" mb="medium">
 <Col span={4}>
-<Image src="../images/home/paperchain_logo.svg" alignSelf="start" />
+<Image src="../../images/home/paperchain_logo.svg" alignSelf="start" />
 </Col>
 <Col span={4}>
-<Image src="../images/home/consolfreight_logo.svg" alignSelf="start" />
+<Image src="../../images/home/consolfreight_logo.svg" alignSelf="start" />
 </Col>
 <Col span={4}>
-<Image src="../images/home/shuttleone_logo.svg" alignSelf="start" />
+<Image src="../../images/home/shuttleone_logo.svg" alignSelf="start" />
 </Col>
 </Row>
 <Row gap="100">
@@ -68,9 +73,9 @@ At any given moment, $30 Trillion is locked up in invoices and other non liquid 
 **Daniel Dewar**, Co-Founder of Paperchain
 
 <Box direction="row" gap="small">
-<Image src="../images/home/medium_small_logo.svg" />
+<Image src="../../images/home/medium_small_logo.svg" />
 
-[Read More]()
+<a href="https://medium.com/centrifuge/centrifuge-tinlake-and-paperchain-join-forces-to-accelerate-music-streaming-revenues-c83324d116e7" target="blank">Read More</a>
 
 </Box>
 
@@ -82,9 +87,9 @@ At any given moment, $30 Trillion is locked up in invoices and other non liquid 
 **Alejandro Gutierrez**, Co-Founder of ConsolFreight
 
 <Box direction="row" gap="small">
-<Image src="../images/home/medium_small_logo.svg" />
+<Image src="../../images/home/medium_small_logo.svg" />
 
-[Read More]()
+<a href="https://medium.com/centrifuge/the-first-drop-for-defi-23e5240cadf2" target="blank">Read More</a>
 
 </Box>
 
@@ -96,9 +101,9 @@ At any given moment, $30 Trillion is locked up in invoices and other non liquid 
 **HongZhuang Lim**, CEO of ShuttleOne
 
 <Box direction="row" gap="small">
-<Image src="../images/home/medium_small_logo.svg" />
+<Image src="../../images/home/medium_small_logo.svg" />
 
-[Read More]()
+<a href="https://medium.com/centrifuge/defi-in-the-coronavirus-pandemic-from-blockchain-to-the-supermarket-83a09ff4762" target="blank">Read More</a>
 
 </Box>
 

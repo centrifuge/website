@@ -1,11 +1,12 @@
 <!-- Imports -->
 
-import HorizontalSteps from "../partials/home/HorizontalSteps";
+import HorizontalSteps from "../../partials/home/HorizontalSteps";
+import InvestorContactForm from "../../partials/home/InvestorContactForm";
 
-import investor_1 from "../images/home/step_images/investor_1.svg";
-import investor_2 from "../images/home/step_images/investor_2.svg";
-import investor_3 from "../images/home/step_images/investor_3.svg";
-import investor_4 from "../images/home/step_images/investor_4.svg";
+import investor_1 from "../../images/home/step_images/investor_1.svg";
+import investor_2 from "../../images/home/step_images/investor_2.svg";
+import investor_3 from "../../images/home/step_images/investor_3.svg";
+import investor_4 from "../../images/home/step_images/investor_4.svg";
 
 <!-- Intro -->
 <Section>
@@ -39,7 +40,11 @@ We are providing some of the most powerful finanical tools to help investors mak
 <!-- Buttons -->
 <Section>
 <Box direction="row" gap="medium" justify="center">
-<Button label="Reach Out" />
-<Button primary label="Learn More" />
+<Button primary href="/products/tinlake" label="Learn More" />
 </Box>
+</Section>
+
+<!-- Form -->
+<Section>
+<InvestorContactForm />
 </Section>

@@ -8,16 +8,16 @@ import TinlakeCard from '../partials/home/TinlakeCard';
 <Row>
 <Col span={4}>
 <Heading lined style={{ fontSize: "24px" }}>
-The Open Lending Protocol
+Decentralized Asset Finance
 </Heading>
 </Col>
 </Row>
 <Row>
 <Col span={4}>
 <Text size="20px" textAlign="center" weight={500} margin={{ bottom: "large" }}>
-Access a new source of liquidity. Use Centrifuge to bring your assets into DeFi.
+Access bankless liquidity. Use Centrifuge to bring your assets into DeFi.
 </Text>
-<Button primary href="/borrower" label="Borrow" />
+<Button primary href="/borrow" label="Borrow" />
 </Col>
 <Col span={4}>
 
@@ -28,7 +28,7 @@ Access a new source of liquidity. Use Centrifuge to bring your assets into DeFi.
 <Text size="20px" textAlign="center" weight={500} margin={{ bottom: "large" }}>
 Invest in diversified asset-backed pools. Generate a return on stable assets.
 </Text>
-<Button primary href="/investor" label="Invest" />
+<Button primary href="/invest" label="Invest" />
 </Col>
 </Row>
 </Section>
@@ -115,9 +115,9 @@ We see a future of open finance, where businesses use decentralized currencies t
 
 # DeFi is a grassroots finanical movement, powered by the community.
 
-Our community is different from anything the financial world has seen before. Token holders have a voice and a vote on the direction of the protocol. All of our protocols are interdependent on one another, making it a financial system powered by community.
+The DeFi community is different from anything the financial world has seen before. Token holders have a voice and a vote on the direction of the protocol. All of our protocols are interdependent on one another, making it a financial system powered by community. 
 
-We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way.
+We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way. 
 
 <Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} />
 
