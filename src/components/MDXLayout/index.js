@@ -24,7 +24,7 @@ const components = {
   h6: getHeadingComponent(6),
   p: Paragraph,
   a: ({ href, children, ...rest }) => (
-    <Anchor primary href={href} label={children} />
+    <Anchor primary href={href} label={children} {...rest} />
   ),
   img: ({ src, ...rest }) => <Image src={src} {...rest} width="100%" />,
 };

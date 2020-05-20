@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, Paragraph, Image, Text } from "grommet";
+import { Box, Paragraph, Image } from "grommet";
 
 import { List, Item } from "../List";
 import { ExternalLink, InternalLink } from "../Links";
@@ -56,6 +56,7 @@ const BlockInternalLink = () => (
       <FooterLinkItem to="/data-privacy-policy">Data Privacy Policy</FooterLinkItem>
       <FooterLinkItem to="/security">Security</FooterLinkItem>
       <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
+      <FooterLinkItem to="/brand">Brand Assets</FooterLinkItem>
       <br/><br/><br/>
       <FooterLinkItem to="/grant">
         <Box direction="row">

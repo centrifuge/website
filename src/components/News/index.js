@@ -29,7 +29,7 @@ const LinkWrapper = styled.a`
 `;
 
 const NewsCard = ({ link, children }) => (
-  <LinkWrapper href={link}>
+  <LinkWrapper href={link} target="_blank" rel="noopener noreferrer">
     <Box
       gap="xsmall"
       pad=""
@@ -114,16 +114,6 @@ const PressArticle = ({ article }) => (
   </Box>
 );
 
-const stripHtml = (html) => {
-  var tmp = document.createElement("DIV");
-  tmp.innerHTML = html;
-  return tmp.textContent || tmp.innerText || "";
-};
-
-const truncate = (desc, length = 120) => {
-  return `${String(desc).substring(0, length)}...`;
-};
-
 const MediumPost = ({ post }) => (
   <>
     <Box margin={{ bottom: "medium" }}>
@@ -180,7 +170,6 @@ const LatestNews = ({ posts }) => (
           <CardImage src={post.thumbnail} />
           <Box
             justify="center"
-            align="center"
             height="96px"
             pad={{
               horizontal: "medium",
@@ -193,8 +182,6 @@ const LatestNews = ({ posts }) => (
             </Heading>
           </Box>
           <Box
-            justify="center"
-            align="center"
             height="96px"
             pad={{
               horizontal: "medium",
@@ -205,14 +192,7 @@ const LatestNews = ({ posts }) => (
             <Paragraph margin="0px">{post.description}</Paragraph>
           </Box>
           <Box justify="center" align="start" pad="medium">
-            <Button
-              plain
-              target="_blank"
-              rel="noopener noreferrer"
-              href={post.link}
-            >
-              Read more...
-            </Button>
+            <Button plain>Read more...</Button>
           </Box>
         </NewsCard>
       </Column>

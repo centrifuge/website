@@ -8,10 +8,9 @@ import Grid from "../components/Grid";
 import Column from "../components/Column";
 
 import wordmark from "../images/centrifuge-wordmark.svg";
-import developerWordmark from "../images/centrifuge-developer-wordmark.svg";
 import wordmarkLight from "../images/centrifuge-wordmark-light.svg";
 
-const DesignPage = () => {
+const BrandPage = () => {
   const metadata = {
     title: "Brand",
     description: null
@@ -47,13 +46,6 @@ const DesignPage = () => {
                 />
                 <Image height={48} src={wordmarkLight} />
               </Stack>
-
-              {/* Developer Dark on Light */}
-              <Paragraph>Dark Developer Wordmark on Light Background</Paragraph>
-              <Stack fill anchor="center" margin={{ bottom: "large" }}>
-                <Box round="xsmall" elevation="small" height="medium" />
-                <Image height={48} src={developerWordmark} />
-              </Stack>
             </Box>
 
             {/* Axis */}
@@ -85,4 +77,4 @@ const DesignPage = () => {
   );
 };
 
-export default DesignPage;
+export default BrandPage;

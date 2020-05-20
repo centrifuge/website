@@ -8,9 +8,16 @@ import Grid from "../Grid";
 
 const Section = ({ children, ...rest }) => (
   <Container>
-    <Box margin={{ vertical: "xlarge" }} {...rest}>
-      {children}
-    </Box>
+    <ResponsiveContext.Consumer>
+      {(size) => (
+        <Box
+          margin={{ vertical: size === "small" ? "xxlarge" : "xlarge" }}
+          {...rest}
+        >
+          {children}
+        </Box>
+      )}
+    </ResponsiveContext.Consumer>
   </Container>
 );
 
