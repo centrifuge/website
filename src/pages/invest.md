@@ -16,7 +16,10 @@ import investor_4 from "../images/home/step_images/investor_4.svg";
 
 <!-- Intro -->
 <Section>
+
+<ResponsiveContent breakpoints={["medium", "large"]}>
 <Row gap="100">
+
 <Col span={4} align="start">
 
 # Simple Lending for Next Generation of Finance
@@ -36,6 +39,21 @@ We are providing some of the most powerful finanical tools to help investors mak
 </p>
 </Col>
 </Row>
+
+</ResponsiveContent>
+
+<ResponsiveContent breakpoints={["small"]}>
+
+# Simple Lending for Next Generation of Finance
+
+DeFi is building the first internet-native Global Business Graph, powered by decentralized currencies.
+
+When you invest in DeFi, you invest in the future of finance.
+
+We are providing some of the most powerful finanical tools to help investors make a safe investment and attractive yield.
+
+</ResponsiveContent>
+
 </Section>
 
 <!-- Steps -->

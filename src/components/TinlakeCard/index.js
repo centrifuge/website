@@ -54,7 +54,7 @@ const TinlakeSection = ({ heading, children }) => {
 
     let i = 0;
     let stars = [];
-    for (; i < 10; i++) {
+    for (; i < 0; i++) {
       stars.push({
         top: getRandomInt(100, height - 100),
         left: getRandomInt(100, width - 100),
@@ -70,11 +70,11 @@ const TinlakeSection = ({ heading, children }) => {
           {stars.map((dims, index) => (
             <Star {...dims} key={index} />
           ))}
-          <Row mb="large">
-            <Col span={6}>
+          <Row mb="medium">
+            <Col span={6} margin={{ bottom: "large" }}>
               <Image src={tinlake} alignSelf="start" />
             </Col>
-            <Col span={6}>
+            <Col span={6} margin={{ bottom: "large" }}>
               <Heading level={1} margin="0">
                 {heading}
               </Heading>

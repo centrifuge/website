@@ -97,7 +97,7 @@ const BorrowerContactForm = ({ toggleModal }) => {
               <Column
                 span={{ large: 6, medium: 6, small: 12 }}
                 gap="medium"
-                alignSelf="start"
+                alignSelf="stretch"
                 margin={{ bottom: "medium" }}
               >
                 <FormField

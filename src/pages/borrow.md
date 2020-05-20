@@ -15,6 +15,8 @@ import borrower_3 from "../images/home/step_images/borrower_3.svg";
 
 <!-- Intro -->
 <Section>
+
+<ResponsiveContent breakpoints={["medium", "large"]}>
 <Row gap="100">
 <Col span={4} align="start">
 
@@ -23,7 +25,7 @@ import borrower_3 from "../images/home/step_images/borrower_3.svg";
 </Col>
 <Col span={4} align="start">
 <p margin="0">
-Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now. 
+Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now.
 </p>
 </Col>
 <Col span={4} align="start">
@@ -32,6 +34,18 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 </p>
 </Col>
 </Row>
+</ResponsiveContent>
+
+<ResponsiveContent breakpoints={["small"]}>
+
+# Finance Your Assests with DeFi
+
+Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now.
+
+At any given moment,  $30 Trillion is locked up in invoices and other non liquid assets. Together with DeFi, Centrifuge helps make these illiquid assets accessible.
+
+</ResponsiveContent>
+
 </Section>
 
 <!-- Steps -->
@@ -53,6 +67,8 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 
 </Col>
 </Row>
+
+<ResponsiveContent breakpoints={["medium", "large"]}>
 <Row gap="100" mb="medium">
 <Col span={4}>
 <Image src="../images/home/paperchain_logo.svg" alignSelf="start" />
@@ -64,8 +80,14 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 <Image src="../images/home/shuttleone_logo.svg" alignSelf="start" />
 </Col>
 </Row>
+</ResponsiveContent>
+
 <Row gap="100">
 <Col span={4} align="start">
+
+<ResponsiveContent breakpoints={["small"]}>
+<Image src="../images/home/paperchain_logo.svg" alignSelf="start" />
+</ResponsiveContent>
 
 “By pricing the streaming data and connecting that to programmatic banking solutions like decentralized finance technology, we can build financial products that get money faster to creators at a fraction of the cost of traditional finance.”
 
@@ -81,6 +103,10 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 </Col>
 <Col span={4} align="start">
 
+<ResponsiveContent breakpoints={["small"]}>
+<Image src="../images/home/consolfreight_logo.svg" alignSelf="start" margin={{ top: "large" }} />
+</ResponsiveContent>
+
 “DeFi is especially important in moments of emergency: disaster relief shipments need quick and reliable processing. Tinlake would allow us to increase operational efficiencies and decrease the operational cost on this future shipment.”
 
 **Alejandro Gutierrez**, Co-Founder of ConsolFreight
@@ -94,6 +120,10 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 
 </Col>
 <Col span={4} align="start">
+
+<ResponsiveContent breakpoints={["small"]}>
+<Image src="../images/home/shuttleone_logo.svg" alignSelf="start" margin={{ top: "large" }} />
+</ResponsiveContent>
 
 “Our customer HappyFresh operates in major markets in South East Asia. To cater to increased demand, they need to have access to new liquidity markets fast. Combining our frictionless payments with Centrifuge Tinlake seemed like the logical step to access liquidity in DeFi.”
 
