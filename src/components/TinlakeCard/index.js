@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import { Box, Image, Text, Button, Heading } from "grommet";
+import { Box, Image, Text, Button, Heading, ResponsiveContext } from "grommet";
 
 import { Section, Row, Col } from "../MDXLayout/shortcodes";
 import theme from "../Theme/theme";
 import star from "../../images/home/star.svg";
 import tinlake from "../../images/home/tinlake_logo_inverse.svg";
+import tinlake_bg from "../../images/home/tinlake_bg.svg";
+import tinlake_bg_vertical from "../../images/home/tinlake_bg_vertical.svg";
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -64,30 +66,41 @@ const TinlakeSection = ({ heading, children }) => {
   }, []);
 
   return (
-    <Box background="brand-dark">
-      <RelativeSection>
-        <Box ref={containerElem}>
-          {stars.map((dims, index) => (
-            <Star {...dims} key={index} />
-          ))}
-          <Row mb="medium">
-            <Col span={6} margin={{ bottom: "large" }}>
-              <Image src={tinlake} alignSelf="start" />
-            </Col>
-            <Col span={6} margin={{ bottom: "large" }}>
-              <Heading level={1} margin="0">
-                {heading}
-              </Heading>
-            </Col>
-          </Row>
-          <Box>{children}</Box>
-          <Box gap="small" margin={{ top: "large" }}>
-            <Text alignSelf="center">Start using it now</Text>
-            <StyledButton primary alignSelf="center" label="Open Tinlake" />
-          </Box>
+    <ResponsiveContext.Consumer>
+      {(size) => (
+        <Box
+          background={{
+            dark: true,
+            image: `url("${
+              size === "small" ? tinlake_bg_vertical : tinlake_bg
+            }")`,
+          }}
+        >
+          <RelativeSection>
+            <Box ref={containerElem}>
+              {stars.map((dims, index) => (
+                <Star {...dims} key={index} />
+              ))}
+              <Row mb="medium">
+                <Col span={6} margin={{ bottom: "large" }}>
+                  <Image src={tinlake} alignSelf="start" />
+                </Col>
+                <Col span={6} margin={{ bottom: "large" }}>
+                  <Heading level={1} margin="0">
+                    {heading}
+                  </Heading>
+                </Col>
+              </Row>
+              <Box>{children}</Box>
+              <Box gap="small" margin={{ top: "large" }}>
+                <Text alignSelf="center">Start using it now</Text>
+                <StyledButton primary alignSelf="center" label="Open Tinlake" />
+              </Box>
+            </Box>
+          </RelativeSection>
         </Box>
-      </RelativeSection>
-    </Box>
+      )}
+    </ResponsiveContext.Consumer>
   );
 };
 

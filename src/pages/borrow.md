@@ -86,7 +86,7 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 <Col span={4} align="start">
 
 <ResponsiveContent breakpoints={["small"]}>
-<Image src="../images/home/paperchain_logo.svg" alignSelf="start" />
+<Image src="../images/home/paperchain_logo.svg" alignSelf="start" margin={{ bottom: "medium" }} />
 </ResponsiveContent>
 
 “By pricing the streaming data and connecting that to programmatic banking solutions like decentralized finance technology, we can build financial products that get money faster to creators at a fraction of the cost of traditional finance.”
@@ -104,7 +104,7 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 <Col span={4} align="start">
 
 <ResponsiveContent breakpoints={["small"]}>
-<Image src="../images/home/consolfreight_logo.svg" alignSelf="start" margin={{ top: "large" }} />
+<Image src="../images/home/consolfreight_logo.svg" alignSelf="start" margin={{ top: "xlarge", bottom: "medium" }} />
 </ResponsiveContent>
 
 “DeFi is especially important in moments of emergency: disaster relief shipments need quick and reliable processing. Tinlake would allow us to increase operational efficiencies and decrease the operational cost on this future shipment.”
@@ -122,7 +122,7 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 <Col span={4} align="start">
 
 <ResponsiveContent breakpoints={["small"]}>
-<Image src="../images/home/shuttleone_logo.svg" alignSelf="start" margin={{ top: "large" }} />
+<Image src="../images/home/shuttleone_logo.svg" alignSelf="start" margin={{ top: "xlarge", bottom: "medium" }} />
 </ResponsiveContent>
 
 “Our customer HappyFresh operates in major markets in South East Asia. To cater to increased demand, they need to have access to new liquidity markets fast. Combining our frictionless payments with Centrifuge Tinlake seemed like the logical step to access liquidity in DeFi.”

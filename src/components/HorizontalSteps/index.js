@@ -4,8 +4,8 @@ import { Box, Image, Text, ResponsiveContext } from "grommet";
 import step_arrow from "../../images/home/step_arrow.svg";
 import step_arrow_down from "../../images/home/step_arrow_down.svg";
 
-const Step = ({ image, text }) => (
-  <Box gap="small" style={{ maxWidth: "230px" }}>
+const Step = ({ image, text, size }) => (
+  <Box gap={size === "small" ? "large" : "small"} style={{ maxWidth: "230px" }}>
     <Image src={image} />
     <Text
       size="large"
@@ -33,7 +33,7 @@ const HorizontalSteps = ({ steps }) => (
             gap={size === "small" ? "large" : "small"}
             key={`step-${index}`}
           >
-            <Step {...step} />
+            <Step {...step} size={size} />
             {index !== steps.length - 1 ? (
               <Image
                 src={size === "small" ? step_arrow_down : step_arrow}

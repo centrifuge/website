@@ -13,28 +13,58 @@ import TinlakeCard from '../components/TinlakeCard';
 
 <Row>
 <Col span={4}>
-<Heading lined style={{ fontSize: "24px" }}>
+
+<ResponsiveContent breakpoints={["medium", "large"]}>
+<Heading lined style={{ fontSize: "24px" }} margin={{ bottom: "large" }}>
 Decentralized Asset Finance
 </Heading>
+</ResponsiveContent>
+
+<ResponsiveContent breakpoints={["small"]}>
+<Heading lined style={{ fontSize: "24px" }} margin={{ bottom: "xlarge" }} textAlign="center">
+Decentralized Asset Finance
+</Heading>
+</ResponsiveContent>
+
 </Col>
 </Row>
 
 <Row>
-<Col span={4} margin={{bottom: "small"}}>
-<Text size="20px" textAlign="center" weight={500} margin={{ bottom: "large" }}>
-Access bankless liquidity. Use Centrifuge to bring your assets into DeFi.
+<Col span={4} margin={{bottom: "large"}}>
+
+<Box margin={{ bottom: "large" }}>
+<Text size="20px" textAlign="center" weight={500}>
+Access bankless liquidity.
 </Text>
+<Text size="20px" textAlign="center" weight={500}>
+Use Centrifuge to bring
+</Text>
+<Text size="20px" textAlign="center" weight={500}>
+your assets into DeFi.
+</Text>
+</Box>
+
 <Button primary href="/borrow" label="Borrow" />
 </Col>
-<Col span={4} margin={{bottom: "small"}}>
+<Col span={4} margin={{bottom: "large"}}>
 
 ![](../images/home/illustration_1.svg)
 
 </Col>
-<Col span={4} margin={{bottom: "small"}}>
-<Text size="20px" textAlign="center" weight={500} margin={{ bottom: "large" }}>
-Invest in diversified asset-backed pools. Generate a return on stable assets.
+<Col span={4} margin={{bottom: "large"}}>
+
+<Box margin={{ bottom: "large" }}>
+<Text size="20px" textAlign="center" weight={500}>
+Invest in diversified
 </Text>
+<Text size="20px" textAlign="center" weight={500}>
+asset-backed pools. Generate a return
+</Text>
+<Text size="20px" textAlign="center" weight={500}>
+on stable assets.
+</Text>
+</Box>
+
 <Button primary href="/invest" label="Invest" />
 </Col>
 </Row>
@@ -163,7 +193,7 @@ We are proud to take part in the larger DeFi ecosystem, one that demands the fin
 </ResponsiveContent>
 
 </Col>
-<Col span={1} margin={{ bottom: "large" }}></Col>
+<Col span={1} margin={{ vertical: "xlarge" }}></Col>
 <Col span={5}>
 <Box gap="large">
 <Text size="20px" textAlign="center">Building a fair financial system with:</Text>
