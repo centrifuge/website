@@ -1,3 +1,8 @@
+---
+title: Invest
+description: "Centrifuge introduces bankless financing: invest in diversified, asset-backed pools for attractive yields in a decentralized marketplace."
+---
+
 <!-- Imports -->
 
 import HorizontalSteps from "../components/HorizontalSteps";

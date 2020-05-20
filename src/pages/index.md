@@ -1,3 +1,8 @@
+---
+title: Decentralized Asset Finance
+description: Centrifuge is the protocol for decentralized asset finance. Borrowers can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.
+---
+
 <!-- Imports -->
 
 import LatestNewsSection from '../partials/home/LatestNewsSection';
@@ -106,9 +111,9 @@ We see a future of open finance, where businesses use decentralized currencies t
 
 # DeFi is a grassroots finanical movement, powered by the community.
 
-The DeFi community is different from anything the financial world has seen before. Token holders have a voice and a vote on the direction of the protocol. All of our protocols are interdependent on one another, making it a financial system powered by community. 
+The DeFi community is different from anything the financial world has seen before. Token holders have a voice and a vote on the direction of the protocol. All of our protocols are interdependent on one another, making it a financial system powered by community.
 
-We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way. 
+We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way.
 
 <Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} />
 
