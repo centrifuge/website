@@ -13,10 +13,12 @@ const Banner = styled(Box)`
 const GDPR = () => {
   const [bannerEnabled, setBannerEnabled] = useState(false);
 
-  useEffect(() =>
-    Cookie.get("bannerCookieDismissed") === "true"
-      ? setBannerEnabled(false)
-      : setBannerEnabled(true)
+  useEffect(
+    () =>
+      Cookie.get("bannerCookieDismissed") === "true"
+        ? setBannerEnabled(false)
+        : setBannerEnabled(true),
+    []
   );
 
   if (!bannerEnabled) return null;

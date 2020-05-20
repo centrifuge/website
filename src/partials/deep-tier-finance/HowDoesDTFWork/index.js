@@ -54,6 +54,7 @@ const MoreDetails = ({ data }) => {
                     </div>
                     <img
                       src={graph_how_it_works_mobile_detailed_img}
+                      alt="graph_how_it_works_mobile_detailed_img"
                       style={{ width: "60%" }}
                     />
                     <div>
@@ -77,6 +78,7 @@ const MoreDetails = ({ data }) => {
 
                     <img
                       src={graph_how_it_works_desktop_detailed_img}
+                      alt="graph_how_it_works_mobile_detailed_img"
                       style={{ width: "100%" }}
                     />
 

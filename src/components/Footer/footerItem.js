@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, Paragraph, Image, Text } from "grommet";
+import { Box, Paragraph, Image } from "grommet";
 
 import { List, Item } from "../List";
 import { ExternalLink, InternalLink } from "../Links";

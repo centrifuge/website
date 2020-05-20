@@ -123,7 +123,7 @@ const Dropdowns = styled(Box)`
 `
 
 const Nav = styled(Box)`
-  z-index: 10;
+  z-index: 2000;
   position: sticky;
   -webkit-position: sticky;
   top: 0;

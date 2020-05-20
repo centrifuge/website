@@ -8,7 +8,6 @@ import {
   Paragraph,
   Heading,
   Grid as GrommetGrid,
-  Image,
   ResponsiveContext
 } from "grommet";
 
