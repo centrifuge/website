@@ -164,7 +164,7 @@ The Open Protocol to Access Decentralized Finance
 We see a future of open finance, where businesses use decentralized currencies to make our world spin. The Centrifuge protocol is open source and built to plug your business to Web 3.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
-<Button primary label="Add us to your Stack" align="end" margin={{ top: "medium" }} />
+<Button primary label="Add us to your Stack" align="end" margin={{ top: "medium" }} href="https://developer.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
 <Button primary label="Add us to your Stack" margin={{ top: "medium" }} />
@@ -186,10 +186,10 @@ The DeFi community is different from anything the financial world has seen befor
 We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
-<Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} />
+<Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} href="https://discourse.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
-<Button primary label="Join the conversation on Discourse" margin={{ top: "medium" }} />
+<Button primary label="Join the conversation on Discourse" margin={{ top: "medium" }} href="https://discourse.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
 </ResponsiveContent>
 
 </Col>
@@ -209,5 +209,5 @@ We are proud to take part in the larger DeFi ecosystem, one that demands the fin
 <Section>
 <Image src="../images/radial-token-logo.svg" margin={{ bottom: "large" }} />
 <Heading lined alignSelf="center" textAlign="center" margin={{ bottom: "large" }}>Centrifuge is powered by Radial token</Heading>
-<Button primary label="Learn about RAD" />
+<Button primary label="Learn about RAD" href="/products/chain" />
 </Section>

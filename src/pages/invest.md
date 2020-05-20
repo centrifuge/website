@@ -62,6 +62,6 @@ We are providing some of the most powerful finanical tools to help investors mak
 </Section>
 
 <!-- Reach Out -->
-<ReachOutSection>
+<ReachOutSection linkLabel="Open Tinlake" linkHref="https://tinlake.centrifugo.io/" targetBlank>
 {(toggleModal) => <InvestorContactForm toggleModal={toggleModal} />}
 </ReachOutSection>

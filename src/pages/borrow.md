@@ -54,7 +54,7 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 </Section>
 
 <!-- Reach Out -->
-<ReachOutSection>
+<ReachOutSection linkLabel="Learn More" linkHref="/products/tinlake">
 {(toggleModal) => <BorrowerContactForm toggleModal={toggleModal} />}
 </ReachOutSection>
 
@@ -96,7 +96,7 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 <Box direction="row" gap="small">
 <Image src="../images/home/medium_small_logo.svg" />
 
-<a href="https://medium.com/centrifuge/centrifuge-tinlake-and-paperchain-join-forces-to-accelerate-music-streaming-revenues-c83324d116e7" target="blank">Read More</a>
+<a href="https://medium.com/centrifuge/centrifuge-tinlake-and-paperchain-join-forces-to-accelerate-music-streaming-revenues-c83324d116e7" target="_blank" rel="noreferrer noopener">Read More</a>
 
 </Box>
 
@@ -114,7 +114,7 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 <Box direction="row" gap="small">
 <Image src="../images/home/medium_small_logo.svg" />
 
-<a href="https://medium.com/centrifuge/the-first-drop-for-defi-23e5240cadf2" target="blank">Read More</a>
+<a href="https://medium.com/centrifuge/the-first-drop-for-defi-23e5240cadf2" target="_blank" rel="noreferrer noopener">Read More</a>
 
 </Box>
 
@@ -132,7 +132,7 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 <Box direction="row" gap="small">
 <Image src="../images/home/medium_small_logo.svg" />
 
-<a href="https://medium.com/centrifuge/defi-in-the-coronavirus-pandemic-from-blockchain-to-the-supermarket-83a09ff4762" target="blank">Read More</a>
+<a href="https://medium.com/centrifuge/defi-in-the-coronavirus-pandemic-from-blockchain-to-the-supermarket-83a09ff4762" target="_blank" rel="noreferrer noopener">Read More</a>
 
 </Box>
 

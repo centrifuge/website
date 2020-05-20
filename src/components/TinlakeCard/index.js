@@ -94,7 +94,14 @@ const TinlakeSection = ({ heading, children }) => {
               <Box>{children}</Box>
               <Box gap="small" margin={{ top: "large" }}>
                 <Text alignSelf="center">Start using it now</Text>
-                <StyledButton primary alignSelf="center" label="Open Tinlake" />
+                <StyledButton
+                  primary
+                  alignSelf="center"
+                  label="Open Tinlake"
+                  href="https://tinlake.centrifuge.io/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                />
               </Box>
             </Box>
           </RelativeSection>

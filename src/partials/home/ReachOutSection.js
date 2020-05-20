@@ -3,7 +3,7 @@ import { Button, Box, Layer } from "grommet";
 
 import { Section } from "../../components/MDXLayout/shortcodes";
 
-const ReactOutModal = ({ children }) => {
+const ReactOutModal = ({ children, linkLabel, linkHref, targetBlank }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
 
@@ -12,7 +12,13 @@ const ReactOutModal = ({ children }) => {
       <Section>
         <Box direction="row" gap="medium" justify="center">
           <Button onClick={toggleModal} label="Reach Out" />
-          <Button primary href="/products/tinlake" label="Learn More" />
+          <Button
+            primary
+            href={linkHref}
+            label={linkLabel}
+            target={targetBlank && `_blank`}
+            rel={targetBlank && `noopener noreferrer`}
+          />
         </Box>
       </Section>
       {showModal && (
