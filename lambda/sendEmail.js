@@ -16,8 +16,6 @@ exports.handler = async (event) => {
     };
   }
 
-  console.log(SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, SENDGRID_TO_EMAIL);
-
   const payload = JSON.parse(event.body);
 
   const body = Object.keys(payload.body)
