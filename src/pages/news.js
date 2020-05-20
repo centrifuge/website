@@ -9,7 +9,7 @@ import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import { ExternalLink } from "../components/Links";
-import { HighlightPost, MediumPost, PressArticle } from "../components/News";
+import { HighlightPost, MediumPost } from "../components/News";
 import {
   MEDIUM_URL,
   YOUTUBE_URL,
