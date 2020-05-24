@@ -69,9 +69,9 @@ const mediumPostsServerOptions = {
 
 module.exports = {
   siteMetadata: {
-    title: `Centrifuge`,
+    title: `Centrifuge: Decentralized Asset Finance`,
     siteUrl: process.env.URL || "http://localhost:8000",
-    longTitle: `Centrifuge - The Operating System for the Financial Supply Chain`,
+    longTitle: `Centrifuge: Decentralized Asset Finance`,
     description: `Centrifuge is an open, decentralized operating system to connect the global financial supply chain. It allows any business to transact on a global network while maintaining ownership of their data, including their validated company details, their reputation, business relationships, and subsequent transactions.`,
     author: `@centrifuge`,
     lambdaUrl:
