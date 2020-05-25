@@ -1,7 +1,3 @@
----
-description: Centrifuge is the protocol for decentralized asset finance. Borrowers can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.
----
-
 <!-- Imports -->
 
 import LatestNewsSection from '../partials/home/LatestNewsSection';
