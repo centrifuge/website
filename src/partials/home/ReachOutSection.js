@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Box, Layer } from "grommet";
+import { Button, Box, Layer, ResponsiveContext } from "grommet";
 
 import { Section } from "../../components/MDXLayout/shortcodes";
 
@@ -22,9 +22,20 @@ const ReactOutModal = ({ children, linkLabel, linkHref, targetBlank }) => {
         </Box>
       </Section>
       {showModal && (
-        <Layer onEsc={toggleModal} onClickOutside={toggleModal}>
-          {children(toggleModal)}
-        </Layer>
+        <ResponsiveContext.Consumer>
+          {(size) => {
+            console.log(size);
+            return (
+              <Layer
+                onEsc={toggleModal}
+                onClickOutside={toggleModal}
+                modal={size === "small" ? false : true}
+              >
+                {children(toggleModal)}
+              </Layer>
+            );
+          }}
+        </ResponsiveContext.Consumer>
       )}
     </>
   );
