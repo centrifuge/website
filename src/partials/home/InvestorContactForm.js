@@ -80,7 +80,7 @@ const InvestorContactForm = ({ toggleModal }) => {
                 onChange={(nextValue) => setValue(nextValue)}
                 onSubmit={async ({ value }) => {
                   toggleModal();
-                  const status = await sendEmail("Asset Originator", value);
+                  const status = await sendEmail("Investor", value);
                   if (!status) console.log("Mail sending failed");
                   else console.log("Mail sent successfully");
                 }}
