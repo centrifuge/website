@@ -46,9 +46,9 @@ Interact with Centrifuge Chain:
 <ResponsiveContent breakpoints={["medium", "large"]}>
 <Box justify="center" direction="row" gap="xlarge">
 
-<Button plain label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
-<Button plain label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
-<Button plain label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
+<Button plain href="https://portal.chain.centrifuge.io" label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
+<Button plain href="https://telemetry.polkadot.io/#list/Centrifuge%20Mainnet" label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
+<Button plain href="https://polkascan.io/centrifuge" label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
 
 </Box>
 </ResponsiveContent>
