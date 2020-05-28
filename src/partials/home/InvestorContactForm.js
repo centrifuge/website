@@ -68,8 +68,8 @@ const InvestorContactForm = ({ toggleModal }) => {
           <Heading margin={{ bottom: "xsmall" }}>Contact us</Heading>
           <Text textAlign="start" size="large" margin={{ bottom: "large" }}>
             or send us a message at{" "}
-            <Anchor href="mailto:tinlake.centrifuge.io">
-              tinlake.centrifuge.io
+            <Anchor href="mailto:tinlake@centrifuge.io">
+              tinlake@centrifuge.io
             </Anchor>
             .
           </Text>
