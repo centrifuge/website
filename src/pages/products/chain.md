@@ -297,10 +297,10 @@ The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize d
 </Box>
 
 <Box gap="xsmall">
-<!-- TODO: Change Metric
+{/* TODO: Change Metric
 <Text textAlign="start">Supply Cap:</Text>
 <Text size="20px" textAlign="start" weight={500}>1,000,000,000 RAD</Text>
--->
+*/}
 </Box>
 
 </Col>
