@@ -139,3 +139,8 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 </Col>
 </Row>
 </Section>
+
+<Section>
+<Text size="20px" alignSelf="center">Any Questions Left?</Text>
+<Text size="20px" alignSelf="center">Please get in touch: <a href="mailto:tinlake@centrifuge.io">tinlake@centrifuge.io</a></Text>
+</Section>
