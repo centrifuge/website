@@ -55,9 +55,9 @@ Interact with Centrifuge Chain:
 <ResponsiveContent breakpoints={["small"]}>
 <Box justify="center" gap="small">
 
-<Button plain label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
-<Button plain label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
-<Button plain label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
+<Button plain href="https://portal.chain.centrifuge.io" label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
+<Button plain href="https://telemetry.polkadot.io/#list/Centrifuge%20Mainnet" label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
+<Button plain href="https://polkascan.io/centrifuge" label="Polkascan" label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
 
 </Box>
 </ResponsiveContent>
@@ -185,10 +185,10 @@ Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables 
 If you are interested in running a Validator for Centrifuge Chain, check out our documentation to get started! The Flint and Amber testnets are a great way to get up and running. One of the main benefits of becoming a validator on Centrifuge testnets first is to get experience running your own Centrifuge Chain node and to test your infrastructure.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
-<Button alignSelf="end" label="Centrifuge Chain Documentation" />
+<Button href="https://developer.centrifuge.io/chain/overview/introduction/" label="Polkascan" alignSelf="end" label="Centrifuge Chain Documentation" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
-<Button label="Centrifuge Chain Documentation" />
+<Button href="https://developer.centrifuge.io/chain/overview/introduction/" label="Centrifuge Chain Documentation" />
 </ResponsiveContent>
 
 </Section>
@@ -297,8 +297,10 @@ The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize d
 </Box>
 
 <Box gap="xsmall">
+<!-- TODO: Change Metric
 <Text textAlign="start">Supply Cap:</Text>
 <Text size="20px" textAlign="start" weight={500}>1,000,000,000 RAD</Text>
+-->
 </Box>
 
 </Col>
