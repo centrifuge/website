@@ -80,6 +80,7 @@ const custom = {
       "accent-1": "#FCBA59",
       focus: "#2762FF",
       brand: "#2762FF",
+      "brand-dark": "#0828BE",
       black: "#000",
       text: {
         light: "#000",

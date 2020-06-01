@@ -33,6 +33,7 @@ const Slider = ({ image, data }) => {
           <Button onClick={prevStep}>
             <img
               src={slide_right_arrows_img}
+              alt="slide_right_arrows_img"
               style={{ transform: 'rotate(180deg)' }}
             />
             <span>Slide left</span>
@@ -42,7 +43,7 @@ const Slider = ({ image, data }) => {
         {current_step !== STEPS - 1 && (
           <Button onClick={nextStep}>
             <span>Slide right</span>
-            <img src={slide_right_arrows_img} />
+            <img src={slide_right_arrows_img} alt="slide_right_arrows_img" />
           </Button>
         )}
       </Buttons>

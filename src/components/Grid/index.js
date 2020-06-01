@@ -5,19 +5,19 @@ import PropTypes from "prop-types";
 import { breakpoints } from "../Theme/theme";
 
 const GridWrapper = styled(Box)`
-  ${props =>
+  ${(props) =>
     props.staggered &&
     css`
       &:nth-child(even) > section {
         flex-direction: column-reverse;
       }
     `}
-  ${props =>
+  ${(props) =>
     props.noMargin &&
     css`
       margin-top: 0;
       margin-bottom: 0;
-    `}    
+    `}
 `;
 
 const StyledGrid = styled.section`
@@ -27,19 +27,36 @@ const StyledGrid = styled.section`
   @media only screen and (min-width: ${breakpoints.small.value + 1}px) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: ${props => props.gap ? props.gap : 21}px;
-    align-items: ${props => props.align && props.align};
-    justify-items: ${props => props.justify && props.justify};
+    grid-column-gap: ${(props) => (props.gap ? props.gap : 21)}px;
+    align-items: ${(props) => props.align && props.align};
+    justify-items: ${(props) => props.justify && props.justify};
   }
 `;
 
-const Grid = ({ children, align, justify, mt, mb, pt, pb, staggered, noMargin, gap, ...rest }) => (
-  <GridWrapper staggered={staggered} noMargin={noMargin} margin={{ top: mt, bottom: mb }} pad={{ top: pt, bottom: pb }}>
+const Grid = ({
+  children,
+  align,
+  justify,
+  mt,
+  mb,
+  pt,
+  pb,
+  staggered,
+  noMargin,
+  gap,
+  ...rest
+}) => (
+  <GridWrapper
+    staggered={staggered}
+    noMargin={noMargin}
+    margin={{ top: mt, bottom: mb }}
+    pad={{ top: pt, bottom: pb }}
+  >
     <StyledGrid
       align={align}
       justify={justify}
       columns={{ count: 12, size: "auto" }}
-      gap = {gap}
+      gap={gap}
       {...rest}
     >
       {children}
@@ -51,7 +68,7 @@ Grid.defaultProps = {
   align: "center",
   justify: "flex-start",
   mt: "xxlarge",
-  mb: "xxxlarge"
+  mb: "xxxlarge",
 };
 
 Grid.propTypes = {
@@ -60,7 +77,7 @@ Grid.propTypes = {
   justify: PropTypes.string,
   staggered: PropTypes.bool,
   mt: PropTypes.string,
-  mb: PropTypes.string
+  mb: PropTypes.string,
 };
 
 export default Grid;

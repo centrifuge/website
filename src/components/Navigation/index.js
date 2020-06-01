@@ -123,7 +123,7 @@ const Dropdowns = styled(Box)`
 `
 
 const Nav = styled(Box)`
-  z-index: 2000;
+  z-index: 10;
   position: sticky;
   -webkit-position: sticky;
   top: 0;
@@ -132,6 +132,7 @@ const Nav = styled(Box)`
     breakpoints.small,
     css`
       top: 1rem;
+      z-index: 2000;
     `
   )}
 
