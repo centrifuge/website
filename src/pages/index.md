@@ -162,7 +162,7 @@ We see a future of open finance, where businesses use decentralized currencies t
 <Button primary label="Add us to your Stack" align="end" margin={{ top: "medium" }} href="https://developer.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
-<Button primary label="Add us to your Stack" margin={{ top: "medium" }} />
+<Button primary href="https://developer.centrifuge.io/" label="Add us to your Stack" margin={{ top: "medium" }} />
 </ResponsiveContent>
 
 </Col>
