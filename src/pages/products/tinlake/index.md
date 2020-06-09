@@ -29,7 +29,7 @@ Unlock the value of your real-world assets in the decentralized finance ecosyste
 # What is Tinlake?
 
 Tinlake is a asset-backed lending smart contract platform that is designed for Asset Originators like lending platforms, payment companies, embedded software solutions, and banks that seek to utilize the full potential of decentralized finance. The protocol coordinates the various parties required to structure, administer, and finance collateralized pools of financial obligations like invoices, mortgages, auto loans, or royalties. By simplifying the process and reducing costs, Tinlake’s protocol creates financing flexibility for Asset Originators allowing them to optimize risk allocation and access instant funding from a new category of crypto lending protocols while simultaneously improving transparency and accessibility for their traditional investors.
-<Button label="FAQ" href="https://centrifuge.io/products/tinlake/faq/" align="start" margin={{ top: "medium" }} />
+<Button label="FAQ" href="/products/tinlake/faq/" align="start" margin={{ top: "medium" }} />
 </Section>
 <FullWidthSection>
 <ResponsiveContent breakpoints={["large", "medium"]}>
