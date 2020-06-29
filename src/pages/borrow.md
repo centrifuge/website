@@ -20,7 +20,7 @@ import borrower_3 from "../images/home/step_images/borrower_3.svg";
 <Row gap="100">
 <Col span={4} align="start">
 
-# Finance Your Assests with DeFi
+# Your Decentralized Line of Credit
 
 </Col>
 <Col span={4} align="start">
@@ -38,7 +38,7 @@ Together with DeFi, Centrifuge helps make these illiquid assets accessible.
 
 <ResponsiveContent breakpoints={["small"]}>
 
-# Finance Your Assests with DeFi
+# Your Decentralized Line of Credit
 
 At any given moment, $30 Trillion is locked up in invoices and other non liquid assets. Asset Originators are businesses that help companies and individuals access this liquidity.
 
