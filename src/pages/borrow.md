@@ -25,12 +25,12 @@ import borrower_3 from "../images/home/step_images/borrower_3.svg";
 </Col>
 <Col span={4} align="start">
 <p margin="0">
-Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now.
+At any given moment, $30 Trillion is locked up in invoices and other non liquid assets. Asset Originators are businesses that help companies and individuals access this liquidity.
 </p>
 </Col>
 <Col span={4} align="start">
 <p margin="0">
-At any given moment,  $30 Trillion is locked up in invoices and other non liquid assets. Together with DeFi, Centrifuge helps make these illiquid assets accessible.
+Together with DeFi, Centrifuge helps make these illiquid assets accessible.
 </p>
 </Col>
 </Row>
@@ -40,9 +40,9 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 
 # Finance Your Assests with DeFi
 
-Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now.
+At any given moment, $30 Trillion is locked up in invoices and other non liquid assets. Asset Originators are businesses that help companies and individuals access this liquidity.
 
-At any given moment,  $30 Trillion is locked up in invoices and other non liquid assets. Together with DeFi, Centrifuge helps make these illiquid assets accessible.
+Together with DeFi, Centrifuge helps make these illiquid assets accessible.
 
 </ResponsiveContent>
 
