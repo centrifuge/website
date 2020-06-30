@@ -1,6 +1,6 @@
 ---
 title: Borrow
-description: Collateralize your invoices, royalties, and other real-world assets with Centrifuge to access a new source of liquidity.
+description: Collateralize your invoices, royalties, and other real-world assets with Centrifuge to access a new source of liquidity. 
 ---
 
 <!-- Imports -->
@@ -20,17 +20,17 @@ import borrower_3 from "../images/home/step_images/borrower_3.svg";
 <Row gap="100">
 <Col span={4} align="start">
 
-# Finance Your Assests with DeFi
+# Your Decentralized Line of Credit
 
 </Col>
 <Col span={4} align="start">
 <p margin="0">
-Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now.
+At any given moment, $30 Trillion is locked up in invoices and other non liquid assets. Asset Originators are businesses that help companies and individuals access this liquidity.
 </p>
 </Col>
 <Col span={4} align="start">
 <p margin="0">
-At any given moment,  $30 Trillion is locked up in invoices and other non liquid assets. Together with DeFi, Centrifuge helps make these illiquid assets accessible.
+Together with DeFi, Centrifuge helps make these illiquid assets accessible.
 </p>
 </Col>
 </Row>
@@ -38,11 +38,11 @@ At any given moment,  $30 Trillion is locked up in invoices and other non liquid
 
 <ResponsiveContent breakpoints={["small"]}>
 
-# Finance Your Assests with DeFi
+# Your Decentralized Line of Credit
 
-Asset Originators are businesses that help companies and individuals access liquidity. These businesses have proof of payment, but need the money now.
+At any given moment, $30 Trillion is locked up in invoices and other non liquid assets. Asset Originators are businesses that help companies and individuals access this liquidity.
 
-At any given moment,  $30 Trillion is locked up in invoices and other non liquid assets. Together with DeFi, Centrifuge helps make these illiquid assets accessible.
+Together with DeFi, Centrifuge helps make these illiquid assets accessible.
 
 </ResponsiveContent>
 

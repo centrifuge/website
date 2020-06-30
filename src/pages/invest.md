@@ -22,15 +22,15 @@ import investor_4 from "../images/home/step_images/investor_4.svg";
 
 <Col span={4} align="start">
 
-# Simple Lending for Next Generation of Finance
+# High Yield, Low Risk, Short Term
 
 </Col>
 <Col span={4} align="start">
 <p margin={{ top: "0" }}>
-DeFi is building the first internet-native Global Business Graph, powered by decentralized currencies.
+With DeFi, Centrifuge is building transparent securitizations and continuous returns, 24/7/365. Investors will have access to new asset classes previously reserved for big banks. 
 </p>
 
-When you invest in DeFi, you invest in the future of finance.
+When you invest with Centrifuge, you invest in the future of finance.
 
 </Col>
 <Col span={4} align="start">
@@ -44,11 +44,11 @@ We are providing some of the most powerful finanical tools to help investors mak
 
 <ResponsiveContent breakpoints={["small"]}>
 
-# Simple Lending for Next Generation of Finance
+# High Yield, Low Risk, Short Term
 
-DeFi is building the first internet-native Global Business Graph, powered by decentralized currencies.
+With DeFi, Centrifuge is building transparent securitizations and continuous returns, 24/7/365. Investors will have access to new asset classes previously reserved for big banks. 
 
-When you invest in DeFi, you invest in the future of finance.
+When you invest with Centrifuge, you invest in the future of finance.
 
 We are providing some of the most powerful finanical tools to help investors make a safe investment and attractive yield.
 
