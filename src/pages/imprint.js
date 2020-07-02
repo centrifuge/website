@@ -33,7 +33,7 @@ const ImprintPage = () => {
               USA
             </p>
 
-            <p>CEO Markus Ament</p>
+            <p>CEO Lucas Vogelsang</p>
 
             <p>
               <strong>Centrifuge GmbH</strong>
