@@ -103,9 +103,16 @@ Tinlake can be deployed with a two-token structure that allows investors to inve
 # Benefits
 
 <Row>
-<Col span={4} margin={{ bottom: "medium" }}>
-
+<Col span={4} margin={{ bottom: "medium" }} align="end">
 <Image src="../../../images/tinlake/benefits_originators.svg" width="100" margin={{ vertical: "small" }} />
+</Col>
+<Col span={4} margin={{ bottom: "medium" }} align="end">
+<Image src="../../../images/tinlake/benefits_lenders.svg" width="100" margin={{ vertical: "small" }} />
+</Col>
+</Row>
+
+<Row>
+<Col span={4} margin={{ bottom: "medium" }}>
 
 ### Originators
 Decentralized Line of Credit for Your Assets
@@ -118,9 +125,6 @@ Decentralized Line of Credit for Your Assets
 </Col>
 <Col span={4} margin={{ bottom: "medium" }}>
 
-<Image src="../../../images/tinlake/benefits_lenders.svg" width="100" margin={{ vertical: "small" }} />
-
-
 ### Investors
 High Yield, Low Risk, Short Term
 - Transparent securitizations: track and trace each asset
@@ -132,6 +136,7 @@ High Yield, Low Risk, Short Term
 
 </Col>
 </Row>
+
 </FullWidthSection>
 
 <Section>
