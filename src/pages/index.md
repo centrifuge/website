@@ -67,7 +67,7 @@ on stable assets.
 </Section>
 
 <!-- Tinlake -->
-<TinlakeCard heading="See how an open source, asset-backed lending protocol works with our first Dapp">
+<TinlakeCard heading="See how an open source, asset-backed financing protocol works with our first Dapp">
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
 <Box gap="small">
