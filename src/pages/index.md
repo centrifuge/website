@@ -39,7 +39,7 @@ your assets into DeFi.
 </Text>
 </Box>
 
-<Button primary href="/borrow" label="Borrow" />
+<Button primary href="/finance" label="Pool Your Assets" />
 </Col>
 <Col span={4} margin={{bottom: "large"}}>
 
