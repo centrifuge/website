@@ -262,28 +262,6 @@ class Navigation extends React.Component {
 
                     <PaddedItem>
                       <NavLink to='/technology'>Technology</NavLink>
-                      <List>
-                        <Item>
-                          <ExternalNavLink href='https://developer.centrifuge.io/'>
-                            Developer Docs
-                          </ExternalNavLink>
-                          <NavLink to='/technology/contribute'>
-                            Contribute
-                          </NavLink>
-                          <NavLink to='/technology#download'>Download</NavLink>
-                        </Item>
-                      </List>
-                    </PaddedItem>
-
-                    <PaddedItem>
-                      <NavLink to='/ecosystem'>Ecosystem</NavLink>
-                      <List>
-                        <Item>
-                          <NavLink to='/ecosystem/#use-cases'>
-                            Use Cases
-                          </NavLink>
-                        </Item>
-                      </List>
                     </PaddedItem>
 
                     <PaddedItem>
@@ -384,26 +362,6 @@ const MobilePanel = ({ state, toggleFunc }) => (
 
               <MenuItem>
                 <NavLink to='/technology'>Technology</NavLink>
-
-                <SubItem>
-                  <ExternalNavLink href='https://developer.centrifuge.io/'>
-                    Developer Docs
-                  </ExternalNavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/technology/contribute'>Contribute</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/technology#download'>Download</NavLink>
-                </SubItem>
-              </MenuItem>
-
-              <MenuItem>
-                <NavLink to='/ecosystem'>Ecosystem</NavLink>
-
-                <SubItem>
-                  <NavLink to='/ecosystem/#use-cases'>Use Cases</NavLink>
-                </SubItem>
               </MenuItem>
 
               <MenuItem>
