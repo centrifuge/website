@@ -220,7 +220,31 @@ We built Centrifuge Chain to enable businesses to exchange business documents (s
 <!-- How -->
 <Section>
 
-# How does Centrifuge Chain work?
+<ResponsiveContent breakpoints={["medium", "large"]}>
+<Heading margin={{ bottom: "medium" }} lined textAlign="center">
+<Box direction="row" justify="between">
+<Box>
+How does Centrifuge Chain work?
+</Box>
+<Box>
+<Button primary href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" />
+</Box>
+</Box>
+</Heading>
+</ResponsiveContent>
+
+<ResponsiveContent breakpoints={["small"]}>
+<Heading margin={{ bottom: "medium" }} lined textAlign="center">
+<Box gap="small">
+<Box>
+How does Centrifuge Chain work?
+</Box>
+<Box>
+<Button primary href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" />
+</Box>
+</Box>
+</Heading>
+</ResponsiveContent>
 
 Using Centrifuge Chain, businesses can convert their Real World Assets (RWA) into Non-Fungible Tokens (NFTs). This enables Asset Originators to put up these NFTs as collateral in Tinlake pools on Ethereum. Centrifuge Chain is an open source PoS blockchain built for finance and powered by the Radial (RAD) token. Tinlake taps into the Centrifuge ecosystem, including the Centrifuge Chain and a P2P messaging protocol, to bring DeFi to a consumer-ready interface.
 
