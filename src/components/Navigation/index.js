@@ -263,20 +263,6 @@ class Navigation extends React.Component {
 
                     <PaddedItem>
                       <NavLink to='/about'>About</NavLink>
-                      <List>
-                        <Item>
-                          <NavLink to='/about/#mission'>Mission</NavLink>
-                        </Item>
-                        <Item>
-                          <NavLink to='/about/#team'>Team</NavLink>
-                        </Item>
-                        <Item>
-                          <NavLink to='/about/#partners'>Partners</NavLink>
-                        </Item>
-                        <Item>
-                          <NavLink to='/careers'>Careers</NavLink>
-                        </Item>
-                      </List>
                     </PaddedItem>
 
                     <PaddedItem>
@@ -362,19 +348,6 @@ const MobilePanel = ({ state, toggleFunc }) => (
 
               <MenuItem>
                 <NavLink to='/about'>About</NavLink>
-
-                <SubItem>
-                  <NavLink to='/about/#mission'>Mission</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/about/#team'>Team</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/about/#partners'>Partners</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/careers'>Careers</NavLink>
-                </SubItem>
               </MenuItem>
 
               <MenuItem>
