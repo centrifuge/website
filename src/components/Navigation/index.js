@@ -253,55 +253,16 @@ class Navigation extends React.Component {
                         <Item>
                           <NavLink to='/products/tinlake'>Tinlake</NavLink>
                           <NavLink to='/products/chain'>Chain</NavLink>
-                          <NavLink to='/products/deep-tier-finance'>
-                            Deep Tier Finance
-                          </NavLink>
                         </Item>
                       </List>
                     </PaddedItem>
 
                     <PaddedItem>
                       <NavLink to='/technology'>Technology</NavLink>
-                      <List>
-                        <Item>
-                          <ExternalNavLink href='https://developer.centrifuge.io/'>
-                            Developer Docs
-                          </ExternalNavLink>
-                          <NavLink to='/technology/contribute'>
-                            Contribute
-                          </NavLink>
-                          <NavLink to='/technology#download'>Download</NavLink>
-                        </Item>
-                      </List>
-                    </PaddedItem>
-
-                    <PaddedItem>
-                      <NavLink to='/ecosystem'>Ecosystem</NavLink>
-                      <List>
-                        <Item>
-                          <NavLink to='/ecosystem/#use-cases'>
-                            Use Cases
-                          </NavLink>
-                        </Item>
-                      </List>
                     </PaddedItem>
 
                     <PaddedItem>
                       <NavLink to='/about'>About</NavLink>
-                      <List>
-                        <Item>
-                          <NavLink to='/about/#mission'>Mission</NavLink>
-                        </Item>
-                        <Item>
-                          <NavLink to='/about/#team'>Team</NavLink>
-                        </Item>
-                        <Item>
-                          <NavLink to='/about/#partners'>Partners</NavLink>
-                        </Item>
-                        <Item>
-                          <NavLink to='/careers'>Careers</NavLink>
-                        </Item>
-                      </List>
                     </PaddedItem>
 
                     <PaddedItem>
@@ -375,35 +336,10 @@ const MobilePanel = ({ state, toggleFunc }) => (
                 <SubItem>
                   <NavLink to='/products/tinlake'>Tinlake</NavLink>
                 </SubItem>
-                <SubItem>
-                  <NavLink to='/products/deep-tier-finance'>
-                    Deep Tier Finance
-                  </NavLink>
-                </SubItem>
               </MenuItem>
 
               <MenuItem>
                 <NavLink to='/technology'>Technology</NavLink>
-
-                <SubItem>
-                  <ExternalNavLink href='https://developer.centrifuge.io/'>
-                    Developer Docs
-                  </ExternalNavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/technology/contribute'>Contribute</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/technology#download'>Download</NavLink>
-                </SubItem>
-              </MenuItem>
-
-              <MenuItem>
-                <NavLink to='/ecosystem'>Ecosystem</NavLink>
-
-                <SubItem>
-                  <NavLink to='/ecosystem/#use-cases'>Use Cases</NavLink>
-                </SubItem>
               </MenuItem>
 
               <MenuItem>
@@ -412,19 +348,6 @@ const MobilePanel = ({ state, toggleFunc }) => (
 
               <MenuItem>
                 <NavLink to='/about'>About</NavLink>
-
-                <SubItem>
-                  <NavLink to='/about/#mission'>Mission</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/about/#team'>Team</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/about/#partners'>Partners</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to='/careers'>Careers</NavLink>
-                </SubItem>
               </MenuItem>
 
               <MenuItem>
