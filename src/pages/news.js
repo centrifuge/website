@@ -1,7 +1,6 @@
 import React from "react";
 import { Heading, Box, Button } from "grommet";
 import { graphql } from "gatsby";
-import YoutubePlayer from "react-player/lib/players/YouTube";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -9,12 +8,8 @@ import Container from "../components/Container";
 import Grid from "../components/Grid";
 import Column, { Spacer } from "../components/Column";
 import { ExternalLink } from "../components/Links";
-import { HighlightPost, MediumPost } from "../components/News";
-import {
-  MEDIUM_URL,
-  YOUTUBE_URL,
-  RichTextRenderer
-} from "../helpers";
+import { HighlightPost, Post, YoutubePost } from "../components/News";
+import { MEDIUM_URL, YOUTUBE_URL, RichTextRenderer } from "../helpers";
 
 import medium from "../images/medium-wordmark.svg";
 import youtube from "../images/youtube-wordmark.svg";
@@ -27,35 +22,44 @@ const YouTubeWordmark = () => (
   <img style={{ width: 98 }} alt="YouTube Wordmark" src={youtube} />
 );
 
-const ResponsivePlayer = ({ url }) => (
-  <div style={{ position: "relative", paddingTop: `${100 / (16 / 9)}%` }}>
-    <YoutubePlayer
-      style={{ position: "absolute", top: 0, left: 0 }}
-      height="100%"
-      width="100%"
-      controls={true}
-      url={url}
-    />
-  </div>
-);
-
 const NewsPage = ({ data }) => {
   const metadata = {
     title: "News",
-    description: null
+    description: null,
   };
 
   const page = data.allContentfulPageNews.edges[0].node;
 
-  const mediumPosts = data.mediumFeed.posts.slice(0, 4);
-  const highlightPost = data.mediumFeed.posts[0];
+  const highlightPost = data.prs.edges[0].node;
+  const prPosts = data.prs.edges.slice(1, 4);
+  const ytVideos = data.ytVideos.edges.slice(0, 3);
+  const mediumPosts = data.mediumFeed.posts.slice(0, 3);
 
   return (
     <Layout>
       <SEO {...metadata} />
       <Container>
         {/* Hero Block */}
-        <Grid mb="large">
+        <Grid mt="xlarge" mb="large">
+          <Column>
+            <HighlightPost post={highlightPost} />
+          </Column>
+        </Grid>
+
+        <Grid mt="large" mb="large" justify="" align="flex-start">
+          {prPosts.map((post, index) => {
+            return (
+              <React.Fragment key={index}>
+                <Column mobileSpaced span={{ medium: 4, large: 4 }}>
+                  <Post post={post.node} />
+                </Column>
+              </React.Fragment>
+            );
+          })}
+        </Grid>
+
+        {/* Medium Posts */}
+        <Grid mt="xlarge" mb="large">
           <Column>
             <h1 hidden>News</h1>
             <ExternalLink href={MEDIUM_URL}>
@@ -63,17 +67,32 @@ const NewsPage = ({ data }) => {
             </ExternalLink>
           </Column>
         </Grid>
-        <HighlightPost post={highlightPost} />
-
-        {/* Medium Posts */}
-        <Grid mt="" justify="" align="flex-start">
+        <Grid mt="large" mb="xlarge" justify="" align="flex-start">
           {mediumPosts.map((post, index) => {
-            if (index === 0) return null;
-
             return (
               <React.Fragment key={index}>
                 <Column mobileSpaced span={{ medium: 4, large: 4 }}>
-                  <MediumPost post={post} />
+                  <Post post={post} />
+                </Column>
+              </React.Fragment>
+            );
+          })}
+        </Grid>
+
+        {/* YouTube Videos */}
+        <Grid mt="xlarge" mb="large">
+          <Column>
+            <ExternalLink href={YOUTUBE_URL}>
+              <YouTubeWordmark />
+            </ExternalLink>
+          </Column>
+        </Grid>
+        <Grid mt="large" mb="xlarge" justify="" align="flex-start">
+          {ytVideos.map((post, index) => {
+            return (
+              <React.Fragment key={index}>
+                <Column mobileSpaced span={{ medium: 4, large: 4 }}>
+                  <YoutubePost post={post.node} />
                 </Column>
               </React.Fragment>
             );
@@ -81,7 +100,7 @@ const NewsPage = ({ data }) => {
         </Grid>
 
         {/* Video Block */}
-        <Grid mb="large">
+        {/* <Grid mb="large">
           <Column>
             <ExternalLink href={YOUTUBE_URL}>
               <YouTubeWordmark />
@@ -109,14 +128,14 @@ const NewsPage = ({ data }) => {
               />
             </div>
           </Column>
-        </Grid>
+        </Grid> */}
 
         {/* CTA Block */}
-        <Grid justify="center">
+        {/* <Grid justify="center">
           <Column textAlign="center">
             <RichTextRenderer block={page.blockMediaInquiry} />
           </Column>
-        </Grid>
+        </Grid> */}
       </Container>
     </Layout>
   );
@@ -142,6 +161,27 @@ export const NewsPageQuery = graphql`
           blockMediaInquiry {
             contentAST
           }
+        }
+      }
+    }
+
+    prs: allPrsYaml {
+      edges {
+        node {
+          title
+          link
+          thumbnail
+          description
+        }
+      }
+    }
+
+    ytVideos: allYtvideosYaml {
+      edges {
+        node {
+          title
+          link
+          description
         }
       }
     }
