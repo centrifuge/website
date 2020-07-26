@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Box, Button } from "grommet";
+import { Text, Anchor } from "grommet";
 import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
@@ -28,8 +28,6 @@ const NewsPage = ({ data }) => {
     description: null,
   };
 
-  const page = data.allContentfulPageNews.edges[0].node;
-
   const highlightPost = data.prs.edges[0].node;
   const prPosts = data.prs.edges.slice(1, 4);
   const ytVideos = data.ytVideos.edges.slice(0, 3);
@@ -46,7 +44,7 @@ const NewsPage = ({ data }) => {
           </Column>
         </Grid>
 
-        <Grid mt="large" mb="large" justify="" align="flex-start">
+        <Grid mt="large" mb="xlarge" justify="" align="flex-start">
           {prPosts.map((post, index) => {
             return (
               <React.Fragment key={index}>
@@ -99,43 +97,17 @@ const NewsPage = ({ data }) => {
           })}
         </Grid>
 
-        {/* Video Block */}
-        {/* <Grid mb="large">
-          <Column>
-            <ExternalLink href={YOUTUBE_URL}>
-              <YouTubeWordmark />
-            </ExternalLink>
+        {/* CTA Block */}
+        <Grid mt="xlarge" mb="xlarge" justify="center">
+          <Column textAlign="center">
+            <Text size="large" weight="bold">
+              For media inquiries, please contact us at{" "}
+              <Anchor href="mailto:hello@centrifuge.io">
+                hello@centrifuge.io
+              </Anchor>
+            </Text>
           </Column>
         </Grid>
-        <Grid mt="" justify="" align="flex-start">
-          <Column span={{ medium: 10, large: 6 }}>
-            <Box margin={{ bottom: "medium" }}>
-              <ResponsivePlayer url={page.blockVideo.url} />
-            </Box>
-          </Column>
-          <Spacer width={2} />
-          <Column span={{ medium: 10, large: 4 }}>
-            <div>
-              <Heading level={2} lined>
-                {page.blockVideo.title}
-              </Heading>
-              <RichTextRenderer block={page.blockVideo.description} />
-              <Button
-                margin={{ top: "large" }}
-                plain
-                label="Please find more videos in our YouTube channel"
-                href="https://www.youtube.com/channel/UCfNkoq7YLrr8MeSJ3a6jVcA"
-              />
-            </div>
-          </Column>
-        </Grid> */}
-
-        {/* CTA Block */}
-        {/* <Grid justify="center">
-          <Column textAlign="center">
-            <RichTextRenderer block={page.blockMediaInquiry} />
-          </Column>
-        </Grid> */}
       </Container>
     </Layout>
   );
@@ -143,28 +115,6 @@ const NewsPage = ({ data }) => {
 
 export const NewsPageQuery = graphql`
   query {
-    allContentfulPageNews {
-      edges {
-        node {
-          blockVideo {
-            thumbnail {
-              file {
-                url
-              }
-            }
-            title
-            description {
-              contentAST
-            }
-            url
-          }
-          blockMediaInquiry {
-            contentAST
-          }
-        }
-      }
-    }
-
     prs: allPrsYaml {
       edges {
         node {
