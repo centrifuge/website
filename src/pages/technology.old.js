@@ -35,15 +35,6 @@ const HoverBox = styled(Box)`
   }
 `;
 
-// const calculateFullBountyValue = (bounty) => {
-//   if (bounty.additional_funding_summary.DAI)
-//     return (
-//       Number(bounty.additional_funding_summary.DAI.amount) +
-//       Number(bounty.value_in_usdt_now)
-//     ).toFixed(2);
-//   return bounty.value_in_usdt_now;
-// };
-
 const CardLink = ({ children, link, ...rest }) => (
   <ExternalLink style={{ textDecoration: "none" }} href={link}>
     <HoverBox
