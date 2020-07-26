@@ -7,7 +7,11 @@ import {
   Paragraph,
   Grid as GrommetGrid,
   ResponsiveContext,
+  Heading,
+  Anchor,
+  Button,
 } from "grommet";
+import { Slack, Github } from "grommet-icons";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -31,15 +35,14 @@ const HoverBox = styled(Box)`
   }
 `;
 
-const calculateFullBountyValue = (bounty) => {
-  if (bounty.additional_funding_summary.DAI)
-    return (
-      Number(bounty.additional_funding_summary.DAI.amount) +
-      Number(bounty.value_in_usdt_now)
-    ).toFixed(2);
-
-  return bounty.value_in_usdt_now;
-};
+// const calculateFullBountyValue = (bounty) => {
+//   if (bounty.additional_funding_summary.DAI)
+//     return (
+//       Number(bounty.additional_funding_summary.DAI.amount) +
+//       Number(bounty.value_in_usdt_now)
+//     ).toFixed(2);
+//   return bounty.value_in_usdt_now;
+// };
 
 const CardLink = ({ children, link, ...rest }) => (
   <ExternalLink style={{ textDecoration: "none" }} href={link}>
@@ -58,20 +61,56 @@ const CardLink = ({ children, link, ...rest }) => (
 
 const ContributePage = ({ data }) => {
   const metadata = {
-    title: "Contribute",
+    title: "Technology",
     description: null,
   };
-
-  const page = data.allContentfulPageTechnologyContribute.edges[0].node;
+  const repos = data.repos.edges;
 
   return (
     <Layout>
       <SEO {...metadata} />
       <Container>
         {/* Block 1 */}
-        <Grid align="start" justify="stretch" mb="xlarge">
+        <Grid align="start" justify="stretch" mt="xlarge" mb="xlarge">
           <Column mobileSpaced span={{ medium: 6, large: 6 }}>
-            <RichTextRenderer block={page.block1} />
+            <Heading lined margin={{ bottom: "medium" }}>
+              Contribute to Centrifuge
+            </Heading>
+            <Paragraph>
+              Centrifuge is open source software. You can find all of our code
+              on{" "}
+              <Anchor
+                href="https://github.com/centrifuge"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                github.com/centrifuge
+              </Anchor>
+              .
+            </Paragraph>
+            <Paragraph>
+              We want the community to build on our code: use it, fork it,
+              imagine new use cases, suggest improvements.
+            </Paragraph>
+            <Paragraph>We welcome all contributions!</Paragraph>
+            <Box direction="row" gap="large" margin={{ vertical: "small" }}>
+              <Button
+                plain
+                href="https://github.com/centrifuge"
+                target="_blank"
+                rel="noreferrer noopener"
+                icon={<Github />}
+                label="GitHub"
+              />
+              <Button
+                plain
+                href="https://centrifuge-io.slack.com/join/shared_invite/enQtNDk1MzkwODM4OTgxLWRlNTU4NDQzOWIwYWEzNGRhN2UzMzQwNThjZjI0ZmIxMTU4NmQwMjc2ZDBkOTEyNWJhMjE4MzA2NTE5MWU1NWE"
+                target="_blank"
+                rel="noreferrer noopener"
+                icon={<Slack />}
+                label="Slack"
+              />
+            </Box>
           </Column>
           <Spacer />
           <Column justifySelf="stretch" span={{ medium: 6, large: 4 }}>
@@ -79,8 +118,7 @@ const ContributePage = ({ data }) => {
           </Column>
         </Grid>
 
-        {/* Block 1.5 */}
-        <Grid mt="">
+        <Grid mb="xlarge" mt="xlarge">
           <Column>
             <ResponsiveContext.Consumer>
               {(size) => (
@@ -89,14 +127,14 @@ const ContributePage = ({ data }) => {
                   gap="medium"
                   columns={responsiveGrid.ThreeTwoOne(size)}
                 >
-                  {page.block1Repos.map((repo, index) => (
-                    <CardLink key={index} link={repo.link}>
+                  {repos.map((repo, index) => (
+                    <CardLink key={index} link={repo.node.link}>
                       <div>
                         <Text weight={600} size="large">
-                          {repo.name}
+                          {repo.node.name}
                         </Text>
                         <Paragraph margin={{ bottom: "none" }}>
-                          {repo.description}
+                          {repo.node.description}
                         </Paragraph>
                       </div>
                     </CardLink>
@@ -108,18 +146,50 @@ const ContributePage = ({ data }) => {
         </Grid>
 
         {/* Block 2 */}
-        <Grid>
+        <Grid mb="xlarge" mt="xlarge">
           <Spacer width={2} />
           <Column span={{ medium: 12, large: 8 }}>
-            <RichTextRenderer block={page.block3} />
+            <Heading lined margin={{ bottom: "medium" }}>
+              Code of Conduct
+            </Heading>
+            <Paragraph>
+              Creating a new system for the global financial supply chain is
+              only possible through the collaboration of a global ecosystem and
+              community of companies, groups, organizations, and individuals. We
+              want to come together to exchange ideas and build Centrifuge as an
+              inclusive, welcoming, and safe community of collaborators,
+              operators, investors, and users. Harmful or discriminating
+              behavior by anyone will not be tolerated.
+            </Paragraph>
+            <Paragraph>
+              Community members should be judged by their actions, not criteria
+              such as age, race, nationality, sex, sexual orientation, gender,
+              gender identity or expression, disability, physical appearance,
+              religion (or lack thereof), degrees, geographic location, or
+              position.
+            </Paragraph>
+            <Paragraph>
+              We will not tolerate any discriminating behaviour and will keep
+              our platforms free from policy violations, either deleting the
+              content or hiding it from view.
+            </Paragraph>
           </Column>
         </Grid>
 
         {/* Block 3 */}
-        <Grid justify="center">
+        <Grid justify="center" mb="xlarge" mt="xlarge">
           <Spacer width={3} />
           <Column span={{ medium: 12, large: 6 }} textAlign="center">
-            <RichTextRenderer block={page.block4} />
+            <Heading lined>
+              Come join our team of experienced, smart, and nice people building
+              the future of B2B software!
+            </Heading>
+            <Button
+              primary
+              label="Join the Team"
+              href="/careers"
+              alignSelf="center"
+            />
           </Column>
         </Grid>
       </Container>
@@ -129,26 +199,12 @@ const ContributePage = ({ data }) => {
 
 export const ContributePageQuery = graphql`
   query {
-    allContentfulPageTechnologyContribute {
+    repos: allReposYaml {
       edges {
         node {
-          block1 {
-            contentAST
-          }
-          block1Repos {
-            name
-            description
-            link
-          }
-          block2 {
-            contentAST
-          }
-          block3 {
-            contentAST
-          }
-          block4 {
-            contentAST
-          }
+          link
+          name
+          description
         }
       }
     }
