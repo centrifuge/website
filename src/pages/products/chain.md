@@ -200,6 +200,13 @@ If you are interested in running a Validator for Centrifuge Chain, check out our
 
 We built Centrifuge Chain to enable businesses to exchange business documents (such as invoices) and tokenize those assets to have greater access to financing — thereby unlocking value that has previously been inaccessible. Our mission is to change the rules of global trade to foster economic opportunity everywhere.
 
+<ResponsiveContent breakpoints={["medium", "large"]}>
+<Button plain href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" alignSelf="start" />
+</ResponsiveContent>
+<ResponsiveContent breakpoints={["small"]}>
+<Button plain href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" />
+</ResponsiveContent>
+
 </Section>
 <FullWidthSection>
 
@@ -218,13 +225,6 @@ We built Centrifuge Chain to enable businesses to exchange business documents (s
 
 <!-- How -->
 <Section>
-
-<ResponsiveContent breakpoints={["medium", "large"]}>
-<Button href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" alignSelf="end" />
-</ResponsiveContent>
-<ResponsiveContent breakpoints={["small"]}>
-<Button href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" />
-</ResponsiveContent>
 
 # How does Centrifuge Chain work?
 
