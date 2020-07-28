@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading, Paragraph, Image, Box, Button } from "grommet";
 import styled from "styled-components";
-import YoutubePlayer from "react-player/lib/players/YouTube";
+import YoutubeEmbedPlayer from "youtube-embed-video";
 
 import { ExternalLink } from "../Links";
 import Column, { Spacer } from "../Column";
@@ -29,14 +29,14 @@ const LinkWrapper = styled.a`
   color: inherit;
 `;
 
-const ResponsivePlayer = ({ url }) => (
+const ResponsivePlayer = ({ videoId }) => (
   <div style={{ position: "relative", paddingTop: `${100 / (16 / 9)}%` }}>
-    <YoutubePlayer
-      style={{ position: "absolute", top: 0, left: 0 }}
+    <YoutubeEmbedPlayer
+      enhancedPrivacy
+      videoId={videoId}
       height="100%"
       width="100%"
-      controls={true}
-      url={url}
+      style={{ position: "absolute", top: 0 }}
     />
   </div>
 );
@@ -144,7 +144,7 @@ const Post = ({ post }) => (
 const YoutubePost = ({ post }) => (
   <>
     <Box margin={{ bottom: "medium" }}>
-      <ResponsivePlayer url={post.link} />
+      <ResponsivePlayer videoId={post.videoId} />
     </Box>
     <PostInfo title={post.title} subtitle={post.description} heading="3" />
   </>

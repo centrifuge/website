@@ -130,7 +130,7 @@ export const NewsPageQuery = graphql`
       edges {
         node {
           title
-          link
+          videoId
           description
         }
       }
