@@ -131,23 +131,3 @@ const SocialButtonsSection = ({}) => {
 };
 
 export default SocialButtonsSection;
-
-{
-  /* <Box direction="row" gap="large" margin={{ vertical: "small" }}>
-<Button
-plain
-href="https://github.com/centrifuge"
-target="_blank"
-rel="noreferrer noopener"
-icon={<Github />}
-label="GitHub"
-/>
-<Button
-plain
-href="https://centrifuge-io.slack.com/join/shared_invite/enQtNDk1MzkwODM4OTgxLWRlNTU4NDQzOWIwYWEzNGRhN2UzMzQwNThjZjI0ZmIxMTU4NmQwMjc2ZDBkOTEyNWJhMjE4MzA2NTE5MWU1NWE"
-target="_blank"
-rel="noreferrer noopener"
-icon={<Slack />}
-label="Slack"
-/> */
-}
