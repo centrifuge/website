@@ -8,6 +8,7 @@ import { Slack, Github } from "grommet-icons";
 
 import Animation from "../components/Animation";
 import Repos from "../components/Repos";
+import SocialButtons from "../components/SocialButtons";
 
 import block1Animation from "../lottie/Ecosystem_Q.json";
 
@@ -18,30 +19,11 @@ import block1Animation from "../lottie/Ecosystem_Q.json";
 
 # Contribute to Centrifuge
 
-Centrifuge is open source software. You can find all of our code on [github.com/centrifuge](https://github.com/centrifuge).
+Centrifuge is open source software.
 
 We want the community to build on our code: use it, fork it, imagine new use cases, suggest improvements.
 
 We welcome all contributions!
-
-<Box direction="row" gap="large" margin={{ vertical: "small" }}>
-<Button
-plain
-href="https://github.com/centrifuge"
-target="_blank"
-rel="noreferrer noopener"
-icon={<Github />}
-label="GitHub"
-/>
-<Button
-plain
-href="https://centrifuge-io.slack.com/join/shared_invite/enQtNDk1MzkwODM4OTgxLWRlNTU4NDQzOWIwYWEzNGRhN2UzMzQwNThjZjI0ZmIxMTU4NmQwMjc2ZDBkOTEyNWJhMjE4MzA2NTE5MWU1NWE"
-target="_blank"
-rel="noreferrer noopener"
-icon={<Slack />}
-label="Slack"
-/>
-</Box>
 
 </Col>
 <Col span={6}>
@@ -49,6 +31,11 @@ label="Slack"
 </Col>
 </Row>
 </Section>
+
+<!-- Social Buttons -->
+<FullWidthSection>
+<SocialButtons />
+</FullWidthSection>
 
 <!-- Block 2 -->
 <Section>
