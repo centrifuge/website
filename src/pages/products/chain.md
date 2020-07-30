@@ -185,7 +185,7 @@ Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables 
 If you are interested in running a Validator for Centrifuge Chain, check out our documentation to get started! The Flint and Amber testnets are a great way to get up and running. One of the main benefits of becoming a validator on Centrifuge testnets first is to get experience running your own Centrifuge Chain node and to test your infrastructure.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
-<Button href="https://developer.centrifuge.io/chain/overview/introduction/" label="Polkascan" alignSelf="end" label="Centrifuge Chain Documentation" />
+<Button href="https://developer.centrifuge.io/chain/overview/introduction/" alignSelf="end" label="Centrifuge Chain Documentation" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
 <Button href="https://developer.centrifuge.io/chain/overview/introduction/" label="Centrifuge Chain Documentation" />
@@ -200,6 +200,13 @@ If you are interested in running a Validator for Centrifuge Chain, check out our
 
 We built Centrifuge Chain to enable businesses to exchange business documents (such as invoices) and tokenize those assets to have greater access to financing — thereby unlocking value that has previously been inaccessible. Our mission is to change the rules of global trade to foster economic opportunity everywhere.
 
+<ResponsiveContent breakpoints={["medium", "large"]}>
+<Button plain href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" alignSelf="start" />
+</ResponsiveContent>
+<ResponsiveContent breakpoints={["small"]}>
+<Button plain href="/products/deep-tier-finance" label="Use Case: Deep Tier Finance" />
+</ResponsiveContent>
+
 </Section>
 <FullWidthSection>
 
@@ -213,7 +220,6 @@ We built Centrifuge Chain to enable businesses to exchange business documents (s
 ![](../../images/chain/why-we-built-chain-mobile.svg)
 
 </ResponsiveContent>
-
 
 </FullWidthSection>
 
@@ -279,7 +285,7 @@ The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize d
 
 <Text>Do you need some RAD to get started? Request funds from our automated faucet to start using Centrifuge Chain.</Text>
 
-<Button plain label="Request funds" href="http://faucet.chain.centrifuge.io/" target="_blank" alignSelf="end" icon={<Image height="20px" src={rad_icon} />} />
+<Button plain label="Request funds" href="http://faucet.chain.centrifuge.io/" target="\_blank" alignSelf="end" icon={<Image height="20px" src={rad_icon} />} />
 
 </Box>
 

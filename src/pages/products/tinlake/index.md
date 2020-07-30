@@ -18,7 +18,11 @@ description: Tinlake is a platform that enables you to draw loans against non-fu
 
 Tap into a decentralized line of credit backed by your real-world assets.
 
+<Box direction="row" gap="medium">
 <Button label="Explore Tinlake" href="https://tinlake.centrifuge.io" align="start" margin={{ top: "medium" }} target="_blank" rel="noreferrer noopener" />
+<Button primary label="Pool Your Assets" href="/finance" align="start" margin={{ top: "medium" }} />
+</Box>
+
 </Col>
 </Row>
 </FullWidthSection>
@@ -145,7 +149,7 @@ High Yield, Low Risk, Short Term
 
 We work with a broad range of Asset Originators that are looking to offer additional financing services to their existing customer base or are interested in tapping into alternative financing sources. The platforms operate in different markets such as invoice financing, real estate, and logistics. Complementarily, we collaborate with investors - both fiat and crypto - that want to finance these pools.
 
-In order to learn more about Tinlake please take a look at the Developer Documentation.
+In order to learn more about Tinlake please take a look at the <a href="https://developer.centrifuge.io/" target="_blank" rel="noopener noreferrer">Developer Documentation</a>.
 
 </Section>
 

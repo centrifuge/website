@@ -1,6 +1,7 @@
 import React from "react";
 import { Heading, Paragraph, Image, Box, Button } from "grommet";
 import styled from "styled-components";
+import YoutubeEmbedPlayer from "youtube-embed-video";
 
 import { ExternalLink } from "../Links";
 import Column, { Spacer } from "../Column";
@@ -27,6 +28,18 @@ const LinkWrapper = styled.a`
   text-decoration: none;
   color: inherit;
 `;
+
+const ResponsivePlayer = ({ videoId }) => (
+  <div style={{ position: "relative", paddingTop: `${100 / (16 / 9)}%` }}>
+    <YoutubeEmbedPlayer
+      enhancedPrivacy
+      videoId={videoId}
+      height="100%"
+      width="100%"
+      style={{ position: "absolute", top: 0 }}
+    />
+  </div>
+);
 
 const NewsCard = ({ link, children }) => (
   <LinkWrapper href={link} target="_blank" rel="noopener noreferrer">
@@ -57,7 +70,7 @@ const CardImage = ({ src }) => (
   />
 );
 
-const LinkedMediumImage = ({ imageId, slug, highlight }) => (
+const LinkedImage = ({ imageId, slug, highlight }) => (
   <ExternalLink href={slug}>
     <ImageWrapper
       style={
@@ -114,10 +127,10 @@ const PressArticle = ({ article }) => (
   </Box>
 );
 
-const MediumPost = ({ post }) => (
+const Post = ({ post }) => (
   <>
     <Box margin={{ bottom: "medium" }}>
-      <LinkedMediumImage imageId={post.thumbnail} slug={post.link} />
+      <LinkedImage imageId={post.thumbnail} slug={post.link} />
     </Box>
     <PostInfo
       title={post.title}
@@ -128,15 +141,20 @@ const MediumPost = ({ post }) => (
   </>
 );
 
+const YoutubePost = ({ post }) => (
+  <>
+    <Box margin={{ bottom: "medium" }}>
+      <ResponsivePlayer videoId={post.videoId} />
+    </Box>
+    <PostInfo title={post.title} subtitle={post.description} heading="3" />
+  </>
+);
+
 const HighlightPost = ({ post }) => (
   <Grid mt="" mb="large" justify="" align="flex-start">
     <Column span={{ medium: 10, large: 6 }}>
       <Box margin={{ bottom: "medium" }}>
-        <LinkedMediumImage
-          highlight
-          imageId={post.thumbnail}
-          slug={post.link}
-        />
+        <LinkedImage highlight imageId={post.thumbnail} slug={post.link} />
       </Box>
     </Column>
     <Spacer width={2} />
@@ -156,9 +174,7 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
       {title}
     </Heading>
     <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
-    <Button plain target="_blank" rel="noopener noreferrer" href={link}>
-      Read more...
-    </Button>
+    {link && <Button plain>Read more...</Button>}
   </LinkWrapper>
 );
 
@@ -203,8 +219,9 @@ const LatestNews = ({ posts }) => (
 export {
   PostInfo,
   HighlightPost,
-  MediumPost,
+  Post,
   PressArticle,
-  LinkedMediumImage,
+  LinkedImage,
   LatestNews,
+  YoutubePost,
 };

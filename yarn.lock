@@ -7322,7 +7322,7 @@ gray-matter@^4.0.2:
     section-matter "^1.0.0"
     strip-bom-string "^1.0.0"
 
-grommet-icons@^4.2.0:
+grommet-icons@^4.2.0, grommet-icons@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.4.0.tgz#6503a33ca29e3c9d89ba56ef1b2bc786222e62a7"
   integrity sha512-uOc3rsgIBVOm/iuN8dj2lKuBq0uhIPYxH84zDoY0jrJZLjcVH1bHUQLlv0R/e9oB/pCFYEBse1mnvps+f3ylmw==
@@ -15589,6 +15589,11 @@ yoga-layout-prebuilt@^1.9.3:
   integrity sha512-+G5Ojl4/sG78mk5masCL3SRaZtkKXRBhMGf5c+4C1j32jN9KpS4lxVFdYyBi15EHN4gMeK5sIRf83T33TOaDkA==
   dependencies:
     "@types/yoga-layout" "1.9.1"
+
+youtube-embed-video@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/youtube-embed-video/-/youtube-embed-video-1.2.1.tgz#69f8cf9ab7de86c3052929135b24d029248dd870"
+  integrity sha512-kbWZMt9ZJLvPYcDTol6JNUNZrfvI9psdVOUglRbU6lbYjeRaigVbgM7fk5cVLNjvrhyrxQWnrqZepnqGZPDVrA==
 
 yurnalist@^1.1.2:
   version "1.1.2"
