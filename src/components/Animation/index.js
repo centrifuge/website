@@ -26,7 +26,7 @@ class Animation extends Component {
       <Observer onChange={this.handleChange}>
         <AnimationWrapper>
           <Lottie
-            height={384}
+            height={288}
             isPaused={this.state.isPaused}
             options={{ animationData: file, loop: loop }}
           />
