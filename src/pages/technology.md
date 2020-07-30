@@ -27,7 +27,7 @@ We welcome all contributions!
 
 </Col>
 <Col span={6}>
-<Animation file={block1Animation} />
+<Animation height="20px" file={block1Animation} />
 </Col>
 </Row>
 </Section>
