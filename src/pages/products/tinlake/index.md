@@ -1,6 +1,6 @@
 ---
-title: Tinlake
-description: Tinlake is a platform that enables you to draw loans against non-fungible assets, such as invoices, royalty payments or artworks.
+title: "Tinlake | Centrifuge: Decentralized Asset Finance"
+description: Tinlake is an asset backed financing DApp that enables you to finance non-fungible assets, such as invoices, royalty payments or artworks.
 ---
 
 <!-- Introduction -->
