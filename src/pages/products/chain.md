@@ -1,5 +1,5 @@
 ---
-title: Chain | Centrifuge: Decentralized Asset Finance
+title: "Chain | Centrifuge: Decentralized Asset Finance"
 description: Centrifuge Chain is the gateway for real-world assets to the Blockchain Multiverse.
 ---
 
