@@ -1,9 +1,11 @@
 import React from 'react'
-import { Box, TextInput, Button } from 'grommet'
+import {Box, TextInput, Button} from 'grommet'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import styled from 'styled-components'
 
 import Container from '../Container'
+
+// todo remove stale code
 
 const FormWrapper = styled.div`
   display: grid;
@@ -28,14 +30,14 @@ class SubscriptionForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    this.setState({ submitDisabled: true })
+    this.setState({submitDisabled: true})
 
     addToMailchimp(this.state.email)
-      .then(data => this.setState({ response: data }))
-      .then(() => this.setState({ submitDisabled: false, submitted: true }))
+      .then(data => this.setState({response: data}))
+      .then(() => this.setState({submitDisabled: false, submitted: true}))
   }
 
-  handleChange = e => this.setState({ email: e.target.value })
+  handleChange = e => this.setState({email: e.target.value})
 
   render() {
     if (!this.state.submitted) {
@@ -75,8 +77,8 @@ class SubscriptionForm extends React.Component {
 
     return (
       <p
-        style={{ textAlign: 'center' }}
-        dangerouslySetInnerHTML={{ __html: this.state.response.msg }}
+        style={{textAlign: 'center'}}
+        dangerouslySetInnerHTML={{__html: this.state.response.msg}}
       />
     )
   }
@@ -96,17 +98,37 @@ const EmailWrapper = styled(Box)`
 const EmailSubscription = () => (
   <EmailWrapper
     tag='section'
-    pad={{ top: 'large', bottom: 'large' }}
+    pad={{vertical: 'large'}}
     background='brand'
   >
     <Container>
       <Box align='center'>
         <Box width='large'>
-          <SubscriptionForm />
+          <SubscriptionForm/>
         </Box>
       </Box>
     </Container>
   </EmailWrapper>
 )
 
-export default EmailSubscription
+const SubstackEmailSubscription = () => (
+  <EmailWrapper
+    tag='section'
+    pad={{top: 'medium'}}
+    background='brand'
+  >
+    <iframe
+      src="https://centrifuge.substack.com/embed"
+      width="100%" height="120"
+      style={{
+        border: "1px",
+        solid: "white",
+        background: "brand"
+      }}
+      frameBorder="0"
+      scrolling="no"
+    />
+  </EmailWrapper>
+)
+
+export default SubstackEmailSubscription
