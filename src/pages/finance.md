@@ -1,5 +1,5 @@
 ---
-title: Finance
+title: Finance | Pool Your Assets with Centrifuge
 description: Collateralize your invoices, royalties, and other real-world assets with Centrifuge to access a new source of liquidity. 
 ---
 
