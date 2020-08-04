@@ -1,5 +1,5 @@
 ---
-title: About
+title: About | Centrifuge: Decentralized Asset Finance
 ---
 
 <!-- Imports -->
