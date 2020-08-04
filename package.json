@@ -6,7 +6,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@contentful/gatsby-transformer-contentful-richtext": "12.1.2",
     "@mdx-js/mdx": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
     "@researchgate/react-intersection-observer": "0.7.4",
@@ -27,7 +26,6 @@
     "gatsby-plugin-styled-components": "^3.0.4",
     "gatsby-remark-copy-linked-files": "^2.3.2",
     "gatsby-source-apiserver": "^2.1.0",
-    "gatsby-source-contentful": "^2.0.26",
     "gatsby-source-filesystem": "^2.2.5",
     "gatsby-transformer-yaml-plus": "^0.2.2",
     "grommet": "2.13.0",
