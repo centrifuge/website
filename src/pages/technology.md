@@ -1,5 +1,5 @@
 ---
-title: Technology | Centrifuge: Decentralized Asset Finance
+title: "Technology | Centrifuge: Decentralized Asset Finance"
 ---
 
 <!-- Imports -->
