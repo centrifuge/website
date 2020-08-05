@@ -72,7 +72,7 @@ module.exports = {
     title: `Centrifuge: Decentralized Asset Finance`,
     siteUrl: process.env.URL || "http://localhost:8000",
     longTitle: `Centrifuge: Decentralized Asset Finance`,
-    description: `Centrifuge is the protocol for decentralized asset finance. Borrowers can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.`,
+    description: `Centrifuge is the protocol for decentralized asset finance. Asset Originators can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.`,
     author: `@centrifuge`,
     lambdaUrl:
       process.env.NODE_ENV == "production"
@@ -114,21 +114,6 @@ module.exports = {
     {
       resolve: "gatsby-source-apiserver",
       options: mediumPostsServerOptions,
-    },
-    {
-      resolve: "gatsby-source-contentful",
-      options: {
-        spaceId: `pvsr19vg7gf2`,
-        accessToken:
-          process.env.PRODUCTION === "true"
-            ? `e3b22c70dea0a1a493bb6d9ad550b73d8ce287d6b47fd9a6d624a0229a92eb9b`
-            : `ae1115a81ba7be43ad060bdc094f907aff4275e9776fc1d3de7e1cc963f73612`,
-        host:
-          process.env.PRODUCTION === "true"
-            ? `cdn.contentful.com`
-            : `preview.contentful.com`,
-        environment: process.env.PRODUCTION === "true" ? `master` : `staging`,
-      },
     },
     {
       resolve: `gatsby-transformer-yaml-plus`,

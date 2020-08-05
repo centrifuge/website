@@ -1,6 +1,6 @@
 ---
-title: Invest
-description: "Centrifuge introduces bankless financing: invest in diversified, asset-backed pools for attractive yields in a decentralized marketplace."
+title: Invest | Earn Yield on Asset Pools with Centrifuge
+description: "Centrifuge introduces bankless financing: invest in diversified, asset-backed pools for attractive yields."
 ---
 
 <!-- Imports -->
