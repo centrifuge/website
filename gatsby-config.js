@@ -72,7 +72,7 @@ module.exports = {
     title: `Centrifuge: Decentralized Asset Finance`,
     siteUrl: process.env.URL || "http://localhost:8000",
     longTitle: `Centrifuge: Decentralized Asset Finance`,
-    description: `Centrifuge is the protocol for decentralized asset finance. Borrowers can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.`,
+    description: `Centrifuge is the protocol for decentralized asset finance. Asset Originators can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.`,
     author: `@centrifuge`,
     lambdaUrl:
       process.env.NODE_ENV == "production"
