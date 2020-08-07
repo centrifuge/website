@@ -4,7 +4,13 @@ import { Box, ResponsiveContext } from "grommet";
 
 import { List } from "../List";
 import Container from "../Container";
-import { BlockHello, BlockCopyRight, BlockExternalLink, BlockInternalLink } from "./footerItem";
+import {
+  BlockHello,
+  BlockCopyRight,
+  BlockExternalLink,
+  BlockInternalLink,
+  BlockDefiPulse
+} from "./footerItem";
 
 const FooterContent = styled(List)`
   display: flex;
@@ -36,35 +42,32 @@ const TwoColumnBox = styled(Box)`
 const Footer = () => (
   <Box background="black" as="footer" pad={{ top: "xlarge", bottom: "large" }}>
     <Container>
-
       <ResponsiveContext.Consumer>
         {size =>
-          size === "small"
-          ? (
+          size === "small" ? (
             <FooterContent>
-              <BlockHello/>
-              <br/>
+              <BlockHello />
+              <br />
               <TwoColumnBox>
-                <BlockExternalLink/>
-                <BlockInternalLink/>
+                <BlockExternalLink />
+                <BlockInternalLink />
               </TwoColumnBox>
-              <br/>
+              <br />
               <BlockCopyRight size={size} />
             </FooterContent>
           ) : (
             <FooterContent>
               <Box>
-                <BlockHello/>
-                <br/>
+                <BlockHello />
+                <br />
                 <BlockCopyRight size={size} />
               </Box>
-              <BlockExternalLink/>
-              <BlockInternalLink/>
+              <BlockExternalLink />
+              <BlockInternalLink />
             </FooterContent>
           )
         }
       </ResponsiveContext.Consumer>
-
     </Container>
   </Box>
 );
