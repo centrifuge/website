@@ -49,7 +49,7 @@ const BlockExternalLink = () => (
         </Box>
         <Box gap="xsmall" height="50px">
           <Text size="12px">Find us on</Text>
-          <FooterExternalLinkItem href="https://developer.centrifuge.io/">
+          <FooterExternalLinkItem href="https://defipulse.com">
             <Image src={dfpLogo} width="100px" />
           </FooterExternalLinkItem>
         </Box>
