@@ -10,7 +10,7 @@ import {
   Button,
   ResponsiveContext,
   Text,
-  Anchor,
+  Anchor
 } from "grommet";
 import styled from "styled-components";
 import { isEmail } from "validator";
@@ -32,11 +32,11 @@ const InvestorContactForm = ({ toggleModal }) => {
     email: "",
     company: "",
     size: "",
-    interest: "",
+    interest: ""
   });
   const [emailError, setEmailError] = useState({
     isValid: false,
-    message: "",
+    message: ""
   });
 
   useEffect(
@@ -44,17 +44,17 @@ const InvestorContactForm = ({ toggleModal }) => {
       if (value.email === "") {
         setEmailError({
           isValid: false,
-          message: "",
+          message: ""
         });
       } else if (!isEmail(value.email)) {
         setEmailError({
           isValid: false,
-          message: "E-mail is incorrect",
+          message: "E-mail is incorrect"
         });
       } else {
         setEmailError({
           isValid: true,
-          message: "",
+          message: ""
         });
       }
     },
@@ -63,21 +63,21 @@ const InvestorContactForm = ({ toggleModal }) => {
 
   return (
     <ResponsiveContext.Consumer>
-      {(size) => (
+      {size => (
         <Box round="xsmall" pad="large">
           <Heading margin={{ bottom: "xsmall" }}>Contact us</Heading>
           <Text textAlign="start" size="large" margin={{ bottom: "large" }}>
             or send us a message at{" "}
-            <Anchor href="mailto:tinlake@centrifuge.io">
-              tinlake@centrifuge.io
+            <Anchor href="mailto:hello@centrifuge.io">
+              hello@centrifuge.io
             </Anchor>
             .
           </Text>
           <CTAForm>
-            {(sendEmail) => (
+            {sendEmail => (
               <Form
                 value={value}
-                onChange={(nextValue) => setValue(nextValue)}
+                onChange={nextValue => setValue(nextValue)}
                 onSubmit={async ({ value }) => {
                   toggleModal();
                   const status = await sendEmail("Investor", value);
@@ -123,7 +123,7 @@ const InvestorContactForm = ({ toggleModal }) => {
                             "$0–10.000",
                             "$10,000–50,000",
                             "$50,000–100,000",
-                            ">$100,000",
+                            ">$100,000"
                           ]}
                         />
                       </BorderlessSelectWrapper>
@@ -144,7 +144,7 @@ const InvestorContactForm = ({ toggleModal }) => {
                         name="interest"
                         placeholder="I am interested in investing because"
                         style={{
-                          height: "150px",
+                          height: "150px"
                         }}
                       />
                     </FormField>

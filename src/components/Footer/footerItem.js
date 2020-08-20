@@ -91,10 +91,21 @@ const BlockDefiPulse = () => (
   </Box>
 );
 
+const SubBlockContact = ({ title, email }) => (
+  <Box direction="row" gap="xsmall" align="start">
+    <Text weight="bold">{title}:</Text>
+    <FooterExternalLinkItem href={`mailto:${email}`}>
+      {email}
+    </FooterExternalLinkItem>
+  </Box>
+);
+
 const BlockHello = () => (
-  <FooterExternalLinkItem href="mailto:hello@centrifuge.io">
-    hello@centrifuge.io
-  </FooterExternalLinkItem>
+  <>
+    <SubBlockContact title="General" email="hello@centrifuge.io" />
+    <SubBlockContact title="Press, Events, Media" email="comms@centrifuge.io" />
+    <SubBlockContact title="Partnerships" email="bizdev@centrifuge.io" />
+  </>
 );
 
 const BlockCopyRight = ({ size }) => (
@@ -112,10 +123,4 @@ const BlockCopyRight = ({ size }) => (
   </Paragraph>
 );
 
-export {
-  BlockExternalLink,
-  BlockInternalLink,
-  BlockHello,
-  BlockCopyRight,
-  BlockDefiPulse
-};
+export { BlockExternalLink, BlockInternalLink, BlockHello, BlockCopyRight };

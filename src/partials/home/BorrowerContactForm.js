@@ -9,7 +9,7 @@ import {
   Button,
   Text,
   Anchor,
-  ResponsiveContext,
+  ResponsiveContext
 } from "grommet";
 import { isEmail } from "validator";
 
@@ -23,11 +23,11 @@ const BorrowerContactForm = ({ toggleModal }) => {
     company: "",
     work: "",
     time: "",
-    interest: "",
+    interest: ""
   });
   const [emailError, setEmailError] = useState({
     isValid: false,
-    message: "",
+    message: ""
   });
 
   useEffect(
@@ -35,17 +35,17 @@ const BorrowerContactForm = ({ toggleModal }) => {
       if (value.email === "") {
         setEmailError({
           isValid: false,
-          message: "",
+          message: ""
         });
       } else if (!isEmail(value.email)) {
         setEmailError({
           isValid: false,
-          message: "E-mail is incorrect",
+          message: "E-mail is incorrect"
         });
       } else {
         setEmailError({
           isValid: true,
-          message: "",
+          message: ""
         });
       }
     },
@@ -54,21 +54,21 @@ const BorrowerContactForm = ({ toggleModal }) => {
 
   return (
     <ResponsiveContext.Consumer>
-      {(size) => (
+      {size => (
         <Box round="xsmall" pad="large">
           <Heading margin={{ bottom: "xsmall" }}>Contact us</Heading>
           <Text textAlign="start" size="large" margin={{ bottom: "large" }}>
             or send us a message at{" "}
-            <Anchor href="mailto:tinlake@centrifuge.io">
-              tinlake@centrifuge.io
+            <Anchor href="mailto:hello@centrifuge.io">
+              hello@centrifuge.io
             </Anchor>
             .
           </Text>
           <CTAForm>
-            {(sendEmail) => (
+            {sendEmail => (
               <Form
                 value={value}
-                onChange={(nextValue) => setValue(nextValue)}
+                onChange={nextValue => setValue(nextValue)}
                 onSubmit={async ({ value }) => {
                   toggleModal();
                   const status = await sendEmail("Borrower", value);
@@ -128,7 +128,7 @@ const BorrowerContactForm = ({ toggleModal }) => {
                         name="interest"
                         placeholder="DeFi because"
                         style={{
-                          height: "150px",
+                          height: "150px"
                         }}
                       />
                     </FormField>
