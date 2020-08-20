@@ -98,9 +98,9 @@ const EmailWrapper = styled(Box)`
 const EmailSubscription = () => (
   <EmailWrapper tag="section" pad={{ vertical: "large" }} background="brand">
     <Container>
-      <Box align="center">
-        <Box width="large">
-          <SubscriptionForm />
+      <Box align='center'>
+        <Box width='large'>
+          <SubscriptionForm/>
         </Box>
       </Box>
     </Container>
@@ -133,7 +133,7 @@ const SubstackEmailSubscription = () => {
   );
 
   return (
-    <EmailWrapper tag="section" background="brand">
+    <EmailWrapper tag="section" background="brand" pad={{ vertical: "small" }}>
       <ResponsiveContext.Consumer>
         {size =>
           ["large", "medium"].includes(size) ? (
