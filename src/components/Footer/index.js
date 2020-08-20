@@ -8,8 +8,7 @@ import {
   BlockHello,
   BlockCopyRight,
   BlockExternalLink,
-  BlockInternalLink,
-  BlockDefiPulse
+  BlockInternalLink
 } from "./footerItem";
 
 const FooterContent = styled(List)`

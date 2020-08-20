@@ -99,7 +99,7 @@ const custom = {
       "Code Review": "#FFCE9E",
       Other: "#C2DBFF"
     },
-    
+
     breakpoints: { ...breakpoints },
     deviceBreakpoints: {
       phone: "small",
@@ -134,9 +134,9 @@ const custom = {
           border-radius: 0;
           padding-bottom: calc(11px - 1px);
 
-          ::placeholder {
-            color: white;
-          }
+          // ::placeholder {
+          //   color: white;
+          // }
         `}
     `
   },
@@ -163,16 +163,16 @@ const custom = {
               margin-bottom: 64px;
             `}
 
-            &.tinlake_heading {
-               border-bottom: ${props.lined ? '2px solid #0828be' : 'none'};
-               padding-bottom: ${props.lined ? '37px' : '0'};
+          &.tinlake_heading {
+            border-bottom: ${props.lined ? "2px solid #0828be" : "none"};
+            padding-bottom: ${props.lined ? "37px" : "0"};
 
-               @media only screen and (max-width: 768px) {
-                  font-size: 28px;
-                  line-height: 48px;
-                  padding-bottom: ${props.lined ? '48px' : '0'};
-               }
+            @media only screen and (max-width: 768px) {
+              font-size: 28px;
+              line-height: 48px;
+              padding-bottom: ${props.lined ? "48px" : "0"};
             }
+          }
         `}
 
       /* Subheader */
@@ -204,19 +204,19 @@ const custom = {
     `
   },
   paragraph: {
-     ...textSizes,
-     extend: props => css`
+    ...textSizes,
+    extend: props => css`
       &.tinlake_paragraph {
-         font-size: 20px;
-         line-height: 32px;
-         text-align: justify;
+        font-size: 20px;
+        line-height: 32px;
+        text-align: justify;
 
-         @media only screen and (min-width: 769px) {
-            font-size: 14px;
-            line-height: 24px;            
-         }
+        @media only screen and (min-width: 769px) {
+          font-size: 14px;
+          line-height: 24px;
+        }
       }
-     `
+    `
   },
   text: textSizes,
   // grid: {

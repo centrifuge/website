@@ -155,5 +155,5 @@ In order to learn more about Tinlake please take a look at the <a href="https://
 
 <Section>
 <Text size="20px" alignSelf="center">Any Questions Left?</Text>
-<Text size="20px" alignSelf="center">Please get in touch: <a href="mailto:tinlake@centrifuge.io">tinlake@centrifuge.io</a></Text>
+<Text size="20px" alignSelf="center">Please get in touch: <a href="mailto:hello@centrifuge.io">hello@centrifuge.io</a></Text>
 </Section>

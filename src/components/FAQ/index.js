@@ -7,7 +7,7 @@ import {
   Text,
   ResponsiveContext,
   Paragraph,
-  Anchor,
+  Anchor
 } from "grommet";
 import styled, { css } from "styled-components";
 
@@ -20,14 +20,14 @@ import chevron_up from "../../images/chevron-up.svg";
 import tinlake_logo_small from "../../images/tinlake/tinlake-logo-small.svg";
 import faq_graphic from "../../images/faq-graphic.svg";
 
-const toUnderscoreCase = (text) =>
+const toUnderscoreCase = text =>
   text
     .toLowerCase()
     .split(" ")
     .join("_");
 
 const StickyColumn = styled(Column)`
-  ${(props) =>
+  ${props =>
     !(props.screenSize === "small") &&
     css`
       position: sticky;
@@ -37,7 +37,7 @@ const StickyColumn = styled(Column)`
 
 const FAQPageHeader = () => (
   <ResponsiveContext.Consumer>
-    {(size) => {
+    {size => {
       const faqGraphic = <Image src={faq_graphic} />;
       const tinlakeLogo = (
         <Image
@@ -51,9 +51,9 @@ const FAQPageHeader = () => (
           Find a list of frequently asked questions on how Tinlake works below.
           Is your question not answered, feel free to reach out to us at{" "}
           <Anchor
-            href="mailto:tinlake@centrifuge.io"
+            href="mailto:hello@centrifuge.io"
             primary
-            label="tinlake@centrifuge.io"
+            label="hello@centrifuge.io"
           />
           .
         </Paragraph>
@@ -155,12 +155,12 @@ const FAQItem = ({ q, a, open }) => {
 };
 
 FAQItem.defaultProps = {
-  open: false,
+  open: false
 };
 
 const FAQGroup = ({ title, faqs, expand, ...rest }) => (
   <ResponsiveContext.Consumer>
-    {(size) => (
+    {size => (
       <Box margin={{ bottom: "large" }} {...rest}>
         <Heading level={2} margin={{ bottom: "medium" }} lined>
           <Box direction="row" justify="between">
@@ -186,7 +186,7 @@ const FAQGroup = ({ title, faqs, expand, ...rest }) => (
 );
 
 FAQGroup.defaultProps = {
-  expand: false,
+  expand: false
 };
 
 const TOC = ({ data }) => (
@@ -207,7 +207,7 @@ const TOC = ({ data }) => (
 
 const FAQBlock = ({ data }) => (
   <ResponsiveContext.Consumer>
-    {(size) => (
+    {size => (
       <Grid staggered mt="large" mb="xlarge" align="flex-start">
         {/* Table of Contents */}
         <StickyColumn
