@@ -110,7 +110,7 @@ Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables 
 
 <Box justify="between" width="small" gap="medium">
 <Text size="20px" textAlign="center">Validator Slots</Text>
-<Text size="32px" textAlign="center" weight={500}>20</Text>
+<Text size="32px" textAlign="center" weight={500}>23</Text>
 </Box>
 
 <Box justify="between" width="small" gap="medium">
