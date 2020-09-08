@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from "gatsby";
 
 import Layout from "../../../components/Layout";
 import SEO from "../../../components/SEO";
@@ -26,6 +27,7 @@ export const FAQPageQuery = graphql`
       edges {
         node {
           title
+          expand
           faqs {
             q
             a

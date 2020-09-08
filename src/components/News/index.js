@@ -1,6 +1,7 @@
 import React from "react";
 import { Heading, Paragraph, Image, Box, Button } from "grommet";
 import styled from "styled-components";
+import YoutubeEmbedPlayer from "youtube-embed-video";
 
 import { ExternalLink } from "../Links";
 import Column, { Spacer } from "../Column";
@@ -28,8 +29,20 @@ const LinkWrapper = styled.a`
   color: inherit;
 `;
 
+const ResponsivePlayer = ({ videoId }) => (
+  <div style={{ position: "relative", paddingTop: `${100 / (16 / 9)}%` }}>
+    <YoutubeEmbedPlayer
+      enhancedPrivacy
+      videoId={videoId}
+      height="100%"
+      width="100%"
+      style={{ position: "absolute", top: 0 }}
+    />
+  </div>
+);
+
 const NewsCard = ({ link, children }) => (
-  <LinkWrapper href={link}>
+  <LinkWrapper href={link} target="_blank" rel="noopener noreferrer">
     <Box
       gap="xsmall"
       pad=""
@@ -52,12 +65,12 @@ const CardImage = ({ src }) => (
       backgroundImage: `url("${src}")`,
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      backgroundSize: "cover"
+      backgroundSize: "cover",
     }}
   />
 );
 
-const LinkedMediumImage = ({ imageId, slug, highlight }) => (
+const LinkedImage = ({ imageId, slug, highlight }) => (
   <ExternalLink href={slug}>
     <ImageWrapper
       style={
@@ -66,7 +79,7 @@ const LinkedMediumImage = ({ imageId, slug, highlight }) => (
               width: "100%",
               paddingTop: "50%",
               margin: "0",
-              overflow: "hidden"
+              overflow: "hidden",
             }
           : {}
       }
@@ -80,12 +93,12 @@ const LinkedMediumImage = ({ imageId, slug, highlight }) => (
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 width: "100%",
-                zIndex: 1
+                zIndex: 1,
               }
             : {
                 maxWidth: "100%",
                 verticalAlign: "middle",
-                zIndex: 1
+                zIndex: 1,
               }
         }
         src={imageId}
@@ -114,20 +127,10 @@ const PressArticle = ({ article }) => (
   </Box>
 );
 
-const stripHtml = html => {
-  var tmp = document.createElement("DIV");
-  tmp.innerHTML = html;
-  return tmp.textContent || tmp.innerText || "";
-};
-
-const truncate = (desc, length = 120) => {
-  return `${String(desc).substring(0, length)}...`;
-};
-
-const MediumPost = ({ post }) => (
+const Post = ({ post }) => (
   <>
     <Box margin={{ bottom: "medium" }}>
-      <LinkedMediumImage imageId={post.thumbnail} slug={post.link} />
+      <LinkedImage imageId={post.thumbnail} slug={post.link} />
     </Box>
     <PostInfo
       title={post.title}
@@ -138,15 +141,20 @@ const MediumPost = ({ post }) => (
   </>
 );
 
+const YoutubePost = ({ post }) => (
+  <>
+    <Box margin={{ bottom: "medium" }}>
+      <ResponsivePlayer videoId={post.videoId} />
+    </Box>
+    <PostInfo title={post.title} subtitle={post.description} heading="3" />
+  </>
+);
+
 const HighlightPost = ({ post }) => (
   <Grid mt="" mb="large" justify="" align="flex-start">
     <Column span={{ medium: 10, large: 6 }}>
       <Box margin={{ bottom: "medium" }}>
-        <LinkedMediumImage
-          highlight
-          imageId={post.thumbnail}
-          slug={post.link}
-        />
+        <LinkedImage highlight imageId={post.thumbnail} slug={post.link} />
       </Box>
     </Column>
     <Spacer width={2} />
@@ -166,26 +174,23 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
       {title}
     </Heading>
     <Paragraph margin={{ bottom: "medium" }}>{subtitle}</Paragraph>
-    <Button plain target="_blank" rel="noopener noreferrer" href={link}>
-      Read more...
-    </Button>
+    {link && <Button plain>Read more...</Button>}
   </LinkWrapper>
 );
 
 const LatestNews = ({ posts }) => (
-  <Grid mt="" mb="">
+  <Grid mt="" mb="" justify="stretch">
     {posts.map((post, index) => (
       <Column span={{ small: 12, medium: 4, large: 4 }} key={index}>
         <NewsCard link={post.link}>
           <CardImage src={post.thumbnail} />
           <Box
             justify="center"
-            align="center"
             height="96px"
             pad={{
               horizontal: "medium",
               top: "medium",
-              bottom: "0px"
+              bottom: "0px",
             }}
           >
             <Heading level={3} margin="0px">
@@ -193,26 +198,17 @@ const LatestNews = ({ posts }) => (
             </Heading>
           </Box>
           <Box
-            justify="center"
-            align="center"
             height="96px"
             pad={{
               horizontal: "medium",
               top: "medium",
-              bottom: "0px"
+              bottom: "0px",
             }}
           >
             <Paragraph margin="0px">{post.description}</Paragraph>
           </Box>
           <Box justify="center" align="start" pad="medium">
-            <Button
-              plain
-              target="_blank"
-              rel="noopener noreferrer"
-              href={post.link}
-            >
-              Read more...
-            </Button>
+            <Button plain>Read more...</Button>
           </Box>
         </NewsCard>
       </Column>
@@ -223,8 +219,9 @@ const LatestNews = ({ posts }) => (
 export {
   PostInfo,
   HighlightPost,
-  MediumPost,
+  Post,
   PressArticle,
-  LinkedMediumImage,
-  LatestNews
+  LinkedImage,
+  LatestNews,
+  YoutubePost,
 };
