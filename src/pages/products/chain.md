@@ -7,7 +7,7 @@ description: Centrifuge Chain is the gateway for real-world assets to the Blockc
 
 import portal_icon from "../../images/chain/icons/portal.svg";
 import telemetry_icon from "../../images/chain/icons/telemetry.svg";
-import polkascan_icon from "../../images/chain/icons/polkascan.svg";
+import subscan_icon from "../../images/chain/icons/subscan.png";
 import rad_icon from "../../images/icons/rad.svg";
 
 <!-- What -->
@@ -48,7 +48,7 @@ Interact with Centrifuge Chain:
 
 <Button plain href="https://portal.chain.centrifuge.io" label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
 <Button plain href="https://telemetry.polkadot.io/#list/Centrifuge%20Mainnet" label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
-<Button plain href="https://polkascan.io/centrifuge" label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
+<Button plain href="https://centrifuge.subscan.io" label=" " icon={<Image height="20px" src={subscan_icon} />} />
 
 </Box>
 </ResponsiveContent>
@@ -57,7 +57,7 @@ Interact with Centrifuge Chain:
 
 <Button plain href="https://portal.chain.centrifuge.io" label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
 <Button plain href="https://telemetry.polkadot.io/#list/Centrifuge%20Mainnet" label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
-<Button plain href="https://polkascan.io/centrifuge" label="Polkascan" label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
+<Button plain href="https://centrifuge.subscan.io" label=" " label=" " icon={<Image height="20px" src={subscan_icon} />} />
 
 </Box>
 </ResponsiveContent>
@@ -85,7 +85,7 @@ Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables 
 
 <Box justify="between" height="120px" width="small">
 <Text size="20px" textAlign="start">Validator Slots</Text>
-<Text size="32px" textAlign="start" weight={500}>20</Text>
+<Text size="32px" textAlign="start" weight={500}>23</Text>
 </Box>
 
 <Box justify="between" height="120px" width="small">
