@@ -45,19 +45,27 @@ class SubscriptionForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <FormWrapper>
             <TextInput
+              dark={this.props.light}
               required
               newsletter
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
               placeholder="Your E-mail"
-              style={{
-                fontSize: 16,
-                color: "white"
-              }}
+              style={
+                this.props.light
+                  ? {
+                      fontSize: 16
+                    }
+                  : {
+                      fontSize: 16,
+                      color: "white"
+                    }
+              }
             />
             <Button
-              white
+              white={!this.props.light}
+              primary={this.props.light}
               type="submit"
               disabled={this.state.submitDisabled}
               alignSelf="center"
@@ -83,6 +91,10 @@ class SubscriptionForm extends React.Component {
     );
   }
 }
+
+SubscriptionForm.defaultProps = {
+  light: false
+};
 
 const EmailWrapper = styled(Box)`
   /* Mailchimp Response Link Style */
@@ -133,7 +145,7 @@ const SubstackEmailSubscription = () => {
   );
 
   return (
-    <EmailWrapper tag="section" background="brand">
+    <EmailWrapper tag="section" background="brand" pad={{ vertical: "small" }}>
       <ResponsiveContext.Consumer>
         {size =>
           ["large", "medium"].includes(size) ? (
@@ -155,4 +167,5 @@ const SubstackEmailSubscription = () => {
   );
 };
 
-export default SubstackEmailSubscription;
+export { SubscriptionForm };
+export default EmailSubscription;
