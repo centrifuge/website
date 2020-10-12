@@ -40,24 +40,34 @@ class SubscriptionForm extends React.Component {
   handleChange = e => this.setState({ email: e.target.value });
 
   render() {
+    console.log(this.props.light);
+
     if (!this.state.submitted) {
       return (
         <form onSubmit={this.handleSubmit}>
           <FormWrapper>
             <TextInput
+              dark={this.props.light}
               required
               newsletter
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
               placeholder="Your E-mail"
-              style={{
-                fontSize: 16,
-                color: "white"
-              }}
+              style={
+                this.props.light
+                  ? {
+                      fontSize: 16
+                    }
+                  : {
+                      fontSize: 16,
+                      color: "white"
+                    }
+              }
             />
             <Button
-              white
+              white={!this.props.light}
+              primary={this.props.light}
               type="submit"
               disabled={this.state.submitDisabled}
               alignSelf="center"
@@ -84,6 +94,10 @@ class SubscriptionForm extends React.Component {
   }
 }
 
+SubscriptionForm.defaultProps = {
+  light: false
+};
+
 const EmailWrapper = styled(Box)`
   /* Mailchimp Response Link Style */
   a {
@@ -98,9 +112,9 @@ const EmailWrapper = styled(Box)`
 const EmailSubscription = () => (
   <EmailWrapper tag="section" pad={{ vertical: "large" }} background="brand">
     <Container>
-      <Box align="center">
-        <Box width="large">
-          <SubscriptionForm />
+      <Box align='center'>
+        <Box width='large'>
+          <SubscriptionForm/>
         </Box>
       </Box>
     </Container>
@@ -133,7 +147,7 @@ const SubstackEmailSubscription = () => {
   );
 
   return (
-    <EmailWrapper tag="section" background="brand">
+    <EmailWrapper tag="section" background="brand" pad={{ vertical: "small" }}>
       <ResponsiveContext.Consumer>
         {size =>
           ["large", "medium"].includes(size) ? (
@@ -155,4 +169,5 @@ const SubstackEmailSubscription = () => {
   );
 };
 
-export default SubstackEmailSubscription;
+export { SubscriptionForm };
+export default EmailSubscription;
