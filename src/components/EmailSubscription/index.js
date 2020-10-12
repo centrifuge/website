@@ -40,8 +40,6 @@ class SubscriptionForm extends React.Component {
   handleChange = e => this.setState({ email: e.target.value });
 
   render() {
-    console.log(this.props.light);
-
     if (!this.state.submitted) {
       return (
         <form onSubmit={this.handleSubmit}>
@@ -112,9 +110,9 @@ const EmailWrapper = styled(Box)`
 const EmailSubscription = () => (
   <EmailWrapper tag="section" pad={{ vertical: "large" }} background="brand">
     <Container>
-      <Box align='center'>
-        <Box width='large'>
-          <SubscriptionForm/>
+      <Box align="center">
+        <Box width="large">
+          <SubscriptionForm />
         </Box>
       </Box>
     </Container>
