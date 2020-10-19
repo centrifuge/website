@@ -30,7 +30,7 @@ If you follow these guidelines when reporting an issue to us, we commit to:
 
 ### Rewards
 
-The rewards range from 100 DAI to 50'000 DAI and depends on the vulnerability severity and ease of exploit.
+The rewards range from 100 DAI to 50'000 DAI and depend on the vulnerability severity and ease of exploit.
 
 Payments are made Rewards will only be granted for the first submission of a valid in-scope vulnerability.
 
