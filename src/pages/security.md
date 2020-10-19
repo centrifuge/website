@@ -30,9 +30,9 @@ If you follow these guidelines when reporting an issue to us, we commit to:
 
 ### Rewards
 
-The minimum reward is 100 DAI. The reward amount depends on the vulnerability severity and ease of exploit.
+The rewards range from 100 DAI to 50'000 DAI and depends on the vulnerability severity and ease of exploit.
 
-Payments are made via our Security Gitcoin bounty only. Rewards will only be granted for the first submission of a valid in-scope vulnerability.
+Payments are made Rewards will only be granted for the first submission of a valid in-scope vulnerability.
 
 ### Scope
 
@@ -40,8 +40,14 @@ Centrifuge builds and runs a number of products and services but only submission
 
 We welcome the submission of in-scope bugs and issues including exploits, vulnerabilities, and information about ongoing attacks against Centrifuge’s software and systems.
 
-In-scope repositories
+In-scope repositories:
 
+- https://github.com/centrifuge/tinlake
+- https://github.com/centrifuge/tinlake-erc20
+- https://github.com/centrifuge/tinlake-math
+- https://github.com/centrifuge/tinlake-auth
+- https://github.com/centrifuge/tinlake.js
+- https://github.com/centrifuge/cent-chain
 - https://github.com/centrifuge/go-centrifuge
 - https://github.com/centrifuge/precise-proofs
 - https://github.com/centrifuge/centrifuge-protobufs
@@ -100,7 +106,7 @@ If you believe you’ve found a security vulnerability in one of our products or
 - A detailed description of the steps required to reproduce the vulnerability (POC scripts, screenshots, and compressed screen captures are all helpful to us); and
 - Your name/handle and a link for recognition in our Hall of Fame.
 
-We encourage (but don’t require) you to encrypt the information, with our PGP Key [D5B9 6F0E 091A 0ABE 2A7D F620 0A64 6339 E40C 2151].
+For time sensitive requests, please join [our slack](https://centrifuge.io/slack) and reach out to one of our team members.
 
 </Col>
 </Row>
