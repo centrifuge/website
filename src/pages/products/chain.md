@@ -262,10 +262,10 @@ Read more in our <a href="https://developer.centrifuge.io/chain/overview/introdu
 The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize desirable behavior on Centrifuge Chain — so called mechanism design — to create a robust, decentralized system. Owning RAD gives users a stake in the Centrifuge network and can be used to pay for transaction fees, stake towards Validators, and participate in Centrifuge on-chain governance. It will also incentivize Validators and Nominators to participate through a block reward.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
-<Button href="https://ctrf-tk-ppr.s3-us-west-1.amazonaws.com/Centrifuge+Token+Design+Spec+v0.5.pdf" label="Read Token Summary" align="end" />
+<Button href="https://ir.centrifuge.io/static/rad-executive-summary-1d6380e77c1518e69336704bd17cea99.pdf" label="Read Token Summary" align="end" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
-<Button href="https://ctrf-tk-ppr.s3-us-west-1.amazonaws.com/Centrifuge+Token+Design+Spec+v0.5.pdf" label="Read Token Summary" />
+<Button href="https://ir.centrifuge.io/static/rad-executive-summary-1d6380e77c1518e69336704bd17cea99.pdf" label="Read Token Summary" />
 </ResponsiveContent>
 
 </Section>
