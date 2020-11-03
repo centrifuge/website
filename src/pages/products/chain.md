@@ -7,7 +7,7 @@ description: Centrifuge Chain is the gateway for real-world assets to the Blockc
 
 import portal_icon from "../../images/chain/icons/portal.svg";
 import telemetry_icon from "../../images/chain/icons/telemetry.svg";
-import polkascan_icon from "../../images/chain/icons/polkascan.svg";
+import subscan_icon from "../../images/chain/icons/subscan.png";
 import rad_icon from "../../images/icons/rad.svg";
 
 <!-- What -->
@@ -48,7 +48,7 @@ Interact with Centrifuge Chain:
 
 <Button plain href="https://portal.chain.centrifuge.io" label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
 <Button plain href="https://telemetry.polkadot.io/#list/Centrifuge%20Mainnet" label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
-<Button plain href="https://polkascan.io/centrifuge" label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
+<Button plain href="https://centrifuge.subscan.io" label=" " icon={<Image height="20px" src={subscan_icon} />} />
 
 </Box>
 </ResponsiveContent>
@@ -57,7 +57,7 @@ Interact with Centrifuge Chain:
 
 <Button plain href="https://portal.chain.centrifuge.io" label="Chain Portal" icon={<Image height="20px" src={portal_icon} />} />
 <Button plain href="https://telemetry.polkadot.io/#list/Centrifuge%20Mainnet" label="Telemetry" icon={<Image height="20px" src={telemetry_icon} />} />
-<Button plain href="https://polkascan.io/centrifuge" label="Polkascan" label="Polkascan" icon={<Image height="20px" src={polkascan_icon} />} />
+<Button plain href="https://centrifuge.subscan.io" label=" " label=" " icon={<Image height="20px" src={subscan_icon} />} />
 
 </Box>
 </ResponsiveContent>
@@ -85,7 +85,7 @@ Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables 
 
 <Box justify="between" height="120px" width="small">
 <Text size="20px" textAlign="start">Validator Slots</Text>
-<Text size="32px" textAlign="start" weight={500}>20</Text>
+<Text size="32px" textAlign="start" weight={500}>23</Text>
 </Box>
 
 <Box justify="between" height="120px" width="small">
@@ -110,7 +110,7 @@ Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables 
 
 <Box justify="between" width="small" gap="medium">
 <Text size="20px" textAlign="center">Validator Slots</Text>
-<Text size="32px" textAlign="center" weight={500}>20</Text>
+<Text size="32px" textAlign="center" weight={500}>23</Text>
 </Box>
 
 <Box justify="between" width="small" gap="medium">
@@ -262,10 +262,10 @@ Read more in our <a href="https://developer.centrifuge.io/chain/overview/introdu
 The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize desirable behavior on Centrifuge Chain — so called mechanism design — to create a robust, decentralized system. Owning RAD gives users a stake in the Centrifuge network and can be used to pay for transaction fees, stake towards Validators, and participate in Centrifuge on-chain governance. It will also incentivize Validators and Nominators to participate through a block reward.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
-<Button href="https://ctrf-tk-ppr.s3-us-west-1.amazonaws.com/Centrifuge+Token+Design+Spec+v0.5.pdf" label="Read Token Summary" align="end" />
+<Button href="https://ir.centrifuge.io/static/rad-executive-summary-1d6380e77c1518e69336704bd17cea99.pdf" label="Read Token Summary" align="end" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
-<Button href="https://ctrf-tk-ppr.s3-us-west-1.amazonaws.com/Centrifuge+Token+Design+Spec+v0.5.pdf" label="Read Token Summary" />
+<Button href="https://ir.centrifuge.io/static/rad-executive-summary-1d6380e77c1518e69336704bd17cea99.pdf" label="Read Token Summary" />
 </ResponsiveContent>
 
 </Section>
