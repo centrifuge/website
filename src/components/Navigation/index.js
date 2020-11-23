@@ -36,7 +36,7 @@ const ExternalNavLink = ({ children, href, ...rest }) => (
 
 const BrandLink = () => (
   <div
-    onContextMenu={(e) => {
+    onContextMenu={e => {
       e.preventDefault();
       navigate("/design");
     }}
@@ -196,12 +196,12 @@ const MobileBox = styled(Box)`
 
 class Navigation extends React.Component {
   state = {
-    mobileNavIsOpen: false,
+    mobileNavIsOpen: false
   };
 
   toggleMobileNav = () =>
     this.setState({
-      mobileNavIsOpen: !this.state.mobileNavIsOpen,
+      mobileNavIsOpen: !this.state.mobileNavIsOpen
     });
 
   render() {
@@ -247,6 +247,12 @@ class Navigation extends React.Component {
                 <NavLink to="/news">News</NavLink>
               </PaddedItem>
 
+              <PaddedItem>
+                <ExternalNavLink href="https://ir.centrifuge.io/">
+                  Investor Relations
+                </ExternalNavLink>
+              </PaddedItem>
+
               <Item>
                 <Button
                   label="Get Started"
@@ -258,7 +264,7 @@ class Navigation extends React.Component {
                     paddingBottom: "5px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
-                    fontSize: 14,
+                    fontSize: 14
                   }}
                 />
               </Item>
@@ -278,7 +284,7 @@ class Navigation extends React.Component {
 
 const MobilePanel = ({ state, toggleFunc }) => (
   <ResponsiveContext.Consumer>
-    {(size) =>
+    {size =>
       state &&
       size === "small" && (
         <Layer
@@ -296,7 +302,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
               top: "xxlarge",
               bottom: "xlarge",
               left: "large",
-              right: "large",
+              right: "large"
             }}
             gap="medium"
           >
@@ -325,9 +331,15 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="https://discourse.centrifuge.io/">
+                <ExternalNavLink href="https://ir.centrifuge.io/">
+                  Investor Relations
+                </ExternalNavLink>
+              </MenuItem>
+
+              <MenuItem>
+                <ExternalNavLink href="https://discourse.centrifuge.io/">
                   Get Started
-                </NavLink>
+                </ExternalNavLink>
               </MenuItem>
             </List>
           </MobileBox>
