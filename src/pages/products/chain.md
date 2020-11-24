@@ -283,7 +283,7 @@ The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize d
 
 <Box gap="medium">
 
-<Text>Interested to run a Validator? Email faucet@centrifuge.foundation.</Text>
+<Text>Interested to run a Validator or interact with Centrifuge Chain? Email faucet@centrifuge.foundation.</Text>
 
 </Box>
 
