@@ -26,7 +26,7 @@ const components = {
   a: ({ href, children, ...rest }) => (
     <Anchor primary href={href} label={children} {...rest} />
   ),
-  img: ({ src, ...rest }) => <Image src={src} {...rest} width="100%" />,
+  img: ({ src, ...rest }) => <Image src={src} {...rest} width="100%" />
 };
 
 export default ({ children, pageContext: { frontmatter } }) => {

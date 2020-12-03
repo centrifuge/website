@@ -31,7 +31,7 @@ const MoreDetails = ({ data }) => {
             fontSize: 16,
             paddingTop: 8,
             paddingLeft: 52,
-            paddingRight: 52,
+            paddingRight: 52
           }}
           label={is_more_details_open ? "Less Details" : "More Details"}
         />
@@ -39,7 +39,7 @@ const MoreDetails = ({ data }) => {
         <Collapse isOpen={is_more_details_open}>
           <Box margin={{ top: "medium" }}>
             <ResponsiveContext.Consumer>
-              {(size) =>
+              {size =>
                 size === "small" ? (
                   <Slider
                     data={data}
@@ -105,7 +105,7 @@ const MoreDetails = ({ data }) => {
 
 const ResponsiveDetailsImage = ({ data }) => (
   <ResponsiveContext.Consumer>
-    {(size) =>
+    {size =>
       size === "small" ? (
         <Box style={{ position: "relative" }}>
           <FloatingDescription>{data.aboveImage}</FloatingDescription>

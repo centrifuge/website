@@ -5,21 +5,21 @@ dotenv.config();
 const {
   SENDGRID_API_KEY,
   SENDGRID_TO_EMAIL,
-  SENDGRID_FROM_EMAIL,
+  SENDGRID_FROM_EMAIL
 } = process.env;
 
-exports.handler = async (event) => {
+exports.handler = async event => {
   if (event.httpMethod === "GET") {
     return {
       statusCode: 405,
-      body: "Method not allowed",
+      body: "Method not allowed"
     };
   }
 
   const payload = JSON.parse(event.body);
 
   const body = Object.keys(payload.body)
-    .map((k) => {
+    .map(k => {
       return `${k}: ${
         typeof payload.body[k] === "object"
           ? JSON.stringify(payload.body[k])
@@ -32,7 +32,7 @@ exports.handler = async (event) => {
     to: SENDGRID_TO_EMAIL,
     from: SENDGRID_FROM_EMAIL,
     subject: payload.subject ? payload.subject : "New Contact Us Request",
-    html: body,
+    html: body
   };
 
   try {
@@ -40,12 +40,12 @@ exports.handler = async (event) => {
     await sgMail.send(msg);
     return {
       statusCode: 200,
-      body: "Success",
+      body: "Success"
     };
   } catch (e) {
     return {
       statusCode: e.code,
-      body: e.message,
+      body: e.message
     };
   }
 };
