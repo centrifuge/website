@@ -23,7 +23,7 @@ const ReactOutModal = ({ children, linkLabel, linkHref, targetBlank }) => {
       </Section>
       {showModal && (
         <ResponsiveContext.Consumer>
-          {(size) => {
+          {size => {
             console.log(size);
             return (
               <Layer

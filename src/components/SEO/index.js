@@ -20,7 +20,7 @@ const SEO = ({ description, meta, title }) => (
         }
       }
     `}
-    render={(data) => {
+    render={data => {
       const metaDescription = description || data.site.siteMetadata.description;
       const defaultTitle = data.site.siteMetadata.longTitle;
       const pageTitle = title || defaultTitle;
@@ -28,7 +28,7 @@ const SEO = ({ description, meta, title }) => (
       return (
         <Helmet
           htmlAttributes={{
-            lang: "en",
+            lang: "en"
           }}
           defaultTitle={defaultTitle}
           title={title}
@@ -40,60 +40,60 @@ const SEO = ({ description, meta, title }) => (
           meta={[
             {
               name: `description`,
-              content: metaDescription,
+              content: metaDescription
             },
             {
               name: `title`,
-              content: pageTitle,
+              content: pageTitle
             },
             {
               name: `author`,
-              content: data.site.siteMetadata.author,
+              content: data.site.siteMetadata.author
             },
             {
               property: `og:title`,
-              content: pageTitle,
+              content: pageTitle
             },
             {
               property: `og:description`,
-              content: metaDescription,
+              content: metaDescription
             },
             {
               property: `og:type`,
-              content: `website`,
+              content: `website`
             },
             {
               property: `og:image`,
-              content: `${data.site.siteMetadata.siteUrl}${image}`,
+              content: `${data.site.siteMetadata.siteUrl}${image}`
             },
             {
               propert: `og:image:width`,
-              content: `600`,
+              content: `600`
             },
             {
               propert: `og:image:height`,
-              content: `315`,
+              content: `315`
             },
             {
               property: `twitter:card`,
-              content: `summary_large_image`,
+              content: `summary_large_image`
             },
             {
               property: `twitter:creator`,
-              content: data.site.siteMetadata.author,
+              content: data.site.siteMetadata.author
             },
             {
               property: `twitter:title`,
-              content: title,
+              content: title
             },
             {
               property: `twitter:image`,
-              content: `${data.site.siteMetadata.siteUrl}${image}`,
+              content: `${data.site.siteMetadata.siteUrl}${image}`
             },
             {
               property: `twitter:description`,
-              content: metaDescription,
-            },
+              content: metaDescription
+            }
           ].concat(meta)}
         />
       );
@@ -102,13 +102,13 @@ const SEO = ({ description, meta, title }) => (
 );
 
 SEO.defaultProps = {
-  meta: [],
+  meta: []
 };
 
 SEO.propTypes = {
   description: PropTypes.string,
   meta: PropTypes.array,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default SEO;

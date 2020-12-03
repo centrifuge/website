@@ -31,7 +31,7 @@ const StyledColumn = styled(Box)`
       ${breakpointStyle(
         breakpoints.small,
         css`
-         display: none;
+          display: none;
         `
       )}
     `}
@@ -41,7 +41,7 @@ const StyledColumn = styled(Box)`
     css`
       display: flex;
       @media only screen and (min-width: 769px) {
-         display: none; 
+        display: none;
       }
     `}
 

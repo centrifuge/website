@@ -36,14 +36,14 @@ const Star = ({ top, left }) => (
     style={{
       position: "absolute",
       top,
-      left,
+      left
     }}
   />
 );
 
 Star.defaultProps = {
   top: "0px",
-  left: "0px",
+  left: "0px"
 };
 
 const TinlakeSection = ({ heading, children }) => {
@@ -59,7 +59,7 @@ const TinlakeSection = ({ heading, children }) => {
     for (; i < 0; i++) {
       stars.push({
         top: getRandomInt(100, height - 100),
-        left: getRandomInt(100, width - 100),
+        left: getRandomInt(100, width - 100)
       });
     }
     setStars(stars);
@@ -67,13 +67,13 @@ const TinlakeSection = ({ heading, children }) => {
 
   return (
     <ResponsiveContext.Consumer>
-      {(size) => (
+      {size => (
         <Box
           background={{
             dark: true,
             image: `url("${
               size === "small" ? tinlake_bg_vertical : tinlake_bg
-            }")`,
+            }")`
           }}
         >
           <RelativeSection>
