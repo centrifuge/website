@@ -30,36 +30,36 @@ const breezyServerOptions = {
   verboseOutput: true
 };
 
-const gitcoinServerOptions = {
-  openBounties: {
-    name: `gitcoinOpenBounties`,
-    ...lambdaServerDefaults("getGitcoinOpenBounties"),
-    verboseOutput: true,
-    schemaType: {
-      id: 1,
-      status: "String",
-      bounty_type: "String",
-      title: "String",
-      url: "String",
-      value_in_usdt_now: "0.00",
-      additional_funding_summary: {
-        DAI: {
-          amount: "0.00"
-        }
-      }
-    }
-  },
-  hallOfFame: {
-    name: `gitcoinHallOfFame`,
-    ...lambdaServerDefaults("getGitcoinHallOfFame"),
-    verboseOutput: true
-  },
-  completedBounties: {
-    name: `gitcoinCompletedBounties`,
-    ...lambdaServerDefaults("getGitcoinCompletedBounties"),
-    verboseOutput: true
-  }
-};
+// const gitcoinServerOptions = {
+//   openBounties: {
+//     name: `gitcoinOpenBounties`,
+//     ...lambdaServerDefaults("getGitcoinOpenBounties"),
+//     verboseOutput: true,
+//     schemaType: {
+//       id: 1,
+//       status: "String",
+//       bounty_type: "String",
+//       title: "String",
+//       url: "String",
+//       value_in_usdt_now: "0.00",
+//       additional_funding_summary: {
+//         DAI: {
+//           amount: "0.00"
+//         }
+//       }
+//     }
+//   },
+//   hallOfFame: {
+//     name: `gitcoinHallOfFame`,
+//     ...lambdaServerDefaults("getGitcoinHallOfFame"),
+//     verboseOutput: true
+//   },
+//   completedBounties: {
+//     name: `gitcoinCompletedBounties`,
+//     ...lambdaServerDefaults("getGitcoinCompletedBounties"),
+//     verboseOutput: true
+//   }
+// };
 
 const mediumPostsServerOptions = {
   name: `mediumPosts`,
@@ -103,14 +103,14 @@ module.exports = {
       resolve: "gatsby-source-apiserver",
       options: breezyServerOptions
     },
-    {
-      resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions.openBounties
-    },
-    {
-      resolve: "gatsby-source-apiserver",
-      options: gitcoinServerOptions.completedBounties
-    },
+    // {
+    //   resolve: "gatsby-source-apiserver",
+    //   options: gitcoinServerOptions.openBounties
+    // },
+    // {
+    //   resolve: "gatsby-source-apiserver",
+    //   options: gitcoinServerOptions.completedBounties
+    // },
     {
       resolve: "gatsby-source-apiserver",
       options: mediumPostsServerOptions
