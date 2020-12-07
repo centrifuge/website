@@ -93,7 +93,7 @@ const DevDocsButton = ({ width }) => (
 const SocialButtonsSection = ({}) => {
   return (
     <ResponsiveContext.Consumer>
-      {(size) => {
+      {size => {
         if (size === "large")
           return (
             <Box direction="row" justify="center" gap="medium">

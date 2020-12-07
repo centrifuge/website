@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import { unstyledLinkStyles } from "./index";
 
 export const StyledGatsbyLink = styled(Link)`
-  ${props => props.unstyled ? unstyledLinkStyles : ''}
+  ${props => (props.unstyled ? unstyledLinkStyles : "")}
 `;
 
 const InternalLink = ({ children, unstyled, ...rest }) => (

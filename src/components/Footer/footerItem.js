@@ -47,12 +47,12 @@ const BlockExternalLink = () => (
             Documentation
           </FooterExternalLinkItem>
         </Box>
-        <Box gap="xsmall" height="50px">
-          <Text size="12px">Find us on</Text>
-          <FooterExternalLinkItem href="https://defipulse.com">
-            <Image src={dfpLogo} width="100px" />
-          </FooterExternalLinkItem>
-        </Box>
+        {/*<Box gap="xsmall" height="50px">*/}
+        {/*  <Text size="12px">Find us on</Text>*/}
+        {/*  <FooterExternalLinkItem href="https://defipulse.com">*/}
+        {/*    <Image src={dfpLogo} width="100px" />*/}
+        {/*  </FooterExternalLinkItem>*/}
+        {/*</Box>*/}
       </Box>
     </List>
   </Item>

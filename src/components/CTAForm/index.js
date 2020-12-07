@@ -6,14 +6,14 @@ const CTAForm = ({ children }) => {
       subject: `Inquiry: ${source}`,
       body: {
         source,
-        ...formValue,
-      },
+        ...formValue
+      }
     };
 
     try {
       const response = await fetch(sendEmailLambdaUrl, {
         method: "POST",
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
 
       if (!response.ok) {

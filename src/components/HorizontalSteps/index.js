@@ -20,7 +20,7 @@ const Step = ({ image, text, size }) => (
 
 const HorizontalSteps = ({ steps }) => (
   <ResponsiveContext.Consumer>
-    {(size) => (
+    {size => (
       <Box
         direction={size === "small" ? "column" : "row"}
         gap={size === "small" ? "large" : "small"}

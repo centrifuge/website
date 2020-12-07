@@ -9,7 +9,7 @@ import Grid from "../Grid";
 const Section = ({ children, ...rest }) => (
   <Container>
     <ResponsiveContext.Consumer>
-      {(size) => (
+      {size => (
         <Box
           margin={{ vertical: size === "small" ? "xxlarge" : "xlarge" }}
           {...rest}
@@ -37,7 +37,7 @@ const Row = ({ children, mt, mb, ...rest }) => (
 
 Row.defaultProps = {
   mb: "0",
-  mt: "0",
+  mt: "0"
 };
 
 const Col = ({ children, span: receivedSpan, align, ...rest }) => {
@@ -58,7 +58,7 @@ const Col = ({ children, span: receivedSpan, align, ...rest }) => {
 };
 
 Col.defaultProps = {
-  alignTop: "center",
+  alignTop: "center"
 };
 
 const CustomButton = ({ label, href, align, margin, ...rest }) => (
@@ -69,17 +69,17 @@ const CustomButton = ({ label, href, align, margin, ...rest }) => (
 
 CustomButton.defaultProps = {
   align: "center",
-  margin: {},
+  margin: {}
 };
 
 const ResponsiveContent = ({ breakpoints, children }) => (
   <ResponsiveContext.Consumer>
-    {(size) => <>{breakpoints.indexOf(size) >= 0 ? children : null}</>}
+    {size => <>{breakpoints.indexOf(size) >= 0 ? children : null}</>}
   </ResponsiveContext.Consumer>
 );
 
 ResponsiveContent.defaultProps = {
-  breakpoints: [],
+  breakpoints: []
 };
 
 export {
@@ -92,5 +92,5 @@ export {
   FullWidthSection,
   Row,
   Col,
-  ResponsiveContent,
+  ResponsiveContent
 };

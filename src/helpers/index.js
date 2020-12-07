@@ -41,10 +41,4 @@ const responsiveGrid = {
   }
 };
 
-export {
-  lastInArray,
-  MEDIUM_CDN,
-  MEDIUM_URL,
-  YOUTUBE_URL,
-  responsiveGrid
-};
+export { lastInArray, MEDIUM_CDN, MEDIUM_URL, YOUTUBE_URL, responsiveGrid };

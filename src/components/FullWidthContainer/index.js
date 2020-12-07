@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const FullWidthContainer = styled.div`
   padding-left: 20px;
@@ -8,6 +8,6 @@ const FullWidthContainer = styled.div`
     padding-left: 10%;
     padding-right: 10%;
   }
-`
+`;
 
-export default FullWidthContainer
+export default FullWidthContainer;

@@ -25,7 +25,7 @@ const YouTubeWordmark = () => (
 const NewsPage = ({ data }) => {
   const metadata = {
     title: "News",
-    description: null,
+    description: null
   };
 
   const highlightPost = data.prs.edges[0].node;

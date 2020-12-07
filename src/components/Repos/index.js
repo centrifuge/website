@@ -9,7 +9,7 @@ import {
   ResponsiveContext,
   Heading,
   Anchor,
-  Button,
+  Button
 } from "grommet";
 
 import theme from "../Theme/theme";
@@ -56,9 +56,9 @@ const Repos = () => {
           }
         }
       `}
-      render={(data) => (
+      render={data => (
         <ResponsiveContext.Consumer>
-          {(size) => (
+          {size => (
             <GrommetGrid
               fill="horizontal"
               gap="medium"
