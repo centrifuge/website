@@ -1,5 +1,5 @@
 ---
-title: Radial Mining
+title: Get Radial
 description: Learn more about the different ways you can obtain Radial
 ---
 
@@ -7,10 +7,10 @@ description: Learn more about the different ways you can obtain Radial
 
 import MiningLink from "../components/MiningLink";
 
-import discourse_icon from "../images/mining/discourse-icon.svg";
 import monitor_icon from "../images/mining/monitor-icon.svg";
 import reward_icon from "../images/mining/reward-icon.svg";
 import smile_icon from "../images/mining/smile-icon.svg";
+import telegram_logo from "../images/icons/telegram.png";
 
 <!-- Body -->
 
@@ -33,8 +33,8 @@ The Radial token is the powerhouse of the Centrifuge chain. As a substrate-based
 </Box>
 <Box direction="row" justify="between">
 
-<Text>If you have further questions:</Text>
-<Button plain label="Discourse" href="https://discourse.centrifuge.io" target="_blank" rel="noreferrer noopener" icon={<Image src={discourse_icon} />} />
+<Text>For more discussion about Radial:</Text>
+<Button plain label="Telegram" href="https://t.me/centrifuge_chat" target="_blank" rel="noreferrer noopener" icon={<Image src={telegram_logo} height="24px" />} />
 
 </Box>
 </Box>

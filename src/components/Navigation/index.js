@@ -248,10 +248,10 @@ class Navigation extends React.Component {
               </PaddedItem>
 
               <PaddedItem>
-                <NavLink to="/mining">Radial</NavLink>
+                <NavLink to="/radial">Radial</NavLink>
                 <List>
                   <Item>
-                    <NavLink to="/mining">Mining</NavLink>
+                    <NavLink to="/radial">Get Radial</NavLink>
                     <ExternalNavLink href="https://ir.centrifuge.io/">
                       Investor Relations
                     </ExternalNavLink>
@@ -337,10 +337,10 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/mining">Radial</NavLink>
+                <NavLink to="/radial">Radial</NavLink>
 
                 <SubItem>
-                  <NavLink to="/mining">Mining</NavLink>
+                  <NavLink to="/radial">Get Radial</NavLink>
                 </SubItem>
                 <SubItem>
                   <ExternalNavLink href="https://ir.centrifuge.io/">
