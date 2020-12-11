@@ -36,6 +36,9 @@ const BlockExternalLink = () => (
           <FooterExternalLinkItem href="https://twitter.com/centrifuge">
             Twitter
           </FooterExternalLinkItem>
+          <FooterExternalLinkItem href="https://t.me/centrifuge_chat">
+            Telegram
+          </FooterExternalLinkItem>
           <FooterExternalLinkItem href="https://medium.com/centrifuge">
             Medium
           </FooterExternalLinkItem>

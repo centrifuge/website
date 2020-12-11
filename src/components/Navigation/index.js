@@ -248,9 +248,15 @@ class Navigation extends React.Component {
               </PaddedItem>
 
               <PaddedItem>
-                <ExternalNavLink href="https://ir.centrifuge.io/">
-                  Investor Relations
-                </ExternalNavLink>
+                <NavLink to="/radial">Radial</NavLink>
+                <List>
+                  <Item>
+                    <NavLink to="/radial">Get Radial</NavLink>
+                    <ExternalNavLink href="https://ir.centrifuge.io/">
+                      Investor Relations
+                    </ExternalNavLink>
+                  </Item>
+                </List>
               </PaddedItem>
 
               <Item>
@@ -331,9 +337,16 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <ExternalNavLink href="https://ir.centrifuge.io/">
-                  Investor Relations
-                </ExternalNavLink>
+                <NavLink to="/radial">Radial</NavLink>
+
+                <SubItem>
+                  <NavLink to="/radial">Get Radial</NavLink>
+                </SubItem>
+                <SubItem>
+                  <ExternalNavLink href="https://ir.centrifuge.io/">
+                    Investor Relations
+                  </ExternalNavLink>
+                </SubItem>
               </MenuItem>
 
               <MenuItem>
