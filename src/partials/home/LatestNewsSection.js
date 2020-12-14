@@ -18,6 +18,7 @@ const LatestNewsSection = () => {
       }
     }
   `);
+
   const mediumPosts = data.mediumFeed.posts.slice(0, 3);
   return (
     <Section>

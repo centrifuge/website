@@ -1,0 +1,22 @@
+<svg width="351" height="65" viewBox="0 0 351 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M319 0C301.325 0 287 14.325 287 32C287 49.675 301.325 64 319 64C336.675 64 351 49.675 351 32C351 14.325 336.675 0 319 0ZM319 60C303.525 60 291 47.475 291 32C291 16.525 303.525 4 319 4C334.475 4 347 16.525 347 32C347 47.475 334.475 60 319 60Z" fill="#FCBA59"/>
+    <path d="M331 20H307V44H315V28H331V20Z" fill="#FCBA59"/>
+    <rect y="24.3333" width="23.3333" height="8" transform="rotate(-90 0 24.3333)" fill="#FCBA59"/>
+    <rect x="61.6667" y="39.3333" width="23.3333" height="8" transform="rotate(90 61.6667 39.3333)" fill="#FCBA59"/>
+    <path d="M-1.07288e-06 32.3333C16.5685 32.3333 30 45.7648 30 62.3333" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M30 0.999999C30 17.5685 16.5685 31 -1.07288e-06 31" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M61.3333 31C44.7647 31 31.3333 17.5685 31.3333 0.999999" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M31.3333 62.3333C31.3333 45.7648 44.7647 32.3333 61.3333 32.3333" stroke="#FCBA59" stroke-width="4"/>
+    <rect x="116" y="24.3333" width="23.3333" height="8" transform="rotate(-90 116 24.3333)" fill="#FCBA59"/>
+    <rect x="116" y="41.6666" width="23.3333" height="8" fill="#FCBA59"/>
+    <path d="M128 63C111.431 63 98 49.5685 98 33" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M128 33C111.431 33 98 19.5685 98 2.99999" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M128 2.99999C144.569 2.99999 158 16.4315 158 33" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M128 33C144.569 33 158 46.4315 158 63" stroke="#FCBA59" stroke-width="4"/>
+    <rect x="211" y="48.6667" width="23.3333" height="8" transform="rotate(-90 211 48.6667)" fill="#FCBA59"/>
+    <rect x="211" y="12" width="23.3333" height="8" fill="#FCBA59"/>
+    <path d="M223 62C206.431 62 193 48.5685 193 32" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M193 32C193 15.4315 206.431 2 223 2" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M223 2C239.569 2 253 15.4315 253 32" stroke="#FCBA59" stroke-width="4"/>
+    <path d="M223 32C239.569 32 253 45.4315 253 62" stroke="#FCBA59" stroke-width="4"/>
+</svg>
