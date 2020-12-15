@@ -23,7 +23,7 @@ import telegram_logo from "../images/icons/telegram.png";
 
 # Mining Radial
 
-The Radial token is the powerhouse of the Centrifuge chain. As a substrate-based token bridged to Ethereum, it links Centrifuge with the biggest DeFi ecosystems in the world. Learn more about it in our [token summary](https://ir.centrifuge.io/static/rad-executive-summary-1d6380e77c1518e69336704bd17cea99.pdf).
+The Radial token is the powerhouse of the Centrifuge chain. As a substrate-based token bridged to Ethereum, it links Centrifuge with the biggest DeFi ecosystems in the world. Learn more about it in our [token summary](https://ir.centrifuge.io/static/rad-executive-summary-8e1bfe96bbae3981fe43e4bf1fbcec70.pdf).
 
 </Box>
 <Box>
@@ -50,7 +50,7 @@ The Radial token is the powerhouse of the Centrifuge chain. As a substrate-based
 
 <MiningLink external title="Radial Rewards" subtitle="For investors and asset originators" icon={<Image src={reward_icon} />} link="https://medium.com/centrifuge/start-earning-radial-rad-rewards-for-tinlake-cbd98fcd8330" />
 
-<MiningLink external title="Bounty Program" subtitle="Build a community with us" icon={<Image src={smile_icon} />} />
+<MiningLink external title="Bounty Program" subtitle="Build a community with us" icon={<Image src={smile_icon} />} link="https://discourse.centrifuge.io/t/community-radial-mining/455" />
 </Box>
 
 </Col>
