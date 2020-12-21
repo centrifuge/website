@@ -6,22 +6,33 @@ exports.handler = async (event, context) => {
   // json-frame Schema
   const frame = {
     openings: {
-      _s: "tr.position",
+      _s: "li.position",
       _d: [
         {
-          position: "h2",
-          link: "h2 a @ href",
-          location: ".mobile .type",
-          offering: ".mobile .type"
-        }
-      ]
+          position: "a h2",
+          link: "a @ href",
+          location: "a ul li.location span",
+          // offering: "a ul li.type span.polygot",
+        },
+      ],
+    },
+  };
+
+  const getOfferingText = (type) => {
+    switch (type) {
+      case "%LABEL_POSITION_TYPE_PART_TIME%":
+        return "Part-Time";
+      case "%LABEL_POSITION_TYPE_FULL_TIME%":
+        return "Full-Time";
+      default:
+        return null;
     }
   };
 
   // Run The Thing
   return fetch(`https://centrifuge.breezy.hr/`)
-    .then(res => res.text())
-    .then(html => {
+    .then((res) => res.text())
+    .then((html) => {
       // Init Cheerio
       const $ = cheerio.load(html);
 
@@ -29,24 +40,22 @@ exports.handler = async (event, context) => {
       jsonframe($);
 
       // Return Cherio json-frame Schema'd JSON
-      return $("tbody").scrape(frame);
+      return $("ul.positions").scrape(frame);
     })
-    .then(json =>
-      json.openings.map(job => {
-        return {
-          ...job,
-          link: `https://centrifuge.breezy.hr${job.link}/`,
-          location: job.location.replace(/.*\sin\s(.*\,\s.*)/, "$1"),
-          offering: job.offering.replace(/(?=\S*['-])([a-zA-Z'-]+).*/, "$1")
-        };
-      })
+    .then((json) =>
+      json.openings.map((job) => ({
+        ...job,
+        link: `https://centrifuge.breezy.hr${job.link}/`,
+        location: job.location.replace(/.*\sin\s(.*\,\s.*)/, "$1"),
+        // offering: getOfferingText(job.offering),
+      }))
     )
-    .then(json => ({
+    .then((json) => ({
       statusCode: 200,
-      body: JSON.stringify(json)
+      body: JSON.stringify(json),
     }))
-    .catch(error => ({
+    .catch((error) => ({
       statusCode: 422,
-      body: JSON.stringify(error)
+      body: JSON.stringify(error),
     }));
 };
