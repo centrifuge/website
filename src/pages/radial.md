@@ -1,6 +1,6 @@
 ---
-title: Get Radial
-description: Learn more about the different ways you can obtain Radial
+title: Mining Radial
+description: Learn more about the different ways you can earn Radial
 ---
 
 <!-- Imports -->
