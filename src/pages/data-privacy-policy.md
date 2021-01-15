@@ -68,6 +68,10 @@ Sending the newsletter is performed by „MailChimp“, a US newsletter service 
 
 The newsletter service provider might use recipient’s data in a pseudonymous form, meaning without assignment to a user, to optimize or improve their own services. However, the newsletter service provider does not use the data of our newsletter recipients to address them themselves or to pass the data on to third parties.
 
+### Use of Google Analytics
+
+We use Google Analytics to understand how visitors engage with our site. Cookies and similar technologies are used to collect information about your use of the website to help create reports and statistics on the performance of the website. Analytics cookies collect information such as your IP address, device type and operating system, referring URLs, location and pages visited. If you don't want Google Analytics to be used in your browser, you can install the ‘Google Analytics Opt-Out Browser Add-On', provided by Google.
+
 </Col>
 </Row>
 </Section>
