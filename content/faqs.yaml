@@ -24,7 +24,7 @@
     - q: NFT
       a: md// **Non-Fungible Token** as a digital representation of a single unique collateral, IE one invoice. The Centrifuge business NFT follows the [ERC-/EIP-721 Ethereum standard](https://eips.ethereum.org/EIPS/eip-721).
     - q: Revolving Pool
-      a: A pool which funds assets continuously; a revolving pool spins continuously as long as there are new assets to be financed and investors to deposit funds.
+      a: A pool that funds assets continuously; a revolving pool grows/shrinks depending on the balance of investor interest and assets which need to be financed.
 
 - title: Index - Tinlake Terms
   expand: true
@@ -63,7 +63,7 @@
 - title: Investing in Tinlake
   faqs:
     - q: Do I need to KYC/AML for every Tinlake pool I want to invest in?
-      a: All our asset originators and their asset issuers are using Securitize.io as a shared KYC/AML platform. This means you can reuse your KYC/AMLed Securitize iD for all our asset originator’s/issuer’s offerings.
+      a: Currently all our asset originators and their asset issuers are using Securitize.io as a shared KYC/AML platform. This means you can reuse your KYC/AMLed Securitize iD for all our asset originator’s/issuer’s offerings.
     - q: When I invest in DROP, does my balance of DROP change or does the exchange rate for Dai change as my investment accrues principal and interest?
       a: Your balance of DROP tokens remains constant. The price of these tokens (and thus the amount of Dai that you can redeem for your DROP) increases as your investment accrues interest.
     - q: Can I transfer my DROP token?
@@ -83,7 +83,7 @@
 - title: Using Centrifuge Chain
   faqs:
     - q: Who is responsible for the custody of the real world asset which is the underlying asset of the NFT token. If the real world asset got sold, how can we legally enforce that it will be notified?
-      a: Let’s say the Asset Originator (AO) is a mortgage originator. We also have Alice, who uses her house as collateral for a mortgage through this AO. Legally, Alice enters into a payment obligation with the AO. This is a contract / business document. The AO can hold this payment obligation in their own Special Purpose Vehicle (SPV) and they have standard legal recourse against the borrower as defined in the payment obligation. The AO then uses Centrifuge to mint an NFT of the payment obligation. The NFT is also owned by the SPV. The SPV locks the NFT into Tinlake and finances the mortgage. What happens if Alice wants to sell her house? With the mortgage, the AO takes title to the house until the mortgage is fully paid off. If Alice were to sell her house, she would need to pay off her mortgage in order to take ownership of her title. The SPV would receive a cash payment from Alice and the SPV would payback the financing from Tinlake in order to unlock the NFT, which is returned to the SPV and burned as the title is transferred back to Alice.If Alice were to sell her house, she would need to pay off her mortgage in order to take ownership of her title. The SPV would receive a cash payment from Alice and the SPV would payback the loan from Tinlake in order to unlock the NFT, which is returned to the SPV and burned as the Title is transferred back to Alice.
+      a: Let’s say the Asset Originator (AO) is a mortgage originator. We have Alice, who uses her house as collateral for a mortgage through this AO. Legally, Alice enters into a payment obligation with the AO. This is a contract. The AO can hold this payment obligation in their own Special Purpose Vehicle (SPV) and they have standard legal recourse against the borrower as defined in the payment obligation. The AO then uses Centrifuge to mint an NFT of the payment obligation. The NFT is also owned by the SPV. The SPV locks the NFT into Tinlake and finances the mortgage. What happens if Alice wants to sell her house? With the mortgage, the AO takes title to the house until the mortgage is fully paid off. If Alice were to sell her house, she would need to pay off her mortgage in order to take ownership of her title. The SPV would receive a cash payment from Alice and the SPV would payback the financing from Tinlake in order to unlock the NFT, which is returned to the SPV and burned as the title is transferred back to Alice. If Alice were to sell her house, she would need to pay off her mortgage in order to take ownership of her title. The SPV would receive a cash payment from Alice and the SPV would payback the loan from Tinlake in order to unlock the NFT, which is returned to the SPV and burned as the Title is transferred back to Alice.
 
 - title: Risk Assessment
   faqs:
@@ -97,9 +97,9 @@
 - title: About Centrifuge
   faqs:
     - q: Can you share some information about the team as well?
-      a: Centrifuge was founded in 2017 and has built a solution for businesses to use their assets as collateral and borrow money through DeFi protocols. It was founded by a team of experienced entrepreneurs who at their previous company, Taulia, built supply chain finance products for over 120 of the Global 2000 companies focusing on financing assets in the global supply chain. Centrifuge has received $8.2M in VC funding from a list of experienced & reputable investors and its core mission is to change the rules of global commerce by bringing fairer financing options to business around the world. With Tinlake, Centrifuge is building the tools to make these assets liquid and truly DeFi native.
+      a: md// Centrifuge was founded in 2017 and has built a solution for businesses to use their assets as collateral and borrow money through DeFi protocols. It was founded by a team of experienced entrepreneurs who at their previous company, Taulia, built supply chain finance products for over 120 of the Global 2000 companies focusing on financing assets in the global supply chain. Centrifuge has received $8.2M in VC funding from a list of experienced & reputable investors and its core mission is to change the rules of global commerce by bringing fairer financing options to business around the world. With Tinlake, Centrifuge is building the tools to make these assets liquid and truly DeFi native. You can find more information about us [here](/about).
 
 - title: For Developers
   faqs:
-    - q: Can multiple entities make use of the TIN/DROP system or is this a proprietary solution for Tinlake use only? 
-      a: Yes, the contracts are open source. We are standardizing and automating our technical framework, legal, oracles, etc. as much as possible so it’s easier to start your own deployments.
+    - q: Is Tinlake open source?
+      a: md// Yes, you can access GitHub repository [here](https://github.com/centrifuge/tinlake).
