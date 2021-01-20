@@ -32,7 +32,9 @@ class SubscriptionForm extends React.Component {
 
     this.setState({ submitDisabled: true });
 
-    addToMailchimp(this.state.email)
+    addToMailchimp(this.state.email, {
+      "group[11932][2]": "2"
+    })
       .then(data => this.setState({ response: data }))
       .then(() => this.setState({ submitDisabled: false, submitted: true }));
   };

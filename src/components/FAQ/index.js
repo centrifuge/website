@@ -113,7 +113,7 @@ const ScrollToSection = ({ targetId, label, ...rest }) => {
 };
 
 const Question = ({ value, open, onClick }) => (
-  <Box direction="row">
+  <Box direction="row" align="baseline">
     <Image
       src={open ? chevron_down : chevron_right}
       width="12px"
