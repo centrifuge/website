@@ -50,7 +50,7 @@ The Radial token is the powerhouse of the Centrifuge chain. As a substrate-based
 
 <MiningLink external title="Radial Rewards" subtitle="For investors and asset originators" icon={<Image src={reward_icon} />} link="https://medium.com/centrifuge/start-earning-radial-rad-rewards-for-tinlake-cbd98fcd8330" />
 
-<MiningLink external title="Bounty Program" subtitle="Build a community with us" icon={<Image src={smile_icon} />} link="https://discourse.centrifuge.io/t/community-radial-mining/455" />
+<!-- <MiningLink external title="Bounty Program" subtitle="Build a community with us" icon={<Image src={smile_icon} />} link="https://discourse.centrifuge.io/t/community-radial-mining/455" /> -->
 </Box>
 
 </Col>
