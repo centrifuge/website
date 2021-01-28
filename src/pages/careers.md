@@ -13,7 +13,7 @@ import Jobs from "../components/Jobs";
 <Row>
 <Col span={6}>
 
-# Come join our team in building the bridge between traditional and decentralized finance.
+# Come join our team bringing asset financing to DeFi.
 
 We have a big vision to change the rules of global trade: our DApp is live and [gaining traction](https://tinlake.centrifuge.io/) to lower the barriers of raising capital. Join us remotely or in our office in Berlin:
 
