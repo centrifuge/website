@@ -3,6 +3,7 @@ title: Careers
 ---
 
 <!-- Imports -->
+
 import Animation from "../components/Animation";
 import block1Animation from "../lottie/Team_Q.json";
 import careersBig from "../images/careers_big.svg";
@@ -12,13 +13,15 @@ import Jobs from "../components/Jobs";
 <Row>
 <Col span={6}>
 
-# Come join our team of experienced, smart, and nice people building the future of B2B software!
+# Come join our team in building the bridge between traditional and decentralized finance.
 
-We have a [big vision](https://medium.com/centrifuge/launching-centrifuge-dca7ae83ad07), work with some of the [largest companies](https://medium.com/centrifuge/working-with-sap-87e5c124963f) on the planet, and are supported by [Mosaic](https://www.mosaicventures.com/mosaicblog/2018/3/5/why-we-invested-in-centrifuge-and-a-short-love-letter-to-crypto-in-berlin-) and [BlueYard](https://medium.com/@BlueYard/centrifuge-1fcf8e8e76cd), two of the best VCs in Europe and the space. Our team is based in the heart of Berlin.
+We have a big vision to change the rules of global trade: our DApp is live and [gaining traction](https://tinlake.centrifuge.io/) to lower the barriers of raising capital. Join us remotely or in our office in Berlin:
 
 - We offer competitive compensation based on your skills, not your gender or background
 - Full-time commitment - we need a focused team
 - Flexible work hours
+
+Learn more about who we are and why you should join [here](https://medium.com/centrifuge/were-hiring-join-centrifuge-s-growing-team-e5df32d17bb7).
 
 </Col>
 <Col span={6}>
