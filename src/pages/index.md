@@ -174,7 +174,7 @@ We see a future of open finance, where businesses use decentralized currencies t
 <Row>
 <Col span={6}>
 
-# DeFi is a grassroots finanical movement, powered by the community.
+# DeFi is a grassroots financial movement, powered by the community.
 
 The DeFi community is different from anything the financial world has seen before. Token holders have a voice and a vote on the direction of the protocol. All of our protocols are interdependent on one another, making it a financial system powered by community.
 
@@ -192,9 +192,9 @@ We are proud to take part in the larger DeFi ecosystem, one that demands the fin
 <Col span={5}>
 <Box gap="large">
 <Text size="20px" textAlign="center">Building a fair financial system with:</Text>
-<Image src="../images/home/maker_logo.svg" />
-<Image src="../images/home/celo_logo.svg" />
-<Image src="../images/home/circle_logo.svg" />
+<Image src="../images/home/maker_logo.svg" width="300px" alignSelf="center" />
+<Image src="../images/home/celo_logo.svg" width="300px" alignSelf="center" />
+<Image src="../images/home/circle_logo.svg" width="300px" alignSelf="center" />
 </Box>
 </Col>
 </Row>
@@ -202,7 +202,7 @@ We are proud to take part in the larger DeFi ecosystem, one that demands the fin
 
 <!-- Radial Token -->
 <Section>
-<Image src="../images/radial-token-logo.svg" margin={{ bottom: "large" }} />
+<Image src="../images/radial-token-logo.svg" margin={{ bottom: "large" }} width="200px" alignSelf="center" />
 <Heading lined alignSelf="center" textAlign="center" margin={{ bottom: "large" }}>Centrifuge is powered by Radial token</Heading>
 <Button primary label="Learn about RAD" href="/products/chain" />
 </Section>
