@@ -19,7 +19,7 @@ const lambdaServerDefaults = filename => ({
 
 const leverServerOptions = {
   name: `lever`,
-  ...lambdaServerDefaults("getBreezyJobListings"),
+  ...lambdaServerDefaults("getLeverPositions"),
   schemaType: {
     id: "String",
     position: "String",
