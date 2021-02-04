@@ -6,22 +6,20 @@ const Jobs = () => (
   <StaticQuery
     query={graphql`
       query JobsQuery {
-        allLambdaBreezy(filter: { position: { ne: "String" } }) {
+        allLambdaLever(filter: { position: { ne: "String" } }) {
           totalCount
           edges {
             node {
               id
               position
               link
-              location
-              offering
             }
           }
         }
       }
     `}
     render={data => {
-      const jobs = data.allLambdaBreezy.edges;
+      const jobs = data.allLambdaLever.edges;
 
       if (jobs.length > 0) {
         return (
