@@ -17,15 +17,13 @@ const lambdaServerDefaults = filename => ({
       : `http://localhost:9000/${filename}`
 });
 
-const breezyServerOptions = {
-  name: `breezy`,
+const leverServerOptions = {
+  name: `lever`,
   ...lambdaServerDefaults("getBreezyJobListings"),
   schemaType: {
-    id: 1,
+    id: "String",
     position: "String",
-    link: "String",
-    location: "String",
-    offering: "String"
+    link: "String"
   },
   verboseOutput: true
 };
@@ -70,7 +68,7 @@ module.exports = {
     },
     {
       resolve: "gatsby-source-apiserver",
-      options: breezyServerOptions
+      options: leverServerOptions
     },
     {
       resolve: "gatsby-source-apiserver",
