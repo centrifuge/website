@@ -74,6 +74,7 @@ const BlockInternalLink = () => (
           <FooterLinkItem to="/security">Security</FooterLinkItem>
           <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
           <FooterLinkItem to="/brand">Brand Assets</FooterLinkItem>
+          <FooterLinkItem to="/careers">Careers</FooterLinkItem>
         </Box>
         <Box height="50px">
           <FooterLinkItem to="/grant">
