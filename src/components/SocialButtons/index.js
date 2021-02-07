@@ -3,7 +3,7 @@ import { Box, Text, Image, Anchor, ResponsiveContext } from "grommet";
 import { Book } from "grommet-icons";
 
 import github_logo from "../../images/github-mark.png";
-import discord_logo from "../../images/discord-mark.png";
+import discord_logo from "../../images/discord-mark.svg";
 import discourse_logo from "../../images/discourse-mark.png";
 
 const ResponsiveImage = ({ ...rest }) => <Image {...rest} width="100%" />;
