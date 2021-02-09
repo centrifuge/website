@@ -6,44 +6,39 @@ const Jobs = () => (
   <StaticQuery
     query={graphql`
       query JobsQuery {
-        allLambdaBreezy(filter: { position: { ne: "String" } }) {
-          totalCount
+        allLever {
           edges {
             node {
               id
-              position
-              link
-              location
-              offering
+              text
+              hostedUrl
             }
           }
         }
       }
     `}
     render={data => {
-      const jobs = data.allLambdaBreezy.edges;
+      const jobs = data.allLever.edges
+        .filter(edge => edge.node.id !== "c0f7a908-8d9e-4f3c-9b15-a4f81e033484")
+        .map(edge => ({ ...edge.node }));
 
       if (jobs.length > 0) {
         return (
           <>
-            {jobs.map((job, index) => {
-              job = job.node;
-
-              return (
-                <div key={index}>
-                  <p>
-                    <Button
-                      plain
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      href={job.link}
-                    >
-                      {job.position}
-                    </Button>
-                  </p>
-                </div>
-              );
-            })}
+            {jobs.map((job, index) => (
+              <div key={index}>
+                <p>
+                  <Button
+                    plain
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={job.hostedUrl}
+                  >
+                    {job.text}
+                  </Button>
+                </p>
+              </div>
+            ))}
           </>
         );
       }

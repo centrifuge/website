@@ -3,7 +3,7 @@ import { Box, Text, Image, Anchor, ResponsiveContext } from "grommet";
 import { Book } from "grommet-icons";
 
 import github_logo from "../../images/github-mark.png";
-import slack_logo from "../../images/slack-mark.svg";
+import discord_logo from "../../images/discord-mark.svg";
 import discourse_logo from "../../images/discourse-mark.png";
 
 const ResponsiveImage = ({ ...rest }) => <Image {...rest} width="100%" />;
@@ -60,12 +60,12 @@ const GithubButton = ({ width }) => (
   />
 );
 
-const SlackButton = ({ width }) => (
+const DiscordButton = ({ width }) => (
   <SocialButton
-    label="Slack"
+    label="Discord"
     description="Reach out to us."
-    icon={<ResponsiveImage src={slack_logo} />}
-    href="https://centrifuge-io.slack.com/join/shared_invite/enQtNDk1MzkwODM4OTgxLWRlNTU4NDQzOWIwYWEzNGRhN2UzMzQwNThjZjI0ZmIxMTU4NmQwMjc2ZDBkOTEyNWJhMjE4MzA2NTE5MWU1NWE"
+    icon={<ResponsiveImage src={discord_logo} />}
+    href="/discord"
     width={width}
   />
 );
@@ -98,7 +98,7 @@ const SocialButtonsSection = ({}) => {
           return (
             <Box direction="row" justify="center" gap="medium">
               <GithubButton />
-              <SlackButton />
+              <DiscordButton />
               <DiscourseButton />
               <DevDocsButton />
             </Box>
@@ -108,7 +108,7 @@ const SocialButtonsSection = ({}) => {
             <Box gap="small">
               <Box direction="row" justify="center" gap="medium">
                 <GithubButton />
-                <SlackButton />
+                <DiscordButton />
               </Box>
               <Box direction="row" justify="center" gap="medium">
                 <DiscourseButton />
@@ -120,7 +120,7 @@ const SocialButtonsSection = ({}) => {
           return (
             <Box gap="small" align="center">
               <GithubButton />
-              <SlackButton />
+              <DiscordButton />
               <DiscourseButton />
               <DevDocsButton />
             </Box>

@@ -42,7 +42,9 @@ const BlockExternalLink = () => (
           <FooterExternalLinkItem href="https://medium.com/centrifuge">
             Medium
           </FooterExternalLinkItem>
-          <FooterLinkItem to="/slack">Slack</FooterLinkItem>
+          <FooterExternalLinkItem href="https://centrifuge.io/discord">
+            Discord
+          </FooterExternalLinkItem>
           <FooterExternalLinkItem href="https://github.com/centrifuge/">
             GitHub
           </FooterExternalLinkItem>
@@ -72,6 +74,7 @@ const BlockInternalLink = () => (
           <FooterLinkItem to="/security">Security</FooterLinkItem>
           <FooterLinkItem to="/imprint">Imprint</FooterLinkItem>
           <FooterLinkItem to="/brand">Brand Assets</FooterLinkItem>
+          <FooterLinkItem to="/careers">Careers</FooterLinkItem>
         </Box>
         <Box height="50px">
           <FooterLinkItem to="/grant">
