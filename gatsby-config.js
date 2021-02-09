@@ -17,17 +17,6 @@ const lambdaServerDefaults = filename => ({
       : `http://localhost:9000/${filename}`
 });
 
-const leverServerOptions = {
-  name: `lever`,
-  ...lambdaServerDefaults("getBreezyJobListings"),
-  schemaType: {
-    id: "String",
-    position: "String",
-    link: "String"
-  },
-  verboseOutput: true
-};
-
 const mediumPostsServerOptions = {
   name: `mediumPosts`,
   ...lambdaServerDefaults("getMediumPosts"),
@@ -68,10 +57,6 @@ module.exports = {
     },
     {
       resolve: "gatsby-source-apiserver",
-      options: leverServerOptions
-    },
-    {
-      resolve: "gatsby-source-apiserver",
       options: mediumPostsServerOptions
     },
     {
@@ -91,6 +76,13 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `./src/images/`
+      }
+    },
+    {
+      resolve: `gatsby-source-lever`,
+      options: {
+        site: `centrifuge`,
+        verboseOutput: false
       }
     },
     {
