@@ -104,7 +104,7 @@ If you believe you’ve found a security vulnerability in one of our products or
 - A detailed description of the steps required to reproduce the vulnerability (POC scripts, screenshots, and compressed screen captures are all helpful to us); and
 - Your name/handle and a link for recognition in our Hall of Fame.
 
-For time sensitive requests, please join [our discord](https://discord.com/invite/QEGpR7TJ) and reach out to one of our team members.
+For time sensitive requests, please join [our discord](https://discord.gg/yEzyUq5gxF) and reach out to one of our team members.
 
 </Col>
 </Row>
