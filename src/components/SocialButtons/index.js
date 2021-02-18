@@ -75,7 +75,7 @@ const DiscourseButton = ({ width }) => (
     label="Discourse"
     description="Join a conversation."
     icon={<ResponsiveImage src={discourse_logo} />}
-    href="https://discourse.centrifuge.io/"
+    href="https://gov.centrifuge.io/"
     width={width}
   />
 );

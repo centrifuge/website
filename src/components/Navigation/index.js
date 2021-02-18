@@ -262,7 +262,7 @@ class Navigation extends React.Component {
               <Item>
                 <Button
                   label="Get Started"
-                  href="https://discourse.centrifuge.io/"
+                  href="https://gov.centrifuge.io/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -350,7 +350,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <ExternalNavLink href="https://discourse.centrifuge.io/">
+                <ExternalNavLink href="https://gov.centrifuge.io/">
                   Get Started
                 </ExternalNavLink>
               </MenuItem>
