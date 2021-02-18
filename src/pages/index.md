@@ -181,10 +181,10 @@ The DeFi community is different from anything the financial world has seen befor
 We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
-<Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} href="https://discourse.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
+<Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} href="https://gov.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
-<Button primary label="Join the conversation on Discourse" margin={{ top: "medium" }} href="https://discourse.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
+<Button primary label="Join the conversation on Discourse" margin={{ top: "medium" }} href="https://gov.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
 </ResponsiveContent>
 
 </Col>
