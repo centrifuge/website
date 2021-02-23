@@ -1,7 +1,8 @@
 # Redirect domain aliases to primary domain
 https://jobs.centrifuge.io/* https://centrifuge.io/careers 301!
 https://jobs.centrifuge.io https://centrifuge.io/careers 301!
-https://discourse.centrifuge.io https://gov.centrifuge.io/ 301!
+https://discourse.centrifuge.io https://gov.centrifuge.io 301!
+https://discourse.centrifuge.io/* https://gov.centrifuge.io/:splat 301!
 
 
 # Optional: Redirect default Netlify subdomain to primary domain
