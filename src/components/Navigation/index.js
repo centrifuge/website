@@ -225,27 +225,33 @@ class Navigation extends React.Component {
 
             {/* Desktop Nav */}
             <Dropdowns direction="row" align="center" gap="large">
-              <PaddedItem>
-                <NavLink to="/products/tinlake">Products</NavLink>
-                <List>
-                  <Item>
-                    <NavLink to="/products/tinlake">Tinlake</NavLink>
-                    <NavLink to="/products/chain">Chain</NavLink>
-                  </Item>
-                </List>
-              </PaddedItem>
+              {/*<PaddedItem>*/}
+              {/*  <NavLink to="/products/tinlake">Products</NavLink>*/}
+              {/*  <List>*/}
+              {/*    <Item>*/}
+              {/*      <NavLink to="/products/tinlake">Tinlake</NavLink>*/}
+              {/*      <NavLink to="/products/chain">Chain</NavLink>*/}
+              {/*    </Item>*/}
+              {/*  </List>*/}
+              {/*</PaddedItem>*/}
+
+              {/*<PaddedItem>*/}
+              {/*  <NavLink to="/technology">Technology</NavLink>*/}
+              {/*</PaddedItem>*/}
 
               <PaddedItem>
-                <NavLink to="/technology">Technology</NavLink>
+                <ExternalNavLink href="https://docs.centrifuge.io/">
+                  Docs
+                </ExternalNavLink>
               </PaddedItem>
 
               <PaddedItem>
                 <NavLink to="/about">About</NavLink>
               </PaddedItem>
 
-              <PaddedItem>
-                <NavLink to="/news">News</NavLink>
-              </PaddedItem>
+              {/*<PaddedItem>*/}
+              {/*  <NavLink to="/news">News</NavLink>*/}
+              {/*</PaddedItem>*/}
 
               <PaddedItem>
                 <NavLink to="/radial">Radial</NavLink>
@@ -259,21 +265,25 @@ class Navigation extends React.Component {
                 </List>
               </PaddedItem>
 
-              <Item>
-                <Button
-                  label="Get Started"
-                  href="https://gov.centrifuge.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    paddingTop: "5px",
-                    paddingBottom: "5px",
-                    paddingLeft: "30px",
-                    paddingRight: "30px",
-                    fontSize: 14
-                  }}
-                />
-              </Item>
+              <PaddedItem>
+                <NavLink to="/careers">Careers</NavLink>
+              </PaddedItem>
+
+              {/*<Item>*/}
+              {/*  <Button*/}
+              {/*    label="Get Started"*/}
+              {/*    href="https://gov.centrifuge.io/"*/}
+              {/*    target="_blank"*/}
+              {/*    rel="noopener noreferrer"*/}
+              {/*    style={{*/}
+              {/*      paddingTop: "5px",*/}
+              {/*      paddingBottom: "5px",*/}
+              {/*      paddingLeft: "30px",*/}
+              {/*      paddingRight: "30px",*/}
+              {/*      fontSize: 14*/}
+              {/*    }}*/}
+              {/*  />*/}
+              {/*</Item>*/}
             </Dropdowns>
           </List>
         </Container>
@@ -313,23 +323,29 @@ const MobilePanel = ({ state, toggleFunc }) => (
             gap="medium"
           >
             <List>
-              <MenuItem>
-                <NavLink to="/products/tinlake">Products</NavLink>
+              {/*<MenuItem>*/}
+              {/*  <NavLink to="/products/tinlake">Products</NavLink>*/}
 
-                <SubItem>
-                  <NavLink to="/products/chain">Chain</NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/products/tinlake">Tinlake</NavLink>
-                </SubItem>
-              </MenuItem>
+              {/*  <SubItem>*/}
+              {/*    <NavLink to="/products/chain">Chain</NavLink>*/}
+              {/*  </SubItem>*/}
+              {/*  <SubItem>*/}
+              {/*    <NavLink to="/products/tinlake">Tinlake</NavLink>*/}
+              {/*  </SubItem>*/}
+              {/*</MenuItem>*/}
+
+              {/*<MenuItem>*/}
+              {/*  <NavLink to="/technology">Technology</NavLink>*/}
+              {/*</MenuItem>*/}
+
+              {/*<MenuItem>*/}
+              {/*  <NavLink to="/news">News</NavLink>*/}
+              {/*</MenuItem>*/}
 
               <MenuItem>
-                <NavLink to="/technology">Technology</NavLink>
-              </MenuItem>
-
-              <MenuItem>
-                <NavLink to="/news">News</NavLink>
+                <ExternalNavLink href="https://docs.centrifuge.io/">
+                  Docs
+                </ExternalNavLink>
               </MenuItem>
 
               <MenuItem>
@@ -350,10 +366,14 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <ExternalNavLink href="https://gov.centrifuge.io/">
-                  Get Started
-                </ExternalNavLink>
+                <NavLink to="/careers">Careers</NavLink>
               </MenuItem>
+
+              {/*<MenuItem>*/}
+              {/*  <ExternalNavLink href="https://gov.centrifuge.io/">*/}
+              {/*    Get Started*/}
+              {/*  </ExternalNavLink>*/}
+              {/*</MenuItem>*/}
             </List>
           </MobileBox>
         </Layer>

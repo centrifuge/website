@@ -81,28 +81,28 @@ const TinlakeSection = ({ heading, children }) => {
               {stars.map((dims, index) => (
                 <Star {...dims} key={index} />
               ))}
-              <Row mb="medium">
-                <Col span={6} margin={{ bottom: "large" }}>
-                  <Image src={tinlake} alignSelf="start" />
-                </Col>
-                <Col span={6} margin={{ bottom: "large" }}>
-                  <Heading level={1} margin="0">
-                    {heading}
-                  </Heading>
-                </Col>
-              </Row>
+              {/*<Row mb="medium">*/}
+              {/*  <Col span={6} margin={{ bottom: "large" }}>*/}
+              {/*    <Image src={tinlake} alignSelf="start" />*/}
+              {/*  </Col>*/}
+              {/*  <Col span={6} margin={{ bottom: "large" }}>*/}
+              {/*    <Heading level={1} margin="0">*/}
+              {/*      {heading}*/}
+              {/*    </Heading>*/}
+              {/*  </Col>*/}
+              {/*</Row>*/}
               <Box>{children}</Box>
-              <Box gap="small" margin={{ top: "large" }}>
-                <Text alignSelf="center">Start using it now</Text>
-                <StyledButton
-                  primary
-                  alignSelf="center"
-                  label="Open Tinlake"
-                  href="https://tinlake.centrifuge.io/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                />
-              </Box>
+              {/*<Box gap="small" margin={{ top: "large" }}>*/}
+              {/*  <Text alignSelf="center">Start using it now</Text>*/}
+              {/*  <StyledButton*/}
+              {/*    primary*/}
+              {/*    alignSelf="center"*/}
+              {/*    label="Open Tinlake"*/}
+              {/*    href="https://tinlake.centrifuge.io/"*/}
+              {/*    target="_blank"*/}
+              {/*    rel="noreferrer noopener"*/}
+              {/*  />*/}
+              {/*</Box>*/}
             </Box>
           </RelativeSection>
         </Box>
