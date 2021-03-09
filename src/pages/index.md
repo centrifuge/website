@@ -187,10 +187,3 @@ We are proud to take part in the larger DeFi ecosystem, one that demands the fin
 </Col>
 </Row>
 </Section>
-
-<!-- Radial Token -->
-<!-- <Section>
-<Image src="../images/radial-token-logo.svg" margin={{ bottom: "large" }} width="200px" alignSelf="center" />
-<Heading lined alignSelf="center" textAlign="center" margin={{ bottom: "large" }}>Centrifuge is powered by Radial token</Heading>
-<Button primary label="Learn about RAD" href="/products/chain" />
-</Section> -->
