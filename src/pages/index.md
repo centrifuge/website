@@ -29,17 +29,11 @@ Decentralized Asset Finance
 
 <Box margin={{ bottom: "large" }}>
 <Text size="20px" textAlign="center" weight={500}>
-Access bankless liquidity.
-</Text>
-<Text size="20px" textAlign="center" weight={500}>
-Use Centrifuge to bring
-</Text>
-<Text size="20px" textAlign="center" weight={500}>
-your assets into DeFi.
+Finance real-world assets in DeFi
 </Text>
 </Box>
 
-<Button primary href="/finance" label="Pool Your Assets" />
+<Button primary target="_blank" href="https://tinlake.centrifuge.io/" label="Try the Dapp" />
 </Col>
 <Col span={4} margin={{bottom: "large"}}>
 
@@ -50,17 +44,11 @@ your assets into DeFi.
 
 <Box margin={{ bottom: "large" }}>
 <Text size="20px" textAlign="center" weight={500}>
-Invest in diversified
-</Text>
-<Text size="20px" textAlign="center" weight={500}>
-asset-backed pools. Generate a return
-</Text>
-<Text size="20px" textAlign="center" weight={500}>
-on stable assets.
+Learn more how it all works
 </Text>
 </Box>
 
-<Button primary href="/invest" label="Invest" />
+<Button primary target="_blank" href="https://docs.centrifuge.io/" label="Docs" />
 </Col>
 </Row>
 
@@ -198,11 +186,4 @@ We are proud to take part in the larger DeFi ecosystem, one that demands the fin
 </Box>
 </Col>
 </Row>
-</Section>
-
-<!-- Radial Token -->
-<Section>
-<Image src="../images/radial-token-logo.svg" margin={{ bottom: "large" }} width="200px" alignSelf="center" />
-<Heading lined alignSelf="center" textAlign="center" margin={{ bottom: "large" }}>Centrifuge is powered by Radial token</Heading>
-<Button primary label="Learn about RAD" href="/products/chain" />
 </Section>
