@@ -24,7 +24,12 @@ exports.handler = async (event, context) => {
     try {
       item.title = unescapeSpecialChars(item.title);
 
-      let articleResponse = await fetch(item.link);
+      let headers = {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+      }
+
+      let articleResponse = await fetch(item.link, headers);
       let articleHTML = await articleResponse.text();
       let $ = cheerio.load(articleHTML);
 
@@ -33,6 +38,8 @@ exports.handler = async (event, context) => {
 
       if (_description) {
         item.description = _description;
+      } else {
+        item.description = "";
       }
       if (_image) {
         item.thumbnail = _image;
