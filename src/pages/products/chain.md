@@ -72,7 +72,7 @@ Interact with Centrifuge Chain:
 
 # Validating Centrifuge Chain
 
-Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables users to bring their assets on-chain as non-fungible tokens (NFTs). This is the starting point for originating real-world assets on the blockchain - to begin to unlock financing for any type of asset. This public chain is owned and operated by no single party: the Radial token empowers its holders with governance and provides the incentive for validators to operate the chain. Bridged to Ethereum from day 1.
+Centrifuge Chain is a Proof-of-Stake blockchain built on Substrate that enables users to bring their assets on-chain as non-fungible tokens (NFTs). This is the starting point for originating real-world assets on the blockchain - to begin to unlock financing for any type of asset. This public chain is owned and operated by no single party: the Centrifuge token empowers its holders with governance and provides the incentive for validators to operate the chain. Bridged to Ethereum from day 1.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
 
@@ -228,7 +228,7 @@ We built Centrifuge Chain to enable businesses to exchange business documents (s
 
 # How does Centrifuge Chain work?
 
-Using Centrifuge Chain, businesses can convert their Real World Assets (RWA) into Non-Fungible Tokens (NFTs). This enables Asset Originators to put up these NFTs as collateral in Tinlake pools on Ethereum. Centrifuge Chain is an open source PoS blockchain built for finance and powered by the Radial (RAD) token. Tinlake taps into the Centrifuge ecosystem, including the Centrifuge Chain and a P2P messaging protocol, to bring DeFi to a consumer-ready interface.
+Using Centrifuge Chain, businesses can convert their Real World Assets (RWA) into Non-Fungible Tokens (NFTs). This enables Asset Originators to put up these NFTs as collateral in Tinlake pools on Ethereum. Centrifuge Chain is an open source PoS blockchain built for finance and powered by the Centrifuge (CFG) token. Tinlake taps into the Centrifuge ecosystem, including the Centrifuge Chain and a P2P messaging protocol, to bring DeFi to a consumer-ready interface.
 
 </Section>
 <FullWidthSection>
@@ -242,24 +242,24 @@ Using Centrifuge Chain, businesses can convert their Real World Assets (RWA) int
 
 # Chain Architecture
 
-Centrifuge Chain uses its own native token - the Radial (RAD) token. It also incentivizes Validators and Nominators to participate through a block reward.
+Centrifuge Chain uses its own native token - the Centrifuge (CFG) token. It also incentivizes Validators and Nominators to participate through a block reward.
 
-Centrifuge Chain uses [Parity Substrate](https://www.substrate.io), and relies on staked Validators to come to consensus in order to commit blocks to the blockchain. Any node can offer itself as a Validator candidate, but only a limited number will be selected. Only top Validators by stake are elected into the Validator Set. Validators can stake their own RAD and can be elected by staked Nominators.
+Centrifuge Chain uses [Parity Substrate](https://www.substrate.io), and relies on staked Validators to come to consensus in order to commit blocks to the blockchain. Any node can offer itself as a Validator candidate, but only a limited number will be selected. Only top Validators by stake are elected into the Validator Set. Validators can stake their own CFG and can be elected by staked Nominators.
 
-Radial also empowers its holders with governance. Centrifuge Chain uses Substrate’s native governance module, comprising an elected council and the ability to administrate network upgrades.
+Centrifuge token also empowers its holders with governance. Centrifuge Chain uses Substrate’s native governance module, comprising an elected council and the ability to administrate network upgrades.
 
 Read more in our <a href="https://developer.centrifuge.io/chain/overview/introduction/" target="_blank">documentation</a>.
 
 </Section>
 
-<!-- Radial Token -->
+<!-- Centrifuge Token -->
 <Section>
 
 <Image src="../../images/radial-token-logo.svg" margin={{ bottom: "medium" }}/>
 
-# The Radial Token
+# The Centrifuge Token
 
-The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize desirable behavior on Centrifuge Chain — so called mechanism design — to create a robust, decentralized system. Owning RAD gives users a stake in the Centrifuge network and can be used to pay for transaction fees, stake towards Validators, and participate in Centrifuge on-chain governance. It will also incentivize Validators and Nominators to participate through a block reward.
+The Centrifuge token (CFG) powers Centrifuge Chain. CFG is designed to incentivize desirable behavior on Centrifuge Chain — so called mechanism design — to create a robust, decentralized system. Owning CFG gives users a stake in the Centrifuge network and can be used to pay for transaction fees, stake towards Validators, and participate in Centrifuge on-chain governance. It will also incentivize Validators and Nominators to participate through a block reward.
 
 <ResponsiveContent breakpoints={["medium", "large"]}>
 <Button href="https://ir.centrifuge.io/static/rad-executive-summary-1d6380e77c1518e69336704bd17cea99.pdf" label="Read Token Summary" align="end" />
@@ -275,7 +275,7 @@ The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize d
 
 <Col span={6} align="start">
 
-<Text size="20px" weight={500} margin={{ bottom: "large" }}>Need RAD?</Text>
+<Text size="20px" weight={500} margin={{ bottom: "large" }}>Need CFG?</Text>
 
 <Box direction="row" gap="medium" align="start">
 
@@ -297,13 +297,13 @@ The Radial token (RAD) powers Centrifuge Chain. RAD is designed to incentivize d
 
 <Box gap="xsmall" margin={{ bottom: "medium" }}>
 <Text textAlign="start">Issued at genesis:</Text>
-<Text size="20px" textAlign="start" weight={500}>411,947,170 RAD</Text>
+<Text size="20px" textAlign="start" weight={500}>411,947,170 CFG</Text>
 </Box>
 
 <Box gap="xsmall">
 {/* TODO: Change Metric
 <Text textAlign="start">Supply Cap:</Text>
-<Text size="20px" textAlign="start" weight={500}>1,000,000,000 RAD</Text>
+<Text size="20px" textAlign="start" weight={500}>1,000,000,000 CFG</Text>
 */}
 </Box>
 

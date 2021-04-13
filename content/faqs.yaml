@@ -68,8 +68,8 @@
       a: Your balance of DROP tokens remains constant. The price of these tokens (and thus the amount of Dai that you can redeem for your DROP) increases as your investment accrues interest.
     - q: Can I transfer my DROP token?
       a: Technically DROP tokens can be transferred similar to other ERC20 tokens. However, due to their security status, their transfer is restricted to other whitelisted addresses only. If you want to transfer your DROP to another one of your addresses, please get in touch to get it whitelisted.
-    - q: Can you explain Centrifuge’s token structure? I see RAD, TIN and DROP. Why are there three tokens?
-      a: md// The RAD token powers Centrifuge Chain and Protocol. TIN and DROP are used in Tinlake, a dApp running on Centrifuge. Please find more information on our RAD token [here](https://centrifuge.io/products/chain/) and on Tinlake’s TIN and DROP [here](https://developer.centrifuge.io/tinlake/overview/tranches/).
+    - q: Can you explain Centrifuge’s token structure? I see CFG, TIN and DROP. Why are there three tokens?
+      a: md// The CFG token powers Centrifuge Chain and Protocol. TIN and DROP are used in Tinlake, a dApp running on Centrifuge. Please find more information on our CFG token [here](https://centrifuge.io/products/chain/) and on Tinlake’s TIN and DROP [here](https://developer.centrifuge.io/tinlake/overview/tranches/).
     - q: Is TIN available for investors?
       a: Our Asset Originators have only opened TIN to a small number of institutional investors who have been instrumental in developing their product. We anticipate that in the future some Asset Originators will choose to make TIN more widely available to investors.
 
