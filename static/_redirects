@@ -13,3 +13,4 @@ https://centrifuge-website.netlify.com/* https://centrifuge.io/:splat 301!
 /whitepaper    /centrifuge_os_white_paper.pdf
 /jobs          /careers
 /slack         /discord
+/rad           /cfg
