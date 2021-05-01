@@ -58,6 +58,7 @@
     "build:all": "npm run build:lambda && npm run build",
     "build": "node utils/prefetch_urls.js && gatsby build",
     "develop": "gatsby develop",
+    "clean": "gatsby clean",
     "start": "run-p -l start:gatsby start:lambda",
     "start:gatsby": "npm run develop",
     "format": "prettier --write \"./**/*.js\"",
