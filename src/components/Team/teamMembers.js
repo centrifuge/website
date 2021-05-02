@@ -11,7 +11,8 @@ import lucas from "../../images/team/lucas.png";
 import ved from "../../images/team/ved.jpeg";
 import dennis from "../../images/team/dennis.jpg";
 import jeroen from "../../images/team/jeroen.png";
-import manuel from "../../images/team/manuel.png";
+// import manuel from "../../images/team/manuel.png";
+import frederick from "../../images/team/frederick.jpeg";
 import devin from "../../images/team/devin.jpg";
 import jp from "../../images/team/jp.jpg";
 import marc from "../../images/team/marc.jpg";
@@ -34,13 +35,13 @@ const teamMembers = [
     social: "https://twitter.com/helsfoftroy",
     image: helena
   },
-  {
-    name: "Manuel Polzhofer",
-    description: "Building software together with an awesome team",
-    link: "https://ourworldindata.org/",
-    social: "https://twitter.com/m_polzhofer",
-    image: manuel
-  },
+  // {
+  //   name: "Manuel Polzhofer",
+  //   description: "Building software together with an awesome team",
+  //   link: "https://ourworldindata.org/",
+  //   social: "https://twitter.com/m_polzhofer",
+  //   image: manuel
+  // },
   {
     name: "Lea Schmitt",
     description: "DeFi-Centrifuge match making",
@@ -163,14 +164,14 @@ const teamMembers = [
     link: "https://atomic.blue/degenscore",
     social: "https://www.linkedin.com/in/jeanpaulangelle/",
     image: jp
+  },
+  {
+    name: "Frederik Schulz",
+    description: "Building infrastructure for DeFi",
+    link: "https://en.wikipedia.org/",
+    social: "https://www.linkedin.com/in/frederik-lukas-schulz/",
+    image: frederick
   }
-  // {
-  //   name: "Frederik Schulz",
-  //   description: "Building infrastructure for DeFi",
-  //   link: "https://en.wikipedia.org/",
-  //   social: "https://www.linkedin.com/in/frederik-lukas-schulz/",
-  //   image:
-  // }
 ];
 
 export default teamMembers;

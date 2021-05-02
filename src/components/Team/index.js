@@ -106,11 +106,7 @@ const Team = () => {
       </Box>
       <Grid mt="large" mb="large" gap="36">
         {teamMembers
-          .sort((a, b) => {
-            if (a.name < b.name) return -1;
-            if (a.name > b.name) return 1;
-            return 0;
-          })
+          .sort(() => Math.random() - 0.5)
           .map(member => (
             <Column
               span={{ small: 6, large: 3, medium: 4 }}
@@ -122,7 +118,7 @@ const Team = () => {
           ))}
       </Grid>
       {/* button should be of the color: #F44E72 */}
-      <Button primary alignSelf="center" label="work with us" />
+      <Button primary alignSelf="center" label="work with us" href="/careers" />
     </Box>
   );
 };
