@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Box, Button, ResponsiveContext, Text } from "grommet";
 
+import TVL from "../TVL";
+
 import hero_large from "../../images/home/hero/large.svg";
 import hero_medium from "../../images/home/hero/medium.svg";
 import hero_small from "../../images/home/hero/small.svg";
@@ -79,7 +81,7 @@ const Hero = () => {
         <Text size={config[size].subheadingSize} weight={420}>
           Current TVL:
         </Text>
-        <Text size={config[size].subheadingSize}>$2,430,346.95</Text>
+        <TVL size={config[size].subheadingSize} />
       </Box>
       <Box direction={size !== "small" ? "row" : "column"} gap="small">
         <Button

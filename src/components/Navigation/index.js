@@ -241,7 +241,9 @@ class Navigation extends React.Component {
                 </ExternalNavLink>
                 <List>
                   <Item>
-                    <ExternalNavLink to="/cfg">Sale</ExternalNavLink>
+                    <ExternalNavLink href="https://coinlist.co/centrifuge">
+                      Sale
+                    </ExternalNavLink>
                     <ExternalNavLink href="/cfg-token-summary">
                       Token Summary
                     </ExternalNavLink>

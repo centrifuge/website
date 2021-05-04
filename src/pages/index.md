@@ -28,7 +28,7 @@ import play_button from "../images/play_button.svg";
 <Row>
 
 <Col span={{ large: 3 }}>
-<Text size="large" textAlign="left">
+<Text size="large" textAlign="start">
 Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
 </Text>
 </Col>
@@ -59,12 +59,12 @@ Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
 
 <Col span={{ large: 5 }} align="stretch">
 <Box justify="around" flex="grow">
-<Text size="large" textAlign="left">
+<Text size="large" textAlign="start">
 Borrowers can finance their real-world assets without banks or other intermediaries.
 </Text>
 
 <ResponsiveContent breakpoints={["large"]}>
-<Text size="large" textAlign="left">
+<Text size="large" textAlign="start">
 Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
 </Text>
 </ResponsiveContent>
@@ -82,7 +82,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <ResponsiveContent breakpoints={["small", "medium"]}>
 <Row>
 <Col span={12}>
-<Text size="large" textAlign="left">
+<Text size="large" textAlign="start">
 Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
 </Text>
 </Col>
@@ -100,7 +100,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <Col span={1} margin={{ bottom: "large" }} />
 <Col span={5}>
 <Box gap="large">
-<Text size="xlarge" weight={500} textAlign="left">We are the bridge that brings<br/>trillions from he real world to DeFi</Text>
+<Text size="xlarge" weight={500} textAlign="start">We are the bridge that brings<br/>trillions from he real world to DeFi</Text>
 
 <ResponsiveContent breakpoints={["large", "medium"]}>
 <Button primary white label="About Centrifuge" alignSelf="start" href="/about" />
