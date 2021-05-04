@@ -82,8 +82,17 @@ const Hero = () => {
         <Text size={config[size].subheadingSize}>$2,430,346.95</Text>
       </Box>
       <Box direction={size !== "small" ? "row" : "column"} gap="small">
-        <Button primary label="Try our Dapp" />
-        <Button label="Learn More" />
+        <Button
+          primary
+          label="Try our Dapp"
+          href="https://tinlake.centrifuge.io"
+          target="_blank"
+        />
+        <Button
+          label="Learn More"
+          href="https://docs.centrifuge.io"
+          target="_blank"
+        />
       </Box>
     </Box>
   );

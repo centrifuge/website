@@ -3,6 +3,7 @@
 import LatestNewsSection from '../partials/home/LatestNewsSection';
 import OrbitSection from '../partials/home/OrbitSection';
 import Hero from '../components/Hero';
+import SocialTipButton from '../components/SocialTipButton';
 
 import illustration_1 from "../images/home/illustrations/1.svg";
 import illustration_2 from "../images/home/illustrations/2.svg";
@@ -139,22 +140,22 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 
 <ResponsiveContent breakpoints={["large", "medium"]}>
 <Box direction="row" gap="xlarge" justify="center">
-<Button plain icon={<Image src={forum} />} target="_blank" rel="noreferrer noopener" />
-<Button plain icon={<Image src={discord} />} target="_blank" rel="noreferrer noopener" />
-<Button plain icon={<Image src={telegram} />} target="_blank" rel="noreferrer noopener" />
-<Button plain icon={<Image src={twitter} />} target="_blank" rel="noreferrer noopener" />
+<SocialTipButton icon={<Image src={forum} />} tooltipContent="For long form and governance discussions" href="https://gov.centrifuge.io" />
+<SocialTipButton icon={<Image src={discord} />} tooltipContent="The social hub of Centrifuge" href="https://centrifuge.io/discord" />
+<SocialTipButton icon={<Image src={telegram} />} tooltipContent="The one stop Centrifuge channel" href="https://t.me/centrifuge_chat" />
+<SocialTipButton icon={<Image src={twitter} />} tooltipContent="Follow us on Twitter" href="https://twitter.com/centrifuge" />
 </Box>
 </ResponsiveContent>
 
 <ResponsiveContent breakpoints={["small"]}>
 <Box gap="large">
 <Box direction="row" gap="xlarge" justify="center">
-<Button plain icon={<Image src={forum} />} target="_blank" rel="noreferrer noopener" />
-<Button plain icon={<Image src={discord} />} target="_blank" rel="noreferrer noopener" />
+<SocialTipButton icon={<Image src={forum} />} tooltipContent="For long form and governance discussions" href="https://gov.centrifuge.io" />
+<SocialTipButton icon={<Image src={discord} />} tooltipContent="The social hub of Centrifuge" href="https://centrifuge.io/discord" />
 </Box>
 <Box direction="row" gap="xlarge" justify="center">
-<Button plain icon={<Image src={telegram} />} target="_blank" rel="noreferrer noopener" />
-<Button plain icon={<Image src={twitter} />} target="_blank" rel="noreferrer noopener" />
+<SocialTipButton icon={<Image src={telegram} />} tooltipContent="The one stop Centrifuge channel" href="https://t.me/centrifuge_chat" />
+<SocialTipButton icon={<Image src={twitter} />} tooltipContent="Follow us on Twitter" href="https://twitter.com/centrifuge" />
 </Box>
 </Box>
 </ResponsiveContent>
