@@ -338,6 +338,7 @@ const custom = {
       ${props.primary &&
         css`
           &:hover {
+            color: #fff;
             background-color: #2762ff;
           }
 

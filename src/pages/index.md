@@ -103,7 +103,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <Text size="xlarge" weight={500} textAlign="left">We are the bridge that brings<br/>trillions from he real world to DeFi</Text>
 
 <ResponsiveContent breakpoints={["large", "medium"]}>
-<Button primary color="black" label="About Centrifuge" alignSelf="start" href="/about" />
+<Button primary white label="About Centrifuge" alignSelf="start" href="/about" />
 </ResponsiveContent>
 <ResponsiveContent breakpoints={["small"]}>
 <Button primary color="black" label="About Centrifuge" href="/about" />
