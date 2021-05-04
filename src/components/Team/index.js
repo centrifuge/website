@@ -106,7 +106,11 @@ const Team = () => {
       </Box>
       <Grid mt="large" mb="large" gap="36">
         {teamMembers
-          .sort(() => Math.random() - 0.5)
+          .sort((a, b) => {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+          })
           .map(member => (
             <Column
               span={{ small: 6, large: 3, medium: 4 }}

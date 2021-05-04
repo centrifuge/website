@@ -16,7 +16,7 @@ import Team from "../components/Team";
 </Box>
 
 <Box align="start">
-<Button primary label="About Centrifuge" />
+<Button primary label="About Centrifuge" href="/about" />
 </Box>
 </Box>
 
