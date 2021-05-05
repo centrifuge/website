@@ -11,8 +11,8 @@ const config = {
   large: {
     image: hero_large,
     gap: "medium",
-    height: "50%",
-    paddingTop: "15%",
+    height: "43%",
+    paddingTop: "10%",
     paddingBottom: "5%",
     headingSize: "xxlarge",
     subheadingSize: "xlarge"
@@ -59,6 +59,7 @@ const Hero = () => {
         size={config[size].subheadingSize}
         color="dark-4"
         textAlign="center"
+        weight={500}
       >
         Unlocking liquidity for real world assets
       </Text>
@@ -78,7 +79,7 @@ const Hero = () => {
       fill="horizontal"
     >
       <Box direction="row" gap="small">
-        <Text size={config[size].subheadingSize} weight={420}>
+        <Text size={config[size].subheadingSize} weight={500}>
           Current TVL:
         </Text>
         <TVL size={config[size].subheadingSize} />

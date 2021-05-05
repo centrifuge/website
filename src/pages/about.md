@@ -24,7 +24,7 @@ import Team from "../components/Team";
 <Col span={1} margin="medium" />
 <Col span={5}>
 
-<Text size="large" color="dark-4" style={{ textAlign: "left" }}>by connecting people to borrow and lend money transparently and cost-effectively;<br/>free of rent-seeking intermediaries and the inefficiencies of traditional finance.</Text>
+<Text size="large" color="dark-4" style={{ textAlign: "left" }} weight={500}>by connecting people to borrow and lend money transparently and cost-effectively;<br/>free of rent-seeking intermediaries and the inefficiencies of traditional finance.</Text>
 
 </Col>
 </Row>

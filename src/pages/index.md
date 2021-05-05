@@ -23,103 +23,125 @@ import play_button from "../images/play_button.svg";
 <Box fill="horizontal" border />
 </Section>
 
-<Section gap="large">
-
+<Section>
+<ResponsiveContent breakpoints={["large", "medium"]}>
 <Row>
 
 <Col span={{ large: 3 }}>
-<Text size="large" textAlign="start">
-Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
-</Text>
-</Col>
-
-<Col span={{ large: 1 }} margin={{ bottom: "large" }} />
-<Col span={{ large: 8 }}>
-<Box style={{ position: "relative" }}>
-<Image src={illustration_1} />
-
-<ResponsiveContent breakpoints={["large"]}>
-<Button plain icon={<Image src={play_button} />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-
-<ResponsiveContent breakpoints={["medium"]}>
-<Button plain icon={<Image src={play_button} />} style={{ position: "absolute", top: "52%", left: "17%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-
-<ResponsiveContent breakpoints={["small"]}>
-<Button plain icon={<Image src={play_button} width="30px" />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-
-</Box>
-</Col>
-
-</Row>
-
-<Row>
-
-<Col span={{ large: 5 }} align="stretch">
-<Box justify="around" flex="grow">
+<Box justify="between" flex="grow" gap="xlarge">
 <Text size="large" textAlign="start">
 Borrowers can finance their real-world assets without banks or other intermediaries.
 </Text>
 
-<ResponsiveContent breakpoints={["large"]}>
 <Text size="large" textAlign="start">
 Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
 </Text>
-</ResponsiveContent>
 
+<Text size="large" textAlign="start">
+Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
+</Text>
 </Box>
 </Col>
 
-<Col span={{ large: 1 }} margin={{ bottom: "large" }} />
-<Col span={{ large: 6 }}>
+<Col span={8}>
+<Box gap="medium">
+<Box style={{ position: "relative" }}>
+<Image src={illustration_1} />
+<ResponsiveContent breakpoints={["large"]}>
+<Button plain icon={<Image src={play_button} />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
+</ResponsiveContent>
+<ResponsiveContent breakpoints={["medium"]}>
+<Button plain icon={<Image src={play_button} />} style={{ position: "absolute", top: "52%", left: "17%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
+</ResponsiveContent>
+<ResponsiveContent breakpoints={["small"]}>
+<Button plain icon={<Image src={play_button} width="30px" />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
+</ResponsiveContent>
+</Box>
+
+<Box pad={{ left: "xlarge" }}>
 <Image src={illustration_2} />
+</Box>
+</Box>
 </Col>
 
-</Row>
-
-<ResponsiveContent breakpoints={["small", "medium"]}>
-<Row>
-<Col span={12}>
-<Text size="large" textAlign="start">
-Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
-</Text>
-</Col>
 </Row>
 </ResponsiveContent>
 
+<ResponsiveContent breakpoints={["small"]}>
+<Box gap="xlarge">
+
+<Text size="large" textAlign="start">
+Borrowers can finance their real-world assets without banks or other intermediaries.
+</Text>
+
+<Box style={{ position: "relative" }}>
+<Image src={illustration_1} />
+<ResponsiveContent breakpoints={["small"]}>
+<Button plain icon={<Image src={play_button} width="30px" />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
+</ResponsiveContent>
+</Box>
+
+<Text size="large" textAlign="start">
+Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
+</Text>
+
+<Image src={illustration_2} />
+
+<Text size="large" textAlign="start">
+Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
+</Text>
+
+</Box>
+</ResponsiveContent>
 </Section>
 
 <!-- Orbit Section -->
 <OrbitSection gap="large">
+<Box>
+
+<ResponsiveContent breakpoints={["large", "medium"]}>
 <Row>
 <Col span={6}>
 <Image src={orbit} />
 </Col>
 <Col span={1} margin={{ bottom: "large" }} />
-<Col span={5}>
+<Col span={5} align="end">
 <Box gap="large">
 <Text size="xlarge" weight={500} textAlign="start">We are the bridge that brings<br/>trillions from he real world to DeFi</Text>
-
-<ResponsiveContent breakpoints={["large", "medium"]}>
 <Button primary white label="About Centrifuge" alignSelf="start" href="/about" />
-</ResponsiveContent>
-<ResponsiveContent breakpoints={["small"]}>
-<Button primary color="black" label="About Centrifuge" href="/about" />
-</ResponsiveContent>
-
 </Box>
 </Col>
 </Row>
+</ResponsiveContent>
+
+
+
+<ResponsiveContent breakpoints={["small"]}>
+<Box gap="xlarge">
+
+<Box gap="large">
+<Text size="xlarge" weight={500} textAlign="center">We are the bridge that brings<br/>trillions from he real world to DeFi</Text>
+<Button primary white label="About Centrifuge" alignSelf="center" href="/about" />
+</Box>
+
+<Image src={orbit} />
+
+</Box>
+</ResponsiveContent>
+
+</Box>
 
 <Box>
 <ResponsiveContent breakpoints={["large", "medium"]}>
+<Row>
+<Col span={6}>
 <Box direction="row" gap="medium" justify="center">
 <Text textAlign="center"><em>‍🛠 built on Substrate</em></Text>
 <Text textAlign="center"><em>⚡ powered by Ethereum</em></Text>
 <Text textAlign="center"><em>🔗 bridged with Polkadot</em></Text>
 </Box>
+</Col>
+</Row>
 </ResponsiveContent>
 
 <ResponsiveContent breakpoints={["small"]}>
@@ -134,12 +156,13 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 </OrbitSection>
 
 <!-- Social Buttons -->
-<Section gap="medium">
+<Section gap="large">
 
-<Text color="dark-4" size="large" textAlign="center">Join the Community</Text>
+<Text color="dark-4" size="20px" textAlign="center" weight={500}>Join the Community</Text>
 
+<Box>
 <ResponsiveContent breakpoints={["large", "medium"]}>
-<Box direction="row" gap="xlarge" justify="center">
+<Box direction="row" gap="xxlarge" justify="center">
 <SocialTipButton icon={<Image src={forum} />} tooltipContent="For long form and governance discussions" href="https://gov.centrifuge.io" />
 <SocialTipButton icon={<Image src={discord} />} tooltipContent="The social hub of Centrifuge" href="https://centrifuge.io/discord" />
 <SocialTipButton icon={<Image src={telegram} />} tooltipContent="The one stop Centrifuge channel" href="https://t.me/centrifuge_chat" />
@@ -159,6 +182,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 </Box>
 </Box>
 </ResponsiveContent>
+</Box>
 
 </Section>
 

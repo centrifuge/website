@@ -100,7 +100,7 @@ const Team = () => {
         >
           Who is building Centrifuge?
         </Text>
-        <Text size="large" color="dark-4">
+        <Text size="20px" color="dark-4" weight={500}>
           Contributors
         </Text>
       </Box>
