@@ -2,6 +2,7 @@
 
 import LatestNewsSection from '../partials/home/LatestNewsSection';
 import OrbitSection from '../partials/home/OrbitSection';
+import Illustration1 from '../partials/home/Illustration1';
 import Hero from '../components/Hero';
 import SocialTipButton from '../components/SocialTipButton';
 
@@ -13,8 +14,6 @@ import forum from "../images/social-icons/forum.svg";
 import discord from "../images/social-icons/discord.svg";
 import telegram from "../images/social-icons/telegram.svg";
 import twitter from "../images/social-icons/twitter.svg";
-
-import play_button from "../images/play_button.svg";
 
 <!-- Intro -->
 <Hero />
@@ -30,11 +29,11 @@ import play_button from "../images/play_button.svg";
 <Col span={{ large: 3 }}>
 <Box justify="between" flex="grow" gap="xlarge">
 <Text size="large" textAlign="start">
-Borrowers can finance their real-world assets without banks or other intermediaries.
+Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
 </Text>
 
 <Text size="large" textAlign="start">
-Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
+Borrowers can finance their real-world assets without banks or other intermediaries.
 </Text>
 
 <Text size="large" textAlign="start">
@@ -45,18 +44,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 
 <Col span={8}>
 <Box gap="medium">
-<Box style={{ position: "relative" }}>
-<Image src={illustration_1} />
-<ResponsiveContent breakpoints={["large"]}>
-<Button plain icon={<Image src={play_button} />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-<ResponsiveContent breakpoints={["medium"]}>
-<Button plain icon={<Image src={play_button} />} style={{ position: "absolute", top: "52%", left: "17%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-<ResponsiveContent breakpoints={["small"]}>
-<Button plain icon={<Image src={play_button} width="30px" />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-</Box>
+<Illustration1 />
 
 <Box pad={{ left: "xlarge" }}>
 <Image src={illustration_2} />
@@ -71,18 +59,13 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <Box gap="xlarge">
 
 <Text size="large" textAlign="start">
-Borrowers can finance their real-world assets without banks or other intermediaries.
+Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
 </Text>
 
-<Box style={{ position: "relative" }}>
-<Image src={illustration_1} />
-<ResponsiveContent breakpoints={["small"]}>
-<Button plain icon={<Image src={play_button} width="30px" />} style={{ position: "absolute", top: "52%", left: "16%", transform: "translateY(-50%)" }} href="https://youtu.be/23nQWgO4AfA" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-</Box>
+<Illustration1 />
 
 <Text size="large" textAlign="start">
-Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
+Borrowers can finance their real-world assets without banks or other intermediaries.
 </Text>
 
 <Image src={illustration_2} />
@@ -107,7 +90,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <Col span={1} margin={{ bottom: "large" }} />
 <Col span={5} align="end">
 <Box gap="large">
-<Text size="xlarge" weight={500} textAlign="start">We are the bridge that brings<br/>trillions from he real world to DeFi</Text>
+<Text size="xlarge" weight={500} textAlign="start">We are the bridge that brings<br/>trillions from the real world to DeFi</Text>
 <Button primary white label="About Centrifuge" alignSelf="start" href="/about" />
 </Box>
 </Col>
@@ -120,7 +103,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <Box gap="xlarge">
 
 <Box gap="large">
-<Text size="xlarge" weight={500} textAlign="center">We are the bridge that brings<br/>trillions from he real world to DeFi</Text>
+<Text size="xlarge" weight={500} textAlign="center">We are the bridge that brings<br/>trillions from the real world to DeFi</Text>
 <Button primary white label="About Centrifuge" alignSelf="center" href="/about" />
 </Box>
 
