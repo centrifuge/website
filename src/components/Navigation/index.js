@@ -236,19 +236,9 @@ class Navigation extends React.Component {
               </PaddedItem>
 
               <PaddedItem>
-                <ExternalNavLink href="https://coinlist.co/centrifuge">
+                <ExternalNavLink href="/cfg-token-summarby">
                   Centrifuge Token
                 </ExternalNavLink>
-                <List>
-                  <Item>
-                    <ExternalNavLink href="https://coinlist.co/centrifuge">
-                      Sale
-                    </ExternalNavLink>
-                    <ExternalNavLink href="/cfg-token-summary">
-                      Token Summary
-                    </ExternalNavLink>
-                  </Item>
-                </List>
               </PaddedItem>
 
               <PaddedItem>
