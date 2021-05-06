@@ -29,11 +29,21 @@ import twitter from "../images/social-icons/twitter.svg";
 <Row>
 
 <Col span={3}>
-<Box justify="between" flex="grow" gap="xlarge">
 <Text size="large" textAlign="start">
 Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
 </Text>
+</Col>
 
+<Col span={1} />
+
+<Col span={8}>
+<Image src={illustration_1} />
+</Col>
+</Row>
+
+<Row>
+<Col span={3} align="stretch">
+<Box justify="between" flex="grow" pad={{ vertical: "medium" }}>
 <Text size="large" textAlign="start">
 Borrowers can finance their real-world assets without banks or other intermediaries.
 </Text>
@@ -47,12 +57,8 @@ Providing liquidity is open to everyone. Investors receive a return  plus CFG re
 <Col span={1} />
 
 <Col span={8}>
-<Box gap="medium">
-<Image src={illustration_1} />
-
 <Box pad={{ left: "xlarge" }}>
 <Image src={illustration_2} />
-</Box>
 </Box>
 </Col>
 
