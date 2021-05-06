@@ -2,7 +2,7 @@
 
 import LatestNewsSection from '../partials/home/LatestNewsSection';
 import OrbitSection from '../partials/home/OrbitSection';
-import Illustration1 from '../partials/home/Illustration1';
+import PlayButton from '../partials/home/PlayButton';
 import Hero from '../components/Hero';
 import SocialTipButton from '../components/SocialTipButton';
 
@@ -22,16 +22,28 @@ import twitter from "../images/social-icons/twitter.svg";
 <Box fill="horizontal" border />
 </Section>
 
+<!-- Second Section -->
 <Section>
 <ResponsiveContent breakpoints={["large", "medium"]}>
+<Box gap="large">
 <Row>
 
-<Col span={{ large: 3 }}>
-<Box justify="between" flex="grow" gap="xlarge">
+<Col span={3}>
 <Text size="large" textAlign="start">
 Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
 </Text>
+</Col>
 
+<Col span={1} />
+
+<Col span={8}>
+<Image src={illustration_1} />
+</Col>
+</Row>
+
+<Row>
+<Col span={3} align="stretch">
+<Box justify="between" flex="grow" pad={{ vertical: "medium" }}>
 <Text size="large" textAlign="start">
 Borrowers can finance their real-world assets without banks or other intermediaries.
 </Text>
@@ -42,17 +54,26 @@ Providing liquidity is open to everyone. Investors receive a return  plus CFG re
 </Box>
 </Col>
 
-<Col span={8}>
-<Box gap="medium">
-<Illustration1 />
+<Col span={1} />
 
+<Col span={8}>
 <Box pad={{ left: "xlarge" }}>
 <Image src={illustration_2} />
-</Box>
 </Box>
 </Col>
 
 </Row>
+<Row>
+<Col span={4} />
+<Col span={8}>
+
+<Box pad={{ left: "xlarge" }}>
+<PlayButton />
+</Box>
+
+</Col>
+</Row>
+</Box>
 </ResponsiveContent>
 
 <ResponsiveContent breakpoints={["small"]}>
@@ -62,7 +83,7 @@ Providing liquidity is open to everyone. Investors receive a return  plus CFG re
 Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
 </Text>
 
-<Illustration1 />
+<Image src={illustration_1} />
 
 <Text size="large" textAlign="start">
 Borrowers can finance their real-world assets without banks or other intermediaries.
@@ -73,6 +94,8 @@ Borrowers can finance their real-world assets without banks or other intermediar
 <Text size="large" textAlign="start">
 Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
 </Text>
+
+<PlayButton />
 
 </Box>
 </ResponsiveContent>
