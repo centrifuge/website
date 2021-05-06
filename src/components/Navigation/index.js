@@ -236,15 +236,9 @@ class Navigation extends React.Component {
               </PaddedItem>
 
               <PaddedItem>
-                <NavLink to="/cfg">Centrifuge Token</NavLink>
-                <List>
-                  <Item>
-                    <NavLink to="/cfg">Get CFG</NavLink>
-                    <ExternalNavLink href="https://ir.centrifuge.io/">
-                      Investor Relations
-                    </ExternalNavLink>
-                  </Item>
-                </List>
+                <ExternalNavLink href="/cfg-token-summary">
+                  Centrifuge Token
+                </ExternalNavLink>
               </PaddedItem>
 
               <PaddedItem>

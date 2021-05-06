@@ -106,11 +106,22 @@ const SubBlockContact = ({ title, email }) => (
   </Box>
 );
 
+const SubBlockLink = ({ title, href, label }) => (
+  <Box direction="row" gap="xsmall" align="start">
+    <Text weight="bold">{title}:</Text>
+    <FooterExternalLinkItem href={href}>{label}</FooterExternalLinkItem>
+  </Box>
+);
+
 const BlockHello = () => (
   <>
-    <SubBlockContact title="General" email="hello@centrifuge.io" />
-    <SubBlockContact title="Press, Events, Media" email="comms@centrifuge.io" />
+    <SubBlockLink
+      title="Telegram"
+      href="https://t.me/centrifuge_chat"
+      label="t.me/centrifuge_chat"
+    />
     <SubBlockContact title="Partnerships" email="bizdev@centrifuge.io" />
+    <SubBlockContact title="Media + Press" email="comms@centrifuge.io" />
   </>
 );
 

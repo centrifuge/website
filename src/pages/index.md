@@ -1,189 +1,175 @@
 <!-- Imports -->
 
 import LatestNewsSection from '../partials/home/LatestNewsSection';
-import TinlakeCard from '../components/TinlakeCard';
+import OrbitSection from '../partials/home/OrbitSection';
+import Illustration1 from '../partials/home/Illustration1';
+import Hero from '../components/Hero';
+import SocialTipButton from '../components/SocialTipButton';
+
+import illustration_1 from "../images/home/illustrations/1.svg";
+import illustration_2 from "../images/home/illustrations/2.svg";
+import orbit from "../images/home/orbit.png";
+
+import forum from "../images/social-icons/forum.svg";
+import discord from "../images/social-icons/discord.svg";
+import telegram from "../images/social-icons/telegram.svg";
+import twitter from "../images/social-icons/twitter.svg";
 
 <!-- Intro -->
+<Hero />
+
 <Section>
-
-<Row>
-<Col span={4}>
-
-<ResponsiveContent breakpoints={["medium", "large"]}>
-<Heading lined style={{ fontSize: "24px" }} margin={{ bottom: "large" }}>
-Decentralized Asset Finance
-</Heading>
-</ResponsiveContent>
-
-<ResponsiveContent breakpoints={["small"]}>
-<Heading lined style={{ fontSize: "24px" }} margin={{ bottom: "xlarge" }} textAlign="center">
-Decentralized Asset Finance
-</Heading>
-</ResponsiveContent>
-
-</Col>
-</Row>
-
-<Row>
-<Col span={4} margin={{bottom: "large"}}>
-
-<Box margin={{ bottom: "large" }}>
-<Text size="20px" textAlign="center" weight={500}>
-Finance real-world assets in DeFi
-</Text>
-</Box>
-
-<Button primary target="_blank" href="https://tinlake.centrifuge.io/" label="Try the Dapp" />
-</Col>
-<Col span={4} margin={{bottom: "large"}}>
-
-![](../images/home/illustration_1.svg)
-
-</Col>
-<Col span={4} margin={{bottom: "large"}}>
-
-<Box margin={{ bottom: "large" }}>
-<Text size="20px" textAlign="center" weight={500}>
-Learn more how it all works
-</Text>
-</Box>
-
-<Button primary target="_blank" href="https://docs.centrifuge.io/" label="Docs" />
-</Col>
-</Row>
-
+<Box fill="horizontal" border />
 </Section>
 
-<!-- Tinlake -->
-<TinlakeCard heading="See how an open source, asset-backed financing protocol works with our first Dapp">
-
-<ResponsiveContent breakpoints={["medium", "large"]}>
-<Box gap="small">
+<Section>
+<ResponsiveContent breakpoints={["large", "medium"]}>
 <Row>
 
-<Col span={4}>
+<Col span={{ large: 3 }}>
+<Box justify="between" flex="grow" gap="xlarge">
+<Text size="large" textAlign="start">
+Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
+</Text>
 
-### Unlock Liquidity
+<Text size="large" textAlign="start">
+Borrowers can finance their real-world assets without banks or other intermediaries.
+</Text>
 
+<Text size="large" textAlign="start">
+Providing liquidity is open to everyone. Investors receive a return  plus CFG rewards.
+</Text>
+</Box>
 </Col>
-<Col span={4}>
 
-### Without the banks
+<Col span={8}>
+<Box gap="medium">
+<Illustration1 />
 
+<Box pad={{ left: "xlarge" }}>
+<Image src={illustration_2} />
+</Box>
+</Box>
 </Col>
-<Col span={4}>
 
-### Made by people who understand finance + innovation
-
-</Col>
 </Row>
+</ResponsiveContent>
+
+<ResponsiveContent breakpoints={["small"]}>
+<Box gap="xlarge">
+
+<Text size="large" textAlign="start">
+Centrifuge bridges assets like invoices, real estate, and royalties to DeFi.
+</Text>
+
+<Illustration1 />
+
+<Text size="large" textAlign="start">
+Borrowers can finance their real-world assets without banks or other intermediaries.
+</Text>
+
+<Image src={illustration_2} />
+
+<Text size="large" textAlign="start">
+Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
+</Text>
+
+</Box>
+</ResponsiveContent>
+</Section>
+
+<!-- Orbit Section -->
+<OrbitSection gap="large">
+<Box>
+
+<ResponsiveContent breakpoints={["large", "medium"]}>
 <Row>
-<Col span={4}>
-
-Asset Originators can collateralize invoices, royalties, and other real-world assets for untapped liquidity in DeFi.
-
+<Col span={6}>
+<Image src={orbit} />
 </Col>
-<Col span={4}>
-
-That means your money and collateral passing through fewer hands. An end-to-end solution, powered by our RAD token.
-
-</Col>
-<Col span={4}>
-
-We are a team of innovators from both traditional Fintech and DeFi. Together, we find the best way to connect both worlds.
-
+<Col span={1} margin={{ bottom: "large" }} />
+<Col span={5} align="end">
+<Box gap="large">
+<Text size="xlarge" weight={500} textAlign="start">We are the bridge that brings<br/>trillions from the real world to DeFi</Text>
+<Button primary darkBackground color="black" label="About Centrifuge" alignSelf="start" href="/about" />
+</Box>
 </Col>
 </Row>
+</ResponsiveContent>
+
+
+
+<ResponsiveContent breakpoints={["small"]}>
+<Box gap="xlarge">
+
+<Box gap="large">
+<Text size="xlarge" weight={500} textAlign="center">We are the bridge that brings<br/>trillions from the real world to DeFi</Text>
+<Button primary white label="About Centrifuge" alignSelf="center" href="/about" />
+</Box>
+
+<Image src={orbit} />
+
+</Box>
+</ResponsiveContent>
+
+</Box>
+
+<Box>
+<ResponsiveContent breakpoints={["large", "medium"]}>
+<Row>
+<Col span={6}>
+<Box direction="row" gap="medium" justify="center">
+<Text textAlign="center"><em>‍🛠 built on Substrate</em></Text>
+<Text textAlign="center"><em>⚡ powered by Ethereum</em></Text>
+<Text textAlign="center"><em>🔗 bridged with Polkadot</em></Text>
+</Box>
+</Col>
+</Row>
+</ResponsiveContent>
+
+<ResponsiveContent breakpoints={["small"]}>
+<Box gap="medium">
+<Text textAlign="center"><em>‍🛠 built on Substrate</em></Text>
+<Text textAlign="center"><em>⚡ powered by Ethereum</em></Text>
+<Text textAlign="center"><em>🔗 bridged with Polkadot</em></Text>
+</Box>
+</ResponsiveContent>
+</Box>
+
+</OrbitSection>
+
+<!-- Social Buttons -->
+<Section gap="large">
+
+<Text color="dark-4" size="20px" textAlign="center" weight={500}>Join the Community</Text>
+
+<Box>
+<ResponsiveContent breakpoints={["large", "medium"]}>
+<Box direction="row" gap="xxlarge" justify="center">
+<SocialTipButton icon={<Image src={forum} />} tooltipContent="For long form and governance discussions" href="https://gov.centrifuge.io" />
+<SocialTipButton icon={<Image src={discord} />} tooltipContent="The social hub of Centrifuge" href="https://centrifuge.io/discord" />
+<SocialTipButton icon={<Image src={telegram} />} tooltipContent="The one stop Centrifuge channel" href="https://t.me/centrifuge_chat" />
+<SocialTipButton icon={<Image src={twitter} />} tooltipContent="Follow us on Twitter" href="https://twitter.com/centrifuge" />
 </Box>
 </ResponsiveContent>
 
 <ResponsiveContent breakpoints={["small"]}>
-<Row>
-
-<Col span={4} margin={{ bottom: "large" }}>
-
-### Unlock Liquidity
-
-Asset Originators can collateralize invoices, royalties, and other real-world assets for untapped liquidity in DeFi.
-
-</Col>
-<Col span={4} margin={{ bottom: "large" }}>
-
-### Without the banks
-
-That means your money and collateral passing through fewer hands. An end-to-end solution, powered by our RAD token.
-
-</Col>
-<Col span={4}>
-
-### Made by people who understand finance + innovation
-
-We are a team of innovators from both traditional Fintech and DeFi. Together, we find the best way to connect both worlds.
-
-</Col>
-</Row>
+<Box gap="large">
+<Box direction="row" gap="xlarge" justify="center">
+<SocialTipButton icon={<Image src={forum} />} tooltipContent="For long form and governance discussions" href="https://gov.centrifuge.io" />
+<SocialTipButton icon={<Image src={discord} />} tooltipContent="The social hub of Centrifuge" href="https://centrifuge.io/discord" />
+</Box>
+<Box direction="row" gap="xlarge" justify="center">
+<SocialTipButton icon={<Image src={telegram} />} tooltipContent="The one stop Centrifuge channel" href="https://t.me/centrifuge_chat" />
+<SocialTipButton icon={<Image src={twitter} />} tooltipContent="Follow us on Twitter" href="https://twitter.com/centrifuge" />
+</Box>
+</Box>
 </ResponsiveContent>
+</Box>
 
-</TinlakeCard>
+</Section>
 
 <!-- Latest News -->
+<Section>
 <LatestNewsSection />
-
-<!-- The Open Protocol to Access Decentralized Future -->
-<Section>
-<Row>
-<Col span={5}>
-
-![](../images/home/illustration_2.svg)
-
-</Col>
-<Col span={1} margin={{ bottom: "large" }}></Col>
-<Col span={6}>
-
-<Heading lined margin={{ bottom: "medium" }} style={{ fontSize: "24px" }}>
-The Open Protocol to Access Decentralized Finance
-</Heading>
-
-We see a future of open finance, where businesses use decentralized currencies to make our world spin. The Centrifuge protocol is open source and built to plug your business to Web 3.
-
-<ResponsiveContent breakpoints={["medium", "large"]}>
-<Button primary label="Add us to your Stack" align="end" margin={{ top: "medium" }} href="https://developer.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-<ResponsiveContent breakpoints={["small"]}>
-<Button primary href="https://developer.centrifuge.io/" label="Add us to your Stack" margin={{ top: "medium" }} />
-</ResponsiveContent>
-
-</Col>
-</Row>
-</Section>
-
-<!-- DeFi is a grassroots finanical movement, powered by the community. -->
-<Section>
-<Row>
-<Col span={6}>
-
-# DeFi is a grassroots financial movement, powered by the community.
-
-The DeFi community is different from anything the financial world has seen before. Token holders have a voice and a vote on the direction of the protocol. All of our protocols are interdependent on one another, making it a financial system powered by community.
-
-We are proud to take part in the larger DeFi ecosystem, one that demands the financial world to revisit its purpose in the first place: to circulate and distribute money in a fair and trustless way.
-
-<ResponsiveContent breakpoints={["medium", "large"]}>
-<Button primary label="Join the conversation on Discourse" align="end" margin={{ top: "medium" }} href="https://gov.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-<ResponsiveContent breakpoints={["small"]}>
-<Button primary label="Join the conversation on Discourse" margin={{ top: "medium" }} href="https://gov.centrifuge.io/" target="_blank" rel="noreferrer noopener" />
-</ResponsiveContent>
-
-</Col>
-<Col span={1} margin={{ vertical: "xlarge" }}></Col>
-<Col span={5}>
-<Box gap="large">
-<Text size="20px" textAlign="center">Building a fair financial system with:</Text>
-<Image src="../images/home/maker_logo.svg" width="300px" alignSelf="center" />
-<Image src="../images/home/celo_logo.svg" width="300px" alignSelf="center" />
-<Image src="../images/home/circle_logo.svg" width="300px" alignSelf="center" />
-</Box>
-</Col>
-</Row>
 </Section>

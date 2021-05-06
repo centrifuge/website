@@ -25,10 +25,10 @@ const mediumPostsServerOptions = {
 
 module.exports = {
   siteMetadata: {
-    title: `Centrifuge: Decentralized Asset Finance`,
+    title: `Centrifuge: Real World DeFi`,
     siteUrl: process.env.URL || "http://localhost:8000",
-    longTitle: `Centrifuge: Decentralized Asset Finance`,
-    description: `Centrifuge is the protocol for decentralized asset finance. Asset Originators can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.`,
+    longTitle: `Centrifuge: Real World DeFi`,
+    description: `Decentralized asset finance: asset Originators can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.`,
     author: `@centrifuge`,
     lambdaUrl:
       process.env.NODE_ENV == "production"
