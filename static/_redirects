@@ -11,6 +11,7 @@ https://centrifuge-website.netlify.com/* https://centrifuge.io/:splat 301!
 /discord       https://discord.gg/yEzyUq5gxF
 
 /whitepaper    /centrifuge_os_white_paper.pdf
+/cfg-token-summary  /cfg_token_summary.pdf
 /jobs          /careers
 /slack         /discord
 /rad           /cfg

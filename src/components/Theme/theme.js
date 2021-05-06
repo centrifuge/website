@@ -333,11 +333,20 @@ const custom = {
             opacity: 0.9;
           }
         `}
+      
+      /* White Button Styles */
+      ${props.darkBackground &&
+        css`
+          &:hover {
+            border-color: #fff;
+          }
+        `}
 
       /* Primary Button Styles */
       ${props.primary &&
         css`
           &:hover {
+            color: #fff;
             background-color: #2762ff;
           }
 
