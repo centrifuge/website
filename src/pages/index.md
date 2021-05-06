@@ -8,7 +8,7 @@ import SocialTipButton from '../components/SocialTipButton';
 
 import illustration_1 from "../images/home/illustrations/1.svg";
 import illustration_2 from "../images/home/illustrations/2.svg";
-import orbit from "../images/home/orbit.svg";
+import orbit from "../images/home/orbit.png";
 
 import forum from "../images/social-icons/forum.svg";
 import discord from "../images/social-icons/discord.svg";
@@ -91,7 +91,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <Col span={5} align="end">
 <Box gap="large">
 <Text size="xlarge" weight={500} textAlign="start">We are the bridge that brings<br/>trillions from the real world to DeFi</Text>
-<Button primary white label="About Centrifuge" alignSelf="start" href="/about" />
+<Button primary darkBackground color="black" label="About Centrifuge" alignSelf="start" href="/about" />
 </Box>
 </Col>
 </Row>
