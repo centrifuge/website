@@ -236,7 +236,7 @@ class Navigation extends React.Component {
               </PaddedItem>
 
               <PaddedItem>
-                <ExternalNavLink href="/cfg-token-summar">
+                <ExternalNavLink href="/cfg-token-summary">
                   Centrifuge Token
                 </ExternalNavLink>
               </PaddedItem>
