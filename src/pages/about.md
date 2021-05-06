@@ -9,15 +9,8 @@ import Team from "../components/Team";
 <Row>
 <Col span={6}>
 
-<Box gap="medium">
-
 <Box>
 <Text size="xxlarge" weight={500} style={{ lineHeight: "50px", textAlign: "left" }}>Centrifuge is unlocking<br/>economic opportunity for all</Text>
-</Box>
-
-<Box align="start">
-<Button primary label="About Centrifuge" href="/about" />
-</Box>
 </Box>
 
 </Col>
