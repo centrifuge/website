@@ -116,7 +116,7 @@ const SubBlockLink = ({ title, href, label }) => (
 const BlockHello = () => (
   <>
     <SubBlockLink
-      title="General"
+      title="Telegram"
       href="https://t.me/centrifuge_chat"
       label="t.me/centrifuge_chat"
     />
