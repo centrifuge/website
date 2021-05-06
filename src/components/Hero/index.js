@@ -87,7 +87,7 @@ const Hero = () => {
       <Box direction={size !== "small" ? "row" : "column"} gap="small">
         <Button
           primary
-          label="Try our Dapp"
+          label="Enter app"
           href="https://tinlake.centrifuge.io"
           target="_blank"
         />
