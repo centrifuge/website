@@ -294,16 +294,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/cfg">Centrifuge Token</NavLink>
-
-                <SubItem>
-                  <NavLink to="/cfg">Get CFG</NavLink>
-                </SubItem>
-                <SubItem>
-                  <ExternalNavLink href="https://ir.centrifuge.io/">
-                    Investor Relations
-                  </ExternalNavLink>
-                </SubItem>
+                <NavLink to="/cfg-token-summary">Centrifuge Token</NavLink>
               </MenuItem>
 
               <MenuItem>
