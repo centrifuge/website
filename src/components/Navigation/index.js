@@ -239,6 +239,15 @@ class Navigation extends React.Component {
                 <ExternalNavLink href="/cfg-token-summary">
                   Centrifuge Token
                 </ExternalNavLink>
+
+                <List>
+                  <Item>
+                    <ExternalNavLink href="/cfg-token-summary">
+                      Token Summary
+                    </ExternalNavLink>
+                    <NavLink to="/cfg">Get Centrifuge</NavLink>
+                  </Item>
+                </List>
               </PaddedItem>
 
               <PaddedItem>
@@ -294,7 +303,14 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/cfg-token-summary">Centrifuge Token</NavLink>
+                <ExternalNavLink to="/cfg-token-summary">Centrifuge Token</ExternalNavLink>
+                
+                <SubItem>
+                  <ExternalNavLink to="/cfg-token-summary">Token Summary</ExternalNavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/cfg">Get CFG</NavLink>
+                </SubItem>
               </MenuItem>
 
               <MenuItem>
