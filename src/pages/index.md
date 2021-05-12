@@ -14,6 +14,8 @@ import forum from "../images/social-icons/forum.svg";
 import discord from "../images/social-icons/discord.svg";
 import telegram from "../images/social-icons/telegram.svg";
 import twitter from "../images/social-icons/twitter.svg";
+import announcements from "../images/social-icons/announcements.png";
+import wechat from "../images/social-icons/wechat.png";
 
 <!-- Intro -->
 <Hero />
@@ -173,6 +175,7 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <SocialTipButton icon={<Image src={discord} />} tooltipContent="The social hub of Centrifuge" href="https://centrifuge.io/discord" />
 <SocialTipButton icon={<Image src={telegram} />} tooltipContent="The one stop Centrifuge channel" href="https://t.me/centrifuge_chat" />
 <SocialTipButton icon={<Image src={twitter} />} tooltipContent="Follow us on Twitter" href="https://twitter.com/centrifuge" />
+<SocialTipButton icon={<Image src={announcements} height="52px" margin={{ top: "-2px" }} />} tooltipContent="For general Telegram announcements" href="https://t.me/centrifuge" />
 </Box>
 </ResponsiveContent>
 
@@ -185,6 +188,9 @@ Providing liquidity is open to everyone. Investors receive an return in stableco
 <Box direction="row" gap="xlarge" justify="center">
 <SocialTipButton icon={<Image src={telegram} />} tooltipContent="The one stop Centrifuge channel" href="https://t.me/centrifuge_chat" />
 <SocialTipButton icon={<Image src={twitter} />} tooltipContent="Follow us on Twitter" href="https://twitter.com/centrifuge" />
+</Box>
+<Box direction="row" gap="xlarge" justify="center">
+<SocialTipButton icon={<Image src={announcements} height="52px" margin={{ top: "-2px" }} />} tooltipContent="For general Telegram announcements" href="https://t.me/centrifuge" />
 </Box>
 </Box>
 </ResponsiveContent>
