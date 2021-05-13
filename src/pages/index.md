@@ -14,8 +14,7 @@ import forum from "../images/social-icons/forum.svg";
 import discord from "../images/social-icons/discord.svg";
 import telegram from "../images/social-icons/telegram.svg";
 import twitter from "../images/social-icons/twitter.svg";
-import announcements from "../images/social-icons/announcements.png";
-import wechat from "../images/social-icons/wechat.png";
+import announcements from "../images/social-icons/announcements.svg";
 
 <!-- Intro -->
 <Hero />
