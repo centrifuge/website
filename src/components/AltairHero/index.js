@@ -24,7 +24,14 @@ const AltairHero = () => {
                 Spinning real-world assets into Kusama
               </Text>
             </Box>
-            <Button primary color="altair" label="Sign up" alignSelf="start" />
+            <Button
+              primary
+              color="altair"
+              label="Sign up"
+              alignSelf="start"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdxLCq5In7B5ld9bhllZsnZIsyEiKjqDAm0rCHDtjQzD5aRUw/viewform?usp=sf_link"
+              target="_blank"
+            />
           </Col>
         </Row>
       </Section>
@@ -35,10 +42,9 @@ const AltairHero = () => {
               What is Altair?
             </Text>
             <Text size="large">
-              Altair, one of the fastest spinning stars in the galaxy, is the
-              only thing spinning faster than Centrifuge: Altair is the bridge
-              from Centrifuge to Kusama. You will be able to tokenize real-world
-              assets and finance them in the Kusama network.
+              Altair is one of the fastest spinning stars in the galaxy, and is
+              also the bridge from Centrifuge to Kusama. You will now be able to
+              tokenize real-world assets and finance them on the Kusama network.
             </Text>
           </Col>
           <Col span={2} margin={{ bottom: "xlarge" }} />
@@ -66,26 +72,27 @@ const AltairHero = () => {
       </Section>
       <Section>
         <Row>
-          <Col span={4}>
+          <Col span={5}>
             <Image src={solar_system} />
           </Col>
-          <Col span={2} margin={{ bottom: "xlarge" }} />
+          <Col span={1} margin={{ bottom: "xlarge" }} />
           <Col span={6} gap="medium">
             <Box gap="small">
               <Text size="xlarge" weight={900} textAlign="start">
-                Tinlake, without the rules:
+                Pushing the Limits on Kusama
               </Text>
               <Text size="large" weight={500} textAlign="start">
-                Altair is the home for tokenizing experimental assets
+                The home for tokenizing experimental assets
               </Text>
             </Box>
             <Text size="large">
-              Kusama provides the exact framework needed for launching on
-              Polkadot, but Kusama provides much faster, daring parameters. Even
-              once Centrifuge is fully live on Polkadot, Kusama will be used for
-              minting art NFTs, financing undiscovered assets, and whatever else
-              the Kusama community brings to the table. This means anyone can
-              become an originator, and anyone can invest.
+              Altair combines the industry-leading infrastructure built by
+              Centrifuge to finance real-world assets (RWA) on Centrifuge Chain,
+              with the newest experimental features — before they go live on
+              Centrifuge Chain. Even once Centrifuge is fully live on Polkadot,
+              Kusama will be used for minting art NFTs, financing undiscovered
+              assets, and whatever else the Kusama community brings to the
+              table.
             </Text>
           </Col>
         </Row>

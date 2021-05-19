@@ -31,7 +31,7 @@ import air_4 from "../images/altair/air-token-logos/4.svg";
 <Section gap="large">
 
 <Box alignSelf="center">
-<Text size="xlarge" weight={900} textAlign="center">Token Distribution Snapshot</Text>
+<Text size="xlarge" weight={900} textAlign="center">Distribution at Genesis</Text>
 <Text size="large" textAlign="center">425,000,000 AIR</Text>
 </Box>
 

@@ -9,7 +9,7 @@ import GDPR from "../GDPR";
 
 const Layout = ({ children }) => (
   <Theme>
-    <Navigation />
+    <Navigation dark />
     <main>{children}</main>
     <EmailSubscription />
     <Footer />

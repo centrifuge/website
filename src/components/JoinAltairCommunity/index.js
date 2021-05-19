@@ -24,7 +24,13 @@ const JoinAltairCommunity = () => {
                 50+ AIR : 1 KSM
               </Text>
             </Box>
-            <Button primary label="Sign up" alignSelf="center" />
+            <Button
+              primary
+              label="Sign up"
+              alignSelf="center"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdxLCq5In7B5ld9bhllZsnZIsyEiKjqDAm0rCHDtjQzD5aRUw/viewform?usp=sf_link"
+              target="_blank"
+            />
           </Box>
           <Text size="large" color="white" weight={500}>
             Altair is bidding for the

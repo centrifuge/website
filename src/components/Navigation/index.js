@@ -1,5 +1,11 @@
-import React from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Image,
+  Layer as GrommetLayer,
+  ResponsiveContext
+} from "grommet";
 import { StaticQuery, graphql, navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -12,6 +18,7 @@ import { InternalLink, ExternalLink } from "../Links";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
+import altair_wordmark from "../../images/altair/altair_wordmark_small.svg";
 
 const NavLink = ({ children, to }) => (
   <InternalLink
@@ -194,78 +201,70 @@ const MobileBox = styled(Box)`
   )}
 `;
 
-class Navigation extends React.Component {
-  state = {
-    mobileNavIsOpen: false
-  };
+const Navigation = () => {
+  const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
 
-  toggleMobileNav = () =>
-    this.setState({
-      mobileNavIsOpen: !this.state.mobileNavIsOpen
-    });
+  const toggleMobileNav = () => setMobileNavIsOpen(!mobileNavIsOpen);
 
-  render() {
-    return (
-      <Nav as="nav" role="navigation">
-        <Container>
-          <List style={{ display: "flex", alignItems: "center" }}>
-            {/* Logo */}
-            <Item style={{ flex: 1 }}>
-              <BrandLink />
-            </Item>
+  return (
+    <Nav as="nav" role="navigation">
+      <Container>
+        <List style={{ display: "flex", alignItems: "center" }}>
+          {/* Logo */}
+          <Item style={{ flex: 1 }}>
+            <BrandLink />
+          </Item>
 
-            {/* Mobile Nav Toggle */}
-            <NavButton onClick={this.toggleMobileNav}>
-              {this.state.mobileNavIsOpen ? (
-                <X size={32} />
-              ) : (
-                <Menu size={32} />
-              )}
-            </NavButton>
+          {/* Mobile Nav Toggle */}
+          <NavButton onClick={toggleMobileNav}>
+            {mobileNavIsOpen ? <X size={32} /> : <Menu size={32} />}
+          </NavButton>
 
-            {/* Desktop Nav */}
-            <Dropdowns direction="row" align="center" gap="large">
-              <PaddedItem>
-                <ExternalNavLink href="https://docs.centrifuge.io/">
-                  Docs
-                </ExternalNavLink>
-              </PaddedItem>
+          {/* Desktop Nav */}
+          <Dropdowns direction="row" align="center" gap="large">
+            <PaddedItem>
+              <NavLink to="/altair">
+                <Image src={altair_wordmark} />
+              </NavLink>
+            </PaddedItem>
 
-              <PaddedItem>
-                <NavLink to="/about">About</NavLink>
-              </PaddedItem>
+            <PaddedItem>
+              <ExternalNavLink href="https://docs.centrifuge.io/">
+                Docs
+              </ExternalNavLink>
+            </PaddedItem>
 
-              <PaddedItem>
-                <ExternalNavLink href="/cfg-token-summary">
-                  Centrifuge Token
-                </ExternalNavLink>
+            <PaddedItem>
+              <NavLink to="/about">About</NavLink>
+            </PaddedItem>
 
-                <List>
-                  <Item>
-                    <ExternalNavLink href="/cfg-token-summary">
-                      Token Summary
-                    </ExternalNavLink>
-                    <NavLink to="/cfg">Get Centrifuge</NavLink>
-                  </Item>
-                </List>
-              </PaddedItem>
+            <PaddedItem>
+              <ExternalNavLink href="/cfg-token-summary">
+                Centrifuge Token
+              </ExternalNavLink>
 
-              <PaddedItem>
-                <NavLink to="/careers">Careers</NavLink>
-              </PaddedItem>
-            </Dropdowns>
-          </List>
-        </Container>
+              <List>
+                <Item>
+                  <ExternalNavLink href="/cfg-token-summary">
+                    Token Summary
+                  </ExternalNavLink>
+                  <NavLink to="/cfg">Get Centrifuge</NavLink>
+                </Item>
+              </List>
+            </PaddedItem>
 
-        {/* Mobile Nav */}
-        <MobilePanel
-          state={this.state.mobileNavIsOpen}
-          toggleFunc={this.toggleMobileNav}
-        />
-      </Nav>
-    );
-  }
-}
+            <PaddedItem>
+              <NavLink to="/careers">Careers</NavLink>
+            </PaddedItem>
+          </Dropdowns>
+        </List>
+      </Container>
+
+      {/* Mobile Nav */}
+      <MobilePanel state={mobileNavIsOpen} toggleFunc={toggleMobileNav} />
+    </Nav>
+  );
+};
 
 const MobilePanel = ({ state, toggleFunc }) => (
   <ResponsiveContext.Consumer>
@@ -293,6 +292,12 @@ const MobilePanel = ({ state, toggleFunc }) => (
           >
             <List>
               <MenuItem>
+                <NavLink to="/altair">
+                  <Image src={altair_wordmark} />
+                </NavLink>
+              </MenuItem>
+
+              <MenuItem>
                 <ExternalNavLink href="https://docs.centrifuge.io/">
                   Docs
                 </ExternalNavLink>
@@ -303,10 +308,14 @@ const MobilePanel = ({ state, toggleFunc }) => (
               </MenuItem>
 
               <MenuItem>
-                <ExternalNavLink to="/cfg-token-summary">Centrifuge Token</ExternalNavLink>
-                
+                <ExternalNavLink to="/cfg-token-summary">
+                  Centrifuge Token
+                </ExternalNavLink>
+
                 <SubItem>
-                  <ExternalNavLink to="/cfg-token-summary">Token Summary</ExternalNavLink>
+                  <ExternalNavLink to="/cfg-token-summary">
+                    Token Summary
+                  </ExternalNavLink>
                 </SubItem>
                 <SubItem>
                   <NavLink to="/cfg">Get CFG</NavLink>
