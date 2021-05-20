@@ -1,3 +1,7 @@
+---
+dark: true
+---
+
 import AltairHero from "../components/AltairHero";
 import AltairUtilityBlock from "../components/AltairUtilityBlock";
 import JoinAltairCommunity from "../components/JoinAltairCommunity";

@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Col, Row, Section } from "../MDXLayout/shortcodes";
-import { Box, Button, Image, Text } from "grommet";
+import { Box, Button, Image, ResponsiveContext, Text } from "grommet";
 
 import altair_wordmark from "../../images/altair/altair_wordmark.svg";
+import hero_background from "../../images/altair/hero_background.svg";
 import comet from "../../images/altair/comet.svg";
 import solar_system from "../../images/altair/solar_system.svg";
 
 const AltairHero = () => {
+  const size = useContext(ResponsiveContext);
+
   return (
-    <Box background="black">
+    <Box background="black" style={{ position: "relative" }}>
+      {size !== "small" && (
+        <Image
+          src={hero_background}
+          style={{
+            position: "absolute",
+            right: 0,
+            width: "30vw"
+          }}
+        />
+      )}
       <Section>
         <Row>
           <Col span={4}>

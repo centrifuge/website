@@ -35,7 +35,7 @@ const JoinAltairCommunity = () => {
           <Text size="large" color="white" weight={500}>
             Altair is bidding for the
             <br />
-            longest slot (48 weeks) available.
+            longest slot (48 weeks).
           </Text>
         </Box>
       </Section>
