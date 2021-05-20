@@ -30,11 +30,11 @@ const components = {
 };
 
 export default ({ children, pageContext: { frontmatter } }) => {
-  const { description, title } = frontmatter;
+  const { description, title, dark } = frontmatter;
   const noIndexMeta = { name: "robots", content: "noindex" };
 
   return (
-    <Layout>
+    <Layout title={title} dark={dark}>
       <SEO
         description={description}
         title={title}

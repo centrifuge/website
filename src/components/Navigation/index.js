@@ -1,5 +1,11 @@
-import React from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Image,
+  Layer as GrommetLayer,
+  ResponsiveContext
+} from "grommet";
 import { StaticQuery, graphql, navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -12,10 +18,16 @@ import { InternalLink, ExternalLink } from "../Links";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
+import wordmark_white from "../../images/centrifuge-wordmark-light.svg";
+import altair_wordmark from "../../images/altair/altair_wordmark_small.svg";
+import altair_wordmark_white from "../../images/altair/altair_wordmark_small_white.svg";
 
-const NavLink = ({ children, to }) => (
+const NavLink = ({ children, to, dark }) => (
   <InternalLink
-    style={{ fontWeight: "var(--fw-medium)" }}
+    style={{
+      fontWeight: "var(--fw-medium)",
+      color: !!dark ? "white" : "black"
+    }}
     activeStyle={{ color: "var(--c-brand)" }}
     to={to}
   >
@@ -23,9 +35,12 @@ const NavLink = ({ children, to }) => (
   </InternalLink>
 );
 
-const ExternalNavLink = ({ children, href, ...rest }) => (
+const ExternalNavLink = ({ children, href, dark, ...rest }) => (
   <ExternalLink
-    style={{ fontWeight: "var(--fw-medium)" }}
+    style={{
+      fontWeight: "var(--fw-medium)",
+      color: !!dark ? "white" : "black"
+    }}
     activeStyle={{ color: "var(--c-brand)" }}
     href={href}
     {...rest}
@@ -34,7 +49,7 @@ const ExternalNavLink = ({ children, href, ...rest }) => (
   </ExternalLink>
 );
 
-const BrandLink = () => (
+const BrandLink = ({ dark }) => (
   <div
     onContextMenu={e => {
       e.preventDefault();
@@ -42,7 +57,10 @@ const BrandLink = () => (
     }}
   >
     <NavLink to="/">
-      <Logo alt="Centrifuge Wordmark" src={wordmark} />
+      <Logo
+        alt="Centrifuge Wordmark"
+        src={!!dark ? wordmark_white : wordmark}
+      />
     </NavLink>
   </div>
 );
@@ -94,7 +112,8 @@ const Dropdowns = styled(Box)`
 
   /* Dropdown Styles */
   > li > ul {
-    background-color: #fff;
+    background-color: ${props =>
+      !!props.dark ? theme.global.colors["dark-1"] : "white"};
     box-shadow: ${theme.global.elevation.light.small};
     visibility: hidden;
     opacity: 0;
@@ -139,7 +158,7 @@ const Nav = styled(Box)`
   &::after {
     content: "";
     position: absolute;
-    background-color: white;
+    background-color: ${props => (!!props.dark ? `black` : `white`)};
     z-index: -1;
     margin: 0 auto;
     top: 0;
@@ -183,7 +202,7 @@ const SubItem = styled(Item)`
 `;
 
 const MobileBox = styled(Box)`
-  background: white;
+  background: ${props => (!!props.dark ? "black" : "white")};
 
   ${breakpointStyle(
     breakpoints.small,
@@ -194,80 +213,89 @@ const MobileBox = styled(Box)`
   )}
 `;
 
-class Navigation extends React.Component {
-  state = {
-    mobileNavIsOpen: false
-  };
+const Navigation = ({ dark }) => {
+  const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
+  const toggleMobileNav = () => setMobileNavIsOpen(!mobileNavIsOpen);
 
-  toggleMobileNav = () =>
-    this.setState({
-      mobileNavIsOpen: !this.state.mobileNavIsOpen
-    });
+  return (
+    <Nav as="nav" role="navigation" dark={dark}>
+      <Container>
+        <List style={{ display: "flex", alignItems: "center" }}>
+          {/* Logo */}
+          <Item style={{ flex: 1 }}>
+            <BrandLink dark={dark} />
+          </Item>
 
-  render() {
-    return (
-      <Nav as="nav" role="navigation">
-        <Container>
-          <List style={{ display: "flex", alignItems: "center" }}>
-            {/* Logo */}
-            <Item style={{ flex: 1 }}>
-              <BrandLink />
-            </Item>
+          {/* Mobile Nav Toggle */}
+          <NavButton onClick={toggleMobileNav}>
+            {mobileNavIsOpen ? (
+              <X size={32} color={!!dark ? "white" : "black"} />
+            ) : (
+              <Menu size={32} color={!!dark ? "white" : "black"} />
+            )}
+          </NavButton>
 
-            {/* Mobile Nav Toggle */}
-            <NavButton onClick={this.toggleMobileNav}>
-              {this.state.mobileNavIsOpen ? (
-                <X size={32} />
-              ) : (
-                <Menu size={32} />
-              )}
-            </NavButton>
+          {/* Desktop Nav */}
+          <Dropdowns direction="row" align="center" gap="large" dark={dark}>
+            <PaddedItem>
+              <NavLink to="/altair" dark={dark}>
+                <Image src={!!dark ? altair_wordmark_white : altair_wordmark} />
+              </NavLink>
+            </PaddedItem>
 
-            {/* Desktop Nav */}
-            <Dropdowns direction="row" align="center" gap="large">
-              <PaddedItem>
-                <ExternalNavLink href="https://docs.centrifuge.io/">
-                  Docs
-                </ExternalNavLink>
-              </PaddedItem>
+            <PaddedItem>
+              <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
+                Docs
+              </ExternalNavLink>
+            </PaddedItem>
 
-              <PaddedItem>
-                <NavLink to="/about">About</NavLink>
-              </PaddedItem>
+            <PaddedItem>
+              <NavLink to="/about" dark={dark}>
+                About
+              </NavLink>
+            </PaddedItem>
 
-              <PaddedItem>
-                <ExternalNavLink href="/cfg-token-summary">
-                  Centrifuge Token
-                </ExternalNavLink>
+            <PaddedItem>
+              <ExternalNavLink href="/cfg-token-summary" dark={dark}>
+                Centrifuge Token
+              </ExternalNavLink>
 
-                <List>
-                  <Item>
-                    <ExternalNavLink href="/cfg-token-summary">
-                      Token Summary
-                    </ExternalNavLink>
-                    <NavLink to="/cfg">Get Centrifuge</NavLink>
-                  </Item>
-                </List>
-              </PaddedItem>
+              <List>
+                <Item>
+                  <ExternalNavLink href="/cfg-token-summary" dark={dark}>
+                    Token Summary
+                  </ExternalNavLink>
+                  <NavLink to="/cfg" dark={dark}>
+                    Get Centrifuge
+                  </NavLink>
+                </Item>
+              </List>
+            </PaddedItem>
 
-              <PaddedItem>
-                <NavLink to="/careers">Careers</NavLink>
-              </PaddedItem>
-            </Dropdowns>
-          </List>
-        </Container>
+            <PaddedItem>
+              <NavLink to="/careers" dark={dark}>
+                Careers
+              </NavLink>
+            </PaddedItem>
+          </Dropdowns>
+        </List>
+      </Container>
 
-        {/* Mobile Nav */}
-        <MobilePanel
-          state={this.state.mobileNavIsOpen}
-          toggleFunc={this.toggleMobileNav}
-        />
-      </Nav>
-    );
-  }
-}
+      {/* Mobile Nav */}
+      <MobilePanel
+        state={mobileNavIsOpen}
+        toggleFunc={toggleMobileNav}
+        dark={dark}
+      />
+    </Nav>
+  );
+};
 
-const MobilePanel = ({ state, toggleFunc }) => (
+Navigation.defaultProps = {
+  dark: false
+};
+
+const MobilePanel = ({ state, toggleFunc, dark }) => (
   <ResponsiveContext.Consumer>
     {size =>
       state &&
@@ -282,6 +310,7 @@ const MobilePanel = ({ state, toggleFunc }) => (
           modal
         >
           <MobileBox
+            dark={dark}
             direction="column"
             pad={{
               top: "xxlarge",
@@ -293,28 +322,46 @@ const MobilePanel = ({ state, toggleFunc }) => (
           >
             <List>
               <MenuItem>
-                <ExternalNavLink href="https://docs.centrifuge.io/">
+                <NavLink to="/altair">
+                  <Image
+                    src={!!dark ? altair_wordmark_white : altair_wordmark}
+                  />
+                </NavLink>
+              </MenuItem>
+
+              <MenuItem>
+                <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
                   Docs
                 </ExternalNavLink>
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/about">About</NavLink>
+                <NavLink to="/about" dark={dark}>
+                  About
+                </NavLink>
               </MenuItem>
 
               <MenuItem>
-                <ExternalNavLink to="/cfg-token-summary">Centrifuge Token</ExternalNavLink>
-                
+                <ExternalNavLink to="/cfg-token-summary" dark={dark}>
+                  Centrifuge Token
+                </ExternalNavLink>
+
                 <SubItem>
-                  <ExternalNavLink to="/cfg-token-summary">Token Summary</ExternalNavLink>
+                  <ExternalNavLink to="/cfg-token-summary" dark={dark}>
+                    Token Summary
+                  </ExternalNavLink>
                 </SubItem>
                 <SubItem>
-                  <NavLink to="/cfg">Get CFG</NavLink>
+                  <NavLink to="/cfg" dark={dark}>
+                    Get CFG
+                  </NavLink>
                 </SubItem>
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/careers">Careers</NavLink>
+                <NavLink to="/careers" dark={dark}>
+                  Careers
+                </NavLink>
               </MenuItem>
             </List>
           </MobileBox>

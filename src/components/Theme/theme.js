@@ -97,7 +97,8 @@ const custom = {
       Documentation: "#94FFED",
       Design: "#FF85C9",
       "Code Review": "#FFCE9E",
-      Other: "#C2DBFF"
+      Other: "#C2DBFF",
+      altair: "#FAB961"
     },
 
     breakpoints: { ...breakpoints },
