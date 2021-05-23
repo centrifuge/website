@@ -4,11 +4,18 @@ title: "About | Centrifuge: Decentralized Asset Finance"
 
 <!-- Imports -->
 import Team from "../components/Team";
+import { ResponsivePlayer } from "../components/News";
 
-<Section margin={{ vertical: "xxxlarge" }}>
+<Section margin={{ vertical: "xxxlarge" }} gap="large">
+<Row>
+<Col span={2}>
+</Col>
+<Col span={8}>
+<ResponsivePlayer videoId="h8tfJ9EtIpY" />
+</Col>
+</Row>
 <Row>
 <Col span={6}>
-
 <Box>
 <Text size="xxlarge" weight={500} style={{ lineHeight: "50px", textAlign: "left" }}>Centrifuge is unlocking<br/>economic opportunity for all</Text>
 </Box>
