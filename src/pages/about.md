@@ -6,7 +6,7 @@ title: "About | Centrifuge: Decentralized Asset Finance"
 import Team from "../components/Team";
 import { ResponsivePlayer } from "../components/News";
 
-<Section margin={{ vertical: "xxxlarge" }} gap="large">
+<Section margin={{ top: "large", bottom: "xxlarge" }} gap="large">
 <Row>
 <Col span={2}>
 </Col>
