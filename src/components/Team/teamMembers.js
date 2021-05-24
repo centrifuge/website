@@ -9,7 +9,7 @@ import cassidy from "../../images/team/cassidy.jpg";
 import jason from "../../images/team/jason.jpg";
 import lucas from "../../images/team/lucas.png";
 import ved from "../../images/team/ved.jpeg";
-import dennis from "../../images/team/dennis.jpg";
+import dennis from "../../images/team/dennis.jpeg";
 import jeroen from "../../images/team/jeroen.png";
 // import manuel from "../../images/team/manuel.png";
 import frederick from "../../images/team/frederick.jpeg";
