@@ -347,7 +347,7 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
                 </ExternalNavLink>
 
                 <SubItem>
-                  <ExternalNavLink to="/cfg-token-summary" dark={dark}>
+                  <ExternalNavLink href="/cfg-token-summary" dark={dark}>
                     Token Summary
                   </ExternalNavLink>
                 </SubItem>

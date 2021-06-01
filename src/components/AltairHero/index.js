@@ -18,7 +18,7 @@ const AltairHero = () => {
           style={{
             position: "absolute",
             right: 0,
-            width: "30vw"
+            width: "20vw"
           }}
         />
       )}
@@ -72,7 +72,7 @@ const AltairHero = () => {
               <Text size="large">
                 Tinlake Live
                 <br />
-                on Kusuma
+                on Kusama
               </Text>
               <Text size="large">
                 Tinlake Live

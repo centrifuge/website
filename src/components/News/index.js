@@ -217,6 +217,7 @@ const LatestNews = ({ posts }) => (
 );
 
 export {
+  ResponsivePlayer,
   PostInfo,
   HighlightPost,
   Post,
