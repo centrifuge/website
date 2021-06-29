@@ -4,6 +4,8 @@ require("dotenv").config({
 
 const proxy = require("http-proxy-middleware");
 
+const siteUrl = process.env.URL || "http://localhost:8000";
+
 const lambdaServerDefaults = filename => ({
   typePrefix: "lambda__",
   data: {},
@@ -26,7 +28,7 @@ const mediumPostsServerOptions = {
 module.exports = {
   siteMetadata: {
     title: `Centrifuge: Real World DeFi`,
-    siteUrl: process.env.URL || "http://localhost:8000",
+    siteUrl,
     longTitle: `Centrifuge: Real World DeFi`,
     description: `Decentralized asset finance: asset Originators can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools.`,
     author: `@centrifuge`,
@@ -37,7 +39,12 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        sitemap: `${siteUrl}/sitemap.xml`
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

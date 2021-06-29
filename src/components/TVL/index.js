@@ -13,21 +13,18 @@ const TVL = ({ size }) => {
         return parts.join(".");
       }
 
-      const res = await fetch(
-        "https://thegraph.centrifuge.io/subgraphs/name/centrifuge/tinlake",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            query: `
+      const res = await fetch(process.env.GATSBY_CENTRIFUGE_SUBGRAPH_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
               query {
                 pools {
                 reserve, assetValue
                 }
               }`
-          })
-        }
-      );
+        })
+      });
 
       if (!res.ok) {
         throw new Error(
