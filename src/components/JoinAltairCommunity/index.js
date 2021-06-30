@@ -21,15 +21,14 @@ const JoinAltairCommunity = () => {
                 KSM Reward:
               </Text>
               <Text size="xlarge" weight={500} textAlign="center" color="white">
-                50+ AIR : 1 KSM
+                400 AIR : 1 KSM
               </Text>
             </Box>
             <Button
               primary
-              label="Sign up"
+              label="Stake KSM"
               alignSelf="center"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdxLCq5In7B5ld9bhllZsnZIsyEiKjqDAm0rCHDtjQzD5aRUw/viewform?usp=sf_link"
-              target="_blank"
+              href="/altair/crowdloan"
             />
           </Box>
           <Text size="large" color="white" weight={500}>

@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+require('encoding');
 
 exports.handler = async (event, context) =>
   fetch(

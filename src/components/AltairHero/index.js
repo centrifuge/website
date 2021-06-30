@@ -40,10 +40,9 @@ const AltairHero = () => {
             <Button
               primary
               color="altair"
-              label="Sign up"
+              label="Stake KSM"
               alignSelf="start"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdxLCq5In7B5ld9bhllZsnZIsyEiKjqDAm0rCHDtjQzD5aRUw/viewform?usp=sf_link"
-              target="_blank"
+              href="/altair/crowdloan"
             />
           </Col>
         </Row>

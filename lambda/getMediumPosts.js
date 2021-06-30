@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import cheerio from "cheerio";
+require('encoding');
 
 const unescapeSpecialChars = str => {
   return cheerio.load(`<!doctype html><body>${str}</body>`, "text/html").text();

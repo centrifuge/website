@@ -322,6 +322,14 @@ const custom = {
           `}
       }
 
+      &[aria-label="Open Drop"] {
+        text-decoration: none;
+      }
+
+      &[role="menuitem"] {
+        text-decoration: none;
+      }
+
       /* White Button Styles */
       ${props.white &&
         css`
