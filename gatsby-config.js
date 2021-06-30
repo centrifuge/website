@@ -114,7 +114,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId:
-          process.env.URL === "https://centrifuge.io" ? `UA-100764518-2` : ``,
+          process.env.URL === "https://centrifuge.io" ? `UA-100764518-2` : `none`,
         head: false,
         anonymize: true,
         respectDNT: true,
