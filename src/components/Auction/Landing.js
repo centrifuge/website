@@ -74,7 +74,7 @@ export const Landing = () => {
                 }}
               />
               <Text size="small" color="white" style={{ marginLeft: '24px' }}>
-                You can also participate in the auction on the{' '}
+                You can also participate in the crowdloan on the{' '}
                 <Anchor
                   href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama.elara.patract.io#/parachains/crowdloan"
                   target="_blank"

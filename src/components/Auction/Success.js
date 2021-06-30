@@ -19,7 +19,7 @@ export const Success = props => {
             label="View transaction on Subscan"
           />
           <Text>
-            Check out the auction's progress on the{' '}
+            Check out the crowdloan's progress on the{' '}
             <Anchor
               href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama.elara.patract.io#/parachains/crowdloan"
               target="_blank"

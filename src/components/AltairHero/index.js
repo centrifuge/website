@@ -40,9 +40,9 @@ const AltairHero = () => {
             <Button
               primary
               color="altair"
-              label="Sign up"
+              label="Stake Kusama"
               alignSelf="start"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdxLCq5In7B5ld9bhllZsnZIsyEiKjqDAm0rCHDtjQzD5aRUw/viewform?usp=sf_link"
+              href="https://centrifuge.io/altair/crowdloan"
               target="_blank"
             />
           </Col>
