@@ -38,7 +38,6 @@ export const Stake = () => {
   const [error, setError] = useState();
   const [hash, setHash] = useState();
   const [balanceLoading, setBalanceLoading] = useState(true);
-  const [allAccounts, setAllAccounts] = useState([]);
 
   const [accounts, setAccounts] = useState([]);
   const [freeBalance, setFreeBalance] = useState('');
@@ -61,7 +60,6 @@ export const Stake = () => {
           account.meta.genesisHash === null,
       );
 
-      setAllAccounts(allAccounts);
       setInjectors(injectors);
       setAccounts(kusamaAccounts);
 
@@ -106,15 +104,20 @@ export const Stake = () => {
         selectedAccount.address,
         { signer: injector.signer },
         status => {
+          const error = status.events.filter(({ event }) =>
+            api.events.system.ExtrinsicFailed.is(event),
+          );
+
           setIsContributing(true);
+
           if (status.status.isFinalized) {
             setHash(extrinsic.hash.toHex());
             setIsFinalized(true);
             setIsContributing(false);
           }
 
-          if (status.status.dispatchError) {
-            setError(status.status.dispatchError);
+          if (status.status.dispatchError || error.length) {
+            setError('error occurred');
             setIsFinalized(false);
             setIsContributing(false);
           }
@@ -142,7 +145,12 @@ export const Stake = () => {
 
   useEffect(
     () => {
-      if (ksmAmount && isValidKsmAmount && checked) {
+      if (
+        ksmAmount &&
+        isValidKsmAmount &&
+        checked &&
+        ksmAmount !== freeBalance
+      ) {
         setDisabled(false);
       } else {
         setDisabled(true);
@@ -294,12 +302,15 @@ export const Stake = () => {
                 reverse
                 id="kusama"
                 name="kusama"
-                onChange={event => setKsmAmount(event.target.value)}
+                onChange={event => {
+                  setError();
+                  setKsmAmount(event.target.value);
+                }}
                 value={ksmAmount}
               />
             </FormField>
             <Text>
-              <Grid columns={['90px', 'auto']}>
+              <Grid columns={['90px', 'auto', 'auto']}>
                 <Text>Your balance:</Text>
                 {balanceLoading ? (
                   <Spinner
@@ -313,6 +324,11 @@ export const Stake = () => {
                   />
                 ) : (
                   freeBalance
+                )}
+                {ksmAmount === freeBalance && (
+                  <Text color="red">
+                    Be sure to leave enough for network fees!
+                  </Text>
                 )}
               </Grid>
             </Text>
