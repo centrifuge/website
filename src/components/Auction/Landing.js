@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Col, Row, Section } from '../MDXLayout/shortcodes';
-import { Box, Button, Image, Text } from 'grommet';
+import { Anchor, Box, Button, Image, Text } from 'grommet';
 import altair_logo from '../../images/altair/altair_logo.svg';
 import sparkle from '../../images/altair/sparkle.svg';
 
@@ -57,31 +57,33 @@ export const Landing = () => {
                     The first 250 participants earn a bonus of 10%
                   </Text>
                 </Box>
-                <Box style={{ display: 'inline' }}>
-                  <Image
-                    src={sparkle}
-                    height={22}
-                    style={{ paddingRight: '10px' }}
-                  />
-                  <Text size="xlarge" textAlign="start">
-                    200,000 KSM cap
-                  </Text>
-                </Box>
               </Box>
             </Box>
-            <Button
-              primary
-              color="altair"
-              label="Stake Kusama Now"
-              alignSelf="start"
-              onClick={() => scrollToStake()}
-              style={{
-                marginLeft: '24px',
-                marginTop: '64px',
-                height: '48px',
-                fontSize: '20px',
-              }}
-            />
+            <Box gap="small">
+              <Button
+                primary
+                color="altair"
+                label="Stake Kusama Now"
+                alignSelf="start"
+                onClick={() => scrollToStake()}
+                style={{
+                  marginLeft: '24px',
+                  marginTop: '64px',
+                  height: '48px',
+                  fontSize: '20px',
+                }}
+              />
+              <Text size="small" color="white" style={{ marginLeft: '24px' }}>
+                You can also participate in the auction on the{' '}
+                <Anchor
+                  href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode.altair.centrifuge.io#/explorer"
+                  target="_blank"
+                >
+                  Polkadot/Substrate portal
+                </Anchor>{' '}
+                directly.
+              </Text>
+            </Box>
           </Col>
           <Col span={4}>
             <Image src={altair_logo} width={172} />

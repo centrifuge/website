@@ -13,7 +13,7 @@ import {
   Text,
   TextInput,
 } from 'grommet';
-import { Alert } from 'grommet-icons';
+import { Alert, CircleInformation } from 'grommet-icons';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   isWeb3Injected,
@@ -38,6 +38,7 @@ export const Stake = () => {
   const [error, setError] = useState();
   const [hash, setHash] = useState();
   const [balanceLoading, setBalanceLoading] = useState(true);
+  const [allAccounts, setAllAccounts] = useState([]);
 
   const [accounts, setAccounts] = useState([]);
   const [freeBalance, setFreeBalance] = useState('');
@@ -55,6 +56,7 @@ export const Stake = () => {
         account => account.meta.genesisHash === KUSAMA_GENESIS_HASH,
       );
 
+      setAllAccounts(allAccounts);
       setInjectors(injectors);
       setAccounts(kusamaAccounts);
       setSelectedAccount(kusamaAccounts[0]);
@@ -192,7 +194,7 @@ export const Stake = () => {
     );
   }
 
-  if (isWeb3Injected && !accounts.length) {
+  if (isWeb3Injected && !allAccounts.length) {
     return (
       <Section>
         <Box alignSelf="center">
@@ -235,6 +237,10 @@ export const Stake = () => {
       <Box>
         <Text size="xxlarge" weight={900}>
           Stake Kusama
+        </Text>
+        <Text weight={600} style={{ marginTop: '36px' }}>
+          <CircleInformation size="small" /> Note: Proxy accounts and multi
+          signatures are not able to receive rewards
         </Text>
       </Box>
       {error && <Error />}
@@ -314,7 +320,7 @@ export const Stake = () => {
           <CheckBox
             disabled={isContributing}
             checked={checked}
-            label="I agree to the terms and conditions here"
+            label="I agree to the terms and conditions."
             onChange={event => setChecked(event.target.checked)}
           />
           {isContributing ? (

@@ -18,7 +18,15 @@ export const Success = props => {
             primary
             label="View transaction on Subscan"
           />
-          <Text>Come back later to see the auction's progress.</Text>
+          <Text>
+            Check out the auction's progress on the{' '}
+            <Anchor
+              href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode.altair.centrifuge.io#/explorer"
+              target="_blank"
+            >
+              Polkadot/Substrate portal.
+            </Anchor>
+          </Text>
         </Box>
       </Box>
     </Section>
