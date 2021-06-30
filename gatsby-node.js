@@ -6,7 +6,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       module: {
         rules: [
           {
-            test: /offending-module/,
+            test: path.resolve(
+              __dirname,
+              'node_modules/@polkadot/extension-dapp',
+            ),
             use: loaders.null(),
           },
         ],
