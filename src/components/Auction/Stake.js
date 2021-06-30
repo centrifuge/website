@@ -1,6 +1,7 @@
 import { Section } from '../MDXLayout/shortcodes';
 import { encodeAddress } from '@polkadot/util-crypto';
 import {
+  Anchor,
   Box,
   Button,
   CheckBox,
@@ -13,7 +14,6 @@ import {
   TextInput,
 } from 'grommet';
 import { Alert } from 'grommet-icons';
-import { ConnectWalletButton } from '../ConnectWallet';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   isWeb3Injected,
@@ -43,6 +43,23 @@ export const Stake = () => {
   const [freeBalance, setFreeBalance] = useState('');
   const [api, setApi] = useState();
   const [injector, setInjector] = useState();
+  const [injectors, setInjectors] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const injectors = await web3Enable('Altair Auction');
+
+      const allAccounts = await web3Accounts();
+
+      const kusamaAccounts = allAccounts.filter(
+        account => account.meta.genesisHash === KUSAMA_GENESIS_HASH,
+      );
+
+      setInjectors(injectors);
+      setAccounts(kusamaAccounts);
+      setSelectedAccount(kusamaAccounts[0]);
+    })();
+  }, []);
 
   useEffect(
     () => {
@@ -52,12 +69,12 @@ export const Stake = () => {
 
         const api = await ApiPromise.create({ provider: wsProvider });
 
-        const web3Injector = await web3FromAddress(selectedAccount.address);
-
-        setApi(api);
-        setInjector(web3Injector);
-
         if (selectedAccount?.address) {
+          const web3Injector = await web3FromAddress(selectedAccount.address);
+
+          setApi(api);
+          setInjector(web3Injector);
+
           const balances = await api.query.system.account(
             selectedAccount.address,
           );
@@ -100,21 +117,6 @@ export const Stake = () => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      await web3Enable('Altair Auction');
-
-      const allAccounts = await web3Accounts();
-
-      const kusamaAccounts = allAccounts.filter(
-        account => account.meta.genesisHash === KUSAMA_GENESIS_HASH,
-      );
-
-      setAccounts(kusamaAccounts);
-      setSelectedAccount(kusamaAccounts[0]);
-    })();
-  }, []);
-
   const formattedFreeBalance = useMemo(
     () => `${freeBalance.slice(0, 1)}.${freeBalance.slice(1)}`,
     [freeBalance],
@@ -146,6 +148,21 @@ export const Stake = () => {
     [checked, ksmAmount],
   );
 
+  const hasExtension = useMemo(
+    () => {
+      const polkadotInjectors = injectors.filter(
+        ({ name }) => name === 'polkadot-js',
+      );
+
+      if (polkadotInjectors.length) {
+        return true;
+      }
+
+      return false;
+    },
+    [injectors],
+  );
+
   const truncateAddress = address => {
     const encodedAddress = encodeAddress(address, 2);
     const firstFifteen = encodedAddress.slice(0, 15);
@@ -153,6 +170,37 @@ export const Stake = () => {
 
     return `${firstFifteen}...${lastFifteen}`;
   };
+
+  if (!hasExtension) {
+    return (
+      <Section gap="medium">
+        <Box>
+          <Text size="xxlarge" weight={900}>
+            Stake Kusama
+          </Text>
+        </Box>
+        <Box gap="medium">
+          <Text size="large" weight={400}>
+            You need the{' '}
+            <Anchor target="_blank" href="https://polkadot.js.org/extension/">
+              Polkadot{'{.js}'} browser extension
+            </Anchor>{' '}
+            installed and a Kusama wallet with a balance of at least 0.1 KSM.
+          </Text>
+        </Box>
+      </Section>
+    );
+  }
+
+  if (isWeb3Injected && !accounts.length) {
+    return (
+      <Section>
+        <Box alignSelf="center">
+          You need a Kusama wallet with a balance of at least 0.1 KSM.
+        </Box>
+      </Section>
+    );
+  }
 
   if (!accounts.length || !freeBalance || !api || !injector) {
     return (
@@ -190,15 +238,6 @@ export const Stake = () => {
         </Text>
       </Box>
       {error && <Error />}
-      {!isWeb3Injected && (
-        <Box gap="medium">
-          <Text size="large" weight={400}>
-            You need a Polkadot account with a balance of at least 1 Kusama in
-            order to stake.
-          </Text>
-          <ConnectWalletButton />
-        </Box>
-      )}
       {isWeb3Injected && (
         <Box gap="medium" style={{ width: '500px' }}>
           <FormField label="Kusama account">

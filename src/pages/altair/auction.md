@@ -5,7 +5,6 @@ dark: true
 import AltairHero from "../../components/AltairHero";
 import AltairUtilityBlock from "../../components/AltairUtilityBlock";
 import JoinAltairCommunity from "../../components/JoinAltairCommunity";
-import ConnectWalletButton from "../../components/ConnectWallet";
 import { Landing } from '../../components/Auction/Landing';
 import { Stake } from '../../components/Auction/Stake';
 
