@@ -327,7 +327,8 @@ export const Stake = () => {
                 )}
                 {ksmAmount === freeBalance && (
                   <Text color="red">
-                    Be sure to leave enough for network fees!
+                    Be sure to leave enough KSM in your account for network
+                    fees!
                   </Text>
                 )}
               </Grid>
