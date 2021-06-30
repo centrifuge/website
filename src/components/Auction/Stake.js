@@ -90,7 +90,7 @@ export const Stake = () => {
   const contribute = async () => {
     try {
       const extrinsic = api.tx.crowdloan.contribute(
-        2007,
+        2021,
         parseFloat(ksmAmount) * 10 ** 12,
         null,
       );
