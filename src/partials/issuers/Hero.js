@@ -38,10 +38,14 @@ const Hero = () => {
           horizontal: "20px"
         }}
       >
-        <Text textAlign="center" alignSelf="center">
-          Real Estate, Shipping invoices, etc, Real Estate, Shipping invoices,
-          etc, Real Estate, Shipping invoices, etc.
-        </Text>
+        <marquee behavior="scroll" direction="left">
+          <Text textAlign="center" alignSelf="center">
+            Real Estate Bridge Loans, Payment Advances, Emerging Market Consumer
+            Loans, Trade Receivables, Revenue Based Financing, Cargo & Freight
+            Forwarding Invoices, Branded Inventory Financing, Music Streaming
+            Invoices, Embedded Supply Chain Financing
+          </Text>
+        </marquee>
       </Box>
     </Box>
   );
