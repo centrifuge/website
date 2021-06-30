@@ -6457,7 +6457,7 @@
     "minimatch" "3.0.4"
 
 "gatsby-plugin-mailchimp@centrifuge/gatsby-plugin-mailchimp":
-  "resolved" "git+ssh://git@github.com/centrifuge/gatsby-plugin-mailchimp.git#d5f7b61c9faf8110423a0ea41e596f9f804424f8"
+  "resolved" "https://github.com/centrifuge/gatsby-plugin-mailchimp.git#d5f7b61c9faf8110423a0ea41e596f9f804424f8"
   "version" "5.1.2"
   dependencies:
     "email-validator" "^2.0.4"
@@ -9365,7 +9365,7 @@
     "js-tokens" "^3.0.0 || ^4.0.0"
 
 "lottie-api@^1.0.2", "lottie-api@github:bodymovin/lottie-api#master":
-  "resolved" "git+ssh://git@github.com/bodymovin/lottie-api.git#d4d6a320fb060a06f1d0823e676047cd5332007e"
+  "resolved" "https://github.com/bodymovin/lottie-api.git#d4d6a320fb060a06f1d0823e676047cd5332007e"
   "version" "1.0.3"
 
 "lottie-react-web@2.1.4":
@@ -12847,7 +12847,7 @@
   "version" "1.0.0"
 
 "rich-text-react-renderer@mgmolisani/rich-text-react-renderer":
-  "resolved" "git+ssh://git@github.com/mgmolisani/rich-text-react-renderer.git#679af5aeb9221e00552d3a28b3e67851f4e7b6d7"
+  "resolved" "https://github.com/mgmolisani/rich-text-react-renderer.git#679af5aeb9221e00552d3a28b3e67851f4e7b6d7"
   "version" "1.0.0"
   dependencies:
     "@contentful/rich-text-types" "^12.1.2"
