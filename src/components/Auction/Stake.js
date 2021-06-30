@@ -348,10 +348,11 @@ export const Stake = () => {
               auction ends if Altair does not win the auction.
             </Text>
             <Text>
-              Use of this page is at your own risk. To the fullest extent
-              allowed by applicable law, in no event shall the company or its
-              affiliates, be liable to you or any third party for any damages of
-              any kind.
+              Use of this page and the above staking function are at your own
+              risk. Further, Centrifuge makes no warranties as to the outcome of
+              the Altair crowdloan. To the fullest extent allowed by applicable
+              law, in no event shall Centrifuge or its affiliates, be liable to
+              you or any third party for any damages of any kind.
             </Text>
           </Box>
         </Box>
