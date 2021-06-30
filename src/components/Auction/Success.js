@@ -5,7 +5,10 @@ import { Section } from '../MDXLayout/shortcodes';
 
 export const Success = props => {
   return (
-    <Section>
+    <Section gap="medium">
+      <Text size="xxlarge" weight={900}>
+        Stake KSM
+      </Text>
       <Box gap="small">
         <Text weight={600}>
           <StatusGood size="small" /> Your {props.ksmAmount} KSM have been
