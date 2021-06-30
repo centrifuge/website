@@ -45,21 +45,27 @@ export const Stake = () => {
   const [api, setApi] = useState();
   const [injector, setInjector] = useState();
   const [injectors, setInjectors] = useState([]);
+  const [accountLoading, setAccountLoading] = useState(true);
 
   useEffect(() => {
+    setAccountLoading(true);
     (async () => {
       const injectors = await web3Enable('Altair Auction');
 
       const allAccounts = await web3Accounts();
 
       const kusamaAccounts = allAccounts.filter(
-        account => account.meta.genesisHash === KUSAMA_GENESIS_HASH,
+        account =>
+          account.meta.genesisHash === KUSAMA_GENESIS_HASH ||
+          account.meta.genesisHash === '',
       );
 
       setAllAccounts(allAccounts);
       setInjectors(injectors);
       setAccounts(kusamaAccounts);
+
       setSelectedAccount(kusamaAccounts[0]);
+      setAccountLoading(false);
     })();
   }, []);
 
@@ -72,15 +78,14 @@ export const Stake = () => {
         const api = await ApiPromise.create({ provider: wsProvider });
 
         if (selectedAccount?.address) {
-          const web3Injector = await web3FromAddress(selectedAccount.address);
-
-          setApi(api);
-          setInjector(web3Injector);
+          const web3Injector = await web3FromAddress(selectedAccount?.address);
 
           const balances = await api.query.system.account(
             selectedAccount.address,
           );
 
+          setApi(api);
+          setInjector(web3Injector);
           setFreeBalance((balances.data.free.toNumber() / 10 ** 12).toString());
           setBalanceLoading(false);
         }
@@ -168,14 +173,22 @@ export const Stake = () => {
     return `${firstFifteen}...${lastFifteen}`;
   };
 
+  if (accountLoading) {
+    return (
+      <Section>
+        <Box alignSelf="center">
+          <Spinner size="medium" />
+        </Box>
+      </Section>
+    );
+  }
+
   if (!hasExtension) {
     return (
       <Section gap="medium">
-        <Box>
-          <Text size="xxlarge" weight={900}>
-            Stake Kusama
-          </Text>
-        </Box>
+        <Text size="xxlarge" weight={900}>
+          Stake KSM
+        </Text>
         <Box gap="medium">
           <Text size="large" weight={400}>
             You need the{' '}
@@ -189,22 +202,13 @@ export const Stake = () => {
     );
   }
 
-  if (isWeb3Injected && !allAccounts.length) {
+  if (!accounts.length) {
     return (
-      <Section>
-        <Box alignSelf="center">
-          You need a Kusama wallet with a balance of at least 0.1 KSM.
-        </Box>
-      </Section>
-    );
-  }
-
-  if (!accounts.length || !freeBalance || !api || !injector) {
-    return (
-      <Section>
-        <Box alignSelf="center">
-          <Spinner size="medium" />
-        </Box>
+      <Section gap="medium">
+        <Text size="xxlarge" weight={900}>
+          Stake KSM
+        </Text>
+        <Box>You need a Kusama wallet with a balance of at least 0.1 KSM.</Box>
       </Section>
     );
   }
@@ -231,7 +235,7 @@ export const Stake = () => {
     <Section gap="medium">
       <Box>
         <Text size="xxlarge" weight={900}>
-          Stake Kusama
+          Stake KSM
         </Text>
         <Text weight={600} style={{ marginTop: '36px' }}>
           <CircleInformation size="small" /> Note: Proxy accounts and multi

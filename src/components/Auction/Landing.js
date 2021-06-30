@@ -13,7 +13,7 @@ export const Landing = () => {
   }, []);
 
   return (
-    <Box background="black" style={{ position: 'relative', minHeight: '80vh' }}>
+    <Box background="black" style={{ position: 'relative', minHeight: '70vh' }}>
       <Section>
         <Row>
           <Col span={8} gap="medium">
@@ -63,7 +63,7 @@ export const Landing = () => {
               <Button
                 primary
                 color="altair"
-                label="Stake Kusama Now"
+                label="Stake KSM Now"
                 alignSelf="start"
                 onClick={() => scrollToStake()}
                 style={{

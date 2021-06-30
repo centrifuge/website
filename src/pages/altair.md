@@ -6,7 +6,7 @@ import AltairHero from "../components/AltairHero";
 import AltairUtilityBlock from "../components/AltairUtilityBlock";
 import JoinAltairCommunity from "../components/JoinAltairCommunity";
 
-import token_distribution from "../images/altair/token_distribution.svg"; 
+import token_distribution from "../images/altair/token_distribution.svg";
 import air_1 from "../images/altair/air-token-logos/1.svg";
 import air_2 from "../images/altair/air-token-logos/2.svg";
 import air_3 from "../images/altair/air-token-logos/3.svg";
@@ -33,11 +33,6 @@ import air_4 from "../images/altair/air-token-logos/4.svg";
 </Section>
 
 <Section gap="large">
-
-<Box alignSelf="center">
-<Text size="xlarge" weight={900} textAlign="center">Distribution at Genesis</Text>
-<Text size="large" textAlign="center">425,000,000 AIR</Text>
-</Box>
 
 <Image src={token_distribution} />
 

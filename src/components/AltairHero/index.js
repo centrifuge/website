@@ -40,9 +40,9 @@ const AltairHero = () => {
             <Button
               primary
               color="altair"
-              label="Stake Kusama"
+              label="Stake KSM"
               alignSelf="start"
-              href="https://centrifuge.io/altair/crowdloan"
+              href="/altair/crowdloan"
             />
           </Col>
         </Row>

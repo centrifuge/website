@@ -26,9 +26,9 @@ const JoinAltairCommunity = () => {
             </Box>
             <Button
               primary
-              label="Stake Kusama"
+              label="Stake KSM"
               alignSelf="center"
-              href="https://centrifuge.io/altair/crowdloan"
+              href="/altair/crowdloan"
             />
           </Box>
           <Text size="large" color="white" weight={500}>
