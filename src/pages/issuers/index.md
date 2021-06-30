@@ -3,19 +3,19 @@ dark: true
 ---
 
 <!-- imports -->
-import AOHero from "../../partials/ao/AOHero";
-import SecondSection from "../../partials/ao/SecondSection";
-import WhyCentrifuge from "../../partials/ao/WhyCentrifuge";
+import Hero from "../../partials/issuers/Hero";
+import SecondSection from "../../partials/issuers/SecondSection";
+import WhyCentrifuge from "../../partials/issuers/WhyCentrifuge";
 import AltairUtilityBlock from "../../components/AltairUtilityBlock";
 import { ResponsivePlayer } from "../../components/News";
 
-import borderless from "../../images/ao/borderless.svg";
-import scalable from "../../images/ao/scalable.svg";
-import balanced from "../../images/ao/balanced.svg";
-import section_3 from "../../images/ao/section_3.mp4";
-import docs from "../../images/ao/docs-wordmark.svg";
+import borderless from "../../images/issuers/borderless.svg";
+import scalable from "../../images/issuers/scalable.svg";
+import balanced from "../../images/issuers/balanced.svg";
+import section_3 from "../../images/issuers/section_3.mp4";
+import docs from "../../images/issuers/docs-wordmark.svg";
 
-<AOHero />
+<Hero />
 
 <SecondSection />
 
@@ -37,7 +37,7 @@ import docs from "../../images/ao/docs-wordmark.svg";
 <Row>
 
 <Col span={12}>
-<Button primary brand label="Access Capital" href="/ao/form" />
+<Button primary brand label="Access Capital" href="/issuers/form" />
 </Col>
 
 </Row>

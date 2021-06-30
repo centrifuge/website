@@ -15,7 +15,7 @@ import Grid from "../../components/Grid";
 import Column from "../../components/Column";
 import { isEmail, isFQDN, isMobilePhone } from "validator";
 
-const AOForm = () => {
+const IssuersForm = () => {
   const size = useContext(ResponsiveContext);
 
   const [value, setValue] = useState({
@@ -220,4 +220,4 @@ const AOForm = () => {
   );
 };
 
-export default AOForm;
+export default IssuersForm;

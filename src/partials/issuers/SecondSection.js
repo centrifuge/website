@@ -2,7 +2,7 @@ import React from "react";
 import { Anchor, Box, Image, Text } from "grommet";
 
 import { Section } from "../../components/MDXLayout/shortcodes";
-import illustration from "../../images/ao/tvl-taf-stats.svg";
+import illustration from "../../images/issuers/tvl-taf-stats.svg";
 
 const SecondSection = () => {
   return (

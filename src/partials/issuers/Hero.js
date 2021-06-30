@@ -2,10 +2,9 @@ import React from "react";
 import { Box, Button, Text } from "grommet";
 
 import { FullWidthSection } from "../../components/MDXLayout/shortcodes";
-import hero from "../../images/ao/hero.svg";
-import FullWidthContainer from "../../components/FullWidthContainer";
+import hero from "../../images/issuers/hero.svg";
 
-const AOHero = () => {
+const Hero = () => {
   return (
     <Box
       background="black"
@@ -28,7 +27,7 @@ const AOHero = () => {
               the billions of dollars locked in crypto.
             </Text>
           </Box>
-          <Button primary label="Access Capital" href="/ao/form" />
+          <Button primary label="Access Capital" href="/issuers/form" />
         </Box>
       </FullWidthSection>
       <Box
@@ -48,4 +47,4 @@ const AOHero = () => {
   );
 };
 
-export default AOHero;
+export default Hero;

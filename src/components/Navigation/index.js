@@ -28,7 +28,7 @@ const NavLink = ({ children, to, dark }) => (
       fontWeight: "var(--fw-medium)",
       color: !!dark ? "white" : "black"
     }}
-    activeStyle={{ color: "var(--c-brand)" }}
+    activeStyle={{ color: !!dark ? "white" : "var(--c-brand)" }}
     to={to}
   >
     {children}
@@ -244,20 +244,14 @@ const Navigation = ({ dark }) => {
             </PaddedItem>
 
             <PaddedItem>
-              <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
-                Docs
-              </ExternalNavLink>
-            </PaddedItem>
-
-            <PaddedItem>
-              <NavLink to="/about" dark={dark}>
-                About
+              <NavLink to="/issuers" dark={dark}>
+                Issuers
               </NavLink>
             </PaddedItem>
 
             <PaddedItem>
               <ExternalNavLink href="/cfg-token-summary" dark={dark}>
-                Centrifuge Token
+                CFG Token
               </ExternalNavLink>
 
               <List>
@@ -266,17 +260,34 @@ const Navigation = ({ dark }) => {
                     Token Summary
                   </ExternalNavLink>
                   <NavLink to="/cfg" dark={dark}>
-                    Get Centrifuge
+                    Get CFG
                   </NavLink>
                 </Item>
               </List>
             </PaddedItem>
 
             <PaddedItem>
-              <NavLink to="/careers" dark={dark}>
-                Careers
-              </NavLink>
+              <NavLink dark={dark}>Service</NavLink>
+
+              <List>
+                <Item>
+                  <ExternalNavLink
+                    href="https://docs.centrifuge.io/"
+                    dark={dark}
+                  >
+                    Docs
+                  </ExternalNavLink>
+                  <NavLink to="/about" dark={dark}>
+                    About
+                  </NavLink>
+                  <NavLink to="/careers" dark={dark}>
+                    Careers
+                  </NavLink>
+                </Item>
+              </List>
             </PaddedItem>
+
+            <PaddedItem />
           </Dropdowns>
         </List>
       </Container>
@@ -330,20 +341,14 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
               </MenuItem>
 
               <MenuItem>
-                <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
-                  Docs
-                </ExternalNavLink>
-              </MenuItem>
-
-              <MenuItem>
-                <NavLink to="/about" dark={dark}>
-                  About
+                <NavLink to="/issuers" dark={dark}>
+                  Issuers
                 </NavLink>
               </MenuItem>
 
               <MenuItem>
                 <ExternalNavLink to="/cfg-token-summary" dark={dark}>
-                  Centrifuge Token
+                  CFG Token
                 </ExternalNavLink>
 
                 <SubItem>
@@ -359,9 +364,26 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/careers" dark={dark}>
-                  Careers
-                </NavLink>
+                <NavLink dark={dark}>Service</NavLink>
+
+                <SubItem>
+                  <ExternalNavLink
+                    href="https://docs.centrifuge.io/"
+                    dark={dark}
+                  >
+                    Docs
+                  </ExternalNavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/about" dark={dark}>
+                    About
+                  </NavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/careers" dark={dark}>
+                    Careers
+                  </NavLink>
+                </SubItem>
               </MenuItem>
             </List>
           </MobileBox>

@@ -2,8 +2,8 @@ import React from "react";
 import { Col, Row, Section } from "../../components/MDXLayout/shortcodes";
 import { Box, Button, Image, Text } from "grommet";
 
-import maker from "../../images/ao/maker.png";
-import aave from "../../images/ao/aave.svg";
+import maker from "../../images/issuers/maker.png";
+import aave from "../../images/issuers/aave.svg";
 
 const WhyCentrifugeBox = ({ children }) => (
   <Box
@@ -67,7 +67,7 @@ const WhyCentrifuge = () => {
           </Row>
         </Box>
         <Box direction="row" justify="center" gap="small">
-          <Button primary label="Access Capital" href="/ao/form" />
+          <Button primary label="Access Capital" href="/issuers/form" />
           <Button primary color="accent-1" label="Join the Community" />
         </Box>
       </Section>
