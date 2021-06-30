@@ -238,6 +238,12 @@ const Navigation = ({ dark }) => {
           {/* Desktop Nav */}
           <Dropdowns direction="row" align="center" gap="large" dark={dark}>
             <PaddedItem>
+              <ExternalNavLink href="https://tinlake.centrifuge.io" dark={dark}>
+                Tinlake
+              </ExternalNavLink>
+            </PaddedItem>
+
+            <PaddedItem>
               <NavLink to="/altair" dark={dark}>
                 <Image src={!!dark ? altair_wordmark_white : altair_wordmark} />
               </NavLink>
@@ -332,6 +338,12 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
             gap="medium"
           >
             <List>
+              <MenuItem>
+                <ExternalNavLink to="https://tinlake.centrifuge.io" dark={dark}>
+                  Tinlake
+                </ExternalNavLink>
+              </MenuItem>
+
               <MenuItem>
                 <NavLink to="/altair">
                   <Image
