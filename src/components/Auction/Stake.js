@@ -315,7 +315,7 @@ export const Stake = () => {
           <CheckBox
             disabled={isContributing}
             checked={checked}
-            label="I agree to the terms and conditions."
+            label="I agree to the terms and conditions below"
             onChange={event => setChecked(event.target.checked)}
           />
           {isContributing ? (
@@ -329,10 +329,31 @@ export const Stake = () => {
               primary
               alignSelf="start"
               label="Stake Now"
-              style={{ marginTop: '25px' }}
+              style={{ marginTop: '24px', marginBottom: '48px' }}
               onClick={() => contribute()}
             />
           )}
+          <Box gap="small">
+            <Text size="large" weight={900}>
+              Terms and Conditions
+            </Text>
+            <Text>
+              By clicking "Stake Now" your KSM will be locked on Kusama for the
+              Altair crowdloan (read more about{' '}
+              <Anchor href="https://kusama.network/auctions/" target="_blank">
+                parachain slot auctions
+              </Anchor>
+              ). This means that your KSM will be locked for the duration of the
+              parachain slot if Altair wins the auction (48 weeks), or until the
+              auction ends if Altair does not win the auction.
+            </Text>
+            <Text>
+              Use of this page is at your own risk. To the fullest extent
+              allowed by applicable law, in no event shall the company or its
+              affiliates, be liable to you or any third party for any damages of
+              any kind.
+            </Text>
+          </Box>
         </Box>
       )}
     </Section>
