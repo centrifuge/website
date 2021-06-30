@@ -3,17 +3,17 @@ dark: true
 ---
 
 <!-- imports -->
-import AOHero from "../partials/ao/AOHero";
-import SecondSection from "../partials/ao/SecondSection";
-import WhyCentrifuge from "../partials/ao/WhyCentrifuge";
-import AltairUtilityBlock from "../components/AltairUtilityBlock";
-import { ResponsivePlayer } from "../components/News";
+import AOHero from "../../partials/ao/AOHero";
+import SecondSection from "../../partials/ao/SecondSection";
+import WhyCentrifuge from "../../partials/ao/WhyCentrifuge";
+import AltairUtilityBlock from "../../components/AltairUtilityBlock";
+import { ResponsivePlayer } from "../../components/News";
 
-import borderless from "../images/ao/borderless.svg";
-import scalable from "../images/ao/scalable.svg";
-import balanced from "../images/ao/balanced.svg";
-import section_3 from "../images/ao/section_3.mp4";
-import docs from "../images/ao/docs-wordmark.svg";
+import borderless from "../../images/ao/borderless.svg";
+import scalable from "../../images/ao/scalable.svg";
+import balanced from "../../images/ao/balanced.svg";
+import section_3 from "../../images/ao/section_3.mp4";
+import docs from "../../images/ao/docs-wordmark.svg";
 
 <AOHero />
 
@@ -37,7 +37,7 @@ import docs from "../images/ao/docs-wordmark.svg";
 <Row>
 
 <Col span={12}>
-<Button primary brand label="Access Capital" />
+<Button primary brand label="Access Capital" href="/ao/form" />
 </Col>
 
 </Row>
@@ -50,17 +50,18 @@ import docs from "../images/ao/docs-wordmark.svg";
 </video>
 </Box>
 
-<Section>
-<Box align="center" gap="large">
-<Box width={{ min: "600px" }}>
-<ResponsivePlayer videoId="23nQWgO4AfA" />
-</Box>
+<Section gap="large">
+
+<Row>
+<Col span={2} />
+<Col span={8}><ResponsivePlayer videoId="23nQWgO4AfA" /></Col>
+</Row>
 
 <Box align="center" gap="small">
 <Text color="dark-3" weight={500} textAlign="center">For a deeper dive, head to our documentation:</Text>
 <a href="https://docs.centrifuge.io" target="_blank"><Image src={docs} /></a>
 </Box>
-</Box>
+
 </Section>
 
 <WhyCentrifuge />

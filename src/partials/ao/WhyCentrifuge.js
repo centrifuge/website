@@ -27,7 +27,7 @@ const WhyCentrifuge = () => {
         </Text>
         <Box>
           <Row>
-            <Col span={4}>
+            <Col span={4} margin={{ bottom: "medium" }}>
               <WhyCentrifugeBox>
                 <Text size="large" weight={500} textAlign="center">
                   Composable with the largest DeFi Market Makers
@@ -38,7 +38,7 @@ const WhyCentrifuge = () => {
                 </Box>
               </WhyCentrifugeBox>
             </Col>
-            <Col span={4}>
+            <Col span={4} margin={{ bottom: "medium" }}>
               <WhyCentrifugeBox>
                 <Text size="large" weight={500} textAlign="center">
                   We make the first moves
@@ -51,7 +51,7 @@ const WhyCentrifuge = () => {
                 </Box>
               </WhyCentrifugeBox>
             </Col>
-            <Col span={4}>
+            <Col span={4} margin={{ bottom: "medium" }}>
               <WhyCentrifugeBox>
                 <Text size="large" weight={500} textAlign="center">
                   KYC/AML Compliant
@@ -67,7 +67,7 @@ const WhyCentrifuge = () => {
           </Row>
         </Box>
         <Box direction="row" justify="center" gap="small">
-          <Button primary label="Access Capital" />
+          <Button primary label="Access Capital" href="/ao/form" />
           <Button primary color="accent-1" label="Join the Community" />
         </Box>
       </Section>

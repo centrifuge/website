@@ -3,6 +3,7 @@ import { Box, Button, Text } from "grommet";
 
 import { FullWidthSection } from "../../components/MDXLayout/shortcodes";
 import hero from "../../images/ao/hero.svg";
+import FullWidthContainer from "../../components/FullWidthContainer";
 
 const AOHero = () => {
   return (
@@ -18,26 +19,27 @@ const AOHero = () => {
       <FullWidthSection margin={{ vertical: "xxxlarge" }}>
         <Box align="center" gap="large">
           <Box align="center" gap="medium">
-            <Text size="40px" weight={500}>
+            <Text size="40px" weight={500} textAlign="center">
               Borderless, Limitless Capital
             </Text>
-            <Text size="24px" textAlign="center" color="">
+            <Text size="24px" textAlign="center">
               Centrifuge is a fully compliant bridge to
               <br />
               the billions of dollars locked in crypto.
             </Text>
           </Box>
-          <Button primary label="Access Capital" />
+          <Button primary label="Access Capital" href="/ao/form" />
         </Box>
       </FullWidthSection>
       <Box
         fill="horizontal"
         background="accent-1"
         pad={{
-          vertical: "xsmall"
+          vertical: "small",
+          horizontal: "20px"
         }}
       >
-        <Text textAlign="center">
+        <Text textAlign="center" alignSelf="center">
           Real Estate, Shipping invoices, etc, Real Estate, Shipping invoices,
           etc, Real Estate, Shipping invoices, etc.
         </Text>
