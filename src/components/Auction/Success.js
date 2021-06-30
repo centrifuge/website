@@ -21,7 +21,7 @@ export const Success = props => {
           <Text>
             Check out the auction's progress on the{' '}
             <Anchor
-              href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode.altair.centrifuge.io#/explorer"
+              href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama.elara.patract.io#/parachains/crowdloan"
               target="_blank"
             >
               Polkadot/Substrate portal.

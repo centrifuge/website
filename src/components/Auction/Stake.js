@@ -81,7 +81,7 @@ export const Stake = () => {
             selectedAccount.address,
           );
 
-          setFreeBalance(balances.data.free.toNumber().toString());
+          setFreeBalance((balances.data.free.toNumber() / 10 ** 12).toString());
           setBalanceLoading(false);
         }
       })();
@@ -119,24 +119,19 @@ export const Stake = () => {
     }
   };
 
-  const formattedFreeBalance = useMemo(
-    () => `${freeBalance.slice(0, 1)}.${freeBalance.slice(1)}`,
-    [freeBalance],
-  );
-
   const isValidKsmAmount = useMemo(
     () => {
       if (
         /^\d*(\.\d+)?$/.test(ksmAmount) &&
         parseFloat(ksmAmount) >= 0.1 &&
-        parseFloat(ksmAmount) <= parseFloat(formattedFreeBalance)
+        parseFloat(ksmAmount) <= parseFloat(freeBalance)
       ) {
         return true;
       }
 
       return false;
     },
-    [formattedFreeBalance, ksmAmount],
+    [freeBalance, ksmAmount],
   );
 
   useEffect(
@@ -312,7 +307,7 @@ export const Stake = () => {
                     }}
                   />
                 ) : (
-                  formattedFreeBalance
+                  freeBalance
                 )}
               </Grid>
             </Text>
