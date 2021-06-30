@@ -43,7 +43,6 @@ const AltairHero = () => {
               label="Stake Kusama"
               alignSelf="start"
               href="https://centrifuge.io/altair/crowdloan"
-              target="_blank"
             />
           </Col>
         </Row>

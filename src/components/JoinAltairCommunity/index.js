@@ -29,7 +29,6 @@ const JoinAltairCommunity = () => {
               label="Stake Kusama"
               alignSelf="center"
               href="https://centrifuge.io/altair/crowdloan"
-              target="_blank"
             />
           </Box>
           <Text size="large" color="white" weight={500}>
