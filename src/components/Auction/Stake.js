@@ -57,7 +57,8 @@ export const Stake = () => {
       const kusamaAccounts = allAccounts.filter(
         account =>
           account.meta.genesisHash === KUSAMA_GENESIS_HASH ||
-          account.meta.genesisHash === '',
+          account.meta.genesisHash === '' ||
+          account.meta.genesisHash === null,
       );
 
       setAllAccounts(allAccounts);
