@@ -325,8 +325,8 @@ export const Stake = () => {
                 ) : (
                   freeBalance
                 )}
-                {ksmAmount === freeBalance && (
-                  <Text color="red">
+                {ksmAmount && ksmAmount === freeBalance && (
+                  <Text color="red" style={{ paddingLeft: '10px' }}>
                     Be sure to leave enough KSM in your account for network
                     fees!
                   </Text>
