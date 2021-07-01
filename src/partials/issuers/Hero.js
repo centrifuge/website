@@ -1,10 +1,36 @@
 import React from "react";
 import { Box, Button, Text } from "grommet";
-
+import styled, { keyframes } from "styled-components";
 import { FullWidthSection } from "../../components/MDXLayout/shortcodes";
 import hero from "../../images/issuers/hero.svg";
 
+const marquee = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+`;
+
+const MarqueeText = styled(Text)`
+  display: inline-block;
+  animation: ${marquee} 20s linear infinite;
+  width: ${props => props.width};
+  text-shadow: ${props => `${props.width} 0 currentColor, calc(${
+    props.width
+  } * 2) 0 currentColor,
+    calc(${props.width} * 3) 0 currentColor, calc(${
+    props.width
+  } * 4) 0 currentColor`};
+
+  :hover {
+    animation-play-state: paused;
+  }
+`;
+
 const Hero = () => {
+  const marqueeText =
+    "Real Estate Bridge Loans, Payment Advances, Emerging Market Consumer Loans, " +
+    "Trade Receivables, Revenue Based Financing, Cargo & Freight Forwarding Invoices, " +
+    "Branded Inventory Financing, Music Streaming Invoices, Embedded Supply Chain Financing";
+
   return (
     <Box
       background="black"
@@ -37,15 +63,21 @@ const Hero = () => {
           vertical: "small",
           horizontal: "20px"
         }}
+        style={{
+          position: "relative",
+          overflow: "hidden"
+        }}
       >
-        <marquee behavior="scroll" direction="left">
-          <Text textAlign="center" alignSelf="center">
-            Real Estate Bridge Loans, Payment Advances, Emerging Market Consumer
-            Loans, Trade Receivables, Revenue Based Financing, Cargo & Freight
-            Forwarding Invoices, Branded Inventory Financing, Music Streaming
-            Invoices, Embedded Supply Chain Financing
-          </Text>
-        </marquee>
+        <Box overflow="hidden">
+          <MarqueeText
+            width={`${marqueeText.length}ch`}
+            time="20s"
+            size="large"
+            weight={500}
+          >
+            {marqueeText}
+          </MarqueeText>
+        </Box>
       </Box>
     </Box>
   );
