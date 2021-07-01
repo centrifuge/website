@@ -19,8 +19,6 @@ import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
 import wordmark_white from "../../images/centrifuge-wordmark-light.svg";
-import altair_wordmark from "../../images/altair/altair_wordmark_small.svg";
-import altair_wordmark_white from "../../images/altair/altair_wordmark_small_white.svg";
 
 const NavLink = ({ children, to, dark }) => (
   <InternalLink
@@ -245,7 +243,7 @@ const Navigation = ({ dark }) => {
 
             <PaddedItem>
               <NavLink to="/altair" dark={dark}>
-                <Image src={!!dark ? altair_wordmark_white : altair_wordmark} />
+                Altair
               </NavLink>
             </PaddedItem>
 
@@ -345,10 +343,8 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/altair">
-                  <Image
-                    src={!!dark ? altair_wordmark_white : altair_wordmark}
-                  />
+                <NavLink to="/altair" dark={dark}>
+                  Altair
                 </NavLink>
               </MenuItem>
 
