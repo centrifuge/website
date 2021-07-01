@@ -13,7 +13,7 @@ import {
   Text,
   TextInput,
 } from 'grommet';
-import { Alert, CircleInformation } from 'grommet-icons';
+import { Alert, CircleAlert, CircleInformation } from 'grommet-icons';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   isWeb3Injected,
@@ -38,6 +38,7 @@ export const Stake = () => {
   const [error, setError] = useState();
   const [hash, setHash] = useState();
   const [balanceLoading, setBalanceLoading] = useState(true);
+  const [gasFee, setGasFee] = useState('');
 
   const [accounts, setAccounts] = useState([]);
   const [freeBalance, setFreeBalance] = useState('');
@@ -145,6 +146,23 @@ export const Stake = () => {
 
   useEffect(
     () => {
+      (async () => {
+        if (api) {
+          const gasFeeResponse = await api.tx.crowdloan
+            .contribute(2021, parseFloat(ksmAmount) * 10 ** 12, null)
+            .paymentInfo(selectedAccount.address);
+
+          setGasFee(
+            (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
+          );
+        }
+      })();
+    },
+    [api, selectedAccount.address],
+  );
+
+  useEffect(
+    () => {
       if (
         ksmAmount &&
         isValidKsmAmount &&
@@ -182,7 +200,7 @@ export const Stake = () => {
     return `${firstFifteen}...${lastFifteen}`;
   };
 
-  if (accountLoading) {
+  if (accountLoading && !gasFee) {
     return (
       <Section>
         <Box alignSelf="center">
@@ -226,7 +244,7 @@ export const Stake = () => {
     return <Success hash={hash} ksmAmount={ksmAmount} />;
   }
 
-  const Error = () => {
+  const UnexpectedError = () => {
     return (
       <Box
         background={{ color: '#FFE8ED' }}
@@ -236,6 +254,31 @@ export const Stake = () => {
           <Alert size="small" /> Unexpected error!
         </Text>
         <Text>Try again.</Text>
+      </Box>
+    );
+  };
+
+  const InsufficientFundsWarning = () => {
+    return (
+      <Box
+        background={{ color: '#FFF0D6' }}
+        style={{
+          width: '500px',
+          padding: '24px',
+          borderRadius: '4px',
+          marginTop: '24px',
+        }}
+        gap="small"
+      >
+        <Text weight={600}>
+          <CircleAlert size="small" /> Insufficent funds
+        </Text>
+        <Text textAlign="start">
+          Latest network fees: <strong>{gasFee}</strong>
+          <br />
+          Ensure that your balance can cover both the contribution as well as
+          the network fees.
+        </Text>
       </Box>
     );
   };
@@ -251,7 +294,7 @@ export const Stake = () => {
           signatures are not able to receive rewards
         </Text>
       </Box>
-      {error && <Error />}
+      {error && <UnexpectedError />}
       {isWeb3Injected && (
         <Box gap="medium" style={{ width: '500px' }}>
           <FormField label="Kusama account">
@@ -288,7 +331,7 @@ export const Stake = () => {
             <FormField
               name="kusama"
               htmlFor="kusama"
-              label="Staking amount (minimum of 0.1 KSM)"
+              label="Staking contribution (minimum of 0.1 KSM)"
             >
               <TextInput
                 disabled={isContributing}
@@ -310,7 +353,7 @@ export const Stake = () => {
               />
             </FormField>
             <Text>
-              <Grid columns={['90px', 'auto', 'auto']}>
+              <Grid columns={['90px', 'auto']}>
                 <Text>Your balance:</Text>
                 {balanceLoading ? (
                   <Spinner
@@ -325,13 +368,11 @@ export const Stake = () => {
                 ) : (
                   freeBalance
                 )}
-                {ksmAmount && ksmAmount === freeBalance && (
-                  <Text color="red" style={{ paddingLeft: '10px' }}>
-                    Be sure to leave enough KSM in your account for network
-                    fees!
-                  </Text>
-                )}
               </Grid>
+              {ksmAmount &&
+                ksmAmount >= parseFloat(freeBalance) - parseFloat(gasFee) && (
+                  <InsufficientFundsWarning />
+                )}
             </Text>
           </Box>
           <CheckBox
