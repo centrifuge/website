@@ -147,10 +147,10 @@ export const Stake = () => {
   useEffect(
     () => {
       (async () => {
-        if (api) {
+        if (api && selectedAddress) {
           const gasFeeResponse = await api.tx.crowdloan
             .contribute(2021, parseFloat(ksmAmount) * 10 ** 12, null)
-            .paymentInfo(selectedAccount.address);
+            .paymentInfo(selectedAccount?.address);
 
           setGasFee(
             (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
@@ -158,7 +158,7 @@ export const Stake = () => {
         }
       })();
     },
-    [api, selectedAccount.address],
+    [api, selectedAccount?.address],
   );
 
   useEffect(
