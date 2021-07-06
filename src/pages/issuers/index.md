@@ -30,7 +30,7 @@ import docs from "../../images/issuers/docs-wordmark.svg";
 <AltairUtilityBlock text={<Box align="center" gap="small" justify="start" flex="grow"><Text size="large" weight="bold">Scalable</Text><Box justify="center" flex="grow"><Text textAlign="center" color="dark-3" weight={500}>Access capital at any point in, whether starting out or looking to scale</Text></Box></Box>} logo={scalable} />
 </Col>
 <Col span={4} align="center">
-<AltairUtilityBlock text={<Box align="center" gap="small" justify="start" flex="grow"><Text size="large" weight="bold">Balanced</Text><Box justify="center" flex="grow"><Text textAlign="center" color="dark-3" weight={500}>Diversify your funding portfolio with DeFi. Make your business resilient, appealing long-term to the market, and on the front edge of tech.</Text></Box></Box>} logo={balanced} />
+<AltairUtilityBlock text={<Box align="center" gap="small" justify="start" flex="grow"><Text size="large" weight="bold">Balanced</Text><Box justify="center" flex="grow"><Text textAlign="center" color="dark-3" weight={500}>Diversify your funding portfolio with DeFi. Make your business resilient, appealing long-term to the market, and on the front edge of tech</Text></Box></Box>} logo={balanced} />
 </Col>
 
 </Row>
