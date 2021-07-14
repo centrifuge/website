@@ -10,10 +10,13 @@ async function getData() {
       query: `
               query {
                 pools {
-                  reserve, assetValue
+                  reserve,
+                  assetValue,
+                  totalRepaysAggregatedAmount,
+                  totalDebt
                 }
-              }`
-    })
+              }`,
+    }),
   });
 
   if (!res.ok) {
@@ -37,7 +40,9 @@ async function getTaf() {
   if (!cachedData) cachedData = await getData();
 
   const taf = cachedData.pools.reduce((sum, pool) => {
-    return sum.add(new BN(pool.assetValue));
+    return sum
+      .add(new BN(pool.totalRepaysAggregatedAmount))
+      .add(new BN(pool.totalDebt));
   }, new BN(0));
 
   return taf;
