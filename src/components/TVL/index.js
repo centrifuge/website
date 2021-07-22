@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BN from "bn.js";
 import { Text } from "grommet";
+import { getTvl } from "../../helpers/subgraph";
 
 const TVL = ({ size }) => {
   const [tvl, setTvl] = useState("loading ...");
@@ -13,29 +14,7 @@ const TVL = ({ size }) => {
         return parts.join(".");
       }
 
-      const res = await fetch(process.env.GATSBY_CENTRIFUGE_SUBGRAPH_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: `
-              query {
-                pools {
-                reserve, assetValue
-                }
-              }`
-        })
-      });
-
-      if (!res.ok) {
-        throw new Error(
-          `Failed to rerieve pool data for TVL: ${res.statusText}`
-        );
-      }
-
-      const tvl = (await res.json()).data.pools.reduce((sum, pool) => {
-        return sum.add(new BN(pool.assetValue)).add(new BN(pool.reserve));
-      }, new BN(0));
-
+      const tvl = await getTvl();
       const formattedTvl = addThousandsSeparators(
         tvl.div(new BN(10).pow(new BN(18)))
       );

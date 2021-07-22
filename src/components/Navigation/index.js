@@ -19,8 +19,6 @@ import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
 import wordmark_white from "../../images/centrifuge-wordmark-light.svg";
-import altair_wordmark from "../../images/altair/altair_wordmark_small.svg";
-import altair_wordmark_white from "../../images/altair/altair_wordmark_small_white.svg";
 
 const NavLink = ({ children, to, dark }) => (
   <InternalLink
@@ -28,7 +26,7 @@ const NavLink = ({ children, to, dark }) => (
       fontWeight: "var(--fw-medium)",
       color: !!dark ? "white" : "black"
     }}
-    activeStyle={{ color: "var(--c-brand)" }}
+    activeStyle={{ color: !!dark ? "white" : "var(--c-brand)" }}
     to={to}
   >
     {children}
@@ -238,26 +236,26 @@ const Navigation = ({ dark }) => {
           {/* Desktop Nav */}
           <Dropdowns direction="row" align="center" gap="large" dark={dark}>
             <PaddedItem>
-              <NavLink to="/altair" dark={dark}>
-                <Image src={!!dark ? altair_wordmark_white : altair_wordmark} />
-              </NavLink>
-            </PaddedItem>
-
-            <PaddedItem>
-              <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
-                Docs
+              <ExternalNavLink href="https://tinlake.centrifuge.io" dark={dark}>
+                Tinlake
               </ExternalNavLink>
             </PaddedItem>
 
             <PaddedItem>
-              <NavLink to="/about" dark={dark}>
-                About
+              <NavLink to="/altair" dark={dark}>
+                Altair
+              </NavLink>
+            </PaddedItem>
+
+            <PaddedItem>
+              <NavLink to="/issuers" dark={dark}>
+                Issuers
               </NavLink>
             </PaddedItem>
 
             <PaddedItem>
               <ExternalNavLink href="/cfg-token-summary" dark={dark}>
-                Centrifuge Token
+                CFG Token
               </ExternalNavLink>
 
               <List>
@@ -266,17 +264,34 @@ const Navigation = ({ dark }) => {
                     Token Summary
                   </ExternalNavLink>
                   <NavLink to="/cfg" dark={dark}>
-                    Get Centrifuge
+                    Get CFG
                   </NavLink>
                 </Item>
               </List>
             </PaddedItem>
 
             <PaddedItem>
-              <NavLink to="/careers" dark={dark}>
-                Careers
-              </NavLink>
+              <NavLink dark={dark}>Service</NavLink>
+
+              <List>
+                <Item>
+                  <ExternalNavLink
+                    href="https://docs.centrifuge.io/"
+                    dark={dark}
+                  >
+                    Docs
+                  </ExternalNavLink>
+                  <NavLink to="/about" dark={dark}>
+                    About
+                  </NavLink>
+                  <NavLink to="/careers" dark={dark}>
+                    Careers
+                  </NavLink>
+                </Item>
+              </List>
             </PaddedItem>
+
+            <PaddedItem />
           </Dropdowns>
         </List>
       </Container>
@@ -322,28 +337,26 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
           >
             <List>
               <MenuItem>
-                <NavLink to="/altair">
-                  <Image
-                    src={!!dark ? altair_wordmark_white : altair_wordmark}
-                  />
-                </NavLink>
-              </MenuItem>
-
-              <MenuItem>
-                <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
-                  Docs
+                <ExternalNavLink to="https://tinlake.centrifuge.io" dark={dark}>
+                  Tinlake
                 </ExternalNavLink>
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/about" dark={dark}>
-                  About
+                <NavLink to="/altair" dark={dark}>
+                  Altair
+                </NavLink>
+              </MenuItem>
+
+              <MenuItem>
+                <NavLink to="/issuers" dark={dark}>
+                  Issuers
                 </NavLink>
               </MenuItem>
 
               <MenuItem>
                 <ExternalNavLink to="/cfg-token-summary" dark={dark}>
-                  Centrifuge Token
+                  CFG Token
                 </ExternalNavLink>
 
                 <SubItem>
@@ -359,9 +372,26 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/careers" dark={dark}>
-                  Careers
-                </NavLink>
+                <NavLink dark={dark}>Service</NavLink>
+
+                <SubItem>
+                  <ExternalNavLink
+                    href="https://docs.centrifuge.io/"
+                    dark={dark}
+                  >
+                    Docs
+                  </ExternalNavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/about" dark={dark}>
+                    About
+                  </NavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/careers" dark={dark}>
+                    Careers
+                  </NavLink>
+                </SubItem>
               </MenuItem>
             </List>
           </MobileBox>
