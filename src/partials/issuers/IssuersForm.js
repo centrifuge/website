@@ -106,8 +106,6 @@ const IssuersForm = () => {
     [value]
   );
 
-  console.log(errors);
-
   return (
     <Section gap="large">
       <Box align="center" gap="small">
