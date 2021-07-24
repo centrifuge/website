@@ -1,7 +1,6 @@
 import alina from "../../images/team/alina.jpeg";
 import lea from "../../images/team/lea.jpg";
 import miguel from "../../images/team/miguel.png";
-import aubry from "../../images/team/aubry.png";
 import helena from "../../images/team/helena.jpeg";
 import lisa from "../../images/team/lisa.jpg";
 import mike from "../../images/team/mike.jpg";
@@ -11,7 +10,6 @@ import lucas from "../../images/team/lucas.png";
 import ved from "../../images/team/ved.jpeg";
 import dennis from "../../images/team/dennis.jpeg";
 import jeroen from "../../images/team/jeroen.png";
-// import manuel from "../../images/team/manuel.png";
 import frederick from "../../images/team/frederick.jpeg";
 import devin from "../../images/team/devin.jpg";
 import jp from "../../images/team/jp.jpg";
@@ -35,13 +33,6 @@ const teamMembers = [
     social: "https://twitter.com/helsfoftroy",
     image: helena
   },
-  // {
-  //   name: "Manuel Polzhofer",
-  //   description: "Building software together with an awesome team",
-  //   link: "https://ourworldindata.org/",
-  //   social: "https://twitter.com/m_polzhofer",
-  //   image: manuel
-  // },
   {
     name: "Lea Schmitt",
     description: "DeFi-Centrifuge match making",
@@ -92,13 +83,6 @@ const teamMembers = [
     link: "https://hckrnews.com/",
     social: "https://twitter.com/Offerijns",
     image: jeroen
-  },
-  {
-    name: "Aubry Kessel",
-    description: "Being like a Swiss army knife",
-    link: "https://www.barrons.com/",
-    social: "https://www.instagram.com/aubs.23/",
-    image: aubry
   },
   {
     name: "Jason Jones",
