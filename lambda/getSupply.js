@@ -94,10 +94,9 @@ exports.handler = async event => {
 
   const wsProvider = new WsProvider(CENTRIFUGE_MAINNET_WSS_RPC);
   const api = await ApiPromise.create({ provider: wsProvider });
-
-  const totalIssuanceRaw = await api.query.balances.totalIssuance();
-  const totalIssuance = totalIssuanceRaw.toString().substring(0, totalIssuanceRaw.toString().length - 18);
-  const liquid = totalIssuance - getLockedSupply()
+  const totalIssuanceRaw = await api.query.balances.totalIssuance().toString();
+  const totalIssuance = totalIssuanceRaw.substring(0, totalIssuanceRaw.length - 18);
+  const liquid = parseInt(totalIssuance) - getLockedSupply()
 
   return {
     statusCode: 200,
