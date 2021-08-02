@@ -96,7 +96,7 @@ exports.handler = async event => {
   const api = await ApiPromise.create({ provider: wsProvider });
 
   const totalIssuanceRaw = await api.query.balances.totalIssuance();
-  const totalIssuance = totalIssuanceRaw.toString().substring(0, totalIssuanceRaw.length - 18);
+  const totalIssuance = totalIssuanceRaw.toString().substring(0, totalIssuanceRaw.toString().length - 18);
   const liquid = totalIssuance - getLockedSupply()
 
   return {
