@@ -76,9 +76,9 @@ const lockSchedule = {
 }
 
 const getLockedSupply = () => {
-  let today = new Date()
-  let year = today.getYear()+1900
-  let month = today.getMonth() < 9 ? "0"+(today.getMonth()+1).toString() : (today.getMonth()+1).toString()
+  const today = new Date()
+  const year = today.getYear()+1900
+  const month = today.getMonth() < 9 ? "0"+(today.getMonth()+1).toString() : (today.getMonth()+1).toString()
   return lockSchedule[`${year}-${month}`]
 }
 
@@ -96,7 +96,7 @@ exports.handler = async event => {
   const api = await ApiPromise.create({ provider: wsProvider });
 
   const totalIssuanceRaw = await api.query.balances.totalIssuance();
-  const totalIssuance = totalIssuanceRaw.toString().substring(0, totalIssuance.length - 18);
+  const totalIssuance = totalIssuanceRaw.toString().substring(0, totalIssuanceRaw.length - 18);
   const liquid = totalIssuance - getLockedSupply()
 
   return {
