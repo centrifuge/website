@@ -25,6 +25,6 @@ exports.handler = async event => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({"totalIssuance":`${integer}.${firstFiveDecimals}`}),
+    body: JSON.stringify(`${integer}.${firstFiveDecimals}`),
   };
 };
