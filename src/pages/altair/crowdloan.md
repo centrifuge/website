@@ -15,4 +15,3 @@ import air_3 from "../../images/altair/air-token-logos/3.svg";
 import air_4 from "../../images/altair/air-token-logos/4.svg";
 
 <Landing />
-<Stake />
