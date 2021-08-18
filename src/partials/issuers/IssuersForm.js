@@ -14,6 +14,7 @@ import {
 import Grid from "../../components/Grid";
 import Column from "../../components/Column";
 import { isEmail, isFQDN, isMobilePhone } from "validator";
+import { navigate } from "gatsby";
 
 const IssuersForm = () => {
   const size = useContext(ResponsiveContext);
@@ -67,6 +68,10 @@ const IssuersForm = () => {
     },
     [errors]
   );
+
+  const handleSuccess = () => {
+    navigate("/issuers");
+  };
 
   useEffect(
     () => {
@@ -124,8 +129,11 @@ const IssuersForm = () => {
             onChange={nextValue => setValue(nextValue)}
             onSubmit={async ({ value }) => {
               const status = await sendEmail("Access Capital", value);
-              if (!status) console.log("Mail sending failed");
-              else console.log("Mail sent successfully");
+              if (!status) alert("Sending response failed, please try again");
+              else {
+                alert("Response sent successfully");
+                handleSuccess();
+              }
             }}
           >
             <Grid mt="small" mb="medium" justify="stretch" gap="90">

@@ -13,12 +13,20 @@ export const Landing = () => {
   }, []);
 
   return (
-    <Box background="black" style={{ position: 'relative', minHeight: '70vh' }}>
+    <Box background="black" style={{ position: 'relative', minHeight: '50vh' }}>
       <Section>
         <Row>
           <Col span={8} gap="medium">
             <Box>
               <Box gap="small">
+                <Text
+                  size="xxlarge"
+                  weight={900}
+                  textAlign="start"
+                  style={{ paddingLeft: '25px' }}
+                >
+                  Auction Starting Soon!
+                </Text>
                 <Text
                   size="xxlarge"
                   weight={900}
@@ -59,7 +67,7 @@ export const Landing = () => {
                 </Box>
               </Box>
             </Box>
-            <Box gap="small">
+            {/* <Box gap="small">
               <Button
                 primary
                 color="altair"
@@ -83,7 +91,7 @@ export const Landing = () => {
                 </Anchor>{' '}
                 directly.
               </Text>
-            </Box>
+            </Box> */}
           </Col>
           <Col span={4}>
             <Image src={altair_logo} width={172} />
