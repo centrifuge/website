@@ -5,7 +5,6 @@ import helena from "../../images/team/helena.jpeg";
 import lisa from "../../images/team/lisa.jpg";
 import mike from "../../images/team/mike.jpg";
 import cassidy from "../../images/team/cassidy.jpg";
-import jason from "../../images/team/jason.jpg";
 import lucas from "../../images/team/lucas.png";
 import ved from "../../images/team/ved.jpeg";
 import dennis from "../../images/team/dennis.jpeg";
@@ -83,13 +82,6 @@ const teamMembers = [
     link: "https://hckrnews.com/",
     social: "https://twitter.com/Offerijns",
     image: jeroen
-  },
-  {
-    name: "Jason Jones",
-    description: "Building a business around the technology",
-    link: "https://www.benlcollins.com/blog/",
-    social: "https://www.linkedin.com/in/jasonjoneslinkedin/",
-    image: jason
   },
   {
     name: "Cassidy Daly",
