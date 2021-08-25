@@ -31,7 +31,7 @@ const NewsPage = ({ data }) => {
   const highlightPost = data.prs.edges[0].node;
   const prPosts = data.prs.edges.slice(1, 4);
   const ytVideos = data.ytVideos.edges.slice(0, 3);
-  const mediumPosts = data.mediumFeed.posts.slice(0, 3);
+  const mediumPosts = data.mediumFeed.posts?.slice(0, 3);
 
   return (
     <Layout>
@@ -66,7 +66,7 @@ const NewsPage = ({ data }) => {
           </Column>
         </Grid>
         <Grid mt="large" mb="xlarge" justify="" align="flex-start">
-          {mediumPosts.map((post, index) => {
+          {mediumPosts?.map((post, index) => {
             return (
               <React.Fragment key={index}>
                 <Column mobileSpaced span={{ medium: 4, large: 4 }}>

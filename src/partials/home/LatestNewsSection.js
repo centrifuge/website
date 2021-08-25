@@ -19,7 +19,7 @@ const LatestNewsSection = () => {
     }
   `);
 
-  const mediumPosts = data.mediumFeed.posts.slice(0, 3);
+  const mediumPosts = data.mediumFeed.posts?.slice(0, 3);
   return (
     <Box>
       <LatestNews posts={mediumPosts} />
