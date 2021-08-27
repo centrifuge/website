@@ -134,15 +134,6 @@ export const Stake = ({
 
   const contribute = async () => {
     setIsSubmitting(true);
-    if (emailAddress) {
-      await addToMailchimp(
-        emailAddress,
-        {
-          'group[11932][2]': '2',
-        },
-        'https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=2c580b74e1',
-      );
-    }
 
     const contributeTransaction = api.tx.crowdloan.contribute(
       2013,
@@ -164,12 +155,20 @@ export const Stake = ({
         await batch.signAndSend(
           selectedAccount.address,
           { signer: injector.signer },
-          status => {
+          async status => {
             const error = status.events.filter(({ event }) =>
               api.events.system.ExtrinsicFailed.is(event),
             );
 
             if (status.status.isFinalized) {
+              if (emailAddress) {
+                await addToMailchimp(
+                  emailAddress,
+                  {},
+                  'https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=2c580b74e1',
+                );
+              }
+
               setHash(batch.hash.toHex());
               setIsFinalized(true);
             }
@@ -190,12 +189,20 @@ export const Stake = ({
         await contributeTransaction.signAndSend(
           selectedAccount.address,
           { signer: injector.signer },
-          status => {
+          async status => {
             const error = status.events.filter(({ event }) =>
               api.events.system.ExtrinsicFailed.is(event),
             );
 
             if (status.status.isFinalized) {
+              if (emailAddress) {
+                await addToMailchimp(
+                  emailAddress,
+                  {},
+                  'https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=2c580b74e1',
+                );
+              }
+
               setHash(contributeTransaction.hash.toHex());
               setIsFinalized(true);
             }
@@ -426,7 +433,7 @@ export const Stake = ({
                   onChange={event => {
                     setReferralCode(event.target.value);
                   }}
-                  placeholder="ExAmpl41Reff3rAl"
+                  placeholder="ExAmpl41Ref3rrAl"
                   value={referralCode}
                 />
               </FormField>
