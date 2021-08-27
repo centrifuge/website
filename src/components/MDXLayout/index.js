@@ -1,12 +1,12 @@
-import React from "react";
-import { MDXProvider } from "@mdx-js/react";
-import { Heading, Paragraph, Image, Anchor } from "grommet";
+import React from 'react';
+import { MDXProvider } from '@mdx-js/react';
+import { Heading, Paragraph, Image, Anchor } from 'grommet';
 
-import Layout from "../Layout";
-import SEO from "../SEO";
-import * as shortcodes from "./shortcodes";
+import Layout from '../Layout';
+import SEO from '../SEO';
+import * as shortcodes from './shortcodes';
 
-const getHeadingComponent = (level, lined = false, mb = "xsmall") => ({
+const getHeadingComponent = (level, lined = false, mb = 'xsmall') => ({
   children,
   ...rest
 }) => (
@@ -16,8 +16,8 @@ const getHeadingComponent = (level, lined = false, mb = "xsmall") => ({
 );
 
 const components = {
-  h1: getHeadingComponent(1, true, "medium"),
-  h2: getHeadingComponent(2, false, "medium"),
+  h1: getHeadingComponent(1, true, 'medium'),
+  h2: getHeadingComponent(2, false, 'medium'),
   h3: getHeadingComponent(3),
   h4: getHeadingComponent(4),
   h5: getHeadingComponent(5),
@@ -26,15 +26,15 @@ const components = {
   a: ({ href, children, ...rest }) => (
     <Anchor primary href={href} label={children} {...rest} />
   ),
-  img: ({ src, ...rest }) => <Image src={src} {...rest} width="100%" />
+  img: ({ src, ...rest }) => <Image src={src} {...rest} width="100%" />,
 };
 
-export default ({ children, pageContext: { frontmatter } }) => {
+export default ({ children, pageContext: { frontmatter }, location }) => {
   const { description, title, dark } = frontmatter;
-  const noIndexMeta = { name: "robots", content: "noindex" };
+  const noIndexMeta = { name: 'robots', content: 'noindex' };
 
   return (
-    <Layout title={title} dark={dark}>
+    <Layout title={title} dark={dark} location={location}>
       <SEO
         description={description}
         title={title}

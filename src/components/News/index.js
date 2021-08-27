@@ -180,7 +180,7 @@ const PostInfo = ({ title, subtitle, link, heading }) => (
 
 const LatestNews = ({ posts }) => (
   <Grid mt="" mb="" justify="stretch">
-    {posts.map((post, index) => (
+    {posts?.map((post, index) => (
       <Column span={{ small: 12, medium: 4, large: 4 }} key={index}>
         <NewsCard link={post.link}>
           <CardImage src={post.thumbnail} />

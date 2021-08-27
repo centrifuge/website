@@ -119,6 +119,10 @@ const custom = {
     extend: css`
       fill: #000;
       stroke: #000;
+      ${props =>
+        props.color === 'white' &&
+        `stroke: #FFF;
+      `}
     `
   },
   textInput: {

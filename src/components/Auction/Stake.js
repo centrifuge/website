@@ -1,10 +1,10 @@
 import { Section } from '../MDXLayout/shortcodes';
 import { encodeAddress } from '@polkadot/util-crypto';
 import {
-  Anchor,
   Box,
   Button,
   CheckBox,
+  Form,
   FormField,
   Grid,
   Image,
@@ -13,39 +13,77 @@ import {
   Text,
   TextInput,
 } from 'grommet';
-import { Alert, CircleAlert, CircleInformation } from 'grommet-icons';
+import { CircleInformation } from 'grommet-icons';
 import React, { useEffect, useMemo, useState } from 'react';
+import queryString from 'query-string';
+import addToMailchimp from 'gatsby-plugin-mailchimp';
 import {
   isWeb3Injected,
   web3Accounts,
   web3Enable,
   web3FromAddress,
 } from '@polkadot/extension-dapp';
-import { Success } from './Success';
 import { ApiPromise, WsProvider } from '@polkadot/api';
+import { InsufficientFundsWarning } from './InsufficientFundsWarning';
+import { UnexpectedError } from './UnexpectedError';
+import { Prerequisites } from './Prerequisites';
 import ksm_token_logo from '../../images/altair/ksm_token_logo.svg';
+import { validEmailReg, validKSMReg, validReferralCode } from './regex';
 
 const KUSAMA_GENESIS_HASH =
   '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe';
 
-export const Stake = () => {
-  const [selectedAccount, setSelectedAccount] = useState({});
-  const [disabled, setDisabled] = useState(true);
-  const [ksmAmount, setKsmAmount] = useState('');
+const AIR_REWARD = 400;
+const REFERRAL_RATE = 1.05;
+const EARLY_BIRD_RATE = 1.1;
+
+const validateReferralCode = value => {
+  if (value && (value.length !== 20 || !validReferralCode.test(value))) {
+    return { status: 'error', message: 'Enter a valid referral code' };
+  }
+};
+
+const validateEmailAddress = value => {
+  if (value && !validEmailReg.test(value)) {
+    return { status: 'error', message: 'Enter a valid email address' };
+  }
+};
+
+const validateKsmAmount = value => {
+  if (!value || !validKSMReg.test(value) || parseFloat(value) < 0.1) {
+    return { status: 'error', message: 'Enter a valid amount of KSM' };
+  }
+};
+
+export const Stake = ({
+  estimatedAirRewards,
+  isEarlybird,
+  location,
+  ksmAmount,
+  selectedAccount,
+  setEstimatedAirRewards,
+  setHash,
+  setIsFinalized,
+  setKsmAmount,
+  setSelectedAccount,
+}) => {
   const [checked, setChecked] = useState(false);
-  const [isContributing, setIsContributing] = useState(false);
-  const [isFinalized, setIsFinalized] = useState(false);
   const [error, setError] = useState();
-  const [hash, setHash] = useState();
   const [balanceLoading, setBalanceLoading] = useState(true);
   const [gasFee, setGasFee] = useState('');
 
+  const [emailAddress, setEmailAddress] = useState('');
   const [accounts, setAccounts] = useState([]);
   const [freeBalance, setFreeBalance] = useState('');
   const [api, setApi] = useState();
   const [injector, setInjector] = useState();
   const [injectors, setInjectors] = useState([]);
   const [accountLoading, setAccountLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const referralCodeParam = queryString.parse(location.search).refer;
+
+  const [referralCode, setReferralCode] = useState(referralCodeParam || '');
 
   useEffect(() => {
     setAccountLoading(true);
@@ -95,86 +133,153 @@ export const Stake = () => {
   );
 
   const contribute = async () => {
-    try {
-      const extrinsic = api.tx.crowdloan.contribute(
-        2021,
-        parseFloat(ksmAmount) * 10 ** 12,
-        null,
-      );
-      await extrinsic.signAndSend(
-        selectedAccount.address,
-        { signer: injector.signer },
-        status => {
-          const error = status.events.filter(({ event }) =>
-            api.events.system.ExtrinsicFailed.is(event),
-          );
+    setIsSubmitting(true);
 
-          setIsContributing(true);
+    const contributeTransaction = api.tx.crowdloan.contribute(
+      2013,
+      parseFloat(ksmAmount) * 10 ** 12,
+      null,
+    );
 
-          if (status.status.isFinalized) {
-            setHash(extrinsic.hash.toHex());
-            setIsFinalized(true);
-            setIsContributing(false);
-          }
+    if (referralCode) {
+      try {
+        const memo = api.createType('Bytes', `ReferralCode: ${referralCode}`);
 
-          if (status.status.dispatchError || error.length) {
-            setError('error occurred');
-            setIsFinalized(false);
-            setIsContributing(false);
-          }
-        },
-      );
-    } catch (err) {
-      setError(err);
+        const memoTransaction = api.tx.crowdloan.addMemo(2013, memo);
+
+        const batch = api.tx.utility.batch([
+          contributeTransaction,
+          memoTransaction,
+        ]);
+
+        await batch.signAndSend(
+          selectedAccount.address,
+          { signer: injector.signer },
+          async status => {
+            const error = status.events.filter(({ event }) =>
+              api.events.system.ExtrinsicFailed.is(event),
+            );
+
+            if (status.status.isFinalized) {
+              if (emailAddress) {
+                await addToMailchimp(
+                  emailAddress,
+                  {},
+                  'https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=2c580b74e1',
+                );
+              }
+
+              setHash(batch.hash.toHex());
+              setIsFinalized(true);
+            }
+
+            if (status.status.dispatchError || error.length) {
+              setError('error occurred');
+              setIsFinalized(false);
+              setIsSubmitting(false);
+            }
+          },
+        );
+      } catch (err) {
+        setIsSubmitting(false);
+        setError(err);
+      }
+    } else {
+      try {
+        await contributeTransaction.signAndSend(
+          selectedAccount.address,
+          { signer: injector.signer },
+          async status => {
+            const error = status.events.filter(({ event }) =>
+              api.events.system.ExtrinsicFailed.is(event),
+            );
+
+            if (status.status.isFinalized) {
+              if (emailAddress) {
+                await addToMailchimp(
+                  emailAddress,
+                  {},
+                  'https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=2c580b74e1',
+                );
+              }
+
+              setHash(contributeTransaction.hash.toHex());
+              setIsFinalized(true);
+            }
+
+            if (status.status.dispatchError || error.length) {
+              setError('error occurred');
+              setIsSubmitting(false);
+              setIsFinalized(false);
+            }
+          },
+        );
+      } catch (err) {
+        setIsSubmitting(false);
+        setError(err);
+      }
     }
   };
-
-  const isValidKsmAmount = useMemo(
-    () => {
-      if (
-        /^\d*(\.\d+)?$/.test(ksmAmount) &&
-        parseFloat(ksmAmount) >= 0.1 &&
-        parseFloat(ksmAmount) <= parseFloat(freeBalance)
-      ) {
-        return true;
-      }
-
-      return false;
-    },
-    [freeBalance, ksmAmount],
-  );
 
   useEffect(
     () => {
       (async () => {
         if (api && selectedAccount) {
-          const gasFeeResponse = await api.tx.crowdloan
-            .contribute(2021, parseFloat(ksmAmount) * 10 ** 12, null)
-            .paymentInfo(selectedAccount?.address);
-
-          setGasFee(
-            (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
+          const contributeTransaction = api.tx.crowdloan.contribute(
+            2013,
+            parseFloat(ksmAmount) * 10 ** 12,
+            null,
           );
+
+          const memo = api.createType(
+            'Bytes',
+            '0x000000000000000000000000000000000000000000000',
+          );
+
+          const memoTransaction = api.tx.crowdloan.addMemo(2013, memo);
+
+          if (referralCode) {
+            const gasFeeResponse = await api.tx.utility
+              .batch([contributeTransaction, memoTransaction])
+              .paymentInfo(selectedAccount?.address);
+
+            setGasFee(
+              (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
+            );
+          } else {
+            const gasFeeResponse = await contributeTransaction.paymentInfo(
+              selectedAccount?.address,
+            );
+
+            setGasFee(
+              (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
+            );
+          }
         }
       })();
     },
-    [api, selectedAccount?.address],
+    [api, referralCode, selectedAccount?.address],
   );
 
   useEffect(
     () => {
-      if (
-        ksmAmount &&
-        isValidKsmAmount &&
-        checked &&
-        ksmAmount !== freeBalance
-      ) {
-        setDisabled(false);
+      if (validateKsmAmount(ksmAmount)) {
+        setEstimatedAirRewards(0);
       } else {
-        setDisabled(true);
+        const baseReward = ksmAmount * AIR_REWARD;
+
+        if (isEarlybird && !validateReferralCode(referralCode)) {
+          setEstimatedAirRewards(baseReward * EARLY_BIRD_RATE * REFERRAL_RATE);
+        } else if (isEarlybird) {
+          setEstimatedAirRewards(baseReward * EARLY_BIRD_RATE);
+        } else if (!validateReferralCode(referralCode)) {
+          setEstimatedAirRewards(baseReward * REFERRAL_RATE);
+        } else {
+          setEstimatedAirRewards(baseReward);
+        }
       }
     },
-    [checked, ksmAmount],
+    [isEarlybird, ksmAmount, referralCode],
   );
 
   const hasExtension = useMemo(
@@ -210,81 +315,12 @@ export const Stake = () => {
     );
   }
 
-  if (!hasExtension) {
-    return (
-      <Section gap="medium">
-        <Text size="xxlarge" weight={900}>
-          Stake KSM
-        </Text>
-        <Box gap="medium">
-          <Text size="large" weight={400}>
-            You need the{' '}
-            <Anchor target="_blank" href="https://polkadot.js.org/extension/">
-              Polkadot{'{.js}'} browser extension
-            </Anchor>{' '}
-            installed and a Kusama wallet with a balance of at least 0.1 KSM.
-          </Text>
-        </Box>
-      </Section>
-    );
+  if (!hasExtension || !accounts.length) {
+    return <Prerequisites injectors={injectors} />;
   }
-
-  if (!accounts.length) {
-    return (
-      <Section gap="medium">
-        <Text size="xxlarge" weight={900}>
-          Stake KSM
-        </Text>
-        <Box>You need a Kusama wallet with a balance of at least 0.1 KSM.</Box>
-      </Section>
-    );
-  }
-
-  if (isFinalized) {
-    return <Success hash={hash} ksmAmount={ksmAmount} />;
-  }
-
-  const UnexpectedError = () => {
-    return (
-      <Box
-        background={{ color: '#FFE8ED' }}
-        style={{ width: '500px', padding: '24px', borderRadius: '4px' }}
-      >
-        <Text weight={600}>
-          <Alert size="small" /> Unexpected error!
-        </Text>
-        <Text>Try again.</Text>
-      </Box>
-    );
-  };
-
-  const InsufficientFundsWarning = () => {
-    return (
-      <Box
-        background={{ color: '#FFF0D6' }}
-        style={{
-          width: '500px',
-          padding: '24px',
-          borderRadius: '4px',
-          marginTop: '24px',
-        }}
-        gap="small"
-      >
-        <Text weight={600}>
-          <CircleAlert size="small" /> Insufficent funds
-        </Text>
-        <Text textAlign="start">
-          Latest network fees: <strong>{gasFee}</strong>
-          <br />
-          Ensure that your balance can cover both the contribution as well as
-          the network fees.
-        </Text>
-      </Box>
-    );
-  };
 
   return (
-    <Section gap="medium">
+    <Section gap="medium" style={{ margin: 0 }}>
       <Box>
         <Text size="xxlarge" weight={900}>
           Stake KSM
@@ -296,126 +332,180 @@ export const Stake = () => {
       </Box>
       {error && <UnexpectedError />}
       {isWeb3Injected && (
-        <Box gap="medium" style={{ width: '500px' }}>
-          <FormField label="Kusama account">
-            <Select
-              disabled={isContributing}
-              children={account => (
-                <Box pad="small" style={{ textAlign: 'left' }}>
-                  <div>
-                    {account.meta?.name} - {truncateAddress(account.address)}
-                  </div>
-                </Box>
-              )}
-              options={accounts}
-              onChange={({ option }) => setSelectedAccount(option)}
-              valueKey={'address'}
-              valueLabel={
-                selectedAccount?.address ? (
+        <Box gap="medium" style={{ width: '575px' }}>
+          <Form onSubmit={() => contribute()} validate="submit">
+            <FormField label="Kusama account">
+              <Select
+                disabled={isSubmitting}
+                children={account => (
                   <Box pad="small" style={{ textAlign: 'left' }}>
                     <div>
-                      {selectedAccount.meta?.name} -{' '}
-                      {truncateAddress(selectedAccount.address)}
+                      {account.meta?.name} - {truncateAddress(account.address)}
                     </div>
                   </Box>
-                ) : (
-                  ''
-                )
-              }
-              value={`${selectedAccount.meta?.name} - ${
-                selectedAccount.address
-              }`}
-            />
-          </FormField>
-          <Box>
-            <FormField
-              name="kusama"
-              htmlFor="kusama"
-              label="Staking contribution (minimum of 0.1 KSM)"
-            >
-              <TextInput
-                disabled={isContributing}
-                icon={
-                  <>
-                    <Image src={ksm_token_logo} />
-                    <span style={{ paddingLeft: '8px' }}>KSM</span>
-                  </>
+                )}
+                options={accounts}
+                onChange={({ option }) => setSelectedAccount(option)}
+                valueKey={'address'}
+                valueLabel={
+                  selectedAccount?.address ? (
+                    <Box pad="small" style={{ textAlign: 'left' }}>
+                      <div>
+                        {selectedAccount.meta?.name} -{' '}
+                        {truncateAddress(selectedAccount.address)}
+                      </div>
+                    </Box>
+                  ) : (
+                    ''
+                  )
                 }
-                placeholder="0.1"
-                reverse
-                id="kusama"
-                name="kusama"
-                onChange={event => {
-                  setError();
-                  setKsmAmount(event.target.value);
-                }}
-                value={ksmAmount}
+                value={`${selectedAccount.meta?.name} - ${
+                  selectedAccount.address
+                }`}
               />
             </FormField>
-            <Text>
-              <Grid columns={['90px', 'auto']}>
-                <Text>Your balance:</Text>
-                {balanceLoading ? (
-                  <Spinner
-                    style={{
-                      height: '5px',
-                      width: '5px',
-                      padding: '7px',
-                      marginTop: '3px',
-                      marginLeft: '2px',
-                    }}
-                  />
-                ) : (
-                  freeBalance
-                )}
-              </Grid>
-              {ksmAmount &&
-                ksmAmount >= parseFloat(freeBalance) - parseFloat(gasFee) && (
-                  <InsufficientFundsWarning />
-                )}
-            </Text>
-          </Box>
-          <CheckBox
-            disabled={isContributing}
-            checked={checked}
-            label="I agree to the terms and conditions below"
-            onChange={event => setChecked(event.target.checked)}
-          />
-          {isContributing ? (
-            <Grid columns={['36px', 'auto']}>
-              <Spinner />
-              <Text>Staking in progress...</Text>
-            </Grid>
-          ) : (
-            <Button
-              disabled={disabled}
-              primary
-              alignSelf="start"
-              label="Stake Now"
-              style={{ marginTop: '24px', marginBottom: '48px' }}
-              onClick={() => contribute()}
-            />
-          )}
+            <Box>
+              <FormField
+                name="kusama"
+                htmlFor="kusama"
+                label="Staking contribution (minimum of 0.1 KSM)"
+                validate={value => validateKsmAmount(value)}
+              >
+                <TextInput
+                  disabled={isSubmitting}
+                  icon={
+                    <>
+                      <Image src={ksm_token_logo} />
+                      <span style={{ paddingLeft: '8px' }}>KSM</span>
+                    </>
+                  }
+                  placeholder="0.1"
+                  reverse
+                  id="kusama"
+                  name="kusama"
+                  onChange={event => {
+                    setError();
+                    setKsmAmount(event.target.value);
+                  }}
+                  value={ksmAmount}
+                />
+              </FormField>
+              <Text>
+                <Grid columns={['90px', 'auto']}>
+                  <Text>Your balance:</Text>
+                  {balanceLoading ? (
+                    <Spinner
+                      style={{
+                        height: '5px',
+                        width: '5px',
+                        padding: '7px',
+                        marginTop: '3px',
+                        marginLeft: '2px',
+                      }}
+                    />
+                  ) : (
+                    freeBalance
+                  )}
+                </Grid>
+                {ksmAmount &&
+                  ksmAmount >= parseFloat(freeBalance) - parseFloat(gasFee) && (
+                    <InsufficientFundsWarning gasFee={gasFee} />
+                  )}
+              </Text>
+              <Text
+                size="20px"
+                weight={900}
+                alignSelf="center"
+                style={{ paddingTop: '16px', paddingBottom: '16px' }}
+              >
+                Estimated reward: {estimatedAirRewards.toFixed(4)} AIR
+              </Text>
+              <FormField
+                label="Referral code (optional)"
+                name="referralCode"
+                htmlFor="referralCode"
+                validate={value => validateReferralCode(value)}
+              >
+                <TextInput
+                  disabled={isSubmitting}
+                  id="referralCode"
+                  name="referralCode"
+                  onChange={event => {
+                    setReferralCode(event.target.value);
+                  }}
+                  placeholder="ExAmpl41Ref3rrAl"
+                  value={referralCode}
+                />
+              </FormField>
+              <FormField
+                label="Stay up to date with the auction (optional)"
+                name="emailAddress"
+                htmlFor="emailAddress"
+                validate={value => validateEmailAddress(value)}
+              >
+                <TextInput
+                  disabled={isSubmitting}
+                  id="emailAddress"
+                  name="emailAddress"
+                  onChange={event => {
+                    setEmailAddress(event.target.value);
+                  }}
+                  placeholder="me@example.com"
+                  value={emailAddress}
+                />
+              </FormField>
+            </Box>
+            <Box style={{ paddingTop: '24px', paddingLeft: '12px' }}>
+              <CheckBox
+                disabled={isSubmitting}
+                checked={checked}
+                label="I agree to the terms and conditions below"
+                onChange={event => setChecked(event.target.checked)}
+              />
+            </Box>
+            <Box
+              style={{
+                flexDirection: 'row',
+                paddingTop: '24px',
+                paddingBottom: '32px',
+              }}
+            >
+              {isSubmitting ? (
+                <>
+                  <Spinner />
+                  <Text style={{ paddingLeft: '12px' }}>
+                    Staking in progress...
+                  </Text>
+                </>
+              ) : (
+                <Button
+                  disabled={!checked}
+                  primary
+                  color="altair"
+                  alignSelf="start"
+                  label="Stake Now"
+                  type="submit"
+                />
+              )}
+            </Box>
+          </Form>
           <Box gap="small">
             <Text size="large" weight={900}>
               Terms and Conditions
             </Text>
             <Text>
               By clicking "Stake Now" your KSM will be locked on Kusama for the
-              Altair crowdloan (read more about{' '}
-              <Anchor href="https://kusama.network/auctions/" target="_blank">
-                parachain slot auctions
-              </Anchor>
-              ). This means that your KSM will be locked for the duration of the
-              parachain slot if Altair wins the auction (48 weeks), or until the
-              auction ends if Altair does not win the auction.
-            </Text>
-            <Text>
-              Use of this page and the above staking function are at your own
-              risk. Further, Centrifuge makes no warranties as to the outcome of
-              the Altair crowdloan. To the fullest extent allowed by applicable
-              law, in no event shall Centrifuge or its affiliates, be liable to
-              you or any third party for any damages of any kind.
+              Altair crowdloan. This means that your KSM will be locked for the
+              duration of the parachain slot if Altair wins the auction (48
+              weeks), or until the auction ends if Altair does not win the
+              auction. The initial transferrable amount of AIR reward is 25%.
+              The remaining vests over the lease period of 48 weeks. Proxy or
+              multi-signature accounts are not able to receive rewards. Use of
+              this page and the above staking function are at your own risk.
+              Further, Centrifuge makes no warranties as to the outcome of the
+              Altair crowdloan. To the fullest extent allowed by applicable law,
+              in no event shall Centrifuge or its affiliates, be liable to you
+              or any third party for any damages of any kind.
             </Text>
           </Box>
         </Box>
