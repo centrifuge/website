@@ -268,11 +268,14 @@ export const Stake = ({
       } else {
         const baseReward = ksmAmount * AIR_REWARD;
 
-        if (isEarlybird && !validateReferralCode(referralCode)) {
+        const validReferralCode =
+          referralCode && !validateReferralCode(referralCode);
+
+        if (isEarlybird && validReferralCode) {
           setEstimatedAirRewards(baseReward * EARLY_BIRD_RATE * REFERRAL_RATE);
         } else if (isEarlybird) {
           setEstimatedAirRewards(baseReward * EARLY_BIRD_RATE);
-        } else if (!validateReferralCode(referralCode)) {
+        } else if (validReferralCode) {
           setEstimatedAirRewards(baseReward * REFERRAL_RATE);
         } else {
           setEstimatedAirRewards(baseReward);
