@@ -5,8 +5,9 @@ export const BonusCard = ({ background, children }) => (
   <Box
     background={`url('${background}')`}
     pad="16px"
-    width="269px"
-    height="184px"
+    width="271px"
+    height="199px"
+    style={{ paddingLeft: '20px' }}
   >
     {children}
   </Box>
