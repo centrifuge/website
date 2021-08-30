@@ -142,7 +142,7 @@ export const Success = ({
         <Box>
           <Text>Thank you for your contribution.</Text>
           <Text>
-            View your transaciton on{' '}
+            View your transaction on{' '}
             <Anchor
               target="_blank"
               href={`https://kusama.subscan.io/extrinsic/${hash}`}
