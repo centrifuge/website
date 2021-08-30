@@ -30,7 +30,7 @@ export const Prerequisites = ({ injectors }) => {
           Firefox)
         </Text>
         <Text>&#8212; A Polkadot account</Text>
-        <Text>&#8212; A minimum staking amount of 0.1 KSM</Text>
+        <Text>&#8212; A minimum contribution amount of 0.1 KSM</Text>
       </Box>
       <Box>
         <Text weight={900} size="large">
