@@ -136,7 +136,7 @@ export const Stake = ({
     setIsSubmitting(true);
 
     const contributeTransaction = api.tx.crowdloan.contribute(
-      2013,
+      2088,
       parseFloat(ksmAmount) * 10 ** 12,
       null,
     );
@@ -145,7 +145,7 @@ export const Stake = ({
       try {
         const memo = api.createType('Bytes', `ReferralCode: ${referralCode}`);
 
-        const memoTransaction = api.tx.crowdloan.addMemo(2013, memo);
+        const memoTransaction = api.tx.crowdloan.addMemo(2088, memo);
 
         const batch = api.tx.utility.batch([
           contributeTransaction,
@@ -226,7 +226,7 @@ export const Stake = ({
       (async () => {
         if (api && selectedAccount) {
           const contributeTransaction = api.tx.crowdloan.contribute(
-            2013,
+            2088,
             parseFloat(ksmAmount) * 10 ** 12,
             null,
           );
@@ -236,7 +236,7 @@ export const Stake = ({
             '0x000000000000000000000000000000000000000000000',
           );
 
-          const memoTransaction = api.tx.crowdloan.addMemo(2013, memo);
+          const memoTransaction = api.tx.crowdloan.addMemo(2088, memo);
 
           if (referralCode) {
             const gasFeeResponse = await api.tx.utility
