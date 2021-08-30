@@ -17,12 +17,6 @@ import { CircleInformation } from 'grommet-icons';
 import React, { useEffect, useMemo, useState } from 'react';
 import queryString from 'query-string';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
-import {
-  isWeb3Injected,
-  web3Accounts,
-  web3Enable,
-  web3FromAddress,
-} from '@polkadot/extension-dapp';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { InsufficientFundsWarning } from './InsufficientFundsWarning';
 import { UnexpectedError } from './UnexpectedError';
@@ -67,6 +61,26 @@ export const Stake = ({
   setKsmAmount,
   setSelectedAccount,
 }) => {
+  let polkadot;
+  let isWeb3Injected;
+  let web3Accounts;
+  let web3Enable;
+  let web3FromAddress;
+
+  /*
+   * have to do this since Gatsby tries to SSR but the @polkadot/extension-dapp library
+   * tries to reference `window` which is not available on the server-side
+   */
+  try {
+    polkadot = require('@polkadot/extension-dapp');
+    isWeb3Injected = polkadot.isWeb3Injected;
+    web3Accounts = polkadot.web3Accounts;
+    web3Enable = polkadot.web3Enable;
+    web3FromAddress = polkadot.web3FromAddress;
+  } catch (polkadotError) {
+    console.error(polkadotError);
+  }
+
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState();
   const [balanceLoading, setBalanceLoading] = useState(true);
@@ -308,7 +322,7 @@ export const Stake = ({
     return `${firstFifteen}...${lastFifteen}`;
   };
 
-  if (accountLoading && !gasFee) {
+  if (accountLoading || !polkadot) {
     return (
       <Section>
         <Box alignSelf="center">
