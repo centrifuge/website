@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import { Grommet } from "grommet";
 
 import theme from "./theme";
+import '../../fonts/fonts.css';
 
 const GlobalStyle = createGlobalStyle`
   /* Reset */
@@ -17,38 +18,19 @@ const GlobalStyle = createGlobalStyle`
 
   /* @import url("https://fast.fonts.net/lt/1.css?apiType=css&c=1101c604-2635-449c-96d3-e8592bcc8b44&fontids=721263,721269,721275"); */
 
-  @font-face {
-    font-family: "AvenirNextLTW01";
-    font-display: swap;
-    font-style: normal;
-    src: url("/fonts/721263/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2")
-      format("woff2");
-  }
-  @font-face {
-    font-family: "AvenirNextLTW01";
-    font-display: swap;
-    font-weight: 500;
-    src: url("/fonts/721275/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2")
-      format("woff2");
-  }
-  @font-face {
-    font-family: "AvenirNextLTW01";
-    font-display: swap;
-    font-weight: 600;
-    src: url("/fonts/721269/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2")
-      format("woff2");
-  }
-
-  /* Global Styles */
   :root {
     --fw-regular: 400;
     --fw-medium: 500;
     --fw-demibold: 600;
 
-    --f-stack: AvenirNextLTW01, 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --f-stack: AvenirNextLTW01, 'Avenir Next', -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol';
+    }
   }
 
-  b, strong {
+  b,
+  strong {
     font-weight: var(--fw-demibold);
     font-family: var(--f-stack);
   }

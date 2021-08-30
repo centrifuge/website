@@ -87,6 +87,13 @@ module.exports = {
       }
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "fonts",
+        path: `${__dirname}/static/fonts/`
+      }
+    },
+    {
       resolve: `gatsby-source-lever`,
       options: {
         site: `centrifuge`,
@@ -126,17 +133,7 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-netlify-cache`,
-    {
-      resolve: `gatsby-plugin-netlify`,
-      options: {
-        allPageHeaders: [
-          "Link: </fonts/721263/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush",
-          "Link: </fonts/721275/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush",
-          "Link: </fonts/721269/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2>; rel=preload; as=font; crossorigin=crossorigin; nopush"
-        ]
-      }
-    }
+    `gatsby-plugin-netlify-cache`
   ],
   developMiddleware: app => {
     app.use(
