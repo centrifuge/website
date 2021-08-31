@@ -10,8 +10,8 @@ import referral_bonus from '../../images/altair/referral_bonus.svg';
 import early_bird_bonus from '../../images/altair/early_bird_bonus.svg';
 import surprise_bonus from '../../images/altair/surprise_bonus.svg';
 
-// the deadline for the early bird rewards - September 1, 2021 @ 12:00pm GMT
-const EARLY_BIRD_DEADLINE = 1630497600000;
+// the deadline for the early bird rewards - September 2, 2021 @ 12:00pm GMT
+const EARLY_BIRD_DEADLINE = 1630584000000;
 const now = Date.now();
 const timeUntilDeadline = EARLY_BIRD_DEADLINE - now;
 
@@ -159,11 +159,11 @@ export const Crowdloan = ({ location }) => {
                   Early Bird Bonus
                 </Text>
                 <Box style={{ paddingTop: '10px' }}>
-                  <Text textAlign="left" style={{ lineHeight: '20px' }}>
-                    Stake within 48 hours after the auction's opening.
+                  <Text textAlign="left" weight={500} size="22px">
+                    EXTENDED to 72 hours!
                   </Text>
                 </Box>
-                <Box style={{ paddingTop: '6px' }}>
+                <Box style={{ paddingTop: '8px' }}>
                   <Countdown />
                 </Box>
               </BonusCard>
