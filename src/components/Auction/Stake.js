@@ -152,11 +152,11 @@ export const Stake = ({
 
     if (referralCode) {
       try {
-        const memo = api.createType('Bytes', `ReferralCode: ${referralCode}`);
+        const memo = api.createType('Bytes', referralCode);
 
         const memoTransaction = api.tx.crowdloan.addMemo(2088, memo);
 
-        const batch = api.tx.utility.batch([
+        const batch = api.tx.utility.batchAll([
           contributeTransaction,
           memoTransaction,
         ]);
@@ -240,16 +240,13 @@ export const Stake = ({
             null,
           );
 
-          const memo = api.createType(
-            'Bytes',
-            '0x000000000000000000000000000000000000000000000',
-          );
+          const memo = api.createType('Bytes', '123456578901234567890');
 
           const memoTransaction = api.tx.crowdloan.addMemo(2088, memo);
 
           if (referralCode) {
             const gasFeeResponse = await api.tx.utility
-              .batch([contributeTransaction, memoTransaction])
+              .batchAll([contributeTransaction, memoTransaction])
               .paymentInfo(selectedAccount?.address);
 
             setGasFee(
