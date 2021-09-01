@@ -1,6 +1,7 @@
 import { Section } from '../MDXLayout/shortcodes';
 import { encodeAddress } from '@polkadot/util-crypto';
 import {
+  Anchor,
   Box,
   Button,
   CheckBox,
@@ -17,7 +18,6 @@ import { CircleInformation } from 'grommet-icons';
 import React, { useEffect, useMemo, useState } from 'react';
 import queryString from 'query-string';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
-import { ApiPromise, WsProvider } from '@polkadot/api';
 import { InsufficientFundsWarning } from './InsufficientFundsWarning';
 import { UnexpectedError } from './UnexpectedError';
 import { Prerequisites } from './Prerequisites';
@@ -50,6 +50,7 @@ const validateKsmAmount = value => {
 };
 
 export const Stake = ({
+  api,
   estimatedAirRewards,
   isEarlybird,
   location,
@@ -89,7 +90,6 @@ export const Stake = ({
   const [emailAddress, setEmailAddress] = useState('');
   const [accounts, setAccounts] = useState([]);
   const [freeBalance, setFreeBalance] = useState('');
-  const [api, setApi] = useState();
   const [injector, setInjector] = useState();
   const [injectors, setInjectors] = useState([]);
   const [accountLoading, setAccountLoading] = useState(true);
@@ -125,25 +125,20 @@ export const Stake = ({
     () => {
       setBalanceLoading(true);
       (async () => {
-        const wsProvider = new WsProvider('wss://kusama-rpc.polkadot.io');
-
-        const api = await ApiPromise.create({ provider: wsProvider });
-
-        if (selectedAccount?.address) {
+        if (selectedAccount?.address && api) {
           const web3Injector = await web3FromAddress(selectedAccount?.address);
 
           const balances = await api.query.system.account(
             selectedAccount.address,
           );
 
-          setApi(api);
           setInjector(web3Injector);
           setFreeBalance((balances.data.free.toNumber() / 10 ** 12).toString());
           setBalanceLoading(false);
         }
       })();
     },
-    [selectedAccount],
+    [api, selectedAccount],
   );
 
   const contribute = async () => {
@@ -333,15 +328,31 @@ export const Stake = ({
   }
 
   if (!hasExtension || !accounts.length) {
-    return <Prerequisites injectors={injectors} />;
+    return <Prerequisites hasExtension={hasExtension} />;
   }
 
   return (
-    <Section gap="medium" style={{ margin: 0 }}>
+    <Section gap="medium" pad="medium" style={{ margin: 0 }}>
       <Box>
-        <Text size="xxlarge" weight={900}>
-          Stake KSM
-        </Text>
+        <Box
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text size="xxlarge" weight={900}>
+            Stake KSM
+          </Text>
+          <Anchor
+            target="_blank"
+            href="https://medium.com/altair-network/faq-altair-crowdloan-85b9d9abd235"
+            primary
+            label="FAQ"
+            size="16px"
+            weight={500}
+          />
+        </Box>
         <Text weight={600} style={{ marginTop: '36px' }}>
           <CircleInformation size="small" /> Note: Proxy accounts and multi
           signatures are not able to receive rewards
