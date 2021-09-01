@@ -244,23 +244,13 @@ export const Stake = ({
 
           const memoTransaction = api.tx.crowdloan.addMemo(2088, memo);
 
-          if (referralCode) {
-            const gasFeeResponse = await api.tx.utility
-              .batchAll([contributeTransaction, memoTransaction])
-              .paymentInfo(selectedAccount?.address);
+          const gasFeeResponse = await api.tx.utility
+            .batchAll([contributeTransaction, memoTransaction])
+            .paymentInfo(selectedAccount?.address);
 
-            setGasFee(
-              (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
-            );
-          } else {
-            const gasFeeResponse = await contributeTransaction.paymentInfo(
-              selectedAccount?.address,
-            );
-
-            setGasFee(
-              (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
-            );
-          }
+          setGasFee(
+            (gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString(),
+          );
         }
       })();
     },
