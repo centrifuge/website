@@ -152,7 +152,7 @@ export const Stake = ({
 
     if (referralCode) {
       try {
-        const memo = api.createType('Bytes', `ReferralCode: ${referralCode}`);
+        const memo = api.createType('Bytes', referralCode);
 
         const memoTransaction = api.tx.crowdloan.addMemo(2088, memo);
 
