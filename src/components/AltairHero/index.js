@@ -1,24 +1,24 @@
-import React, { useContext } from "react";
-import { Col, Row, Section } from "../MDXLayout/shortcodes";
-import { Box, Button, Image, ResponsiveContext, Text } from "grommet";
+import React, { useContext } from 'react';
+import { Col, Row, Section } from '../MDXLayout/shortcodes';
+import { Box, Button, Image, ResponsiveContext, Text } from 'grommet';
 
-import altair_wordmark from "../../images/altair/altair_wordmark.svg";
-import hero_background from "../../images/altair/hero_background.svg";
-import comet from "../../images/altair/comet.svg";
-import solar_system from "../../images/altair/solar_system.svg";
+import altair_wordmark from '../../images/altair/altair_wordmark.svg';
+import hero_background from '../../images/altair/hero_background.svg';
+import comet from '../../images/altair/comet.svg';
+import solar_system from '../../images/altair/solar_system.svg';
 
 const AltairHero = () => {
   const size = useContext(ResponsiveContext);
 
   return (
-    <Box background="black" style={{ position: "relative" }}>
-      {size !== "small" && (
+    <Box background="black" style={{ position: 'relative' }}>
+      {size !== 'small' && (
         <Image
           src={hero_background}
           style={{
-            position: "absolute",
+            position: 'absolute',
             right: 0,
-            width: "20vw"
+            width: '20vw',
           }}
         />
       )}
@@ -27,7 +27,7 @@ const AltairHero = () => {
           <Col span={4}>
             <Image src={altair_wordmark} />
           </Col>
-          <Col span={2} margin={{ bottom: "xlarge" }} />
+          <Col span={2} margin={{ bottom: 'xlarge' }} />
           <Col span={6} gap="medium">
             <Box>
               <Text size="xlarge" weight={900} textAlign="start">
@@ -40,7 +40,7 @@ const AltairHero = () => {
             <Button
               primary
               color="altair"
-              label="Stake KSM"
+              label="Join the Crowdloan"
               alignSelf="start"
               href="/altair/crowdloan"
             />
@@ -59,7 +59,7 @@ const AltairHero = () => {
               tokenize real-world assets and finance them on the Kusama network.
             </Text>
           </Col>
-          <Col span={2} margin={{ bottom: "xlarge" }} />
+          <Col span={2} margin={{ bottom: 'xlarge' }} />
           <Col span={6} gap="medium">
             <Image src={comet} />
             <Box direction="row" justify="between">
@@ -87,7 +87,7 @@ const AltairHero = () => {
           <Col span={5}>
             <Image src={solar_system} />
           </Col>
-          <Col span={1} margin={{ bottom: "xlarge" }} />
+          <Col span={1} margin={{ bottom: 'xlarge' }} />
           <Col span={6} gap="medium">
             <Box gap="small">
               <Text size="xlarge" weight={900} textAlign="start">

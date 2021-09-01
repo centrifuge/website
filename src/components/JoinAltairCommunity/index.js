@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Button, Text } from "grommet";
-import { Section } from "../MDXLayout/shortcodes";
+import React from 'react';
+import { Box, Button, Text } from 'grommet';
+import { Section } from '../MDXLayout/shortcodes';
 
 const JoinAltairCommunity = () => {
   return (
@@ -26,7 +26,7 @@ const JoinAltairCommunity = () => {
             </Box>
             <Button
               primary
-              label="Stake KSM"
+              label="Join the Crowdloan"
               alignSelf="center"
               href="/altair/crowdloan"
             />

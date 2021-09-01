@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 import { Box, Grid, Text } from 'grommet';
 import parseMilliseconds from 'parse-ms';
 import { useCountDown } from './useCountdown';
@@ -76,12 +77,23 @@ export const Crowdloan = ({ location }) => {
   const [hash, setHash] = useState();
   const [selectedAccount, setSelectedAccount] = useState({});
   const [estimatedAirRewards, setEstimatedAirRewards] = useState(0);
+  const [api, setApi] = useState();
 
   const isEarlybird = timeUntilDeadline > 0 ? true : false;
 
+  useEffect(() => {
+    (async () => {
+      const wsProvider = new WsProvider('wss://kusama-rpc.polkadot.io');
+
+      const response = await ApiPromise.create({ provider: wsProvider });
+
+      setApi(response);
+    })();
+  }, []);
+
   return (
     <Box background="black">
-      <Header />
+      <Header api={api} />
       {isFinalized ? (
         <Box
           style={{
@@ -107,13 +119,15 @@ export const Crowdloan = ({ location }) => {
           <Grid columns={['min-content', 'min-content']} gap="medium">
             <Box
               background="white"
-              pad="medium"
+              pad="none"
               width="644px"
+              height="min-content"
               style={{
                 borderRadius: '8px',
               }}
             >
               <Stake
+                api={api}
                 estimatedAirRewards={estimatedAirRewards}
                 isEarlybird={isEarlybird}
                 ksmAmount={ksmAmount}
@@ -214,7 +228,7 @@ export const Crowdloan = ({ location }) => {
                     }}
                   >
                     <Text weight={600} size="32px">
-                      &gt;
+                      &ge;
                     </Text>
                     <Text
                       weight={900}
@@ -226,11 +240,11 @@ export const Crowdloan = ({ location }) => {
                   </Box>
                 </Box>
                 <Text weight={600} size="24px">
-                  10 KSM + Bonus
+                  Heavyweight Bonus
                 </Text>
                 <Box style={{ paddingTop: '36px' }}>
                   <Text textAlign="left" style={{ lineHeight: '20px' }}>
-                    Contribute more than 10 KSM to receive a special surprise
+                    Contribute at least 10 KSM to receive a special surprise
                     bonus
                   </Text>
                 </Box>
