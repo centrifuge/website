@@ -315,7 +315,7 @@ export const Stake = ({
   }
 
   if (!hasExtension || !accounts.length) {
-    return <Prerequisites hasExtension={hasExtension} />;
+    return <Prerequisites accounts={accounts} hasExtension={hasExtension} />;
   }
 
   return (
