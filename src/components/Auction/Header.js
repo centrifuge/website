@@ -55,14 +55,10 @@ export const Header = ({ api }) => {
         <HeaderPill label="KSM raised" value={ksm} />
       </Box>
       <Box align="center">
-        <Grid gap="large" columns={['auto', 'auto', 'auto']}>
+        <Grid gap="large" columns={['auto', 'auto']}>
           <Box style={{ flexDirection: 'row' }} align="center">
             <Image src={twinkle} width="28px" style={{ paddingRight: '6px' }} />
             <Text>Stake 1 KSM to earn 400 AIR</Text>
-          </Box>
-          <Box style={{ flexDirection: 'row' }} align="center">
-            <Image src={twinkle} width="28px" style={{ paddingRight: '6px' }} />
-            <Text>10% bonus for early birds</Text>
           </Box>
           <Box style={{ flexDirection: 'row' }} align="center">
             <Image src={twinkle} width="28px" style={{ paddingRight: '6px' }} />
