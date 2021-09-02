@@ -48,7 +48,6 @@
     "lottie-api": "^1.0.2",
     "lottie-react-web": "2.1.4",
     "node-fetch": "2.6.1",
-    "parse-ms": "^3.0.0",
     "prop-types": "15.6.2",
     "query-string": "^7.0.1",
     "react": "16.8.1",
