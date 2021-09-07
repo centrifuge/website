@@ -57,7 +57,7 @@
     "react-jsx-parser": "1.13.0",
     "react-player": "1.9.3",
     "react-use": "^17.2.4",
-    "remark-html": "^11.0.1",
+    "remark-html": "^13.0.2",
     "rich-text-react-renderer": "mgmolisani/rich-text-react-renderer",
     "styled-components": "4.1.3",
     "styled-icons": "6.8.0",
