@@ -16,6 +16,12 @@ import marc from "../../images/team/marc.jpg";
 import dylan from "../../images/team/dylan.jpg";
 import kate from "../../images/team/kate.jpeg";
 import martin from "../../images/team/martin.png";
+import anna from "../../images/team/anna.jpeg";
+import michael from "../../images/team/michael.jpeg";
+import nico from "../../images/team/nico.png";
+import onno from "../../images/team/onno.jpeg";
+import colin from "../../images/team/colin.jpeg";
+import araya from "../../images/team/araya.png";
 
 const teamMembers = [
   {
@@ -147,6 +153,49 @@ const teamMembers = [
     link: "https://en.wikipedia.org/",
     social: "https://www.linkedin.com/in/frederik-lukas-schulz/",
     image: frederick
+  },
+  {
+    name: "Nico Dreher",
+    description:
+      "Design for accessible, useful and useable decentralized finance",
+    link: "http://worrydream.com/MagicInk/",
+    social: "https://twitter.com/frederickdreher",
+    image: nico
+  },
+  {
+    name: "Araya Wongwan",
+    description: "All things visuals",
+    link: "https://www.nts.live/",
+    // social: "",
+    image: araya
+  },
+  {
+    name: "Anna Mehrländer",
+    description: "Creating pathways and educating",
+    link: "https://www.fermentiersalon.de/",
+    social: "https://twitter.com/baenaenanna",
+    image: anna
+  },
+  {
+    name: "Michael Serunian",
+    description: "Scaling assets on Centrifuge",
+    link: "https://www.humansofnewyork.com/",
+    social: "https://twitter.com/mserunian",
+    image: michael
+  },
+  {
+    name: "Onno Visser",
+    description: "Making shapes appear on screens",
+    link: "https://www.youtube.com/watch?v=JJqXeRFsLjE",
+    social: "https://twitter.com/_onnovisser",
+    image: onno
+  },
+  {
+    name: "Colin Cunning",
+    description: "Designing a platform for scale",
+    // link: "",
+    social: "https://twitter.com/ctcunning",
+    image: colin
   }
 ];
 
