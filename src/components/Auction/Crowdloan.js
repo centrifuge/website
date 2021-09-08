@@ -54,33 +54,49 @@ export const Crowdloan = ({ location }) => {
         <Box
           style={{
             marginTop: '100px',
-            marginBottom: '100px',
           }}
           alignSelf="center"
         >
           <Grid columns={['min-content', 'min-content']} gap="medium">
-            <Box
-              background="white"
-              pad="none"
-              width="644px"
-              height="min-content"
-              style={{
-                borderRadius: '8px',
-              }}
-            >
-              <Stake
-                api={api}
-                estimatedAirRewards={estimatedAirRewards}
-                isEarlybird={isEarlybird}
-                ksmAmount={ksmAmount}
-                location={location}
-                selectedAccount={selectedAccount}
-                setEstimatedAirRewards={setEstimatedAirRewards}
-                setHash={setHash}
-                setIsFinalized={setIsFinalized}
-                setKsmAmount={setKsmAmount}
-                setSelectedAccount={setSelectedAccount}
-              />
+            <Box>
+              <Box
+                background="white"
+                pad="none"
+                width="644px"
+                height="min-content"
+                style={{
+                  borderRadius: '8px',
+                }}
+              >
+                <Stake
+                  api={api}
+                  estimatedAirRewards={estimatedAirRewards}
+                  isEarlybird={isEarlybird}
+                  ksmAmount={ksmAmount}
+                  location={location}
+                  selectedAccount={selectedAccount}
+                  setEstimatedAirRewards={setEstimatedAirRewards}
+                  setHash={setHash}
+                  setIsFinalized={setIsFinalized}
+                  setKsmAmount={setKsmAmount}
+                  setSelectedAccount={setSelectedAccount}
+                />
+              </Box>
+              <Box style={{ marginTop: '72px' }}>
+                <Text size="large" weight={500} textAlign="center">
+                  Need help to stake your KSM? &#8212; Watch this video!
+                </Text>
+                <iframe
+                  style={{ marginTop: '30px' }}
+                  width="644"
+                  height="362"
+                  src="https://www.youtube.com/embed/se8mBXHCV-w"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </Box>
             </Box>
             <Box gap="medium">
               <BonusCard background={referral_bonus}>
