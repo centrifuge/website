@@ -1,9 +1,11 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-import { Pool } from 'pg';
+import pg, { Pool } from 'pg';
 import crypto from 'crypto';
 import { Storage } from '@google-cloud/storage';
+
+delete pg.native;
 
 const pool = new Pool({
   database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
