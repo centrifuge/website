@@ -4,6 +4,7 @@ import { Anchor, Box, Grid, Text } from 'grommet';
 import { Header } from './Header';
 import { BonusCard } from './BonusCard';
 import { Stake } from './Stake';
+import { Stats } from './Stats';
 import { Success } from './Success';
 import referral_bonus from '../../images/altair/referral_bonus.svg';
 import surprise_bonus from '../../images/altair/surprise_bonus.svg';
@@ -58,7 +59,11 @@ export const Crowdloan = ({ location }) => {
           }}
           alignSelf="center"
         >
-          <Grid columns={['min-content', 'min-content']} gap="medium">
+          <Grid
+            columns={['min-content', 'min-content', 'min-content']}
+            gap="medium"
+          >
+            <Stats address={selectedAccount?.address} />
             <Box>
               <Box
                 background="white"

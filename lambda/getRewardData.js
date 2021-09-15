@@ -1,0 +1,176 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+import axios from 'axios';
+import postgres from 'postgres';
+import { Keyring } from '@polkadot/api';
+import { u8aToHex } from '@polkadot/util';
+import { BigNumber } from 'bignumber.js';
+
+const sql = postgres({
+  database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
+  host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
+  password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
+  port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
+  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
+});
+
+const getReferralCodes = async address => {
+  const results = await sql`
+    select referral_code from altair where wallet_address = ${address}
+  `;
+
+  return results.map(result => result.referral_code);
+};
+
+const getValidReferralCodes = async referralCodes => {
+  const results = await sql`
+      select * from altair where referral_code = any('{${sql.json(
+        referralCodes,
+      )}}'::varchar[])
+    `;
+
+  return results.map(result => result.referral_code);
+};
+
+const getNumberOfReferrals = async referralCodes => {
+  const { data: contributions } = await axios(
+    'https://crowdloan-ws.centrifuge.io/contributions',
+  );
+
+  return contributions.filter(({ referralCode }) =>
+    referralCodes.includes(referralCode),
+  ).length;
+};
+
+const getContributions = async address => {
+  const keyring = new Keyring({ type: 'sr25519' });
+  const hexPublicKey = u8aToHex(keyring.addFromAddress(address).publicKey);
+
+  const { data: contributions } = await axios(
+    `https://crowdloan-ws.centrifuge.io/contributor?id=${hexPublicKey}`,
+  );
+
+  return contributions;
+};
+
+const getAllContributions = async () => {
+  const { data: contributions } = await axios(
+    'https://crowdloan-ws.centrifuge.io/contributions',
+  );
+
+  return contributions;
+};
+
+const getEarlyBirdBonus = contributions => {
+  return contributions
+    .reduce((sum, contribution) => {
+      if (contribution.earlyBird) {
+        return sum.plus(
+          new BigNumber(contribution.contribution).multipliedBy(0.1),
+        );
+      }
+
+      return sum;
+    }, new BigNumber(0))
+    .toString();
+};
+
+const getFirstCrowdloanBonus = contributions => {
+  return contributions
+    .reduce((sum, contribution) => {
+      if (contribution.wasEarlyInPrevCrwdLoan) {
+        return sum.plus(
+          new BigNumber(contribution.contribution).multipliedBy(0.1),
+        );
+      }
+
+      return sum;
+    }, new BigNumber(0))
+    .toString();
+};
+
+const getContributionAmount = contributions => {
+  return contributions
+    .reduce(
+      (sum, contribution) => sum.plus(new BigNumber(contribution.contribution)),
+      new BigNumber(0),
+    )
+    .toString();
+};
+
+const getOutgoingReferralBonus = async contributions => {
+  const referralCodes = contributions
+    .filter(contribution => contribution.referralCode)
+    .map(contribution => contribution.referralCode);
+
+  const validReferralCodes = await getValidReferralCodes(referralCodes);
+
+  return contributions.reduce((sum, contribution) => {
+    if (validReferralCodes.includes(contribution.referralCode)) {
+      sum.plus(new BigNumber(contribution.contribution).multipliedBy(0.05));
+    }
+
+    return sum;
+  }, new BigNumber(0));
+};
+
+const getIncomingReferralBonus = (allContributions, referralCodes) =>
+  allContributions.reduce((sum, contribution) => {
+    if (referralCodes.includes(contribution.referralCode)) {
+      sum.plus(new BigNumber(contribution.contribution).multipliedBy(0.05));
+    }
+
+    return sum;
+  }, new BigNumber(0));
+
+exports.handler = async event => {
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: 'Method not allowed. Use POST.',
+    };
+  }
+
+  const { address } = JSON.parse(event.body);
+
+  const referralCodes = await getReferralCodes(address);
+
+  const numberOfReferrals = await getNumberOfReferrals(referralCodes);
+
+  const contributions = await getContributions(address);
+
+  const allContributions = await getAllContributions();
+
+  const earlyBirdBonus = getEarlyBirdBonus(contributions);
+
+  const firstCrowdloanBonus = getFirstCrowdloanBonus(contributions);
+
+  const contributionAmount = getContributionAmount(contributions);
+
+  // this user used someone else's referral code
+  const outgoingReferralBonus = await getOutgoingReferralBonus(
+    allContributions,
+    contributions,
+  );
+
+  // someone used a referral code owned by this user
+  const incomingReferralBonus = getIncomingReferralBonus(
+    allContributions,
+    referralCodes,
+  );
+
+  const referralBonus = incomingReferralBonus.plus(0).toString();
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      address,
+      contributionAmount,
+      earlyBirdBonus,
+      firstCrowdloanBonus,
+      numberOfReferrals,
+      referralBonus,
+    }),
+  };
+};

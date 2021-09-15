@@ -7,6 +7,7 @@ import twinkle from '../../images/altair/twinkle.svg';
 
 export const Header = ({ api }) => {
   const [ksm, setKsm] = useState('');
+  const [contributions, setContributions] = useState('');
 
   useEffect(
     () => {
@@ -26,6 +27,18 @@ export const Header = ({ api }) => {
     },
     [api],
   );
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        '/.netlify/functions/getNumberOfContributions',
+      );
+
+      const json = await response.json();
+
+      setContributions(json.numberOfContributions);
+    })();
+  }, []);
 
   return (
     <Box
@@ -53,6 +66,7 @@ export const Header = ({ api }) => {
         }}
       >
         <HeaderPill label="KSM raised" value={ksm} />
+        <HeaderPill label="contributions" value={contributions} />
       </Box>
       <Box align="center">
         <Grid gap="large" columns={['auto', 'auto', 'auto']}>
