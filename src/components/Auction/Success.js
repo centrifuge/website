@@ -25,7 +25,7 @@ export const Success = ({
       try {
         const response = await fetch('/.netlify/functions/createReferralCode', {
           method: 'POST',
-          body: JSON.stringify({ refererAddress: encodeAddress(address, 2) }),
+          body: JSON.stringify({ referrerAddress: encodeAddress(address, 2) }),
         });
 
         const json = await response.json();
