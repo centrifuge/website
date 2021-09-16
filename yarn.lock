@@ -9690,7 +9690,7 @@ lottie-api@^1.0.2:
   resolved "https://registry.yarnpkg.com/lottie-api/-/lottie-api-1.0.3.tgz#465cfc7a1d23220b8a8893d3fab8943237fe1d4b"
   integrity sha512-TB8sytVs/o7/xrT76Gq1p49SpvV/KRz9g7wJpNXC6c0CjqowvQaBy+ynLR5R+cGu9ORwmNSwphC0Zy1r9QZtZQ==
 
-"lottie-api@github:bodymovin/lottie-api#master":
+lottie-api@bodymovin/lottie-api#master:
   version "1.0.3"
   resolved "https://codeload.github.com/bodymovin/lottie-api/tar.gz/d4d6a320fb060a06f1d0823e676047cd5332007e"
 
