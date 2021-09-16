@@ -3,14 +3,14 @@ require('dotenv').config({
 });
 import crypto from 'crypto';
 import { Storage } from '@google-cloud/storage';
-const { Pool } = require('pg');
+import postgres from 'postgres';
 
-const pool = new Pool({
+const sql = postgres({
   database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
   host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
   password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
   port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
-  user: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
+  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
 });
 
 // properly prepare to be PEM type
@@ -36,8 +36,6 @@ exports.handler = async event => {
       },
     });
 
-    const client = await pool.connect();
-
     const { referrerAddress } = JSON.parse(event.body);
 
     const referralCodeBucket = storage.bucket('altair_referral_codes');
@@ -48,11 +46,9 @@ exports.handler = async event => {
       .replace(/\//g, 'S')
       .replace(/\+/g, 'P');
 
-    const query =
-      'INSERT INTO ALTAIR(referral_code, wallet_address) VALUES($1, $2)';
-    const values = [referralCode, referrerAddress];
-
-    await client.query(query, values);
+    await sql`
+      insert into altair(referral_code, wallet_address) values (${referralCode}, ${referrerAddress})
+    `;
 
     const file = referralCodeBucket.file(`${referralCode}.txt`);
 
