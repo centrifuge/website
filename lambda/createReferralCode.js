@@ -1,11 +1,17 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-
 import crypto from 'crypto';
 import { Storage } from '@google-cloud/storage';
+import postgres from 'postgres';
 
-const { GOOGLE_CLOUD_CLIENT_EMAIL } = process.env;
+const sql = postgres({
+  database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
+  host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
+  password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
+  port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
+  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
+});
 
 // properly prepare to be PEM type
 const GOOGLE_CLOUD_PRIVATE_KEY = process.env.GOOGLE_CLOUD_PRIVATE_KEY.replace(
@@ -25,12 +31,12 @@ exports.handler = async event => {
     const storage = new Storage({
       projectId: 'centrifuge-production-x',
       credentials: {
-        client_email: GOOGLE_CLOUD_CLIENT_EMAIL,
+        client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
         private_key: GOOGLE_CLOUD_PRIVATE_KEY,
       },
     });
 
-    const { refererAddress } = JSON.parse(event.body);
+    const { referrerAddress } = JSON.parse(event.body);
 
     const referralCodeBucket = storage.bucket('altair_referral_codes');
 
@@ -40,9 +46,13 @@ exports.handler = async event => {
       .replace(/\//g, 'S')
       .replace(/\+/g, 'P');
 
+    await sql`
+      insert into altair(referral_code, wallet_address) values (${referralCode}, ${referrerAddress})
+    `;
+
     const file = referralCodeBucket.file(`${referralCode}.txt`);
 
-    await file.save(refererAddress);
+    await file.save(referrerAddress);
 
     return {
       statusCode: 200,
