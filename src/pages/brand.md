@@ -7,7 +7,7 @@ import { Stack } from "grommet";
 import centrifugeWordmark from "../images/centrifuge-wordmark.svg";
 import centrifugeWordmarkLight from "../images/centrifuge-wordmark-light.svg";
 import centrifugeMarquee from "../images/centrifuge-marquee.svg";
-import centrifugeMarqueeLight from "../images/centrifuge-wordmark-light.svg";
+import centrifugeMarqueeLight from "../images/centrifuge-marquee-light.svg";
 
 import altairWordmark from "../images/altair-wordmark.svg";
 import altairWordmarkLight from "../images/altair-wordmark-light.svg";
@@ -20,24 +20,29 @@ import altairMarqueeLight from "../images/altair-marquee-light.svg";
 
 # Centrifuge Brand
 
-Centrifuge wordmark and marquee on light background
+Centrifuge wordmark and marquee on light and dark background
 
-<Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box round="xsmall" elevation="small" height="medium" style={{ justifyContent: "center" }}>
-<Image height={48} src={centrifugeWordmark} />
-<Image height={48} src={centrifugeMarquee} />
-</Box>
+<Box direction="row" gap="medium">
+<Stack fill anchor="center" margin={{ bottom: "medium" }}>
+<Box round="xsmall" elevation="small" height="small" />
+    <Image height={48} src={centrifugeWordmark} />
 </Stack>
-
-Centrifuge wordmark and marquee on dark background
-
-<Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box background="black" round="xsmall" height="medium" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)", justifyContent: "center" }}>
-<Image height={48} src={centrifugeWordmarkLight} />
-<Image height={48} src={centrifugeMarqueeLight} />
-</Box>
+<Stack fill anchor="center" margin={{ bottom: "medium" }}>
+<Box round="xsmall" elevation="small" height="small" />
+    <Image height={48} src={centrifugeMarquee} />
 </Stack>
+</Box>
 
+<Box direction="row" gap="medium">
+<Stack fill anchor="center" margin={{ bottom: "large" }}>
+<Box background="black" round="xsmall" height="small" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)" }} />
+    <Image height={48} src={centrifugeWordmarkLight} />
+</Stack>
+<Stack fill anchor="center" margin={{ bottom: "large" }}>
+<Box background="black" round="xsmall" height="small" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)" }} />
+    <Image height={48} src={centrifugeMarqueeLight} />
+</Stack>
+</Box>
 </Col>
 </Row>
 </Section>
@@ -48,23 +53,30 @@ Centrifuge wordmark and marquee on dark background
 
 # Altair Brand
 
-Altair wordmark and marquee on light background
+Altair wordmark and marquee on light and dark background
 
-<Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box round="xsmall" elevation="small" height="medium" style={{ justifyContent: "center" }}>
-<Image height={48} src={altairWordmark} />
-<Image height={48} src={altairMarquee} />
+<Box direction="row" gap="medium">
+<Stack fill anchor="center" margin={{ bottom: "medium" }}>
+<Box round="xsmall" elevation="small" height="small" />
+<Image height={96} src={altairWordmark} />
+</Stack>
+<Stack fill anchor="center" margin={{ bottom: "medium" }}>
+<Box round="xsmall" elevation="small" height="small" />
+<Image height={96} src={altairWordmarkLight} />
+</Stack>
 </Box>
+
+<Box direction="row" gap="medium">
+<Stack fill anchor="center" margin={{ bottom: "large" }}>
+<Box background="black" round="xsmall" height="small" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)" }} />
+<Image height={96} src={altairWordmarkLight} />
+</Stack>
+<Stack fill anchor="center" margin={{ bottom: "large" }}>
+<Box background="black" round="xsmall" height="small" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)" }} />
+<Image height={96} src={altairMarqueeLight} />
 </Stack>
 
-Altair wordmark and marquee on dark background
-
-<Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box background="black" round="xsmall" height="medium" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)", justifyContent: "center"  }} >
-<Image height={48} src={altairWordmarkLight} />
-<Image height={48} src={altairMarqueeLight} />
 </Box>
-</Stack>
 
 </Col>
 </Row>
