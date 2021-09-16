@@ -23,17 +23,19 @@ import altairMarqueeLight from "../images/altair-marquee-light.svg";
 Centrifuge wordmark and marquee on light background
 
 <Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box round="xsmall" elevation="small" height="medium" />
+<Box round="xsmall" elevation="small" height="medium" style={{ justifyContent: "center" }}>
 <Image height={48} src={centrifugeWordmark} />
 <Image height={48} src={centrifugeMarquee} />
+</Box>
 </Stack>
 
 Centrifuge wordmark and marquee on dark background
 
 <Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box background="black" round="xsmall" height="medium" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)" }} />
+<Box background="black" round="xsmall" height="medium" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)", justifyContent: "center" }}>
 <Image height={48} src={centrifugeWordmarkLight} />
 <Image height={48} src={centrifugeMarqueeLight} />
+</Box>
 </Stack>
 
 </Col>
@@ -49,17 +51,19 @@ Centrifuge wordmark and marquee on dark background
 Altair wordmark and marquee on light background
 
 <Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box round="xsmall" elevation="small" height="medium" />
+<Box round="xsmall" elevation="small" height="medium" style={{ justifyContent: "center" }}>
 <Image height={48} src={altairWordmark} />
 <Image height={48} src={altairMarquee} />
+</Box>
 </Stack>
 
 Altair wordmark and marquee on dark background
 
 <Stack fill anchor="center" margin={{ bottom: "large" }}>
-<Box background="black" round="xsmall" height="medium" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)" }} />
+<Box background="black" round="xsmall" height="medium" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.20)", justifyContent: "center"  }} >
 <Image height={48} src={altairWordmarkLight} />
 <Image height={48} src={altairMarqueeLight} />
+</Box>
 </Stack>
 
 </Col>
