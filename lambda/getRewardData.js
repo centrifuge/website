@@ -53,11 +53,11 @@ const getContributions = async address => {
 };
 
 const getAllContributions = async () => {
-  const { data: contributions } = await axios(
+  const { data } = await axios(
     'https://crowdloan-ws.centrifuge.io/contributions',
   );
 
-  return contributions;
+  return data;
 };
 
 const getEarlyBirdBonus = contributions => {
@@ -160,7 +160,9 @@ exports.handler = async event => {
     referralCodes,
   );
 
-  const referralBonus = incomingReferralBonus.plus(0).toString();
+  const referralBonus = incomingReferralBonus
+    .plus(outgoingReferralBonus)
+    .toString();
 
   return {
     statusCode: 200,

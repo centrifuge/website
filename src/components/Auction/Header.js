@@ -36,7 +36,7 @@ export const Header = ({ api }) => {
 
       const json = await response.json();
 
-      setContributions(json.numberOfContributions);
+      setContributions(json.numberOfContributions.toLocaleString('en-US'));
     })();
   }, []);
 
