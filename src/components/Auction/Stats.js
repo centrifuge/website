@@ -54,6 +54,12 @@ export const Stats = ({ address }) => {
     () => {
       (async () => {
         if (address) {
+          setContributionAmount();
+          setEarlyBirdBonus();
+          setFirstCrowdloanBonus();
+          setNumberOfReferrals();
+          setReferralBonus();
+
           const response = await fetch('/.netlify/functions/getRewardData', {
             method: 'POST',
             body: JSON.stringify({ address }),
