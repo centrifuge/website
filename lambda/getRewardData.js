@@ -33,25 +33,23 @@ const getValidReferralCodes = async referralCodes => {
   return results.map(result => result.referral_code);
 };
 
-const getNumberOfReferrals = async referralCodes => {
-  const { data: contributions } = await axios(
-    'https://crowdloan-ws.centrifuge.io/contributions',
-  );
-
-  return contributions.filter(({ referralCode }) =>
-    referralCodes.includes(referralCode),
-  ).length;
-};
-
 const getContributions = async address => {
   const keyring = new Keyring({ type: 'sr25519' });
   const hexPublicKey = u8aToHex(keyring.addFromAddress(address).publicKey);
 
-  const { data: contributions } = await axios(
-    `https://crowdloan-ws.centrifuge.io/contributor?id=${hexPublicKey}`,
-  );
+  try {
+    const { data } = await axios(
+      `https://crowdloan-ws.centrifuge.io/contributor?id=${hexPublicKey}`,
+    );
 
-  return contributions;
+    return data;
+  } catch (error) {
+    if (error.response.status === 404) {
+      return [];
+    }
+
+    console.log('error', error.message);
+  }
 };
 
 const getAllContributions = async () => {
@@ -136,11 +134,13 @@ exports.handler = async event => {
 
   const referralCodes = await getReferralCodes(address);
 
-  const numberOfReferrals = await getNumberOfReferrals(referralCodes);
-
   const contributions = await getContributions(address);
 
   const allContributions = await getAllContributions();
+
+  const numberOfReferrals = allContributions.filter(({ referralCode }) =>
+    referralCodes.includes(referralCode),
+  ).length;
 
   const earlyBirdBonus = getEarlyBirdBonus(contributions);
 
