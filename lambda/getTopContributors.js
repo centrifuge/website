@@ -1,5 +1,6 @@
 require('dotenv').config({ path: '.env' });
 import axios from 'axios';
+import { Keyring } from '@polkadot/api';
 const { BigNumber } = require('bignumber.js');
 
 const exchangeAddresses = [
@@ -7,6 +8,11 @@ const exchangeAddresses = [
   'F7fq1jMmNj5j2jAHcBxgM26JzUn2N4duXu1U4UZNdkfZEPV',
   'DAgtn9udZHC7GVU5gV7ybN8nTyucK9PEqY6QvXiG6fEW6TA',
 ];
+
+const getAddress = publicKey => {
+  const keyring = new Keyring({ type: 'sr25519' });
+  return keyring.encodeAddress(publicKey, 2);
+};
 
 exports.handler = async event => {
   if (event.httpMethod !== 'POST') {
@@ -33,7 +39,7 @@ exports.handler = async event => {
       };
     } else {
       acc[cur.account] = {
-        account: cur.account,
+        account: getAddress(cur.account),
         amount: cur.contribution,
         numberOfContributions: 1,
       };
