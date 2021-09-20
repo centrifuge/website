@@ -130,7 +130,7 @@ export const Crowdloan = ({ location }) => {
                 <Text weight={600} size="24px">
                   Referral Bonus
                 </Text>
-                <Box style={{ paddingTop: '36px' }}>
+                <Box style={{ paddingTop: '48px' }}>
                   <Text textAlign="left" style={{ lineHeight: '20px' }}>
                     Earn an extra 5% for you and a friend when you share your
                     referral link.
@@ -154,25 +154,33 @@ export const Crowdloan = ({ location }) => {
                       style={{ paddingLeft: '2px' }}
                     >
                       10
+                      <Text
+                        size="24px"
+                        weight={600}
+                        style={{ paddingLeft: '6px' }}
+                      >
+                        KSM
+                      </Text>
                     </Text>
                   </Box>
                 </Box>
                 <Text weight={600} size="24px">
                   Heavyweight Bonus
                 </Text>
-                <Box style={{ paddingTop: '16px' }}>
+                <Box style={{ paddingTop: '28px' }}>
                   <Text textAlign="left" style={{ lineHeight: '20px' }}>
                     Contribute at least 10 KSM to receive a special surprise
-                    bonus. Limit of 1,500 reached. Details{' '}
+                    bonus.{' '}
                     <Anchor
                       target="_blank"
                       href="https://medium.com/altair-network/rmrk-and-altair-collaborate-for-kusama-auctions-with-limited-edition-nft-d04daea24911"
                       primary
-                      label="here"
+                      label="Learn more"
                       size="14px"
-                      weight={500}
                     />
-                    .
+                  </Text>
+                  <Text color="altair" weight={500}>
+                    Limit of 1,500 contributions reached
                   </Text>
                 </Box>
               </BonusCard>

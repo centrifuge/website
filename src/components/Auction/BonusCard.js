@@ -4,9 +4,9 @@ import { Box } from 'grommet';
 export const BonusCard = ({ background, children }) => (
   <Box
     background={`url('${background}')`}
-    pad="16px"
-    width="271px"
-    height="199px"
+    pad="12px"
+    width="274px"
+    height="200px"
     style={{ paddingLeft: '20px' }}
   >
     {children}
