@@ -5,6 +5,8 @@ import { Header } from './Header';
 import { BonusCard } from './BonusCard';
 import { Stake } from './Stake';
 import { Stats } from './Stats';
+import { ContributionLeaderboard } from './ContributionLeaderboard';
+import { ReferralLeaderboard } from './ReferralLeaderboard';
 import { Success } from './Success';
 import referral_bonus from '../../images/altair/referral_bonus.svg';
 import surprise_bonus from '../../images/altair/surprise_bonus.svg';
@@ -21,6 +23,8 @@ export const Crowdloan = ({ location }) => {
   const [hash, setHash] = useState();
   const [selectedAccount, setSelectedAccount] = useState({});
   const [estimatedAirRewards, setEstimatedAirRewards] = useState(0);
+  const [topContributors, setTopContributors] = useState([]);
+  const [topReferrers, setTopReferrers] = useState([]);
   const [api, setApi] = useState();
 
   const isEarlybird = timeUntilDeadline > 0 ? true : false;
@@ -32,6 +36,32 @@ export const Crowdloan = ({ location }) => {
       const response = await ApiPromise.create({ provider: wsProvider });
 
       setApi(response);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('/.netlify/functions/getTopContributors', {
+        method: 'POST',
+        body: JSON.stringify({ amount: 5 }),
+      });
+
+      const json = await response.json();
+
+      setTopContributors(json);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('/.netlify/functions/getTopReferrers', {
+        method: 'POST',
+        body: JSON.stringify({ amount: 5 }),
+      });
+
+      const json = await response.json();
+
+      setTopReferrers(json);
     })();
   }, []);
 
@@ -63,7 +93,15 @@ export const Crowdloan = ({ location }) => {
             columns={['min-content', 'min-content', 'min-content']}
             gap="medium"
           >
-            <Stats address={selectedAccount?.address} />
+            <Box>
+              <Stats address={selectedAccount?.address} />
+              <Box style={{ marginTop: '42px' }}>
+                <ReferralLeaderboard topReferrers={topReferrers} />
+              </Box>
+              <Box style={{ marginTop: '42px' }}>
+                <ContributionLeaderboard topContributors={topContributors} />
+              </Box>
+            </Box>
             <Box>
               <Box
                 background="white"
