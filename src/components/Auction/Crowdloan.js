@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { Box, Grid, Text } from 'grommet';
+import { Anchor, Box, Grid, Text } from 'grommet';
 import { Header } from './Header';
 import { BonusCard } from './BonusCard';
 import { Stake } from './Stake';
@@ -160,10 +160,19 @@ export const Crowdloan = ({ location }) => {
                 <Text weight={600} size="24px">
                   Heavyweight Bonus
                 </Text>
-                <Box style={{ paddingTop: '36px' }}>
+                <Box style={{ paddingTop: '16px' }}>
                   <Text textAlign="left" style={{ lineHeight: '20px' }}>
                     Contribute at least 10 KSM to receive a special surprise
-                    bonus
+                    bonus. Limit of 1,500 reached. Details{' '}
+                    <Anchor
+                      target="_blank"
+                      href="https://medium.com/altair-network/rmrk-and-altair-collaborate-for-kusama-auctions-with-limited-edition-nft-d04daea24911"
+                      primary
+                      label="here"
+                      size="14px"
+                      weight={500}
+                    />
+                    .
                   </Text>
                 </Box>
               </BonusCard>
