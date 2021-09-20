@@ -25,7 +25,7 @@ const getReferralCodes = async address => {
 
 const getValidReferralCodes = async referralCodes => {
   const results = await sql`
-      select * from altair where referral_code = any('{${sql.json(
+      select referral_code, wallet_address from altair where referral_code = any('{${sql(
         referralCodes,
       )}}'::varchar[])
     `;
@@ -98,15 +98,17 @@ const getContributionAmount = contributions => {
 };
 
 const getOutgoingReferralBonus = async contributions => {
-  const referralCodes = contributions
+  const usedReferralCodes = contributions
     .filter(contribution => contribution.referralCode)
     .map(contribution => contribution.referralCode);
 
-  const validReferralCodes = await getValidReferralCodes(referralCodes);
+  const validReferralCodes = await getValidReferralCodes(usedReferralCodes);
 
   return contributions.reduce((sum, contribution) => {
     if (validReferralCodes.includes(contribution.referralCode)) {
-      sum.plus(new BigNumber(contribution.contribution).multipliedBy(0.05));
+      return sum.plus(
+        new BigNumber(contribution.contribution).multipliedBy(0.05),
+      );
     }
 
     return sum;
@@ -116,7 +118,9 @@ const getOutgoingReferralBonus = async contributions => {
 const getIncomingReferralBonus = (allContributions, referralCodes) =>
   allContributions.reduce((sum, contribution) => {
     if (referralCodes.includes(contribution.referralCode)) {
-      sum.plus(new BigNumber(contribution.contribution).multipliedBy(0.05));
+      return sum.plus(
+        new BigNumber(contribution.contribution).multipliedBy(0.05),
+      );
     }
 
     return sum;
@@ -149,10 +153,7 @@ exports.handler = async event => {
   const contributionAmount = getContributionAmount(contributions);
 
   // this user used someone else's referral code
-  const outgoingReferralBonus = await getOutgoingReferralBonus(
-    allContributions,
-    contributions,
-  );
+  const outgoingReferralBonus = await getOutgoingReferralBonus(contributions);
 
   // someone used a referral code owned by this user
   const incomingReferralBonus = getIncomingReferralBonus(
