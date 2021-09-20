@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { encodeAddress } from '@polkadot/util-crypto';
 import { Box, Spinner, Text } from 'grommet';
 import { BigNumber } from 'bignumber.js';
 
@@ -62,7 +63,7 @@ export const Stats = ({ address }) => {
 
           const response = await fetch('/.netlify/functions/getRewardData', {
             method: 'POST',
-            body: JSON.stringify({ address }),
+            body: JSON.stringify({ address: encodeAddress(address, 2) }),
           });
 
           const json = await response.json();
