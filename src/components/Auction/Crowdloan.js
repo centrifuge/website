@@ -179,7 +179,7 @@ export const Crowdloan = ({ location }) => {
                       size="14px"
                     />
                   </Text>
-                  <Text color="altair" weight={500}>
+                  <Text color="altair" weight={600}>
                     Limit of 1,500 contributions reached
                   </Text>
                 </Box>
