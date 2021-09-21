@@ -59,9 +59,9 @@ exports.handler = async event => {
       validReferralCode.wallet_address;
   });
 
-  const orderedReferrers = Object.values(referrerCount).map(
-    referrer => referrer,
-  );
+  const orderedReferrers = Object.values(referrerCount)
+    .map(referrer => referrer)
+    .filter(referrer => referrer.account);
 
   orderedReferrers.sort((a, b) => {
     if (a.numberOfTimesUsed > b.numberOfTimesUsed) {
