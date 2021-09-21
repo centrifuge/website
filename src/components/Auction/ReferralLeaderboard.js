@@ -9,13 +9,13 @@ const formatAddress = address => {
 };
 
 export const ReferralLeaderboard = ({ topReferrers }) => (
-  <>
+  <Box style={{ paddingLeft: '24px' }}>
     <Text weight={600} size="16px" style={{ paddingBottom: '8px' }}>
       Top Referrers
     </Text>
     {topReferrers.length ? (
       topReferrers.map((datum, index) => (
-        <Grid columns={['24px', '120px', '90px']} style={{ paddingTop: '8px' }}>
+        <Grid columns={['24px', '100px', '90px']} style={{ paddingTop: '8px' }}>
           <Text weight={500}>{index + 1}</Text>
           <Text weight={500}>{formatAddress(datum.account)}</Text>
           <Text color="altair" weight={600} textAlign="end">
@@ -34,5 +34,5 @@ export const ReferralLeaderboard = ({ topReferrers }) => (
         <Spinner color="white" />
       </Box>
     )}
-  </>
+  </Box>
 );
