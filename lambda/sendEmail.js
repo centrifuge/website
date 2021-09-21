@@ -18,6 +18,14 @@ exports.handler = async event => {
 
   const payload = JSON.parse(event.body);
 
+  // Return a fake success response if the honeypot field was filled
+  if (payload.body.hemail) {
+    return {
+      statusCode: 200,
+      body: 'Sent'
+    };
+  }
+
   const body = Object.keys(payload.body)
     .map(k => {
       return `${k}: ${
