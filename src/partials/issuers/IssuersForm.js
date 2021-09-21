@@ -16,6 +16,33 @@ import Column from "../../components/Column";
 import { isEmail, isFQDN, isMobilePhone } from "validator";
 import { navigate } from "gatsby";
 
+/**
+ * An invisible form field, used to induce spam bots to fill it randomly.
+ * If the "hemail" field is sent to the sendEmail lambda (meaning it was filled by a bot),
+ * the lambda will return a fake success response (200 - Sent), but it won't actually send the email
+ */
+const HoneyPotField = () => (
+  <div style={{
+    border: 0,
+    clip: "rect(0 0 0 0)",
+    height: "1px",
+    margin: "-1px",
+    overflow: "hidden",
+    padding: 0,
+    position: "absolute",
+    width: "1px",
+  }}>
+    <FormField
+      name="hemail"
+      htmlfor="hemail-text-input"
+      label="Don’t fill this out if you’re human: "
+      error={false}
+    >
+      <TextInput name="hemail" id="hemail-text-input" />
+    </FormField>
+  </div>
+)
+
 const IssuersForm = () => {
   const size = useContext(ResponsiveContext);
 
@@ -145,18 +172,7 @@ const IssuersForm = () => {
                 alignSelf="stretch"
                 margin={{ bottom: "medium" }}
               >
-                {/* honeypot field */}
-                <div style={{ display: 'none' }}>
-                  <FormField
-                    name="hemail"
-                    htmlfor="hemail-text-input"
-                    label="Don’t fill this out if you’re human: "
-                    error={false}
-                  >
-                    <TextInput name="hemail" id="hemail-text-input" />
-                  </FormField>
-                </div>
-                
+                <HoneyPotField />
                 <FormField
                   name="name"
                   htmlfor="name-text-input"
