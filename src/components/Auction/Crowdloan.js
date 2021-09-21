@@ -93,12 +93,16 @@ export const Crowdloan = ({ location }) => {
             columns={['min-content', 'min-content', 'min-content']}
             gap="medium"
           >
-            <Box>
-              <Stats address={selectedAccount?.address} />
-              <Box style={{ marginTop: '42px' }}>
+            <Box style={{ minWidth: '234px' }}>
+              {selectedAccount?.address && (
+                <Box style={{ marginBottom: '42px' }}>
+                  <Stats address={selectedAccount?.address} />
+                </Box>
+              )}
+              <Box style={{ marginBottom: '42px' }}>
                 <ReferralLeaderboard topReferrers={topReferrers} />
               </Box>
-              <Box style={{ marginTop: '42px' }}>
+              <Box>
                 <ContributionLeaderboard topContributors={topContributors} />
               </Box>
             </Box>
