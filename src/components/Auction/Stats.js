@@ -107,7 +107,7 @@ export const Stats = ({ address }) => {
   );
 
   return (
-    <Box gap="medium" width="250px">
+    <Box gap="medium" width="250px" style={{ paddingLeft: '24px' }}>
       <Text size="16px" weight={600}>
         Your Contribution
       </Text>
