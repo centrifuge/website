@@ -25,7 +25,8 @@ const IssuersForm = () => {
     phone: "",
     organization: "",
     website: "",
-    aim: ""
+    aim: "",
+    hemail: "" // honeypot field
   });
 
   const [errors, setErrors] = useState({
@@ -147,7 +148,17 @@ const IssuersForm = () => {
                 margin={{ bottom: "medium" }}
               >
                 {/* Netlify honeypot field: see https://docs.netlify.com/forms/spam-filters/ */}
-                <label style={{ display: 'none' }}>Don’t fill this out if you’re human: <input name="f-email" /></label>
+                <div style={{ display: 'block' }}>
+                  <FormField
+                    name="hemail"
+                    htmlfor="hemail-text-input"
+                    label="Don’t fill this out if you’re human: "
+                    error={false}
+                  >
+                    <TextInput name="hemail" id="hemail-text-input" />
+                  </FormField>
+                </div>
+                
                 <FormField
                   name="name"
                   htmlfor="name-text-input"
