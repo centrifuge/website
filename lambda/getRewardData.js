@@ -65,7 +65,9 @@ const getEarlyBirdBonus = contributions => {
     .reduce((sum, contribution) => {
       if (contribution.earlyBird) {
         return sum.plus(
-          new BigNumber(contribution.contribution).multipliedBy(0.1),
+          new BigNumber(contribution.contribution)
+            .multipliedBy(0.1)
+            .multipliedBy(400),
         );
       }
 
@@ -79,7 +81,9 @@ const getFirstCrowdloanBonus = contributions => {
     .reduce((sum, contribution) => {
       if (contribution.wasEarlyInPrevCrwdLoan) {
         return sum.plus(
-          new BigNumber(contribution.contribution).multipliedBy(0.1),
+          new BigNumber(contribution.contribution)
+            .multipliedBy(0.1)
+            .multipliedBy(400),
         );
       }
 
@@ -107,7 +111,9 @@ const getOutgoingReferralBonus = async contributions => {
   return contributions.reduce((sum, contribution) => {
     if (validReferralCodes.includes(contribution.referralCode)) {
       return sum.plus(
-        new BigNumber(contribution.contribution).multipliedBy(0.05),
+        new BigNumber(contribution.contribution)
+          .multipliedBy(0.05)
+          .multipliedBy(400),
       );
     }
 
@@ -119,7 +125,9 @@ const getIncomingReferralBonus = (allContributions, referralCodes) =>
   allContributions.reduce((sum, contribution) => {
     if (referralCodes.includes(contribution.referralCode)) {
       return sum.plus(
-        new BigNumber(contribution.contribution).multipliedBy(0.05),
+        new BigNumber(contribution.contribution)
+          .multipliedBy(0.05)
+          .multipliedBy(400),
       );
     }
 

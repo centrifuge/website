@@ -5,7 +5,11 @@ import { BigNumber } from 'bignumber.js';
 
 const formatAmount = value => {
   const number = new BigNumber(value);
-  return Number(number.dividedBy(10 ** 12).toString()).toLocaleString('en-US');
+  return number
+    .dividedBy(10 ** 12)
+    .decimalPlaces(3)
+    .toFormat()
+    .toString();
 };
 
 const Stat = ({ amount, color, label, token }) => (
