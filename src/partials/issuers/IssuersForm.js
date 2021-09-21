@@ -126,8 +126,6 @@ const IssuersForm = () => {
       <CTAForm>
         {sendEmail => (
           <Form
-            netlify-honeypot="f-email"
-            data-netlify="true"
             value={value}
             onChange={nextValue => setValue(nextValue)}
             onSubmit={async ({ value }) => {
@@ -147,8 +145,8 @@ const IssuersForm = () => {
                 alignSelf="stretch"
                 margin={{ bottom: "medium" }}
               >
-                {/* Netlify honeypot field: see https://docs.netlify.com/forms/spam-filters/ */}
-                <div style={{ display: 'block' }}>
+                {/* honeypot field */}
+                <div style={{ display: 'none' }}>
                   <FormField
                     name="hemail"
                     htmlfor="hemail-text-input"
