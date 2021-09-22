@@ -25,6 +25,8 @@ exports.handler = async event => {
       body: 'Sent'
     };
   }
+  // remove the empty honeypot field
+  delete payload.body.hemail;
 
   const body = Object.keys(payload.body)
     .map(k => {
