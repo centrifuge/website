@@ -7,6 +7,7 @@ import { Stake } from './Stake';
 import { Success } from './Success';
 import referral_bonus from '../../images/altair/referral_bonus.svg';
 import surprise_bonus from '../../images/altair/surprise_bonus.svg';
+import early_bird_bonus from '../../images/altair/early_bird_bonus.svg';
 
 // the deadline for the early bird rewards - September 2, 2021 @ 12:00pm GMT
 const EARLY_BIRD_DEADLINE = 1630584000000;
@@ -99,6 +100,31 @@ export const Crowdloan = ({ location }) => {
               </Box>
             </Box>
             <Box gap="medium">
+              <BonusCard background={early_bird_bonus}>
+                <Box>
+                  <Box
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      paddingTop: '10px',
+                    }}
+                  >
+                    <Text weight={600} size="32px">
+                      Top 1,500
+                    </Text>
+                  </Box>
+                </Box>
+                <Text weight={600} size="24px">
+                  Heavyweight Bonus
+                </Text>
+                <Box style={{ paddingTop: '48px' }}>
+                  <Text textAlign="left" style={{ lineHeight: '20px' }}>
+                    Leading contributors receive limited RMRK next-generation
+                    NFTs
+                  </Text>
+                </Box>
+              </BonusCard>
               <BonusCard background={referral_bonus}>
                 <Box>
                   <Box
