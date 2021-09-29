@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { BonusCard } from './BonusCard';
 import { Stake } from './Stake';
 import { Success } from './Success';
+import { AuctionCompleted } from './AuctionCompleted';
 import referral_bonus from '../../images/altair/referral_bonus.svg';
 import surprise_bonus from '../../images/altair/surprise_bonus.svg';
 import early_bird_bonus from '../../images/altair/early_bird_bonus.svg';

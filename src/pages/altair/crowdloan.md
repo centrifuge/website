@@ -2,6 +2,6 @@
 dark: true
 ---
 
-import { Crowdloan } from '../../components/Auction/Crowdloan';
+import { AuctionCompleted } from '../../components/Auction/AuctionCompleted';
 
-<Crowdloan location={props.location}/>
+<AuctionCompleted />
