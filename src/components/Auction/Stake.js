@@ -351,7 +351,7 @@ export const Stake = ({
           <Form onSubmit={() => contribute()} validate="submit">
             <FormField label="Kusama account">
               <Select
-                disabled={isSubmitting}
+                disabled={true}
                 children={account => (
                   <Box pad="small" style={{ textAlign: 'left' }}>
                     <div>
@@ -387,7 +387,7 @@ export const Stake = ({
                 validate={value => validateKsmAmount(value)}
               >
                 <TextInput
-                  disabled={isSubmitting}
+                  disabled={true}
                   icon={
                     <>
                       <Image src={ksm_token_logo} />
@@ -442,7 +442,7 @@ export const Stake = ({
                 validate={value => validateReferralCode(value)}
               >
                 <TextInput
-                  disabled={isSubmitting}
+                  disabled={true}
                   id="referralCode"
                   name="referralCode"
                   onChange={event => {
@@ -459,7 +459,7 @@ export const Stake = ({
                 validate={value => validateEmailAddress(value)}
               >
                 <TextInput
-                  disabled={isSubmitting}
+                  disabled={true}
                   id="emailAddress"
                   name="emailAddress"
                   onChange={event => {
@@ -472,7 +472,7 @@ export const Stake = ({
             </Box>
             <Box style={{ paddingTop: '24px', paddingLeft: '12px' }}>
               <CheckBox
-                disabled={isSubmitting}
+                disabled={true}
                 checked={checked}
                 label="I agree to the terms and conditions below"
                 onChange={event => setChecked(event.target.checked)}
@@ -494,7 +494,7 @@ export const Stake = ({
                 </>
               ) : (
                 <Button
-                  disabled={!checked}
+                  disabled={true}
                   primary
                   color="altair"
                   alignSelf="start"
