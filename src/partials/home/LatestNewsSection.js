@@ -1,8 +1,7 @@
 import React from "react";
-import { Box, Button, Heading } from "grommet";
+import { Box, Button } from "grommet";
 import { graphql, useStaticQuery } from "gatsby";
 
-import { Section, Row, Col } from "../../components/MDXLayout/shortcodes";
 import { LatestNews } from "../../components/News";
 
 const LatestNewsSection = () => {

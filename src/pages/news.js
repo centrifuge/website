@@ -6,10 +6,10 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
-import Column, { Spacer } from "../components/Column";
+import Column from "../components/Column";
 import { ExternalLink } from "../components/Links";
 import { HighlightPost, Post, YoutubePost } from "../components/News";
-import { MEDIUM_URL, YOUTUBE_URL, RichTextRenderer } from "../helpers";
+import { MEDIUM_URL, YOUTUBE_URL } from "../helpers";
 
 import medium from "../images/medium-wordmark.svg";
 import youtube from "../images/youtube-wordmark.svg";

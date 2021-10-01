@@ -1,11 +1,10 @@
 import React from "react";
-import { Box, TextInput, Button, Text, ResponsiveContext } from "grommet";
+import { Box, TextInput, Button } from "grommet";
 import addToMailchimp from "gatsby-plugin-mailchimp";
 import styled from "styled-components";
 
 import Container from "../Container";
 
-// todo remove stale code
 
 const FormWrapper = styled.div`
   display: grid;
@@ -121,53 +120,6 @@ const EmailSubscription = () => (
   </EmailWrapper>
 );
 
-const SubstackIFrame = () => (
-  <iframe
-    src="https://centrifuge.substack.com/embed"
-    width="300"
-    height="120"
-    style={{
-      border: "1px",
-      solid: "white",
-      background: "brand"
-    }}
-    frameBorder="0"
-    scrolling="no"
-  />
-);
-
-const SubstackEmailSubscription = () => {
-  const description = (
-    <Box>
-      <Text size="large">Stay up to date</Text>
-      <Text size="xlarge" weight={500}>
-        Centrifuge Newsletter
-      </Text>
-    </Box>
-  );
-
-  return (
-    <EmailWrapper tag="section" background="brand" pad={{ vertical: "small" }}>
-      <ResponsiveContext.Consumer>
-        {size =>
-          ["large", "medium"].includes(size) ? (
-            <Container>
-              <Box direction="row" justify="between" align="center">
-                {description}
-                <SubstackIFrame />
-              </Box>
-            </Container>
-          ) : (
-            <Box align="center" pad={{ top: "medium" }}>
-              {description}
-              <SubstackIFrame />
-            </Box>
-          )
-        }
-      </ResponsiveContext.Consumer>
-    </EmailWrapper>
-  );
-};
 
 export { SubscriptionForm };
 export default EmailSubscription;

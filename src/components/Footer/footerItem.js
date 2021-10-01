@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, Paragraph, Image, Text, Anchor } from "grommet";
+import { Box, Paragraph, Image, Text } from "grommet";
 
 import { List, Item } from "../List";
 import { ExternalLink, InternalLink } from "../Links";
 
 import euFlagImage from "../../images/eu-flag.svg";
-import dfpLogo from "../../images/DFP-white.png";
 
 const FooterExternalLinkItem = ({ children, href, ...rest }) => (
   <FooterItem>
@@ -88,14 +87,6 @@ const BlockInternalLink = () => (
   </Item>
 );
 
-const BlockDefiPulse = () => (
-  <Box gap="xsmall">
-    <Text size="12px">Find us on</Text>
-    <Anchor href="https://defipulse.com/" target="_blank" alignSelf="start">
-      <Image src={dfpLogo} width="150px" />
-    </Anchor>
-  </Box>
-);
 
 const SubBlockContact = ({ title, email }) => (
   <Box direction="row" gap="xsmall" align="start">
