@@ -103,7 +103,7 @@ const WhyCentrifuge = () => {
             label="Access Capital"
             href="/issuers/form"
           />
-          <Button primary color="accent-1" label="Join the Community" />
+          <Button primary color="accent-1" label="Join the Community" href="https://gov.centrifuge.io" />
         </Box>
       </Section>
     </Box>

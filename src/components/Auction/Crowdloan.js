@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { Anchor, Box, Grid, Text } from 'grommet';
-import { Header } from './Header';
 import { BonusCard } from './BonusCard';
 import { Stake } from './Stake';
-import { Success } from './Success';
 import referral_bonus from '../../images/altair/referral_bonus.svg';
 import surprise_bonus from '../../images/altair/surprise_bonus.svg';
 import early_bird_bonus from '../../images/altair/early_bird_bonus.svg';
@@ -19,9 +17,9 @@ const KSM = '187.84K';
 const CONTRIBUTIONS = '18,342';
 
 export const Crowdloan = ({ location }) => {
-  const [isFinalized, setIsFinalized] = useState(false);
+  const [, setIsFinalized] = useState(false);
   const [ksmAmount, setKsmAmount] = useState('');
-  const [hash, setHash] = useState();
+  const [, setHash] = useState();
   const [selectedAccount, setSelectedAccount] = useState({});
   const [estimatedAirRewards, setEstimatedAirRewards] = useState(0);
   const [api, setApi] = useState();

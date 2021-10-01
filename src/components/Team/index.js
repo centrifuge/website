@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { Box, Text, Image, Anchor, Button } from "grommet";
 import Grid from "../Grid";
