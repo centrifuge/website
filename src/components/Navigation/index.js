@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Image,
   Layer as GrommetLayer,
   ResponsiveContext
 } from "grommet";
-import { StaticQuery, graphql, navigate } from "gatsby";
+import { navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
 import { X } from "styled-icons/feather/X";
@@ -48,6 +47,7 @@ const ExternalNavLink = ({ children, href, dark, ...rest }) => (
 );
 
 const BrandLink = ({ dark }) => (
+  // eslint-disable-next-line jsx-a11y/no-static-element-interactions
   <div
     onContextMenu={e => {
       e.preventDefault();
