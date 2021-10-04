@@ -25,7 +25,7 @@ export const JoinWaitlist = () => {
   };
 
   return (
-    <Box width="320px" alignSelf="center">
+    <Box alignSelf="center">
       <Box
         background="black"
         height="160px"
@@ -69,7 +69,7 @@ export const JoinWaitlist = () => {
               </Text>
             </Box>
           ) : (
-            <Box style={{ padding: '25px 36px 40px 36px' }}>
+            <Box style={{ padding: '25px 16px 40px 16px' }}>
               <Box>
                 <Text
                   size="16px"

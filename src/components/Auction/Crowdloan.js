@@ -84,7 +84,7 @@ export const Crowdloan = () => {
   );
 
   return (
-    <Box background="black">
+    <Box background="black" style={{ paddingBottom: '16px' }}>
       <Box
         background={{
           image: `url('${crowdloan_banner}')`,
@@ -123,15 +123,12 @@ export const Crowdloan = () => {
       </Box>
       <Box
         style={{
-          marginTop: '100px',
+          marginTop: '56px',
         }}
         alignSelf="center"
       >
-        <Grid
-          columns={['min-content', 'min-content', 'min-content']}
-          gap="medium"
-        >
-          <Box style={{ minWidth: '234px' }}>
+        <Grid columns={['269px', '364px', '269px']} gap="95px">
+          <Box>
             <Box style={{ marginBottom: '42px' }}>
               <ReferralLeaderboard topReferrers={topReferrers} />
             </Box>
@@ -139,13 +136,7 @@ export const Crowdloan = () => {
               <ContributionLeaderboard topContributors={topContributors} />
             </Box>
           </Box>
-          <Box
-            width="600px"
-            height="min-content"
-            style={{
-              padding: '0 64px',
-            }}
-          >
+          <Box height="min-content">
             {loading ? (
               <Box align="center">
                 <Spinner color="white" size="medium" />

@@ -15,8 +15,8 @@ const formatAmount = value => {
 
 const truncateAddress = address => {
   const encodedAddress = encodeAddress(address, 2);
-  const firstFifteen = encodedAddress.slice(0, 10);
-  const lastFifteen = encodedAddress.slice(-10);
+  const firstFifteen = encodedAddress.slice(0, 8);
+  const lastFifteen = encodedAddress.slice(-2);
 
   return `${firstFifteen}...${lastFifteen}`;
 };
@@ -133,7 +133,7 @@ export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
           },
         }}
       >
-        <Box gap="medium" style={{ paddingLeft: '24px' }}>
+        <Box gap="medium">
           <Text size="16px" weight={600}>
             Your Contribution
           </Text>
