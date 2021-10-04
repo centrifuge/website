@@ -67,7 +67,7 @@ const getEarlyBirdBonus = contributions =>
         return sum.plus(
           new BigNumber(contribution.contribution)
             .multipliedBy(0.1)
-            .multipliedBy(420),
+            .multipliedBy(430),
         );
       }
 
@@ -82,7 +82,7 @@ const getFirstCrowdloanBonus = contributions =>
         return sum.plus(
           new BigNumber(contribution.contribution)
             .multipliedBy(0.1)
-            .multipliedBy(420),
+            .multipliedBy(430),
         );
       }
 
@@ -110,7 +110,7 @@ const getOutgoingReferralBonus = async contributions => {
       return sum.plus(
         new BigNumber(contribution.contribution)
           .multipliedBy(0.05)
-          .multipliedBy(420),
+          .multipliedBy(430),
       );
     }
 
@@ -124,7 +124,7 @@ const getIncomingReferralBonus = (allContributions, referralCodes) =>
       return sum.plus(
         new BigNumber(contribution.contribution)
           .multipliedBy(0.05)
-          .multipliedBy(420),
+          .multipliedBy(430),
       );
     }
 

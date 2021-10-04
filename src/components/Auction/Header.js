@@ -72,7 +72,7 @@ export const Header = ({ api }) => {
         <Grid gap="large" columns={['auto', 'auto', 'auto']}>
           <Box style={{ flexDirection: 'row' }} align="center">
             <Image src={twinkle} width="28px" style={{ paddingRight: '6px' }} />
-            <Text>Stake 1 KSM to earn 420 AIR</Text>
+            <Text>Stake 1 KSM to earn 430 AIR</Text>
           </Box>
           <Box style={{ flexDirection: 'row' }} align="center">
             <Image src={twinkle} width="28px" style={{ paddingRight: '6px' }} />

@@ -97,7 +97,7 @@ export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
   const stakingReward = useMemo(
     () => {
       if (contributionAmount) {
-        return new BigNumber(contributionAmount).multipliedBy(420);
+        return new BigNumber(contributionAmount).multipliedBy(430);
       }
     },
     [contributionAmount],
