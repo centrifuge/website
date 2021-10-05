@@ -178,7 +178,11 @@ export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
             amount={referralBonus}
             label={
               numberOfReferrals !== undefined ? (
-                `Referral Rewards (${numberOfReferrals} referrals)`
+                `Referral Rewards (${
+                  numberOfReferrals === 1
+                    ? `${numberOfReferrals} referral`
+                    : `${numberOfReferrals} referrals`
+                })`
               ) : (
                 <Spinner
                   color="white"
