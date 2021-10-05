@@ -28,7 +28,7 @@ export const JoinWaitlist = () => {
     <Box alignSelf="center">
       <Box
         background="black"
-        height="160px"
+        height="120px"
         style={{
           borderTop: '1px solid #BBBBBB',
           borderRight: '1px solid #BBBBBB',
@@ -46,10 +46,10 @@ export const JoinWaitlist = () => {
           >
             Coming Soon
           </Text>
-          <Text size="28px" textAlign="center" weight={600}>
+          <Text size="20px" textAlign="center" weight={600}>
             Polkadot
           </Text>
-          <Text size="28px" textAlign="center" weight={600}>
+          <Text size="20px" textAlign="center" weight={600}>
             Parachain Auction
           </Text>
         </Box>
@@ -69,10 +69,10 @@ export const JoinWaitlist = () => {
               </Text>
             </Box>
           ) : (
-            <Box style={{ padding: '25px 16px 40px 16px' }}>
+            <Box style={{ padding: '16px 16px 32px 16px' }}>
               <Box>
                 <Text
-                  size="16px"
+                  size="14px"
                   textAlign="start"
                   style={{ lineHeight: '24px' }}
                 >
@@ -88,7 +88,6 @@ export const JoinWaitlist = () => {
                   validate="submit"
                 >
                   <FormField
-                    label="Email"
                     name="emailAddress"
                     htmlFor="emailAddress"
                     style={{ paddingBottom: '24px' }}
@@ -113,7 +112,7 @@ export const JoinWaitlist = () => {
                     <Button
                       color="altair"
                       disabled={isSubmitting}
-                      label="Join Waitlist"
+                      label="Join waitlist"
                       primary
                       type="submit"
                     />
