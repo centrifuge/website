@@ -7,6 +7,7 @@ import twinkle from '../../images/altair/twinkle.svg';
 
 export const Header = ({ api }) => {
   const [ksm, setKsm] = useState('');
+  const [contributions, setContributions] = useState('');
 
   useEffect(
     () => {
@@ -26,6 +27,18 @@ export const Header = ({ api }) => {
     },
     [api],
   );
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        '/.netlify/functions/getNumberOfContributions',
+      );
+
+      const json = await response.json();
+
+      setContributions(json.numberOfContributions.toLocaleString('en-US'));
+    })();
+  }, []);
 
   return (
     <Box
@@ -53,12 +66,13 @@ export const Header = ({ api }) => {
         }}
       >
         <HeaderPill label="KSM raised" value={ksm} />
+        <HeaderPill label="contributions" value={contributions} />
       </Box>
       <Box align="center">
         <Grid gap="large" columns={['auto', 'auto', 'auto']}>
           <Box style={{ flexDirection: 'row' }} align="center">
             <Image src={twinkle} width="28px" style={{ paddingRight: '6px' }} />
-            <Text>Stake 1 KSM to earn 420 AIR</Text>
+            <Text>Stake 1 KSM to earn 430 AIR</Text>
           </Box>
           <Box style={{ flexDirection: 'row' }} align="center">
             <Image src={twinkle} width="28px" style={{ paddingRight: '6px' }} />
