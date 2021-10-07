@@ -51,7 +51,7 @@ const BrandLink = ({ dark }) => (
   <div
     onContextMenu={e => {
       e.preventDefault();
-      navigate("/design");
+      navigate("/brand");
     }}
   >
     <NavLink to="/">
