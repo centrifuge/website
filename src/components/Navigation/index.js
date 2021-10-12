@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Layer as GrommetLayer,
-  ResponsiveContext
-} from "grommet";
+import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
 import { navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -23,7 +18,7 @@ const NavLink = ({ children, to, dark }) => (
   <InternalLink
     style={{
       fontWeight: "var(--fw-medium)",
-      color: !!dark ? "white" : "black"
+      color: !!dark ? "white" : "black",
     }}
     activeStyle={{ color: !!dark ? "white" : "var(--c-brand)" }}
     to={to}
@@ -36,7 +31,7 @@ const ExternalNavLink = ({ children, href, dark, ...rest }) => (
   <ExternalLink
     style={{
       fontWeight: "var(--fw-medium)",
-      color: !!dark ? "white" : "black"
+      color: !!dark ? "white" : "black",
     }}
     activeStyle={{ color: "var(--c-brand)" }}
     href={href}
@@ -49,7 +44,7 @@ const ExternalNavLink = ({ children, href, dark, ...rest }) => (
 const BrandLink = ({ dark }) => (
   // eslint-disable-next-line jsx-a11y/no-static-element-interactions
   <div
-    onContextMenu={e => {
+    onContextMenu={(e) => {
       e.preventDefault();
       navigate("/brand");
     }}
@@ -110,7 +105,7 @@ const Dropdowns = styled(Box)`
 
   /* Dropdown Styles */
   > li > ul {
-    background-color: ${props =>
+    background-color: ${(props) =>
       !!props.dark ? theme.global.colors["dark-1"] : "white"};
     box-shadow: ${theme.global.elevation.light.small};
     visibility: hidden;
@@ -156,7 +151,7 @@ const Nav = styled(Box)`
   &::after {
     content: "";
     position: absolute;
-    background-color: ${props => (!!props.dark ? `black` : `white`)};
+    background-color: ${(props) => (!!props.dark ? `black` : `white`)};
     z-index: -1;
     margin: 0 auto;
     top: 0;
@@ -200,7 +195,7 @@ const SubItem = styled(Item)`
 `;
 
 const MobileBox = styled(Box)`
-  background: ${props => (!!props.dark ? "black" : "white")};
+  background: ${(props) => (!!props.dark ? "black" : "white")};
 
   ${breakpointStyle(
     breakpoints.small,
@@ -242,9 +237,20 @@ const Navigation = ({ dark }) => {
             </PaddedItem>
 
             <PaddedItem>
-              <NavLink to="/altair" dark={dark}>
-                Altair
+              <NavLink to="/parachain" dark={dark}>
+                Parachain
               </NavLink>
+
+              <List>
+                <Item>
+                  <NavLink to="/parachain" dark={dark}>
+                    Centrifuge Chain
+                  </NavLink>
+                  <NavLink to="/altair" dark={dark}>
+                    Altair
+                  </NavLink>
+                </Item>
+              </List>
             </PaddedItem>
 
             <PaddedItem>
@@ -307,12 +313,12 @@ const Navigation = ({ dark }) => {
 };
 
 Navigation.defaultProps = {
-  dark: false
+  dark: false,
 };
 
 const MobilePanel = ({ state, toggleFunc, dark }) => (
   <ResponsiveContext.Consumer>
-    {size =>
+    {(size) =>
       state &&
       size === "small" && (
         <Layer
@@ -331,7 +337,7 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
               top: "xxlarge",
               bottom: "xlarge",
               left: "large",
-              right: "large"
+              right: "large",
             }}
             gap="medium"
           >
