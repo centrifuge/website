@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Button, Image, Text } from "grommet";
 import Container from "../Container";
 
-import useCase1 from "../../images/polkadot/useCase1.svg";
-import useCase2 from "../../images/polkadot/useCase2.svg";
-import useCase3 from "../../images/polkadot/useCase3.svg";
+import useCaseAUSD from "../../images/polkadot/useCaseAUSD.svg";
+import useCaseMoonbeam from "../../images/polkadot/useCaseMoonbeam.svg";
+import useCasePolkadefi from "../../images/polkadot/useCasePolkadefi.svg";
 
 const UseCase = ({ image, title, text }) => (
   <Box width="376px" background="white" style={{ borderRadius: 10 }}>
@@ -49,17 +49,17 @@ const UseCases = () => {
         </Text>
         <Box direction="row" gap="24px" justify="center" margin="0 0 108px">
           <UseCase
-            image={useCase1}
+            image={useCaseAUSD}
             title="From aHouse to aUSD"
             text="Once Centrifuge moves onto Polkadot, pools can be financed using Acala’s aUSD stablecoin. Through Centrifuge, you’ll be able to mint new aUSD that can be used in the PolkaDeFi world, from a house (or any other asset) you’ve collateralized and financed on Centrifuge."
           />
           <UseCase
-            image={useCase2}
+            image={useCaseMoonbeam}
             title="Dapp integrations from Sushi and Moonbeam"
             text=""
           />
           <UseCase
-            image={useCase3}
+            image={useCasePolkadefi}
             title="The Polkadefi bridge to Ethereum"
             text="Centrifuge is already bridged to Ethereum, meaning you will be able to use Dai and other ERC20 tokens within the Polkadot ecosystem"
           />

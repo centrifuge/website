@@ -18,7 +18,7 @@ export const JoinWaitlist = () => {
     await addToMailchimp(
       emailAddress,
       {},
-      "https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=2c580b74e1"
+      "https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=ee9cca24fc"
     );
     setIsSubmitting(false);
     setSubmitted(true);

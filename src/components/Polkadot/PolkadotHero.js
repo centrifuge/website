@@ -26,7 +26,7 @@ const PolkadotHero = () => {
         <JoinWaitlist />
       </Box>
       <Box>
-        <Image src={hero} style={{}} />
+        <Image src={hero} />
       </Box>
     </Box>
   );

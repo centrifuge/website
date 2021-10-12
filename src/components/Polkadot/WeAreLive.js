@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Image, Text } from "grommet";
-import screenshot from "../../images/polkadot/screenshot.png";
+import tinlakeScreenshot from "../../images/polkadot/tinlake-screenshot.png";
 
 const WeAreLive = () => {
   return (
@@ -16,7 +16,7 @@ const WeAreLive = () => {
       <Text as="h1" size="48px" weight="600">
         We are already live!
       </Text>
-      <Image src={screenshot} />
+      <Image src={tinlakeScreenshot} />
 
       <Text as="h4" size="24px" weight="500">
         Centrifuge has already financed thousands of assets
