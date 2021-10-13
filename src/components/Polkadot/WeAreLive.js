@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Image, Text } from "grommet";
 import tinlakeScreenshot from "../../images/polkadot/tinlake-screenshot.png";
+import TextBody from "./TextBody";
 
 const WeAreLive = () => {
   return (
@@ -23,16 +24,11 @@ const WeAreLive = () => {
       <Text as="h4" size="24px" weight="500">
         Centrifuge has already financed thousands of assets
       </Text>
-      <Text
-        size="16px"
-        weight="400"
-        textAlign="center"
-        style={{ maxWidth: 456 }}
-      >
+      <TextBody textAlign="center" style={{ maxWidth: 456 }}>
         Centrifuge is a working product that has already financed over $30M in
         real-world assets on Ethereum. Once connected to Polkadot, fees will be
         cheaper and transactions will be faster.
-      </Text>
+      </TextBody>
     </Box>
   );
 };

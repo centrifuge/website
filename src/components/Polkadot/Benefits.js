@@ -5,6 +5,7 @@ import Container from "../Container";
 import cardBonus from "../../images/polkadot/cardBonus.svg";
 import cardLeaseTime from "../../images/polkadot/cardLeaseTime.svg";
 import cardBenefit from "../../images/polkadot/cardBenefit.svg";
+import TextBody from "./TextBody";
 
 const Card = ({ image, title, text }) => (
   <Box width="312px" align="center">
@@ -13,9 +14,9 @@ const Card = ({ image, title, text }) => (
     <Text as="h4" color="white" size="24px" weight={500} textAlign="center">
       {title}
     </Text>
-    <Text color="white" textAlign="center">
+    <TextBody color="white" textAlign="center">
       {text}
-    </Text>
+    </TextBody>
   </Box>
 );
 

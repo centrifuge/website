@@ -5,6 +5,7 @@ import Container from "../Container";
 import useCaseAUSD from "../../images/polkadot/useCaseAUSD.svg";
 import useCaseMoonbeam from "../../images/polkadot/useCaseMoonbeam.svg";
 import useCasePolkadefi from "../../images/polkadot/useCasePolkadefi.svg";
+import TextBody from "./TextBody";
 
 const UseCase = ({ image, title, text }) => (
   <Box width="376px" background="white" style={{ borderRadius: 10 }}>
@@ -26,9 +27,7 @@ const UseCase = ({ image, title, text }) => (
       >
         {title}
       </Text>
-      <Text size="16px" weight="400">
-        {text}
-      </Text>
+      <TextBody>{text}</TextBody>
     </Box>
   </Box>
 );
