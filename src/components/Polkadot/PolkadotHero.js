@@ -12,6 +12,7 @@ const PolkadotHero = () => {
       direction="row"
       justify="between"
       align="center"
+      id="polkadot-hero"
     >
       <Box align="center" pad="0 0 0 135px">
         <Text

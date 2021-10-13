@@ -74,9 +74,14 @@ const UseCases = () => {
           />
         </Box>
         <Box align="center" margin="0 0 100px">
-          <Button primary color="brand" style={{ width: "380px" }}>
-            Join the waitlist
-          </Button>
+          <a href="#polkadot-hero">
+            <Button
+              color="brand"
+              label="Join the waitlist"
+              primary
+              type="submit"
+            />
+          </a>
         </Box>
       </Container>
     </Box>
