@@ -8,7 +8,17 @@ import useCasePolkadefi from "../../images/polkadot/useCasePolkadefi.svg";
 import TextBody from "./TextBody";
 
 const UseCase = ({ image, title, text }) => (
-  <Box width="376px" background="white" style={{ borderRadius: 10 }}>
+  <Box
+    width="376px"
+    background="white"
+    style={{ borderRadius: 10 }}
+    css={`
+      transition: transform 100ms;
+      :hover {
+        transform: scale(1.05);
+      }
+    `}
+  >
     <Image src={image} />
     <Box
       pad="24px 31px"
