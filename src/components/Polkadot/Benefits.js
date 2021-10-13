@@ -43,7 +43,7 @@ const Benefits = () => {
           <Card
             image={cardBenefit}
             title="Benefitting the entire Polkadot community"
-            text="The vision for Centrifuge on Polkadot has been clear since day one. We’ve been contributing to the Polkadot ecosystem, including ChaChaCha, xxx, and xxx.  "
+            text="The vision for Centrifuge on Polkadot has been clear since day one. We’ve been contributing to the Polkadot ecosystem, including ChaChaCha"
           />
         </Box>
       </Container>

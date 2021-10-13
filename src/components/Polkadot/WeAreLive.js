@@ -29,9 +29,9 @@ const WeAreLive = () => {
         textAlign="center"
         style={{ maxWidth: 456 }}
       >
-        Centrifuge is a working product that has already financed over $30m in
+        Centrifuge is a working product that has already financed over $30M in
         real-world assets on Ethereum. Once connected to Polkadot, fees will be
-        xX cheaper and transactions 100x faster.
+        cheaper and transactions will be faster.
       </Text>
     </Box>
   );
