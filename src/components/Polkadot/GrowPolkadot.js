@@ -19,8 +19,11 @@ const PolkadotHero = () => {
       >
         <Image src={GrowPolkadotDefi} />
       </Box>
-      <Box background="white" pad="127px 119px" width="35vw">
-        <Box style={{ position: "sticky", top: "100px" }}>
+      <Box background="white" pad="127px 16px 16px" align="center" width="35vw">
+        <Box
+          align="center"
+          style={{ position: "sticky", top: "100px", minWidth: "345px" }}
+        >
           <Text
             size="48px"
             weight={600}
