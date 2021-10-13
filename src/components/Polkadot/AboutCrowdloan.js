@@ -9,7 +9,7 @@ const AboutCrowdloan = () => {
       direction="row"
       border={[{ side: "bottom", color: "white", size: "1px" }]}
     >
-      <Box background="white" width="40vw" pad="70px 66px">
+      <Box background="white" width="35vw" pad="70px 66px">
         <Text as="h2" size="40px" weight="600" textAlign="center">
           About the Centrifuge Crowdloan
         </Text>
@@ -32,7 +32,7 @@ const AboutCrowdloan = () => {
       </Box>
       <Box
         background="black"
-        width="60vw"
+        width="65vw"
         pad="63px 150px 73px"
         align="center"
         justify="center"

@@ -56,6 +56,7 @@ export const JoinWaitlist = () => {
                   }}
                   placeholder="Email address"
                   value={emailAddress}
+                  style={{ fontSize: 24 }}
                 />
               </FormField>
               <Box align="center">

@@ -13,18 +13,19 @@ const PolkadotHero = () => {
       <Box
         background="black"
         align="center"
-        width="60vw"
+        width="65vw"
         pad="60px 10%"
         overflow="hidden"
       >
         <Image src={GrowPolkadotDefi} />
       </Box>
-      <Box background="white" pad="127px 119px" width="40vw">
+      <Box background="white" pad="127px 119px" width="35vw">
         <Box style={{ position: "sticky", top: "100px" }}>
           <Text
             size="48px"
             weight={600}
-            style={{ textAlign: "left", marginBottom: "33px" }}
+            textAlign="center"
+            margin={{ bottom: "33px" }}
           >
             Grow Polkadot DeFi by 100x with Centrifuge
           </Text>
