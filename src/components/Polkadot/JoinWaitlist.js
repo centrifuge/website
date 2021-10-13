@@ -27,8 +27,8 @@ export const JoinWaitlist = () => {
   return (
     <Box width="366px">
       {submitted ? (
-        <Box>
-          <Text size="20px" weight={500}>
+        <Box height="115px">
+          <Text size="20px" weight={500} textAlign="center">
             Thanks for joining!
           </Text>
         </Box>
