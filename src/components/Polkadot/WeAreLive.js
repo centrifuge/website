@@ -16,8 +16,10 @@ const WeAreLive = () => {
       <Text as="h1" size="48px" weight="600">
         We are already live!
       </Text>
-      <Image src={tinlakeScreenshot} />
 
+      <a href="https://tinlake.centrifuge.io">
+        <Image src={tinlakeScreenshot} />
+      </a>
       <Text as="h4" size="24px" weight="500">
         Centrifuge has already financed thousands of assets
       </Text>
