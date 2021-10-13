@@ -17,20 +17,22 @@ const PolkadotHero = () => {
         pad="60px 10%"
         overflow="hidden"
       >
-        <Image src={GrowPolkadotDefi} style={{ maxWidth: 516 }} />
+        <Image src={GrowPolkadotDefi} />
       </Box>
       <Box background="white" pad="127px 119px" width="40vw">
-        <Text
-          size="48px"
-          weight={600}
-          style={{ textAlign: "left", marginBottom: "33px" }}
-        >
-          Grow Polkadot DeFi by 100x with Centrifuge
-        </Text>
-        <Text size="24px" weight={500} style={{ textAlign: "center" }}>
-          Centrifuge is the real-world asset bridge for trillions in hard assets
-          to the Polkadot ecosystem
-        </Text>
+        <Box style={{ position: "sticky", top: "100px" }}>
+          <Text
+            size="48px"
+            weight={600}
+            style={{ textAlign: "left", marginBottom: "33px" }}
+          >
+            Grow Polkadot DeFi by 100x with Centrifuge
+          </Text>
+          <Text size="24px" weight={500} style={{ textAlign: "center" }}>
+            Centrifuge is the real-world asset bridge for trillions in hard
+            assets to the Polkadot ecosystem
+          </Text>
+        </Box>
       </Box>
     </Box>
   );
