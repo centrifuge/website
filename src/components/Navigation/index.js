@@ -344,9 +344,20 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
               </MenuItem>
 
               <MenuItem>
-                <NavLink to="/altair" dark={dark}>
-                  Altair
+                <NavLink to="/parachain" dark={dark}>
+                  Parachain
                 </NavLink>
+
+                <SubItem>
+                  <NavLink to="/parachain" dark={dark}>
+                    Centrifuge Chain
+                  </NavLink>
+                </SubItem>
+                <SubItem>
+                  <NavLink to="/altair" dark={dark}>
+                    Altair
+                  </NavLink>
+                </SubItem>
               </MenuItem>
 
               <MenuItem>
