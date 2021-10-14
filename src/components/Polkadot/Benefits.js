@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, Image, Text } from "grommet";
+import React, { useContext, useMemo } from "react";
+import { Box, Image, ResponsiveContext, Text } from "grommet";
 import Container from "../Container";
 
 import cardBonus from "../../images/polkadot/cardBonus.svg";
 import cardLeaseTime from "../../images/polkadot/cardLeaseTime.svg";
 import cardBenefit from "../../images/polkadot/cardBenefit.svg";
-import TextBody from "./TextBody";
+import TextBody from "./text/TextBody";
 
 const Card = ({ image, title, text }) => (
   <Box width="312px" align="center">
@@ -21,16 +21,23 @@ const Card = ({ image, title, text }) => (
 );
 
 const Benefits = () => {
+  const size = useContext(ResponsiveContext);
+  const isSmall = useMemo(() => size === "small", [size]);
   return (
     <Box
       background="black"
-      pad="86px 0 72px"
+      pad={isSmall ? "48px 16px" : "86px 0 72px"}
       style={{
         borderBottom: "1px solid white",
       }}
     >
       <Container>
-        <Box direction="row" justify="between" gap="16px">
+        <Box
+          direction={isSmall ? "column" : "row"}
+          justify="between"
+          align="center"
+          gap={isSmall ? "76px" : "16px"}
+        >
           <Card
             image={cardBonus}
             title="Bonus rewards!"
@@ -39,7 +46,7 @@ const Benefits = () => {
           <Card
             image={cardLeaseTime}
             title="Lease time: 2 years"
-            text="We are applying for the maximum lease time to commit to a long term relationship with polkadot. Our product will be ready to launch quickly after auction."
+            text="We are applying for the maximum lease time to commit to a long term relationship with Polkadot. Our product will be ready to launch quickly after auction."
           />
           <Card
             image={cardBenefit}
