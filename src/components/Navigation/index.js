@@ -270,31 +270,26 @@ const Navigation = ({ dark }) => {
                     Token Summary
                   </ExternalNavLink>
                   <NavLink to="/cfg" dark={dark}>
-                    Get CFG
+                    CFG
                   </NavLink>
                 </Item>
               </List>
             </PaddedItem>
 
             <PaddedItem>
-              <NavLink dark={dark}>Service</NavLink>
-
-              <List>
-                <Item>
-                  <ExternalNavLink
-                    href="https://docs.centrifuge.io/"
-                    dark={dark}
-                  >
-                    Docs
-                  </ExternalNavLink>
-                  <NavLink to="/about" dark={dark}>
-                    About
-                  </NavLink>
-                  <NavLink to="/careers" dark={dark}>
-                    Careers
-                  </NavLink>
-                </Item>
-              </List>
+              <NavLink to="/about" dark={dark}>
+                About
+              </NavLink>
+            </PaddedItem>
+            <PaddedItem>
+              <NavLink to="/careers" dark={dark}>
+                Careers
+              </NavLink>
+            </PaddedItem>
+            <PaddedItem>
+              <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
+                Docs
+              </ExternalNavLink>
             </PaddedItem>
 
             <PaddedItem />
@@ -372,32 +367,27 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
                 </SubItem>
                 <SubItem>
                   <NavLink to="/cfg" dark={dark}>
-                    Get CFG
+                    CFG
                   </NavLink>
                 </SubItem>
               </MenuItem>
 
               <MenuItem>
-                <NavLink dark={dark}>Service</NavLink>
+                <NavLink to="/about" dark={dark}>
+                  About
+                </NavLink>
+              </MenuItem>
 
-                <SubItem>
-                  <ExternalNavLink
-                    href="https://docs.centrifuge.io/"
-                    dark={dark}
-                  >
-                    Docs
-                  </ExternalNavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/about" dark={dark}>
-                    About
-                  </NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/careers" dark={dark}>
-                    Careers
-                  </NavLink>
-                </SubItem>
+              <MenuItem>
+                <NavLink to="/careers" dark={dark}>
+                  Careers
+                </NavLink>
+              </MenuItem>
+
+              <MenuItem>
+                <ExternalNavLink href="https://docs.centrifuge.io/" dark={dark}>
+                  Docs
+                </ExternalNavLink>
               </MenuItem>
             </List>
           </MobileBox>
