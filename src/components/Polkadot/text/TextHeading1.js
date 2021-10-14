@@ -7,8 +7,8 @@ export default (props) => {
   return (
     <Text
       size={isSmall ? "36px" : "48px"}
-      weight="600"
-      textAlign="left"
+      weight={600}
+      textAlign="start"
       {...props}
     >
       {props.children}

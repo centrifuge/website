@@ -32,7 +32,7 @@ const UseCase = ({ image, title, text }) => (
     >
       <Text
         size="24px"
-        weight="500"
+        weight={500}
         textAlign="center"
         style={{ marginBottom: 16 }}
       >
@@ -63,7 +63,7 @@ const UseCases = ({ isEmailSubmitted }) => {
           direction={isSmall ? "column" : "row"}
           gap="24px"
           justify="center"
-          align={isSmall ? "center" : "flex-start"}
+          align={isSmall ? "center" : "start"}
           margin={isSmall ? "0 0 64px" : "0 0 108px"}
         >
           <UseCase

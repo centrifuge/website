@@ -29,7 +29,7 @@ const WeAreLive = () => {
       </a>
       <Text
         size={isSmall ? "20px" : "24px"}
-        weight="500"
+        weight={500}
         textAlign="center"
         margin={
           isSmall

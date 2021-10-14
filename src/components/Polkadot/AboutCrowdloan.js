@@ -19,7 +19,7 @@ const AboutCrowdloan = () => {
       >
         <Text
           size={isSmall ? "36px" : "40px"}
-          weight="600"
+          weight={600}
           textAlign="center"
           margin={{ bottom: isSmall ? "36px" : "45px" }}
         >
