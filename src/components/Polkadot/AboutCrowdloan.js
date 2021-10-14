@@ -36,7 +36,7 @@ const AboutCrowdloan = () => {
           in the crypto multiverse.{" "}
         </TextBody>
         <TextBody>
-          We need DOT holders to stake thier DOT to our crowdloan slot auction.
+          We need DOT holders to stake their DOT to our crowdloan slot auction.
           Doing so will lock your DOT to our 2 year lease, which you will get
           back when the lease it up. In the meanwhile, you will reap various CFG
           rewards in return for staking your DOT and believing in Centrifuge.
