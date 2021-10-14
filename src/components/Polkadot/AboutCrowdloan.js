@@ -1,16 +1,28 @@
-import React from "react";
-import { Box, Image, Text } from "grommet";
+import React, { useContext, useMemo } from "react";
+import { Box, Image, ResponsiveContext, Text } from "grommet";
 import aboutCentrifugeSvg from "../../images/polkadot/AboutCentrifuge.svg";
-import TextBody from "./TextBody";
+import aboutCrowdloanMobile from "../../images/polkadot/aboutCrowdloanMobile.svg";
+import TextBody from "./text/TextBody";
 
 const AboutCrowdloan = () => {
+  const size = useContext(ResponsiveContext);
+  const isSmall = useMemo(() => size === "small", [size]);
   return (
     <Box
-      direction="row"
+      direction={isSmall ? "column" : "row"}
       border={[{ side: "bottom", color: "white", size: "1px" }]}
     >
-      <Box background="white" width="35vw" pad="70px 66px">
-        <Text as="h2" size="40px" weight="600" textAlign="center">
+      <Box
+        background="white"
+        width={isSmall ? "auto" : "35vw"}
+        pad={isSmall ? "48px 16px 0" : "70px 66px"}
+      >
+        <Text
+          size={isSmall ? "36px" : "40px"}
+          weight="600"
+          textAlign="center"
+          margin={{ bottom: isSmall ? "36px" : "45px" }}
+        >
           About the Centrifuge Crowdloan
         </Text>
         <TextBody margin={{ bottom: "22px" }}>
@@ -31,14 +43,17 @@ const AboutCrowdloan = () => {
         </TextBody>
       </Box>
       <Box
-        background="black"
-        width="65vw"
-        pad="63px 150px 73px"
+        background={isSmall ? "white" : "black"}
+        width={isSmall ? "auto" : "65vw"}
+        pad={isSmall ? "64px 16px" : "64px 150px 73px"}
         align="center"
         justify="center"
         overflow="hidden"
       >
-        <Image src={aboutCentrifugeSvg} width="565px" />
+        <Image
+          src={isSmall ? aboutCrowdloanMobile : aboutCentrifugeSvg}
+          width={isSmall ? "100%" : "565px"}
+        />
       </Box>
     </Box>
   );
