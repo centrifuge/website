@@ -24,7 +24,7 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
           textAlign="center"
           style={{ width: 390 }}
         >
-          The home for real-world DeFi on Polkadot
+          The home for Real World DeFi on Polkadot
         </TextHeading1>
         <JoinWaitlist
           isEmailSubmitted={isEmailSubmitted}
