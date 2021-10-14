@@ -9,10 +9,9 @@ const validateEmailAddress = (value) => {
   }
 };
 
-export const JoinWaitlist = () => {
+export const JoinWaitlist = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const joinWaitlist = async () => {
     await addToMailchimp(
@@ -21,12 +20,12 @@ export const JoinWaitlist = () => {
       "https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=ee9cca24fc"
     );
     setIsSubmitting(false);
-    setSubmitted(true);
+    setIsEmailSubmitted(true);
   };
 
   return (
     <Box width="366px">
-      {submitted ? (
+      {isEmailSubmitted ? (
         <Box height="115px">
           <Text size="20px" weight={500} textAlign="center">
             Thanks for joining!

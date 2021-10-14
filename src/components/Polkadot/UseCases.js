@@ -42,7 +42,7 @@ const UseCase = ({ image, title, text }) => (
   </Box>
 );
 
-const UseCases = () => {
+const UseCases = ({ isEmailSubmitted }) => {
   return (
     <Box background="black">
       <Container>
@@ -73,16 +73,18 @@ const UseCases = () => {
             text="Centrifuge is already bridged to Ethereum, meaning you will be able to use Dai and other ERC20 tokens within the Polkadot ecosystem"
           />
         </Box>
-        <Box align="center" margin="0 0 100px">
-          <a href="#polkadot-hero">
-            <Button
-              color="brand"
-              label="Join the waitlist"
-              primary
-              type="submit"
-            />
-          </a>
-        </Box>
+        {!isEmailSubmitted && (
+          <Box align="center" margin="0 0 100px">
+            <a href="#polkadot-hero">
+              <Button
+                color="brand"
+                label="Join the waitlist"
+                primary
+                type="submit"
+              />
+            </a>
+          </Box>
+        )}
       </Container>
     </Box>
   );

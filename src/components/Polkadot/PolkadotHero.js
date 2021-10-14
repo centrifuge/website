@@ -3,7 +3,7 @@ import { Box, Image, Text } from "grommet";
 import { JoinWaitlist } from "./JoinWaitlist.js";
 import hero from "../../images/polkadot/hero.svg";
 
-const PolkadotHero = () => {
+const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
   return (
     <Box
       background="black"
@@ -24,7 +24,10 @@ const PolkadotHero = () => {
         >
           The home for real-world DeFi on Polkadot
         </Text>
-        <JoinWaitlist />
+        <JoinWaitlist 
+          isEmailSubmitted={isEmailSubmitted}
+          setIsEmailSubmitted={setIsEmailSubmitted}
+        />
       </Box>
       <Box>
         <Image src={hero} />
