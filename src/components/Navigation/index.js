@@ -9,6 +9,7 @@ import { Menu } from "styled-icons/feather/Menu";
 import Container from "../Container";
 import { List, Item } from "../List";
 import { InternalLink, ExternalLink } from "../Links";
+import IconChevronDown from "./IconChevronDown";
 import theme, { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
@@ -311,6 +312,57 @@ Navigation.defaultProps = {
   dark: false,
 };
 
+const DropdownMenuTrigger = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${({ dark }) => (!!dark ? "white" : "black")};
+  cursor: pointer;
+  user-select: none;
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
+const DropdownMenuChevron = styled.span`
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  transition: transform 100ms;
+  ${({ open }) => (open ? "transform: rotate(-180deg);" : "")}
+`;
+
+const DropdownMenuList = styled(List)`
+  display: none;
+  ${({ open }) => (open ? "display: block;" : "")}
+  > li:last-child {
+    padding-bottom: 0;
+  }
+`;
+
+const DropdownMenuItem = ({ dark, label, children }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <MenuItem>
+      <DropdownMenuTrigger
+        role="button"
+        dark={dark}
+        onClick={() => {
+          setOpen(!open);
+        }}
+      >
+        {label}&nbsp;
+        <DropdownMenuChevron open={open}>
+          <IconChevronDown />
+        </DropdownMenuChevron>
+      </DropdownMenuTrigger>
+      <DropdownMenuList open={open}>
+        {children &&
+          children.map((child, i) => <SubItem key={`${i}`}>{child}</SubItem>)}
+      </DropdownMenuList>
+    </MenuItem>
+  );
+};
+
 const MobilePanel = ({ state, toggleFunc, dark }) => (
   <ResponsiveContext.Consumer>
     {(size) =>
@@ -343,22 +395,14 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
                 </ExternalNavLink>
               </MenuItem>
 
-              <MenuItem>
+              <DropdownMenuItem dark={dark} label="Parachain">
                 <NavLink to="/parachain" dark={dark}>
-                  Parachain
+                  Centrifuge Chain
                 </NavLink>
-
-                <SubItem>
-                  <NavLink to="/parachain" dark={dark}>
-                    Centrifuge Chain
-                  </NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/altair" dark={dark}>
-                    Altair
-                  </NavLink>
-                </SubItem>
-              </MenuItem>
+                <NavLink to="/altair" dark={dark}>
+                  Altair
+                </NavLink>
+              </DropdownMenuItem>
 
               <MenuItem>
                 <NavLink to="/issuers" dark={dark}>
@@ -366,22 +410,14 @@ const MobilePanel = ({ state, toggleFunc, dark }) => (
                 </NavLink>
               </MenuItem>
 
-              <MenuItem>
-                <ExternalNavLink to="/cfg-token-summary" dark={dark}>
-                  CFG Token
+              <DropdownMenuItem dark={dark} label="CFG Token">
+                <ExternalNavLink href="/cfg-token-summary" dark={dark}>
+                  Token Summary
                 </ExternalNavLink>
-
-                <SubItem>
-                  <ExternalNavLink href="/cfg-token-summary" dark={dark}>
-                    Token Summary
-                  </ExternalNavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/cfg" dark={dark}>
-                    CFG
-                  </NavLink>
-                </SubItem>
-              </MenuItem>
+                <NavLink to="/cfg" dark={dark}>
+                  CFG
+                </NavLink>
+              </DropdownMenuItem>
 
               <MenuItem>
                 <NavLink to="/about" dark={dark}>
