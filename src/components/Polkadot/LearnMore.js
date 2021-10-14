@@ -1,14 +1,25 @@
-import React from "react";
-import { Box, Heading } from "grommet";
+import React, { useContext, useMemo } from "react";
+import { Box, ResponsiveContext } from "grommet";
 import { ResponsivePlayer } from "../News";
+import TextHeading1 from "./text/TextHeading1";
 
 const LearnMore = () => {
+  const size = useContext(ResponsiveContext);
+  const isSmall = useMemo(() => size === "small", [size]);
   return (
-    <Box align="center" style={{ padding: "0 16px 123px" }}>
-      <Heading size="48px" style={{ margin: "98px 0 58px" }}>
+    <Box align="center" pad={isSmall ? "48px 16px" : "84px 16px 123px"}>
+      <TextHeading1
+        style={{ marginBottom: isSmall ? "48px" : "58px" }}
+        textAlign="center"
+      >
         Learn more about Centrifuge
-      </Heading>
-      <Box width="978px" height="545px" justify="stretch" align="stretch">
+      </TextHeading1>
+      <Box
+        width="100%"
+        justify="stretch"
+        align="stretch"
+        style={{ maxWidth: "978px" }}
+      >
         <ResponsivePlayer videoId="h8tfJ9EtIpY" />
       </Box>
     </Box>

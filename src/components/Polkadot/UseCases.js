@@ -1,11 +1,12 @@
-import React from "react";
-import { Box, Button, Image, Text } from "grommet";
+import React, { useContext, useMemo } from "react";
+import { Box, Button, Image, ResponsiveContext, Text } from "grommet";
 import Container from "../Container";
 
 import useCaseAUSD from "../../images/polkadot/useCaseAUSD.svg";
 import useCaseMoonbeam from "../../images/polkadot/useCaseMoonbeam.svg";
 import useCasePolkadefi from "../../images/polkadot/useCasePolkadefi.svg";
-import TextBody from "./TextBody";
+import TextBody from "./text/TextBody";
+import TextHeading1 from "./text/TextHeading1";
 
 const UseCase = ({ image, title, text }) => (
   <Box
@@ -43,20 +44,28 @@ const UseCase = ({ image, title, text }) => (
 );
 
 const UseCases = ({ isEmailSubmitted }) => {
+  const size = useContext(ResponsiveContext);
+  const isSmall = useMemo(() => size === "small", [size]);
   return (
     <Box background="black">
       <Container>
-        <Text
-          as="h1"
+        <TextHeading1
           color="white"
-          size="48px"
-          weight="600"
-          margin="77px 0"
+          css={`
+            display: block;
+            margin: ${isSmall ? "48px" : "77px"} 0;
+          `}
           textAlign="center"
         >
           Use cases we are excited for
-        </Text>
-        <Box direction="row" gap="24px" justify="center" margin="0 0 108px">
+        </TextHeading1>
+        <Box
+          direction={isSmall ? "column" : "row"}
+          gap="24px"
+          justify="center"
+          align={isSmall ? "center" : "flex-start"}
+          margin={isSmall ? "0 0 64px" : "0 0 108px"}
+        >
           <UseCase
             image={useCaseAUSD}
             title="From aHouse to aUSD"
@@ -74,7 +83,7 @@ const UseCases = ({ isEmailSubmitted }) => {
           />
         </Box>
         {!isEmailSubmitted && (
-          <Box align="center" margin="0 0 100px">
+          <Box align="center" margin={isSmall ? "0 0 64px" : "0 0 100px"}>
             <a href="#polkadot-hero">
               <Button
                 color="brand"

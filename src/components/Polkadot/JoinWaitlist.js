@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Box, Button, Form, FormField, Text, TextInput } from "grommet";
+import React, { useContext, useMemo, useState } from "react";
+import {
+  Box,
+  Button,
+  Form,
+  FormField,
+  ResponsiveContext,
+  Text,
+  TextInput,
+} from "grommet";
 import addToMailchimp from "gatsby-plugin-mailchimp";
 import { validEmailReg } from "./regex";
 
@@ -10,6 +18,9 @@ const validateEmailAddress = (value) => {
 };
 
 export const JoinWaitlist = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
+  const size = useContext(ResponsiveContext);
+  const isSmall = useMemo(() => size === "small", [size]);
+
   const [emailAddress, setEmailAddress] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -55,6 +66,7 @@ export const JoinWaitlist = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
                   }}
                   placeholder="Email address"
                   value={emailAddress}
+                  style={{ fontSize: isSmall ? 16 : 24 }}
                 />
               </FormField>
               <Box align="center">
