@@ -1,8 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { encodeAddress } from '@polkadot/util-crypto';
-import { Box, FormField, Select, Spinner, Text, ThemeContext } from 'grommet';
+import {
+  Anchor,
+  Box,
+  Button,
+  FormField,
+  Select,
+  Spinner,
+  Text,
+  ThemeContext,
+} from 'grommet';
 import { BigNumber } from 'bignumber.js';
 import { FormDown, FormUp } from 'grommet-icons';
+import { StatusGood } from 'grommet-icons';
 
 const formatAmount = value => {
   const number = new BigNumber(value);
@@ -57,7 +67,15 @@ const Stat = ({ amount, color, label, token }) => (
   </Box>
 );
 
-export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
+export const Stats = ({
+  accounts,
+  claimedRewards,
+  claimHash,
+  claimRewards,
+  isClaimingRewards,
+  selectedAccount,
+  setSelectedAccount,
+}) => {
   const [contributionAmount, setContributionAmount] = useState();
   const [earlyBirdBonus, setEarlyBirdBonus] = useState();
   const [firstCrowdloanBonus, setFirstCrowdloanBonus] = useState();
@@ -197,12 +215,41 @@ export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
             }
             token="AIR"
           />
-          <Stat
-            amount={totalRewards}
-            color="altair"
-            label="Total Rewards"
-            token="AIR"
-          />
+          <Box direction="row" justify="between">
+            <Stat
+              amount={totalRewards}
+              color="altair"
+              label="Total Rewards"
+              token="AIR"
+            />
+            {totalRewards?.isGreaterThan(0) && (
+              <Box pad="0 0 0 64px">
+                <Button
+                  disabled={claimedRewards || isClaimingRewards}
+                  primary
+                  label="Claim rewards"
+                  onClick={() => claimRewards()}
+                />
+              </Box>
+            )}
+          </Box>
+          {claimedRewards && (
+            <Box background="#616161" pad="16px 24px">
+              <Box align="center" direction="row" gap="6px">
+                <StatusGood color="white" size="16px" />
+                <Text weight="500">Rewards claimed</Text>
+              </Box>
+              <Text>
+                <Text margin="0 4px 0 0">View</Text>
+                <Anchor
+                  target="_blank"
+                  href={`https://kusama.subscan.io/extrinsic/${claimHash}`}
+                  primary
+                  label="transaction details"
+                />
+              </Text>
+            </Box>
+          )}
         </Box>
       </ThemeContext.Extend>
     );

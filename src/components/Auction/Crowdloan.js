@@ -38,6 +38,16 @@ export const Crowdloan = () => {
   const [topReferrers, setTopReferrers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [accounts, setAccounts] = useState([]);
+  const [claimedRewards, setClaimedRewards] = useState(false);
+  const [isClaimingRewards, setIsClaimingRewards] = useState(false);
+  const [claimHash, setClaimHash] = useState('');
+
+  const claimRewards = async () => {
+    setIsClaimingRewards(true);
+    // claim
+    setClaimedRewards(true);
+    setClaimHash('456');
+  };
 
   useEffect(() => {
     (async () => {
@@ -132,7 +142,7 @@ export const Crowdloan = () => {
           }}
           alignSelf="center"
         >
-          <Grid columns={['269px', '364px', '269px']} gap="95px">
+          <Grid columns={['269px', 'minmax(364px, 1fr)', '269px']} gap="95px">
             <Box>
               <Box style={{ marginBottom: '42px' }}>
                 <ReferralLeaderboard topReferrers={topReferrers} />
@@ -149,6 +159,10 @@ export const Crowdloan = () => {
               ) : (
                 <Stats
                   accounts={accounts}
+                  claimedRewards={claimedRewards}
+                  claimHash={claimHash}
+                  claimRewards={claimRewards}
+                  isClaimingRewards={isClaimingRewards}
                   selectedAccount={selectedAccount}
                   setSelectedAccount={setSelectedAccount}
                 />
