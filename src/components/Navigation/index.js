@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Layer as GrommetLayer, ResponsiveContext } from "grommet";
+import { Box, Button, Layer as GrommetLayer } from "grommet";
 import { navigate } from "gatsby";
 import styled, { css } from "styled-components";
 import { breakpointStyle } from "grommet/utils";
@@ -9,39 +9,31 @@ import { Menu } from "styled-icons/feather/Menu";
 import Container from "../Container";
 import { List, Item } from "../List";
 import { InternalLink, ExternalLink } from "../Links";
-import theme, { breakpoints } from "../Theme/theme";
+import IconChevronDown from "./IconChevronDown";
+import { breakpoints } from "../Theme/theme";
 
 import wordmark from "../../images/centrifuge-wordmark.svg";
 import wordmark_white from "../../images/centrifuge-wordmark-light.svg";
 
-const NavLink = ({ children, to, dark }) => (
-  <InternalLink
-    style={{
-      fontWeight: "var(--fw-medium)",
-      color: !!dark ? "white" : "black",
-    }}
-    activeStyle={{ color: !!dark ? "white" : "var(--c-brand)" }}
-    to={to}
-  >
-    {children}
-  </InternalLink>
-);
+// style utils
+const breakpointSmall = (cssStyle) =>
+  breakpointStyle(breakpoints.small, cssStyle);
 
-const ExternalNavLink = ({ children, href, dark, ...rest }) => (
-  <ExternalLink
-    style={{
-      fontWeight: "var(--fw-medium)",
-      color: !!dark ? "white" : "black",
-    }}
-    activeStyle={{ color: "var(--c-brand)" }}
-    href={href}
-    {...rest}
-  >
-    {children}
-  </ExternalLink>
-);
+const breakpointMedium = (cssStyle) =>
+  `@media (min-width: ${breakpoints.small.value}px) { ${cssStyle} }`;
 
-const BrandLink = ({ dark }) => (
+const themedBackgroundColor = ({ theme: { dark } }) =>
+  dark ? "black" : "white";
+const themedTextColor = ({ theme: { dark } }) => (dark ? "white" : "black");
+
+const Logo = styled.img`
+  vertical-align: middle;
+  height: 32px;
+  max-height: 32px;
+  content: url(${({ theme: { dark } }) => (dark ? wordmark_white : wordmark)});
+`;
+
+const BrandLink = () => (
   // eslint-disable-next-line jsx-a11y/no-static-element-interactions
   <div
     onContextMenu={(e) => {
@@ -49,89 +41,24 @@ const BrandLink = ({ dark }) => (
       navigate("/brand");
     }}
   >
-    <NavLink to="/">
-      <Logo
-        alt="Centrifuge Wordmark"
-        src={!!dark ? wordmark_white : wordmark}
-      />
-    </NavLink>
+    <NavbarLink to="/">
+      <Logo alt="Centrifuge Wordmark" />
+    </NavbarLink>
   </div>
 );
 
-const Logo = styled.img`
-  vertical-align: middle;
-  height: 32px;
-`;
-
-const PaddedItem = styled(Item)`
-  padding: 1.5rem 0;
-  line-height: 1rem;
-`;
-
-const Layer = styled(GrommetLayer)`
+const MobileModalLayer = styled(GrommetLayer)`
   display: none;
 
-  ${breakpointStyle(
-    breakpoints.small,
-    css`
-      display: initial;
-    `
-  )}
-`;
+  ${breakpointSmall`
+    display: initial;
+  `}
 
-const Dropdowns = styled(Box)`
-  ${breakpointStyle(
-    breakpoints.small,
-    css`
-      display: none;
-    `
-  )}
+  background: ${themedBackgroundColor};
+  padding: 72px 24px 48px;
+  height: 100vh;
+  overflow-y: scroll;
 
-  /* Item (PaddedItem) */
-  > li {
-    display: block;
-    position: relative;
-
-    /* Item:Hover Targeting Dropdown */
-    &:hover > ul,
-    &:focus-within > ul,
-    > ul:hover,
-    > ul:focus {
-      visibility: visible;
-      opacity: 1;
-      display: block;
-    }
-  }
-
-  /* Dropdown Styles */
-  > li > ul {
-    background-color: ${(props) =>
-      !!props.dark ? theme.global.colors["dark-1"] : "white"};
-    box-shadow: ${theme.global.elevation.light.small};
-    visibility: hidden;
-    opacity: 0;
-    padding: 0.5rem 0;
-    min-width: 120px;
-    position: absolute;
-    transition: all 0.5s ease;
-    margin-top: 1.5rem;
-    border-radius: ${theme.global.edgeSize.xsmall};
-    left: -16px;
-    display: none;
-
-    /* Dropdown Item Styles */
-    > li {
-      white-space: nowrap;
-      width: 100%;
-    }
-
-    /* Dropdown Item Link Styles */
-    > li > a {
-      line-height: 1rem;
-      display: block;
-      padding: 0.5rem 1rem;
-    }
-  }
 `;
 
 const Nav = styled(Box)`
@@ -140,18 +67,17 @@ const Nav = styled(Box)`
   -webkit-position: sticky;
   top: 0;
 
-  ${breakpointStyle(
-    breakpoints.small,
-    css`
-      top: 1rem;
-      z-index: 2000;
-    `
-  )}
+  padding: 6px 0;
+
+  ${breakpointSmall`
+    top: 1rem;
+    z-index: 2000;
+  `}
 
   &::after {
     content: "";
     position: absolute;
-    background-color: ${(props) => (!!props.dark ? `black` : `white`)};
+    background-color: ${themedBackgroundColor};
     z-index: -1;
     margin: 0 auto;
     top: 0;
@@ -159,252 +85,286 @@ const Nav = styled(Box)`
     right: 0;
     bottom: 0;
 
-    ${breakpointStyle(
-      breakpoints.small,
-      css`
-        bottom: -1rem;
-        top: -1rem;
-      `
-    )}
+    ${breakpointSmall`
+      bottom: -1rem;
+      top: -1rem;
+    `}
   }
 `;
 
 const NavButton = styled(Button)`
   display: none;
-  ${breakpointStyle(
-    breakpoints.small,
-    css`
-      display: initial;
-    `
-  )}
+  ${breakpointSmall`
+    display: initial;
+  `}
 `;
 
 const MenuItem = styled(Item)`
-  display: block;
-  padding: 0.5rem 0;
+  ${breakpointSmall`
+    display: block;
+    padding: 0.5rem 0;
+  `}
 
-  /* Item (SubItem) */
+  ${breakpointMedium`
+    line-height: 1rem;
+  `}
+`;
+
+const DropdownMenuChevron = styled.span`
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  transition: transform 100ms;
+`;
+
+const DropdownMenuList = styled(List)`
+  background: ${themedBackgroundColor};
+
   > li:last-child {
-    padding-bottom: 0;
+    padding-bottom: 0 !important;
+    color: red !important;
   }
+
+  ${breakpointSmall`
+    padding-left: 1.2em;
+    padding-top: .5em;
+  `}
+
+  ${breakpointMedium`
+    position: absolute;
+    z-index: -10;
+    left: 0;
+    top: 0;
+    padding-top: 32px;
+  `}
 `;
 
 const SubItem = styled(Item)`
   display: block;
-  padding: 0.5rem 1rem;
 `;
 
-const MobileBox = styled(Box)`
-  background: ${(props) => (!!props.dark ? "black" : "white")};
+const DropdownMenuTrigger = styled.button`
+  display: flex;
+  align-items: center;
+  appearance: none;
+  border: none;
+  height: 30px;
 
-  ${breakpointStyle(
-    breakpoints.small,
-    css`
-      height: 100vh;
-      overflow-y: scroll;
-    `
-  )}
+  ${breakpointSmall`padding: 0;`}
+  ${breakpointMedium`padding: 0.5em 1em;`}
+
+  font-weight: var(--fw-demibold);
+  white-space: nowrap;
+  background: ${themedBackgroundColor};
+  color: ${themedTextColor};
+  cursor: pointer;
+  user-select: none;
+  :focus,
+  :hover {
+    outline: none;
+    text-decoration: underline;
+  }
 `;
 
-const Navigation = ({ dark }) => {
+const Dropdown = styled(MenuItem)`
+  ${DropdownMenuList} {
+    display: none;
+  }
+  :hover,
+  :focus-within {
+    padding-bottom: 0;
+    ${DropdownMenuChevron} {
+      transform: rotate(-180deg);
+    }
+    ${DropdownMenuList} {
+      display: block;
+    }
+
+    ${breakpointMedium`
+      filter: invert(100%);
+    `}
+  }
+`;
+
+const styleLink = (component) => styled(component)`
+  display: inline-block;
+  font-weight: var(--fw-demibold);
+  white-space: nowrap;
+
+  background: ${themedBackgroundColor}!important;
+  color: ${themedTextColor}!important;
+
+  ${breakpointSmall`
+    padding: .8em 0;
+  `}
+  ${breakpointMedium`
+    padding: 0.5em 1em;
+  `}
+
+  :hover,
+  :active,
+  :focus {
+    outline: none;
+    ${breakpointMedium`
+      filter: invert(100%);
+    `}
+  }
+
+  ${DropdownMenuList} & {
+    filter: none;
+    font-weight: var(--fw-medium);
+
+    ${breakpointSmall`
+      padding: .3em 0;
+    `}
+  }
+`;
+
+const NavbarLinkInternal = styleLink(InternalLink);
+const NavbarLinkExternal = styleLink(ExternalLink);
+
+const NavbarLink = ({ to, children, external, ...rest }) => {
+  return external ? (
+    <NavbarLinkExternal href={to} {...rest}>
+      {children}
+    </NavbarLinkExternal>
+  ) : (
+    <NavbarLinkInternal to={to} {...rest}>
+      {children}
+    </NavbarLinkInternal>
+  );
+};
+
+const DropdownMenuItem = ({ label, children }) => {
+  return (
+    <Dropdown style={{ position: "relative" }}>
+      <DropdownMenuTrigger>
+        {label}&nbsp;
+        <DropdownMenuChevron>
+          <IconChevronDown />
+        </DropdownMenuChevron>
+      </DropdownMenuTrigger>
+      <DropdownMenuList>
+        {children &&
+          children.map((child, i) => <SubItem key={`${i}`}>{child}</SubItem>)}
+      </DropdownMenuList>
+    </Dropdown>
+  );
+};
+
+const NavList = ({ hideSmall }) => (
+  <List
+    css={`
+      ${breakpointSmall(css`
+        margin: 24px 0 0 80px;
+        ${hideSmall ? "display:none;" : ""}
+      `)}
+
+      ${breakpointMedium`
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      `}
+    `}
+    direction="row"
+    align="center"
+    gap="large"
+  >
+    <MenuItem>
+      <NavbarLink external to="https://tinlake.centrifuge.io">
+        Tinlake
+      </NavbarLink>
+    </MenuItem>
+
+    <DropdownMenuItem label="Parachain">
+      <NavbarLink to="/parachain">Centrifuge Chain</NavbarLink>
+      <NavbarLink to="/altair">Altair</NavbarLink>
+    </DropdownMenuItem>
+
+    <MenuItem>
+      <NavbarLink to="/issuers">Issuers</NavbarLink>
+    </MenuItem>
+
+    <DropdownMenuItem label="CFG Token">
+      <NavbarLink to="/cfg-token-summary">Token Summary</NavbarLink>
+      <NavbarLink to="/cfg">CFG</NavbarLink>
+    </DropdownMenuItem>
+
+    <MenuItem>
+      <NavbarLink to="/about">About</NavbarLink>
+    </MenuItem>
+
+    <MenuItem>
+      <NavbarLink to="/careers">Careers</NavbarLink>
+    </MenuItem>
+
+    <MenuItem>
+      <NavbarLink external to="https://docs.centrifuge.io/">
+        Docs
+      </NavbarLink>
+    </MenuItem>
+  </List>
+);
+
+const Navigation = () => {
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
   const toggleMobileNav = () => setMobileNavIsOpen(!mobileNavIsOpen);
 
   return (
-    <Nav as="nav" role="navigation" dark={dark}>
+    <Nav as="nav" role="navigation">
       <Container>
         <List style={{ display: "flex", alignItems: "center" }}>
           {/* Logo */}
           <Item style={{ flex: 1 }}>
-            <BrandLink dark={dark} />
+            <BrandLink />
           </Item>
 
           {/* Mobile Nav Toggle */}
           <NavButton onClick={toggleMobileNav}>
             {mobileNavIsOpen ? (
-              <X size={32} color={!!dark ? "white" : "black"} />
+              <X
+                size={32}
+                css={({ theme: { dark } }) =>
+                  dark ? "color:white;" : "color:black;"
+                }
+              />
             ) : (
-              <Menu size={32} color={!!dark ? "white" : "black"} />
+              <Menu
+                size={32}
+                css={({ theme: { dark } }) =>
+                  dark ? "color:white;" : "color:black;"
+                }
+              />
             )}
           </NavButton>
 
           {/* Desktop Nav */}
-          <Dropdowns direction="row" align="center" gap="large" dark={dark}>
-            <PaddedItem>
-              <ExternalNavLink href="https://tinlake.centrifuge.io" dark={dark}>
-                Tinlake
-              </ExternalNavLink>
-            </PaddedItem>
-
-            <PaddedItem>
-              <NavLink to="/parachain" dark={dark}>
-                Parachain
-              </NavLink>
-
-              <List>
-                <Item>
-                  <NavLink to="/parachain" dark={dark}>
-                    Centrifuge Chain
-                  </NavLink>
-                  <NavLink to="/altair" dark={dark}>
-                    Altair
-                  </NavLink>
-                </Item>
-              </List>
-            </PaddedItem>
-
-            <PaddedItem>
-              <NavLink to="/issuers" dark={dark}>
-                Issuers
-              </NavLink>
-            </PaddedItem>
-
-            <PaddedItem>
-              <ExternalNavLink href="/cfg-token-summary" dark={dark}>
-                CFG Token
-              </ExternalNavLink>
-
-              <List>
-                <Item>
-                  <ExternalNavLink href="/cfg-token-summary" dark={dark}>
-                    Token Summary
-                  </ExternalNavLink>
-                  <NavLink to="/cfg" dark={dark}>
-                    Get CFG
-                  </NavLink>
-                </Item>
-              </List>
-            </PaddedItem>
-
-            <PaddedItem>
-              <NavLink dark={dark}>Service</NavLink>
-
-              <List>
-                <Item>
-                  <ExternalNavLink
-                    href="https://docs.centrifuge.io/"
-                    dark={dark}
-                  >
-                    Docs
-                  </ExternalNavLink>
-                  <NavLink to="/about" dark={dark}>
-                    About
-                  </NavLink>
-                  <NavLink to="/careers" dark={dark}>
-                    Careers
-                  </NavLink>
-                </Item>
-              </List>
-            </PaddedItem>
-
-            <PaddedItem />
-          </Dropdowns>
+          <NavList hideSmall />
         </List>
       </Container>
 
       {/* Mobile Nav */}
-      <MobilePanel
-        state={mobileNavIsOpen}
-        toggleFunc={toggleMobileNav}
-        dark={dark}
-      />
+      <MobilePanel state={mobileNavIsOpen} toggleFunc={toggleMobileNav} />
     </Nav>
   );
 };
 
-Navigation.defaultProps = {
-  dark: false,
+const MobilePanel = ({ state, toggleFunc }) => {
+  return (
+    state && (
+      <MobileModalLayer
+        onClickOutside={toggleFunc}
+        onEsc={toggleFunc}
+        position="top"
+        full="horizontal"
+        responsive={false}
+        animate={true}
+        modal
+      >
+        <NavList />
+      </MobileModalLayer>
+    )
+  );
 };
-
-const MobilePanel = ({ state, toggleFunc, dark }) => (
-  <ResponsiveContext.Consumer>
-    {(size) =>
-      state &&
-      size === "small" && (
-        <Layer
-          onClickOutside={toggleFunc}
-          onEsc={toggleFunc}
-          position="top"
-          full="horizontal"
-          responsive={false}
-          animate={true}
-          modal
-        >
-          <MobileBox
-            dark={dark}
-            direction="column"
-            pad={{
-              top: "xxlarge",
-              bottom: "xlarge",
-              left: "large",
-              right: "large",
-            }}
-            gap="medium"
-          >
-            <List>
-              <MenuItem>
-                <ExternalNavLink to="https://tinlake.centrifuge.io" dark={dark}>
-                  Tinlake
-                </ExternalNavLink>
-              </MenuItem>
-
-              <MenuItem>
-                <NavLink to="/altair" dark={dark}>
-                  Altair
-                </NavLink>
-              </MenuItem>
-
-              <MenuItem>
-                <NavLink to="/issuers" dark={dark}>
-                  Issuers
-                </NavLink>
-              </MenuItem>
-
-              <MenuItem>
-                <ExternalNavLink to="/cfg-token-summary" dark={dark}>
-                  CFG Token
-                </ExternalNavLink>
-
-                <SubItem>
-                  <ExternalNavLink href="/cfg-token-summary" dark={dark}>
-                    Token Summary
-                  </ExternalNavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/cfg" dark={dark}>
-                    Get CFG
-                  </NavLink>
-                </SubItem>
-              </MenuItem>
-
-              <MenuItem>
-                <NavLink dark={dark}>Service</NavLink>
-
-                <SubItem>
-                  <ExternalNavLink
-                    href="https://docs.centrifuge.io/"
-                    dark={dark}
-                  >
-                    Docs
-                  </ExternalNavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/about" dark={dark}>
-                    About
-                  </NavLink>
-                </SubItem>
-                <SubItem>
-                  <NavLink to="/careers" dark={dark}>
-                    Careers
-                  </NavLink>
-                </SubItem>
-              </MenuItem>
-            </List>
-          </MobileBox>
-        </Layer>
-      )
-    }
-  </ResponsiveContext.Consumer>
-);
 
 export default Navigation;

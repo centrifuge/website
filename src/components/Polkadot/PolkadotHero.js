@@ -33,7 +33,7 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
       </Box>
       <Box
         width={isSmall ? "100%" : "auto"}
-        margin={{ bottom: isSmall ? "48px" : 0 }}
+        margin={{ bottom: isSmall ? "48px" : "0" }}
       >
         <Image src={isSmall ? heroMobile : hero} />
       </Box>

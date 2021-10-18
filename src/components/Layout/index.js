@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ThemeContext } from "grommet";
 
 import Theme from "../Theme";
 import Footer from "../Footer";
@@ -19,11 +20,13 @@ const showEmailSubscription = (pathname = "") =>
 const Layout = ({ dark, children, location }) => {
   return (
     <Theme>
-      <Navigation dark={dark} />
-      <main>{children}</main>
-      {showEmailSubscription(location?.pathname) && <EmailSubscription />}
-      <Footer />
-      <GDPR />
+      <ThemeContext.Extend value={{ dark }}>
+        <Navigation dark={dark} />
+        <main>{children}</main>
+        {showEmailSubscription(location?.pathname) && <EmailSubscription />}
+        <Footer />
+        <GDPR />
+      </ThemeContext.Extend>
     </Theme>
   );
 };

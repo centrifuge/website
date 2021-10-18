@@ -65,7 +65,7 @@ const CardImage = ({ src }) => (
       backgroundImage: `url("${src}")`,
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      backgroundSize: "cover"
+      backgroundSize: "cover",
     }}
   />
 );
@@ -79,7 +79,7 @@ const LinkedImage = ({ imageId, slug, highlight }) => (
               width: "100%",
               paddingTop: "50%",
               margin: "0",
-              overflow: "hidden"
+              overflow: "hidden",
             }
           : {}
       }
@@ -93,12 +93,12 @@ const LinkedImage = ({ imageId, slug, highlight }) => (
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 width: "100%",
-                zIndex: 1
+                zIndex: 1,
               }
             : {
                 maxWidth: "100%",
                 verticalAlign: "middle",
-                zIndex: 1
+                zIndex: 1,
               }
         }
         src={imageId}
@@ -190,7 +190,7 @@ const LatestNews = ({ posts }) => (
             pad={{
               horizontal: "medium",
               top: "medium",
-              bottom: "0px"
+              bottom: "0px",
             }}
           >
             <Heading level={3} margin="0px">
@@ -202,7 +202,7 @@ const LatestNews = ({ posts }) => (
             pad={{
               horizontal: "medium",
               top: "medium",
-              bottom: "0px"
+              bottom: "0px",
             }}
           >
             <Paragraph margin="0px">{post.description}</Paragraph>
@@ -224,5 +224,5 @@ export {
   PressArticle,
   LinkedImage,
   LatestNews,
-  YoutubePost
+  YoutubePost,
 };
