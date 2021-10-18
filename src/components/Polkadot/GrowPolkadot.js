@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { Box, Image, ResponsiveContext, Text } from "grommet";
-import GrowPolkadotDefi from "../../images/polkadot/GrowPolkadotDefi.svg";
+import growPolkadot from "../../images/polkadot/grow-polkadot.svg";
 import TextHeading1 from "./text/TextHeading1";
 
 const PolkadotHero = () => {
@@ -20,7 +20,7 @@ const PolkadotHero = () => {
         pad={isSmall ? "0 16px 47px" : "60px 10%"}
         overflow="hidden"
       >
-        <Image src={GrowPolkadotDefi} width="100%" />
+        <Image src={growPolkadot} width="100%" />
       </Box>
       <Box
         background={isSmall ? "black" : "white"}

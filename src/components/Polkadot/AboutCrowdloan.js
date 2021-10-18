@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { Box, Image, ResponsiveContext, Text } from "grommet";
-import aboutCentrifugeSvg from "../../images/polkadot/AboutCentrifuge.svg";
+import aboutCrowdloan from "../../images/polkadot/aboutCrowdloan.svg";
 import aboutCrowdloanMobile from "../../images/polkadot/aboutCrowdloanMobile.svg";
 import TextBody from "./text/TextBody";
 
@@ -51,7 +51,7 @@ const AboutCrowdloan = () => {
         overflow="hidden"
       >
         <Image
-          src={isSmall ? aboutCrowdloanMobile : aboutCentrifugeSvg}
+          src={isSmall ? aboutCrowdloanMobile : aboutCrowdloan}
           width={isSmall ? "100%" : "565px"}
         />
       </Box>
