@@ -32,7 +32,7 @@ const UseCase = ({ image, title, text }) => (
     >
       <Text
         size="24px"
-        weight="500"
+        weight={500}
         textAlign="center"
         style={{ marginBottom: 16 }}
       >
@@ -63,7 +63,7 @@ const UseCases = ({ isEmailSubmitted }) => {
           direction={isSmall ? "column" : "row"}
           gap="24px"
           justify="center"
-          align={isSmall ? "center" : "flex-start"}
+          align={isSmall ? "center" : "stretch"}
           margin={isSmall ? "0 0 64px" : "0 0 108px"}
         >
           <UseCase
@@ -73,13 +73,13 @@ const UseCases = ({ isEmailSubmitted }) => {
           />
           <UseCase
             image={useCaseMoonbeam}
-            title="Dapp integrations from Sushi and Moonbeam"
-            text=""
+            title="Dapp integrations like Sushi on Moonbeam"
+            text="The most exciting dapps on Ethereum are going to be building on Moonbeam - making it easy for the Centrifuge parachain to tap into new sources of DeFi liquidity! Imagine Sushi, Aave, and more... Moonbeam gives them the tools to get spun up into the Polkadot ecosystem quickly, making it easier than ever for Centrifuge users to access financing."
           />
           <UseCase
             image={useCasePolkadefi}
             title="The Polkadefi bridge to Ethereum"
-            text="Centrifuge is already bridged to Ethereum, meaning you will be able to use Dai and other ERC20 tokens within the Polkadot ecosystem"
+            text="Centrifuge is already bridged to Ethereum, meaning users can already access the largest DeFi ecosystem. Once connected to Polkadot, Centrifuge will bridge liquidity between chains. Increased interoperability means we can grow DeFi liquidity across the entire blockchain multiverse."
           />
         </Box>
         {!isEmailSubmitted && (

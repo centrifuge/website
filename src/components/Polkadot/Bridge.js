@@ -39,7 +39,7 @@ const Bridge = () => {
             <Text
               color="white"
               size="18px"
-              weight="400"
+              weight={400}
               textAlign="center"
               as="i"
             >
@@ -55,15 +55,12 @@ const Bridge = () => {
               ‍
             </Text>
           </Box>
-          <Box
-            style={{ minWidth: "40%" }}
-            align={isSmall ? "center" : "flex-start"}
-          >
+          <Box style={{ minWidth: "40%" }} align={isSmall ? "center" : "start"}>
             <Text
               color="white"
               size="28px"
-              weight="500"
-              textAlign={isSmall ? "center" : "left"}
+              weight={500}
+              textAlign={isSmall ? "center" : "start"}
             >
               We are the bridge that brings trillions from the real world to
               DeFi.

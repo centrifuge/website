@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import { Grommet } from "grommet";
 
 import theme from "./theme";
-import '../../fonts/fonts.css';
+import "../../fonts/fonts.css";
 
 const GlobalStyle = createGlobalStyle`
   /* Reset */
@@ -46,7 +46,7 @@ const Theme = ({ children }) => (
 );
 
 Theme.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Theme;
