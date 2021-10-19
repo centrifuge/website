@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { Box, Image, ResponsiveContext, Text } from "grommet";
-import aboutCrowdloan from "../../images/polkadot/aboutCrowdloan.svg";
-import aboutCrowdloanMobile from "../../images/polkadot/aboutCrowdloanMobile.svg";
+import aboutCrowdloan from "../../images/polkadot/about-crowdloan.svg";
+import aboutCrowdloanMobile from "../../images/polkadot/about-crowdloan-mobile.svg";
 import TextBody from "./text/TextBody";
 
 const AboutCrowdloan = () => {
