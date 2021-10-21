@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Col, Row, Section } from '../MDXLayout/shortcodes';
 import { Box, Button, Image, ResponsiveContext, Text } from 'grommet';
 
-import altair_wordmark from '../../images/altair/altair_wordmark.svg';
+import altair_wordmark from "../../images/altair-wordmark-light.svg";
 import hero_background from '../../images/altair/hero_background.svg';
 import comet from '../../images/altair/comet.svg';
 import solar_system from '../../images/altair/solar_system.svg';
