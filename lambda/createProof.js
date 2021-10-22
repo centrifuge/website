@@ -1,6 +1,6 @@
 import { Keyring } from '@polkadot/api';
 import { u8aToHex } from '@polkadot/util';
-import merkleTree from '../config/merkle-tree.json';
+import merkleTree from '../config/altair-reward-merkle-tree.json';
 
 const createProof = async id => {
   let startIndex;
@@ -103,11 +103,15 @@ const createMsgToSign = async (key, msg) => {
   };
 };
 
-const getContributionAmount = async (key) => {
-  let contr = merkleTree.data.find(contribution => contribution.account === key);
+const getContributionAmount = async key => {
+  const contr = merkleTree.data.find(
+    contribution => contribution.account === key,
+  );
 
-  return contr !== undefined ? contr.amount : Promise.reject(`Account ${key} is no contributor`);
-}
+  return contr !== undefined
+    ? contr.contribution
+    : Promise.reject(`Account ${key} is no contributor`);
+};
 
 exports.handler = async event => {
   if (event.httpMethod !== 'POST') {
@@ -138,10 +142,10 @@ exports.handler = async event => {
         contribution,
       }),
     };
-  } catch (err) {
+  } catch (error) {
     return {
       statusCode: 405,
-      body: err
+      body: JSON.stringify({ error }),
     };
   }
 };

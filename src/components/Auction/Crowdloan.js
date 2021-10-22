@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Anchor, Box, Grid, Spinner, Text } from 'grommet';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 import { Stats } from './Stats';
 import { ReferralLeaderboard } from './ReferralLeaderboard';
 import { JoinWaitlist } from './JoinWaitlist';
@@ -24,11 +25,13 @@ export const Crowdloan = () => {
   let polkadot;
   let web3Accounts;
   let web3Enable;
+  let web3FromAddress;
 
   try {
     polkadot = require('@polkadot/extension-dapp');
     web3Accounts = polkadot.web3Accounts;
     web3Enable = polkadot.web3Enable;
+    web3FromAddress = polkadot.web3FromAddress;
   } catch (polkadotError) {
     console.error(polkadotError);
   }
@@ -45,11 +48,93 @@ export const Crowdloan = () => {
 
   const claimRewards = async () => {
     setIsClaimingRewards(true);
+    setClaimError();
     try {
-      // claim
-      setClaimedRewards(true);
-      setIsClaimingRewards(false);
-      setClaimHash('456');
+      const wsProvider = new WsProvider(
+        'wss://fullnode-collator.charcoal.centrifuge.io',
+      );
+
+      const api = await ApiPromise.create({
+        provider: wsProvider,
+        types: {
+          RootHashOf: 'Hash',
+          TrieIndex: 'u32',
+          RelayChainAccountId: 'AccountId',
+          ParachainAccountIdOf: 'AccountId',
+          Proof: {
+            leafHash: 'Hash',
+            sortedHashes: 'Vec<Hash>',
+          },
+        },
+      });
+
+      const web3Injector = await web3FromAddress(selectedAccount?.address);
+
+      const response = await fetch('/.netlify/functions/createProof', {
+        method: 'POST',
+        body: JSON.stringify({ address: selectedAccount.address }),
+      });
+
+      const proof = await response.json();
+
+      const signatureTypeSr25519 = api.createType(
+        'Sr25519Signature',
+        proof.msgToSign,
+      );
+
+      const signatureType = api.createType('MultiSignature', {
+        sr25519: signatureTypeSr25519,
+      });
+
+      const proofType = api.createType('Proof', {
+        leafHash: api.createType('Hash', proof.proof.leafHash),
+        sortedHashes: api.createType('Vec<Hash>', proof.proof.sortedHashes),
+      });
+
+      const amountType = api.createType(
+        'Balance',
+        proof.contribution.toString(),
+      );
+
+      const claim = api.tx.crowdloanClaim.claimReward(
+        selectedAccount.address,
+        selectedAccount.address,
+        signatureType,
+        proofType,
+        amountType,
+      );
+
+      await claim.signAndSend(
+        selectedAccount.address,
+        { signer: web3Injector.signer },
+        ({ status, events }) => {
+          if (status.isInBlock || status.isFinalized) {
+            events.forEach(({ event }) => {
+              if (api.events.system.ExtrinsicSuccess.is(event)) {
+                setClaimedRewards(true);
+                setIsClaimingRewards(false);
+                setClaimHash(claim.hash.toHex());
+              } else if (api.events.system.ExtrinsicFailed.is(event)) {
+                const [dispatchError] = event.data;
+
+                if (dispatchError.isModule) {
+                  const decoded = api.registry.findMetaError(
+                    dispatchError.asModule,
+                  );
+
+                  const errorInfo = `${decoded.section}.${decoded.name}`;
+                  setClaimError(errorInfo);
+                  setIsClaimingRewards(false);
+                } else {
+                  const errorInfo = dispatchError.toString();
+                  setClaimError(errorInfo);
+                  setIsClaimingRewards(false);
+                }
+              }
+            });
+          }
+        },
+      );
     } catch (error) {
       setClaimError(error);
       setIsClaimingRewards(false);
@@ -99,7 +184,7 @@ export const Crowdloan = () => {
       setSelectedAccount(kusamaAccounts[0]);
       setLoading(false);
     })();
-  }, [setSelectedAccount, web3Accounts]);
+  }, [setSelectedAccount, web3Accounts, web3Enable]);
 
   return (
     <Box>

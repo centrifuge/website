@@ -12,12 +12,21 @@ import {
 } from 'grommet';
 import { BigNumber } from 'bignumber.js';
 import { FormDown, FormUp } from 'grommet-icons';
-import { StatusGood } from 'grommet-icons';
+import { Alert, StatusGood } from 'grommet-icons';
 
-const formatAmount = value => {
+const formatKSM = value => {
   const number = new BigNumber(value);
   return number
     .dividedBy(10 ** 12)
+    .decimalPlaces(3)
+    .toFormat()
+    .toString();
+};
+
+const formatAIR = value => {
+  const number = new BigNumber(value);
+  return number
+    .dividedBy(10 ** 18)
     .decimalPlaces(3)
     .toFormat()
     .toString();
@@ -36,7 +45,7 @@ const Stat = ({ amount, color, label, token }) => (
     <Box direction="row">
       {amount ? (
         <Text color={color} size="32px" weight={600}>
-          {formatAmount(amount)}
+          {token === 'KSM' ? formatKSM(amount) : formatAIR(amount)}
         </Text>
       ) : (
         <Spinner
@@ -64,6 +73,36 @@ const Stat = ({ amount, color, label, token }) => (
         {label}
       </Text>
     </Box>
+  </Box>
+);
+
+const ClaimSuccess = ({ claimHash }) => (
+  <Box background="#616161" pad="16px 24px">
+    <Box align="center" direction="row" gap="6px">
+      <StatusGood color="white" size="16px" />
+      <Text weight="500">Rewards claimed</Text>
+    </Box>
+    <Text>
+      <Text margin="0 4px 0 0">View</Text>
+      <Anchor
+        target="_blank"
+        href={`https://kusama.subscan.io/extrinsic/${claimHash}`}
+        primary
+        label="transaction details"
+      />
+    </Text>
+  </Box>
+);
+
+const ClaimError = () => (
+  <Box background="#616161" pad="16px 24px">
+    <Box align="center" direction="row" gap="6px">
+      <Alert color="white" size="16px" />
+      <Text weight="500">Something went wrong!</Text>
+    </Box>
+    <Text>
+      <Text margin="0 4px 0 0">Please try to claim again.</Text>
+    </Text>
   </Box>
 );
 
@@ -112,7 +151,9 @@ export const Stats = ({
 
   const stakingReward = useMemo(() => {
     if (contributionAmount) {
-      return new BigNumber(contributionAmount).multipliedBy(430);
+      return new BigNumber(contributionAmount)
+        .multipliedBy(10 ** 6)
+        .multipliedBy(430);
     }
   }, [contributionAmount]);
 
@@ -214,29 +255,14 @@ export const Stats = ({
                 <Button
                   disabled={claimedRewards || isClaimingRewards}
                   primary
-                  label="Claim rewards"
+                  label={isClaimingRewards ? 'Claiming...' : 'Claim rewards'}
                   onClick={() => claimRewards()}
                 />
               </Box>
             )}
           </Box>
-          {claimedRewards && (
-            <Box background="#616161" pad="16px 24px">
-              <Box align="center" direction="row" gap="6px">
-                <StatusGood color="white" size="16px" />
-                <Text weight="500">Rewards claimed</Text>
-              </Box>
-              <Text>
-                <Text margin="0 4px 0 0">View</Text>
-                <Anchor
-                  target="_blank"
-                  href={`https://kusama.subscan.io/extrinsic/${claimHash}`}
-                  primary
-                  label="transaction details"
-                />
-              </Text>
-            </Box>
-          )}
+          {claimedRewards && <ClaimSuccess claimHash={claimHash} />}
+          {claimError && <ClaimError />}
         </Box>
       </ThemeContext.Extend>
     );
