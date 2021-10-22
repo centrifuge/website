@@ -70,6 +70,7 @@ const Stat = ({ amount, color, label, token }) => (
 export const Stats = ({
   accounts,
   claimedRewards,
+  claimError,
   claimHash,
   claimRewards,
   isClaimingRewards,
@@ -82,62 +83,50 @@ export const Stats = ({
   const [numberOfReferrals, setNumberOfReferrals] = useState();
   const [referralBonus, setReferralBonus] = useState();
 
-  useEffect(
-    () => {
-      (async () => {
-        if (selectedAccount?.address) {
-          setContributionAmount();
-          setEarlyBirdBonus();
-          setFirstCrowdloanBonus();
-          setNumberOfReferrals();
-          setReferralBonus();
+  useEffect(() => {
+    (async () => {
+      if (selectedAccount?.address) {
+        setContributionAmount();
+        setEarlyBirdBonus();
+        setFirstCrowdloanBonus();
+        setNumberOfReferrals();
+        setReferralBonus();
 
-          const response = await fetch('/.netlify/functions/getRewardData', {
-            method: 'POST',
-            body: JSON.stringify({
-              address: encodeAddress(selectedAccount.address, 2),
-            }),
-          });
+        const response = await fetch('/.netlify/functions/getRewardData', {
+          method: 'POST',
+          body: JSON.stringify({
+            address: encodeAddress(selectedAccount.address, 2),
+          }),
+        });
 
-          const json = await response.json();
+        const json = await response.json();
 
-          setContributionAmount(json.contributionAmount);
-          setEarlyBirdBonus(json.earlyBirdBonus);
-          setFirstCrowdloanBonus(json.firstCrowdloanBonus);
-          setNumberOfReferrals(json.numberOfReferrals);
-          setReferralBonus(json.referralBonus);
-        }
-      })();
-    },
-    [selectedAccount?.address],
-  );
-
-  const stakingReward = useMemo(
-    () => {
-      if (contributionAmount) {
-        return new BigNumber(contributionAmount).multipliedBy(430);
+        setContributionAmount(json.contributionAmount);
+        setEarlyBirdBonus(json.earlyBirdBonus);
+        setFirstCrowdloanBonus(json.firstCrowdloanBonus);
+        setNumberOfReferrals(json.numberOfReferrals);
+        setReferralBonus(json.referralBonus);
       }
-    },
-    [contributionAmount],
-  );
+    })();
+  }, [selectedAccount?.address]);
 
-  const earlyBirdReward = useMemo(
-    () => {
-      if (earlyBirdBonus && firstCrowdloanBonus) {
-        return new BigNumber(earlyBirdBonus).plus(firstCrowdloanBonus);
-      }
-    },
-    [earlyBirdBonus, firstCrowdloanBonus],
-  );
+  const stakingReward = useMemo(() => {
+    if (contributionAmount) {
+      return new BigNumber(contributionAmount).multipliedBy(430);
+    }
+  }, [contributionAmount]);
 
-  const totalRewards = useMemo(
-    () => {
-      if (earlyBirdReward && referralBonus && stakingReward) {
-        return stakingReward.plus(earlyBirdReward).plus(referralBonus);
-      }
-    },
-    [earlyBirdReward, referralBonus, stakingReward],
-  );
+  const earlyBirdReward = useMemo(() => {
+    if (earlyBirdBonus && firstCrowdloanBonus) {
+      return new BigNumber(earlyBirdBonus).plus(firstCrowdloanBonus);
+    }
+  }, [earlyBirdBonus, firstCrowdloanBonus]);
+
+  const totalRewards = useMemo(() => {
+    if (earlyBirdReward && referralBonus && stakingReward) {
+      return stakingReward.plus(earlyBirdReward).plus(referralBonus);
+    }
+  }, [earlyBirdReward, referralBonus, stakingReward]);
 
   if (selectedAccount?.address) {
     return (
@@ -180,9 +169,7 @@ export const Stats = ({
                   ''
                 )
               }
-              value={`${selectedAccount?.meta?.name} - ${
-                selectedAccount?.address
-              }`}
+              value={`${selectedAccount?.meta?.name} - ${selectedAccount?.address}`}
             />
           </FormField>
           <Stat amount={contributionAmount} label="Staked Amount" token="KSM" />

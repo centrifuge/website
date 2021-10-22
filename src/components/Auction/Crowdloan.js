@@ -41,12 +41,19 @@ export const Crowdloan = () => {
   const [claimedRewards, setClaimedRewards] = useState(false);
   const [isClaimingRewards, setIsClaimingRewards] = useState(false);
   const [claimHash, setClaimHash] = useState('');
+  const [claimError, setClaimError] = useState();
 
   const claimRewards = async () => {
     setIsClaimingRewards(true);
-    // claim
-    setClaimedRewards(true);
-    setClaimHash('456');
+    try {
+      // claim
+      setClaimedRewards(true);
+      setIsClaimingRewards(false);
+      setClaimHash('456');
+    } catch (error) {
+      setClaimError(error);
+      setIsClaimingRewards(false);
+    }
   };
 
   useEffect(() => {
@@ -75,27 +82,24 @@ export const Crowdloan = () => {
     })();
   }, []);
 
-  useEffect(
-    () => {
-      setLoading(true);
-      (async () => {
-        await web3Enable('Altair Auction');
-        const allAccounts = await web3Accounts();
+  useEffect(() => {
+    setLoading(true);
+    (async () => {
+      await web3Enable('Altair Auction');
+      const allAccounts = await web3Accounts();
 
-        const kusamaAccounts = allAccounts.filter(
-          account =>
-            account.meta.genesisHash === KUSAMA_GENESIS_HASH ||
-            account.meta.genesisHash === '' ||
-            account.meta.genesisHash === null,
-        );
+      const kusamaAccounts = allAccounts.filter(
+        account =>
+          account.meta.genesisHash === KUSAMA_GENESIS_HASH ||
+          account.meta.genesisHash === '' ||
+          account.meta.genesisHash === null,
+      );
 
-        setAccounts(kusamaAccounts);
-        setSelectedAccount(kusamaAccounts[0]);
-        setLoading(false);
-      })();
-    },
-    [setSelectedAccount, web3Accounts],
-  );
+      setAccounts(kusamaAccounts);
+      setSelectedAccount(kusamaAccounts[0]);
+      setLoading(false);
+    })();
+  }, [setSelectedAccount, web3Accounts]);
 
   return (
     <Box>
@@ -160,6 +164,7 @@ export const Crowdloan = () => {
                 <Stats
                   accounts={accounts}
                   claimedRewards={claimedRewards}
+                  claimError={claimError}
                   claimHash={claimHash}
                   claimRewards={claimRewards}
                   isClaimingRewards={isClaimingRewards}

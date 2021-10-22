@@ -66,6 +66,7 @@ const getEarlyBirdBonus = contributions =>
       if (contribution.earlyBird) {
         return sum.plus(
           new BigNumber(contribution.contribution)
+            .multipliedBy(10 ** 6)
             .multipliedBy(0.1)
             .multipliedBy(430),
         );
@@ -75,20 +76,32 @@ const getEarlyBirdBonus = contributions =>
     }, new BigNumber(0))
     .toString();
 
-const getFirstCrowdloanBonus = contributions =>
-  contributions
-    .reduce((sum, contribution) => {
-      if (contribution.isFirst250PrevCrwdloan) {
-        return sum.plus(
-          new BigNumber(contribution.contribution)
-            .multipliedBy(0.1)
-            .multipliedBy(430),
-        );
+const getFirstCrowdloanBonus = contributions => {
+  const sortExtrinsics = (a, b) => {
+    if (a.blockNumber === b.blockNumber) {
+      if (a.index === b.index) {
+        return 0;
+      } else if (a.index < b.index) {
+        return -1;
       }
+      return 1;
+    } else if (a.blockNumber < b.blockNumber) {
+      return -1;
+    }
 
-      return sum;
-    }, new BigNumber(0))
+    return 1;
+  };
+
+  const sortedContributions = contributions.sort((a, b) => {
+    return sortExtrinsics(a.extrinsic, b.extrinsic);
+  });
+
+  return new BigNumber(sortedContributions[0].contribution)
+    .multipliedBy(10 ** 6)
+    .multipliedBy(0.1)
+    .multipliedBy(430)
     .toString();
+};
 
 const getContributionAmount = contributions =>
   contributions
@@ -109,6 +122,7 @@ const getOutgoingReferralBonus = async contributions => {
     if (validReferralCodes.includes(contribution.referralCode)) {
       return sum.plus(
         new BigNumber(contribution.contribution)
+          .multipliedBy(10 ** 6)
           .multipliedBy(0.05)
           .multipliedBy(430),
       );
@@ -123,6 +137,7 @@ const getIncomingReferralBonus = (allContributions, referralCodes) =>
     if (referralCodes.includes(contribution.referralCode)) {
       return sum.plus(
         new BigNumber(contribution.contribution)
+          .multipliedBy(10 ** 6)
           .multipliedBy(0.05)
           .multipliedBy(430),
       );
@@ -153,7 +168,11 @@ exports.handler = async event => {
 
   const earlyBirdBonus = getEarlyBirdBonus(contributions);
 
-  const firstCrowdloanBonus = getFirstCrowdloanBonus(contributions);
+  const firstCrowdloanBonus =
+    new BigNumber(earlyBirdBonus).isZero() &&
+    contributions[0].isFirst250PrevCrwdloan
+      ? getFirstCrowdloanBonus(contributions)
+      : new BigNumber(0);
 
   const contributionAmount = getContributionAmount(contributions);
 
