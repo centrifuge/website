@@ -55,7 +55,7 @@ const createProof = async id => {
           i++;
         }
         if (!found) {
-          return Promise.reject('Algorithm for proof generation not working.');
+          return Promise.reject('Proof generation not working.');
         }
       } else {
         // Check first row above yourself for unevenness, and if so take the last element
@@ -71,7 +71,7 @@ const createProof = async id => {
           i--;
         }
         if (!found) {
-          return Promise.reject('Algorithm for proof generation not working.');
+          return Promise.reject('Proof generation not working.');
         }
 
         index = merkleTree.tree[i].length;
@@ -96,13 +96,18 @@ const createProof = async id => {
   };
 };
 
-const createSignature = async (key, msg) => {
+const createMsgToSign = async (key, msg) => {
   return {
     signer: key.address,
     msg: msg,
-    signature: key.sign(msg),
   };
 };
+
+const getContributionAmount = async (key) => {
+  let contr = merkleTree.data.find(contribution => contribution.account === key);
+
+  return contr !== undefined ? contr.amount : Promise.reject(`Account ${key} is no contributor`);
+}
 
 exports.handler = async event => {
   if (event.httpMethod !== 'POST') {
@@ -112,21 +117,31 @@ exports.handler = async event => {
     };
   }
 
-  const { address } = JSON.parse(event.body);
+  try {
+    const { address } = JSON.parse(event.body);
 
-  const keyring = new Keyring({ type: 'sr25519' }).addFromAddress(address);
-  const u8aPublicKey = keyring.publicKey;
-  const hexPublicKey = u8aToHex(u8aPublicKey);
+    const keyring = new Keyring({ type: 'sr25519' }).addFromAddress(address);
+    const u8aPublicKey = keyring.publicKey;
+    const hexPublicKey = u8aToHex(u8aPublicKey);
 
-  const proof = await createProof(hexPublicKey);
+    const proof = await createProof(hexPublicKey);
 
-  const signature = await createSignature(keyring, u8aPublicKey);
+    const msgToSign = await createMsgToSign(keyring, u8aPublicKey);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      proof,
-      signature,
-    }),
-  };
+    const contribution = await getContributionAmount(hexPublicKey);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        proof,
+        msgToSign,
+        contribution,
+      }),
+    };
+  } catch (err) {
+    return {
+      statusCode: 405,
+      body: err
+    };
+  }
 };
