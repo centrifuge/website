@@ -11,9 +11,10 @@ import faq from '../../images/altair/faq.svg';
 import next_step from '../../images/altair/next-step.svg';
 import wildest_assets from '../../images/altair/wildest-assets.svg';
 
+const JSONbig = require('json-bigint')({ useNativeBigInt: true, alwaysParseAsBig: true });
+
 const KSM = '187.84K';
 const CONTRIBUTIONS = '18,342';
-
 const KUSAMA_GENESIS_HASH =
   '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe';
 
@@ -75,7 +76,7 @@ export const Crowdloan = () => {
         body: JSON.stringify({ address: selectedAccount.address }),
       });
 
-      const proof = await response.json();
+      const proof = await JSONbig.parse(response);
 
       const signatureTypeSr25519 = api.createType(
         'Sr25519Signature',
@@ -93,7 +94,7 @@ export const Crowdloan = () => {
 
       const amountType = api.createType(
         'Balance',
-        proof.contribution.toString(),
+        proof.contribution,
       );
 
       const claim = api.tx.crowdloanClaim.claimReward(
