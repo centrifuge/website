@@ -1,6 +1,9 @@
 import { Keyring } from '@polkadot/api';
 import { u8aToHex } from '@polkadot/util';
-import merkleTree from '../config/altair-reward-merkle-tree.json';
+const JSONbig = require('json-bigint')({ useNativeBigInt: true, alwaysParseAsBig: true });
+
+const TREE_PATH =  '../config/altair-reward-merkle-tree.json';
+const merkleTree = JSONbig.parse(fs.readFileSync(TREE_PATH).toString());
 
 const createProof = async id => {
   let startIndex;
