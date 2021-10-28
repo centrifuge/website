@@ -157,12 +157,10 @@ export const Crowdloan = () => {
                 );
 
                 const errorInfo = `${decoded.section}.${decoded.name}`;
-                console.log('error1', { errorInfo });
                 setClaimError(errorInfo);
                 setIsClaimingRewards(false);
               } else {
                 const errorInfo = dispatchError.toString();
-                console.log('error2', errorInfo);
                 setClaimError(errorInfo);
                 setIsClaimingRewards(false);
               }
@@ -171,7 +169,6 @@ export const Crowdloan = () => {
         }
       });
     } catch (error) {
-      console.log('error0', { error });
       setClaimError(error);
       setIsClaimingRewards(false);
     }
