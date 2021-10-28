@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Anchor, Box, Grid, Spinner, Text } from 'grommet';
 import { ApiPromise, Keyring, WsProvider } from '@polkadot/api';
-import {
-  u8aToHex,
-  hexToU8a,
-  u8aToString,
-  u8aToBuffer,
-  hexToString,
-  stringToHex,
-  stringToU8a,
-} from '@polkadot/util';
-import { cryptoWaitReady, signatureVerify } from '@polkadot/util-crypto';
+import { u8aToHex, hexToU8a } from '@polkadot/util';
+import { cryptoWaitReady } from '@polkadot/util-crypto';
 import { Stats } from './Stats';
 import { ReferralLeaderboard } from './ReferralLeaderboard';
 import { JoinWaitlist } from './JoinWaitlist';
