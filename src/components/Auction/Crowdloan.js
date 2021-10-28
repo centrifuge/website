@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Anchor, Box, Grid, Spinner, Text } from 'grommet';
-import { ApiPromise, WsProvider } from '@polkadot/api';
+import { ApiPromise, Keyring, WsProvider } from '@polkadot/api';
+import { u8aToHex, hexToU8a } from '@polkadot/util';
+import { cryptoWaitReady } from '@polkadot/util-crypto';
 import { Stats } from './Stats';
 import { ReferralLeaderboard } from './ReferralLeaderboard';
 import { JoinWaitlist } from './JoinWaitlist';
@@ -11,9 +13,13 @@ import faq from '../../images/altair/faq.svg';
 import next_step from '../../images/altair/next-step.svg';
 import wildest_assets from '../../images/altair/wildest-assets.svg';
 
+const JSONbig = require('json-bigint')({
+  useNativeBigInt: true,
+  alwaysParseAsBig: true,
+});
+
 const KSM = '187.84K';
 const CONTRIBUTIONS = '18,342';
-
 const KUSAMA_GENESIS_HASH =
   '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe';
 
@@ -25,13 +31,13 @@ export const Crowdloan = () => {
   let polkadot;
   let web3Accounts;
   let web3Enable;
-  let web3FromAddress;
+  let web3FromSource;
 
   try {
     polkadot = require('@polkadot/extension-dapp');
     web3Accounts = polkadot.web3Accounts;
     web3Enable = polkadot.web3Enable;
-    web3FromAddress = polkadot.web3FromAddress;
+    web3FromSource = polkadot.web3FromSource;
   } catch (polkadotError) {
     console.error(polkadotError);
   }
@@ -50,9 +56,11 @@ export const Crowdloan = () => {
     setIsClaimingRewards(true);
     setClaimError();
     try {
-      const wsProvider = new WsProvider(
-        'wss://fullnode-collator.charcoal.centrifuge.io',
-      );
+      // const wsProvider = new WsProvider(
+      //   'wss://fullnode-collator.charcoal.centrifuge.io',
+      // );
+
+      const wsProvider = new WsProvider('ws://localhost:9946');
 
       const api = await ApiPromise.create({
         provider: wsProvider,
@@ -68,22 +76,36 @@ export const Crowdloan = () => {
         },
       });
 
-      const web3Injector = await web3FromAddress(selectedAccount?.address);
+      const injector = await web3FromSource(selectedAccount.meta.source);
+
+      const signRaw = injector?.signer?.signRaw;
 
       const response = await fetch('/.netlify/functions/createProof', {
         method: 'POST',
         body: JSON.stringify({ address: selectedAccount.address }),
       });
 
-      const proof = await response.json();
+      const text = await response.text();
 
-      const signatureTypeSr25519 = api.createType(
+      const proof = JSONbig.parse(text);
+
+      await cryptoWaitReady();
+
+      const message = u8aToHex(proof.msgToSign.msg);
+
+      const { signature } = await signRaw({
+        address: selectedAccount.address,
+        data: message.toString(),
+        type: 'bytes',
+      });
+
+      const signatureType = api.createType(
         'Sr25519Signature',
-        proof.msgToSign,
+        hexToU8a(signature),
       );
 
-      const signatureType = api.createType('MultiSignature', {
-        sr25519: signatureTypeSr25519,
+      const signatureTypeMulti = api.createType('MultiSignature', {
+        Sr25519: signatureType,
       });
 
       const proofType = api.createType('Proof', {
@@ -91,51 +113,54 @@ export const Crowdloan = () => {
         sortedHashes: api.createType('Vec<Hash>', proof.proof.sortedHashes),
       });
 
-      const amountType = api.createType(
-        'Balance',
-        proof.contribution.toString(),
+      const amountType = api.createType('Balance', proof.contribution);
+
+      const keyring = new Keyring({ type: 'sr25519' });
+      const hexPublicKey = u8aToHex(
+        keyring.addFromAddress(selectedAccount.address).publicKey,
       );
 
+      const accountId = api.createType('AccountId', hexPublicKey);
+
       const claim = api.tx.crowdloanClaim.claimReward(
-        selectedAccount.address,
-        selectedAccount.address,
-        signatureType,
+        accountId,
+        accountId,
+        signatureTypeMulti,
         proofType,
         amountType,
       );
 
-      await claim.signAndSend(
-        selectedAccount.address,
-        { signer: web3Injector.signer },
-        ({ status, events }) => {
-          if (status.isInBlock || status.isFinalized) {
-            events.forEach(({ event }) => {
-              if (api.events.system.ExtrinsicSuccess.is(event)) {
-                setClaimedRewards(true);
+      await claim.send(({ status, events }) => {
+        if (status.isInBlock || status.isFinalized) {
+          events.forEach(({ event }) => {
+            if (api.events.system.ExtrinsicSuccess.is(event)) {
+              setClaimedRewards(true);
+              setIsClaimingRewards(false);
+              setClaimHash(claim.hash.toHex());
+            } else if (api.events.system.ExtrinsicFailed.is(event)) {
+              const [dispatchError] = event.data;
+
+              if (dispatchError.isModule) {
+                const decoded = api.registry.findMetaError(
+                  dispatchError.asModule,
+                );
+
+                const errorInfo = `${decoded.section}.${decoded.name}`;
+                console.log('error1', { errorInfo });
+                setClaimError(errorInfo);
                 setIsClaimingRewards(false);
-                setClaimHash(claim.hash.toHex());
-              } else if (api.events.system.ExtrinsicFailed.is(event)) {
-                const [dispatchError] = event.data;
-
-                if (dispatchError.isModule) {
-                  const decoded = api.registry.findMetaError(
-                    dispatchError.asModule,
-                  );
-
-                  const errorInfo = `${decoded.section}.${decoded.name}`;
-                  setClaimError(errorInfo);
-                  setIsClaimingRewards(false);
-                } else {
-                  const errorInfo = dispatchError.toString();
-                  setClaimError(errorInfo);
-                  setIsClaimingRewards(false);
-                }
+              } else {
+                const errorInfo = dispatchError.toString();
+                console.log('error2', errorInfo);
+                setClaimError(errorInfo);
+                setIsClaimingRewards(false);
               }
-            });
-          }
-        },
-      );
+            }
+          });
+        }
+      });
     } catch (error) {
+      console.log('error0', { error });
       setClaimError(error);
       setIsClaimingRewards(false);
     }

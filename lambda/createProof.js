@@ -1,6 +1,10 @@
 import { Keyring } from '@polkadot/api';
 import { u8aToHex } from '@polkadot/util';
-import merkleTree from '../config/altair-reward-merkle-tree.json';
+const JSONbig = require('json-bigint')({
+  useNativeBigInt: true,
+  alwaysParseAsBig: true,
+});
+import { merkleTree } from '../config/altair-reward-merkle-tree';
 
 const createProof = async id => {
   let startIndex;
@@ -99,7 +103,7 @@ const createProof = async id => {
 const createMsgToSign = async (key, msg) => {
   return {
     signer: key.address,
-    msg: msg,
+    msg: Array.from(msg),
   };
 };
 
@@ -136,7 +140,7 @@ exports.handler = async event => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({
+      body: JSONbig.stringify({
         proof,
         msgToSign,
         contribution,
