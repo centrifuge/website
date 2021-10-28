@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Anchor, Box, Grid, Spinner, Text } from 'grommet';
-import { ApiPromise, Keyring, WsProvider } from '@polkadot/api';
-import { u8aToHex, hexToU8a } from '@polkadot/util';
-import { cryptoWaitReady } from '@polkadot/util-crypto';
+import { ApiPromise, WsProvider } from '@polkadot/api';
+import {
+  cryptoWaitReady,
+  decodeAddress,
+  signatureVerify,
+} from '@polkadot/util-crypto';
 import { Stats } from './Stats';
 import { ReferralLeaderboard } from './ReferralLeaderboard';
 import { JoinWaitlist } from './JoinWaitlist';
@@ -56,11 +59,9 @@ export const Crowdloan = () => {
     setIsClaimingRewards(true);
     setClaimError();
     try {
-      // const wsProvider = new WsProvider(
-      //   'wss://fullnode-collator.charcoal.centrifuge.io',
-      // );
-
-      const wsProvider = new WsProvider('ws://localhost:9946');
+      const wsProvider = new WsProvider(
+        'wss://fullnode-collator.charcoal.centrifuge.io',
+      );
 
       const api = await ApiPromise.create({
         provider: wsProvider,
@@ -91,22 +92,34 @@ export const Crowdloan = () => {
 
       await cryptoWaitReady();
 
-      const message = u8aToHex(proof.msgToSign.msg);
-
       const { signature } = await signRaw({
         address: selectedAccount.address,
-        data: message.toString(),
+        data: proof.signMessage,
         type: 'bytes',
       });
 
-      const signatureType = api.createType(
-        'Sr25519Signature',
-        hexToU8a(signature),
+      const verification = signatureVerify(
+        proof.signMessage,
+        signature,
+        decodeAddress(selectedAccount.address),
       );
 
-      const signatureTypeMulti = api.createType('MultiSignature', {
-        Sr25519: signatureType,
-      });
+      let signatureTypeMulti;
+      if (verification.crypto === 'sr25519') {
+        signatureTypeMulti = api.createType('MultiSignature', {
+          sr25519: signature,
+        });
+      } else if (verification.crypto === 'ed25519') {
+        signatureTypeMulti = api.createType('MultiSignature', {
+          ed25519: signature,
+        });
+      } else if (verification.crypto === 'ecdsa') {
+        signatureTypeMulti = api.createType('MultiSignature', {
+          ecdsa: signature,
+        });
+      } else {
+        throw new Error('Verification of signature failed with given account.');
+      }
 
       const proofType = api.createType('Proof', {
         leafHash: api.createType('Hash', proof.proof.leafHash),
@@ -115,12 +128,10 @@ export const Crowdloan = () => {
 
       const amountType = api.createType('Balance', proof.contribution);
 
-      const keyring = new Keyring({ type: 'sr25519' });
-      const hexPublicKey = u8aToHex(
-        keyring.addFromAddress(selectedAccount.address).publicKey,
+      const accountId = api.createType(
+        'AccountId',
+        decodeAddress(selectedAccount.address),
       );
-
-      const accountId = api.createType('AccountId', hexPublicKey);
 
       const claim = api.tx.crowdloanClaim.claimReward(
         accountId,
@@ -204,7 +215,6 @@ export const Crowdloan = () => {
           account.meta.genesisHash === '' ||
           account.meta.genesisHash === null,
       );
-
       setAccounts(kusamaAccounts);
       setSelectedAccount(kusamaAccounts[0]);
       setLoading(false);
