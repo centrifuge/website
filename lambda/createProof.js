@@ -1,10 +1,10 @@
 import { u8aToHex } from '@polkadot/util';
+import { decodeAddress } from '@polkadot/util-crypto';
 const JSONbig = require('json-bigint')({
   useNativeBigInt: true,
   alwaysParseAsBig: true,
 });
 import { merkleTree } from '../config/altair-reward-merkle-tree';
-import {decodeAddress} from "@polkadot/util-crypto";
 
 const createProof = async id => {
   let startIndex;
@@ -124,13 +124,12 @@ exports.handler = async event => {
 
     const proof = await createProof(hexAddress);
     const contribution = await getContributionAmount(hexAddress);
-    const signMessage = hexAddress;
 
     return {
       statusCode: 200,
       body: JSONbig.stringify({
         proof,
-        signMessage,
+        signMessage: hexAddress,
         contribution,
       }),
     };

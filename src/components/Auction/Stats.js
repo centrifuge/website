@@ -13,6 +13,7 @@ import {
 import { BigNumber } from 'bignumber.js';
 import { FormDown, FormUp } from 'grommet-icons';
 import { Alert, StatusGood } from 'grommet-icons';
+import { ClaimModal } from './ClaimModal';
 
 const formatKSM = value => {
   const number = new BigNumber(value);
@@ -121,6 +122,7 @@ export const Stats = ({
   const [firstCrowdloanBonus, setFirstCrowdloanBonus] = useState();
   const [numberOfReferrals, setNumberOfReferrals] = useState();
   const [referralBonus, setReferralBonus] = useState();
+  const [showClaimModal, setShowClaimModal] = useState();
 
   useEffect(() => {
     (async () => {
@@ -256,7 +258,7 @@ export const Stats = ({
                   disabled={claimedRewards || isClaimingRewards}
                   primary
                   label={isClaimingRewards ? 'Claiming...' : 'Claim rewards'}
-                  onClick={() => claimRewards()}
+                  onClick={() => setShowClaimModal(true)}
                 />
               </Box>
             )}
@@ -264,6 +266,12 @@ export const Stats = ({
           {claimedRewards && <ClaimSuccess claimHash={claimHash} />}
           {claimError && <ClaimError />}
         </Box>
+        {showClaimModal && (
+          <ClaimModal
+            claimRewards={claimRewards}
+            setShowClaimModal={setShowClaimModal}
+          />
+        )}
       </ThemeContext.Extend>
     );
   }
