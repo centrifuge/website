@@ -1,10 +1,10 @@
-import { Keyring } from '@polkadot/api';
 import { u8aToHex } from '@polkadot/util';
 const JSONbig = require('json-bigint')({
   useNativeBigInt: true,
   alwaysParseAsBig: true,
 });
 import { merkleTree } from '../config/altair-reward-merkle-tree';
+import {decodeAddress} from "@polkadot/util-crypto";
 
 const createProof = async id => {
   let startIndex;
@@ -100,13 +100,6 @@ const createProof = async id => {
   };
 };
 
-const createMsgToSign = async (key, msg) => {
-  return {
-    signer: key.address,
-    msg: Array.from(msg),
-  };
-};
-
 const getContributionAmount = async key => {
   const contr = merkleTree.data.find(
     contribution => contribution.account === key,
@@ -127,29 +120,24 @@ exports.handler = async event => {
 
   try {
     const { address } = JSON.parse(event.body);
+    const hexAddress = u8aToHex(decodeAddress(address));
 
-    const keyring = new Keyring({ type: 'sr25519' }).addFromAddress(address);
-    const u8aPublicKey = keyring.publicKey;
-    const hexPublicKey = u8aToHex(u8aPublicKey);
-
-    const proof = await createProof(hexPublicKey);
-
-    const msgToSign = await createMsgToSign(keyring, u8aPublicKey);
-
-    const contribution = await getContributionAmount(hexPublicKey);
+    const proof = await createProof(hexAddress);
+    const contribution = await getContributionAmount(hexAddress);
+    const signMessage = hexAddress;
 
     return {
       statusCode: 200,
       body: JSONbig.stringify({
         proof,
-        msgToSign,
+        signMessage,
         contribution,
       }),
     };
   } catch (error) {
     return {
-      statusCode: 405,
-      body: JSON.stringify({ error }),
+      statusCode: 500,
+      body: JSON.stringify({ Error: error }),
     };
   }
 };
