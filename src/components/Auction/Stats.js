@@ -83,15 +83,17 @@ const ClaimSuccess = ({ claimHash }) => (
       <StatusGood color="white" size="16px" />
       <Text weight="500">Rewards claimed</Text>
     </Box>
-    <Text>
-      <Text margin="0 4px 0 0">View</Text>
-      <Anchor
-        target="_blank"
-        href={`https://kusama.subscan.io/extrinsic/${claimHash}`}
-        primary
-        label="transaction details"
-      />
-    </Text>
+    {claimHash && (
+      <Text>
+        <Text margin="0 4px 0 0">View</Text>
+        <Anchor
+          target="_blank"
+          href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode-collator.charcoal.centrifuge.io#/explorer/query/${claimHash}`}
+          primary
+          label="transaction details"
+        />
+      </Text>
+    )}
   </Box>
 );
 
@@ -252,7 +254,7 @@ export const Stats = ({
               label="Total Rewards"
               token="AIR"
             />
-            {totalRewards?.isGreaterThan(0) && (
+            {totalRewards?.isGreaterThan(0) && !claimedRewards && (
               <Box pad="0 0 0 64px">
                 <Button
                   disabled={claimedRewards || isClaimingRewards}

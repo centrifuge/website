@@ -170,7 +170,7 @@ exports.handler = async event => {
 
   const firstCrowdloanBonus =
     new BigNumber(earlyBirdBonus).isZero() &&
-    contributions[0].isFirst250PrevCrwdloan
+    contributions[0]?.isFirst250PrevCrwdloan
       ? getFirstCrowdloanBonus(contributions)
       : new BigNumber(0);
 

@@ -147,7 +147,7 @@ export const Crowdloan = () => {
             if (api.events.system.ExtrinsicSuccess.is(event)) {
               setClaimedRewards(true);
               setIsClaimingRewards(false);
-              setClaimHash(claim.hash.toHex());
+              setClaimHash(status.asFinalized);
             } else if (api.events.system.ExtrinsicFailed.is(event)) {
               const [dispatchError] = event.data;
 
@@ -173,6 +173,37 @@ export const Crowdloan = () => {
       setIsClaimingRewards(false);
     }
   };
+
+  // check if user has already claimed rewards
+  useEffect(() => {
+    if (selectedAccount.address) {
+      (async () => {
+        const wsProvider = new WsProvider(
+          'wss://fullnode-collator.charcoal.centrifuge.io',
+        );
+
+        const api = await ApiPromise.create({
+          provider: wsProvider,
+          types: {
+            RootHashOf: 'Hash',
+            TrieIndex: 'u32',
+            RelayChainAccountId: 'AccountId',
+            ParachainAccountIdOf: 'AccountId',
+            Proof: {
+              leafHash: 'Hash',
+              sortedHashes: 'Vec<Hash>',
+            },
+          },
+        });
+
+        const didClaim = await api.query.crowdloanClaim.processedClaims([
+          selectedAccount.address,
+          1,
+        ]);
+        setClaimedRewards(didClaim.toHuman() ? true : false);
+      })();
+    }
+  }, [selectedAccount.address]);
 
   useEffect(() => {
     (async () => {
