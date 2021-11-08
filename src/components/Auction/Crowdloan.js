@@ -59,9 +59,7 @@ export const Crowdloan = () => {
     setIsClaimingRewards(true);
     setClaimError();
     try {
-      const wsProvider = new WsProvider(
-        'wss://fullnode-collator.charcoal.centrifuge.io',
-      );
+      const wsProvider = new WsProvider('wss://fullnode.altair.centrifuge.io');
 
       const api = await ApiPromise.create({
         provider: wsProvider,
@@ -179,7 +177,7 @@ export const Crowdloan = () => {
     if (selectedAccount.address) {
       (async () => {
         const wsProvider = new WsProvider(
-          'wss://fullnode-collator.charcoal.centrifuge.io',
+          'wss://fullnode.altair.centrifuge.io',
         );
 
         const api = await ApiPromise.create({

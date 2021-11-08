@@ -88,7 +88,7 @@ const ClaimSuccess = ({ claimHash }) => (
         <Text margin="0 4px 0 0">View</Text>
         <Anchor
           target="_blank"
-          href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode-collator.charcoal.centrifuge.io#/explorer/query/${claimHash}`}
+          href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode.altair.centrifuge.io#/explorer/query/${claimHash}`}
           primary
           label="transaction details"
         />
