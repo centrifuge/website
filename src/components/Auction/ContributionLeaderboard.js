@@ -19,7 +19,7 @@ export const ContributionLeaderboard = ({ topContributors }) => (
     </Text>
     {topContributors.length ? (
       topContributors.map((datum, index) => (
-        <Grid columns={['24px', '100px', '90px']} style={{ paddingTop: '8px' }}>
+        <Grid columns={['24px', '100px', '90px']} style={{ paddingTop: '8px' }} key={datum.account}>
           <Text weight={500}>{index + 1}</Text>
           <Text weight={500}>{formatAddress(datum.account)}</Text>
           <Text color="altair" weight={600} textAlign="end">

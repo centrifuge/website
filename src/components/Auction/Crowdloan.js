@@ -17,21 +17,8 @@ const KUSAMA_GENESIS_HASH =
   '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe';
 
 export const Crowdloan = () => {
-  /*
-   * have to do this since Gatsby tries to SSR but the @polkadot/extension-dapp library
-   * tries to reference `window` which is not available on the server-side
-   */
-  let polkadot;
-  let web3Accounts;
-  let web3Enable;
+  
 
-  try {
-    polkadot = require('@polkadot/extension-dapp');
-    web3Accounts = polkadot.web3Accounts;
-    web3Enable = polkadot.web3Enable;
-  } catch (polkadotError) {
-    console.error(polkadotError);
-  }
 
   const [selectedAccount, setSelectedAccount] = useState({});
   const [topContributors, setTopContributors] = useState([]);
@@ -69,6 +56,11 @@ export const Crowdloan = () => {
     () => {
       setLoading(true);
       (async () => {
+        /*
+        * have to do this since Gatsby tries to SSR but the @polkadot/extension-dapp library
+        * tries to reference `window` which is not available on the server-side
+        */
+        const { web3Enable, web3Accounts } = await import('@polkadot/extension-dapp');
         await web3Enable('Altair Auction');
         const allAccounts = await web3Accounts();
 
@@ -84,7 +76,7 @@ export const Crowdloan = () => {
         setLoading(false);
       })();
     },
-    [setSelectedAccount, web3Accounts],
+    [setSelectedAccount],
   );
 
   return (
