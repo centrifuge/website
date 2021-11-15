@@ -174,7 +174,7 @@ export const Crowdloan = () => {
 
   // check if user has already claimed rewards
   useEffect(() => {
-    if (selectedAccount.address) {
+    if (selectedAccount?.address) {
       (async () => {
         const wsProvider = new WsProvider(
           'wss://fullnode.altair.centrifuge.io',
@@ -201,7 +201,7 @@ export const Crowdloan = () => {
         setClaimedRewards(didClaim.toHuman() ? true : false);
       })();
     }
-  }, [selectedAccount.address]);
+  }, [selectedAccount?.address]);
 
   useEffect(() => {
     (async () => {
