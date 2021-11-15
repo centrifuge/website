@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Anchor, Box, Grid, Spinner, Text } from 'grommet';
+import { ApiPromise, WsProvider } from '@polkadot/api';
+import {
+  cryptoWaitReady,
+  decodeAddress,
+  signatureVerify,
+} from '@polkadot/util-crypto';
 import { Stats } from './Stats';
 import { ReferralLeaderboard } from './ReferralLeaderboard';
 import { JoinWaitlist } from './JoinWaitlist';
@@ -10,9 +16,13 @@ import faq from '../../images/altair/faq.svg';
 import next_step from '../../images/altair/next-step.svg';
 import wildest_assets from '../../images/altair/wildest-assets.svg';
 
+const JSONbig = require('json-bigint')({
+  useNativeBigInt: true,
+  alwaysParseAsBig: true,
+});
+
 const KSM = '187.84K';
 const CONTRIBUTIONS = '18,342';
-
 const KUSAMA_GENESIS_HASH =
   '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe';
 
@@ -24,11 +34,13 @@ export const Crowdloan = () => {
   let polkadot;
   let web3Accounts;
   let web3Enable;
+  let web3FromSource;
 
   try {
     polkadot = require('@polkadot/extension-dapp');
     web3Accounts = polkadot.web3Accounts;
     web3Enable = polkadot.web3Enable;
+    web3FromSource = polkadot.web3FromSource;
   } catch (polkadotError) {
     console.error(polkadotError);
   }
@@ -38,6 +50,158 @@ export const Crowdloan = () => {
   const [topReferrers, setTopReferrers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [accounts, setAccounts] = useState([]);
+  const [claimedRewards, setClaimedRewards] = useState(false);
+  const [isClaimingRewards, setIsClaimingRewards] = useState(false);
+  const [claimHash, setClaimHash] = useState('');
+  const [claimError, setClaimError] = useState();
+
+  const claimRewards = async () => {
+    setIsClaimingRewards(true);
+    setClaimError();
+    try {
+      const wsProvider = new WsProvider('wss://fullnode.altair.centrifuge.io');
+
+      const api = await ApiPromise.create({
+        provider: wsProvider,
+        types: {
+          RootHashOf: 'Hash',
+          TrieIndex: 'u32',
+          RelayChainAccountId: 'AccountId',
+          ParachainAccountIdOf: 'AccountId',
+          Proof: {
+            leafHash: 'Hash',
+            sortedHashes: 'Vec<Hash>',
+          },
+        },
+      });
+
+      const injector = await web3FromSource(selectedAccount.meta.source);
+
+      const signRaw = injector?.signer?.signRaw;
+
+      const response = await fetch('/.netlify/functions/createProof', {
+        method: 'POST',
+        body: JSON.stringify({ address: selectedAccount.address }),
+      });
+
+      const text = await response.text();
+
+      const proof = JSONbig.parse(text);
+
+      await cryptoWaitReady();
+
+      const { signature } = await signRaw({
+        address: selectedAccount.address,
+        data: proof.signMessage,
+        type: 'bytes',
+      });
+
+      const verification = signatureVerify(
+        proof.signMessage,
+        signature,
+        decodeAddress(selectedAccount.address),
+      );
+
+      let signatureTypeMulti;
+      if (verification.crypto === 'sr25519') {
+        signatureTypeMulti = api.createType('MultiSignature', {
+          sr25519: signature,
+        });
+      } else if (verification.crypto === 'ed25519') {
+        signatureTypeMulti = api.createType('MultiSignature', {
+          ed25519: signature,
+        });
+      } else if (verification.crypto === 'ecdsa') {
+        signatureTypeMulti = api.createType('MultiSignature', {
+          ecdsa: signature,
+        });
+      } else {
+        throw new Error('Verification of signature failed with given account.');
+      }
+
+      const proofType = api.createType('Proof', {
+        leafHash: api.createType('Hash', proof.proof.leafHash),
+        sortedHashes: api.createType('Vec<Hash>', proof.proof.sortedHashes),
+      });
+
+      const amountType = api.createType('Balance', proof.contribution);
+
+      const accountId = api.createType(
+        'AccountId',
+        decodeAddress(selectedAccount.address),
+      );
+
+      const claim = api.tx.crowdloanClaim.claimReward(
+        accountId,
+        accountId,
+        signatureTypeMulti,
+        proofType,
+        amountType,
+      );
+
+      await claim.send(({ status, events }) => {
+        if (status.isInBlock || status.isFinalized) {
+          events.forEach(({ event }) => {
+            if (api.events.system.ExtrinsicSuccess.is(event)) {
+              setClaimedRewards(true);
+              setIsClaimingRewards(false);
+              setClaimHash(status.asFinalized);
+            } else if (api.events.system.ExtrinsicFailed.is(event)) {
+              const [dispatchError] = event.data;
+
+              if (dispatchError.isModule) {
+                const decoded = api.registry.findMetaError(
+                  dispatchError.asModule,
+                );
+
+                const errorInfo = `${decoded.section}.${decoded.name}`;
+                setClaimError(errorInfo);
+                setIsClaimingRewards(false);
+              } else {
+                const errorInfo = dispatchError.toString();
+                setClaimError(errorInfo);
+                setIsClaimingRewards(false);
+              }
+            }
+          });
+        }
+      });
+    } catch (error) {
+      setClaimError(error);
+      setIsClaimingRewards(false);
+    }
+  };
+
+  // check if user has already claimed rewards
+  useEffect(() => {
+    if (selectedAccount?.address) {
+      (async () => {
+        const wsProvider = new WsProvider(
+          'wss://fullnode.altair.centrifuge.io',
+        );
+
+        const api = await ApiPromise.create({
+          provider: wsProvider,
+          types: {
+            RootHashOf: 'Hash',
+            TrieIndex: 'u32',
+            RelayChainAccountId: 'AccountId',
+            ParachainAccountIdOf: 'AccountId',
+            Proof: {
+              leafHash: 'Hash',
+              sortedHashes: 'Vec<Hash>',
+            },
+          },
+        });
+
+        const didClaim = await api.query.crowdloanClaim.processedClaims([
+          selectedAccount.address,
+          1,
+        ]);
+        setClaimedRewards(didClaim.toHuman() ? true : false);
+      })();
+    }
+  }, [selectedAccount?.address]);
 
   useEffect(() => {
     (async () => {
@@ -65,27 +229,23 @@ export const Crowdloan = () => {
     })();
   }, []);
 
-  useEffect(
-    () => {
-      setLoading(true);
-      (async () => {
-        await web3Enable('Altair Auction');
-        const allAccounts = await web3Accounts();
+  useEffect(() => {
+    setLoading(true);
+    (async () => {
+      await web3Enable('Altair Auction');
+      const allAccounts = await web3Accounts();
 
-        const kusamaAccounts = allAccounts.filter(
-          account =>
-            account.meta.genesisHash === KUSAMA_GENESIS_HASH ||
-            account.meta.genesisHash === '' ||
-            account.meta.genesisHash === null,
-        );
-
-        setAccounts(kusamaAccounts);
-        setSelectedAccount(kusamaAccounts[0]);
-        setLoading(false);
-      })();
-    },
-    [setSelectedAccount, web3Accounts],
-  );
+      const kusamaAccounts = allAccounts.filter(
+        account =>
+          account.meta.genesisHash === KUSAMA_GENESIS_HASH ||
+          account.meta.genesisHash === '' ||
+          account.meta.genesisHash === null,
+      );
+      setAccounts(kusamaAccounts);
+      setSelectedAccount(kusamaAccounts[0]);
+      setLoading(false);
+    })();
+  }, [setSelectedAccount, web3Accounts, web3Enable]);
 
   return (
     <Box>
@@ -132,7 +292,7 @@ export const Crowdloan = () => {
           }}
           alignSelf="center"
         >
-          <Grid columns={['269px', '364px', '269px']} gap="95px">
+          <Grid columns={['269px', 'minmax(364px, 1fr)', '269px']} gap="95px">
             <Box>
               <Box style={{ marginBottom: '42px' }}>
                 <ReferralLeaderboard topReferrers={topReferrers} />
@@ -149,6 +309,11 @@ export const Crowdloan = () => {
               ) : (
                 <Stats
                   accounts={accounts}
+                  claimedRewards={claimedRewards}
+                  claimError={claimError}
+                  claimHash={claimHash}
+                  claimRewards={claimRewards}
+                  isClaimingRewards={isClaimingRewards}
                   selectedAccount={selectedAccount}
                   setSelectedAccount={setSelectedAccount}
                 />

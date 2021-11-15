@@ -1,13 +1,33 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { encodeAddress } from '@polkadot/util-crypto';
-import { Box, FormField, Select, Spinner, Text, ThemeContext } from 'grommet';
+import {
+  Anchor,
+  Box,
+  Button,
+  FormField,
+  Select,
+  Spinner,
+  Text,
+  ThemeContext,
+} from 'grommet';
 import { BigNumber } from 'bignumber.js';
 import { FormDown, FormUp } from 'grommet-icons';
+import { Alert, StatusGood } from 'grommet-icons';
+import { ClaimModal } from './ClaimModal';
 
-const formatAmount = value => {
+const formatKSM = value => {
   const number = new BigNumber(value);
   return number
     .dividedBy(10 ** 12)
+    .decimalPlaces(3)
+    .toFormat()
+    .toString();
+};
+
+const formatAIR = value => {
+  const number = new BigNumber(value);
+  return number
+    .dividedBy(10 ** 18)
     .decimalPlaces(3)
     .toFormat()
     .toString();
@@ -26,7 +46,7 @@ const Stat = ({ amount, color, label, token }) => (
     <Box direction="row">
       {amount ? (
         <Text color={color} size="32px" weight={600}>
-          {formatAmount(amount)}
+          {token === 'KSM' ? formatKSM(amount) : formatAIR(amount)}
         </Text>
       ) : (
         <Spinner
@@ -57,69 +77,101 @@ const Stat = ({ amount, color, label, token }) => (
   </Box>
 );
 
-export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
+const ClaimSuccess = ({ claimHash }) => (
+  <Box background="#616161" pad="16px 24px">
+    <Box align="center" direction="row" gap="6px">
+      <StatusGood color="white" size="16px" />
+      <Text weight="500">Rewards claimed</Text>
+    </Box>
+    {claimHash && (
+      <Text>
+        <Text margin="0 4px 0 0">View</Text>
+        <Anchor
+          target="_blank"
+          href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode.altair.centrifuge.io#/explorer/query/${claimHash}`}
+          primary
+          label="transaction details"
+        />
+      </Text>
+    )}
+  </Box>
+);
+
+const ClaimError = () => (
+  <Box background="#616161" pad="16px 24px">
+    <Box align="center" direction="row" gap="6px">
+      <Alert color="white" size="16px" />
+      <Text weight="500">Something went wrong!</Text>
+    </Box>
+    <Text>
+      <Text margin="0 4px 0 0">Please try to claim again.</Text>
+    </Text>
+  </Box>
+);
+
+export const Stats = ({
+  accounts,
+  claimedRewards,
+  claimError,
+  claimHash,
+  claimRewards,
+  isClaimingRewards,
+  selectedAccount,
+  setSelectedAccount,
+}) => {
   const [contributionAmount, setContributionAmount] = useState();
   const [earlyBirdBonus, setEarlyBirdBonus] = useState();
   const [firstCrowdloanBonus, setFirstCrowdloanBonus] = useState();
   const [numberOfReferrals, setNumberOfReferrals] = useState();
   const [referralBonus, setReferralBonus] = useState();
+  const [showClaimModal, setShowClaimModal] = useState();
 
-  useEffect(
-    () => {
-      (async () => {
-        if (selectedAccount?.address) {
-          setContributionAmount();
-          setEarlyBirdBonus();
-          setFirstCrowdloanBonus();
-          setNumberOfReferrals();
-          setReferralBonus();
+  useEffect(() => {
+    (async () => {
+      if (selectedAccount?.address) {
+        setContributionAmount();
+        setEarlyBirdBonus();
+        setFirstCrowdloanBonus();
+        setNumberOfReferrals();
+        setReferralBonus();
 
-          const response = await fetch('/.netlify/functions/getRewardData', {
-            method: 'POST',
-            body: JSON.stringify({
-              address: encodeAddress(selectedAccount.address, 2),
-            }),
-          });
+        const response = await fetch('/.netlify/functions/getRewardData', {
+          method: 'POST',
+          body: JSON.stringify({
+            address: encodeAddress(selectedAccount.address, 2),
+          }),
+        });
 
-          const json = await response.json();
+        const json = await response.json();
 
-          setContributionAmount(json.contributionAmount);
-          setEarlyBirdBonus(json.earlyBirdBonus);
-          setFirstCrowdloanBonus(json.firstCrowdloanBonus);
-          setNumberOfReferrals(json.numberOfReferrals);
-          setReferralBonus(json.referralBonus);
-        }
-      })();
-    },
-    [selectedAccount?.address],
-  );
-
-  const stakingReward = useMemo(
-    () => {
-      if (contributionAmount) {
-        return new BigNumber(contributionAmount).multipliedBy(430);
+        setContributionAmount(json.contributionAmount);
+        setEarlyBirdBonus(json.earlyBirdBonus);
+        setFirstCrowdloanBonus(json.firstCrowdloanBonus);
+        setNumberOfReferrals(json.numberOfReferrals);
+        setReferralBonus(json.referralBonus);
       }
-    },
-    [contributionAmount],
-  );
+    })();
+  }, [selectedAccount?.address]);
 
-  const earlyBirdReward = useMemo(
-    () => {
-      if (earlyBirdBonus && firstCrowdloanBonus) {
-        return new BigNumber(earlyBirdBonus).plus(firstCrowdloanBonus);
-      }
-    },
-    [earlyBirdBonus, firstCrowdloanBonus],
-  );
+  const stakingReward = useMemo(() => {
+    if (contributionAmount) {
+      return new BigNumber(contributionAmount)
+        .multipliedBy(10 ** 6)
+        .multipliedBy(430);
+    }
+  }, [contributionAmount]);
 
-  const totalRewards = useMemo(
-    () => {
-      if (earlyBirdReward && referralBonus && stakingReward) {
-        return stakingReward.plus(earlyBirdReward).plus(referralBonus);
-      }
-    },
-    [earlyBirdReward, referralBonus, stakingReward],
-  );
+  const earlyBirdReward = useMemo(() => {
+    if (earlyBirdBonus && firstCrowdloanBonus) {
+      return new BigNumber(earlyBirdBonus).plus(firstCrowdloanBonus);
+    }
+  }, [earlyBirdBonus, firstCrowdloanBonus]);
+
+  const totalRewards = useMemo(() => {
+    if (earlyBirdReward && referralBonus && stakingReward) {
+      return stakingReward.plus(earlyBirdReward).plus(referralBonus);
+    }
+  }, [earlyBirdReward, referralBonus, stakingReward]);
 
   if (selectedAccount?.address) {
     return (
@@ -162,9 +214,7 @@ export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
                   ''
                 )
               }
-              value={`${selectedAccount?.meta?.name} - ${
-                selectedAccount?.address
-              }`}
+              value={`${selectedAccount?.meta?.name} - ${selectedAccount?.address}`}
             />
           </FormField>
           <Stat amount={contributionAmount} label="Staked Amount" token="KSM" />
@@ -197,13 +247,33 @@ export const Stats = ({ accounts, selectedAccount, setSelectedAccount }) => {
             }
             token="AIR"
           />
-          <Stat
-            amount={totalRewards}
-            color="altair"
-            label="Total Rewards"
-            token="AIR"
-          />
+          <Box direction="row" justify="between">
+            <Stat
+              amount={totalRewards}
+              color="altair"
+              label="Total Rewards"
+              token="AIR"
+            />
+            {totalRewards?.isGreaterThan(0) && !claimedRewards && (
+              <Box pad="0 0 0 64px">
+                <Button
+                  disabled={claimedRewards || isClaimingRewards}
+                  primary
+                  label={isClaimingRewards ? 'Claiming...' : 'Claim rewards'}
+                  onClick={() => setShowClaimModal(true)}
+                />
+              </Box>
+            )}
+          </Box>
+          {claimedRewards && <ClaimSuccess claimHash={claimHash} />}
+          {claimError && <ClaimError />}
         </Box>
+        {showClaimModal && (
+          <ClaimModal
+            claimRewards={claimRewards}
+            setShowClaimModal={setShowClaimModal}
+          />
+        )}
       </ThemeContext.Extend>
     );
   }
