@@ -75,6 +75,9 @@ export const YourContribution = () => {
   const [totalRewards, setTotalRewards] = useState<string>();
 
   useEffect(() => {
+    if (!selectedAccount?.address) {
+      return;
+    }
     // const response = await fetch('/.netlify/functions/getRewardData', {
     //   method: 'POST',
     //   body: JSON.stringify({
@@ -102,7 +105,7 @@ export const YourContribution = () => {
           .toFormat(0)
       );
     }, 3000);
-  }, []);
+  }, [selectedAccount?.address]);
 
   return (
     <YourContributionStyled>
