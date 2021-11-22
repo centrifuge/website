@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-
 import { ResponsivePlayer } from "../../News";
+import { useWeb3 } from "../../Web3Provider";
 import { useCountdownContext } from "../CountdownContext";
 import { mediaGreaterThan } from "../shared/media";
 import { BlackInfoBoxList } from "./BlackInfoBoxList";
@@ -51,6 +51,7 @@ const TextHeading1 = styled.div`
 
 export const Contribute = () => {
   const { isAuctionStarted, isAuctionEnded } = useCountdownContext();
+  const { isWeb3Injected } = useWeb3();
 
   return (
     <ContributeStyled>
@@ -61,7 +62,7 @@ export const Contribute = () => {
       </LeftCol>
 
       <div style={{ maxWidth: 776 }}>
-        <ExtensionMissing />
+        {!isWeb3Injected && <ExtensionMissing />}
         <YourContribution />
         {!isAuctionStarted && (
           <>
