@@ -76,7 +76,6 @@ export const Contribute = () => {
 
       <CentralCol>
         {!isWeb3Injected && <ExtensionMissing />}
-        <YourContribution />
         {!isAuctionStarted && (
           <>
             <GetReadyWrapper>
