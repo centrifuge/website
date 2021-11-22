@@ -7,6 +7,7 @@ import { mediaGreaterThan } from "../shared/media";
 import { BlackInfoBoxList } from "./BlackInfoBoxList";
 import { ExtensionMissing } from "./ExtensionMissing";
 import { GetReady } from "./GetReady";
+import { ThanksForContribution } from "./ThanksForConribution";
 import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
@@ -76,6 +77,13 @@ export const Contribute = () => {
 
       <CentralCol>
         {!isWeb3Injected && <ExtensionMissing />}
+
+        {/* TODO: show only when contribution was made and claimHash is available */}
+        <ThanksForContribution
+          amount="10000000000000"
+          claimHash="hg3f4h5f3h45fh3f5h3gf45"
+        />
+
         {!isAuctionStarted && (
           <>
             <GetReadyWrapper>
