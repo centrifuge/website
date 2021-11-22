@@ -57,7 +57,7 @@ export const TopContributors: React.FC = () => {
       topContributors
         ? topContributors.map((item) => ({
             label: truncateAddress(item.account),
-            value: formatDOT(item.amount),
+            value: `${formatDOT(item.amount)} DOT`,
           }))
         : [],
     [topContributors]

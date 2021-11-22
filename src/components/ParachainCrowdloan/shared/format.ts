@@ -14,4 +14,7 @@ export function formatNumber(n: number) {
 }
 
 export const formatDOT = (value: string) =>
-  `${new BigNumber(value).dividedBy(10 ** 12).toFormat(0)} DOT`;
+  new BigNumber(value).dividedBy(10 ** 12).toFormat(0);
+
+export const formatCFG = (value: string) =>
+  new BigNumber(value).dividedBy(10 ** 12).toFormat(0);

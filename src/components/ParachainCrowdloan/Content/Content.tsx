@@ -24,6 +24,7 @@ const ContributeStyled = styled.div`
     flex-direction: row;
     justify-content: space-around;
     padding: 48px;
+    gap: 48px;
   }
 `;
 
@@ -37,6 +38,18 @@ const GetReadyWrapper = styled.div`
 const LeftCol = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const CentralCol = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const RightCol = styled.div`
+  min-width: initial;
+  ${mediaGreaterThan("small")} {
+    min-width: 252px;
+  }
 `;
 
 const LearnHowToStake = styled.div``;
@@ -60,9 +73,8 @@ export const Contribute = () => {
         {!isAuctionEnded && <BlackInfoBoxList />}
       </LeftCol>
 
-      <div style={{ maxWidth: 776 }}>
+      <CentralCol>
         <ExtensionMissing />
-        <YourContribution />
         {!isAuctionStarted && (
           <>
             <GetReadyWrapper>
@@ -74,7 +86,11 @@ export const Contribute = () => {
             </LearnHowToStake>
           </>
         )}
-      </div>
+      </CentralCol>
+
+      <RightCol>
+        <YourContribution />
+      </RightCol>
     </ContributeStyled>
   );
 };

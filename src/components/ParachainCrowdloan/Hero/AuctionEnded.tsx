@@ -46,8 +46,8 @@ export const AuctionEnded: React.FC<AuctionEndedProps> = ({
             line-height: 40px;
           `}
         >
-          {formatDOT(totAmount)} raised from {formatNumber(totContributions)}{" "}
-          contributions
+          {formatDOT(totAmount)} DOT raised from{" "}
+          {formatNumber(totContributions)} contributions
         </TextSpan>
       </Box>
       <Box align="center">
