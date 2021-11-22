@@ -2,6 +2,7 @@ import BigNumber from "bignumber.js";
 import { Spinner } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useWeb3 } from "../../Web3Provider";
 import { formatCFG, formatDOT } from "../shared/format";
 
 import { TextSpan } from "../shared/TextSpan";
@@ -12,6 +13,7 @@ const YourContributionStyled = styled.div`
   gap: 24px;
   background: #f8f8f8;
   padding: 24px;
+  min-height: 473px;
 `;
 
 const TextHeading2 = styled.span`
@@ -68,6 +70,7 @@ type RewardDataResponse = {
 };
 
 export const YourContribution = () => {
+  const { selectedAccount } = useWeb3();
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
   const [totalRewards, setTotalRewards] = useState<string>();
 
@@ -106,31 +109,40 @@ export const YourContribution = () => {
       <div>
         <TextHeading2>Your contribution</TextHeading2>
       </div>
-      <StatsItem>
-        <TextSpan
-          css={`
-            font-size: 20px;
-            line-height: 32px;
-            font-weight: 600;
-            color: ${(props: any) => props.theme.global.colors.brand};
-          `}
-        >
-          {rewardsData.contributionAmount ? (
-            formatDOT(rewardsData.contributionAmount)
-          ) : (
-            <CustomSpinner color="brand" />
-          )}{" "}
-          DOT
-        </TextSpan>
-        <TextLabel>Staked amount</TextLabel>
-      </StatsItem>
+      {selectedAccount?.address ? (
+        <>
+          <StatsItem>
+            <TextSpan
+              css={`
+                font-size: 20px;
+                line-height: 32px;
+                font-weight: 600;
+                color: ${(props: any) => props.theme.global.colors.brand};
+              `}
+            >
+              {rewardsData.contributionAmount ? (
+                formatDOT(rewardsData.contributionAmount)
+              ) : (
+                <CustomSpinner color="brand" />
+              )}{" "}
+              DOT
+            </TextSpan>
+            <TextLabel>Staked amount</TextLabel>
+          </StatsItem>
 
-      <Divider />
+          <Divider />
 
-      <Stat value={rewardsData.firstCrowdloanBonus} label="Staking reward" />
-      <Stat value={rewardsData.earlyBirdBonus} label="Early bird reward" />
-      <Stat value={rewardsData.referralBonus} label="Referral reward" />
-      <Stat value={totalRewards} label="Total rewards" />
+          <Stat
+            value={rewardsData.firstCrowdloanBonus}
+            label="Staking reward"
+          />
+          <Stat value={rewardsData.earlyBirdBonus} label="Early bird reward" />
+          <Stat value={rewardsData.referralBonus} label="Referral reward" />
+          <Stat value={totalRewards} label="Total rewards" />
+        </>
+      ) : (
+        <div>No wallet connected</div>
+      )}
     </YourContributionStyled>
   );
 };
