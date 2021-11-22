@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Button } from "grommet";
-import styled from "styled-components";
-
 import Identicon from "@polkadot/react-identicon";
+import { Button } from "grommet";
+import React from "react";
+import styled from "styled-components";
 import chevron_down from "../../../images/chevron-down.svg";
+import { useWeb3 } from "../../Web3Provider";
 import { truncateAddress } from "../shared/format";
 import { mediaGreaterThan } from "../shared/media";
 
@@ -41,16 +41,7 @@ const WalletIconDown = styled.div`
 `;
 
 export const HeaderWallet = () => {
-  const [selectedAccount, setFakeSelectedAccount] = useState<{
-    address: string;
-  } | null>(null);
-
-  const connect = () => {
-    alert("Implement connect (this is fake)");
-    setFakeSelectedAccount({
-      address: "5CUrUGbz4EJ1ePXoVHf7CwzV7QeLqLs1SDZd9MTWxauw9ZM8",
-    });
-  };
+  const { selectedAccount, connect } = useWeb3();
 
   return (
     <div>
