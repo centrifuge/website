@@ -7,7 +7,8 @@ import { mediaGreaterThan } from "../shared/media";
 import { BlackInfoBoxList } from "./BlackInfoBoxList";
 import { ExtensionMissing } from "./ExtensionMissing";
 import { GetReady } from "./GetReady";
-import { ThanksForContribution } from "./ThanksForConribution";
+import { ReferYourFriends } from "./ReferYourFriends";
+import { ThanksForContribution } from "./ThanksForContribution";
 import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
@@ -44,6 +45,7 @@ const LeftCol = styled.div`
 const CentralCol = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 24px;
 `;
 
 const RightCol = styled.div`
@@ -83,6 +85,9 @@ export const Contribute = () => {
           amount="10000000000000"
           claimHash="hg3f4h5f3h45fh3f5h3gf45"
         />
+
+        {/* TODO: show only when referral code is available */}
+        <ReferYourFriends referralCode="132468790" />
 
         {!isAuctionStarted && (
           <>

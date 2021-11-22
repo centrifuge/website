@@ -4,7 +4,9 @@ import { formatDOT } from "../shared/format";
 import iconCheck from "../../../images/icons/check.svg";
 import { ExternalLink } from "../../Links";
 
-const ThanksForContributionStyled = styled.div``;
+const ThanksForContributionStyled = styled.div`
+  padding: 16px;
+`;
 
 const TextHeading3 = styled.span`
   font-size: 16px;
@@ -18,9 +20,10 @@ const TextBody = styled.span`
   font-weight: 400;
 `;
 
-const TitleRow = styled.span`
+const TitleRow = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 4px;
 `;
 
 type ThanksForContributionProps = {
