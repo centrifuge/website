@@ -42,7 +42,11 @@ export const ExtensionMissing = () => {
       <TextMessage>
         The Polkadot.js browser extension needs to be installed.
         <ButtonRow>
-          <Button primary label="Install extension" />
+          <Button
+            primary
+            label="Install extension"
+            href="https://github.com/polkadot-js/extension"
+          />
         </ButtonRow>
         <TextMessageEmphasized>
           Extension already installed?
