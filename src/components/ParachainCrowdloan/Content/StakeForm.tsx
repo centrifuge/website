@@ -86,6 +86,9 @@ const UnderlineTextButton = styled.button`
   }
 `;
 
+const formatBigNumber = (bn?: BigNumber): string =>
+  bn ? bn.div(1e12).toString() : "";
+
 export const StakeForm = () => {
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
@@ -95,11 +98,11 @@ export const StakeForm = () => {
   const [balanceLoading, setBalanceLoading] = useState(true);
 
   const [emailAddress, setEmailAddress] = useState("");
-  const [freeBalance, setFreeBalance] = useState("");
+  const [freeBalance, setFreeBalance] = useState<BigNumber>();
   const [injector, setInjector] = useState<{ signer: Signer }>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dotAmount, setDotAmount] = useState<number>(0);
-  const [gasFee, setGasFee] = useState<string>("");
+  const [gasFee, setGasFee] = useState<BigNumber>();
 
   const referralCodeParam = queryString.parse(location.search).refer;
 
@@ -117,7 +120,7 @@ export const StakeForm = () => {
 
         setInjector(web3Injector);
 
-        setFreeBalance((balances.data.free.toNumber() / 10 ** 12).toString());
+        setFreeBalance(new BigNumber(balances.data.free.toString()));
 
         setBalanceLoading(false);
       }
@@ -139,7 +142,7 @@ export const StakeForm = () => {
 
     const contributeTransaction = api.tx.crowdloan.contribute(
       NET_ID,
-      dotAmount * 10 ** 12,
+      dotAmount * 1e12,
       null
     );
 
@@ -188,7 +191,7 @@ export const StakeForm = () => {
 
         const contributeTransaction = api.tx.crowdloan.contribute(
           NET_ID,
-          dotAmount * 10 ** 12,
+          dotAmount * 1e12,
           null
         );
 
@@ -200,7 +203,7 @@ export const StakeForm = () => {
           .batchAll([contributeTransaction, memoTransaction])
           .paymentInfo(selectedAccount?.address);
 
-        setGasFee((gasFeeResponse.partialFee.toNumber() / 10 ** 12).toString());
+        setGasFee(new BigNumber(gasFeeResponse.partialFee.toString()));
       }
     })();
   }, [api, referralCode, selectedAccount?.address]);
@@ -271,15 +274,18 @@ export const StakeForm = () => {
               <Box direction="row" justify="between" pad="0 12px">
                 <Grid columns={["102px", "auto"]}>
                   <Text>Your balance:</Text>
-                  {balanceLoading ? <CustomSpinner /> : freeBalance}
+                  {balanceLoading ? (
+                    <CustomSpinner />
+                  ) : (
+                    formatBigNumber(freeBalance)
+                  )}
                 </Grid>
                 <UnderlineTextButton
                   disabled={
-                    !isFormEnabled ||
-                    new BigNumber(parseFloat(freeBalance) * 10 ** 12).isZero()
+                    !isFormEnabled || !freeBalance || freeBalance.isZero()
                   }
                   onClick={() => {
-                    setDotAmount(parseFloat(freeBalance));
+                    setDotAmount(parseFloat(formatBigNumber(freeBalance)));
                   }}
                 >
                   Set Max
@@ -287,9 +293,14 @@ export const StakeForm = () => {
               </Box>
 
               <Box>
-                {dotAmount <
-                parseFloat(freeBalance) - parseFloat(gasFee) ? null : (
-                  <InsufficientFundsWarning gasFee={gasFee} />
+                {freeBalance &&
+                gasFee &&
+                dotAmount <
+                  freeBalance
+                    .minus(gasFee)
+                    .div(1e12)
+                    .toNumber() ? null : (
+                  <InsufficientFundsWarning gasFee={formatBigNumber(gasFee)} />
                 )}
               </Box>
 
