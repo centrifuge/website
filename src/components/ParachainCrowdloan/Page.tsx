@@ -35,7 +35,7 @@ const FixedHeader = styled.div`
   position: fixed;
   width: 100%;
   height: 48px;
-  z-index: 50;
+  z-index: 15;
 
   ${mediaGreaterThan("small")} {
     height: 56px;

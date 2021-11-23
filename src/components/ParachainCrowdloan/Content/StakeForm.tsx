@@ -25,6 +25,7 @@ import { InsufficientFundsWarning } from "./InsufficientFundsWarning";
 import { MAILCHIMP_URL, NET_ID } from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
+import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
 
 const validateReferralCode = (value: string) => {
   if (value && (value.length !== 20 || !validReferralCode.test(value))) {
@@ -103,6 +104,9 @@ export const StakeForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dotAmount, setDotAmount] = useState<number>(0);
   const [gasFee, setGasFee] = useState<BigNumber>();
+  const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
+    false
+  );
 
   const referralCodeParam = queryString.parse(location.search).refer;
 
@@ -350,9 +354,7 @@ export const StakeForm = () => {
                     I agree to the{" "}
                     <UnderlineTextButton
                       onClick={() => {
-                        alert(
-                          "By submitting the form your DOT will be locked on Polkadot for the Centrifuge parachain crowdloan. This means that your DOT will be locked for the duration of the parachain slot if Centrifuge wins the auction (48 weeks), or until the auction ends if Centrifuge does not win the auction. The initial transferrable amount of DOT reward is 25%. The remaining vests over the lease period of 48 weeks. Proxy or multi-signature accounts are not able to receive rewards. Use of this page and the above staking function are at your own risk. Further, Centrifuge makes no warranties as to the outcome of the Centrifuge crowdloan. To the fullest extent allowed by applicable law, in no event shall Centrifuge or its affiliates, be liable to you or any third party for any damages of any kind."
-                        );
+                        setShowConditionsModal(true);
                       }}
                     >
                       terms and conditions
@@ -391,6 +393,10 @@ export const StakeForm = () => {
           </Form>
         </Box>
       )}
+      <TermsAndConditionsModal
+        open={showConditionsModal}
+        setOpen={setShowConditionsModal}
+      />
     </Box>
   );
 };
