@@ -6,22 +6,26 @@ import { Contribute } from "./Content/Content";
 import { CountdownContextProvider } from "./CountdownContext";
 import { Header } from "./Header/Header";
 import { Hero } from "./Hero/Hero";
+import { PolkadotApiProvider } from "./PolkadotApiProvider";
 import { RelatedResources } from "./RelatedResources";
+import { WS_PROVIDER } from "./shared/const";
 import { mediaGreaterThan } from "./shared/media";
 
 export const Page = () => {
   return (
-    <Web3Provider>
+    <Web3Provider network="polkadot">
       <CountdownContextProvider>
-        <FixedHeader>
-          <Header />
-        </FixedHeader>
-        <PageWithFixedHeader>
-          <Hero />
-          <Contribute />
-          <RelatedResources />
-          <Footer />
-        </PageWithFixedHeader>
+        <PolkadotApiProvider wsProviderUrl={WS_PROVIDER}>
+          <FixedHeader>
+            <Header />
+          </FixedHeader>
+          <PageWithFixedHeader>
+            <Hero />
+            <Contribute />
+            <RelatedResources />
+            <Footer />
+          </PageWithFixedHeader>
+        </PolkadotApiProvider>
       </CountdownContextProvider>
     </Web3Provider>
   );

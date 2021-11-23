@@ -8,6 +8,7 @@ import { BlackInfoBoxList } from "./BlackInfoBoxList";
 import { ExtensionMissing } from "./ExtensionMissing";
 import { GetReady } from "./GetReady";
 import { ReferYourFriends } from "./ReferYourFriends";
+import { StakeForm } from "./StakeForm";
 import { ThanksForContribution } from "./ThanksForContribution";
 import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
@@ -88,6 +89,8 @@ export const Contribute = () => {
 
         {/* TODO: show only when referral code is available */}
         <ReferYourFriends referralCode="132468790" />
+
+        {isAuctionStarted && !isAuctionEnded && <StakeForm />}
 
         {!isAuctionStarted && (
           <>

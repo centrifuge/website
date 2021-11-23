@@ -19,6 +19,12 @@ type Web3ContextType = {
   web3FromAddress: (address: string) => Promise<InjectedExtension>;
 };
 
+const GENESIS_HASH = {
+  kusama: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe",
+  polkadot:
+    "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3",
+};
+
 const Web3Context = React.createContext<Web3ContextType>(null as any);
 
 export function useWeb3() {
@@ -41,6 +47,7 @@ type Props = {
   ) => Promise<InjectedExtension[]>;
   web3EnablePromise: Promise<InjectedExtension[]> | null;
   web3FromAddress: (address: string) => Promise<InjectedExtension>;
+  network: keyof typeof GENESIS_HASH;
 };
 
 const Web3ProviderInner: React.FC<Props> = ({
@@ -50,6 +57,7 @@ const Web3ProviderInner: React.FC<Props> = ({
   web3Enable,
   web3EnablePromise,
   web3FromAddress,
+  network,
 }) => {
   const [accounts, setAccounts] = React.useState<Account[] | null>(null);
   const [selectedAccountAddress, setSelectedAccountAddress] = React.useState<
@@ -59,13 +67,11 @@ const Web3ProviderInner: React.FC<Props> = ({
   const unsubscribeRef = React.useRef<(() => void) | null>();
 
   function setFilteredAccounts(accounts: Account[]) {
-    console.log("accounts", accounts);
-    const filteredAccounts = accounts;
-    // .filter(
-    //   (account) =>
-    //     !account.meta.genesisHash ||
-    // 		account.meta.genesisHash === KUSAMA_GENESIS_HASH
-    // );
+    const filteredAccounts = accounts.filter(
+      (account) =>
+        !account.meta.genesisHash ||
+        account.meta.genesisHash === GENESIS_HASH[network]
+    );
 
     setAccounts(filteredAccounts);
     const persistedAddress = localStorage.getItem("web3PersistedAddress");
@@ -168,7 +174,14 @@ type PolkadotExtension = typeof import("@polkadot/extension-dapp");
 
 let mod: PolkadotExtension | null = null;
 
-export const Web3Provider: React.FC = ({ children }) => {
+type ProviderProps = {
+  network: keyof typeof GENESIS_HASH;
+};
+
+export const Web3Provider: React.FC<ProviderProps> = ({
+  children,
+  network,
+}) => {
   const [module, setModule] = React.useState<PolkadotExtension | null>(mod);
 
   React.useEffect(() => {
@@ -207,6 +220,7 @@ export const Web3Provider: React.FC = ({ children }) => {
       web3Enable={module.web3Enable}
       web3EnablePromise={module.web3EnablePromise}
       web3FromAddress={module.web3FromAddress}
+      network={network}
     >
       {children}
     </Web3ProviderInner>
