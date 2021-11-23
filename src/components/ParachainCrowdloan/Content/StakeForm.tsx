@@ -24,6 +24,7 @@ import { Alert } from "grommet-icons";
 import { InsufficientFundsWarning } from "./InsufficientFundsWarning";
 import { MAILCHIMP_URL, NET_ID } from "../shared/const";
 import styled from "styled-components";
+import BigNumber from "bignumber.js";
 
 const validateReferralCode = (value: string) => {
   if (value && (value.length !== 20 || !validReferralCode.test(value))) {
@@ -43,14 +44,16 @@ const validateDotAmount = (value: string) => {
   }
 };
 
-const UnexpectedError = () => {
+const UnexpectedError: React.FC<{ errorMessage: string }> = ({
+  errorMessage,
+}) => {
   return (
     <Box
       background={{ color: "#FFE8ED" }}
       style={{ width: "500px", padding: "24px", borderRadius: "4px" }}
     >
       <Text weight={600}>
-        <Alert size="small" /> Unexpected error!
+        <Alert size="small" /> Unexpected error: {errorMessage}
       </Text>
       <Text>Try again.</Text>
     </Box>
@@ -63,6 +66,24 @@ const CustomSpinner = styled(Spinner)`
   padding: 7px;
   margin-top: 3px;
   margin-left: 2px;
+`;
+
+const UnderlineTextButton = styled.button`
+  appearance: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+
+  :disabled {
+    cursor: not-allowed;
+  }
 `;
 
 export const StakeForm = () => {
@@ -95,7 +116,9 @@ export const StakeForm = () => {
         );
 
         setInjector(web3Injector);
+
         setFreeBalance((balances.data.free.toNumber() / 10 ** 12).toString());
+
         setBalanceLoading(false);
       }
     })();
@@ -143,14 +166,10 @@ export const StakeForm = () => {
             if (emailAddress) {
               await addToMailchimp(emailAddress, {}, MAILCHIMP_URL);
             }
-
-            // setHash(batch.hash.toHex());
-            // setIsFinalized(true);
           }
 
           if (error.length) {
             setError("error occurred");
-            // setIsFinalized(false);
             setIsSubmitting(false);
           }
         }
@@ -165,6 +184,8 @@ export const StakeForm = () => {
   useEffect(() => {
     (async () => {
       if (api && selectedAccount) {
+        console.log("api.tx.crowdloan", api.tx.crowdloan);
+
         const contributeTransaction = api.tx.crowdloan.contribute(
           NET_ID,
           dotAmount * 10 ** 12,
@@ -214,7 +235,7 @@ export const StakeForm = () => {
           </Text>
         </Box>
       </Box>
-      {error && <UnexpectedError />}
+      {error && <UnexpectedError errorMessage={error} />}
       {isWeb3Injected && (
         <Box gap="medium" style={{ width: "575px" }}>
           <Form onSubmit={() => contribute()} validate="submit">
@@ -247,16 +268,30 @@ export const StakeForm = () => {
                   value={dotAmount}
                 />
               </FormField>
-              <Text>
-                <Grid columns={["90px", "auto"]}>
+              <Box direction="row" justify="between" pad="0 12px">
+                <Grid columns={["102px", "auto"]}>
                   <Text>Your balance:</Text>
                   {balanceLoading ? <CustomSpinner /> : freeBalance}
                 </Grid>
-                {dotAmount &&
-                  dotAmount >= parseFloat(freeBalance) - parseFloat(gasFee) && (
-                    <InsufficientFundsWarning gasFee={gasFee} />
-                  )}
-              </Text>
+                <UnderlineTextButton
+                  disabled={
+                    !isFormEnabled ||
+                    new BigNumber(parseFloat(freeBalance) * 10 ** 12).isZero()
+                  }
+                  onClick={() => {
+                    setDotAmount(parseFloat(freeBalance));
+                  }}
+                >
+                  Set Max
+                </UnderlineTextButton>
+              </Box>
+
+              <Box>
+                {dotAmount <
+                parseFloat(freeBalance) - parseFloat(gasFee) ? null : (
+                  <InsufficientFundsWarning gasFee={gasFee} />
+                )}
+              </Box>
 
               <FormField
                 label="Referral code (optional)"
@@ -297,7 +332,7 @@ export const StakeForm = () => {
               <CheckBox
                 disabled={!isFormEnabled}
                 checked={checked}
-                label="I agree to the terms and conditions below"
+                label={<span>I agree to the </span>}
                 onChange={(event) => setChecked(event.target.checked)}
               />
             </Box>
@@ -317,7 +352,7 @@ export const StakeForm = () => {
                 </>
               ) : (
                 <Button
-                  disabled={!isFormEnabled}
+                  disabled={!isFormEnabled && !checked}
                   primary
                   color="brand"
                   alignSelf="start"

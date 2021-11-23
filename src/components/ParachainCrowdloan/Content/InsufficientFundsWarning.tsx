@@ -16,6 +16,7 @@ export const InsufficientFundsWarning: React.FC<InsufficientFundsWarningProps> =
         padding: "24px",
         borderRadius: "4px",
         marginTop: "24px",
+        marginBottom: "24px",
       }}
       gap="small"
     >
