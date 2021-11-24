@@ -26,8 +26,7 @@ const BlackInfoBox = styled.div`
   }
 
   ${mediaGreaterThan("small")} {
-    width: 240px;
-    height: 88px;
+    min-height: 88px;
   }
 `;
 

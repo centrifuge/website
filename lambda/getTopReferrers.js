@@ -1,8 +1,8 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-import axios from 'axios';
-import postgres from 'postgres';
+import axios from "axios";
+import postgres from "postgres";
 
 const sql = postgres({
   database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
@@ -12,18 +12,18 @@ const sql = postgres({
   username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
 });
 
-exports.handler = async event => {
-  if (event.httpMethod !== 'POST') {
+exports.handler = async (event) => {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: 'Method not allowed. Use POST.',
+      body: "Method not allowed. Use POST.",
     };
   }
 
   const { amount } = JSON.parse(event.body);
 
   const { data: contributions } = await axios(
-    'https://crowdloan-ws.centrifuge.io/contributions',
+    "https://crowdloan-ws.centrifuge.io/contributions"
   );
 
   const referrerCount = contributions.reduce((acc, cur) => {
@@ -45,23 +45,23 @@ exports.handler = async event => {
   const getValidReferralCodes = async () => {
     const results = await sql`
     select referral_code, wallet_address from altair where referral_code = any('{${sql(
-      Object.keys(referrerCount),
+      Object.keys(referrerCount)
     )}}'::varchar[])
   `;
 
-    return results.map(result => result);
+    return results.map((result) => result);
   };
 
   const validReferralCodes = await getValidReferralCodes();
 
-  validReferralCodes.forEach(validReferralCode => {
+  validReferralCodes.forEach((validReferralCode) => {
     referrerCount[validReferralCode.referral_code].account =
       validReferralCode.wallet_address;
   });
 
   const orderedReferrers = Object.values(referrerCount)
-    .map(referrer => referrer)
-    .filter(referrer => referrer.account);
+    .map((referrer) => referrer)
+    .filter((referrer) => referrer.account);
 
   orderedReferrers.sort((a, b) => {
     if (a.numberOfTimesUsed > b.numberOfTimesUsed) {

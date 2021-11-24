@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useWeb3 } from "../../Web3Provider";
 import { formatCFG, formatDOT } from "../shared/format";
+import { mediaGreaterThan } from "../shared/media";
 
 import { TextSpan } from "../shared/TextSpan";
 
@@ -14,6 +15,12 @@ const YourContributionStyled = styled.div`
   background: #f8f8f8;
   padding: 24px;
   min-height: 473px;
+
+  text-align: center;
+
+  ${mediaGreaterThan("small")} {
+    text-align: left;
+  }
 `;
 
 const TextHeading2 = styled.span`

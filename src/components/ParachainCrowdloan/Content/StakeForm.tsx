@@ -22,7 +22,7 @@ import { usePolkadotApi } from "../PolkadotApiProvider";
 import { Signer } from "@polkadot/types/types";
 import { Alert } from "grommet-icons";
 import { InsufficientFundsWarning } from "./InsufficientFundsWarning";
-import { MAILCHIMP_URL, NET_ID } from "../shared/const";
+import { MAILCHIMP_URL, PARACHAIN_ID } from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
@@ -145,7 +145,7 @@ export const StakeForm = () => {
     setIsSubmitting(true);
 
     const contributeTransaction = api.tx.crowdloan.contribute(
-      NET_ID,
+      PARACHAIN_ID,
       dotAmount * 1e12,
       null
     );
@@ -155,7 +155,7 @@ export const StakeForm = () => {
         ? api.tx.utility.batchAll([
             contributeTransaction,
             api.tx.crowdloan.addMemo(
-              NET_ID,
+              PARACHAIN_ID,
               api.createType("Bytes", referralCode)
             ),
           ])
@@ -194,14 +194,14 @@ export const StakeForm = () => {
         console.log("api.tx.crowdloan", api.tx.crowdloan);
 
         const contributeTransaction = api.tx.crowdloan.contribute(
-          NET_ID,
+          PARACHAIN_ID,
           dotAmount * 1e12,
           null
         );
 
         const memo = api.createType("Bytes", "123456578901234567890");
 
-        const memoTransaction = api.tx.crowdloan.addMemo(NET_ID, memo);
+        const memoTransaction = api.tx.crowdloan.addMemo(PARACHAIN_ID, memo);
 
         const gasFeeResponse = await api.tx.utility
           .batchAll([contributeTransaction, memoTransaction])
@@ -246,7 +246,7 @@ export const StakeForm = () => {
       </Box>
       {error && <UnexpectedError errorMessage={error} />}
       {isWeb3Injected && (
-        <Box gap="medium" style={{ width: "575px" }}>
+        <Box gap="medium">
           <Form onSubmit={() => contribute()} validate="submit">
             <Box>
               <FormField

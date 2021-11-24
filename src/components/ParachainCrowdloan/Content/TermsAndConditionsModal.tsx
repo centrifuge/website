@@ -10,7 +10,11 @@ export const TermsAndConditionsModal: React.FC<TermsAndConditionsModalProps> = (
   setOpen,
 }) =>
   open ? (
-    <Layer onEsc={() => setOpen(false)} onClickOutside={() => setOpen(false)}>
+    <Layer
+      onEsc={() => setOpen(false)}
+      onClickOutside={() => setOpen(false)}
+      responsive={false}
+    >
       <Box
         background="white"
         width="540px"

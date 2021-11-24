@@ -1,3 +1,4 @@
+import { Box } from "grommet";
 import React from "react";
 import styled from "styled-components";
 import { ResponsivePlayer } from "../../News";
@@ -26,6 +27,11 @@ const ContributeStyled = styled.div`
   ${mediaGreaterThan("small")} {
     flex-direction: row;
     justify-content: space-around;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  ${mediaGreaterThan("medium")} {
     padding: 48px;
     gap: 48px;
   }
@@ -47,12 +53,17 @@ const CentralCol = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  min-width: 280px;
+  ${mediaGreaterThan("small")} {
+    max-width: 476px;
+  }
 `;
 
 const RightCol = styled.div`
   min-width: initial;
   ${mediaGreaterThan("small")} {
-    min-width: 252px;
+    min-width: 180px;
   }
 `;
 
@@ -73,7 +84,11 @@ export const Contribute = () => {
   return (
     <ContributeStyled>
       <LeftCol>
-        {isAuctionStarted && <TopReferrers />}
+        {isAuctionStarted && (
+          <Box margin="0 0 48px 0">
+            <TopReferrers />
+          </Box>
+        )}
         {isAuctionEnded && <TopContributors />}
         {!isAuctionEnded && <BlackInfoBoxList />}
       </LeftCol>
