@@ -26,6 +26,7 @@ import { MAILCHIMP_URL, PARACHAIN_ID } from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
+import { ContributionOutcome } from "./Content";
 
 const validateReferralCode = (value: string) => {
   if (value && (value.length !== 20 || !validReferralCode.test(value))) {
@@ -49,10 +50,7 @@ const UnexpectedError: React.FC<{ errorMessage: string }> = ({
   errorMessage,
 }) => {
   return (
-    <Box
-      background={{ color: "#FFE8ED" }}
-      style={{ width: "500px", padding: "24px", borderRadius: "4px" }}
-    >
+    <Box background={{ color: "#FFE8ED" }} style={{ padding: "16px" }}>
       <Text weight={600}>
         <Alert size="small" /> Unexpected error: {errorMessage}
       </Text>
@@ -90,7 +88,13 @@ const UnderlineTextButton = styled.button`
 const formatBigNumber = (bn?: BigNumber): string =>
   bn ? bn.div(1e12).toString() : "";
 
-export const StakeForm = () => {
+type StakeFormProps = {
+  setContributionOutcome: (outcome: ContributionOutcome) => void;
+};
+
+export const StakeForm: React.FC<StakeFormProps> = ({
+  setContributionOutcome,
+}) => {
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
 
@@ -102,7 +106,7 @@ export const StakeForm = () => {
   const [freeBalance, setFreeBalance] = useState<BigNumber>();
   const [injector, setInjector] = useState<{ signer: Signer }>();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [dotAmount, setDotAmount] = useState<number>(0);
+  const [dotAmount, setDotAmount] = useState<string>("0.1");
   const [gasFee, setGasFee] = useState<BigNumber>();
   const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
     false
@@ -146,7 +150,7 @@ export const StakeForm = () => {
 
     const contributeTransaction = api.tx.crowdloan.contribute(
       PARACHAIN_ID,
-      dotAmount * 1e12,
+      parseFloat(dotAmount) * 1e12,
       null
     );
 
@@ -181,9 +185,23 @@ export const StakeForm = () => {
           }
         }
       );
+
+      setContributionOutcome({
+        hash: transactionToSend.hash.toHex(),
+        error: "",
+        amount: dotAmount,
+      });
+
+      // setHash(transactionToSend.hash.toHex());
     } catch (err) {
+      const errorMsg = (err as Error)?.message || `${err}`;
       setIsSubmitting(false);
-      setError((err as Error)?.message || `${err}`);
+      setError(errorMsg);
+      setContributionOutcome({
+        hash: "",
+        error: errorMsg,
+        amount: "",
+      });
     }
   };
 
@@ -191,11 +209,9 @@ export const StakeForm = () => {
   useEffect(() => {
     (async () => {
       if (api && selectedAccount) {
-        console.log("api.tx.crowdloan", api.tx.crowdloan);
-
         const contributeTransaction = api.tx.crowdloan.contribute(
           PARACHAIN_ID,
-          dotAmount * 1e12,
+          parseFloat(dotAmount) * 1e12,
           null
         );
 
@@ -227,10 +243,8 @@ export const StakeForm = () => {
     );
   }
 
-  console.log("gasFee", gasFee);
-
   return (
-    <Box gap="medium" pad="medium" style={{ margin: 0 }}>
+    <Box gap="medium" style={{ margin: 0 }}>
       <Box>
         <Box
           style={{
@@ -268,11 +282,8 @@ export const StakeForm = () => {
                   id="polkadot"
                   name="polkadot"
                   onChange={(event) => {
-                    const newNumberValue = parseFloat(event.target.value);
-                    if (!Number.isNaN(newNumberValue)) {
-                      setError("");
-                      setDotAmount(parseFloat(event.target.value));
-                    }
+                    setError("");
+                    setDotAmount(event.target.value);
                   }}
                   value={dotAmount}
                 />
@@ -291,7 +302,7 @@ export const StakeForm = () => {
                     !isFormEnabled || !freeBalance || freeBalance.isZero()
                   }
                   onClick={() => {
-                    setDotAmount(parseFloat(formatBigNumber(freeBalance)));
+                    setDotAmount(formatBigNumber(freeBalance));
                   }}
                 >
                   Set Max
@@ -301,7 +312,7 @@ export const StakeForm = () => {
               <Box>
                 {freeBalance &&
                 gasFee &&
-                dotAmount <
+                parseFloat(dotAmount) <
                   freeBalance
                     .minus(gasFee)
                     .div(1e12)
@@ -328,7 +339,7 @@ export const StakeForm = () => {
                 />
               </FormField>
               <FormField
-                label="Stay up to date with the auction (optional)"
+                label="Stay up to date with the auction"
                 name="emailAddress"
                 htmlFor="emailAddress"
                 validate={(value) => validateEmailAddress(value)}
@@ -361,7 +372,9 @@ export const StakeForm = () => {
                     </UnderlineTextButton>
                   </span>
                 }
-                onChange={(event) => setChecked(event.target.checked)}
+                onChange={(event) => {
+                  setChecked(event.target.checked);
+                }}
               />
             </Box>
             <Box
@@ -380,7 +393,7 @@ export const StakeForm = () => {
                 </>
               ) : (
                 <Button
-                  disabled={!isFormEnabled && !checked}
+                  disabled={!isFormEnabled || !checked}
                   primary
                   color="brand"
                   alignSelf="start"

@@ -42,10 +42,7 @@ export const GetReady = () => {
       </HeadingWrapper>
       <TextBody1>
         Contributions will open at the launch of the auction. You need the{" "}
-        <ExternalLink
-          unstyled={false}
-          href="https://polkadot.js.org/extension/"
-        >
+        <ExternalLink unstyled={0} href="https://polkadot.js.org/extension/">
           Polkadot.js
         </ExternalLink>{" "}
         browser extension installed, and an account with a minimum balance of

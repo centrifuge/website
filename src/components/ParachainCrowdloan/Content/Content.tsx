@@ -1,5 +1,5 @@
 import { Box } from "grommet";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ResponsivePlayer } from "../../News";
 import { useWeb3 } from "../../Web3Provider";
@@ -77,9 +77,28 @@ const TextHeading1 = styled.div`
   margin-bottom: 24px;
 `;
 
+export type ContributionOutcome = {
+  hash: string;
+  amount: string;
+  error?: string;
+};
+
 export const Contribute = () => {
   const { isAuctionStarted, isAuctionEnded } = useCountdownContext();
   const { isWeb3Injected } = useWeb3();
+
+  const [contributionOutcome, setContributionOutcome] = useState<
+    ContributionOutcome
+  >();
+  const [referralCode, setReferralCode] = useState<string>("");
+
+  useEffect(() => {
+    // create referral code after the contribution has been successful
+    if (contributionOutcome?.hash) {
+      // TODO CALL createReferralCodeCfg
+      setReferralCode("FAKE_REFERRAL_CODE");
+    }
+  }, [contributionOutcome?.hash]);
 
   return (
     <ContributeStyled>
@@ -96,16 +115,18 @@ export const Contribute = () => {
       <CentralCol>
         {!isWeb3Injected && <ExtensionMissing />}
 
-        {/* TODO: show only when contribution was made and claimHash is available */}
-        <ThanksForContribution
-          amount="10000000000000"
-          claimHash="hg3f4h5f3h45fh3f5h3gf45"
-        />
+        {contributionOutcome?.hash && (
+          <ThanksForContribution
+            amount={contributionOutcome.amount}
+            claimHash={contributionOutcome.hash}
+          />
+        )}
 
-        {/* TODO: show only when referral code is available */}
-        <ReferYourFriends referralCode="132468790" />
+        {referralCode && <ReferYourFriends referralCode={referralCode} />}
 
-        {isAuctionStarted && !isAuctionEnded && <StakeForm />}
+        {isAuctionStarted && !isAuctionEnded && (
+          <StakeForm setContributionOutcome={setContributionOutcome} />
+        )}
 
         {!isAuctionStarted && (
           <>
