@@ -25,11 +25,13 @@ const configs = {
   altair: {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "altair",
+    REFERRAL_CODES_BUCKET: "altair_referral_codes",
     URL_CONTRIBUTIONS: "https://crowdloan-ws.centrifuge.io/contributions",
   },
   centrifuge: {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "centrifuge",
+    REFERRAL_CODES_BUCKET: "centrifuge_referral_codes",
 
     // TODO: replace with new contributions web service
     URL_CONTRIBUTIONS: "https://crowdloan-ws.centrifuge.io/contributions",

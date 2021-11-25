@@ -1,6 +1,7 @@
 import { Box } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { encodeAddress } from '@polkadot/util-crypto';
 import { ResponsivePlayer } from "../../News";
 import { useWeb3 } from "../../Web3Provider";
 import { useCountdownContext } from "../CountdownContext";
@@ -14,6 +15,7 @@ import { ThanksForContribution } from "./ThanksForContribution";
 import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
+import { PARACHAIN_NAME } from "../shared/const";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -85,20 +87,36 @@ export type ContributionOutcome = {
 
 export const Contribute = () => {
   const { isAuctionStarted, isAuctionEnded } = useCountdownContext();
-  const { isWeb3Injected } = useWeb3();
+  const { isWeb3Injected, selectedAccount } = useWeb3();
 
   const [contributionOutcome, setContributionOutcome] = useState<
     ContributionOutcome
   >();
   const [referralCode, setReferralCode] = useState<string>("");
 
+  // create referral code after the contribution has been successful
   useEffect(() => {
-    // create referral code after the contribution has been successful
-    if (contributionOutcome?.hash) {
-      // TODO CALL createReferralCodeCfg
-      setReferralCode("FAKE_REFERRAL_CODE");
-    }
-  }, [contributionOutcome?.hash]);
+    (async () => {
+      try {
+        if (!contributionOutcome?.hash || !selectedAccount?.address) {
+          return;
+        }
+        const response = await fetch("/.netlify/functions/createReferralCode", {
+          method: "POST",
+          body: JSON.stringify({
+            referrerAddress: encodeAddress(selectedAccount.address, 2),
+            parachain: PARACHAIN_NAME,
+          }),
+        });
+
+        const json = await response.json();
+        setReferralCode(json.referralCode);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+    
+  }, [contributionOutcome?.hash, selectedAccount?.address]);
 
   return (
     <ContributeStyled>

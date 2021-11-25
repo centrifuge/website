@@ -4,14 +4,8 @@ require('dotenv').config({
 import crypto from 'crypto';
 import { Storage } from '@google-cloud/storage';
 import postgres from 'postgres';
+import { getConfig } from './crowdloan/config';
 
-const sql = postgres({
-  database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
-  host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
-  password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
-  port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
-  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
-});
 
 // properly prepare to be PEM type
 const GOOGLE_CLOUD_PRIVATE_KEY = process.env.GOOGLE_CLOUD_PRIVATE_KEY.replace(
@@ -36,9 +30,13 @@ exports.handler = async event => {
       },
     });
 
-    const { referrerAddress } = JSON.parse(event.body);
+    const { referrerAddress, parachain } = JSON.parse(event.body);
 
-    const referralCodeBucket = storage.bucket('altair_referral_codes');
+    const { REFERRAL_CODES_BUCKET, REFERRAL_TABLE_NAME, POSTGRES_CONFIG } = getConfig(parachain);
+
+    const sql = postgres(POSTGRES_CONFIG);
+
+    const referralCodeBucket = storage.bucket(REFERRAL_CODES_BUCKET);
 
     const referralCode = crypto
       .randomBytes(15)
@@ -47,7 +45,7 @@ exports.handler = async event => {
       .replace(/\+/g, 'P');
 
     await sql`
-      insert into altair(referral_code, wallet_address) values (${referralCode}, ${referrerAddress})
+      insert into ${sql(REFERRAL_TABLE_NAME)}(referral_code, wallet_address) values (${referralCode}, ${referrerAddress})
     `;
 
     const file = referralCodeBucket.file(`${referralCode}.txt`);
