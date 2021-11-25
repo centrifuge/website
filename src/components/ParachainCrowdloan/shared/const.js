@@ -14,6 +14,8 @@ export const DOT_PLANCK = 1e10;
 
 export const CFG_PLANCK = 1e18;
 
+export const CROWDLOAN_MAX_CAP = 200000;
+
 // the minimum contribution is 0.1 DOT
 export const MIN_CONTRIBUTION_PLANCK = DOT_PLANCK * 0.1;
 export const MIN_CONTRIBUTION_DOT = MIN_CONTRIBUTION_PLANCK / DOT_PLANCK;

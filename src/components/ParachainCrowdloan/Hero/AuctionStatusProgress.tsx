@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { AuctionProgressBar } from "./AuctionProgressBar";
-import { formatNumber } from "../shared/format";
+import { Spinner } from "grommet";
 
 const AuctionStatusProgressStyled = styled.div``;
 
 type AuctionStatusProgressProps = {
-  maxCap: number;
-  stackedAmount: number;
-  numContributions: number;
+  maxCap?: number;
+  stackedAmount?: number;
+  numContributions?: number;
 };
 
 const ProgressRow = styled.div`
@@ -24,7 +24,6 @@ const TextValue = styled.span`
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
-  margin-right: 8px;
 `;
 
 const TextLabel = styled.span`
@@ -32,30 +31,53 @@ const TextLabel = styled.span`
   font-weight: 600;
   font-size: 16px;
   line-height: 28px;
+
+  margin-left: 8px;
+`;
+
+const CustomSpinner = styled(Spinner)`
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  padding: 7px;
+  margin-top: 3px;
+  margin-left: 2px;
 `;
 
 export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
-  maxCap = 200000,
-  stackedAmount = 0,
-  numContributions = 0,
+  maxCap,
+  stackedAmount,
+  numContributions,
 }) => {
   return (
     <AuctionStatusProgressStyled>
       <ProgressRow>
         <div>
-          <TextValue>{formatNumber(numContributions)}</TextValue>
+          {numContributions != null ? (
+            <TextValue>{numContributions.toLocaleString('en-US')}</TextValue>
+          ) : (
+            <CustomSpinner color="accent-1" />
+          )}
           <TextLabel>contributions</TextLabel>
         </div>
         <div>
-          <TextValue>{formatNumber(stackedAmount)}</TextValue>
+          {stackedAmount != null ? (
+            <TextValue>{stackedAmount.toLocaleString('en-US')}</TextValue>
+          ) : (
+            <CustomSpinner color="accent-1" />
+          )}
           <TextLabel>DOT staked</TextLabel>
         </div>
         <div>
-          <TextValue>200k</TextValue>
+          {maxCap != null ? (
+            <TextValue>{maxCap.toLocaleString('en-US')}</TextValue>
+          ) : (
+            <CustomSpinner color="accent-1" />
+          )}
           <TextLabel>DOT maximum cap</TextLabel>
         </div>
       </ProgressRow>
-      <AuctionProgressBar maxCap={maxCap} stackedAmount={stackedAmount} />
+      <AuctionProgressBar maxCap={maxCap || 0} stackedAmount={stackedAmount || 0} />
     </AuctionStatusProgressStyled>
   );
 };

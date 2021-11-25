@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "grommet";
 
@@ -7,6 +7,8 @@ import funnelDesktop from "../../../images/parachain-crowdloan/funnel-desktop.sv
 import { mediaGreaterThan } from "../shared/media";
 import { AuctionStatusProgress } from "./AuctionStatusProgress";
 import { useCountdownContext } from "../CountdownContext";
+import { CROWDLOAN_MAX_CAP, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
+import BigNumber from "bignumber.js";
 
 const AuctionStatusStyled = styled.div`
   color: #ffffff;
@@ -97,6 +99,23 @@ export const AuctionStatus: React.FC = () => {
     daysUntilAuction,
   } = useCountdownContext();
 
+  const [numContributions, setNumContributions] = useState<number>();
+  const [totalStacked, setTotalStacked] = useState<number>();
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        '/.netlify/functions/getNumberOfContributions' + `?parachain=${PARACHAIN_NAME}`,
+      );
+
+      const json = await response.json();
+
+      setNumContributions(json.numberOfContributions);
+
+      setTotalStacked((new BigNumber(json.totalStaked)).div(DOT_PLANCK).toNumber())
+    })();
+  }, []);
+
   return (
     <AuctionStatusStyled>
       <div>
@@ -129,9 +148,9 @@ export const AuctionStatus: React.FC = () => {
 
       {isAuctionStarted && (
         <AuctionStatusProgress
-          maxCap={200000}
-          stackedAmount={100000}
-          numContributions={1268}
+          maxCap={CROWDLOAN_MAX_CAP}
+          stackedAmount={totalStacked}
+          numContributions={numContributions}
         />
       )}
     </AuctionStatusStyled>
