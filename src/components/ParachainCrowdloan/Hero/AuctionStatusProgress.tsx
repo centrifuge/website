@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { AuctionProgressBar } from "./AuctionProgressBar";
 import { Spinner } from "grommet";
+import { formatDOT } from "../shared/format";
 
 const AuctionStatusProgressStyled = styled.div``;
 
@@ -62,7 +63,7 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
         </div>
         <div>
           {stackedAmount != null ? (
-            <TextValue>{stackedAmount.toLocaleString('en-US')}</TextValue>
+            <TextValue>{formatDOT(stackedAmount, 2, true)}</TextValue>
           ) : (
             <CustomSpinner color="accent-1" />
           )}
@@ -70,8 +71,8 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
         </div>
         <div>
           {maxCap != null ? (
-            <TextValue>{maxCap.toLocaleString('en-US')}</TextValue>
-          ) : (
+            <TextValue>{formatDOT(maxCap, 0, true)}</TextValue>
+            ) : (
             <CustomSpinner color="accent-1" />
           )}
           <TextLabel>DOT maximum cap</TextLabel>
