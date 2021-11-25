@@ -1,5 +1,6 @@
 import { encodeAddress } from "@polkadot/util-crypto";
 import BigNumber from "bignumber.js";
+import { CFG_PLANCK, DOT_PLANCK } from "./const";
 
 export function truncateAddress(address: string) {
   const encodedAddress = encodeAddress(address);
@@ -14,7 +15,7 @@ export function formatNumber(n: number) {
 }
 
 export const formatDOT = (value: string) =>
-  new BigNumber(value).dividedBy(10 ** 12).toFormat(0);
+  new BigNumber(value).div(DOT_PLANCK).toFormat(0);
 
 export const formatCFG = (value: string) =>
-  new BigNumber(value).dividedBy(10 ** 12).toFormat(0);
+  new BigNumber(value).div(CFG_PLANCK).toFormat(0);

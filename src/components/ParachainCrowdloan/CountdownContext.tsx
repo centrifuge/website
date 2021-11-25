@@ -16,20 +16,20 @@ const AUCTION_DURATION_DAYS = 7;
 // // DEBUG: Auction starts in 5 seconds
 // const AUCTION_START_DATE = new Date(Date.now() + 5000);
 
-// DEBUG: Auction started | MID Early Bird phase
-const AUCTION_START_DATE = new Date(
-  Date.now() - (EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000) / 2
-);
+// // DEBUG: Auction started | MID Early Bird phase
+// const AUCTION_START_DATE = new Date(
+//   Date.now() - (EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000) / 2
+// );
 
 // // DEBUG: Auction started | Early Bird phase EXPIRED
 // const AUCTION_START_DATE = new Date(
 //   Date.now() - EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000
 // );
 
-// // DEBUG: Auction ended
-// const AUCTION_START_DATE = new Date(
-//   Date.now() - AUCTION_DURATION_DAYS * 29 * 60 * 60 * 10000
-// );
+// DEBUG: Auction ended
+const AUCTION_START_DATE = new Date(
+  Date.now() - AUCTION_DURATION_DAYS * 29 * 60 * 60 * 10000
+);
 
 const EARLY_BIRD_END_DATE = new Date(
   AUCTION_START_DATE.getTime() + EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000

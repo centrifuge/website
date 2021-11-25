@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { TopList } from "../shared/Leaderboard";
 import { formatDOT, truncateAddress } from "../shared/format";
+import { PARACHAIN_NAME } from "../shared/const";
 
 type TopContributorsResponse = {
   numberOfContributions: number;
@@ -15,10 +16,10 @@ export const TopContributors: React.FC = () => {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "/.netlify/functions/getTopContributorsCfg",
+        "/.netlify/functions/getTopContributors",
         {
           method: "POST",
-          body: JSON.stringify({ amount: 5 }),
+          body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
         }
       );
 
