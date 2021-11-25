@@ -130,6 +130,7 @@ export const HeaderWallet = () => {
             >
               {accounts!.map((acc) => (
                 <MenuItem
+                  key={acc.address}
                   onClick={() => {
                     setOpen(false);
                     selectAccount(acc.address);

@@ -22,11 +22,20 @@ import { usePolkadotApi } from "../PolkadotApiProvider";
 import { Signer } from "@polkadot/types/types";
 import { Alert } from "grommet-icons";
 import { InsufficientFundsWarning } from "./InsufficientFundsWarning";
-import { MAILCHIMP_URL, PARACHAIN_ID } from "../shared/const";
+import {
+  DOT_PLANCK,
+  MAILCHIMP_URL,
+  MIN_CONTRIBUTION_PLANCK,
+  MIN_CONTRIBUTION_DOT,
+  PARACHAIN_ID,
+} from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
 import { ContributionOutcome } from "./Content";
+
+const formatBigNumber = (bn?: BigNumber): string =>
+  bn ? bn.div(DOT_PLANCK).toString() : "";
 
 const validateReferralCode = (value: string) => {
   if (value && (value.length !== 20 || !validReferralCode.test(value))) {
@@ -41,7 +50,11 @@ const validateEmailAddress = (value: string) => {
 };
 
 const validateDotAmount = (value: string) => {
-  if (!value || !validDOTReg.test(value) || parseFloat(value) < 0.1) {
+  if (
+    !value ||
+    !validDOTReg.test(value) ||
+    parseFloat(value) < MIN_CONTRIBUTION_DOT
+  ) {
     return { status: "error", message: "Enter a valid amount of DOT" };
   }
 };
@@ -85,9 +98,6 @@ const UnderlineTextButton = styled.button`
   }
 `;
 
-const formatBigNumber = (bn?: BigNumber): string =>
-  bn ? bn.div(1e12).toString() : "";
-
 type StakeFormProps = {
   setContributionOutcome: (outcome: ContributionOutcome) => void;
 };
@@ -100,14 +110,14 @@ export const StakeForm: React.FC<StakeFormProps> = ({
 
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState<string>();
-  const [balanceLoading, setBalanceLoading] = useState(true);
 
   const [emailAddress, setEmailAddress] = useState("");
   const [freeBalance, setFreeBalance] = useState<BigNumber>();
   const [injector, setInjector] = useState<{ signer: Signer }>();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [dotAmount, setDotAmount] = useState<string>("0.1");
+  const [dotAmount, setDotAmount] = useState<string>(`${MIN_CONTRIBUTION_DOT}`);
   const [gasFee, setGasFee] = useState<BigNumber>();
+  const [minimumBalance, setMinimumBalance] = useState<BigNumber>();
   const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
     false
   );
@@ -117,9 +127,10 @@ export const StakeForm: React.FC<StakeFormProps> = ({
   const [referralCode, setReferralCode] = useState(referralCodeParam || "");
 
   useEffect(() => {
-    setBalanceLoading(true);
     (async () => {
       if (selectedAccount?.address && api) {
+        setFreeBalance(undefined); // set balance as loading
+
         const web3Injector = await web3FromAddress(selectedAccount?.address);
 
         const balances = await api.query.system.account(
@@ -129,8 +140,6 @@ export const StakeForm: React.FC<StakeFormProps> = ({
         setInjector(web3Injector);
 
         setFreeBalance(new BigNumber(balances.data.free.toString()));
-
-        setBalanceLoading(false);
       }
     })();
   }, [api, selectedAccount]);
@@ -150,7 +159,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
 
     const contributeTransaction = api.tx.crowdloan.contribute(
       PARACHAIN_ID,
-      parseFloat(dotAmount) * 1e12,
+      parseFloat(dotAmount) * DOT_PLANCK,
       null
     );
 
@@ -211,7 +220,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
       if (api && selectedAccount) {
         const contributeTransaction = api.tx.crowdloan.contribute(
           PARACHAIN_ID,
-          parseFloat(dotAmount) * 1e12,
+          parseFloat(dotAmount) * DOT_PLANCK,
           null
         );
 
@@ -223,15 +232,24 @@ export const StakeForm: React.FC<StakeFormProps> = ({
           .batchAll([contributeTransaction, memoTransaction])
           .paymentInfo(selectedAccount?.address);
 
-        setGasFee(new BigNumber(gasFeeResponse.partialFee.toString()));
+        const gasFeeBN = new BigNumber(gasFeeResponse.partialFee.toString());
+        setGasFee(gasFeeBN);
+        setMinimumBalance(gasFeeBN.plus(MIN_CONTRIBUTION_PLANCK));
       }
     })();
   }, [api, referralCode, selectedAccount?.address]);
 
-  const isFormEnabled = useMemo(() => !!(api && selectedAccount?.address), [
-    api,
-    selectedAccount?.address,
-  ]);
+  const isFormEnabled = useMemo(
+    () =>
+      !!(
+        api &&
+        selectedAccount?.address &&
+        freeBalance &&
+        minimumBalance &&
+        freeBalance.gte(minimumBalance)
+      ),
+    [api, selectedAccount?.address, freeBalance, minimumBalance]
+  );
 
   if (!isWeb3Injected || !api) {
     return (
@@ -266,7 +284,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
               <FormField
                 name="polkadot"
                 htmlFor="polkadot"
-                label="Amount (minimum of 0.1 DOT)"
+                label={`Amount (minimum of ${MIN_CONTRIBUTION_DOT} DOT)`}
                 validate={(value) => validateDotAmount(value)}
               >
                 <TextInput
@@ -277,7 +295,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                       <span style={{ paddingLeft: "8px" }}>DOT</span>
                     </>
                   }
-                  placeholder="0.1"
+                  placeholder={MIN_CONTRIBUTION_DOT}
                   reverse
                   id="polkadot"
                   name="polkadot"
@@ -291,10 +309,10 @@ export const StakeForm: React.FC<StakeFormProps> = ({
               <Box direction="row" justify="between" pad="0 12px">
                 <Grid columns={["102px", "auto"]}>
                   <Text>Your balance:</Text>
-                  {balanceLoading ? (
-                    <CustomSpinner />
-                  ) : (
+                  {freeBalance ? (
                     formatBigNumber(freeBalance)
+                  ) : (
+                    <CustomSpinner />
                   )}
                 </Grid>
                 <UnderlineTextButton
@@ -311,12 +329,8 @@ export const StakeForm: React.FC<StakeFormProps> = ({
 
               <Box>
                 {freeBalance &&
-                gasFee &&
-                parseFloat(dotAmount) <
-                  freeBalance
-                    .minus(gasFee)
-                    .div(1e12)
-                    .toNumber() ? (
+                minimumBalance &&
+                freeBalance.lt(minimumBalance) ? (
                   <InsufficientFundsWarning gasFee={formatBigNumber(gasFee)} />
                 ) : null}
               </Box>

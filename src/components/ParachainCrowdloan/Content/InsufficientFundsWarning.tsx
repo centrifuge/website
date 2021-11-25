@@ -12,7 +12,6 @@ export const InsufficientFundsWarning: React.FC<InsufficientFundsWarningProps> =
     <Box
       background={{ color: "#FFF0D6" }}
       style={{
-        width: "500px",
         padding: "24px",
         borderRadius: "4px",
         marginTop: "24px",

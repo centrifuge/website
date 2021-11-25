@@ -6,6 +6,13 @@ export const TRANSACTION_DETAILS_URL = `https://polkadot.js.org/apps/?rpc=${enco
   WS_PROVIDER
 )}#/explorer/query`;
 
+// @see https://wiki.polkadot.network/docs/learn-DOT
+export const DOT_PLANCK = 1e10;
+
+// the minimum contribution is 0.1 DOT
+export const MIN_CONTRIBUTION_PLANCK = DOT_PLANCK * 0.1;
+export const MIN_CONTRIBUTION_DOT = MIN_CONTRIBUTION_PLANCK / DOT_PLANCK;
+
 // NOTE: the following values are placeholders.
 // As soon as they are available (e.g. after we register), replace them with the correct ones
 
