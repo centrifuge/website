@@ -49,16 +49,6 @@ const validateEmailAddress = (value: string) => {
   }
 };
 
-const validateDotAmount = (value: string) => {
-  if (
-    !value ||
-    !validDOTReg.test(value) ||
-    parseFloat(value) < MIN_CONTRIBUTION_DOT
-  ) {
-    return { status: "error", message: "Enter a valid amount of DOT" };
-  }
-};
-
 const UnexpectedError: React.FC<{ errorMessage: string }> = ({
   errorMessage,
 }) => {
@@ -239,6 +229,20 @@ export const StakeForm: React.FC<StakeFormProps> = ({
     })();
   }, [api, referralCode, selectedAccount?.address]);
 
+  const validateDotAmount = (value: string) => {
+    if (
+      !value ||
+      !validDOTReg.test(value) ||
+      parseFloat(value) < MIN_CONTRIBUTION_DOT
+    ) {
+      return { status: "error", message: "Enter a valid amount of DOT" };
+    }
+
+    if (parseFloat(value) > (freeBalance?.div(DOT_PLANCK).toNumber() || 0)) {
+      return { status: "error", message: "Insufficient balance" };
+    }
+  };
+
   const isFormEnabled = useMemo(
     () =>
       !!(
@@ -306,7 +310,12 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                   value={dotAmount}
                 />
               </FormField>
-              <Box direction="row" justify="between" pad="0 12px">
+              <Box
+                direction="row"
+                justify="between"
+                pad="0 12px"
+                margin={{ bottom: "32px" }}
+              >
                 <Grid columns={["102px", "auto"]}>
                   <Text>Your balance:</Text>
                   {freeBalance ? (
@@ -340,6 +349,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                 name="referralCode"
                 htmlFor="referralCode"
                 validate={(value) => validateReferralCode(value)}
+                margin={{ bottom: "32px" }}
               >
                 <TextInput
                   disabled={!isFormEnabled}
@@ -357,6 +367,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                 name="emailAddress"
                 htmlFor="emailAddress"
                 validate={(value) => validateEmailAddress(value)}
+                margin={{ bottom: "32px" }}
               >
                 <TextInput
                   disabled={!isFormEnabled}
@@ -378,6 +389,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                   <span>
                     I agree to the{" "}
                     <UnderlineTextButton
+                      type="button"
                       onClick={() => {
                         setShowConditionsModal(true);
                       }}
