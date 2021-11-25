@@ -3,14 +3,7 @@ require("dotenv").config({
 });
 import axios from "axios";
 import postgres from "postgres";
-
-const sql = postgres({
-  database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
-  host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
-  password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
-  port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
-  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
-});
+import { getConfig } from "./crowdloan/config";
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -20,11 +13,15 @@ exports.handler = async (event) => {
     };
   }
 
-  const { amount } = JSON.parse(event.body);
+  const { amount, parachain } = JSON.parse(event.body);
 
-  const { data: contributions } = await axios(
-    "https://crowdloan-ws.centrifuge.io/contributions"
+  const { POSTGRES_CONFIG, REFERRAL_TABLE_NAME, URL_CONTRIBUTIONS } = getConfig(
+    parachain
   );
+
+  const sql = postgres(POSTGRES_CONFIG);
+
+  const { data: contributions } = await axios(URL_CONTRIBUTIONS);
 
   const referrerCount = contributions.reduce((acc, cur) => {
     if (acc[cur.referralCode]) {
@@ -44,7 +41,9 @@ exports.handler = async (event) => {
 
   const getValidReferralCodes = async () => {
     const results = await sql`
-    select referral_code, wallet_address from altair where referral_code = any('{${sql(
+    select referral_code, wallet_address from ${sql(
+      REFERRAL_TABLE_NAME
+    )} where referral_code = any('{${sql(
       Object.keys(referrerCount)
     )}}'::varchar[])
   `;

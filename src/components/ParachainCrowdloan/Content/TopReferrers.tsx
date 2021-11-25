@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { TopList } from "../shared/Leaderboard";
 import { truncateAddress } from "../shared/format";
+import { PARACHAIN_NAME } from "../shared/const";
 
 type TopReferrersResponse = {
   numberOfTimesUsed: number;
@@ -11,9 +12,9 @@ export const TopReferrers: React.FC = () => {
   const [topReferrers, setTopReferrers] = useState<TopReferrersResponse>();
   useEffect(() => {
     (async () => {
-      const response = await fetch("/.netlify/functions/getTopReferrersCfg", {
+      const response = await fetch("/.netlify/functions/getTopReferrers", {
         method: "POST",
-        body: JSON.stringify({ amount: 5 }),
+        body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
       });
 
       const json = await response.json();

@@ -220,7 +220,7 @@ export const Crowdloan = () => {
     (async () => {
       const response = await fetch('/.netlify/functions/getTopReferrers', {
         method: 'POST',
-        body: JSON.stringify({ amount: 5 }),
+        body: JSON.stringify({ amount: 5, parachain: 'altair' }),
       });
 
       const json = await response.json();

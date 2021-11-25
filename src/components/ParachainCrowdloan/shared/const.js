@@ -1,6 +1,9 @@
 export const MAILCHIMP_URL =
   "https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=ee9cca24fc";
 
+export const PARACHAIN_NAME = "centrifuge";
+
+
 export const WS_PROVIDER = "wss://rpc.polkadot.io";
 export const TRANSACTION_DETAILS_URL = `https://polkadot.js.org/apps/?rpc=${encodeURIComponent(
   WS_PROVIDER
@@ -18,3 +21,4 @@ export const MIN_CONTRIBUTION_DOT = MIN_CONTRIBUTION_PLANCK / DOT_PLANCK;
 
 // TODO: replace with the correct values for this crowdloan
 export const PARACHAIN_ID = 2006; // TODO: THIS IS ALSTAR PARACHAIN ID, USED FOR TESTING PURPOSES. REPLACE IT WITH OUR PARACHAIN_ID AFTER REGISTERING
+
