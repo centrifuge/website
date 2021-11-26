@@ -159,8 +159,10 @@ export const Contribute = () => {
         )}
       </CentralCol>
 
-      <RightCol>
-        <YourContribution />
+      <RightCol> 
+        {isAuctionStarted && (
+          <YourContribution />
+        )}
       </RightCol>
     </ContributeStyled>
   );

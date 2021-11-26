@@ -1,8 +1,10 @@
+import { encodeAddress } from "@polkadot/util-crypto";
 import BigNumber from "bignumber.js";
 import { Spinner } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useWeb3 } from "../../Web3Provider";
+import { PARACHAIN_NAME } from "../shared/const";
 import { formatCFG, formatDOT } from "../shared/format";
 import { mediaGreaterThan } from "../shared/media";
 
@@ -62,7 +64,7 @@ type StatType = {
 const Stat: React.FC<StatType> = ({ value, label }) => (
   <StatsItem>
     <TextHeading2>
-      {value ? formatCFG("7253745726354") : <CustomSpinner color="brand" />} CFG
+      {value ? formatCFG(value, 2) : <CustomSpinner color="brand" />} CFG
     </TextHeading2>
     <TextLabel>{label}</TextLabel>
   </StatsItem>
@@ -82,36 +84,29 @@ export const YourContribution = () => {
   const [totalRewards, setTotalRewards] = useState<string>();
 
   useEffect(() => {
-    if (!selectedAccount?.address) {
-      return;
-    }
-    // const response = await fetch('/.netlify/functions/getRewardData', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     address: encodeAddress(selectedAccount.address, 2),
-    //   }),
-    // });
+    (async () => {
+      if (!selectedAccount?.address) {
+        return;
+      }
+      const response = await fetch('/.netlify/functions/getRewardData', {
+        method: 'POST',
+        body: JSON.stringify({
+          address: encodeAddress(selectedAccount.address, 2),
+          parachain: PARACHAIN_NAME,
+        }),
+      });
+  
+      const json = await response.json();
 
-    // const json = await response.json();
-
-    const json = {
-      contributionAmount: "123123123123123123",
-      earlyBirdBonus: "123123123123123123",
-      firstCrowdloanBonus: "123123123123123123",
-      numberOfReferrals: "123123123123123123",
-      referralBonus: "123123123123123123",
-    };
-
-    setTimeout(() => {
       setRewardsData(json);
 
       setTotalRewards(
         new BigNumber(json.earlyBirdBonus)
           .plus(json.firstCrowdloanBonus)
           .plus(json.referralBonus)
-          .toFormat(0)
+          .toFixed(0)
       );
-    }, 3000);
+    })()
   }, [selectedAccount?.address]);
 
   return (

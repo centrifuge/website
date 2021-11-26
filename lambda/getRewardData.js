@@ -6,26 +6,24 @@ import postgres from 'postgres';
 import { Keyring } from '@polkadot/api';
 import { u8aToHex } from '@polkadot/util';
 import { BigNumber } from 'bignumber.js';
+import { getConfig } from './crowdloan/config';
 
-const sql = postgres({
-  database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
-  host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
-  password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
-  port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
-  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
-});
+let curConfig = null;
+
 
 const getReferralCodes = async address => {
+  const { sql, REFERRAL_TABLE_NAME } = curConfig;
   const results = await sql`
-    select referral_code from altair where wallet_address = ${address}
+    select referral_code from ${sql(REFERRAL_TABLE_NAME)} where wallet_address = ${address}
   `;
 
   return results.map(result => result.referral_code);
 };
 
 const getValidReferralCodes = async referralCodes => {
+  const { sql, REFERRAL_TABLE_NAME } = curConfig;
   const results = await sql`
-      select referral_code, wallet_address from altair where referral_code = any('{${sql(
+      select referral_code, wallet_address from ${sql(REFERRAL_TABLE_NAME)} where referral_code = any('{${sql(
         referralCodes,
       )}}'::varchar[])
     `;
@@ -39,7 +37,7 @@ const getContributions = async address => {
 
   try {
     const { data } = await axios(
-      `https://crowdloan-ws.centrifuge.io/contributor?id=${hexPublicKey}`,
+      `${curConfig.URL_CONTRIBUTOR}?id=${hexPublicKey}`,
     );
 
     return data;
@@ -54,7 +52,7 @@ const getContributions = async address => {
 
 const getAllContributions = async () => {
   const { data } = await axios(
-    'https://crowdloan-ws.centrifuge.io/contributions',
+    curConfig.URL_CONTRIBUTIONS,
   );
 
   return data;
@@ -154,7 +152,10 @@ exports.handler = async event => {
     };
   }
 
-  const { address } = JSON.parse(event.body);
+  const { address, parachain } = JSON.parse(event.body);
+
+  curConfig = getConfig(parachain);
+  curConfig.sql = postgres(curConfig.POSTGRES_CONFIG);
 
   const referralCodes = await getReferralCodes(address);
 

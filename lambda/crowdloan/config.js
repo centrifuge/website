@@ -13,20 +13,13 @@ const POSTGRES_CONFIG = {
   username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
 };
 
-console.log({
-  database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
-  host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
-  password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
-  port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
-  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
-});
-
 const configs = {
   altair: {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "altair",
     REFERRAL_CODES_BUCKET: "altair_referral_codes",
     URL_CONTRIBUTIONS: "https://crowdloan-ws.centrifuge.io/contributions",
+    URL_CONTRIBUTOR: "https://crowdloan-ws.centrifuge.io/contributor",
   },
   centrifuge: {
     POSTGRES_CONFIG,
@@ -35,6 +28,7 @@ const configs = {
 
     // TODO: replace with new contributions web service
     URL_CONTRIBUTIONS: "https://crowdloan-ws.centrifuge.io/contributions",
+    URL_CONTRIBUTOR: "https://crowdloan-ws.centrifuge.io/contributor",
   },
 };
 
