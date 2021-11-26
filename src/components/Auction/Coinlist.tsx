@@ -172,6 +172,7 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
   async function getClaimed(address: string) {
     const api = await getApi();
 
+    // TODO: update with correct extrinsic
     const didClaim = await api.query.crowdloanClaim.processedClaims([
       address,
       1,
