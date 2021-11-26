@@ -9,6 +9,7 @@ import { AuctionStatusProgress } from "./AuctionStatusProgress";
 import { useCountdownContext } from "../CountdownContext";
 import { CROWDLOAN_MAX_CAP, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
 import BigNumber from "bignumber.js";
+import { formatShortDate } from "../shared/format";
 
 const AuctionStatusStyled = styled.div`
   color: #ffffff;
@@ -97,6 +98,7 @@ export const AuctionStatus: React.FC = () => {
     isEarlyBird,
     earlyBirdHoursLeft,
     daysUntilAuction,
+    auctionStartDate,
   } = useCountdownContext();
 
   const [numContributions, setNumContributions] = useState<number>();
@@ -122,7 +124,7 @@ export const AuctionStatus: React.FC = () => {
         <Heading1>
           {isAuctionStarted
             ? "Auction in progress..."
-            : "Crowdloan opens on Dec 15!"}
+            : `Crowdloan opens on ${formatShortDate(auctionStartDate)}!`}
         </Heading1>
       </div>
       <CountdownRow>
@@ -140,7 +142,7 @@ export const AuctionStatus: React.FC = () => {
           <Button
             primary
             color="brand"
-            label="Learn more about Centrifuge chain"
+            label="Learn more"
             href="/"
           />
         )}

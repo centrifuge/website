@@ -14,18 +14,24 @@ export function formatNumber(n: number) {
   return n.toLocaleString();
 }
 
+const createFormatNum = (planck: number) => (
+  value: number | BigNumber | string,
+  decimals?: number,
+  unit?: boolean
+) => {
+  let bn =
+    typeof value === "number"
+      ? new BigNumber(value * planck)
+      : new BigNumber(value);
 
-const createFormatNum = (planck: number) => (value: number | BigNumber | string, decimals?: number, unit?: boolean) => {
-  let bn = typeof value === 'number' ? new BigNumber(value * planck) : new BigNumber(value);
-
-  let unitLetter = '';
+  let unitLetter = "";
   if (unit) {
     const unitsArray = Object.entries({
       b: 1e9,
       m: 1e6,
       k: 1e3,
     });
-  
+
     for (let i = 0; i < unitsArray.length; i += 1) {
       const [letter, base] = unitsArray[i];
       if (bn.gt(planck * base)) {
@@ -36,11 +42,30 @@ const createFormatNum = (planck: number) => (value: number | BigNumber | string,
     }
   }
 
-
-  const str = `${bn.div(planck).toFixed(decimals || 0)}`.replace(/\.0+$/, '');
-  return `${str}${unitLetter || ''}`;
-}
+  const str = `${bn.div(planck).toFixed(decimals || 0)}`.replace(/\.0+$/, "");
+  return `${str}${unitLetter || ""}`;
+};
 
 export const formatDOT = createFormatNum(DOT_PLANCK);
 
 export const formatCFG = createFormatNum(CFG_PLANCK);
+
+// Dates
+
+const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const monthName = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+export const formatShortDate = (date: Date) =>
+  `${dayName[date.getDay()]}, ${date.getDate()} ${monthName[date.getMonth()]}`;
