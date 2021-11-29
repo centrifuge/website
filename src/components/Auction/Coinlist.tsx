@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
       <Section>
         <Box direction="row" gap="32px">
           <Box direction="column" gap="32px">
-            <Text size="48px" weight={600} textAlign="start">
+            <Text size="3xl" weight={600} textAlign="start">
               CoinList User AIR Snapshot Claim
             </Text>
             <Text size="xlarge" weight={600} style={{ lineHeight: 2.4 }}>
@@ -150,7 +150,7 @@ const Claim: React.FC = () => {
           </Text>
         </Box>
       ) : (
-        <div>
+        <div style={{ alignSelf: "flex-start" }}>
           <Button
             primary
             color="altair"
