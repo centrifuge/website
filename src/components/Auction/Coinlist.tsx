@@ -14,6 +14,7 @@ import faq from "../../images/altair/faq.svg";
 import hello_world from "../../images/altair/hello_world.png";
 import { Section } from "../MDXLayout/shortcodes";
 import { useWeb3, Web3Provider } from "../Web3Provider";
+import { ClaimModal } from "./ClaimModal";
 import { MediaCard } from "./MediaCard";
 
 const JSONbig = require("json-bigint")({
@@ -166,13 +167,13 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
   const { web3FromAddress } = useWeb3();
   const [hasClaimed, setHasClaimed] = React.useState(false);
   const [isClaiming, setIsClaiming] = React.useState(false);
+  const [showClaimModal, setShowClaimModal] = React.useState(false);
   const [claimHash, setClaimHash] = React.useState("");
   const [claimError, setClaimError] = React.useState("");
 
   async function getClaimed(address: string) {
     const api = await getApi();
 
-    // TODO: update with correct extrinsic
     const didClaim = await api.query.crowdloanClaim.processedClaims([
       address,
       1,
@@ -191,11 +192,12 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
       const api = await getApi();
       const injector = await web3FromAddress(address);
 
-      // TODO: update with correct lambda
-      const response = await fetch("/.netlify/functions/createProof", {
+      const response = await fetch("/.netlify/functions/createCoinlistProof", {
         method: "POST",
         body: JSON.stringify({ address: address }),
       });
+
+      if (!response.ok) throw new Error("Claim not found");
 
       const text = await response.text();
 
@@ -265,10 +267,12 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
                 );
 
                 const errorInfo = `${decoded.section}.${decoded.name}`;
+                console.error(errorInfo);
                 setClaimError(errorInfo);
                 setIsClaiming(false);
               } else {
                 const errorInfo = dispatchError.toString();
+                console.error(errorInfo);
                 setClaimError(errorInfo);
                 setIsClaiming(false);
               }
@@ -277,6 +281,7 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
         }
       });
     } catch (e) {
+      console.error(e);
       setIsClaiming(false);
       setClaimError(e.message);
     }
@@ -294,12 +299,18 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
             disabled={hasClaimed}
             primary
             label="Claim AIR"
-            onClick={() => claim()}
+            onClick={() => setShowClaimModal(true)}
           />
         </div>
       )}
       {hasClaimed && <ClaimSuccess claimHash={claimHash} />}
       {claimError && <ClaimError />}
+      {showClaimModal && (
+        <ClaimModal
+          claimRewards={claim}
+          setShowClaimModal={setShowClaimModal}
+        />
+      )}
     </>
   );
 };
