@@ -72,23 +72,13 @@ const PulsingDot = styled.div`
 
   background: rgba(216, 23, 108, 1);
   box-shadow: 0 0 0 0 rgba(216, 23, 108, 1);
-  animation: pulse-red 2s infinite;
+  animation: live-pulse 1s infinite;
 
-  @keyframes pulse-red {
-    0% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(216, 23, 108, 0.7);
-    }
-
-    70% {
-      transform: scale(1);
-      box-shadow: 0 0 0 10px rgba(216, 23, 108, 0);
-    }
-
-    100% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(216, 23, 108, 0);
-    }
+  @keyframes live-pulse {
+    0% { opacity: 1 }
+    10% { opacity: .25 }
+    40% { opacity: 1 }
+    100% { opacity: 1 }
   }
 `;
 
