@@ -11,18 +11,21 @@ import { CROWDLOAN_MAX_CAP, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
 import BigNumber from "bignumber.js";
 import { formatShortDate } from "../shared/format";
 
-const AuctionStatusStyled = styled.div`
+const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
   color: #ffffff;
   background-color: #000;
   background-repeat: no-repeat;
   background-position: bottom right;
-  background-image: url(${funnelMobile});
+
+  ${({ isAuctionStarted }) =>
+    isAuctionStarted ? "" : `background-image: url(${funnelMobile});`}
 
   text-align: center;
   padding: 24px 16px;
 
   ${mediaGreaterThan("small")} {
-    background-image: url(${() => funnelDesktop});
+    ${({ isAuctionStarted }) =>
+      isAuctionStarted ? "" : `background-image: url(${funnelDesktop});`}
     padding: 60px 16px;
   }
 `;
@@ -75,10 +78,18 @@ const PulsingDot = styled.div`
   animation: live-pulse 1s infinite;
 
   @keyframes live-pulse {
-    0% { opacity: 1 }
-    10% { opacity: .25 }
-    40% { opacity: 1 }
-    100% { opacity: 1 }
+    0% {
+      opacity: 1;
+    }
+    10% {
+      opacity: 0.25;
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;
 
@@ -97,19 +108,22 @@ export const AuctionStatus: React.FC = () => {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        '/.netlify/functions/getNumberOfContributions' + `?parachain=${PARACHAIN_NAME}`,
+        "/.netlify/functions/getNumberOfContributions" +
+          `?parachain=${PARACHAIN_NAME}`
       );
 
       const json = await response.json();
 
       setNumContributions(json.numberOfContributions);
 
-      setTotalStacked((new BigNumber(json.totalStaked)).div(DOT_PLANCK).toNumber())
+      setTotalStacked(
+        new BigNumber(json.totalStaked).div(DOT_PLANCK).toNumber()
+      );
     })();
   }, []);
 
   return (
-    <AuctionStatusStyled>
+    <AuctionStatusStyled isAuctionStarted={isAuctionStarted}>
       <div>
         <Heading1>
           {isAuctionStarted
@@ -129,12 +143,7 @@ export const AuctionStatus: React.FC = () => {
       </CountdownRow>
       <ButtonRow>
         {!isAuctionStarted && (
-          <Button
-            primary
-            color="brand"
-            label="Learn more"
-            href="/"
-          />
+          <Button primary color="brand" label="Learn more" href="/" />
         )}
       </ButtonRow>
 
