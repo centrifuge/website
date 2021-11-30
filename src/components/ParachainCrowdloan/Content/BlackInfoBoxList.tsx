@@ -15,7 +15,7 @@ const BlackInfoBox = styled.div`
   background-color: #000;
   color: #fff;
   border: 2px solid #000000;
-  border-radius: 2px;
+  border-radius: 6px;
   padding: 10px 16px;
 
   .text-top {

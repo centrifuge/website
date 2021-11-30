@@ -24,6 +24,7 @@ const YourContributionStyled = styled.div`
   flex-direction: column;
   gap: 24px;
   background: #f8f8f8;
+  border-radius: 6px;
   padding: 24px;
   min-height: 473px;
 
@@ -43,7 +44,7 @@ const TextHeading2 = styled.span`
 const TextLabel = styled.span`
   font-size: 16px;
   line-height: 22px;
-  font-weight: 600;
+  font-weight: 500;
 
   color: #757575;
 `;
@@ -133,12 +134,6 @@ export const YourContribution: React.FC<{}> = () => {
 
     const curEarlyBirdBonus = curStakingBonus.times(earlyBirdFactor);
     const totalEarlyBirdBonus = curEarlyBirdBonus.plus(dataEarlyBirdBonus);
-
-    console.log("curStakingBonus", curStakingBonus.toString());
-    console.log("curEarlyBirdBonus", curEarlyBirdBonus.toString());
-    console.log("dataEarlyBirdBonus", dataEarlyBirdBonus.toString());
-    console.log("earlyBirdFactor", earlyBirdFactor.toString());
-    console.log("totalEarlyBirdBonus", totalEarlyBirdBonus.toString());
 
     const curReferralBonus = curStakingBonus.times(referralFactor);
     const totalReferralBonus = curReferralBonus.plus(dataReferralBonus);

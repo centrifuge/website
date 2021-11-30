@@ -1,7 +1,7 @@
 import { Box } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { encodeAddress } from '@polkadot/util-crypto';
+import { encodeAddress } from "@polkadot/util-crypto";
 import { ResponsivePlayer } from "../../News";
 import { useWeb3 } from "../../Web3Provider";
 import { useCountdownContext } from "../CountdownContext";
@@ -121,7 +121,6 @@ export const Contribute = () => {
         console.error(error);
       }
     })();
-    
   }, [contributionOutcome?.hash, selectedAccount?.address]);
 
   return (
@@ -165,11 +164,7 @@ export const Contribute = () => {
         )}
       </CentralCol>
 
-      <RightCol> 
-        {isAuctionStarted && (
-          <YourContribution />
-        )}
-      </RightCol>
+      <RightCol>{isAuctionStarted && <YourContribution />}</RightCol>
     </ContributeStyled>
   );
 };
