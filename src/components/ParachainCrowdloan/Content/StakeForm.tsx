@@ -11,7 +11,6 @@ import {
   TextInput,
 } from "grommet";
 import React, { useEffect, useMemo, useState } from "react";
-import queryString from "query-string";
 import addToMailchimp from "gatsby-plugin-mailchimp";
 
 import polkadotLogo from "../../../images/parachain-crowdloan/polkadot-logo.svg";
@@ -33,6 +32,7 @@ import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
 import { ContributionOutcome } from "./Content";
+import { useStakeFormContext } from "../StakeFormContext";
 
 const formatBigNumber = (bn?: BigNumber): string =>
   bn ? bn.div(DOT_PLANCK).toString() : "";
@@ -98,23 +98,26 @@ export const StakeForm: React.FC<StakeFormProps> = ({
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
 
+  const {
+    dotAmount,
+    setDotAmount,
+    emailAddress,
+    setEmailAddress,
+    referralCode,
+    setReferralCode,
+  } = useStakeFormContext();
+
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState<string>();
 
-  const [emailAddress, setEmailAddress] = useState("");
   const [freeBalance, setFreeBalance] = useState<BigNumber>();
   const [injector, setInjector] = useState<{ signer: Signer }>();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [dotAmount, setDotAmount] = useState<string>(`${MIN_CONTRIBUTION_DOT}`);
   const [gasFee, setGasFee] = useState<BigNumber>();
   const [minimumBalance, setMinimumBalance] = useState<BigNumber>();
   const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
     false
   );
-
-  const referralCodeParam = queryString.parse(location.search).refer;
-
-  const [referralCode, setReferralCode] = useState(referralCodeParam || "");
 
   useEffect(() => {
     (async () => {

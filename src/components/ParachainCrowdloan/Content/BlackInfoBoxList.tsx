@@ -1,5 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import {
+  REWARD_CFG_PER_DOT,
+  REWARD_EARLY_BIRD_HOURS,
+  REWARD_EARLY_BIRD_PERCENT,
+  REWARD_REFERRAL_PERCENT,
+} from "../shared/const";
 
 import { mediaGreaterThan } from "../shared/media";
 
@@ -43,14 +49,14 @@ const BlackInfoBoxListStyled = styled.div`
 const BLACK_INFO_TEXT = [
   {
     title: "Staking reward",
-    desc: "400 CFG for each DOT staked",
+    desc: `${REWARD_CFG_PER_DOT} CFG for each DOT staked`,
   },
   {
-    title: "10% Early bird bonus",
-    desc: "Contribute within first 72 hrs of opening",
+    title: `${REWARD_EARLY_BIRD_PERCENT}% Early bird bonus`,
+    desc: `Contribute within first ${REWARD_EARLY_BIRD_HOURS} hrs of opening`,
   },
   {
-    title: "5% Referral reward",
+    title: `${REWARD_REFERRAL_PERCENT}% Referral reward`,
     desc: "Reward for both referrer and contributor",
   },
   {

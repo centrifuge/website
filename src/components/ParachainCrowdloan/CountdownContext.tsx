@@ -5,10 +5,11 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { REWARD_EARLY_BIRD_HOURS } from "./shared/const";
 
 const INTERVAL_UPDATE_COUNTERS_MS = 1000; // update counters every second
 
-const EARLY_BIRD_PERIOD_HOURS = 72;
+const EARLY_BIRD_PERIOD_HOURS = REWARD_EARLY_BIRD_HOURS;
 const AUCTION_DURATION_DAYS = 7;
 
 // const AUCTION_START_DATE = new Date("2021-12-15"); // real auction start
@@ -16,15 +17,15 @@ const AUCTION_DURATION_DAYS = 7;
 // // DEBUG: Auction starts in 5 seconds
 // const AUCTION_START_DATE = new Date(Date.now() + 5000);
 
-// DEBUG: Auction started | MID Early Bird phase
-const AUCTION_START_DATE = new Date(
-  Date.now() - (EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000) / 2
-);
-
-// // DEBUG: Auction started | Early Bird phase EXPIRED
+// // DEBUG: Auction started | MID Early Bird phase
 // const AUCTION_START_DATE = new Date(
-//   Date.now() - EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000
+//   Date.now() - (EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000) / 2
 // );
+
+// DEBUG: Auction started | Early Bird phase EXPIRED
+const AUCTION_START_DATE = new Date(
+  Date.now() - EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000
+);
 
 // // DEBUG: Auction ended
 // const AUCTION_START_DATE = new Date(

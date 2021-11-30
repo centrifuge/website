@@ -4,6 +4,7 @@ import Footer from "../Footer";
 import { Web3Provider } from "../Web3Provider";
 import { Contribute } from "./Content/Content";
 import { CountdownContextProvider } from "./CountdownContext";
+import { StakeFormContextProvider } from "./StakeFormContext";
 import { Header } from "./Header/Header";
 import { Hero } from "./Hero/Hero";
 import { PolkadotApiProvider } from "./PolkadotApiProvider";
@@ -15,17 +16,19 @@ export const Page = () => {
   return (
     <Web3Provider network="polkadot">
       <CountdownContextProvider>
-        <PolkadotApiProvider wsProviderUrl={WS_PROVIDER}>
-          <FixedHeader>
-            <Header />
-          </FixedHeader>
-          <PageWithFixedHeader>
-            <Hero />
-            <Contribute />
-            <RelatedResources />
-            <Footer />
-          </PageWithFixedHeader>
-        </PolkadotApiProvider>
+        <StakeFormContextProvider>
+          <PolkadotApiProvider wsProviderUrl={WS_PROVIDER}>
+            <FixedHeader>
+              <Header />
+            </FixedHeader>
+            <PageWithFixedHeader>
+              <Hero />
+              <Contribute />
+              <RelatedResources />
+              <Footer />
+            </PageWithFixedHeader>
+          </PolkadotApiProvider>
+        </StakeFormContextProvider>
       </CountdownContextProvider>
     </Web3Provider>
   );
