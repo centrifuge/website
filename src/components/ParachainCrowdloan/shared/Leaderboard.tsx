@@ -29,7 +29,9 @@ const AddressCol = styled.div`
   border-bottom: 1px solid #e0e0e0;
 `;
 
-const ContributionsCol = styled.div``;
+const ContributionsCol = styled.div`
+  border-bottom: 1px solid #e0e0e0;
+`;
 
 type TopListProps = {
   title: string;
