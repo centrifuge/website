@@ -192,7 +192,7 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
       const api = await getApi();
       const injector = await web3FromAddress(address);
 
-      const response = await fetch("/.netlify/functions/createCoinlistProof", {
+      const response = await fetch("/.netlify/functions/createProof", {
         method: "POST",
         body: JSON.stringify({ address: address }),
       });
