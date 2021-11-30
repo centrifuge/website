@@ -36,13 +36,10 @@ const TextLabel = styled.span`
   margin-left: 8px;
 `;
 
-const CustomSpinner = styled(Spinner)`
-  display: inline-block;
-  height: 5px;
-  width: 5px;
-  padding: 7px;
-  margin-top: 3px;
-  margin-left: 2px;
+const FadeInDiv = styled.div<{ show: boolean }>`
+  opacity: ${({ show }) => (show ? 1 : 0)};
+
+  transition: opacity 800ms ease-out;
 `;
 
 export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
@@ -53,32 +50,25 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
   return (
     <AuctionStatusProgressStyled>
       <ProgressRow>
-        <div>
-          {numContributions != null ? (
-            <TextValue>{numContributions.toLocaleString('en-US')}</TextValue>
-          ) : (
-            <CustomSpinner color="accent-1" />
-          )}
+        <FadeInDiv show={numContributions != null}>
+          <TextValue>
+            {numContributions != null &&
+              numContributions.toLocaleString("en-US")}
+          </TextValue>
           <TextLabel>contributions</TextLabel>
-        </div>
-        <div>
-          {stackedAmount != null ? (
-            <TextValue>{formatDOT(stackedAmount, 2, true)}</TextValue>
-          ) : (
-            <CustomSpinner color="accent-1" />
-          )}
+        </FadeInDiv>
+        <FadeInDiv show={stackedAmount != null}>
+          <TextValue>
+            {stackedAmount != null && formatDOT(stackedAmount, 2, true)}
+          </TextValue>
           <TextLabel>DOT staked</TextLabel>
-        </div>
-        <div>
-          {maxCap != null ? (
-            <TextValue>{formatDOT(maxCap, 0, true)}</TextValue>
-            ) : (
-            <CustomSpinner color="accent-1" />
-          )}
+        </FadeInDiv>
+        <FadeInDiv show={maxCap != null}>
+          <TextValue>{maxCap != null && formatDOT(maxCap, 0, true)}</TextValue>
           <TextLabel>DOT maximum cap</TextLabel>
-        </div>
+        </FadeInDiv>
       </ProgressRow>
-      <AuctionProgressBar maxCap={maxCap || 0} stackedAmount={stackedAmount || 0} />
+      <AuctionProgressBar maxCap={maxCap || 0} stackedAmount={stackedAmount} />
     </AuctionStatusProgressStyled>
   );
 };
