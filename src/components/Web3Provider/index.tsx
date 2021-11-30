@@ -19,13 +19,13 @@ type Web3ContextType = {
   web3FromAddress: (address: string) => Promise<InjectedExtension>;
 };
 
-const GENESIS_HASH = {
+const Web3Context = React.createContext<Web3ContextType>(null as any);
+
+const GENESIS_HASHES = {
   kusama: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe",
   polkadot:
     "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3",
 };
-
-const Web3Context = React.createContext<Web3ContextType>(null as any);
 
 export function useWeb3() {
   const ctx = React.useContext(Web3Context);
@@ -47,7 +47,7 @@ type Props = {
   ) => Promise<InjectedExtension[]>;
   web3EnablePromise: Promise<InjectedExtension[]> | null;
   web3FromAddress: (address: string) => Promise<InjectedExtension>;
-  network: keyof typeof GENESIS_HASH;
+  network: keyof typeof GENESIS_HASHES;
 };
 
 const Web3ProviderInner: React.FC<Props> = ({
@@ -67,11 +67,13 @@ const Web3ProviderInner: React.FC<Props> = ({
   const unsubscribeRef = React.useRef<(() => void) | null>();
 
   function setFilteredAccounts(accounts: Account[]) {
-    const filteredAccounts = accounts.filter(
-      (account) =>
-        !account.meta.genesisHash ||
-        account.meta.genesisHash === GENESIS_HASH[network]
-    );
+    const hash = GENESIS_HASHES[network];
+    const filteredAccounts = !hash
+      ? accounts
+      : accounts.filter(
+          (account) =>
+            !account.meta.genesisHash || account.meta.genesisHash === hash
+        );
 
     setAccounts(filteredAccounts);
     const persistedAddress = localStorage.getItem("web3PersistedAddress");
@@ -175,7 +177,7 @@ type PolkadotExtension = typeof import("@polkadot/extension-dapp");
 let mod: PolkadotExtension | null = null;
 
 type ProviderProps = {
-  network: keyof typeof GENESIS_HASH;
+  network: keyof typeof GENESIS_HASHES;
 };
 
 export const Web3Provider: React.FC<ProviderProps> = ({
@@ -191,14 +193,14 @@ export const Web3Provider: React.FC<ProviderProps> = ({
         setModule(m);
       });
     }
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!module) {
     return (
       <Web3Context.Provider
         value={{
-          accounts: [],
+          accounts: null,
           selectedAccount: null,
           isConnecting: false,
           isWeb3Injected: false,
