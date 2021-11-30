@@ -24,7 +24,7 @@ const ContributeStyled = styled.div`
   display: flex;
   flex-direction: column;
 
-  padding: 8px;
+  padding: 20px;
 
   ${mediaGreaterThan("small")} {
     flex-direction: row;
@@ -34,7 +34,7 @@ const ContributeStyled = styled.div`
   }
 
   ${mediaGreaterThan("medium")} {
-    padding: 48px;
+    padding: 38px;
     gap: 48px;
   }
 `;
@@ -49,6 +49,10 @@ const GetReadyWrapper = styled.div`
 const LeftCol = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${mediaGreaterThan("small")} {
+    padding-top: 26px;
+  }
 `;
 
 const CentralCol = styled.div`
@@ -59,6 +63,8 @@ const CentralCol = styled.div`
   min-width: 280px;
   ${mediaGreaterThan("small")} {
     max-width: 476px;
+    flex-grow: 1;
+    padding-top: 12px;
   }
 `;
 
