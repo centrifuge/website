@@ -363,7 +363,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                 />
               </FormField>
               <FormField
-                label="Stay up to date with the auction"
+                label="Stay up to date with the auction (optional)"
                 name="emailAddress"
                 htmlFor="emailAddress"
                 validate={(value) => validateEmailAddress(value)}
