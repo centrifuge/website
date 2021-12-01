@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { REWARD_EARLY_BIRD_HOURS } from "./shared/const";
+import { REWARD_EARLY_BIRD_HOURS } from "../const";
 
 const INTERVAL_UPDATE_COUNTERS_MS = 1000; // update counters every second
 

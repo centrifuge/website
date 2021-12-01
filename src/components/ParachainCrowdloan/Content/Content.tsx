@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { encodeAddress } from "@polkadot/util-crypto";
 import { ResponsivePlayer } from "../../News";
 import { useWeb3 } from "../../Web3Provider";
-import { useCountdownContext } from "../CountdownContext";
+import { useCountdownContext } from "../shared/context/CountdownContext";
+import { useStakeFormContext } from "../shared/context/StakeFormContext";
+
 import { mediaGreaterThan } from "../shared/media";
 import { BlackInfoBoxList } from "./BlackInfoBoxList";
 import { ExtensionMissing } from "./ExtensionMissing";
@@ -16,7 +18,6 @@ import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
 import { PARACHAIN_NAME } from "../shared/const";
-import { useStakeFormContext } from "../StakeFormContext";
 
 const ContributeStyled = styled.div`
   color: #000;

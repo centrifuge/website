@@ -6,7 +6,7 @@ import funnelMobile from "../../../images/parachain-crowdloan/funnel-mobile.svg"
 import funnelDesktop from "../../../images/parachain-crowdloan/funnel-desktop.svg";
 import { mediaGreaterThan } from "../shared/media";
 import { AuctionStatusProgress } from "./AuctionStatusProgress";
-import { useCountdownContext } from "../CountdownContext";
+import { useCountdownContext } from "../shared/context/CountdownContext";
 import { CROWDLOAN_MAX_CAP, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
 import BigNumber from "bignumber.js";
 import { formatShortDate } from "../shared/format";

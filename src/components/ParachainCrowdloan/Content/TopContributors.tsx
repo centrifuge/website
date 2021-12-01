@@ -14,19 +14,22 @@ export const TopContributors: React.FC = () => {
     TopContributorsResponse
   >();
   useEffect(() => {
+    let mounted = true;
     (async () => {
-      const response = await fetch(
-        "/.netlify/functions/getTopContributors",
-        {
-          method: "POST",
-          body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
-        }
-      );
+      const response = await fetch("/.netlify/functions/getTopContributors", {
+        method: "POST",
+        body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
+      });
 
       const json = await response.json();
 
-      setTopContributors(json);
+      if (mounted) {
+        setTopContributors(json);
+      }
     })();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const listItems = useMemo(

@@ -4,7 +4,9 @@ import { Spinner } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useWeb3 } from "../../Web3Provider";
-import { useCountdownContext } from "../CountdownContext";
+import { useCountdownContext } from "../shared/context/CountdownContext";
+import { useStakeFormContext } from "../shared/context/StakeFormContext";
+
 import {
   CFG_PLANCK,
   DOT_PLANCK,
@@ -17,7 +19,6 @@ import { formatCFG } from "../shared/format";
 import { mediaGreaterThan } from "../shared/media";
 
 import { TextSpan } from "../shared/TextSpan";
-import { useStakeFormContext } from "../StakeFormContext";
 
 const YourContributionStyled = styled.div`
   display: flex;

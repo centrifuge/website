@@ -91,7 +91,7 @@ export const RelatedResources = () => {
                 Real World Assets are Coming to Polkadot.
               </TextSpan>
 
-              <ExternalLink unstyled={false} href="https://parachains.info">
+              <ExternalLink unstyled={0} href="https://parachains.info">
                 <TextSpan
                   css={`
                     font-weight: 400;

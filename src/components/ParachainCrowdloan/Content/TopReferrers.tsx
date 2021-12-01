@@ -11,6 +11,7 @@ type TopReferrersResponse = {
 export const TopReferrers: React.FC = () => {
   const [topReferrers, setTopReferrers] = useState<TopReferrersResponse>();
   useEffect(() => {
+    let mounted = true;
     (async () => {
       const response = await fetch("/.netlify/functions/getTopReferrers", {
         method: "POST",
@@ -19,8 +20,13 @@ export const TopReferrers: React.FC = () => {
 
       const json = await response.json();
 
-      setTopReferrers(json);
+      if (mounted) {
+        setTopReferrers(json);
+      }
     })();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const listItems = useMemo(

@@ -17,7 +17,9 @@ import polkadotLogo from "../../../images/parachain-crowdloan/polkadot-logo.svg"
 import { validEmailReg, validDOTReg, validReferralCode } from "../shared/regex";
 import { useWeb3 } from "../../Web3Provider";
 
-import { usePolkadotApi } from "../PolkadotApiProvider";
+import { usePolkadotApi } from "../shared/context/PolkadotApiProvider";
+import { useStakeFormContext } from "../shared/context/StakeFormContext";
+
 import { Signer } from "@polkadot/types/types";
 import { Alert } from "grommet-icons";
 import { InsufficientFundsWarning } from "./InsufficientFundsWarning";
@@ -32,7 +34,6 @@ import {
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
-import { useStakeFormContext } from "../StakeFormContext";
 
 const formatBigNumber = (bn?: BigNumber): string =>
   bn ? bn.div(DOT_PLANCK).toString() : "";

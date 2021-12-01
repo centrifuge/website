@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useCountdownContext } from "../CountdownContext";
+import { useCountdownContext } from "../shared/context/CountdownContext";
 import { AuctionStatus } from "./AuctionStatus";
 import { AuctionEnded } from "./AuctionEnded";
 
