@@ -19,12 +19,15 @@ import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
 import { PARACHAIN_NAME } from "../shared/const";
 
+const mediaGreaterThanXS = "@media (min-width: 500px)";
+
 const ContributeStyled = styled.div`
   color: #000;
   background-color: #fff;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
 
   padding: 20px;
 
@@ -32,12 +35,10 @@ const ContributeStyled = styled.div`
     flex-direction: row;
     justify-content: space-around;
     padding: 16px;
-    gap: 16px;
   }
 
   ${mediaGreaterThan("medium")} {
     padding: 38px;
-    gap: 48px;
   }
 `;
 
@@ -49,30 +50,60 @@ const GetReadyWrapper = styled.div`
 `;
 
 const LeftCol = styled.div`
+  grid-column: 1 / span 12;
   display: flex;
   flex-direction: column;
 
   ${mediaGreaterThan("small")} {
+    grid-column: 1 / span 3;
     padding-top: 26px;
   }
 `;
 
+const ContribSection = styled.div`
+  grid-column: 1 / span 12;
+
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 16px;
+
+  ${mediaGreaterThan("small")} {
+    grid-column: 5 / span 8;
+  }
+`;
+
 const CentralCol = styled.div`
+  grid-column: 1 / span 12;
   display: flex;
   flex-direction: column;
   gap: 24px;
 
-  min-width: 280px;
+  width: 100%;
+
+  ${mediaGreaterThanXS} {
+    grid-column: 1 / span 5;
+  }
+
   ${mediaGreaterThan("small")} {
-    max-width: 476px;
     flex-grow: 1;
     padding-top: 12px;
   }
 `;
 
 const RightCol = styled.div`
+  display: grid;
+  justify-content: stretch;
+
+  grid-column: 1 / span 12;
   min-width: initial;
+
+  ${mediaGreaterThanXS} {
+    grid-column: 6 / span 3;
+  }
+
   ${mediaGreaterThan("small")} {
+    display: flex;
+    justify-content: flex-end;
     min-width: 180px;
   }
 `;
@@ -132,31 +163,35 @@ export const Contribute = () => {
         {!isAuctionEnded && <BlackInfoBoxList />}
       </LeftCol>
 
-      <CentralCol>
-        {!isWeb3Injected && <ExtensionMissing />}
+      <ContribSection>
+        <CentralCol>
+          {!isWeb3Injected && <ExtensionMissing />}
 
-        {contribHash && (
-          <ThanksForContribution amount={dotAmount} claimHash={contribHash} />
-        )}
+          {contribHash && (
+            <ThanksForContribution amount={dotAmount} claimHash={contribHash} />
+          )}
 
-        {newReferralCode && <ReferYourFriends referralCode={newReferralCode} />}
+          {newReferralCode && (
+            <ReferYourFriends referralCode={newReferralCode} />
+          )}
 
-        {isAuctionStarted && !isAuctionEnded && <StakeForm />}
+          {isAuctionStarted && !isAuctionEnded && <StakeForm />}
 
-        {!isAuctionStarted && (
-          <>
-            <GetReadyWrapper>
-              <GetReady />
-            </GetReadyWrapper>
-            <LearnHowToStake>
-              <TextHeading1>Learn how to stake DOT</TextHeading1>
-              <ResponsivePlayer videoId="se8mBXHCV-w" />
-            </LearnHowToStake>
-          </>
-        )}
-      </CentralCol>
+          {!isAuctionStarted && (
+            <>
+              <GetReadyWrapper>
+                <GetReady />
+              </GetReadyWrapper>
+              <LearnHowToStake>
+                <TextHeading1>Learn how to stake DOT</TextHeading1>
+                <ResponsivePlayer videoId="se8mBXHCV-w" />
+              </LearnHowToStake>
+            </>
+          )}
+        </CentralCol>
 
-      <RightCol>{isAuctionStarted && <YourContribution />}</RightCol>
+        <RightCol>{isAuctionStarted && <YourContribution />}</RightCol>
+      </ContribSection>
     </ContributeStyled>
   );
 };
