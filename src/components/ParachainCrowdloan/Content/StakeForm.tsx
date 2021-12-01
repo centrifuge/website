@@ -27,11 +27,11 @@ import {
   MIN_CONTRIBUTION_PLANCK,
   MIN_CONTRIBUTION_DOT,
   PARACHAIN_ID,
+  PARACHAIN_NAME,
 } from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
-import { ContributionOutcome } from "./Content";
 import { useStakeFormContext } from "../StakeFormContext";
 
 const formatBigNumber = (bn?: BigNumber): string =>
@@ -54,8 +54,7 @@ const isExistingReferralCode = async (value: string) => {
     method: "POST",
     body: JSON.stringify({
       referralCode: value,
-      parachain: "altair",
-      //PARACHAIN_NAME, ///////////////////////////////////////////////////////////////////////////////////
+      parachain: PARACHAIN_NAME,
     }),
   });
 
@@ -103,13 +102,7 @@ const UnderlineTextButton = styled.button`
   }
 `;
 
-type StakeFormProps = {
-  setContributionOutcome: (outcome: ContributionOutcome) => void;
-};
-
-export const StakeForm: React.FC<StakeFormProps> = ({
-  setContributionOutcome,
-}) => {
+export const StakeForm: React.FC = () => {
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
 
@@ -120,10 +113,12 @@ export const StakeForm: React.FC<StakeFormProps> = ({
     setEmailAddress,
     referralCode,
     setReferralCode,
+    errorMessage,
+    setErrorMessage,
+    setContribHash,
   } = useStakeFormContext();
 
   const [checked, setChecked] = useState(false);
-  const [error, setError] = useState<string>();
 
   const [freeBalance, setFreeBalance] = useState<BigNumber>();
   const [injector, setInjector] = useState<{ signer: Signer }>();
@@ -165,11 +160,11 @@ export const StakeForm: React.FC<StakeFormProps> = ({
     }
 
     setIsSubmitting(true);
-    setError("");
+    setErrorMessage("");
 
     // check if referral code exists in the database
     if (referralCode && !(await isExistingReferralCode(referralCode))) {
-      setError(`Referral code '${referralCode}' not found.`);
+      setErrorMessage(`Referral code '${referralCode}' not found.`);
       setIsSubmitting(false);
       return;
     }
@@ -205,25 +200,17 @@ export const StakeForm: React.FC<StakeFormProps> = ({
             }
           }
 
-          setError(error.length ? "error occurred" : "");
+          setErrorMessage(error.length ? "error occurred" : "");
           setIsSubmitting(false);
         }
       );
 
-      setContributionOutcome({
-        hash: transactionToSend.hash.toHex(),
-        error: "",
-        amount: dotAmount,
-      });
+      setContribHash(transactionToSend.hash.toHex());
     } catch (err) {
       const errorMsg = (err as Error)?.message || `${err}`;
       setIsSubmitting(false);
-      setError(errorMsg);
-      setContributionOutcome({
-        hash: "",
-        error: errorMsg,
-        amount: "",
-      });
+      setErrorMessage(errorMsg);
+      setContribHash("");
     }
   };
 
@@ -305,7 +292,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
           </Text>
         </Box>
       </Box>
-      {error && <UnexpectedError errorMessage={error} />}
+      {errorMessage && <UnexpectedError errorMessage={errorMessage} />}
       {isWeb3Injected && (
         <Box gap="medium">
           <Form onSubmit={() => contribute()} validate="submit">
@@ -329,7 +316,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                   id="polkadot"
                   name="polkadot"
                   onChange={(event) => {
-                    setError("");
+                    setErrorMessage("");
                     setDotAmount(event.target.value);
                   }}
                   value={dotAmount}

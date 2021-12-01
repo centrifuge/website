@@ -13,7 +13,7 @@ import {
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_REFERRAL_PERCENT,
 } from "../shared/const";
-import { formatCFG, formatDOT } from "../shared/format";
+import { formatCFG } from "../shared/format";
 import { mediaGreaterThan } from "../shared/media";
 
 import { TextSpan } from "../shared/TextSpan";

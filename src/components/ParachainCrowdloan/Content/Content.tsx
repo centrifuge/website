@@ -16,6 +16,7 @@ import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
 import { PARACHAIN_NAME } from "../shared/const";
+import { useStakeFormContext } from "../StakeFormContext";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -86,25 +87,20 @@ const TextHeading1 = styled.div`
 `;
 
 export type ContributionOutcome = {
-  hash: string;
   amount: string;
-  error?: string;
 };
 
 export const Contribute = () => {
   const { isAuctionStarted, isAuctionEnded } = useCountdownContext();
+  const { contribHash, dotAmount } = useStakeFormContext();
   const { isWeb3Injected, selectedAccount } = useWeb3();
-
-  const [contributionOutcome, setContributionOutcome] = useState<
-    ContributionOutcome
-  >();
-  const [referralCode, setReferralCode] = useState<string>("");
+  const [newReferralCode, setNewReferralCode] = useState<string>("");
 
   // create referral code after the contribution has been successful
   useEffect(() => {
     (async () => {
       try {
-        if (!contributionOutcome?.hash || !selectedAccount?.address) {
+        if (!contribHash || !selectedAccount?.address) {
           return;
         }
         const response = await fetch("/.netlify/functions/createReferralCode", {
@@ -116,12 +112,12 @@ export const Contribute = () => {
         });
 
         const json = await response.json();
-        setReferralCode(json.referralCode);
+        setNewReferralCode(json.referralCode);
       } catch (error) {
         console.error(error);
       }
     })();
-  }, [contributionOutcome?.hash, selectedAccount?.address]);
+  }, [contribHash, selectedAccount?.address]);
 
   return (
     <ContributeStyled>
@@ -138,18 +134,13 @@ export const Contribute = () => {
       <CentralCol>
         {!isWeb3Injected && <ExtensionMissing />}
 
-        {contributionOutcome?.hash && (
-          <ThanksForContribution
-            amount={contributionOutcome.amount}
-            claimHash={contributionOutcome.hash}
-          />
+        {contribHash && (
+          <ThanksForContribution amount={dotAmount} claimHash={contribHash} />
         )}
 
-        {referralCode && <ReferYourFriends referralCode={referralCode} />}
+        {newReferralCode && <ReferYourFriends referralCode={newReferralCode} />}
 
-        {isAuctionStarted && !isAuctionEnded && (
-          <StakeForm setContributionOutcome={setContributionOutcome} />
-        )}
+        {isAuctionStarted && !isAuctionEnded && <StakeForm />}
 
         {!isAuctionStarted && (
           <>

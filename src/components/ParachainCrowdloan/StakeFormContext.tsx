@@ -10,6 +10,10 @@ type StakeFormContextType = {
   setEmailAddress: (val: string) => void;
   referralCode: string;
   setReferralCode: (val: string) => void;
+  errorMessage: string;
+  setErrorMessage: (val: string) => void;
+  contribHash: string;
+  setContribHash: (val: string) => void;
 };
 
 export const StakeFormContext = createContext<StakeFormContextType>({
@@ -19,6 +23,10 @@ export const StakeFormContext = createContext<StakeFormContextType>({
   setEmailAddress: () => {},
   referralCode: "",
   setReferralCode: () => {},
+  errorMessage: "",
+  setErrorMessage: () => {},
+  contribHash: "",
+  setContribHash: () => {},
 });
 
 export const StakeFormContextProvider: React.FC = ({ children }) => {
@@ -27,6 +35,8 @@ export const StakeFormContextProvider: React.FC = ({ children }) => {
   const [referralCode, setReferralCode] = useState<string>(
     queryString.parse(location.search).refer?.toString() || ""
   );
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [contribHash, setContribHash] = useState<string>("");
 
   const ctx: StakeFormContextType = {
     dotAmount,
@@ -35,6 +45,10 @@ export const StakeFormContextProvider: React.FC = ({ children }) => {
     setEmailAddress,
     referralCode,
     setReferralCode,
+    errorMessage,
+    setErrorMessage,
+    contribHash,
+    setContribHash,
   };
 
   return (
