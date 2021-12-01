@@ -143,7 +143,7 @@ export const YourContribution: React.FC<{}> = () => {
       .plus(totalReferralBonus);
 
     // show values
-    setStakedAmount(totalAmount.toString());
+    setStakedAmount(totalAmount.div(DOT_PLANCK).toString());
     setRewardStaking(totalStakingBonus.toString());
     setRewardEarlyBird(totalEarlyBirdBonus.toFixed());
     setRewardReferral(totalReferralBonus.toString());
@@ -185,11 +185,7 @@ export const YourContribution: React.FC<{}> = () => {
                 color: ${(props: any) => props.theme.global.colors.brand};
               `}
             >
-              {stakedAmount ? (
-                formatDOT(stakedAmount)
-              ) : (
-                <CustomSpinner color="brand" />
-              )}{" "}
+              {stakedAmount ? stakedAmount : <CustomSpinner color="brand" />}{" "}
               DOT
             </TextSpan>
             <TextLabel>Staked amount</TextLabel>

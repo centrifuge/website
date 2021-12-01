@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { AuctionProgressBar } from "./AuctionProgressBar";
-import { Spinner } from "grommet";
 import { formatDOT } from "../shared/format";
 
 const AuctionStatusProgressStyled = styled.div``;

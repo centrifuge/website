@@ -49,6 +49,21 @@ const validateEmailAddress = (value: string) => {
   }
 };
 
+const isExistingReferralCode = async (value: string) => {
+  const response = await fetch("/.netlify/functions/isValidReferralCode", {
+    method: "POST",
+    body: JSON.stringify({
+      referralCode: value,
+      parachain: "altair",
+      //PARACHAIN_NAME, ///////////////////////////////////////////////////////////////////////////////////
+    }),
+  });
+
+  const json = await response.json();
+
+  return json.valid;
+};
+
 const UnexpectedError: React.FC<{ errorMessage: string }> = ({
   errorMessage,
 }) => {
@@ -148,7 +163,16 @@ export const StakeForm: React.FC<StakeFormProps> = ({
     if (!injector) {
       throw new Error("No injector");
     }
+
     setIsSubmitting(true);
+    setError("");
+
+    // check if referral code exists in the database
+    if (referralCode && !(await isExistingReferralCode(referralCode))) {
+      setError(`Referral code '${referralCode}' not found.`);
+      setIsSubmitting(false);
+      return;
+    }
 
     const contributeTransaction = api.tx.crowdloan.contribute(
       PARACHAIN_ID,
@@ -181,10 +205,8 @@ export const StakeForm: React.FC<StakeFormProps> = ({
             }
           }
 
-          if (error.length) {
-            setError("error occurred");
-            setIsSubmitting(false);
-          }
+          setError(error.length ? "error occurred" : "");
+          setIsSubmitting(false);
         }
       );
 
@@ -193,8 +215,6 @@ export const StakeForm: React.FC<StakeFormProps> = ({
         error: "",
         amount: dotAmount,
       });
-
-      // setHash(transactionToSend.hash.toHex());
     } catch (err) {
       const errorMsg = (err as Error)?.message || `${err}`;
       setIsSubmitting(false);
@@ -257,6 +277,8 @@ export const StakeForm: React.FC<StakeFormProps> = ({
       ),
     [api, selectedAccount?.address, freeBalance, minimumBalance]
   );
+
+  const isSubmitEnabled = isFormEnabled && checked;
 
   if (!isWeb3Injected || !api) {
     return (
@@ -351,7 +373,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                 label="Referral code (optional)"
                 name="referralCode"
                 htmlFor="referralCode"
-                validate={(value) => validateReferralCode(value)}
+                validate={(value) => validateReferralCode(value.trim())}
                 margin={{ bottom: "32px" }}
               >
                 <TextInput
@@ -359,7 +381,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                   id="referralCode"
                   name="referralCode"
                   onChange={(event) => {
-                    setReferralCode(event.target.value);
+                    setReferralCode(event.target.value.trim());
                   }}
                   placeholder="ExAmpl41Ref3rrAl"
                   value={referralCode ? referralCode.toString() : ""}
@@ -369,7 +391,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                 label="Stay up to date with the auction (optional)"
                 name="emailAddress"
                 htmlFor="emailAddress"
-                validate={(value) => validateEmailAddress(value)}
+                validate={(value) => validateEmailAddress(value.trim())}
                 margin={{ bottom: "32px" }}
               >
                 <TextInput
@@ -377,7 +399,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                   id="emailAddress"
                   name="emailAddress"
                   onChange={(event) => {
-                    setEmailAddress(event.target.value);
+                    setEmailAddress(event.target.value.trim());
                   }}
                   placeholder="me@example.com"
                   value={emailAddress}
@@ -422,7 +444,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({
                 </>
               ) : (
                 <Button
-                  disabled={!isFormEnabled || !checked}
+                  disabled={!isSubmitEnabled}
                   primary
                   color="brand"
                   alignSelf="start"
