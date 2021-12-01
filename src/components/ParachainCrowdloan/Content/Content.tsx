@@ -18,6 +18,7 @@ import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
 import { PARACHAIN_NAME } from "../shared/const";
+import { Container } from "../shared/Container";
 
 const mediaGreaterThanXS = "@media (min-width: 500px)";
 
@@ -29,16 +30,9 @@ const ContributeStyled = styled.div`
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
 
-  padding: 20px;
-
   ${mediaGreaterThan("small")} {
     flex-direction: row;
     justify-content: space-around;
-    padding: 16px;
-  }
-
-  ${mediaGreaterThan("medium")} {
-    padding: 38px;
   }
 `;
 
@@ -152,46 +146,51 @@ export const Contribute = () => {
   }, [contribHash, selectedAccount?.address]);
 
   return (
-    <ContributeStyled>
-      <LeftCol>
-        {isAuctionStarted && (
-          <Box margin="0 0 48px 0">
-            <TopReferrers />
-          </Box>
-        )}
-        {isAuctionEnded && <TopContributors />}
-        {!isAuctionEnded && <BlackInfoBoxList />}
-      </LeftCol>
-
-      <ContribSection>
-        <CentralCol>
-          {!isWeb3Injected && <ExtensionMissing />}
-
-          {contribHash && (
-            <ThanksForContribution amount={dotAmount} claimHash={contribHash} />
+    <Container>
+      <ContributeStyled>
+        <LeftCol>
+          {isAuctionStarted && (
+            <Box margin="0 0 48px 0">
+              <TopReferrers />
+            </Box>
           )}
+          {isAuctionEnded && <TopContributors />}
+          {!isAuctionEnded && <BlackInfoBoxList />}
+        </LeftCol>
 
-          {newReferralCode && (
-            <ReferYourFriends referralCode={newReferralCode} />
-          )}
+        <ContribSection>
+          <CentralCol>
+            {!isWeb3Injected && <ExtensionMissing />}
 
-          {isAuctionStarted && !isAuctionEnded && <StakeForm />}
+            {contribHash && (
+              <ThanksForContribution
+                amount={dotAmount}
+                claimHash={contribHash}
+              />
+            )}
 
-          {!isAuctionStarted && (
-            <>
-              <GetReadyWrapper>
-                <GetReady />
-              </GetReadyWrapper>
-              <LearnHowToStake>
-                <TextHeading1>Learn how to stake DOT</TextHeading1>
-                <ResponsivePlayer videoId="se8mBXHCV-w" />
-              </LearnHowToStake>
-            </>
-          )}
-        </CentralCol>
+            {newReferralCode && (
+              <ReferYourFriends referralCode={newReferralCode} />
+            )}
 
-        <RightCol>{isAuctionStarted && <YourContribution />}</RightCol>
-      </ContribSection>
-    </ContributeStyled>
+            {isAuctionStarted && !isAuctionEnded && <StakeForm />}
+
+            {!isAuctionStarted && (
+              <>
+                <GetReadyWrapper>
+                  <GetReady />
+                </GetReadyWrapper>
+                <LearnHowToStake>
+                  <TextHeading1>Learn how to stake DOT</TextHeading1>
+                  <ResponsivePlayer videoId="se8mBXHCV-w" />
+                </LearnHowToStake>
+              </>
+            )}
+          </CentralCol>
+
+          <RightCol>{isAuctionStarted && <YourContribution />}</RightCol>
+        </ContribSection>
+      </ContributeStyled>
+    </Container>
   );
 };

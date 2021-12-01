@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { AuctionProgressBar } from "./AuctionProgressBar";
 import { formatDOT } from "../shared/format";
+import { mediaGreaterThan } from "../shared/media";
+import { Container } from "../shared/Container";
 
-const AuctionStatusProgressStyled = styled.div``;
+const AuctionStatusProgressStyled = styled(Container)``;
 
 type AuctionStatusProgressProps = {
   maxCap?: number;
@@ -31,14 +33,21 @@ const TextLabel = styled.span`
   font-weight: 600;
   font-size: 16px;
   line-height: 28px;
-
-  margin-left: 8px;
 `;
 
 const FadeInDiv = styled.div<{ show: boolean }>`
   opacity: ${({ show }) => (show ? 1 : 0)};
 
   transition: opacity 800ms ease-out;
+
+  display: flex;
+  flex-direction: column;
+
+  ${mediaGreaterThan("small")} {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+  }
 `;
 
 export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
@@ -47,7 +56,7 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
   numContributions,
 }) => {
   return (
-    <AuctionStatusProgressStyled>
+    <Container>
       <ProgressRow>
         <FadeInDiv show={numContributions != null}>
           <TextValue>
@@ -68,6 +77,6 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
         </FadeInDiv>
       </ProgressRow>
       <AuctionProgressBar maxCap={maxCap || 0} stackedAmount={stackedAmount} />
-    </AuctionStatusProgressStyled>
+    </Container>
   );
 };
