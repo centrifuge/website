@@ -5,8 +5,6 @@ import { formatDOT } from "../shared/format";
 import { mediaGreaterThan } from "../shared/media";
 import { Container } from "../shared/Container";
 
-const AuctionStatusProgressStyled = styled(Container)``;
-
 type AuctionStatusProgressProps = {
   maxCap?: number;
   stackedAmount?: number;
