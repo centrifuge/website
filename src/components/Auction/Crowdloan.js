@@ -315,6 +315,7 @@ export const Crowdloan = () => {
                   claimRewards={claimRewards}
                   isClaimingRewards={isClaimingRewards}
                   selectedAccount={selectedAccount}
+                  setClaimedRewards={setClaimedRewards}
                   setSelectedAccount={setSelectedAccount}
                 />
               )}
