@@ -4,7 +4,7 @@ import { Spinner } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useWeb3 } from "../../Web3Provider";
-import { useCountdownContext } from "../shared/context/CountdownContext";
+import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
 import {
@@ -94,7 +94,7 @@ export const YourContribution: React.FC<{}> = () => {
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
 
   const { dotAmount, referralCode } = useStakeFormContext();
-  const { isEarlyBird } = useCountdownContext();
+  const { isEarlyBird } = useAuctionContext();
 
   const [stakedAmount, setStakedAmount] = useState<string>();
 

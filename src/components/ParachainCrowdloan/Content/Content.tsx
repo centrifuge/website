@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { encodeAddress } from "@polkadot/util-crypto";
 import { ResponsivePlayer } from "../../News";
 import { useWeb3 } from "../../Web3Provider";
-import { useCountdownContext } from "../shared/context/CountdownContext";
+import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
 import { mediaGreaterThan } from "../shared/media";
@@ -29,10 +29,12 @@ const ContributeStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
+  padding-top: 20px;
 
   ${mediaGreaterThan("small")} {
     flex-direction: row;
     justify-content: space-around;
+    padding-top: 30px;
   }
 `;
 
@@ -117,7 +119,7 @@ export type ContributionOutcome = {
 };
 
 export const Contribute = () => {
-  const { isAuctionStarted, isAuctionEnded } = useCountdownContext();
+  const { isAuctionStarted, isAuctionEnded } = useAuctionContext();
   const { contribHash, dotAmount } = useStakeFormContext();
   const { isWeb3Injected, selectedAccount } = useWeb3();
   const [newReferralCode, setNewReferralCode] = useState<string>("");

@@ -6,7 +6,7 @@ import funnelMobile from "../../../images/parachain-crowdloan/funnel-mobile.svg"
 import funnelDesktop from "../../../images/parachain-crowdloan/funnel-desktop.svg";
 import { mediaGreaterThan } from "../shared/media";
 import { AuctionStatusProgress } from "./AuctionStatusProgress";
-import { useCountdownContext } from "../shared/context/CountdownContext";
+import { useAuctionContext } from "../shared/context/AuctionContext";
 import { CROWDLOAN_MAX_CAP, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
 import BigNumber from "bignumber.js";
 import { formatShortDate } from "../shared/format";
@@ -100,7 +100,7 @@ export const AuctionStatus: React.FC = () => {
     earlyBirdHoursLeft,
     daysUntilAuction,
     auctionStartDate,
-  } = useCountdownContext();
+  } = useAuctionContext();
 
   const [numContributions, setNumContributions] = useState<number>();
   const [totalStacked, setTotalStacked] = useState<number>();

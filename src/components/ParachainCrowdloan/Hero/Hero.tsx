@@ -1,17 +1,19 @@
 import React from "react";
 
-import { useCountdownContext } from "../shared/context/CountdownContext";
+import { useAuctionContext } from "../shared/context/AuctionContext";
 import { AuctionStatus } from "./AuctionStatus";
 import { AuctionEnded } from "./AuctionEnded";
 
 export const Hero: React.FC = () => {
-  const { isAuctionEnded } = useCountdownContext();
+  const { auctionResults } = useAuctionContext();
 
-  return isAuctionEnded ? (
+  return auctionResults.place &&
+    auctionResults.contributions &&
+    auctionResults.dotRaised ? (
     <AuctionEnded
-      slotPosition="6th"
-      totContributions={18342}
-      totAmount="187840000000000000"
+      slotPosition={auctionResults.place}
+      totContributions={auctionResults.contributions}
+      totAmount={auctionResults.dotRaised}
     />
   ) : (
     <AuctionStatus />

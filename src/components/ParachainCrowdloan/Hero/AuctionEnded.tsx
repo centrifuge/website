@@ -3,18 +3,24 @@ import styled from "styled-components";
 import { Box, Button } from "grommet";
 
 import { TextSpan } from "../shared/TextSpan";
-import { formatDOT, formatNumber } from "../shared/format";
+import dotsSvg from "../../../images/parachain-crowdloan/auction-dots-section.svg";
 
 const AuctionStatusStyled = styled.div`
   color: #000;
   background-color: ${({ theme }) => theme.global.colors["accent-1"]};
+  background-image: url(${dotsSvg});
 
   padding: 67px 0 43px;
 `;
 
+const LightButton = styled(Button)`
+  background: ${({ theme }) => theme.global.colors["accent-1"]};
+  border: 1px solid black;
+`;
+
 type AuctionEndedProps = {
   slotPosition: string;
-  totContributions: number;
+  totContributions: string;
   totAmount: string;
 };
 
@@ -46,16 +52,16 @@ export const AuctionEnded: React.FC<AuctionEndedProps> = ({
             line-height: 40px;
           `}
         >
-          {formatDOT(totAmount)} DOT raised from{" "}
-          {formatNumber(totContributions)} contributions
+          {totAmount} DOT raised from {totContributions} contributions
         </TextSpan>
       </Box>
       <Box align="center">
-        <Button
+        <LightButton
           secondary
           color="accent-1"
           label="Learn more on parachains.info"
           href="https://parachains.info"
+          target="_blank"
         />
       </Box>
     </AuctionStatusStyled>

@@ -15,6 +15,8 @@ export const CFG_PLANCK = 1e18;
 
 export const CROWDLOAN_MAX_CAP = 200000;
 
+export const AUCTION_START = new Date("2021-12-15");
+
 // the minimum contribution is 0.1 DOT
 export const MIN_CONTRIBUTION_DOT = 0.1;
 export const MIN_CONTRIBUTION_PLANCK = DOT_PLANCK * MIN_CONTRIBUTION_DOT;
@@ -31,3 +33,10 @@ export const REWARD_EARLY_BIRD_HOURS = 72;
 
 // TODO: replace with the correct values for this crowdloan
 export const PARACHAIN_ID = 2006; // TODO: THIS IS ALSTAR PARACHAIN ID, USED FOR TESTING PURPOSES. REPLACE IT WITH OUR PARACHAIN_ID AFTER REGISTERING
+
+// TODO after auction: populate with results
+export const AUCTION_RESULTS = {
+  place: "", // e.g. '6th'
+  dotRaised: "", // e.g. '100m'
+  contributions: "", // e.g. '18,976'
+};

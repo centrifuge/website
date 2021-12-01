@@ -5,32 +5,31 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { REWARD_EARLY_BIRD_HOURS } from "../const";
+
+import {
+  AUCTION_RESULTS,
+  AUCTION_START,
+  REWARD_EARLY_BIRD_HOURS,
+} from "../const";
 
 const INTERVAL_UPDATE_COUNTERS_MS = 1000; // update counters every second
 
 const EARLY_BIRD_PERIOD_HOURS = REWARD_EARLY_BIRD_HOURS;
 const AUCTION_DURATION_DAYS = 7;
 
-const AUCTION_START_DATE = new Date("2021-12-15"); // real auction start
+const DEBUG_PHASE = new URL(location.href).searchParams.get("debugPhase") || "";
 
-// // DEBUG: Auction starts in 5 seconds
-// const AUCTION_START_DATE = new Date(Date.now() + 5000);
-
-// // DEBUG: Auction started | MID Early Bird phase
-// const AUCTION_START_DATE = new Date(
-//   Date.now() - (EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000) / 2
-// );
-
-// // DEBUG: Auction started | Early Bird phase EXPIRED
-// const AUCTION_START_DATE = new Date(
-//   Date.now() - EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000
-// );
-
-// // DEBUG: Auction ended
-// const AUCTION_START_DATE = new Date(
-//   Date.now() - AUCTION_DURATION_DAYS * 29 * 60 * 60 * 10000
-// );
+const AUCTION_START_DATE =
+  {
+    in5Seconds: new Date(Date.now() + 5000),
+    earlyBird: new Date(
+      Date.now() - (EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000) / 2
+    ),
+    afterEarlyBird: new Date(
+      Date.now() - EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000
+    ),
+    end: new Date(Date.now() - AUCTION_DURATION_DAYS * 29 * 60 * 60 * 10000),
+  }[DEBUG_PHASE] || AUCTION_START;
 
 const EARLY_BIRD_END_DATE = new Date(
   AUCTION_START_DATE.getTime() + EARLY_BIRD_PERIOD_HOURS * 60 * 60 * 1000
@@ -56,25 +55,27 @@ const getIsEarlyBird = () =>
 console.log("AUCTION_START_DATE", AUCTION_START_DATE);
 console.log("AUCTION_END_DATE", AUCTION_END_DATE, getIsAuctionEnded());
 
-type CountdownContextType = {
+type AuctionContextType = {
   auctionStartDate: Date;
   daysUntilAuction: number;
   isAuctionStarted: boolean;
   isAuctionEnded: boolean;
   isEarlyBird: boolean;
   earlyBirdHoursLeft: number;
+  auctionResults: typeof AUCTION_RESULTS;
 };
 
-export const CountdownContext = createContext<CountdownContextType>({
+const AuctionContext = createContext<AuctionContextType>({
   auctionStartDate: AUCTION_START_DATE,
   daysUntilAuction: 1,
   isAuctionStarted: false,
   isAuctionEnded: false,
   isEarlyBird: false,
   earlyBirdHoursLeft: 0,
+  auctionResults: AUCTION_RESULTS,
 });
 
-export const CountdownContextProvider: React.FC = ({ children }) => {
+export const AuctionContextProvider: React.FC = ({ children }) => {
   const [daysUntilAuction, setDaysUntilAuction] = useState<number>(
     getDaysUntilAuction()
   );
@@ -88,6 +89,7 @@ export const CountdownContextProvider: React.FC = ({ children }) => {
     getIsAuctionEnded()
   );
   const [isEarlyBird, setIsEarlyBird] = useState<boolean>(getIsEarlyBird());
+  const [auctionResults, setAuctionResults] = useState(AUCTION_RESULTS);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -98,12 +100,18 @@ export const CountdownContextProvider: React.FC = ({ children }) => {
       setIsEarlyBird(getIsEarlyBird());
     }, INTERVAL_UPDATE_COUNTERS_MS);
 
+    setAuctionResults(
+      DEBUG_PHASE === "end"
+        ? { place: "6th", contributions: "18,342", dotRaised: "187.84k" }
+        : AUCTION_RESULTS
+    );
+
     return () => {
       clearInterval(intervalId);
     };
   }, []);
 
-  const ctx: CountdownContextType = useMemo<CountdownContextType>(
+  const ctx: AuctionContextType = useMemo<AuctionContextType>(
     () => ({
       auctionStartDate: AUCTION_START_DATE,
       daysUntilAuction,
@@ -111,6 +119,7 @@ export const CountdownContextProvider: React.FC = ({ children }) => {
       isAuctionEnded,
       isEarlyBird,
       earlyBirdHoursLeft,
+      auctionResults,
     }),
     [
       AUCTION_START_DATE,
@@ -119,14 +128,13 @@ export const CountdownContextProvider: React.FC = ({ children }) => {
       isAuctionEnded,
       isEarlyBird,
       earlyBirdHoursLeft,
+      auctionResults,
     ]
   );
 
   return (
-    <CountdownContext.Provider value={ctx}>
-      {children}
-    </CountdownContext.Provider>
+    <AuctionContext.Provider value={ctx}>{children}</AuctionContext.Provider>
   );
 };
 
-export const useCountdownContext = () => useContext(CountdownContext);
+export const useAuctionContext = () => useContext(AuctionContext);

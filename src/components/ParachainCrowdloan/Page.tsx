@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import { Web3Provider } from "../Web3Provider";
 import { Contribute } from "./Content/Content";
 import { PolkadotApiProvider } from "./shared/context/PolkadotApiProvider";
-import { CountdownContextProvider } from "./shared/context/CountdownContext";
+import { AuctionContextProvider } from "./shared/context/AuctionContext";
 import { StakeFormContextProvider } from "./shared/context/StakeFormContext";
 import { Header } from "./Header/Header";
 import { Hero } from "./Hero/Hero";
@@ -15,7 +15,7 @@ import { mediaGreaterThan } from "./shared/media";
 export const Page = () => {
   return (
     <Web3Provider network="polkadot">
-      <CountdownContextProvider>
+      <AuctionContextProvider>
         <StakeFormContextProvider>
           <PolkadotApiProvider wsProviderUrl={WS_PROVIDER}>
             <FixedHeader>
@@ -29,7 +29,7 @@ export const Page = () => {
             </PageWithFixedHeader>
           </PolkadotApiProvider>
         </StakeFormContextProvider>
-      </CountdownContextProvider>
+      </AuctionContextProvider>
     </Web3Provider>
   );
 };
