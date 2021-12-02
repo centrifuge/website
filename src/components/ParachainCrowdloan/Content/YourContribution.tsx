@@ -13,6 +13,7 @@ import {
   PARACHAIN_NAME,
   REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_PERCENT,
+  REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
 } from "../shared/const";
 import { formatCFG } from "../shared/format";
@@ -74,14 +75,17 @@ type StatType = {
   value?: string;
   label: string;
 };
-const Stat: React.FC<StatType> = ({ value, label }) => (
-  <StatsItem>
-    <TextHeading2 color="brand">
-      {value ? formatCFG(value, 2) : <CustomSpinner color="brand" />} CFG
-    </TextHeading2>
-    <TextLabel>{label}</TextLabel>
-  </StatsItem>
-);
+const Stat: React.FC<StatType> = ({ value, label }) => {
+  if (new BigNumber(value || 0).isZero()) return null;
+  return (
+    <StatsItem>
+      <TextHeading2 color="brand">
+        {value ? formatCFG(value, 2) : <CustomSpinner color="brand" />} CFG
+      </TextHeading2>
+      <TextLabel>{label}</TextLabel>
+    </StatsItem>
+  );
+};
 
 type RewardDataResponse = {
   contributionAmount?: string;
@@ -89,6 +93,7 @@ type RewardDataResponse = {
   firstCrowdloanBonus?: string;
   numberOfReferrals?: string;
   referralBonus?: string;
+  isFirst250PrevCrwdloan?: boolean;
 };
 
 export const YourContribution: React.FC<{}> = () => {
@@ -103,6 +108,7 @@ export const YourContribution: React.FC<{}> = () => {
   const [rewardStaking, setRewardStaking] = useState<string>();
   const [rewardEarlyBird, setRewardEarlyBird] = useState<string>();
   const [rewardReferral, setRewardReferral] = useState<string>();
+  const [rewardLoyalty, setRewardLoyalty] = useState<string>();
   const [totalRewards, setTotalRewards] = useState<string>();
 
   useEffect(() => {
@@ -115,6 +121,9 @@ export const YourContribution: React.FC<{}> = () => {
 
     const earlyBirdFactor = isEarlyBird ? REWARD_EARLY_BIRD_PERCENT / 100 : 0;
     const referralFactor = referralCode ? REWARD_REFERRAL_PERCENT / 100 : 0;
+    const loyaltyFactor = rewardsData.isFirst250PrevCrwdloan
+      ? REWARD_LOYALTY_PERCENT / 100
+      : 0;
 
     // convert values in BN
     const curAmount = new BigNumber(curAmountNum * DOT_PLANCK);
@@ -141,15 +150,19 @@ export const YourContribution: React.FC<{}> = () => {
     const curReferralBonus = curStakingBonus.times(referralFactor);
     const totalReferralBonus = curReferralBonus.plus(dataReferralBonus);
 
+    const totalLoyaltyBonus = totalStakingBonus.times(loyaltyFactor);
+
     const totalBonus = totalStakingBonus
       .plus(totalEarlyBirdBonus)
-      .plus(totalReferralBonus);
+      .plus(totalReferralBonus)
+      .plus(totalLoyaltyBonus);
 
     // show values
     setStakedAmount(totalAmount.div(DOT_PLANCK).toString());
     setRewardStaking(totalStakingBonus.toString());
     setRewardEarlyBird(totalEarlyBirdBonus.toFixed());
     setRewardReferral(totalReferralBonus.toString());
+    setRewardLoyalty(totalLoyaltyBonus.toString());
     setTotalRewards(totalBonus.toString());
   }, [dotAmount, referralCode, rewardsData]);
 
@@ -199,6 +212,7 @@ export const YourContribution: React.FC<{}> = () => {
           <Stat value={rewardStaking} label="Staking reward" />
           <Stat value={rewardEarlyBird} label="Early bird reward" />
           <Stat value={rewardReferral} label="Referral reward" />
+          <Stat value={rewardLoyalty} label="Loyalty reward" />
           <Stat value={totalRewards} label="Total rewards" />
         </>
       ) : (
