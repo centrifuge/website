@@ -75,9 +75,6 @@ const CentralCol = styled.div`
   ${onBreakpoint("M")} {
     grid-column: 1 / span 5;
   }
-
-  ${onBreakpoint("L")} {
-  }
 `;
 
 const RightCol = styled.div`
@@ -92,6 +89,14 @@ const RightCol = styled.div`
   }
 
   ${onBreakpoint("L")} {
+  }
+`;
+
+const BeforeAuction = styled.div`
+  grid-column: 1 / span 12;
+
+  ${onBreakpoint("L")} {
+    grid-column: 1 / span 5;
   }
 `;
 
@@ -152,6 +157,17 @@ export const Contribute = () => {
         </LeftCol>
 
         <ContribSection>
+          {!isAuctionStarted && (
+            <BeforeAuction>
+              <GetReadyWrapper>
+                <GetReady />
+              </GetReadyWrapper>
+              <LearnHowToStake>
+                <TextHeading1>Learn how to stake DOT</TextHeading1>
+                <ResponsivePlayer videoId="se8mBXHCV-w" />
+              </LearnHowToStake>
+            </BeforeAuction>
+          )}
           <CentralCol>
             {!isWeb3Injected && <ExtensionMissing />}
 
@@ -167,21 +183,11 @@ export const Contribute = () => {
             )}
 
             {isAuctionStarted && !isAuctionEnded && <StakeForm />}
-
-            {!isAuctionStarted && (
-              <>
-                <GetReadyWrapper>
-                  <GetReady />
-                </GetReadyWrapper>
-                <LearnHowToStake>
-                  <TextHeading1>Learn how to stake DOT</TextHeading1>
-                  <ResponsivePlayer videoId="se8mBXHCV-w" />
-                </LearnHowToStake>
-              </>
-            )}
+            {isAuctionEnded && <YourContribution />}
           </CentralCol>
-
-          <RightCol>{isAuctionStarted && <YourContribution />}</RightCol>
+          <RightCol>
+            {isAuctionStarted && !isAuctionEnded && <YourContribution />}
+          </RightCol>
         </ContribSection>
       </ContributeStyled>
     </Container>

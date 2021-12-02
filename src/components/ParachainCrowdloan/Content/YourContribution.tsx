@@ -74,12 +74,13 @@ const CustomSpinner = styled(Spinner)`
 type StatType = {
   value?: string;
   label: string;
+  color?: string;
 };
-const Stat: React.FC<StatType> = ({ value, label }) => {
+const Stat: React.FC<StatType> = ({ value, label, color }) => {
   if (new BigNumber(value || 0).isZero()) return null;
   return (
     <StatsItem>
-      <TextHeading2 color="brand">
+      <TextHeading2 color={color}>
         {value ? formatCFG(value, 2) : <CustomSpinner color="brand" />} CFG
       </TextHeading2>
       <TextLabel>{label}</TextLabel>
@@ -101,7 +102,7 @@ export const YourContribution: React.FC<{}> = () => {
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
 
   const { dotAmount, referralCode } = useStakeFormContext();
-  const { isEarlyBird } = useAuctionContext();
+  const { isEarlyBird, isAuctionEnded } = useAuctionContext();
 
   const [stakedAmount, setStakedAmount] = useState<string>();
 
@@ -111,13 +112,16 @@ export const YourContribution: React.FC<{}> = () => {
   const [rewardLoyalty, setRewardLoyalty] = useState<string>();
   const [totalRewards, setTotalRewards] = useState<string>();
 
+  const hasRewards = !new BigNumber(totalRewards || 0).isZero();
+
   useEffect(() => {
     if (!rewardsData) {
       return;
     }
-    const curAmountNum = Number.isNaN(parseFloat(dotAmount))
-      ? 0
-      : parseFloat(dotAmount);
+    const curAmountNum =
+      Number.isNaN(parseFloat(dotAmount)) || isAuctionEnded
+        ? 0
+        : parseFloat(dotAmount);
 
     const earlyBirdFactor = isEarlyBird ? REWARD_EARLY_BIRD_PERCENT / 100 : 0;
     const referralFactor = referralCode ? REWARD_REFERRAL_PERCENT / 100 : 0;
@@ -207,13 +211,20 @@ export const YourContribution: React.FC<{}> = () => {
             <TextLabel>Staked amount</TextLabel>
           </StatsItem>
 
-          <Divider />
+          {hasRewards && (
+            <>
+              <Divider />
 
-          <Stat value={rewardStaking} label="Staking reward" />
-          <Stat value={rewardEarlyBird} label="Early bird reward" />
-          <Stat value={rewardReferral} label="Referral reward" />
-          <Stat value={rewardLoyalty} label="Loyalty reward" />
-          <Stat value={totalRewards} label="Total rewards" />
+              <Stat value={rewardStaking} label="Staking reward" />
+              <Stat value={rewardEarlyBird} label="Early bird reward" />
+              <Stat value={rewardReferral} label="Referral reward" />
+              <Stat value={rewardLoyalty} label="Loyalty reward" />
+
+              <Divider />
+
+              <Stat value={totalRewards} label="Total rewards" color="brand" />
+            </>
+          )}
         </>
       ) : (
         <div>No wallet connected</div>
