@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { TopList } from "../shared/Leaderboard";
 import { truncateAddress } from "../shared/format";
 import { PARACHAIN_NAME } from "../shared/const";
+import { getSearchParam } from "../shared/browserOnly";
 
 type TopReferrersResponse = {
   numberOfTimesUsed: number;
@@ -21,7 +22,18 @@ export const TopReferrers: React.FC = () => {
       const json = await response.json();
 
       if (mounted) {
-        setTopReferrers(json);
+        // debug mock values
+        const debugPhase = getSearchParam("debugPhase");
+        if (debugPhase && !json?.length) {
+          setTopReferrers(
+            new Array(5).fill({
+              account: "GqP5S2X8wDc7HuXRN41sXfjuVXM8DzZDceaDfv5dkvyRbwc",
+              numberOfTimesUsed: 66,
+            })
+          );
+        } else {
+          setTopReferrers(json);
+        }
       }
     })();
     return () => {

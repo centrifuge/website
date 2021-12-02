@@ -88,9 +88,6 @@ const RightCol = styled.div`
   ${onBreakpoint("M")} {
     grid-column: 6 / span 3;
   }
-
-  ${onBreakpoint("L")} {
-  }
 `;
 
 const BeforeAuction = styled.div`
@@ -115,7 +112,7 @@ export type ContributionOutcome = {
   amount: string;
 };
 
-export const Contribute = () => {
+export const Content = () => {
   const { isAuctionStarted, isAuctionEnded } = useAuctionContext();
   const { contribHash, dotAmount } = useStakeFormContext();
   const { isWeb3Injected, selectedAccount } = useWeb3();

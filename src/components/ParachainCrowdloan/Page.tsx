@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Footer from "../Footer";
 import { Web3Provider } from "../Web3Provider";
-import { Contribute } from "./Content/Content";
+import { Content } from "./Content/Content";
 import { PolkadotApiProvider } from "./shared/context/PolkadotApiProvider";
 import { AuctionContextProvider } from "./shared/context/AuctionContext";
 import { StakeFormContextProvider } from "./shared/context/StakeFormContext";
@@ -23,7 +23,7 @@ export const Page = () => {
             </FixedHeader>
             <PageWithFixedHeader>
               <Hero />
-              <Contribute />
+              <Content />
               <RelatedResources />
               <Footer />
             </PageWithFixedHeader>
