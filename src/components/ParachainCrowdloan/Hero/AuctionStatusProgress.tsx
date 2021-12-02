@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { AuctionProgressBar } from "./AuctionProgressBar";
 import { formatDOT } from "../shared/format";
-import { mediaGreaterThan } from "../shared/media";
-import { Container } from "../shared/Container";
+import { onBreakpoint } from "../shared/responsive";
 
 type AuctionStatusProgressProps = {
   maxCap?: number;
@@ -41,7 +40,7 @@ const FadeInDiv = styled.div<{ show: boolean }>`
   display: flex;
   flex-direction: column;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     flex-direction: row;
     align-items: baseline;
     gap: 8px;
@@ -54,7 +53,7 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
   numContributions,
 }) => {
   return (
-    <Container>
+    <div>
       <ProgressRow>
         <FadeInDiv show={numContributions != null}>
           <TextValue>
@@ -75,6 +74,6 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
         </FadeInDiv>
       </ProgressRow>
       <AuctionProgressBar maxCap={maxCap || 0} stackedAmount={stackedAmount} />
-    </Container>
+    </div>
   );
 };

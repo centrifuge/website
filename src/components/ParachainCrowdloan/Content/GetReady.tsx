@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { ExternalLink } from "../../Links";
-
-import { mediaGreaterThan } from "../shared/media";
+import { onBreakpoint } from "../shared/responsive";
 
 const TextHeading2 = styled.div`
   font-size: 18px;
   font-weight: 600;
   line-height: 22.5px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     font-size: 24px;
     line-height: 40px;
   }
@@ -20,7 +19,7 @@ const TextBody1 = styled.div`
   font-weight: 400;
   line-height: 22px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     font-size: 20px;
     line-height: 32px;
   }
@@ -29,7 +28,7 @@ const TextBody1 = styled.div`
 const HeadingWrapper = styled.div`
   margin-bottom: 8px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     margin-bottom: 24px;
   }
 `;

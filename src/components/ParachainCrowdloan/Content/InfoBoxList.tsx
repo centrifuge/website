@@ -10,7 +10,7 @@ import {
 } from "../shared/const";
 import { useAuctionContext } from "../shared/context/AuctionContext";
 
-import { mediaGreaterThanPx } from "../shared/media";
+import { onBreakpoint } from "../shared/responsive";
 import { TextSpan } from "../shared/TextSpan";
 
 const InfoBox = styled.div`
@@ -25,7 +25,7 @@ const InfoBox = styled.div`
   border-radius: 6px;
   padding: 8px 16px;
 
-  ${mediaGreaterThanPx(900)} {
+  ${onBreakpoint("L")} {
     min-height: 88px;
   }
 `;
@@ -73,7 +73,7 @@ const InfoBoxListStyled = styled.div`
   flex-direction: column;
   gap: 8px;
 
-  ${mediaGreaterThanPx(900)} {
+  ${onBreakpoint("L")} {
     gap: 16px;
   }
 `;

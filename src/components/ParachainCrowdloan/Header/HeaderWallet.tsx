@@ -6,7 +6,7 @@ import styled from "styled-components";
 import chevron_down from "../../../images/chevron-down.svg";
 import { useWeb3 } from "../../Web3Provider";
 import { truncateAddress } from "../shared/format";
-import { mediaGreaterThan } from "../shared/media";
+import { onBreakpoint } from "../shared/responsive";
 
 const WalletMenuBtn = styled.button`
   appearance: none;
@@ -73,7 +73,7 @@ const WalletMenuText = styled.div`
   line-height: 20px;
 
   display: none;
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     display: block;
   }
 `;
@@ -84,7 +84,7 @@ const WalletIconDown = styled.div`
   content: url(${chevron_down});
 
   display: none;
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     display: block;
   }
 `;

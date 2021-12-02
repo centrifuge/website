@@ -4,12 +4,13 @@ import { Button } from "grommet";
 
 import funnelMobile from "../../../images/parachain-crowdloan/funnel-mobile.svg";
 import funnelDesktop from "../../../images/parachain-crowdloan/funnel-desktop.svg";
-import { mediaGreaterThan } from "../shared/media";
 import { AuctionStatusProgress } from "./AuctionStatusProgress";
 import { useAuctionContext } from "../shared/context/AuctionContext";
 import { CROWDLOAN_MAX_CAP, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
 import BigNumber from "bignumber.js";
 import { formatShortDate } from "../shared/format";
+import { onBreakpoint } from "../shared/responsive";
+import { Container } from "../shared/Container";
 
 const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
   color: #ffffff;
@@ -21,12 +22,12 @@ const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
     isAuctionStarted ? "" : `background-image: url(${funnelMobile});`}
 
   text-align: center;
-  padding: 24px 16px;
+  padding: 24px 0;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     ${({ isAuctionStarted }) =>
       isAuctionStarted ? "" : `background-image: url(${funnelDesktop});`}
-    padding: 60px 16px;
+    padding: 60px 0;
   }
 `;
 
@@ -39,7 +40,7 @@ const CountdownRow = styled.div`
 const ButtonRow = styled.div`
   margin-top: 30px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     margin-top: 16px;
   }
 `;
@@ -49,7 +50,7 @@ const Heading1 = styled.span`
   font-weight: 600;
   line-height: 30px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     font-size: 40px;
     line-height: 64px;
   }
@@ -60,7 +61,7 @@ const Heading2 = styled.span`
   font-weight: 600;
   line-height: 22px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     font-size: 24px;
     line-height: 40px;
   }
@@ -124,36 +125,38 @@ export const AuctionStatus: React.FC = () => {
 
   return (
     <AuctionStatusStyled isAuctionStarted={isAuctionStarted}>
-      <div>
-        <Heading1>
-          {isAuctionStarted
-            ? "Auction in progress..."
-            : `Crowdloan opens on ${formatShortDate(auctionStartDate)}!`}
-        </Heading1>
-      </div>
-      <CountdownRow>
-        <PulsingDot />
-        <Heading2>
-          {isAuctionStarted
-            ? isEarlyBird
-              ? `${earlyBirdHoursLeft} hrs Early Bird Bonus remaining`
-              : "Early Bird Bonus is expired!"
-            : `${daysUntilAuction} days to go until auction launch`}
-        </Heading2>
-      </CountdownRow>
-      <ButtonRow>
-        {!isAuctionStarted && (
-          <Button primary color="brand" label="Learn more" href="/" />
-        )}
-      </ButtonRow>
+      <Container>
+        <div>
+          <Heading1>
+            {isAuctionStarted
+              ? "Auction in progress..."
+              : `Crowdloan opens on ${formatShortDate(auctionStartDate)}!`}
+          </Heading1>
+        </div>
+        <CountdownRow>
+          <PulsingDot />
+          <Heading2>
+            {isAuctionStarted
+              ? isEarlyBird
+                ? `${earlyBirdHoursLeft} hrs Early Bird Bonus remaining`
+                : "Early Bird Bonus is expired!"
+              : `${daysUntilAuction} days to go until auction launch`}
+          </Heading2>
+        </CountdownRow>
+        <ButtonRow>
+          {!isAuctionStarted && (
+            <Button primary color="brand" label="Learn more" href="/" />
+          )}
+        </ButtonRow>
 
-      {isAuctionStarted && (
-        <AuctionStatusProgress
-          maxCap={CROWDLOAN_MAX_CAP}
-          stackedAmount={totalStacked}
-          numContributions={numContributions}
-        />
-      )}
+        {isAuctionStarted && (
+          <AuctionStatusProgress
+            maxCap={CROWDLOAN_MAX_CAP}
+            stackedAmount={totalStacked}
+            numContributions={numContributions}
+          />
+        )}
+      </Container>
     </AuctionStatusStyled>
   );
 };

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import centrifugeMarquee from "../../../images/centrifuge-marquee.svg";
 import centrifugeWordmark from "../../../images/centrifuge-wordmark.svg";
 import { HeaderWallet } from "./HeaderWallet";
-import { mediaGreaterThan } from "../shared/media";
+import { onBreakpoint } from "../shared/responsive";
 
 const HeaderBar = styled.div`
   height: 48px;
@@ -16,7 +16,7 @@ const HeaderBar = styled.div`
   justify-content: space-between;
   padding: 8px 16px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     height: 56px;
   }
 `;
@@ -25,7 +25,7 @@ const ImgLogo = styled.img`
   height: 32px;
   content: url(${centrifugeMarquee});
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     content: url(${centrifugeWordmark});
   }
 `;
@@ -36,7 +36,7 @@ const HeaderTitle = styled.div`
   line-height: 20px;
   white-space: nowrap;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     font-size: 20px;
     line-height: 25px;
   }

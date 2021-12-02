@@ -10,7 +10,7 @@ import { Header } from "./Header/Header";
 import { Hero } from "./Hero/Hero";
 import { RelatedResources } from "./RelatedResources";
 import { WS_PROVIDER } from "./shared/const";
-import { mediaGreaterThan } from "./shared/media";
+import { onBreakpoint } from "./shared/responsive";
 
 export const Page = () => {
   return (
@@ -40,7 +40,7 @@ const FixedHeader = styled.div`
   height: 48px;
   z-index: 15;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     height: 56px;
   }
 `;
@@ -49,7 +49,7 @@ const PageWithFixedHeader = styled.div`
   width: 100%;
   padding-top: 48px;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("L")} {
     padding-top: 56px;
   }
 `;

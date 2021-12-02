@@ -16,9 +16,9 @@ import {
   REWARD_REFERRAL_PERCENT,
 } from "../shared/const";
 import { formatCFG } from "../shared/format";
-import { mediaGreaterThan } from "../shared/media";
 
 import { TextSpan } from "../shared/TextSpan";
+import { onBreakpoint } from "../shared/responsive";
 
 const YourContributionStyled = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const YourContributionStyled = styled.div`
 
   text-align: center;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     text-align: left;
   }
 `;

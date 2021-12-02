@@ -4,13 +4,15 @@ import { Box, Button } from "grommet";
 
 import { TextSpan } from "../shared/TextSpan";
 import dotsSvg from "../../../images/parachain-crowdloan/auction-dots-section.svg";
+import { Container } from "../shared/Container";
 
-const AuctionStatusStyled = styled.div`
+const AuctionStatusStyled = styled(Container)`
   color: #000;
   background-color: ${({ theme }) => theme.global.colors["accent-1"]};
   background-image: url(${dotsSvg});
 
-  padding: 67px 0 43px;
+  padding-top: 67px;
+  padding-bottom: 43px;
 `;
 
 const LightButton = styled(Button)`

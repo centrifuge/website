@@ -7,7 +7,6 @@ import { useWeb3 } from "../../Web3Provider";
 import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
-import { mediaGreaterThan, mediaGreaterThanPx } from "../shared/media";
 import { InfoBoxList } from "./InfoBoxList";
 import { ExtensionMissing } from "./ExtensionMissing";
 import { GetReady } from "./GetReady";
@@ -19,6 +18,7 @@ import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
 import { PARACHAIN_NAME } from "../shared/const";
 import { Container } from "../shared/Container";
+import { onBreakpoint } from "../shared/responsive";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -29,7 +29,7 @@ const ContributeStyled = styled.div`
   gap: 16px;
   padding: 20px 0;
 
-  ${mediaGreaterThan("small")} {
+  ${onBreakpoint("M")} {
     padding: 30px 0;
   }
 `;
@@ -46,20 +46,20 @@ const LeftCol = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${mediaGreaterThanPx(900)} {
+  ${onBreakpoint("L")} {
     grid-column: 1 / span 3;
     padding-top: 26px;
   }
 `;
 
 const ContribSection = styled.div`
-  grid-column: 1 / span 12;
-
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 16px;
 
-  ${mediaGreaterThanPx(900)} {
+  grid-column: 1 / span 12;
+
+  ${onBreakpoint("L")} {
     grid-column: 5 / span 8;
   }
 `;
@@ -72,13 +72,11 @@ const CentralCol = styled.div`
 
   width: 100%;
 
-  ${mediaGreaterThanPx(500)} {
+  ${onBreakpoint("M")} {
     grid-column: 1 / span 5;
   }
 
-  ${mediaGreaterThanPx(900)} {
-    flex-grow: 1;
-    padding-top: 12px;
+  ${onBreakpoint("L")} {
   }
 `;
 
@@ -89,14 +87,11 @@ const RightCol = styled.div`
   grid-column: 1 / span 12;
   min-width: initial;
 
-  ${mediaGreaterThanPx(500)} {
+  ${onBreakpoint("M")} {
     grid-column: 6 / span 3;
   }
 
-  ${mediaGreaterThanPx(900)} {
-    display: flex;
-    justify-content: flex-end;
-    min-width: 180px;
+  ${onBreakpoint("L")} {
   }
 `;
 
