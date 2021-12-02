@@ -71,6 +71,7 @@ const CentralCol = styled.div`
   gap: 24px;
 
   width: 100%;
+  margin-top: 8px;
 
   ${onBreakpoint("M")} {
     grid-column: 1 / span 5;
