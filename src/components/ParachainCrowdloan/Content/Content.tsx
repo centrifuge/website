@@ -7,8 +7,8 @@ import { useWeb3 } from "../../Web3Provider";
 import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
-import { mediaGreaterThan } from "../shared/media";
-import { BlackInfoBoxList } from "./BlackInfoBoxList";
+import { mediaGreaterThan, mediaGreaterThanPx } from "../shared/media";
+import { InfoBoxList } from "./InfoBoxList";
 import { ExtensionMissing } from "./ExtensionMissing";
 import { GetReady } from "./GetReady";
 import { ReferYourFriends } from "./ReferYourFriends";
@@ -20,8 +20,6 @@ import { YourContribution } from "./YourContribution";
 import { PARACHAIN_NAME } from "../shared/const";
 import { Container } from "../shared/Container";
 
-const mediaGreaterThanXS = "@media (min-width: 500px)";
-
 const ContributeStyled = styled.div`
   color: #000;
   background-color: #fff;
@@ -29,12 +27,10 @@ const ContributeStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
-  padding-top: 20px;
+  padding: 20px 0;
 
   ${mediaGreaterThan("small")} {
-    flex-direction: row;
-    justify-content: space-around;
-    padding-top: 30px;
+    padding: 30px 0;
   }
 `;
 
@@ -50,7 +46,7 @@ const LeftCol = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${mediaGreaterThan("small")} {
+  ${mediaGreaterThanPx(900)} {
     grid-column: 1 / span 3;
     padding-top: 26px;
   }
@@ -63,7 +59,7 @@ const ContribSection = styled.div`
   grid-template-columns: repeat(8, 1fr);
   gap: 16px;
 
-  ${mediaGreaterThan("small")} {
+  ${mediaGreaterThanPx(900)} {
     grid-column: 5 / span 8;
   }
 `;
@@ -76,11 +72,11 @@ const CentralCol = styled.div`
 
   width: 100%;
 
-  ${mediaGreaterThanXS} {
+  ${mediaGreaterThanPx(500)} {
     grid-column: 1 / span 5;
   }
 
-  ${mediaGreaterThan("small")} {
+  ${mediaGreaterThanPx(900)} {
     flex-grow: 1;
     padding-top: 12px;
   }
@@ -93,11 +89,11 @@ const RightCol = styled.div`
   grid-column: 1 / span 12;
   min-width: initial;
 
-  ${mediaGreaterThanXS} {
+  ${mediaGreaterThanPx(500)} {
     grid-column: 6 / span 3;
   }
 
-  ${mediaGreaterThan("small")} {
+  ${mediaGreaterThanPx(900)} {
     display: flex;
     justify-content: flex-end;
     min-width: 180px;
@@ -157,7 +153,7 @@ export const Contribute = () => {
             </Box>
           )}
           {isAuctionEnded && <TopContributors />}
-          {!isAuctionEnded && <BlackInfoBoxList />}
+          {!isAuctionEnded && <InfoBoxList />}
         </LeftCol>
 
         <ContribSection>

@@ -9,3 +9,5 @@ export function mediaGreaterThan(
   
 `;
 }
+
+export const mediaGreaterThanPx = (px: number) => `@media (min-width: ${px}px)`;

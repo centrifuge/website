@@ -22,9 +22,11 @@ export const MIN_CONTRIBUTION_DOT = 0.1;
 export const MIN_CONTRIBUTION_PLANCK = DOT_PLANCK * MIN_CONTRIBUTION_DOT;
 
 // reward config
+export const REWARD_HEAVIWEIGHT_FROM = 10; // number of DOT
 export const REWARD_CFG_PER_DOT = 400;
 export const REWARD_EARLY_BIRD_PERCENT = 10;
 export const REWARD_REFERRAL_PERCENT = 5;
+export const REWARD_LOYALTY_PERCENT = 10;
 
 export const REWARD_EARLY_BIRD_HOURS = 72;
 
