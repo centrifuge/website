@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { getSearchParam } from "../browserOnly";
 
 import {
   AUCTION_RESULTS,
@@ -17,7 +18,7 @@ const INTERVAL_UPDATE_COUNTERS_MS = 1000; // update counters every second
 const EARLY_BIRD_PERIOD_HOURS = REWARD_EARLY_BIRD_HOURS;
 const AUCTION_DURATION_DAYS = 7;
 
-const DEBUG_PHASE = new URL(location.href).searchParams.get("debugPhase") || "";
+const DEBUG_PHASE = getSearchParam("debugPhase") || "";
 
 const AUCTION_START_DATE =
   {

@@ -36,10 +36,12 @@ const YourContributionStyled = styled.div`
   }
 `;
 
-const TextHeading2 = styled.span`
+const TextHeading2 = styled.span<{ color?: string }>`
   font-size: 20px;
   line-height: 25px;
   font-weight: 600;
+  color: ${({ theme, color }) =>
+    theme.global.colors[color || ""] || color || "black"};
 `;
 
 const TextLabel = styled.span`
@@ -74,7 +76,7 @@ type StatType = {
 };
 const Stat: React.FC<StatType> = ({ value, label }) => (
   <StatsItem>
-    <TextHeading2>
+    <TextHeading2 color="brand">
       {value ? formatCFG(value, 2) : <CustomSpinner color="brand" />} CFG
     </TextHeading2>
     <TextLabel>{label}</TextLabel>
@@ -183,7 +185,7 @@ export const YourContribution: React.FC<{}> = () => {
                 font-size: 20px;
                 line-height: 32px;
                 font-weight: 600;
-                color: ${(props: any) => props.theme.global.colors.brand};
+                color: #000;
               `}
             >
               {stakedAmount ? stakedAmount : <CustomSpinner color="brand" />}{" "}
