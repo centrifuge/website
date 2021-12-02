@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { LoadingValue } from "../../LoadingValue";
 
 import { TextSpan } from "./TextSpan";
 
@@ -42,6 +43,9 @@ type TopListProps = {
 };
 
 export const TopList: React.FC<TopListProps> = ({ title, items }) => {
+  const shownItems = items.length
+    ? items
+    : new Array(5).fill({ label: "", value: "" });
   return (
     <div>
       <TitleWrapper>
@@ -56,7 +60,7 @@ export const TopList: React.FC<TopListProps> = ({ title, items }) => {
         </TextSpan>
       </TitleWrapper>
       <ReferrerList>
-        {items.map(({ label, value }, i) => (
+        {shownItems.map(({ label, value }, i) => (
           <ReferrerListItem key={`${label}-${i}`}>
             <CounterCol>
               <TextSpan
@@ -77,7 +81,7 @@ export const TopList: React.FC<TopListProps> = ({ title, items }) => {
                   line-height: 19.25px;
                 `}
               >
-                {label}
+                <LoadingValue done={!!label}>{label}</LoadingValue>
               </TextSpan>
             </AddressCol>
             <ContributionsCol>
@@ -88,7 +92,7 @@ export const TopList: React.FC<TopListProps> = ({ title, items }) => {
                   line-height: 19.25px;
                 `}
               >
-                {value}
+                <LoadingValue done={!!value}>{value}</LoadingValue>
               </TextSpan>
             </ContributionsCol>
           </ReferrerListItem>
