@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from "react";
-import queryString from "query-string";
 
 import { MIN_CONTRIBUTION_DOT } from "../const";
 import { getSearchParam } from "../browserOnly";
