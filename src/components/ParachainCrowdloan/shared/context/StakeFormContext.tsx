@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
 
-import { MIN_CONTRIBUTION_DOT } from "../const";
 import { getSearchParam } from "../browserOnly";
 
 type StakeFormContextType = {
@@ -17,7 +16,7 @@ type StakeFormContextType = {
 };
 
 export const StakeFormContext = createContext<StakeFormContextType>({
-  dotAmount: `${MIN_CONTRIBUTION_DOT}`,
+  dotAmount: "",
   setDotAmount: () => {},
   emailAddress: "",
   setEmailAddress: () => {},
@@ -30,7 +29,7 @@ export const StakeFormContext = createContext<StakeFormContextType>({
 });
 
 export const StakeFormContextProvider: React.FC = ({ children }) => {
-  const [dotAmount, setDotAmount] = useState<string>(`${MIN_CONTRIBUTION_DOT}`);
+  const [dotAmount, setDotAmount] = useState<string>("");
   const [emailAddress, setEmailAddress] = useState<string>("");
   const [referralCode, setReferralCode] = useState<string>(
     getSearchParam("refer") || ""
