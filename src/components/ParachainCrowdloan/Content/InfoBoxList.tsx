@@ -79,7 +79,7 @@ const InfoBoxListStyled = styled.div`
 `;
 
 export const InfoBoxList = () => {
-  const { isAuctionStarted } = useAuctionContext();
+  const { isAuctionStarted, isEarlyBird } = useAuctionContext();
 
   const itemList = [
     {
@@ -89,6 +89,7 @@ export const InfoBoxList = () => {
       desc: "Reward for 1 staked DOT",
     },
     {
+      hidden: isAuctionStarted && !isEarlyBird,
       figure: `${REWARD_EARLY_BIRD_PERCENT}`,
       unit: "%",
       title: "Early bird bonus",
@@ -120,33 +121,35 @@ export const InfoBoxList = () => {
 
   return (
     <InfoBoxListStyled>
-      {itemList.map(({ title, desc, figure, unit }) => (
-        <InfoBox key={title}>
-          {isAuctionStarted && (
-            <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
-          )}
-          <InfoBoxStack>
-            <TextSpan
-              css={`
-                font-size: 14px;
-                font-weight: 600;
-                line-height: 19.25px;
-              `}
-            >
-              {title}
-            </TextSpan>
-            <TextSpan
-              css={`
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 19.25px;
-              `}
-            >
-              {desc}
-            </TextSpan>
-          </InfoBoxStack>
-        </InfoBox>
-      ))}
+      {itemList
+        .filter((it) => !it.hidden)
+        .map(({ title, desc, figure, unit }) => (
+          <InfoBox key={title}>
+            {isAuctionStarted && (
+              <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
+            )}
+            <InfoBoxStack>
+              <TextSpan
+                css={`
+                  font-size: 14px;
+                  font-weight: 600;
+                  line-height: 19.25px;
+                `}
+              >
+                {title}
+              </TextSpan>
+              <TextSpan
+                css={`
+                  font-size: 14px;
+                  font-weight: 400;
+                  line-height: 19.25px;
+                `}
+              >
+                {desc}
+              </TextSpan>
+            </InfoBoxStack>
+          </InfoBox>
+        ))}
     </InfoBoxListStyled>
   );
 };

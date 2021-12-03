@@ -133,16 +133,16 @@ export const AuctionStatus: React.FC = () => {
               : `Crowdloan opens on ${formatShortDate(auctionStartDate)}!`}
           </Heading1>
         </div>
-        <CountdownRow>
-          <PulsingDot />
-          <Heading2>
-            {isAuctionStarted
-              ? isEarlyBird
+        {!(isAuctionStarted && !isEarlyBird) && (
+          <CountdownRow>
+            <PulsingDot />
+            <Heading2>
+              {isAuctionStarted
                 ? `${earlyBirdHoursLeft} hrs Early Bird Bonus remaining`
-                : "Early Bird Bonus is expired!"
-              : `${daysUntilAuction} days to go until auction launch`}
-          </Heading2>
-        </CountdownRow>
+                : `${daysUntilAuction} days to go until auction launch`}
+            </Heading2>
+          </CountdownRow>
+        )}
         <ButtonRow>
           {!isAuctionStarted && (
             <Button primary color="brand" label="Learn more" href="/" />
