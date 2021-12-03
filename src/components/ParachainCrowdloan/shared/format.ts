@@ -2,6 +2,10 @@ import { encodeAddress } from "@polkadot/util-crypto";
 import BigNumber from "bignumber.js";
 import { CFG_PLANCK, DOT_PLANCK } from "./const";
 
+function addCommas(x: number | string) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export function truncateAddress(address: string) {
   const encodedAddress = encodeAddress(address);
   const first8 = encodedAddress.slice(0, 8);
@@ -17,7 +21,8 @@ export function formatNumber(n: number) {
 const createFormatNum = (planck: number) => (
   value: number | BigNumber | string,
   decimals?: number,
-  unit?: boolean
+  unit?: boolean,
+  commas?: boolean
 ) => {
   let bn =
     typeof value === "number"
@@ -42,7 +47,10 @@ const createFormatNum = (planck: number) => (
     }
   }
 
-  const str = `${bn.div(planck).toFixed(decimals || 0)}`.replace(/\.0+$/, "");
+  let str = `${bn.div(planck).toFixed(decimals || 0)}`.replace(/\.0+$/, "");
+  if (commas == null || commas === true) {
+    str = addCommas(str);
+  }
   return `${str}${unitLetter || ""}`;
 };
 
