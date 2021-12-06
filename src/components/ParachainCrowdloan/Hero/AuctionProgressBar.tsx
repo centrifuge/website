@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const AuctionProgressBarStyled = styled.div`
   position: relative;
-  height: 32px;
+  height: 24px;
   background: #fff;
 
   border-radius: 16px;

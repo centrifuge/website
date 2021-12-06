@@ -57,6 +57,7 @@ const ContribSection = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 16px;
+  align-items: flex-start;
 
   grid-column: 1 / span 12;
 

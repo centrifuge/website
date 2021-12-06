@@ -28,7 +28,6 @@ const YourContributionStyled = styled.div`
   background: #f8f8f8;
   border-radius: 6px;
   padding: 24px;
-  min-height: 473px;
 
   text-align: center;
 

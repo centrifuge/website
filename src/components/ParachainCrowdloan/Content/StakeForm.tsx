@@ -117,11 +117,10 @@ export const StakeForm: React.FC = () => {
   const [injector, setInjector] = useState<{ signer: Signer }>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [gasFee, setGasFee] = useState<BigNumber>();
-  const [minimumBalance, setMinimumBalance] = useState<BigNumber>();
   const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
     false
   );
-  const [warning, setWarning] = useState<WarningType | null>(null);
+  const [_, setWarning] = useState<WarningType | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -140,6 +139,22 @@ export const StakeForm: React.FC = () => {
       }
     })();
   }, [api, selectedAccount]);
+
+  const warning = useMemo<WarningType | null>(() => {
+    const amtBn = new BigNumber(dotAmount || 0).times(DOT_PLANCK);
+    if (!freeBalance || !gasFee || amtBn.isNaN()) {
+      return null;
+    }
+    const totalContrib = amtBn.plus(gasFee);
+    const remainingBalance = freeBalance.minus(totalContrib);
+
+    if (remainingBalance.lt(0)) {
+      return "insufficientFunds";
+    } else if (remainingBalance.lt(MIN_EXISTENTIAL_DEPOSIT_PLANCK)) {
+      return "existentialDeposit";
+    }
+    return null;
+  }, [dotAmount, gasFee, freeBalance]);
 
   const contribute = async () => {
     if (!api) {
@@ -228,7 +243,6 @@ export const StakeForm: React.FC = () => {
 
         const gasFeeBN = new BigNumber(gasFeeResponse.partialFee.toString());
         setGasFee(gasFeeBN);
-        setMinimumBalance(gasFeeBN.plus(MIN_CONTRIBUTION_PLANCK));
       }
     })();
   }, [api, referralCode, selectedAccount?.address]);
@@ -248,15 +262,8 @@ export const StakeForm: React.FC = () => {
   };
 
   const isFormEnabled = useMemo(
-    () =>
-      !!(
-        api &&
-        selectedAccount?.address &&
-        freeBalance &&
-        minimumBalance &&
-        freeBalance.gte(minimumBalance)
-      ),
-    [api, selectedAccount?.address, freeBalance, minimumBalance]
+    () => !!(api && selectedAccount?.address && freeBalance),
+    [api, selectedAccount?.address, freeBalance]
   );
 
   const isSubmitEnabled = isFormEnabled && checked && !warning;
@@ -287,11 +294,17 @@ export const StakeForm: React.FC = () => {
           </Text>
         </Box>
       </Box>
+
+      {/* Warnings */}
+
       {errorMessage && <WarningUnexpectedError errorMessage={errorMessage} />}
       {warning === "insufficientFunds" && (
         <WarningInsufficientFunds gasFee={gasFee?.toString() || ""} />
       )}
       {warning === "existentialDeposit" && <WarningExistentialDeposit />}
+
+      {/* Actual form */}
+
       {isWeb3Injected && (
         <Box gap="medium">
           <Form onSubmit={() => contribute()} validate="submit">
@@ -324,6 +337,7 @@ export const StakeForm: React.FC = () => {
                       return;
                     }
                     const totalContrib = amtBn.plus(gasFee);
+                    const pippo = "";
                     if (freeBalance.minus(totalContrib).lt(0)) {
                       setWarning("insufficientFunds");
                     } else if (
@@ -373,14 +387,6 @@ export const StakeForm: React.FC = () => {
                 >
                   Set Max
                 </UnderlineTextButton>
-              </Box>
-
-              <Box>
-                {freeBalance &&
-                minimumBalance &&
-                freeBalance.lt(minimumBalance) ? (
-                  <WarningInsufficientFunds gasFee={formatBigNumber(gasFee)} />
-                ) : null}
               </Box>
 
               <FormField
