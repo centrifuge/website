@@ -192,27 +192,68 @@ export const StakeForm: React.FC = () => {
           ])
         : contributeTransaction;
 
-      await transactionToSend.signAndSend(
-        selectedAccount.address,
-        { signer: injector.signer },
-        async (status) => {
-          const error = status.events.filter(({ event }) =>
-            api.events.system.ExtrinsicFailed.is(event)
-          );
+      await new Promise((resolve, reject) => {
+        transactionToSend.signAndSend(
+          selectedAccount.address,
+          { signer: injector.signer },
+          async ({ status, events }) => {
+            // make sure status is finalized
+            if (!status.isFinalized) return;
 
-          if (status.status.isFinalized) {
-            if (emailAddress) {
-              await addToMailchimp(emailAddress, {}, MAILCHIMP_URL);
+            // get failures if any
+            const errors = events.filter(({ event }) =>
+              api.events.system.ExtrinsicFailed.is(event)
+            );
+
+            // if there are failures, reject the promise
+            if (errors.length) {
+              const errorMsgs = errors.map(
+                ({
+                  event: {
+                    data: [error],
+                  },
+                }) => {
+                  if ((error as any).isModule) {
+                    const decoded = api.registry.findMetaError(
+                      (error as any).asModule
+                    );
+                    const { docs, method, section } = decoded;
+
+                    return `${section}.${method}: ${docs.join(" ")}`;
+                  } else {
+                    return error.toString();
+                  }
+                }
+              );
+
+              reject(new Error(errorMsgs.join("\n")));
+              return;
+            }
+
+            // check if there was success, resolve the promise
+            const success = events.filter(({ event }) =>
+              api.events.system.ExtrinsicSuccess.is(event)
+            );
+
+            if (success.length) {
+              resolve("ok");
             }
           }
+        );
+      });
 
-          setErrorMessage(error.length ? "error occurred" : "");
-          setIsSubmitting(false);
-        }
-      );
-
+      // transaction was successful
       setContribHash(transactionToSend.hash.toHex());
+      setErrorMessage("");
+
+      if (emailAddress) {
+        await addToMailchimp(emailAddress, {}, MAILCHIMP_URL);
+      }
+
+      setIsSubmitting(false);
     } catch (err) {
+      // transaction failed
+
       const errorMsg = (err as Error)?.message || `${err}`;
       setIsSubmitting(false);
       setErrorMessage(errorMsg);

@@ -18,7 +18,7 @@ export const CROWDLOAN_MAX_CAP = 200000;
 export const AUCTION_START = new Date("2021-12-15");
 
 // the minimum contribution is 5 DOT (see https://twitter.com/Polkadot/status/1457747901430566924)
-export const MIN_CONTRIBUTION_DOT = 5;
+export const MIN_CONTRIBUTION_DOT = 0.0001;
 export const MIN_CONTRIBUTION_PLANCK = DOT_PLANCK * MIN_CONTRIBUTION_DOT;
 
 // the user won't be able to contribute if the balance - contrib - gas fee is lower than MIN_EXISTENTIAL_DEPOSIT_DOT
