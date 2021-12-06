@@ -10,6 +10,7 @@ import { TextSpan } from "./shared/TextSpan";
 const StyledRelatedResources = styled.div`
   padding: 48px;
   background: black;
+  border-bottom: 1px solid white;
 `;
 
 const ParachainsLink = styled.a`

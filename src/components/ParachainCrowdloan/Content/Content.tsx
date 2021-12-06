@@ -38,7 +38,7 @@ const GetReadyWrapper = styled.div`
   color: #000;
   background-color: #fff;
 
-  padding: 24px 8px;
+  padding: 24px 0;
 `;
 
 const LeftCol = styled.div`
@@ -49,6 +49,7 @@ const LeftCol = styled.div`
   ${onBreakpoint("L")} {
     grid-column: 1 / span 3;
     padding-top: 26px;
+    max-width: 256px;
   }
 `;
 
@@ -180,7 +181,9 @@ export const Content = () => {
               <ReferYourFriends referralCode={newReferralCode} />
             )}
 
-            {isAuctionStarted && !isAuctionEnded && <StakeForm />}
+            {isWeb3Injected && isAuctionStarted && !isAuctionEnded && (
+              <StakeForm />
+            )}
             {isAuctionEnded && <YourContribution />}
           </CentralCol>
           <RightCol>

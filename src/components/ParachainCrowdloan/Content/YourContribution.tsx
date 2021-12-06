@@ -77,7 +77,9 @@ type StatType = {
   color?: string;
 };
 const Stat: React.FC<StatType> = ({ value, label, color }) => {
-  if (new BigNumber(value || 0).isZero()) return null;
+  const { isAuctionEnded } = useAuctionContext();
+
+  if (!isAuctionEnded && new BigNumber(value || 0).isZero()) return null;
   return (
     <StatsItem>
       <TextHeading2 color={color}>
@@ -211,7 +213,7 @@ export const YourContribution: React.FC<{}> = () => {
             <TextLabel>Staked amount</TextLabel>
           </StatsItem>
 
-          {hasRewards && (
+          {(hasRewards || isAuctionEnded) && (
             <>
               <Divider />
 
@@ -227,7 +229,7 @@ export const YourContribution: React.FC<{}> = () => {
           )}
         </>
       ) : (
-        <div>No wallet connected</div>
+        <div>Please connect your Polkadot wallet in the top right corner</div>
       )}
     </YourContributionStyled>
   );

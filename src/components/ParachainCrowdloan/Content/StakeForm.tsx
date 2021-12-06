@@ -264,9 +264,10 @@ export const StakeForm: React.FC = () => {
   if (!isWeb3Injected || !api) {
     return (
       <Box>
-        <Box alignSelf="center">
+        <Box alignSelf="center" margin={{ top: "48px", bottom: "16px" }}>
           <Spinner size="medium" />
         </Box>
+        <Box alignSelf="center">Connecting wallet...</Box>
       </Box>
     );
   }
