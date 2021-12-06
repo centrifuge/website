@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import React, { createContext, useContext, useState } from "react";
 
 import { getSearchParam } from "../browserOnly";
@@ -13,6 +14,10 @@ type StakeFormContextType = {
   setErrorMessage: (val: string) => void;
   contribHash: string;
   setContribHash: (val: string) => void;
+  warning: string;
+  setWarning: (val: string) => void;
+  gasFee?: BigNumber;
+  setGasFee: (val: BigNumber) => void;
 };
 
 export const StakeFormContext = createContext<StakeFormContextType>({
@@ -26,6 +31,9 @@ export const StakeFormContext = createContext<StakeFormContextType>({
   setErrorMessage: () => {},
   contribHash: "",
   setContribHash: () => {},
+  warning: "",
+  setWarning: () => {},
+  setGasFee: () => {},
 });
 
 export const StakeFormContextProvider: React.FC = ({ children }) => {
@@ -36,6 +44,9 @@ export const StakeFormContextProvider: React.FC = ({ children }) => {
   );
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [contribHash, setContribHash] = useState<string>("");
+
+  const [warning, setWarning] = useState<string>("");
+  const [gasFee, setGasFee] = useState<BigNumber>();
 
   const ctx: StakeFormContextType = {
     dotAmount,
@@ -48,6 +59,10 @@ export const StakeFormContextProvider: React.FC = ({ children }) => {
     setErrorMessage,
     contribHash,
     setContribHash,
+    warning,
+    setWarning,
+    gasFee,
+    setGasFee,
   };
 
   return (

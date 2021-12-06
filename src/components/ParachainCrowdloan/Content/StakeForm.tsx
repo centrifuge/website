@@ -21,8 +21,6 @@ import { usePolkadotApi } from "../shared/context/PolkadotApiProvider";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
 import { Signer } from "@polkadot/types/types";
-import { WarningInsufficientFunds } from "./WarningInsufficientFunds";
-import { WarningExistentialDeposit } from "./WarningExistentialDeposit";
 import {
   DOT_PLANCK,
   MAILCHIMP_URL,
@@ -91,8 +89,6 @@ const UnderlineTextButton = styled.button`
   }
 `;
 
-type WarningType = "insufficientFunds" | "existentialDeposit";
-
 export const StakeForm: React.FC = () => {
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
@@ -107,6 +103,10 @@ export const StakeForm: React.FC = () => {
     errorMessage,
     setErrorMessage,
     setContribHash,
+    warning,
+    setWarning,
+    gasFee,
+    setGasFee,
   } = useStakeFormContext();
 
   const [checked, setChecked] = useState(false);
@@ -114,7 +114,6 @@ export const StakeForm: React.FC = () => {
   const [freeBalance, setFreeBalance] = useState<BigNumber>();
   const [injector, setInjector] = useState<{ signer: Signer }>();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [gasFee, setGasFee] = useState<BigNumber>();
   const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
     false
   );
@@ -137,20 +136,39 @@ export const StakeForm: React.FC = () => {
     })();
   }, [api, selectedAccount]);
 
-  const warning = useMemo<WarningType | null>(() => {
+  // const warning = useMemo<WarningType | null>(() => {
+  //   const amtBn = new BigNumber(dotAmount || 0).times(DOT_PLANCK);
+  //   if (!freeBalance || !gasFee || amtBn.isNaN()) {
+  //     return null;
+  //   }
+  //   const totalContrib = amtBn.plus(gasFee);
+  //   const remainingBalance = freeBalance.minus(totalContrib);
+
+  //   if (remainingBalance.lt(0)) {
+  //     return "insufficientFunds";
+  //   } else if (remainingBalance.lt(MIN_EXISTENTIAL_DEPOSIT_PLANCK)) {
+  //     return "existentialDeposit";
+  //   }
+  //   return null;
+  // }, [dotAmount, gasFee, freeBalance]);
+
+  useEffect(() => {
     const amtBn = new BigNumber(dotAmount || 0).times(DOT_PLANCK);
     if (!freeBalance || !gasFee || amtBn.isNaN()) {
-      return null;
+      setWarning("");
+      return;
     }
     const totalContrib = amtBn.plus(gasFee);
     const remainingBalance = freeBalance.minus(totalContrib);
 
     if (remainingBalance.lt(0)) {
-      return "insufficientFunds";
+      setWarning("insufficientFunds");
+      return;
     } else if (remainingBalance.lt(MIN_EXISTENTIAL_DEPOSIT_PLANCK)) {
-      return "existentialDeposit";
+      setWarning("existentialDeposit");
+      return;
     }
-    return null;
+    setWarning("");
   }, [dotAmount, gasFee, freeBalance]);
 
   const contribute = async () => {
@@ -339,10 +357,6 @@ export const StakeForm: React.FC = () => {
       {/* Warnings */}
 
       {errorMessage && <WarningUnexpectedError errorMessage={errorMessage} />}
-      {warning === "insufficientFunds" && (
-        <WarningInsufficientFunds gasFee={gasFee?.toString() || ""} />
-      )}
-      {warning === "existentialDeposit" && <WarningExistentialDeposit />}
 
       {/* Actual form */}
 

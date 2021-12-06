@@ -19,6 +19,9 @@ import { YourContribution } from "./YourContribution";
 import { PARACHAIN_NAME } from "../shared/const";
 import { Container } from "../shared/Container";
 import { onBreakpoint } from "../shared/responsive";
+import { WarningInsufficientFunds } from "./WarningInsufficientFunds";
+import { WarningExistentialDeposit } from "./WarningExistentialDeposit";
+import { formatDOT } from "../shared/format";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -116,7 +119,7 @@ export type ContributionOutcome = {
 
 export const Content = () => {
   const { isAuctionStarted, isAuctionEnded } = useAuctionContext();
-  const { contribHash, dotAmount } = useStakeFormContext();
+  const { contribHash, dotAmount, warning, gasFee } = useStakeFormContext();
   const { isWeb3Injected, selectedAccount } = useWeb3();
   const [newReferralCode, setNewReferralCode] = useState<string>("");
 
@@ -181,6 +184,11 @@ export const Content = () => {
             {newReferralCode && (
               <ReferYourFriends referralCode={newReferralCode} />
             )}
+
+            {warning === "insufficientFunds" && (
+              <WarningInsufficientFunds gasFee={formatDOT(gasFee || 0, 18)} />
+            )}
+            {warning === "existentialDeposit" && <WarningExistentialDeposit />}
 
             {isWeb3Injected && isAuctionStarted && !isAuctionEnded && (
               <StakeForm />
