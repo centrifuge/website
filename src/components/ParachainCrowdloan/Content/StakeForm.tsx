@@ -10,7 +10,7 @@ import {
   Text,
   TextInput,
 } from "grommet";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import addToMailchimp from "gatsby-plugin-mailchimp";
 
 import polkadotLogo from "../../../images/parachain-crowdloan/polkadot-logo.svg";
@@ -21,8 +21,8 @@ import { usePolkadotApi } from "../shared/context/PolkadotApiProvider";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
 import { Signer } from "@polkadot/types/types";
-import { Alert } from "grommet-icons";
-import { InsufficientFundsWarning } from "./InsufficientFundsWarning";
+import { WarningInsufficientFunds } from "./WarningInsufficientFunds";
+import { WarningExistentialDeposit } from "./WarningExistentialDeposit";
 import {
   DOT_PLANCK,
   MAILCHIMP_URL,
@@ -30,10 +30,12 @@ import {
   MIN_CONTRIBUTION_DOT,
   PARACHAIN_ID,
   PARACHAIN_NAME,
+  MIN_EXISTENTIAL_DEPOSIT_PLANCK,
 } from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
+import { WarningUnexpectedError } from "./WarningUnexpectedError";
 
 const formatBigNumber = (bn?: BigNumber): string =>
   bn ? bn.div(DOT_PLANCK).toString() : "";
@@ -64,19 +66,6 @@ const isExistingReferralCode = async (value: string) => {
   return json.valid;
 };
 
-const UnexpectedError: React.FC<{ errorMessage: string }> = ({
-  errorMessage,
-}) => {
-  return (
-    <Box background={{ color: "#FFE8ED" }} style={{ padding: "16px" }}>
-      <Text weight={600}>
-        <Alert size="small" /> Unexpected error: {errorMessage}
-      </Text>
-      <Text>Try again.</Text>
-    </Box>
-  );
-};
-
 const CustomSpinner = styled(Spinner)`
   height: 5px;
   width: 5px;
@@ -103,7 +92,10 @@ const UnderlineTextButton = styled.button`
   }
 `;
 
+type WarningType = "insufficientFunds" | "existentialDeposit";
+
 export const StakeForm: React.FC = () => {
+  const dotAmountInputRef = useRef<HTMLInputElement>(null);
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
 
@@ -129,6 +121,7 @@ export const StakeForm: React.FC = () => {
   const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
     false
   );
+  const [warning, setWarning] = useState<WarningType | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -143,7 +136,8 @@ export const StakeForm: React.FC = () => {
 
         setInjector(web3Injector);
 
-        setFreeBalance(new BigNumber(balances.data.free.toString()));
+        // setFreeBalance(new BigNumber(balances.data.free.toString()));////////////////////////////////////////////////
+        setFreeBalance(new BigNumber("100000000000")); ////////////////////////////////////////////////
       }
     })();
   }, [api, selectedAccount]);
@@ -266,7 +260,7 @@ export const StakeForm: React.FC = () => {
     [api, selectedAccount?.address, freeBalance, minimumBalance]
   );
 
-  const isSubmitEnabled = isFormEnabled && checked;
+  const isSubmitEnabled = isFormEnabled && checked && !warning;
 
   if (!isWeb3Injected || !api) {
     return (
@@ -293,7 +287,11 @@ export const StakeForm: React.FC = () => {
           </Text>
         </Box>
       </Box>
-      {errorMessage && <UnexpectedError errorMessage={errorMessage} />}
+      {errorMessage && <WarningUnexpectedError errorMessage={errorMessage} />}
+      {warning === "insufficientFunds" && (
+        <WarningInsufficientFunds gasFee={gasFee?.toString() || ""} />
+      )}
+      {warning === "existentialDeposit" && <WarningExistentialDeposit />}
       {isWeb3Injected && (
         <Box gap="medium">
           <Form onSubmit={() => contribute()} validate="submit">
@@ -320,7 +318,26 @@ export const StakeForm: React.FC = () => {
                     setErrorMessage("");
                     setDotAmount(event.target.value);
                   }}
+                  onBlur={() => {
+                    const amtBn = new BigNumber(dotAmount).times(DOT_PLANCK);
+                    if (!freeBalance || !gasFee || amtBn.isNaN()) {
+                      return;
+                    }
+                    const totalContrib = amtBn.plus(gasFee);
+                    if (freeBalance.minus(totalContrib).lt(0)) {
+                      setWarning("insufficientFunds");
+                    } else if (
+                      freeBalance
+                        .minus(totalContrib)
+                        .lt(MIN_EXISTENTIAL_DEPOSIT_PLANCK)
+                    ) {
+                      setWarning("existentialDeposit");
+                    } else {
+                      setWarning(null);
+                    }
+                  }}
                   value={dotAmount}
+                  ref={dotAmountInputRef}
                 />
               </FormField>
               <Box
@@ -338,11 +355,20 @@ export const StakeForm: React.FC = () => {
                   )}
                 </Grid>
                 <UnderlineTextButton
+                  type="button"
                   disabled={
                     !isFormEnabled || !freeBalance || freeBalance.isZero()
                   }
                   onClick={() => {
-                    setDotAmount(formatBigNumber(freeBalance));
+                    if (!gasFee || !freeBalance) {
+                      return;
+                    }
+                    dotAmountInputRef.current?.focus();
+                    const maxContrib = freeBalance
+                      .minus(gasFee)
+                      .minus(MIN_EXISTENTIAL_DEPOSIT_PLANCK);
+
+                    setDotAmount(formatBigNumber(maxContrib));
                   }}
                 >
                   Set Max
@@ -353,7 +379,7 @@ export const StakeForm: React.FC = () => {
                 {freeBalance &&
                 minimumBalance &&
                 freeBalance.lt(minimumBalance) ? (
-                  <InsufficientFundsWarning gasFee={formatBigNumber(gasFee)} />
+                  <WarningInsufficientFunds gasFee={formatBigNumber(gasFee)} />
                 ) : null}
               </Box>
 
