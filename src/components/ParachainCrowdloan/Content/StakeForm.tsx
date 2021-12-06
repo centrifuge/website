@@ -10,7 +10,7 @@ import {
   Text,
   TextInput,
 } from "grommet";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import addToMailchimp from "gatsby-plugin-mailchimp";
 
 import polkadotLogo from "../../../images/parachain-crowdloan/polkadot-logo.svg";
@@ -26,7 +26,6 @@ import { WarningExistentialDeposit } from "./WarningExistentialDeposit";
 import {
   DOT_PLANCK,
   MAILCHIMP_URL,
-  MIN_CONTRIBUTION_PLANCK,
   MIN_CONTRIBUTION_DOT,
   PARACHAIN_ID,
   PARACHAIN_NAME,
@@ -95,7 +94,6 @@ const UnderlineTextButton = styled.button`
 type WarningType = "insufficientFunds" | "existentialDeposit";
 
 export const StakeForm: React.FC = () => {
-  const dotAmountInputRef = useRef<HTMLInputElement>(null);
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
 
@@ -120,7 +118,6 @@ export const StakeForm: React.FC = () => {
   const [showConditionsModal, setShowConditionsModal] = useState<boolean>(
     false
   );
-  const [_, setWarning] = useState<WarningType | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -253,7 +250,10 @@ export const StakeForm: React.FC = () => {
       !validDOTReg.test(value) ||
       parseFloat(value) < MIN_CONTRIBUTION_DOT
     ) {
-      return { status: "error", message: "Enter a valid amount of DOT" };
+      return {
+        status: "error",
+        message: `Enter a valid amount of DOT (minimum ${MIN_CONTRIBUTION_DOT})`,
+      };
     }
 
     if (parseFloat(value) > (freeBalance?.div(DOT_PLANCK).toNumber() || 0)) {
@@ -331,27 +331,7 @@ export const StakeForm: React.FC = () => {
                     setErrorMessage("");
                     setDotAmount(event.target.value);
                   }}
-                  onBlur={() => {
-                    const amtBn = new BigNumber(dotAmount).times(DOT_PLANCK);
-                    if (!freeBalance || !gasFee || amtBn.isNaN()) {
-                      return;
-                    }
-                    const totalContrib = amtBn.plus(gasFee);
-                    const pippo = "";
-                    if (freeBalance.minus(totalContrib).lt(0)) {
-                      setWarning("insufficientFunds");
-                    } else if (
-                      freeBalance
-                        .minus(totalContrib)
-                        .lt(MIN_EXISTENTIAL_DEPOSIT_PLANCK)
-                    ) {
-                      setWarning("existentialDeposit");
-                    } else {
-                      setWarning(null);
-                    }
-                  }}
                   value={dotAmount}
-                  ref={dotAmountInputRef}
                 />
               </FormField>
               <Box
