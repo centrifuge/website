@@ -357,7 +357,6 @@ export const StakeForm: React.FC = () => {
                     if (!gasFee || !freeBalance) {
                       return;
                     }
-                    dotAmountInputRef.current?.focus();
                     const maxContrib = freeBalance
                       .minus(gasFee)
                       .minus(MIN_EXISTENTIAL_DEPOSIT_PLANCK);
