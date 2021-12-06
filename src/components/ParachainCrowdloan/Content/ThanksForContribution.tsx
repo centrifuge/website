@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { formatDOT } from "../shared/format";
+import { formatNumber } from "../shared/format";
 import iconCheck from "../../../images/icons/check.svg";
 import { ExternalLink } from "../../Links";
 import { TRANSACTION_DETAILS_URL } from "../shared/const";
@@ -44,7 +44,7 @@ export const ThanksForContribution: React.FC<ThanksForContributionProps> = ({
       </TitleRow>
       <div>
         <TextBody>
-          Your {formatDOT(amount)} DOT are successfully staked.{" "}
+          Your {formatNumber(amount, 12)} DOT are successfully staked.{" "}
           <ExternalLink
             unstyled={0}
             href={`${TRANSACTION_DETAILS_URL}/${claimHash}`}

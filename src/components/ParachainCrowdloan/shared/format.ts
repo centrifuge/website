@@ -3,7 +3,10 @@ import BigNumber from "bignumber.js";
 import { CFG_PLANCK, DOT_PLANCK } from "./const";
 
 function addCommas(x: number | string) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const [integer, decimals] = x.toString().split(".");
+  return `${integer.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${
+    decimals ? `.${decimals}` : ""
+  }`;
 }
 
 export function truncateAddress(address: string) {
@@ -12,10 +15,6 @@ export function truncateAddress(address: string) {
   const last3 = encodedAddress.slice(-3);
 
   return `${first8}...${last3}`;
-}
-
-export function formatNumber(n: number) {
-  return n.toLocaleString();
 }
 
 const createFormatNum = (planck: number) => (
@@ -47,7 +46,10 @@ const createFormatNum = (planck: number) => (
     }
   }
 
-  let str = `${bn.div(planck).toFixed(decimals || 0)}`.replace(/\.0+$/, "");
+  let str = `${bn.div(planck).toFormat(decimals || 0)}`;
+  if (str.indexOf(".") !== -1) {
+    str = str.replace(/0+$/, "");
+  }
   if (commas == null || commas === true) {
     str = addCommas(str);
   }
@@ -57,6 +59,8 @@ const createFormatNum = (planck: number) => (
 export const formatDOT = createFormatNum(DOT_PLANCK);
 
 export const formatCFG = createFormatNum(CFG_PLANCK);
+
+export const formatNumber = createFormatNum(1);
 
 // Dates
 
