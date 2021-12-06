@@ -136,7 +136,7 @@ export const StakeForm: React.FC = () => {
 
         setInjector(web3Injector);
 
-        setFreeBalance(new BigNumber(balances.data.free.toString())); ////////////////////////////////////////////////
+        setFreeBalance(new BigNumber(balances.data.free.toString()));
       }
     })();
   }, [api, selectedAccount]);

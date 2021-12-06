@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { useCopyToClipboard } from "react-use";
+import { Copy, Checkmark } from "grommet-icons";
+
 import styled from "styled-components";
 
 const ThanksForContributionStyled = styled.div`
-  background: ${({ theme }) => theme.global.colors["accent-1"]};
+  background: ${({ theme }) => theme.global.colors.centrifugeOrange};
   padding: 16px;
 `;
 
@@ -22,6 +25,19 @@ const TitleRow = styled.div`
   margin-bottom: 4px;
 `;
 
+const CopyReferralCode = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  margin-top: 8px;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
 type ThanksForContributionProps = {
   referralCode: string;
 };
@@ -29,6 +45,16 @@ type ThanksForContributionProps = {
 export const ReferYourFriends: React.FC<ThanksForContributionProps> = ({
   referralCode,
 }) => {
+  const [_, copyToClipboard] = useCopyToClipboard();
+  const [showCopiedFeedback, setShowCopiedFeedback] = useState<boolean>(false);
+
+  const showFeedback = () => {
+    setShowCopiedFeedback(true);
+    setTimeout(() => {
+      setShowCopiedFeedback(false);
+    }, 3000);
+  };
+
   return (
     <ThanksForContributionStyled>
       <TitleRow>
@@ -40,9 +66,20 @@ export const ReferYourFriends: React.FC<ThanksForContributionProps> = ({
           reward for each used referral code.
         </TextBody>
       </div>
-      <u>
+
+      <CopyReferralCode
+        role="button"
+        onClick={() => {
+          copyToClipboard(
+            `http://centrifuge.io/parachain/crowdloan/?refer=${referralCode}`
+          );
+          showFeedback();
+        }}
+      >
+        <Copy size="small" />
         <TextBody>{referralCode}</TextBody>
-      </u>
+        {showCopiedFeedback && <Checkmark size="small" />}
+      </CopyReferralCode>
     </ThanksForContributionStyled>
   );
 };
