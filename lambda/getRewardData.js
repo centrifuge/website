@@ -1,43 +1,42 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-import axios from 'axios';
-import postgres from 'postgres';
-import { Keyring } from '@polkadot/api';
-import { u8aToHex } from '@polkadot/util';
-import { BigNumber } from 'bignumber.js';
-import { getConfig } from './crowdloan/config';
+import axios from "axios";
+import postgres from "postgres";
+import { Keyring } from "@polkadot/api";
+import { u8aToHex } from "@polkadot/util";
+import { BigNumber } from "bignumber.js";
+import { getConfig } from "./crowdloan/config";
 
-let curConfig = null;
-
-
-const getReferralCodes = async address => {
-  const { sql, REFERRAL_TABLE_NAME } = curConfig;
+const getReferralCodes = async (config, address) => {
+  const { sql, REFERRAL_TABLE_NAME } = config;
   const results = await sql`
-    select referral_code from ${sql(REFERRAL_TABLE_NAME)} where wallet_address = ${address}
+    select referral_code from ${sql(
+      REFERRAL_TABLE_NAME
+    )} where wallet_address = ${address}
   `;
 
-  return results.map(result => result.referral_code);
+  return results.map((result) => result.referral_code);
 };
 
-const getValidReferralCodes = async referralCodes => {
-  const { sql, REFERRAL_TABLE_NAME } = curConfig;
+const getValidReferralCodes = async (config, referralCodes) => {
+  const { sql, REFERRAL_TABLE_NAME } = config;
   const results = await sql`
-      select referral_code, wallet_address from ${sql(REFERRAL_TABLE_NAME)} where referral_code = any('{${sql(
-        referralCodes,
-      )}}'::varchar[])
+      select referral_code, wallet_address from ${sql(
+        REFERRAL_TABLE_NAME
+      )} where referral_code = any('{${sql(referralCodes)}}'::varchar[])
     `;
 
-  return results.map(result => result.referral_code);
+  return results.map((result) => result.referral_code);
 };
 
-const getContributions = async address => {
-  const keyring = new Keyring({ type: 'sr25519' });
+const getContributions = async (config, address) => {
+  const keyring = new Keyring({ type: "sr25519" });
   const hexPublicKey = u8aToHex(keyring.addFromAddress(address).publicKey);
 
   try {
     const { data } = await axios(
-      `${curConfig.URL_CONTRIBUTOR}?id=${hexPublicKey}`,
+      `${config.URL_CONTRIBUTOR}?id=${hexPublicKey}`
     );
 
     return data;
@@ -46,19 +45,17 @@ const getContributions = async address => {
       return [];
     }
 
-    console.log('error', error.message);
+    console.log("error", error.message);
   }
 };
 
-const getAllContributions = async () => {
-  const { data } = await axios(
-    curConfig.URL_CONTRIBUTIONS,
-  );
+const getAllContributions = async (config) => {
+  const { data } = await axios(config.URL_CONTRIBUTIONS);
 
   return data;
 };
 
-const getEarlyBirdBonus = contributions =>
+const getEarlyBirdBonus = (contributions) =>
   contributions
     .reduce((sum, contribution) => {
       if (contribution.earlyBird) {
@@ -66,7 +63,7 @@ const getEarlyBirdBonus = contributions =>
           new BigNumber(contribution.contribution)
             .multipliedBy(10 ** 6)
             .multipliedBy(0.1)
-            .multipliedBy(430),
+            .multipliedBy(430)
         );
       }
 
@@ -74,7 +71,7 @@ const getEarlyBirdBonus = contributions =>
     }, new BigNumber(0))
     .toString();
 
-const getFirstCrowdloanBonus = contributions => {
+const getFirstCrowdloanBonus = (contributions) => {
   const sortExtrinsics = (a, b) => {
     if (a.blockNumber === b.blockNumber) {
       if (a.index === b.index) {
@@ -101,20 +98,23 @@ const getFirstCrowdloanBonus = contributions => {
     .toString();
 };
 
-const getContributionAmount = contributions =>
+const getContributionAmount = (contributions) =>
   contributions
     .reduce(
       (sum, contribution) => sum.plus(new BigNumber(contribution.contribution)),
-      new BigNumber(0),
+      new BigNumber(0)
     )
     .toString();
 
-const getOutgoingReferralBonus = async contributions => {
+const getOutgoingReferralBonus = async (config, contributions) => {
   const usedReferralCodes = contributions
-    .filter(contribution => contribution.referralCode)
-    .map(contribution => contribution.referralCode);
+    .filter((contribution) => contribution.referralCode)
+    .map((contribution) => contribution.referralCode);
 
-  const validReferralCodes = await getValidReferralCodes(usedReferralCodes);
+  const validReferralCodes = await getValidReferralCodes(
+    config,
+    usedReferralCodes
+  );
 
   return contributions.reduce((sum, contribution) => {
     if (validReferralCodes.includes(contribution.referralCode)) {
@@ -122,7 +122,7 @@ const getOutgoingReferralBonus = async contributions => {
         new BigNumber(contribution.contribution)
           .multipliedBy(10 ** 6)
           .multipliedBy(0.05)
-          .multipliedBy(430),
+          .multipliedBy(430)
       );
     }
 
@@ -137,34 +137,34 @@ const getIncomingReferralBonus = (allContributions, referralCodes) =>
         new BigNumber(contribution.contribution)
           .multipliedBy(10 ** 6)
           .multipliedBy(0.05)
-          .multipliedBy(430),
+          .multipliedBy(430)
       );
     }
 
     return sum;
   }, new BigNumber(0));
 
-exports.handler = async event => {
-  if (event.httpMethod !== 'POST') {
+exports.handler = async (event) => {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: 'Method not allowed. Use POST.',
+      body: "Method not allowed. Use POST.",
     };
   }
 
   const { address, parachain } = JSON.parse(event.body);
 
-  curConfig = getConfig(parachain);
+  const curConfig = getConfig(parachain);
   curConfig.sql = postgres(curConfig.POSTGRES_CONFIG);
 
-  const referralCodes = await getReferralCodes(address);
+  const referralCodes = await getReferralCodes(curConfig, address);
 
-  const contributions = await getContributions(address);
+  const contributions = await getContributions(curConfig, address);
 
-  const allContributions = await getAllContributions();
+  const allContributions = await getAllContributions(curConfig);
 
   const numberOfReferrals = allContributions.filter(({ referralCode }) =>
-    referralCodes.includes(referralCode),
+    referralCodes.includes(referralCode)
   ).length;
 
   const earlyBirdBonus = getEarlyBirdBonus(contributions);
@@ -178,12 +178,15 @@ exports.handler = async event => {
   const contributionAmount = getContributionAmount(contributions);
 
   // this user used someone else's referral code
-  const outgoingReferralBonus = await getOutgoingReferralBonus(contributions);
+  const outgoingReferralBonus = await getOutgoingReferralBonus(
+    curConfig,
+    contributions
+  );
 
   // someone used a referral code owned by this user
   const incomingReferralBonus = getIncomingReferralBonus(
     allContributions,
-    referralCodes,
+    referralCodes
   );
 
   const referralBonus = incomingReferralBonus
