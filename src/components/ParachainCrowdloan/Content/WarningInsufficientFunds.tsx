@@ -11,7 +11,7 @@ export const WarningInsufficientFunds: React.FC<WarningInsufficientFundsProps> =
   return (
     <WarningBanner type="warning" title="Insufficent funds">
       <Text textAlign="start">
-        Latest network fees: <strong>{gasFee}</strong>
+        Latest network fees: <strong>{gasFee} DOT</strong>
         <br />
         Ensure that your balance can cover both the contribution as well as the
         network fees.

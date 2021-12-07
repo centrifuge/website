@@ -13,7 +13,7 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 const colors: Record<string, React.ReactNode> = {
-  warning: "#FFF0D6",
+  warning: "#F5F5F5",
   error: "#FFE8ED",
 };
 
