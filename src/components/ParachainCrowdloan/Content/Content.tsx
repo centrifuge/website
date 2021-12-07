@@ -52,7 +52,7 @@ const LeftCol = styled.div`
 
   ${onBreakpoint("L")} {
     grid-column: 1 / span 3;
-    padding-top: 26px;
+    min-width: 256px;
     max-width: 256px;
   }
 `;
@@ -151,13 +151,13 @@ export const Content = () => {
     <Container>
       <ContributeStyled>
         <LeftCol>
+          {!isAuctionEnded && <InfoBoxList />}
           {isAuctionStarted && (
-            <Box margin="0 0 48px 0">
+            <Box margin="32px 0 0 0">
               <TopReferrers />
             </Box>
           )}
           {isAuctionEnded && <TopContributors />}
-          {!isAuctionEnded && <InfoBoxList />}
         </LeftCol>
 
         <ContribSection>
