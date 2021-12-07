@@ -22,6 +22,7 @@ import { onBreakpoint } from "../shared/responsive";
 import { WarningInsufficientFunds } from "./WarningInsufficientFunds";
 import { WarningExistentialDeposit } from "./WarningExistentialDeposit";
 import { formatDOT } from "../shared/format";
+import { FormTitle } from "./FormTitle";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -185,13 +186,19 @@ export const Content = () => {
               <ReferYourFriends referralCode={newReferralCode} />
             )}
 
-            {warning === "insufficientFunds" && (
-              <WarningInsufficientFunds gasFee={formatDOT(gasFee || 0, 18)} />
-            )}
-            {warning === "existentialDeposit" && <WarningExistentialDeposit />}
-
             {isWeb3Injected && isAuctionStarted && !isAuctionEnded && (
-              <StakeForm />
+              <>
+                <FormTitle>Contribute</FormTitle>
+                {warning === "insufficientFunds" && (
+                  <WarningInsufficientFunds
+                    gasFee={formatDOT(gasFee || 0, 18)}
+                  />
+                )}
+                {warning === "existentialDeposit" && (
+                  <WarningExistentialDeposit />
+                )}
+                <StakeForm />
+              </>
             )}
             {isAuctionEnded && <YourContribution />}
           </CentralCol>

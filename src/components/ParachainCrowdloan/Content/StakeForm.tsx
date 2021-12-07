@@ -136,22 +136,7 @@ export const StakeForm: React.FC = () => {
     })();
   }, [api, selectedAccount]);
 
-  // const warning = useMemo<WarningType | null>(() => {
-  //   const amtBn = new BigNumber(dotAmount || 0).times(DOT_PLANCK);
-  //   if (!freeBalance || !gasFee || amtBn.isNaN()) {
-  //     return null;
-  //   }
-  //   const totalContrib = amtBn.plus(gasFee);
-  //   const remainingBalance = freeBalance.minus(totalContrib);
-
-  //   if (remainingBalance.lt(0)) {
-  //     return "insufficientFunds";
-  //   } else if (remainingBalance.lt(MIN_EXISTENTIAL_DEPOSIT_PLANCK)) {
-  //     return "existentialDeposit";
-  //   }
-  //   return null;
-  // }, [dotAmount, gasFee, freeBalance]);
-
+  // set the correct warning to show
   useEffect(() => {
     const amtBn = new BigNumber(dotAmount || 0).times(DOT_PLANCK);
     if (!freeBalance || !gasFee || amtBn.isNaN()) {
@@ -340,25 +325,7 @@ export const StakeForm: React.FC = () => {
 
   return (
     <Box gap="medium" style={{ margin: 0 }}>
-      <Box>
-        <Box
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text size="xxlarge" weight={900}>
-            Contribute
-          </Text>
-        </Box>
-      </Box>
-
-      {/* Warnings */}
-
       {errorMessage && <WarningUnexpectedError errorMessage={errorMessage} />}
-
-      {/* Actual form */}
 
       {isWeb3Injected && (
         <Box gap="medium">
