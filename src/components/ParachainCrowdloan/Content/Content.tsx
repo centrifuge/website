@@ -1,4 +1,3 @@
-import { Box } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { encodeAddress } from "@polkadot/util-crypto";
