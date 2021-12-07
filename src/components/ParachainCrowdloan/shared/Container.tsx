@@ -7,5 +7,7 @@ export const Container: React.FC = styled.div`
 
   ${onBreakpoint("L")} {
     padding: 0 clamp(16px, 6vw, 130px);
+    max-width: 1152px;
+    margin: 0 auto;
   }
 `;
