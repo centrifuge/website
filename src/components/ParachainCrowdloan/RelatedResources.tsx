@@ -13,22 +13,25 @@ const StyledRelatedResources = styled.div`
   border-bottom: 1px solid white;
 `;
 
-const ParachainsLink = styled.a`
-  color: #d8176c;
-  font-weight: 500;
+const ParachainsText = styled.span`
+  color: #fff;
+  font-weight: 400;
   font-size: 16px;
-  line-height: 28px;
-
-  align-self: flex-start;
+  line-height: 22px;
 `;
 
 const TitleRow = styled.div`
   display: flex;
   flex-direction: row;
-  > * {
-    flex-grow: 1;
-    flex-basis: 0;
-  }
+  justify-content: center;
+`;
+
+const BottomRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  padding-top: 32px;
 `;
 
 const CardsArea = styled.div`
@@ -50,9 +53,6 @@ export const RelatedResources = () => {
   return (
     <StyledRelatedResources>
       <TitleRow>
-        <ParachainsLink target="_blank" href="https://parachains.info">
-          parachains.info
-        </ParachainsLink>
         <TextSpan
           css={`
             color: white;
@@ -64,7 +64,6 @@ export const RelatedResources = () => {
         >
           Related resources
         </TextSpan>
-        <div />
       </TitleRow>
 
       <CardsArea>
@@ -107,6 +106,18 @@ export const RelatedResources = () => {
           }
         />
       </CardsArea>
+      <BottomRow>
+        <ParachainsText>
+          <ExternalLink
+            unstyled={1}
+            href="https://parachains.info"
+            style={{ textDecoration: "underline" }}
+          >
+            parachains.info
+          </ExternalLink>{" "}
+          — Polkadot &amp; Kusama ecosystem projects directory
+        </ParachainsText>
+      </BottomRow>
     </StyledRelatedResources>
   );
 };
