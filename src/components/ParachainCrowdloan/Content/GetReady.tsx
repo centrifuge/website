@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ExternalLink } from "../../Links";
+import { MIN_BALANCE_DOT } from "../shared/const";
 import { onBreakpoint } from "../shared/responsive";
 
 const TextHeading2 = styled.div`
@@ -44,8 +45,8 @@ export const GetReady = () => {
         <ExternalLink unstyled={0} href="https://polkadot.js.org/extension/">
           Polkadot.js
         </ExternalLink>{" "}
-        browser extension installed, and an account with a minimum balance of
-        0.1 DOT.
+        browser extension installed, and an account with a minimum balance of{" "}
+        {MIN_BALANCE_DOT} DOT.
       </TextBody1>
     </div>
   );

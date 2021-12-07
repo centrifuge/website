@@ -145,7 +145,12 @@ export const AuctionStatus: React.FC = () => {
         )}
         <ButtonRow>
           {!isAuctionStarted && (
-            <Button primary color="brand" label="Learn more" href="/" />
+            <Button
+              primary
+              color="brand"
+              label="Learn more"
+              href="/parachain"
+            />
           )}
         </ButtonRow>
 
