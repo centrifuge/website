@@ -21,15 +21,24 @@ const ProgressRow = styled.div`
 const TextValue = styled.span`
   color: #fff;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 16px;
+  line-height: 16px;
+
+  ${onBreakpoint("M")} {
+    font-size: 24px;
+    line-height: 32px;
+  }
 `;
 
 const TextLabel = styled.span`
   color: #fff;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 28px;
+
+  ${onBreakpoint("M")} {
+    font-size: 16px;
+  }
 `;
 
 const FadeInDiv = styled.div<{ show: boolean }>`
