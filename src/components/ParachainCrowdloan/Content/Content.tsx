@@ -49,6 +49,7 @@ const LeftCol = styled.div`
   grid-column: 1 / span 12;
   display: flex;
   flex-direction: column;
+  gap: 24px;
 
   ${onBreakpoint("L")} {
     grid-column: 1 / span 3;
@@ -152,11 +153,7 @@ export const Content = () => {
       <ContributeStyled>
         <LeftCol>
           {!isAuctionEnded && <InfoBoxList />}
-          {isAuctionStarted && (
-            <Box margin="32px 0 0 0">
-              <TopReferrers />
-            </Box>
-          )}
+          {isAuctionStarted && <TopReferrers />}
           {isAuctionEnded && <TopContributors />}
         </LeftCol>
 
