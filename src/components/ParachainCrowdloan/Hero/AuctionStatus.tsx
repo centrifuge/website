@@ -27,7 +27,7 @@ const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
   ${onBreakpoint("M")} {
     ${({ isAuctionStarted }) =>
       isAuctionStarted ? "" : `background-image: url(${funnelDesktop});`}
-    padding: 60px 0;
+    padding: 42px 0;
   }
 `;
 
