@@ -43,6 +43,7 @@ export const REWARD_EARLY_BIRD_HOURS = 72;
 
 // TODO: replace with the correct values for this crowdloan
 export const PARACHAIN_ID = 2006; // TODO: THIS IS ALSTAR PARACHAIN ID, USED FOR TESTING PURPOSES. REPLACE IT WITH OUR PARACHAIN_ID AFTER REGISTERING
+// export const PARACHAIN_ID = 2031; // This is the parachain ID for Centrifuge (https://centrifugehq.slack.com/archives/CK8D25UMD/p1638469345111900)
 
 // TODO after auction: populate with results
 export const AUCTION_RESULTS = {
