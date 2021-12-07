@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
-import { Box, Image, ResponsiveContext } from "grommet";
-import { JoinWaitlist } from "./JoinWaitlist.js";
+import { Box, Image, ResponsiveContext, Button } from "grommet";
+// import { JoinWaitlist } from "./JoinWaitlist.js";
 import TextHeading1 from "./text/TextHeading1.js";
 import hero from "../../images/polkadot/hero.svg";
 import heroMobile from "../../images/polkadot/hero-mobile.svg";
@@ -26,9 +26,15 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
         >
           The home for Real World DeFi on Polkadot
         </TextHeading1>
-        <JoinWaitlist
+        {/* <JoinWaitlist
           isEmailSubmitted={isEmailSubmitted}
           setIsEmailSubmitted={setIsEmailSubmitted}
+        /> */}
+        <Button
+          color="brand"
+          label="Join the crowdloan"
+          primary
+          href="/parachain/crowdloan"
         />
       </Box>
       <Box
