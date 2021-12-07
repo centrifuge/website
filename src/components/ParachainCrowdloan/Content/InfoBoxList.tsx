@@ -103,14 +103,17 @@ export const InfoBoxList = () => {
       title: "Referral reward",
       desc: "For both referrer and referred contributor",
     },
-    {
-      figure: `${REWARD_HEAVIWEIGHT_FROM}`,
-      unit: "DOT",
-      title: "Heavyweight reward",
-      desc: isAuctionStarted
-        ? `On contributions larger than ${REWARD_HEAVIWEIGHT_FROM} DOT`
-        : "On large contributions",
-    },
+    // removed as it's not confirmed yet
+    // see https://centrifugehq.slack.com/archives/C02BKGJ3090/p1638890613175800
+
+    // {
+    //   figure: `${REWARD_HEAVIWEIGHT_FROM}`,
+    //   unit: "DOT",
+    //   title: "Heavyweight reward",
+    //   desc: isAuctionStarted
+    //     ? `On contributions larger than ${REWARD_HEAVIWEIGHT_FROM} DOT`
+    //     : "On large contributions",
+    // },
     {
       figure: `${REWARD_LOYALTY_PERCENT}`,
       unit: "%",
