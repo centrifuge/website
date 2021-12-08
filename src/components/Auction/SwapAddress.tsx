@@ -17,7 +17,7 @@ import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 const KUSAMA_GENESIS_HASH =
   '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe';
 
-const truncateAddress = address => {
+const truncateAddress = (address: string) => {
   const encodedAddress = encodeAddress(address, 2);
   const firstFifteen = encodedAddress.slice(0, 8);
   const lastTwo = encodedAddress.slice(-2);
@@ -25,7 +25,7 @@ const truncateAddress = address => {
   return `${firstFifteen}...${lastTwo}`;
 };
 
-const isValidAddressPolkadotAddress = address => {
+const isValidAddressPolkadotAddress = (address: string) => {
   try {
     encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));
   } catch (error) {
@@ -60,8 +60,8 @@ export const SwapAddress = () => {
 const SwapForm = () => {
   const [accounts, setAccounts] = useState<Accounts>([]);
   const [selectedAccount, setSelectedAccount] = useState<
-    Partial<InjectedAccountWithMeta>
-  >({});
+    InjectedAccountWithMeta
+  >({ address: '', meta: { source: '' } });
   const [loading, setLoading] = useState(true);
   const [value, setValue] = React.useState<FormValues['value']>({
     newAddress: '',
@@ -86,13 +86,16 @@ const SwapForm = () => {
           account.meta.genesisHash === '' ||
           account.meta.genesisHash === null,
       );
-      setAccounts(kusamaAccounts);
-      setSelectedAccount(kusamaAccounts[0]);
-      setLoading(false);
+
+      if (kusamaAccounts.length) {
+        setAccounts(kusamaAccounts);
+        setSelectedAccount(kusamaAccounts[0]);
+        setLoading(false);
+      }
     })();
   }, []);
 
-  const storeAddress = async newAddress => {
+  const storeAddress = async (newAddress: string) => {
     setError(undefined);
     setIsSubmitting(true);
     try {
@@ -106,29 +109,31 @@ const SwapForm = () => {
 
       const signRaw = injector?.signer?.signRaw;
 
-      const { signature } = await signRaw({
-        address: selectedAccount.address,
-        data: newAddress,
-        type: 'bytes',
-      });
+      if (signRaw) {
+        const { signature } = await signRaw({
+          address: selectedAccount.address,
+          data: newAddress,
+          type: 'bytes',
+        });
 
-      const response = await fetch('/.netlify/functions/swapAddress', {
-        method: 'POST',
-        body: JSON.stringify({
-          currentAddress: encodeAddress(selectedAccount.address, 2),
-          newAddress,
-          signature,
-        }),
-      });
+        const response = await fetch('/.netlify/functions/swapAddress', {
+          method: 'POST',
+          body: JSON.stringify({
+            currentAddress: encodeAddress(selectedAccount.address, 2),
+            newAddress,
+            signature,
+          }),
+        });
 
-      const json = await response.json();
-
-      if (json.statusCode === 200) {
-        setIsSuccessful(true);
-      } else if (json.statusCode === 401) {
-        setError('Invalid Signature');
-      } else if (json.statusCode === 403) {
-        setError('Ineligible');
+        if (response.status === 200) {
+          setIsSuccessful(true);
+        } else if (response.status === 401) {
+          setError('Invalid Signature');
+        } else if (response.status === 403) {
+          setError('Ineligible');
+        } else {
+          setError('Unexpected');
+        }
       } else {
         setError('Unexpected');
       }
@@ -137,14 +142,6 @@ const SwapForm = () => {
     }
     setIsSubmitting(false);
   };
-
-  if (loading) {
-    return (
-      <Box alignSelf="center" justify="center" height="100%">
-        <Spinner color="white" size="medium" />
-      </Box>
-    );
-  }
 
   if (isSuccessful) {
     return (
@@ -156,6 +153,14 @@ const SwapForm = () => {
           We will let you know when your AIR tokens can be claimed at this new
           address.
         </Text>
+      </Box>
+    );
+  }
+
+  if (loading) {
+    return (
+      <Box alignSelf="center" justify="center" height="100%">
+        <Spinner color="white" size="medium" />
       </Box>
     );
   }
@@ -207,11 +212,11 @@ const SwapForm = () => {
                 <Box pad="small" style={{ textAlign: 'left' }}>
                   <div>
                     {selectedAccount.meta?.name} -{' '}
-                    {truncateAddress(selectedAccount?.address)}
+                    {truncateAddress(selectedAccount.address)}
                   </div>
                 </Box>
               }
-              value={`${selectedAccount?.meta?.name} - ${selectedAccount?.address}`}
+              value={`${selectedAccount.meta?.name} - ${selectedAccount.address}`}
             />
           </FormField>
           <FormField
