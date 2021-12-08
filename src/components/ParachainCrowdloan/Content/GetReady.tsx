@@ -41,12 +41,12 @@ export const GetReady = () => {
         <TextHeading2>Get ready to contribute</TextHeading2>
       </HeadingWrapper>
       <TextBody1>
-        Contributions will open at the launch of the auction. You need the{" "}
+        Contributions will open at the launch of the crowdloan. You need the{" "}
         <ExternalLink unstyled={0} href="https://polkadot.js.org/extension/">
           Polkadot.js
         </ExternalLink>{" "}
-        browser extension installed, and an account with a minimum balance of{" "}
-        {MIN_BALANCE_DOT} DOT.
+        browser extension installed and an account with a minimum balance of{" "}
+        {MIN_BALANCE_DOT} DOT to participate.
       </TextBody1>
     </div>
   );
