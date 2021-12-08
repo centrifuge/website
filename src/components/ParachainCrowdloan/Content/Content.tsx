@@ -22,6 +22,7 @@ import { WarningInsufficientFunds } from "./WarningInsufficientFunds";
 import { WarningExistentialDeposit } from "./WarningExistentialDeposit";
 import { formatDOT } from "../shared/format";
 import { FormTitle } from "./FormTitle";
+import { WarningWalletNotConnected } from "./WarningWalletNotConnected";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -195,6 +196,7 @@ export const Content = () => {
                 {warning === "existentialDeposit" && (
                   <WarningExistentialDeposit />
                 )}
+                {!selectedAccount?.address && <WarningWalletNotConnected />}
                 <StakeForm />
               </>
             )}

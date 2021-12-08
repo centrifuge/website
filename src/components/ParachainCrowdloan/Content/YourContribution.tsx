@@ -195,40 +195,33 @@ export const YourContribution: React.FC<{}> = () => {
       <div>
         <TextHeading2>Your contribution</TextHeading2>
       </div>
-      {selectedAccount?.address ? (
+      <StatsItem>
+        <TextSpan
+          css={`
+            font-size: 20px;
+            line-height: 32px;
+            font-weight: 600;
+            color: #000;
+          `}
+        >
+          {stakedAmount ? stakedAmount : <CustomSpinner color="brand" />} DOT
+        </TextSpan>
+        <TextLabel>Staked amount</TextLabel>
+      </StatsItem>
+
+      {(hasRewards || isAuctionEnded) && (
         <>
-          <StatsItem>
-            <TextSpan
-              css={`
-                font-size: 20px;
-                line-height: 32px;
-                font-weight: 600;
-                color: #000;
-              `}
-            >
-              {stakedAmount ? stakedAmount : <CustomSpinner color="brand" />}{" "}
-              DOT
-            </TextSpan>
-            <TextLabel>Staked amount</TextLabel>
-          </StatsItem>
+          <Divider />
 
-          {(hasRewards || isAuctionEnded) && (
-            <>
-              <Divider />
+          <Stat value={rewardStaking} label="Staking reward" />
+          <Stat value={rewardEarlyBird} label="Early bird reward" />
+          <Stat value={rewardReferral} label="Referral reward" />
+          <Stat value={rewardLoyalty} label="Loyalty reward" />
 
-              <Stat value={rewardStaking} label="Staking reward" />
-              <Stat value={rewardEarlyBird} label="Early bird reward" />
-              <Stat value={rewardReferral} label="Referral reward" />
-              <Stat value={rewardLoyalty} label="Loyalty reward" />
+          <Divider />
 
-              <Divider />
-
-              <Stat value={totalRewards} label="Total rewards" color="brand" />
-            </>
-          )}
+          <Stat value={totalRewards} label="Total rewards" color="brand" />
         </>
-      ) : (
-        <div>Please connect your Polkadot wallet in the top right corner</div>
       )}
     </YourContributionStyled>
   );

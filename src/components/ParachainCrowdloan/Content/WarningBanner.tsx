@@ -8,8 +8,8 @@ type WarningBannerProps = {
 };
 
 const icons: Record<string, React.ReactNode> = {
-  warning: <CircleAlert size="small" />,
-  error: <Alert size="small" />,
+  warning: <CircleAlert size="16" />,
+  error: <Alert size="16" />,
 };
 
 const colors: Record<string, React.ReactNode> = {
@@ -31,9 +31,10 @@ export const WarningBanner: React.FC<WarningBannerProps> = ({
       }}
       gap="small"
     >
-      <Text weight={600}>
-        {icons[type] || null} {title}
-      </Text>
+      <Box gap="8px" direction="row" align="center">
+        {icons[type] || null}
+        <Text weight={600}>{title}</Text>
+      </Box>
       <Text textAlign="start">{children}</Text>
     </Box>
   );

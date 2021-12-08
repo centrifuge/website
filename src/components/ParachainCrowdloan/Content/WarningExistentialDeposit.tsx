@@ -4,8 +4,7 @@ import { WarningBanner } from "./WarningBanner";
 import { MIN_EXISTENTIAL_DEPOSIT_DOT } from "../shared/const";
 import { ExternalLink } from "../../Links";
 
-type WWarningExistentialDepositProps = {};
-export const WarningExistentialDeposit: React.FC<WWarningExistentialDepositProps> = () => {
+export const WarningExistentialDeposit: React.FC = () => {
   return (
     <WarningBanner type="warning" title="Existential deposit exceeded">
       <Text textAlign="start">
