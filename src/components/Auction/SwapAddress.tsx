@@ -121,13 +121,11 @@ const SwapForm = () => {
         }),
       });
 
-      const json = await response.json();
-
-      if (json.statusCode === 200) {
+      if (response.status === 200) {
         setIsSuccessful(true);
-      } else if (json.statusCode === 401) {
+      } else if (response.status === 401) {
         setError('Invalid Signature');
-      } else if (json.statusCode === 403) {
+      } else if (response.status === 403) {
         setError('Ineligible');
       } else {
         setError('Unexpected');
