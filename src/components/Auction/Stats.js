@@ -14,6 +14,7 @@ import { BigNumber } from 'bignumber.js';
 import { FormDown, FormUp } from 'grommet-icons';
 import { Alert, StatusGood } from 'grommet-icons';
 import { ClaimModal } from './ClaimModal';
+import additionalRewardsAddresses from './additional-rewards-addresses.json';
 
 const formatKSM = value => {
   const number = new BigNumber(value);
@@ -117,6 +118,7 @@ export const Stats = ({
   claimRewards,
   isClaimingRewards,
   selectedAccount,
+  setClaimedRewards,
   setSelectedAccount,
 }) => {
   const [contributionAmount, setContributionAmount] = useState();
@@ -134,6 +136,7 @@ export const Stats = ({
         setFirstCrowdloanBonus();
         setNumberOfReferrals();
         setReferralBonus();
+        setClaimedRewards(false);
 
         const response = await fetch('/.netlify/functions/getRewardData', {
           method: 'POST',
@@ -152,6 +155,14 @@ export const Stats = ({
         setReferralBonus(json.referralBonus);
       }
     })();
+  }, [selectedAccount?.address]);
+
+  const isAdditionalAirAddress = useMemo(() => {
+    if (selectedAccount?.address) {
+      return additionalRewardsAddresses.includes(
+        encodeAddress(selectedAccount.address, 2),
+      );
+    }
   }, [selectedAccount?.address]);
 
   const stakingReward = useMemo(() => {
@@ -218,54 +229,87 @@ export const Stats = ({
               value={`${selectedAccount?.meta?.name} - ${selectedAccount?.address}`}
             />
           </FormField>
-          <Stat amount={contributionAmount} label="Staked Amount" token="KSM" />
-          <Stat amount={stakingReward} label="Staking Reward" token="AIR" />
-          <Stat
-            amount={earlyBirdReward}
-            label="Early Bird Reward"
-            token="AIR"
-          />
-          <Stat
-            amount={referralBonus}
-            label={
-              numberOfReferrals !== undefined ? (
-                `Referral Rewards (${
-                  numberOfReferrals === 1
-                    ? `${numberOfReferrals} referral`
-                    : `${numberOfReferrals} referrals`
-                })`
-              ) : (
-                <Spinner
-                  color="white"
-                  style={{
-                    padding: '6px',
-                    margin: '6px',
-                    height: '10px',
-                    width: '10px',
-                  }}
+          {totalRewards ? (
+            (!isAdditionalAirAddress || totalRewards?.isGreaterThan(0)) && (
+              <Box gap="medium">
+                <Stat
+                  amount={contributionAmount}
+                  label="Staked Amount"
+                  token="KSM"
                 />
-              )
-            }
-            token="AIR"
-          />
-          <Box direction="row" justify="between">
-            <Stat
-              amount={totalRewards}
-              color="altair"
-              label="Total Rewards"
-              token="AIR"
-            />
-            {totalRewards?.isGreaterThan(0) && !claimedRewards && (
-              <Box pad="0 0 0 64px">
-                <Button
-                  disabled={claimedRewards || isClaimingRewards}
-                  primary
-                  label={isClaimingRewards ? 'Claiming...' : 'Claim rewards'}
-                  onClick={() => setShowClaimModal(true)}
+                <Stat
+                  amount={stakingReward}
+                  label="Staking Reward"
+                  token="AIR"
+                />
+                <Stat
+                  amount={earlyBirdReward}
+                  label="Early Bird Reward"
+                  token="AIR"
+                />
+                <Stat
+                  amount={referralBonus}
+                  label={
+                    numberOfReferrals !== undefined ? (
+                      `Referral Rewards (${
+                        numberOfReferrals === 1
+                          ? `${numberOfReferrals} referral`
+                          : `${numberOfReferrals} referrals`
+                      })`
+                    ) : (
+                      <Spinner
+                        color="white"
+                        style={{
+                          padding: '6px',
+                          margin: '6px',
+                          height: '10px',
+                          width: '10px',
+                        }}
+                      />
+                    )
+                  }
+                  token="AIR"
                 />
               </Box>
-            )}
-          </Box>
+            )
+          ) : (
+            <Spinner color="altair" alignSelf="center" />
+          )}
+          {totalRewards ? (
+            isAdditionalAirAddress && totalRewards?.isZero() ? (
+              <Button
+                disabled={claimedRewards || isClaimingRewards}
+                primary
+                label={
+                  isClaimingRewards ? 'Claiming...' : 'Claim additional rewards'
+                }
+                onClick={() => setShowClaimModal(true)}
+              />
+            ) : (
+              <Box direction="row" justify="between">
+                <Stat
+                  amount={totalRewards}
+                  color="altair"
+                  label="Total Rewards"
+                  token="AIR"
+                />
+                {totalRewards?.isGreaterThan(0) && !claimedRewards && (
+                  <Box pad="0 0 0 64px">
+                    <Button
+                      disabled={claimedRewards || isClaimingRewards}
+                      primary
+                      label={
+                        isClaimingRewards ? 'Claiming...' : 'Claim rewards'
+                      }
+                      onClick={() => setShowClaimModal(true)}
+                    />
+                  </Box>
+                )}
+              </Box>
+            )
+          ) : (
+            <Spinner color="altair" alignSelf="center" />
+          )}
           {claimedRewards && <ClaimSuccess claimHash={claimHash} />}
           {claimError && <ClaimError />}
         </Box>

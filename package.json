@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@centrifuge/tinlake-js": "^3.0.0-develop.35",
+    "@google-cloud/datastore": "^6.6.2",
     "@google-cloud/storage": "^5.15.3",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
