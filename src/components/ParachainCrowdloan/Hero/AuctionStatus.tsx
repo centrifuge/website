@@ -139,7 +139,7 @@ export const AuctionStatus: React.FC = () => {
             <Heading2>
               {isAuctionStarted
                 ? `${earlyBirdHoursLeft} hrs Early Bird Bonus remaining`
-                : `${daysUntilAuction} days to go until auction launch`}
+                : `${daysUntilAuction} days to go until launch`}
             </Heading2>
           </CountdownRow>
         )}

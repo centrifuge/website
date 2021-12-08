@@ -72,6 +72,12 @@ export const RelatedResources = () => {
           imageUrl="https://miro.medium.com/max/2000/0*DVAr79_8QMpJTajE"
           postUrl="https://medium.com/centrifuge/the-centrifuge-parachain-crowdloan-opens-in-batch-2-36dc8a8aec15"
         />
+        <Blogpost
+          title="Going, going…. Gone!"
+          subtitle="Why parachains auction slots are crucial for the future of blockchain development."
+          imageUrl="https://miro.medium.com/max/1400/1*UDs0kRm373weVEEQy6nj5Q.png"
+          postUrl="https://medium.com/centrifuge/going-going-e1896d9e28a2"
+        />
       </CardsArea>
       <BottomRow>
         <ParachainsText>
