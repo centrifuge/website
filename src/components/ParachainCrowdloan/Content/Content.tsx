@@ -15,7 +15,7 @@ import { ThanksForContribution } from "./ThanksForContribution";
 import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
-import { PARACHAIN_NAME } from "../shared/const";
+import { HOW_TO_STAKE_VIDEO_ID, PARACHAIN_NAME } from "../shared/const";
 import { Container } from "../shared/Container";
 import { onBreakpoint } from "../shared/responsive";
 import { WarningInsufficientFunds } from "./WarningInsufficientFunds";
@@ -162,10 +162,12 @@ export const Content = () => {
               <GetReadyWrapper>
                 <GetReady />
               </GetReadyWrapper>
-              <LearnHowToStake>
-                <TextHeading1>Learn how to stake DOT</TextHeading1>
-                <ResponsivePlayer videoId="se8mBXHCV-w" />
-              </LearnHowToStake>
+              {HOW_TO_STAKE_VIDEO_ID && (
+                <LearnHowToStake>
+                  <TextHeading1>Learn how to stake DOT</TextHeading1>
+                  <ResponsivePlayer videoId={HOW_TO_STAKE_VIDEO_ID} />
+                </LearnHowToStake>
+              )}
             </BeforeAuction>
           )}
           <CentralCol>

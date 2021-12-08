@@ -45,6 +45,9 @@ export const REWARD_EARLY_BIRD_HOURS = 72;
 export const PARACHAIN_ID = 2006; // TODO: THIS IS ALSTAR PARACHAIN ID, USED FOR TESTING PURPOSES. REPLACE IT WITH OUR PARACHAIN_ID AFTER REGISTERING
 // export const PARACHAIN_ID = 2031; // This is the parachain ID for Centrifuge (https://centrifugehq.slack.com/archives/CK8D25UMD/p1638469345111900)
 
+// TODO: if we have a video "How to stake DOT", add the video ID (e.g. "se8mBXHCV-w") to show it in the "prior to auction" page
+export const HOW_TO_STAKE_VIDEO_ID: string = "";
+
 // TODO after auction: populate with results
 export const AUCTION_RESULTS = {
   place: "", // e.g. '6th'
