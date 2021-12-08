@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import useCaseWhatToExpect from "../../images/parachain-crowdloan/card-what-to-expect.svg";
-
-import { CardBlogpost } from "../CardBlogpost";
 import { ExternalLink } from "../Links";
+import { Blogpost } from "./shared/Blogpost";
 import { TextSpan } from "./shared/TextSpan";
 
 const StyledRelatedResources = styled.div`
@@ -38,15 +36,10 @@ const CardsArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
 
   margin-top: 40px;
-`;
-
-const CardBottom = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 24px;
 `;
 
 export const RelatedResources = () => {
@@ -67,43 +60,17 @@ export const RelatedResources = () => {
       </TitleRow>
 
       <CardsArea>
-        <CardBlogpost
-          top={<img src={useCaseWhatToExpect} />}
-          bottom={
-            <CardBottom>
-              <TextSpan
-                css={`
-                  font-weight: 600;
-                  font-size: 20px;
-                  line-height: 25px;
-                `}
-              >
-                The Centrifuge Parachain Crowdloan Opens in Batch 2!
-              </TextSpan>
-
-              <TextSpan
-                css={`
-                  font-weight: 400;
-                  font-size: 16px;
-                  line-height: 22px;
-                `}
-              >
-                Real World Assets are Coming to Polkadot.
-              </TextSpan>
-
-              <ExternalLink unstyled={0} href="https://parachains.info">
-                <TextSpan
-                  css={`
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 22px;
-                  `}
-                >
-                  Read more...
-                </TextSpan>
-              </ExternalLink>
-            </CardBottom>
-          }
+        <Blogpost
+          title="Centrifuge: Connecting Polkadot to a Limitless Market"
+          subtitle="What will a Centrifuge parachain mean for the Polkadot ecosystem?"
+          imageUrl="https://miro.medium.com/max/1400/0*8BZw6hGm7a-YS1qm"
+          postUrl="https://medium.com/centrifuge/centrifuge-connecting-polkadot-to-a-limitless-market-73c7a01d07c0"
+        />
+        <Blogpost
+          title="The Centrifuge Parachain Crowdloan Opens in Batch 2!"
+          subtitle="Real World Assets are Coming to Polkadot."
+          imageUrl="https://miro.medium.com/max/2000/0*DVAr79_8QMpJTajE"
+          postUrl="https://medium.com/centrifuge/the-centrifuge-parachain-crowdloan-opens-in-batch-2-36dc8a8aec15"
         />
       </CardsArea>
       <BottomRow>
