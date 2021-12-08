@@ -47,7 +47,7 @@ export const Header = () => {
     <HeaderBar>
       <ImgLogo />
       <HeaderTitle>Centrifuge Parachain Crowdloan</HeaderTitle>
-      <HeaderWallet />
+      <HeaderWallet connectOnMount={true} />
     </HeaderBar>
   );
 };

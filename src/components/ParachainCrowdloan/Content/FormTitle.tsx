@@ -1,9 +1,12 @@
 import { Box, Text } from "grommet";
 import React from "react";
 
-export const FormTitle: React.FC = ({ children }) => {
+export const FormTitle: React.FC<{ margin?: string }> = ({
+  children,
+  margin,
+}) => {
   return (
-    <Box gap="medium" style={{ margin: 0 }}>
+    <Box gap="medium" margin={margin || ""}>
       <Box
         style={{
           display: "flex",

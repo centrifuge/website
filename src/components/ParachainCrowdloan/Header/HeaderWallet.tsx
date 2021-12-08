@@ -1,7 +1,7 @@
 import Identicon from "@polkadot/react-identicon";
 import { Box, Button } from "grommet";
 import { Checkmark } from "grommet-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import chevron_down from "../../../images/chevron-down.svg";
 import { useWeb3 } from "../../Web3Provider";
@@ -89,9 +89,21 @@ const WalletIconDown = styled.div`
   }
 `;
 
-export const HeaderWallet = () => {
+type HeaderWalletProps = {
+  connectOnMount: boolean;
+};
+
+export const HeaderWallet: React.FC<HeaderWalletProps> = ({
+  connectOnMount,
+}) => {
   const { selectedAccount, connect, accounts, selectAccount } = useWeb3();
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (connectOnMount) {
+      connect();
+    }
+  }, []);
 
   return (
     <div style={{ position: "relative" }}>

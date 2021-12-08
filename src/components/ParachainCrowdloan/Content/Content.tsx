@@ -7,7 +7,6 @@ import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
 import { InfoBoxList } from "./InfoBoxList";
-import { ExtensionMissing } from "./ExtensionMissing";
 import { GetReady } from "./GetReady";
 import { ReferYourFriends } from "./ReferYourFriends";
 import { StakeForm } from "./StakeForm";
@@ -23,6 +22,8 @@ import { WarningExistentialDeposit } from "./WarningExistentialDeposit";
 import { formatDOT } from "../shared/format";
 import { FormTitle } from "./FormTitle";
 import { WarningWalletNotConnected } from "./WarningWalletNotConnected";
+import { WarningExtensionNotAuthorized } from "./WarningExtensionNotAuthorized";
+import { WarningExtensionMissing } from "./WarningExtensionMissing";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -78,7 +79,6 @@ const CentralCol = styled.div`
   gap: 24px;
 
   width: 100%;
-  margin-top: 8px;
 
   ${onBreakpoint("M")} {
     grid-column: 1 / span 5;
@@ -122,7 +122,7 @@ export type ContributionOutcome = {
 export const Content = () => {
   const { isAuctionStarted, isAuctionEnded } = useAuctionContext();
   const { contribHash, dotAmount, warning, gasFee } = useStakeFormContext();
-  const { isWeb3Injected, selectedAccount } = useWeb3();
+  const { isWeb3Injected, selectedAccount, accounts } = useWeb3();
   const [newReferralCode, setNewReferralCode] = useState<string>("");
 
   // create referral code after the contribution has been successful
@@ -172,7 +172,7 @@ export const Content = () => {
             </BeforeAuction>
           )}
           <CentralCol>
-            {!isWeb3Injected && <ExtensionMissing />}
+            {!isWeb3Injected && <WarningExtensionMissing />}
 
             {contribHash && (
               <ThanksForContribution
@@ -187,7 +187,7 @@ export const Content = () => {
 
             {isWeb3Injected && isAuctionStarted && !isAuctionEnded && (
               <>
-                <FormTitle>Contribute</FormTitle>
+                <FormTitle margin="8px 0 0">Contribute</FormTitle>
                 {warning === "insufficientFunds" && (
                   <WarningInsufficientFunds
                     gasFee={formatDOT(gasFee || 0, 18)}
@@ -196,7 +196,12 @@ export const Content = () => {
                 {warning === "existentialDeposit" && (
                   <WarningExistentialDeposit />
                 )}
-                {!selectedAccount?.address && <WarningWalletNotConnected />}
+                {!isWeb3Injected && !selectedAccount?.address && (
+                  <WarningWalletNotConnected />
+                )}
+                {isWeb3Injected && !accounts?.length && (
+                  <WarningExtensionNotAuthorized />
+                )}
                 <StakeForm />
               </>
             )}
