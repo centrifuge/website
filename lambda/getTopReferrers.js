@@ -1,30 +1,27 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-import axios from 'axios';
-import postgres from 'postgres';
+import axios from "axios";
+import postgres from "postgres";
+import { getConfig } from "./crowdloan/config";
 
-const sql = postgres({
-  database: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_DATABASE,
-  host: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_HOST,
-  password: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PASSWORD,
-  port: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_PORT,
-  username: process.env.CROWDLOAN_REFERRAL_CODES_DB_POSTGRES_USER,
-});
-
-exports.handler = async event => {
-  if (event.httpMethod !== 'POST') {
+exports.handler = async (event) => {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: 'Method not allowed. Use POST.',
+      body: "Method not allowed. Use POST.",
     };
   }
 
-  const { amount } = JSON.parse(event.body);
+  const { amount, parachain } = JSON.parse(event.body);
 
-  const { data: contributions } = await axios(
-    'https://crowdloan-ws.centrifuge.io/contributions',
+  const { POSTGRES_CONFIG, REFERRAL_TABLE_NAME, URL_CONTRIBUTIONS } = getConfig(
+    parachain
   );
+
+  const sql = postgres(POSTGRES_CONFIG);
+
+  const { data: contributions } = await axios(URL_CONTRIBUTIONS);
 
   const referrerCount = contributions.reduce((acc, cur) => {
     if (acc[cur.referralCode]) {
@@ -44,24 +41,26 @@ exports.handler = async event => {
 
   const getValidReferralCodes = async () => {
     const results = await sql`
-    select referral_code, wallet_address from altair where referral_code = any('{${sql(
-      Object.keys(referrerCount),
+    select referral_code, wallet_address from ${sql(
+      REFERRAL_TABLE_NAME
+    )} where referral_code = any('{${sql(
+      Object.keys(referrerCount)
     )}}'::varchar[])
   `;
 
-    return results.map(result => result);
+    return results.map((result) => result);
   };
 
   const validReferralCodes = await getValidReferralCodes();
 
-  validReferralCodes.forEach(validReferralCode => {
+  validReferralCodes.forEach((validReferralCode) => {
     referrerCount[validReferralCode.referral_code].account =
       validReferralCode.wallet_address;
   });
 
   const orderedReferrers = Object.values(referrerCount)
-    .map(referrer => referrer)
-    .filter(referrer => referrer.account);
+    .map((referrer) => referrer)
+    .filter((referrer) => referrer.account);
 
   orderedReferrers.sort((a, b) => {
     if (a.numberOfTimesUsed > b.numberOfTimesUsed) {
