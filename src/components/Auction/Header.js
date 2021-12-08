@@ -31,7 +31,7 @@ export const Header = ({ api }) => {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        '/.netlify/functions/getNumberOfContributions',
+        '/.netlify/functions/getTotalContributions?parachain=altair',
       );
 
       const json = await response.json();

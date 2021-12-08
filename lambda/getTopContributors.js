@@ -1,6 +1,8 @@
 require('dotenv').config({ path: '.env' });
 import axios from 'axios';
 import { Keyring } from '@polkadot/api';
+import { getConfig } from "./crowdloan/config";
+
 const { BigNumber } = require('bignumber.js');
 
 const exchangeAddresses = [
@@ -22,11 +24,11 @@ exports.handler = async event => {
     };
   }
 
-  const { amount } = JSON.parse(event.body);
+  const { amount, parachain } = JSON.parse(event.body);
 
-  const { data: contributions } = await axios(
-    'https://crowdloan-ws.centrifuge.io/contributions',
-  );
+  const { URL_CONTRIBUTIONS } = getConfig(parachain);
+
+  const { data: contributions } = await axios(URL_CONTRIBUTIONS);
 
   const contributors = contributions.reduce((acc, cur) => {
     if (acc[cur.account]) {

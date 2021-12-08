@@ -142,6 +142,7 @@ export const Stats = ({
           method: 'POST',
           body: JSON.stringify({
             address: encodeAddress(selectedAccount.address, 2),
+            parachain: 'altair',
           }),
         });
 

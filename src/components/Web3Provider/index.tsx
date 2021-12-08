@@ -47,7 +47,7 @@ type Props = {
   ) => Promise<InjectedExtension[]>;
   web3EnablePromise: Promise<InjectedExtension[]> | null;
   web3FromAddress: (address: string) => Promise<InjectedExtension>;
-  network?: "kusama" | "polkadot";
+  network: keyof typeof GENESIS_HASHES;
 };
 
 const Web3ProviderInner: React.FC<Props> = ({
@@ -176,9 +176,13 @@ type PolkadotExtension = typeof import("@polkadot/extension-dapp");
 
 let mod: PolkadotExtension | null = null;
 
-export const Web3Provider: React.FC<{ network?: "kusama" | "polkadot" }> = ({
-  network,
+type ProviderProps = {
+  network: keyof typeof GENESIS_HASHES;
+};
+
+export const Web3Provider: React.FC<ProviderProps> = ({
   children,
+  network,
 }) => {
   const [module, setModule] = React.useState<PolkadotExtension | null>(mod);
 

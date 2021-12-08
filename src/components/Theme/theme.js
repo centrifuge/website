@@ -9,47 +9,47 @@ export const breakpoints = {
     value: 768,
     edgeSize: {
       xxlarge: "72px",
-      xxxlarge: "120px"
-    }
+      xxxlarge: "120px",
+    },
   },
   medium: {
-    value: 1200
+    value: 1200,
   },
-  large: {}
+  large: {},
 };
 
-const isHeader = props => (props.level <= 2 || !props.level ? true : false);
+const isHeader = (props) => (props.level <= 2 || !props.level ? true : false);
 
-const isSubheader = props => (props.level >= 3 ? true : false);
+const isSubheader = (props) => (props.level >= 3 ? true : false);
 
 const headerSizes = {
   medium: {
     size: "20px",
     height: "32px",
-    maxWidth: ""
-  }
+    maxWidth: "",
+  },
 };
 
 const subheaderSizes = {
   medium: {
     size: "16px",
     height: "24px",
-    maxWidth: ""
-  }
+    maxWidth: "",
+  },
 };
 
 const textSizes = {
   medium: {
     size: "14px",
     height: "24px",
-    maxWidth: ""
+    maxWidth: "",
   },
   large: {
     size: "16px",
     height: "32px",
-    maxWidth: ""
+    maxWidth: "",
   },
-  extend: props => css`
+  extend: (props) => css`
     ${!props.textAlign &&
       css`
         text-align: justify;
@@ -59,7 +59,7 @@ const textSizes = {
       css`
         hyphens: ${props.hyphens};
       `}
-  `
+  `,
 };
 
 const custom = {
@@ -68,23 +68,24 @@ const custom = {
       family: `var(--f-stack)`,
       weight: 400,
       size: "14px",
-      height: 1.5
+      height: 1.5,
     },
     hover: {
       color: {
         light: "#2762FF",
-        dark: "#fff"
-      }
+        dark: "#fff",
+      },
     },
     colors: {
       "accent-1": "#FCBA59",
       focus: "#2762FF",
       brand: "#2762FF",
+      centrifugeOrange: "#FFC012",
       "brand-dark": "#0828BE",
       black: "#000",
       text: {
         light: "#000",
-        dark: "#fff"
+        dark: "#fff",
       },
       alert: "#e6f5ff",
       // Contribute Gitcoin Colors
@@ -98,36 +99,36 @@ const custom = {
       Design: "#FF85C9",
       "Code Review": "#FFCE9E",
       Other: "#C2DBFF",
-      altair: "#FAB961"
+      altair: "#FAB961",
     },
 
     breakpoints: { ...breakpoints },
     deviceBreakpoints: {
       phone: "small",
       tablet: "large",
-      computer: "large"
+      computer: "large",
     },
     edgeSize: {
       xxlarge: "144px",
-      xxxlarge: "192px"
+      xxxlarge: "192px",
     },
     input: {
-      weight: 500
-    }
+      weight: 500,
+    },
   },
   icon: {
     extend: css`
       fill: #000;
       stroke: #000;
-      ${props =>
-        props.color === 'white' &&
+      ${(props) =>
+        props.color === "white" &&
         `stroke: #FFF;
       `}
-    `
+    `,
   },
   textInput: {
     extend: css`
-      ${props =>
+      ${(props) =>
         props.newsletter &&
         css`
           font-weight: var(--fw-medium);
@@ -143,7 +144,7 @@ const custom = {
           //   color: white;
           // }
         `}
-    `
+    `,
   },
   heading: {
     weight: "var(--fw-demibold)",
@@ -154,9 +155,9 @@ const custom = {
       3: subheaderSizes,
       4: subheaderSizes,
       5: subheaderSizes,
-      6: subheaderSizes
+      6: subheaderSizes,
     },
-    extend: props => css`
+    extend: (props) => css`
       margin-top: 0;
       font-family: var(--f-stack);
 
@@ -206,11 +207,11 @@ const custom = {
               padding-bottom: 24px;
             `}
         `}
-    `
+    `,
   },
   paragraph: {
     ...textSizes,
-    extend: props => css`
+    extend: (props) => css`
       &.tinlake_paragraph {
         font-size: 20px;
         line-height: 32px;
@@ -221,7 +222,7 @@ const custom = {
           line-height: 24px;
         }
       }
-    `
+    `,
   },
   text: textSizes,
   // grid: {
@@ -244,45 +245,45 @@ const custom = {
   //   `
   // },
   anchor: {
-    fontWeight: props =>
+    fontWeight: (props) =>
       props.bold ? "var(--fw-demibold)" : "var(--fw-regular)",
-    textDecoration: props => props.underline && "underline",
+    textDecoration: (props) => props.underline && "underline",
     color: { dark: "white", light: "black" },
     hover: {
       extend: css`
         color: #2762ff;
-      `
+      `,
     },
     extend: css`
       &:active {
         opacity: 0.9;
       }
-    `
+    `,
   },
   button: {
     padding: {
       horizontal: `${32 - borderWidth}px`,
-      vertical: `${8 - borderWidth}px`
+      vertical: `${8 - borderWidth}px`,
     },
     border: {
       radius: "40px",
       width: `${borderWidth}px`,
       color: {
         dark: "#fff",
-        light: "#000"
-      }
+        light: "#000",
+      },
     },
     color: {
       dark: "#fff",
-      light: "#000"
+      light: "#000",
     },
     primary: {
       color: {
         dark: "#fff",
-        light: "#000"
-      }
+        light: "#000",
+      },
     },
-    extend: props => css`
+    extend: (props) => css`
       font-weight: var(--fw-medium);
       font-family: var(--f-stack);
       text-align: center;
@@ -367,8 +368,8 @@ const custom = {
             opacity: 0.9;
           }
         `}
-    `
-  }
+    `,
+  },
 };
 
 const theme = deepMerge(base, custom);

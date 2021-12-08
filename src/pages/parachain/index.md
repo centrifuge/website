@@ -4,6 +4,6 @@ description: Centrifuge is the real-world asset bridge bringing trillions in har
 dark: true
 ---
 
-import { App } from "../components/Polkadot/App.js";
+import { App } from "../../components/Polkadot/App.js";
 
 <App />
