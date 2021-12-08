@@ -15,7 +15,7 @@ export const CFG_PLANCK = 1e18;
 
 export const CROWDLOAN_MAX_CAP = 200000;
 
-export const AUCTION_START = new Date("2021-12-15");
+export const AUCTION_START = new Date("12/15/2021");
 
 // the minimum contribution is 5 DOT (see https://twitter.com/Polkadot/status/1457747901430566924)
 export const MIN_CONTRIBUTION_DOT = 5;
