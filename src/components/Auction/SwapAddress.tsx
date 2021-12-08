@@ -166,7 +166,10 @@ const SwapForm = () => {
         Swap Address
       </Text>
       <Box pad="16px 0" gap="8px">
-        <Text weight={600}>Please enter a new Altair address below.</Text>
+        <Text weight={600}>
+          Please submit a new Altair address below before Wednesday, December
+          15, 2021 14:00 UTC.
+        </Text>
         <Text weight={600}>
           <CircleInformation color="white" size="12px" /> For now, Ledger
           hardware wallets are not supported by Altair, please do not enter an
