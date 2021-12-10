@@ -412,7 +412,7 @@ export const StakeForm: React.FC = () => {
                 />
               </FormField>
               <FormField
-                label="Stay up to date with the auction (optional)"
+                label="Stay up to date with the crowdloan (optional)"
                 name="emailAddress"
                 htmlFor="emailAddress"
                 validate={(value) => validateEmailAddress(value.trim())}

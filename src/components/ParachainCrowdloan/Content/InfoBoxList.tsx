@@ -93,8 +93,8 @@ export const InfoBoxList = () => {
       unit: "%",
       title: "Early bird bonus",
       desc: isAuctionStarted
-        ? `On contributions within ${REWARD_EARLY_BIRD_HOURS} hrs after auction opening`
-        : "On early contributions after auction opening",
+        ? `On contributions within ${REWARD_EARLY_BIRD_HOURS} hrs after crowdloan opening`
+        : "On early contributions after crowdloan opening",
     },
     {
       figure: `${REWARD_REFERRAL_PERCENT}`,
