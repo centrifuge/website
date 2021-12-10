@@ -35,7 +35,7 @@ const ContributeStyled = styled.div`
   padding: 20px 0;
 
   ${onBreakpoint("M")} {
-    padding: 30px 0;
+    padding: 64px 0;
   }
 `;
 
