@@ -155,6 +155,21 @@ exports.handler = async (event) => {
   const { address, parachain } = JSON.parse(event.body);
 
   const curConfig = getConfig(parachain);
+
+  if (!curConfig.URL_CONTRIBUTIONS || !curConfig.URL_CONTRIBUTOR) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        address,
+        contributionAmount: "0",
+        earlyBirdBonus: "0",
+        firstCrowdloanBonus: "0",
+        numberOfReferrals: 0,
+        referralBonus: "0",
+      }),
+    };
+  }
+
   curConfig.sql = postgres(curConfig.POSTGRES_CONFIG);
 
   const referralCodes = await getReferralCodes(curConfig, address);

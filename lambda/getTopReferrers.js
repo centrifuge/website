@@ -19,6 +19,13 @@ exports.handler = async (event) => {
     parachain
   );
 
+  if (!URL_CONTRIBUTIONS) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify([]),
+    };
+  }
+
   const sql = postgres(POSTGRES_CONFIG);
 
   const { data: contributions } = await axios(URL_CONTRIBUTIONS);
