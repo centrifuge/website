@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { getSearchParam } from "../browserOnly";
+import { getDebugSearchParam } from "../browserOnly";
 
 import {
   AUCTION_RESULTS,
@@ -18,7 +18,7 @@ const INTERVAL_UPDATE_COUNTERS_MS = 1000; // update counters every second
 const EARLY_BIRD_PERIOD_HOURS = REWARD_EARLY_BIRD_HOURS;
 const AUCTION_DURATION_DAYS = 7;
 
-const DEBUG_PHASE = getSearchParam("debugPhase") || "";
+const DEBUG_PHASE = getDebugSearchParam("debugPhase") || "";
 
 const AUCTION_START_DATE =
   {
@@ -52,9 +52,6 @@ const getEarlyBirdHoursLeft = () =>
 
 const getIsEarlyBird = () =>
   getIsAuctionStarted() && Date.now() < EARLY_BIRD_END_DATE.getTime();
-
-console.log("AUCTION_START_DATE", AUCTION_START_DATE);
-console.log("AUCTION_END_DATE", AUCTION_END_DATE, getIsAuctionEnded());
 
 type AuctionContextType = {
   auctionStartDate: Date;

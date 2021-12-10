@@ -1,4 +1,4 @@
-import { getSearchParam } from "./browserOnly";
+import { getDebugSearchParam } from "./browserOnly";
 
 export const MAILCHIMP_URL =
   "https://centrifuge.us17.list-manage.com/subscribe/post?u=27084e1d9e6f92398b5c7ce91&id=ee9cca24fc";
@@ -45,7 +45,7 @@ export const REWARD_EARLY_BIRD_HOURS = 72;
 
 // TODO: replace with the correct values for this crowdloan
 export const PARACHAIN_ID = parseInt(
-  getSearchParam("debugParachainId") || "2018",
+  getDebugSearchParam("debugParachainId") || "2018",
   10
 ); // TODO: THIS IS ANOTHER CHAIN PARACHAIN ID, USED FOR TESTING PURPOSES. REPLACE IT WITH OUR PARACHAIN_ID AFTER REGISTERING
 // export const PARACHAIN_ID = 2031; // This is the parachain ID for Centrifuge (https://centrifugehq.slack.com/archives/CK8D25UMD/p1638469345111900)

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { TopList } from "../shared/Leaderboard";
 import { truncateAddress } from "../shared/format";
 import { PARACHAIN_NAME } from "../shared/const";
-import { getSearchParam } from "../shared/browserOnly";
+import { getDebugSearchParam } from "../shared/browserOnly";
 
 type TopReferrersResponse = {
   numberOfTimesUsed: number;
@@ -23,7 +23,7 @@ export const TopReferrers: React.FC = () => {
 
       if (mounted) {
         // debug mock values
-        const debugPhase = getSearchParam("debugPhase");
+        const debugPhase = getDebugSearchParam("debugPhase");
         if (debugPhase && !json?.length) {
           setTopReferrers(
             new Array(5).fill({
