@@ -203,53 +203,55 @@ export const StakeForm: React.FC = () => {
         : contributeTransaction;
 
       await new Promise((resolve, reject) => {
-        transactionToSend.signAndSend(
-          selectedAccount.address,
-          { signer: injector.signer },
-          async ({ status, events }) => {
-            // make sure status is finalized
-            if (!status.isFinalized) return;
+        transactionToSend
+          .signAndSend(
+            selectedAccount.address,
+            { signer: injector.signer },
+            async ({ status, events }) => {
+              // make sure status is finalized
+              if (!status.isFinalized) return;
 
-            // get failures if any
-            const errors = events.filter(({ event }) =>
-              api.events.system.ExtrinsicFailed.is(event)
-            );
-
-            // if there are failures, reject the promise
-            if (errors.length) {
-              const errorMsgs = errors.map(
-                ({
-                  event: {
-                    data: [error],
-                  },
-                }) => {
-                  if ((error as any).isModule) {
-                    const decoded = api.registry.findMetaError(
-                      (error as any).asModule
-                    );
-                    const { docs, method, section } = decoded;
-
-                    return `${section}.${method}: ${docs.join(" ")}`;
-                  } else {
-                    return error.toString();
-                  }
-                }
+              // get failures if any
+              const errors = events.filter(({ event }) =>
+                api.events.system.ExtrinsicFailed.is(event)
               );
 
-              reject(new Error(errorMsgs.join("\n")));
-              return;
-            }
+              // if there are failures, reject the promise
+              if (errors.length) {
+                const errorMsgs = errors.map(
+                  ({
+                    event: {
+                      data: [error],
+                    },
+                  }) => {
+                    if ((error as any).isModule) {
+                      const decoded = api.registry.findMetaError(
+                        (error as any).asModule
+                      );
+                      const { docs, method, section } = decoded;
 
-            // check if there was success, resolve the promise
-            const success = events.filter(({ event }) =>
-              api.events.system.ExtrinsicSuccess.is(event)
-            );
+                      return `${section}.${method}: ${docs.join(" ")}`;
+                    } else {
+                      return error.toString();
+                    }
+                  }
+                );
 
-            if (success.length) {
-              resolve("ok");
+                reject(new Error(errorMsgs.join("\n")));
+                return;
+              }
+
+              // check if there was success, resolve the promise
+              const success = events.filter(({ event }) =>
+                api.events.system.ExtrinsicSuccess.is(event)
+              );
+
+              if (success.length) {
+                resolve("ok");
+              }
             }
-          }
-        );
+          )
+          .catch(reject);
       });
 
       // transaction was successful
