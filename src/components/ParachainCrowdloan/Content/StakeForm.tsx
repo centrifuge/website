@@ -28,12 +28,15 @@ import {
   PARACHAIN_ID,
   PARACHAIN_NAME,
   MIN_EXISTENTIAL_DEPOSIT_PLANCK,
+  FAQ_URL,
 } from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
 import { WarningUnexpectedError } from "./WarningUnexpectedError";
 import { formatDOT } from "../shared/format";
+import { TextSpan } from "../shared/TextSpan";
+import { ExternalLink } from "../../Links";
 
 const formatBalance = (bn?: BigNumber): string =>
   bn ? (bn.isZero() ? "0.00" : formatDOT(bn, 12)) : "";
@@ -458,7 +461,7 @@ export const StakeForm: React.FC = () => {
               style={{
                 flexDirection: "row",
                 paddingTop: "24px",
-                paddingBottom: "32px",
+                paddingBottom: "16px",
               }}
             >
               {isSubmitting ? (
@@ -480,6 +483,22 @@ export const StakeForm: React.FC = () => {
                 />
               )}
             </Box>
+            <TextSpan
+              css={`
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 19.25px;
+              `}
+            >
+              Need help?&nbsp;&nbsp;
+              <ExternalLink
+                unstyled={1}
+                style={{ textDecoration: "underline" }}
+                href={FAQ_URL}
+              >
+                Read the FAQ
+              </ExternalLink>
+            </TextSpan>
           </Form>
         </FormWrapperBox>
       )}

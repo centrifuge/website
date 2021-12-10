@@ -22,7 +22,7 @@ const InfoBox = styled.div`
   background-color: ${({ theme }) => theme.global.colors.centrifugeOrange};
   color: #000;
   border-radius: 6px;
-  padding: 8px 16px;
+  padding: 16px 8px;
 
   ${onBreakpoint("L")} {
     min-height: 88px;
@@ -118,6 +118,8 @@ export const InfoBoxList = () => {
       unit: "%",
       title: "Loyalty bonus",
       desc: "To contributors of Altair and Centrifuge crowdloans",
+      footnote:
+        "You must contribute DOT using the same account that contributed KSM",
     },
   ];
 
@@ -125,32 +127,52 @@ export const InfoBoxList = () => {
     <InfoBoxListStyled>
       {itemList
         .filter((it) => !it.hidden)
-        .map(({ title, desc, figure, unit }) => (
-          <InfoBox key={title}>
-            {isAuctionStarted && (
-              <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
-            )}
-            <InfoBoxStack>
+        .map(({ title, desc, figure, unit, footnote }) => (
+          <>
+            <InfoBox key={title}>
+              {isAuctionStarted && (
+                <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
+              )}
+              <InfoBoxStack>
+                <TextSpan
+                  css={`
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 19.25px;
+                  `}
+                >
+                  {title}
+                  {footnote ? " *" : ""}
+                </TextSpan>
+                <TextSpan
+                  css={`
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 19.25px;
+                  `}
+                >
+                  {desc}
+                </TextSpan>
+              </InfoBoxStack>
+            </InfoBox>
+            {footnote && (
               <TextSpan
                 css={`
-                  font-size: 14px;
-                  font-weight: 600;
-                  line-height: 19.25px;
-                `}
-              >
-                {title}
-              </TextSpan>
-              <TextSpan
-                css={`
-                  font-size: 14px;
+                  font-size: 12px;
                   font-weight: 400;
                   line-height: 19.25px;
+
+                  ::before {
+                    content: "*";
+                    display: inline-block;
+                    margin-right: 0.5em;
+                  }
                 `}
               >
-                {desc}
+                {footnote}
               </TextSpan>
-            </InfoBoxStack>
-          </InfoBox>
+            )}
+          </>
         ))}
     </InfoBoxListStyled>
   );

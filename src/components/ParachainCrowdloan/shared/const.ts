@@ -53,6 +53,10 @@ export const PARACHAIN_ID = parseInt(
 // TODO: if we have a video "How to stake DOT", add the video ID (e.g. "se8mBXHCV-w") to show it in the "prior to auction" page
 export const HOW_TO_STAKE_VIDEO_ID: string = "";
 
+// TODO: replace with new FAQ page URL
+export const FAQ_URL =
+  "https://medium.com/altair-network/faq-altair-crowdloan-85b9d9abd235";
+
 // TODO after auction: populate with results
 export const AUCTION_RESULTS = {
   place: "", // e.g. '6th'
