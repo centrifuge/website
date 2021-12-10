@@ -33,9 +33,10 @@ import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
 import { WarningUnexpectedError } from "./WarningUnexpectedError";
+import { formatDOT } from "../shared/format";
 
-const formatBigNumber = (bn?: BigNumber): string =>
-  bn ? bn.div(DOT_PLANCK).toString() : "";
+const formatBalance = (bn?: BigNumber): string =>
+  bn ? (bn.isZero() ? "0.00" : formatDOT(bn, 12)) : "";
 
 const validateReferralCode = (value: string) => {
   if (value && (value.length !== 20 || !validReferralCode.test(value))) {
@@ -86,6 +87,12 @@ const UnderlineTextButton = styled.button`
 
   :disabled {
     cursor: not-allowed;
+  }
+`;
+
+const FormWrapperBox = styled(Box)`
+  & input::placeholder {
+    color: lightgrey !important;
   }
 `;
 
@@ -328,7 +335,7 @@ export const StakeForm: React.FC = () => {
       {errorMessage && <WarningUnexpectedError errorMessage={errorMessage} />}
 
       {isWeb3Injected && (
-        <Box gap="medium">
+        <FormWrapperBox gap="medium">
           <Form onSubmit={() => contribute()} validate="submit">
             <Box>
               <FormField
@@ -345,7 +352,7 @@ export const StakeForm: React.FC = () => {
                       <span style={{ paddingLeft: "8px" }}>DOT</span>
                     </>
                   }
-                  placeholder={MIN_CONTRIBUTION_DOT}
+                  placeholder={MIN_CONTRIBUTION_DOT.toPrecision(3)}
                   reverse
                   id="polkadot"
                   name="polkadot"
@@ -364,11 +371,7 @@ export const StakeForm: React.FC = () => {
               >
                 <Grid columns={["102px", "auto"]}>
                   <Text>Your balance:</Text>
-                  {freeBalance ? (
-                    formatBigNumber(freeBalance)
-                  ) : (
-                    <CustomSpinner />
-                  )}
+                  {freeBalance ? formatBalance(freeBalance) : <CustomSpinner />}
                 </Grid>
                 <UnderlineTextButton
                   type="button"
@@ -383,7 +386,7 @@ export const StakeForm: React.FC = () => {
                       .minus(gasFee)
                       .minus(MIN_EXISTENTIAL_DEPOSIT_PLANCK);
 
-                    setDotAmount(formatBigNumber(maxContrib));
+                    setDotAmount(formatBalance(maxContrib));
                   }}
                 >
                   Set Max
@@ -476,7 +479,7 @@ export const StakeForm: React.FC = () => {
               )}
             </Box>
           </Form>
-        </Box>
+        </FormWrapperBox>
       )}
       <TermsAndConditionsModal
         open={showConditionsModal}
