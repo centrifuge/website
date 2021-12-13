@@ -6,11 +6,12 @@ import funnelMobile from "../../../images/parachain-crowdloan/funnel-mobile.svg"
 import funnelDesktop from "../../../images/parachain-crowdloan/funnel-desktop.svg";
 import { AuctionStatusProgress } from "./AuctionStatusProgress";
 import { useAuctionContext } from "../shared/context/AuctionContext";
-import { CROWDLOAN_MAX_CAP, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
+import { DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
 import BigNumber from "bignumber.js";
 import { formatShortDate } from "../shared/format";
 import { onBreakpoint } from "../shared/responsive";
 import { Container } from "../shared/Container";
+import { CROWDLOAN_MAX_CAP } from "../shared/config";
 
 const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
   color: #ffffff;
@@ -97,6 +98,7 @@ const PulsingDot = styled.div`
 export const AuctionStatus: React.FC = () => {
   const {
     isAuctionStarted,
+    crowdloanPhase,
     isEarlyBird,
     earlyBirdHoursLeft,
     daysUntilAuction,
@@ -123,6 +125,14 @@ export const AuctionStatus: React.FC = () => {
     })();
   }, []);
 
+  const subtitle = {
+    notStarted: `${daysUntilAuction} days to go until launch`,
+    earlyBird: `${earlyBirdHoursLeft} hrs Early Bird Bonus remaining`,
+    earlyBirdExtended: `Early Bird Bonus extended! ${earlyBirdHoursLeft} hours remaining`,
+    earlyBirdExpired: "",
+    ended: "",
+  }[crowdloanPhase];
+
   return (
     <AuctionStatusStyled isAuctionStarted={isAuctionStarted}>
       <Container>
@@ -136,11 +146,7 @@ export const AuctionStatus: React.FC = () => {
         {!(isAuctionStarted && !isEarlyBird) && (
           <CountdownRow>
             <PulsingDot />
-            <Heading2>
-              {isAuctionStarted
-                ? `${earlyBirdHoursLeft} hrs Early Bird Bonus remaining`
-                : `${daysUntilAuction} days to go until launch`}
-            </Heading2>
+            <Heading2>{subtitle}</Heading2>
           </CountdownRow>
         )}
         <ButtonRow>

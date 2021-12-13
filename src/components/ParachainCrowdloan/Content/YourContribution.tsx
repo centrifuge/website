@@ -7,20 +7,18 @@ import { useWeb3 } from "../../Web3Provider";
 import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
-import {
-  CFG_PLANCK,
-  DOT_PLANCK,
-  PARACHAIN_NAME,
-  REWARD_CFG_PER_DOT,
-  REWARD_EARLY_BIRD_PERCENT,
-  REWARD_LOYALTY_PERCENT,
-  REWARD_REFERRAL_PERCENT,
-} from "../shared/const";
+import { CFG_PLANCK, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
 import { formatCFG } from "../shared/format";
 
 import { TextSpan } from "../shared/TextSpan";
 import { onBreakpoint } from "../shared/responsive";
 import { ExternalLink } from "../../Links";
+import {
+  REWARD_CFG_PER_DOT,
+  REWARD_EARLY_BIRD_PERCENT,
+  REWARD_LOYALTY_PERCENT,
+  REWARD_REFERRAL_PERCENT,
+} from "../shared/config";
 
 const YourContributionStyled = styled.div`
   display: flex;
@@ -81,7 +79,9 @@ type StatType = {
   color?: string;
 };
 const Stat: React.FC<StatType> = ({ value, label, color }) => {
-  const { isAuctionEnded } = useAuctionContext();
+  const { crowdloanPhase } = useAuctionContext();
+
+  const isAuctionEnded = crowdloanPhase === "ended";
 
   if (!isAuctionEnded && new BigNumber(value || 0).isZero()) return null;
   return (
@@ -108,7 +108,7 @@ export const YourContribution: React.FC<{}> = () => {
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
 
   const { dotAmount, referralCode } = useStakeFormContext();
-  const { isEarlyBird, isAuctionEnded } = useAuctionContext();
+  const { isEarlyBird, crowdloanPhase } = useAuctionContext();
 
   const [stakedAmount, setStakedAmount] = useState<string>();
 
@@ -119,6 +119,7 @@ export const YourContribution: React.FC<{}> = () => {
   const [totalRewards, setTotalRewards] = useState<string>();
 
   const hasRewards = !new BigNumber(totalRewards || 0).isZero();
+  const isAuctionEnded = crowdloanPhase === "ended";
 
   useEffect(() => {
     if (!rewardsData) {

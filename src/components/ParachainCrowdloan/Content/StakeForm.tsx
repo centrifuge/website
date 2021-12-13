@@ -25,10 +25,8 @@ import {
   DOT_PLANCK,
   MAILCHIMP_URL,
   MIN_CONTRIBUTION_DOT,
-  PARACHAIN_ID,
   PARACHAIN_NAME,
   MIN_EXISTENTIAL_DEPOSIT_PLANCK,
-  FAQ_URL,
 } from "../shared/const";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
@@ -37,6 +35,7 @@ import { WarningUnexpectedError } from "./WarningUnexpectedError";
 import { formatDOT } from "../shared/format";
 import { TextSpan } from "../shared/TextSpan";
 import { ExternalLink } from "../../Links";
+import { FAQ_URL, PARACHAIN_ID } from "../shared/config";
 
 const formatBalance = (bn?: BigNumber): string =>
   bn ? (bn.isZero() ? "0.00" : formatDOT(bn, 12)) : "";

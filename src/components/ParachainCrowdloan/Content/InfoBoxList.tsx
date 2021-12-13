@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import {
+  REWARD_HEAVYWEIGHT_FROM,
+  REWARD_HEAVYWEIGHT_PERCENT,
   REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_HOURS,
   REWARD_EARLY_BIRD_PERCENT,
-  REWARD_HEAVYWEIGHT_FROM,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
-} from "../shared/const";
+} from "../shared/config";
+
 import { useAuctionContext } from "../shared/context/AuctionContext";
 import { formatNumber } from "../shared/format";
 
@@ -106,8 +108,8 @@ export const InfoBoxList = () => {
     },
 
     {
-      figure: `${formatNumber(REWARD_HEAVYWEIGHT_FROM, 0, true)}`,
-      unit: "DOT",
+      figure: REWARD_HEAVYWEIGHT_PERCENT,
+      unit: "%",
       title: "Heavyweight reward",
       desc: isAuctionStarted
         ? `On contributions larger than ${formatNumber(

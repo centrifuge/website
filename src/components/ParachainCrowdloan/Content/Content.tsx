@@ -14,7 +14,7 @@ import { ThanksForContribution } from "./ThanksForContribution";
 import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
 import { YourContribution } from "./YourContribution";
-import { HOW_TO_STAKE_VIDEO_ID, PARACHAIN_NAME } from "../shared/const";
+import { PARACHAIN_NAME } from "../shared/const";
 import { Container } from "../shared/Container";
 import { onBreakpoint } from "../shared/responsive";
 import { WarningInsufficientFunds } from "./WarningInsufficientFunds";
@@ -24,6 +24,7 @@ import { FormTitle } from "./FormTitle";
 import { WarningWalletNotConnected } from "./WarningWalletNotConnected";
 import { WarningExtensionNotAuthorized } from "./WarningExtensionNotAuthorized";
 import { WarningExtensionMissing } from "./WarningExtensionMissing";
+import { VIDEO_ID } from "../shared/config";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -120,10 +121,12 @@ export type ContributionOutcome = {
 };
 
 export const Content = () => {
-  const { isAuctionStarted, isAuctionEnded } = useAuctionContext();
+  const { isAuctionStarted, crowdloanPhase } = useAuctionContext();
   const { contribHash, dotAmount, warning, gasFee } = useStakeFormContext();
   const { isWeb3Injected, selectedAccount, accounts } = useWeb3();
   const [newReferralCode, setNewReferralCode] = useState<string>("");
+
+  const isAuctionEnded = crowdloanPhase === "ended";
 
   // create referral code after the contribution has been successful
   useEffect(() => {
@@ -153,20 +156,20 @@ export const Content = () => {
       <ContributeStyled>
         <LeftCol>
           {!isAuctionEnded && <InfoBoxList />}
-          {isAuctionStarted && <TopReferrers />}
+          {crowdloanPhase !== "notStarted" && <TopReferrers />}
           {isAuctionEnded && <TopContributors />}
         </LeftCol>
 
         <ContribSection>
-          {!isAuctionStarted && (
+          {crowdloanPhase === "notStarted" && (
             <BeforeAuction>
               <GetReadyWrapper>
                 <GetReady />
               </GetReadyWrapper>
-              {HOW_TO_STAKE_VIDEO_ID && (
+              {VIDEO_ID && (
                 <LearnHowToStake>
                   <TextHeading1>Learn how to stake DOT</TextHeading1>
-                  <ResponsivePlayer videoId={HOW_TO_STAKE_VIDEO_ID} />
+                  <ResponsivePlayer videoId={VIDEO_ID} />
                 </LearnHowToStake>
               )}
             </BeforeAuction>
