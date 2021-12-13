@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   CheckBox,
   Form,
   FormField,
@@ -36,6 +35,7 @@ import { formatDOT } from "../shared/format";
 import { TextSpan } from "../shared/TextSpan";
 import { ExternalLink } from "../../Links";
 import { FAQ_URL, PARACHAIN_ID } from "../shared/config";
+import { LoadingButton } from "../shared/LoadingButton";
 
 const formatBalance = (bn?: BigNumber): string =>
   bn ? (bn.isZero() ? "0.00" : formatDOT(bn, 12)) : "";
@@ -474,14 +474,15 @@ export const StakeForm: React.FC = () => {
                   </Text>
                 </>
               ) : (
-                <Button
+                <LoadingButton
                   disabled={!isSubmitEnabled}
                   primary
-                  color="brand"
                   alignSelf="start"
-                  label="Stake contribution"
                   type="submit"
                   style={{ width: "100%" }}
+                  label="Stake contribution"
+                  loadingLabel="Staking in progress"
+                  isLoading={isSubmitting}
                 />
               )}
             </Box>

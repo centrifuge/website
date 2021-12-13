@@ -113,7 +113,6 @@ export const AuctionStatus: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      console.log("api", api);
       const response = await fetch(
         "/.netlify/functions/getTotalContributions" +
           `?parachain=${PARACHAIN_NAME}`
