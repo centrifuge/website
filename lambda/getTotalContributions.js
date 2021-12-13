@@ -18,8 +18,8 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        numberOfContributions: 0,
-        totalStaked: 0,
+        numberOfContributions: null,
+        totalStaked: null,
       }),
     };
   }

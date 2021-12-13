@@ -11,7 +11,8 @@ import BigNumber from "bignumber.js";
 import { formatShortDate } from "../shared/format";
 import { onBreakpoint } from "../shared/responsive";
 import { Container } from "../shared/Container";
-import { CROWDLOAN_MAX_CAP } from "../shared/config";
+import { CROWDLOAN_MAX_CAP, PARACHAIN_ID } from "../shared/config";
+import { usePolkadotApi } from "../shared/context/PolkadotApiProvider";
 
 const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
   color: #ffffff;
@@ -105,6 +106,8 @@ export const AuctionStatus: React.FC = () => {
     auctionStartDate,
   } = useAuctionContext();
 
+  const { api } = usePolkadotApi();
+
   const [numContributions, setNumContributions] = useState<number>();
   const [totalStacked, setTotalStacked] = useState<number>();
 
@@ -117,11 +120,20 @@ export const AuctionStatus: React.FC = () => {
 
       const json = await response.json();
 
-      setNumContributions(json.numberOfContributions);
-
-      setTotalStacked(
-        new BigNumber(json.totalStaked).div(DOT_PLANCK).toNumber()
-      );
+      if (json.numberOfContributions !== null) {
+        setNumContributions(json.numberOfContributions);
+      }
+      if (json.totalStaked !== null) {
+        setTotalStacked(
+          new BigNumber(json.totalStaked).div(DOT_PLANCK).toNumber()
+        );
+      } else {
+        // web service is not there, use funds api
+        const resp = (await api?.query.crowdloan.funds(PARACHAIN_ID)) as any;
+        setTotalStacked(
+          new BigNumber(resp.value.raised).div(DOT_PLANCK).toNumber()
+        );
+      }
     })();
   }, []);
 
