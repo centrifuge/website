@@ -6,9 +6,7 @@ export const MAILCHIMP_URL =
 export const PARACHAIN_NAME = "centrifuge";
 
 export const WS_PROVIDER = "wss://rpc.polkadot.io";
-export const TRANSACTION_DETAILS_URL = `https://polkadot.js.org/apps/?rpc=${encodeURIComponent(
-  WS_PROVIDER
-)}#/explorer/query`;
+export const TRANSACTION_DETAILS_URL = `https://polkadot.subscan.io/extrinsic`;
 
 // @see https://wiki.polkadot.network/docs/learn-DOT
 export const DOT_PLANCK = 1e10;
