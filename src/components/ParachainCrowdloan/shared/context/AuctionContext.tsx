@@ -25,17 +25,13 @@ const EARLY_BIRD_END_DATE = new Date(
 );
 
 const EARLY_BIRD_EXTENDED_END_DATE = new Date(
-  AUCTION_START_DATE.getTime() +
-    REWARD_EARLY_BIRD_HOURS +
-    REWARD_EARLY_BIRD_HOURS_EXT * 60 * 60 * 1000
+  EARLY_BIRD_END_DATE.getTime() + REWARD_EARLY_BIRD_HOURS_EXT * 60 * 60 * 1000
 );
 
 const getDaysUntilAuction = () =>
   Math.ceil((AUCTION_START_DATE.getTime() - Date.now()) / 1000 / 60 / 60 / 24);
 
 const getIsAuctionStarted = () => CROWDLOAN_STARTED;
-
-console.log(CROWDLOAN_STARTED);
 
 const getEarlyBirdHoursLeft = () =>
   Math.ceil(
