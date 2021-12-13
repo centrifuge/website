@@ -236,7 +236,7 @@ export const YourContribution: React.FC<{}> = () => {
             unstyled={0}
             href={`https://polkadot.subscan.io/account/${selectedAccount.address}`}
           >
-            Contribution on subscan
+            Contribution on Subscan
           </SubscanLink>
         </>
       )}
