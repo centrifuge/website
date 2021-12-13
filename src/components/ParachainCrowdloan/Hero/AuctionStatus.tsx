@@ -113,6 +113,7 @@ export const AuctionStatus: React.FC = () => {
 
   useEffect(() => {
     (async () => {
+      console.log("api", api);
       const response = await fetch(
         "/.netlify/functions/getTotalContributions" +
           `?parachain=${PARACHAIN_NAME}`
@@ -129,13 +130,16 @@ export const AuctionStatus: React.FC = () => {
         );
       } else {
         // web service is not there, use funds api
+        if (!api) return;
         const resp = (await api?.query.crowdloan.funds(PARACHAIN_ID)) as any;
+        if (!resp) return;
+
         setTotalStacked(
           new BigNumber(resp.value.raised).div(DOT_PLANCK).toNumber()
         );
       }
     })();
-  }, []);
+  }, [api]);
 
   const subtitle = {
     notStarted: `${daysUntilAuction} days to go until launch`,
