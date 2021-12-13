@@ -4,10 +4,12 @@ import {
   REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_HOURS,
   REWARD_EARLY_BIRD_PERCENT,
+  REWARD_HEAVYWEIGHT_FROM,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
 } from "../shared/const";
 import { useAuctionContext } from "../shared/context/AuctionContext";
+import { formatNumber } from "../shared/format";
 
 import { onBreakpoint } from "../shared/responsive";
 import { TextSpan } from "../shared/TextSpan";
@@ -102,17 +104,19 @@ export const InfoBoxList = () => {
       title: "Referral reward",
       desc: "For both referrer and referred contributor",
     },
-    // removed as it's not confirmed yet
-    // see https://centrifugehq.slack.com/archives/C02BKGJ3090/p1638890613175800
 
-    // {
-    //   figure: `${REWARD_HEAVIWEIGHT_FROM}`,
-    //   unit: "DOT",
-    //   title: "Heavyweight reward",
-    //   desc: isAuctionStarted
-    //     ? `On contributions larger than ${REWARD_HEAVIWEIGHT_FROM} DOT`
-    //     : "On large contributions",
-    // },
+    {
+      figure: `${formatNumber(REWARD_HEAVYWEIGHT_FROM, 0, true)}`,
+      unit: "DOT",
+      title: "Heavyweight reward",
+      desc: isAuctionStarted
+        ? `On contributions larger than ${formatNumber(
+            REWARD_HEAVYWEIGHT_FROM,
+            0,
+            true
+          )} DOT`
+        : "On large contributions",
+    },
     {
       figure: `${REWARD_LOYALTY_PERCENT}`,
       unit: "%",
