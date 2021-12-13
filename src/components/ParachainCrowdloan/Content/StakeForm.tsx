@@ -128,20 +128,20 @@ export const StakeForm: React.FC = () => {
     false
   );
 
+  const updateBalance = async () => {
+    if (!api || !selectedAccount?.address) return;
+    setFreeBalance(undefined); // set balance as loading
+    const balances = await api.query.system.account(selectedAccount.address);
+    setFreeBalance(new BigNumber(balances.data.free.toString()));
+  };
+
   useEffect(() => {
     (async () => {
       if (selectedAccount?.address && api) {
-        setFreeBalance(undefined); // set balance as loading
-
         const web3Injector = await web3FromAddress(selectedAccount?.address);
-
-        const balances = await api.query.system.account(
-          selectedAccount.address
-        );
-
         setInjector(web3Injector);
 
-        setFreeBalance(new BigNumber(balances.data.free.toString()));
+        await updateBalance();
       }
     })();
   }, [api, selectedAccount]);
@@ -264,6 +264,9 @@ export const StakeForm: React.FC = () => {
       if (emailAddress) {
         await addToMailchimp(emailAddress, {}, MAILCHIMP_URL);
       }
+
+      // no need to await, just trigger the update
+      updateBalance();
 
       setIsSubmitting(false);
     } catch (err) {
