@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useCopyToClipboard } from "react-use";
-import { Copy, Checkmark } from "grommet-icons";
+import { Checkmark } from "grommet-icons";
+import copyUrl from "../../../images/icons/copy.svg";
 
 import styled from "styled-components";
 
 const ThanksForContributionStyled = styled.div`
   background: ${({ theme }) => theme.global.colors.centrifugeOrange};
   padding: 16px;
+  border-radius: 6px;
 `;
 
 const TextHeading3 = styled.span`
@@ -21,6 +23,12 @@ const TextBody = styled.span`
   font-weight: 400;
 `;
 
+const TextCode = styled.span`
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+`;
+
 const TitleRow = styled.div`
   margin-bottom: 4px;
 `;
@@ -28,9 +36,10 @@ const TitleRow = styled.div`
 const CopyReferralCode = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   cursor: pointer;
 
+  height: 32px;
   margin-top: 8px;
 
   :hover {
@@ -76,8 +85,9 @@ export const ReferYourFriends: React.FC<ThanksForContributionProps> = ({
           showFeedback();
         }}
       >
-        <Copy size="small" />
-        <TextBody>{referralCode}</TextBody>
+        <TextCode>{referralCode}</TextCode>
+        <img src={copyUrl} />
+
         {showCopiedFeedback && <Checkmark size="small" />}
       </CopyReferralCode>
     </ThanksForContributionStyled>
