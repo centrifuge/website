@@ -20,11 +20,12 @@ import { formatCFG } from "../shared/format";
 
 import { TextSpan } from "../shared/TextSpan";
 import { onBreakpoint } from "../shared/responsive";
+import { ExternalLink } from "../../Links";
 
 const YourContributionStyled = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   background: #f8f8f8;
   border-radius: 6px;
   padding: 24px;
@@ -59,7 +60,7 @@ const StatsItem = styled.div`
 
 const Divider = styled.div`
   height: 1px;
-  background: #e0e0e0;
+  background: #757575;
 `;
 
 const CustomSpinner = styled(Spinner)`
@@ -68,6 +69,10 @@ const CustomSpinner = styled(Spinner)`
   display: inline-block;
   padding: 6px;
   margin-right: 8px;
+`;
+
+const SubscanLink = styled(ExternalLink)`
+  color: #757575;
 `;
 
 type StatType = {
@@ -221,6 +226,18 @@ export const YourContribution: React.FC<{}> = () => {
           <Divider />
 
           <Stat value={totalRewards} label="Total rewards" color="brand" />
+        </>
+      )}
+
+      {selectedAccount?.address && (
+        <>
+          <Divider />
+          <SubscanLink
+            unstyled={0}
+            href={`https://polkadot.subscan.io/account/${selectedAccount.address}`}
+          >
+            Contribution on subscan
+          </SubscanLink>
         </>
       )}
     </YourContributionStyled>
