@@ -33,10 +33,10 @@ export const MIN_BALANCE_DOT =
 
 // reward config
 export const REWARD_HEAVIWEIGHT_FROM = 10; // number of DOT
-export const REWARD_CFG_PER_DOT = 400;
-export const REWARD_EARLY_BIRD_PERCENT = 10;
-export const REWARD_REFERRAL_PERCENT = 5;
-export const REWARD_LOYALTY_PERCENT = 10;
+export const REWARD_CFG_PER_DOT = 3.65;
+export const REWARD_EARLY_BIRD_PERCENT = 12.5;
+export const REWARD_REFERRAL_PERCENT = 10;
+export const REWARD_LOYALTY_PERCENT = 5;
 
 export const REWARD_EARLY_BIRD_HOURS = 72;
 
