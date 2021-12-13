@@ -38,7 +38,7 @@ const createFormatNum = (planck: number) => (
 
     for (let i = 0; i < unitsArray.length; i += 1) {
       const [letter, base] = unitsArray[i];
-      if (bn.gt(planck * base)) {
+      if (bn.gte(planck * base)) {
         bn = bn.div(base);
         unitLetter = letter;
         break;
