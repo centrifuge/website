@@ -136,9 +136,8 @@ export const InfoBoxList = () => {
         .map(({ title, desc, figure, unit, footnote }) => (
           <>
             <InfoBox key={title}>
-              {isAuctionStarted && (
-                <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
-              )}
+              <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
+
               <InfoBoxStack>
                 <TextSpan
                   css={`
