@@ -88,7 +88,7 @@ export const InfoBoxList = () => {
     {
       figure: `${REWARD_CFG_PER_DOT}`,
       unit: "CFG",
-      title: "Staking reward",
+      title: "Base reward",
       desc: "Reward for 1 staked DOT",
     },
     {

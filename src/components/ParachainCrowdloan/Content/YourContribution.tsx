@@ -219,12 +219,10 @@ export const YourContribution: React.FC<{}> = () => {
         <>
           <Divider />
 
-          <Stat value={rewardStaking} label="Staking reward" />
+          <Stat value={rewardStaking} label="Base reward" />
           <Stat value={rewardEarlyBird} label="Early bird reward" />
           <Stat value={rewardReferral} label="Referral reward" />
           <Stat value={rewardLoyalty} label="Loyalty reward" />
-
-          <Divider />
 
           <Stat value={totalRewards} label="Total rewards" color="brand" />
         </>
