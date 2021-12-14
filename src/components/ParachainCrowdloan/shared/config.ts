@@ -19,10 +19,10 @@ const DEFAULT = {
   CCL_REWARD_REFERRAL_PERCENT: 5,
   CCL_REWARD_LOYALTY_PERCENT: 5,
 
+  CCL_PARACHAIN_ID: 2031, // centrifuge parachain ID
+
   // NOTE: the following values are placeholders.
   // As soon as they are available (e.g. after we register), replace them with the correct ones
-  CCL_PARACHAIN_ID: 2018, // THIS IS THE WRONG ID!!
-  // CCL_PARACHAIN_ID: 2031, // real centrifuge parachain ID
 
   // these are the FAQ for Altair
   CCL_FAQ_URL:

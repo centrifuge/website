@@ -466,25 +466,16 @@ export const StakeForm: React.FC = () => {
                 paddingBottom: "16px",
               }}
             >
-              {isSubmitting ? (
-                <>
-                  <Spinner />
-                  <Text style={{ paddingLeft: "12px" }}>
-                    Staking in progress...
-                  </Text>
-                </>
-              ) : (
-                <LoadingButton
-                  disabled={!isSubmitEnabled}
-                  primary
-                  alignSelf="start"
-                  type="submit"
-                  style={{ width: "100%" }}
-                  label="Stake contribution"
-                  loadingLabel="Staking in progress"
-                  isLoading={isSubmitting}
-                />
-              )}
+              <LoadingButton
+                disabled={!isSubmitEnabled}
+                primary
+                alignSelf="start"
+                type="submit"
+                style={{ width: "100%" }}
+                label="Stake contribution"
+                loadingLabel="Staking in progress"
+                isLoading={isSubmitting}
+              />
             </Box>
             <TextSpan
               css={`
