@@ -8,7 +8,7 @@ import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
 import { CFG_PLANCK, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
-import { formatCFG } from "../shared/format";
+import { formatCFG, formatDOT } from "../shared/format";
 
 import { TextSpan } from "../shared/TextSpan";
 import { onBreakpoint } from "../shared/responsive";
@@ -87,7 +87,12 @@ const Stat: React.FC<StatType> = ({ value, label, color }) => {
   return (
     <StatsItem>
       <TextHeading2 color={color}>
-        {value ? formatCFG(value, 2) : <CustomSpinner color="brand" />} CFG
+        {value ? (
+          formatCFG(value, 3, false, true, true)
+        ) : (
+          <CustomSpinner color="brand" />
+        )}{" "}
+        CFG
       </TextHeading2>
       <TextLabel>{label}</TextLabel>
     </StatsItem>
@@ -169,7 +174,7 @@ export const YourContribution: React.FC<{}> = () => {
       .plus(totalLoyaltyBonus);
 
     // show values
-    setStakedAmount(totalAmount.div(DOT_PLANCK).toString());
+    setStakedAmount(totalAmount.toString());
     setRewardStaking(totalStakingBonus.toString());
     setRewardEarlyBird(totalEarlyBirdBonus.toFixed());
     setRewardReferral(totalReferralBonus.toString());
@@ -210,7 +215,12 @@ export const YourContribution: React.FC<{}> = () => {
             color: #000;
           `}
         >
-          {stakedAmount ? stakedAmount : <CustomSpinner color="brand" />} DOT
+          {stakedAmount ? (
+            formatDOT(stakedAmount, 3, false, true, true)
+          ) : (
+            <CustomSpinner color="brand" />
+          )}{" "}
+          DOT
         </TextSpan>
         <TextLabel>Staked amount</TextLabel>
       </StatsItem>

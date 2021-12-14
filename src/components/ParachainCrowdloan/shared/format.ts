@@ -21,7 +21,8 @@ const createFormatNum = (planck: number) => (
   value: number | BigNumber | string,
   decimals?: number,
   unit?: boolean,
-  commas?: boolean
+  commas?: boolean,
+  fixed?: boolean
 ) => {
   let bn =
     typeof value === "number"
@@ -47,7 +48,7 @@ const createFormatNum = (planck: number) => (
   }
 
   let str = `${bn.div(planck).toFormat(decimals || 0)}`;
-  if (str.indexOf(".") !== -1) {
+  if (!fixed && str.indexOf(".") !== -1) {
     str = str.replace(/0+$/, "");
   }
   if (commas == null || commas === true) {
