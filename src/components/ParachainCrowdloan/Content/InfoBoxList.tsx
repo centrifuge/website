@@ -1,3 +1,4 @@
+import { Box } from "grommet";
 import React from "react";
 import styled from "styled-components";
 import {
@@ -134,7 +135,7 @@ export const InfoBoxList = () => {
       {itemList
         .filter((it) => !it.hidden)
         .map(({ title, desc, figure, unit, footnote }) => (
-          <>
+          <Box gap="4px">
             <InfoBox key={title}>
               <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
 
@@ -166,6 +167,7 @@ export const InfoBoxList = () => {
                   font-size: 12px;
                   font-weight: 400;
                   line-height: 19.25px;
+                  color: #757575;
 
                   ::before {
                     content: "*";
@@ -177,7 +179,7 @@ export const InfoBoxList = () => {
                 {footnote}
               </TextSpan>
             )}
-          </>
+          </Box>
         ))}
     </InfoBoxListStyled>
   );
