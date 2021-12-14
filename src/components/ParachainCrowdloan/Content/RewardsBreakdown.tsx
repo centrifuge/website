@@ -20,7 +20,7 @@ import {
   REWARD_REFERRAL_PERCENT,
 } from "../shared/config";
 
-const YourContributionStyled = styled.div`
+const RewardsBreakdownStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -108,7 +108,7 @@ type RewardDataResponse = {
   isFirst250PrevCrwdloan?: boolean;
 };
 
-export const YourContribution: React.FC<{}> = () => {
+export const RewardsBreakdown: React.FC<{}> = () => {
   const { selectedAccount } = useWeb3();
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
 
@@ -202,9 +202,9 @@ export const YourContribution: React.FC<{}> = () => {
   }, [selectedAccount?.address]);
 
   return (
-    <YourContributionStyled>
+    <RewardsBreakdownStyled>
       <div>
-        <TextHeading2>Your contribution</TextHeading2>
+        <TextHeading2>Estimated rewards</TextHeading2>
       </div>
       <StatsItem>
         <TextSpan
@@ -245,10 +245,10 @@ export const YourContribution: React.FC<{}> = () => {
             unstyled={0}
             href={`https://polkadot.subscan.io/account/${selectedAccount.address}`}
           >
-            Contribution on Subscan
+            View account on Subscan
           </SubscanLink>
         </>
       )}
-    </YourContributionStyled>
+    </RewardsBreakdownStyled>
   );
 };

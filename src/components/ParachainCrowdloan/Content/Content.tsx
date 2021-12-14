@@ -13,7 +13,7 @@ import { StakeForm } from "./StakeForm";
 import { ThanksForContribution } from "./ThanksForContribution";
 import { TopContributors } from "./TopContributors";
 import { TopReferrers } from "./TopReferrers";
-import { YourContribution } from "./YourContribution";
+import { RewardsBreakdown } from "./RewardsBreakdown";
 import { PARACHAIN_NAME } from "../shared/const";
 import { Container } from "../shared/Container";
 import { onBreakpoint } from "../shared/responsive";
@@ -208,10 +208,10 @@ export const Content = () => {
                 <StakeForm />
               </>
             )}
-            {isAuctionEnded && <YourContribution />}
+            {isAuctionEnded && <RewardsBreakdown />}
           </CentralCol>
           <RightCol>
-            {isAuctionStarted && !isAuctionEnded && <YourContribution />}
+            {isAuctionStarted && !isAuctionEnded && <RewardsBreakdown />}
           </RightCol>
         </ContribSection>
       </ContributeStyled>
