@@ -14,6 +14,9 @@ const WalletMenuBtn = styled.button`
   margin: 0;
   background: #fff;
   padding: 12px 8px;
+  border: 1px solid #000;
+  border-radius: 100vh;
+
   display: flex;
   gap: 8px;
   align-items: center;
@@ -68,7 +71,7 @@ const MenuItem = styled.button`
 `;
 
 const WalletMenuText = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 20px;
 
