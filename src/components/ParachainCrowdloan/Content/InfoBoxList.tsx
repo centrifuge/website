@@ -123,7 +123,7 @@ export const InfoBoxList = () => {
     {
       figure: `${REWARD_LOYALTY_PERCENT}`,
       unit: "%",
-      title: "Loyalty bonus",
+      title: "Double trouble reward",
       desc: "To contributors of Altair and Centrifuge crowdloans",
       footnote:
         "You must contribute DOT using the same account that contributed KSM",
