@@ -8,7 +8,8 @@ const DEFAULT = {
   CCL_START_DATE: "2021-12-15T00:00Z",
   CCL_CROWDLOAN_STARTED: false,
 
-  CCL_CROWDLOAN_MAX_CAP: 1e7, // 10m
+  CCL_CROWDLOAN_MAX_CAP: 15000000, // 15m
+  CCL_REWARDS_BUDGET: 65700000,
 
   CCL_REWARD_CFG_PER_DOT: 3.65,
   CCL_REWARD_HEAVYWEIGHT_FROM: 10000,
@@ -47,6 +48,11 @@ export const CROWDLOAN_MAX_CAP =
   parseFloat(getDebugSearchParam("CCL_CROWDLOAN_MAX_CAP") || "0") ||
   parseFloat(process.env.CCL_CROWDLOAN_MAX_CAP || "0") ||
   DEFAULT.CCL_CROWDLOAN_MAX_CAP;
+
+export const REWARDS_BUDGET =
+  parseFloat(getDebugSearchParam("CCL_REWARDS_BUDGET") || "0") ||
+  parseFloat(process.env.CCL_REWARDS_BUDGET || "0") ||
+  DEFAULT.CCL_REWARDS_BUDGET;
 
 export const REWARD_CFG_PER_DOT =
   parseFloat(getDebugSearchParam("CCL_REWARD_CFG_PER_DOT") || "0") ||
