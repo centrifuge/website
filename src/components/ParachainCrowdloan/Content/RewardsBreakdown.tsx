@@ -74,8 +74,8 @@ const SubscanLink = styled(ExternalLink)`
 `;
 
 type StatType = {
-  min: string;
-  current: string;
+  min: BigNumber;
+  current: BigNumber;
 };
 
 type StatProps = {
@@ -88,12 +88,10 @@ const Stat: React.FC<StatProps> = ({ value, label, color }) => {
 
   const isAuctionEnded = crowdloanPhase === "ended";
 
-  const currentBn = new BigNumber(value?.current || 0);
-
-  if (!isAuctionEnded && currentBn.isZero()) return null;
+  if (!isAuctionEnded && value?.current?.isZero()) return null;
 
   const formattedVal =
-    !value || currentBn.isZero()
+    !value || value?.current.isZero()
       ? "0"
       : `${formatCFG(value.min, 1, false, true, true)} to ${formatCFG(
           value.current,
@@ -204,24 +202,24 @@ export const RewardsBreakdown: React.FC<{}> = () => {
     // show values
     setStakedAmount(totalAmount.toString());
     setRewardStaking({
-      current: totalStakingBonus.toString(),
-      min: totalMinStakingBonus.toString(),
+      current: totalStakingBonus,
+      min: totalMinStakingBonus,
     });
     setRewardEarlyBird({
-      current: totalEarlyBirdBonus.toFixed(),
-      min: totalMinEarlyBirdBonus.toString(),
+      current: totalEarlyBirdBonus,
+      min: totalMinEarlyBirdBonus,
     });
     setRewardReferral({
-      current: totalReferralBonus.toString(),
-      min: totalMinReferralBonus.toString(),
+      current: totalReferralBonus,
+      min: totalMinReferralBonus,
     });
     setRewardLoyalty({
-      current: totalLoyaltyBonus.toString(),
-      min: totalMinLoyaltyBonus.toString(),
+      current: totalLoyaltyBonus,
+      min: totalMinLoyaltyBonus,
     });
     setTotalRewards({
-      current: totalBonus.toString(),
-      min: totalMinBonus.toString(),
+      current: totalBonus,
+      min: totalMinBonus,
     });
   }, [dotAmount, referralCode, rewardsData, baseRewardRate]);
 
