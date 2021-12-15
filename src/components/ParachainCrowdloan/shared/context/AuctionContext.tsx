@@ -12,7 +12,7 @@ import {
   REWARD_EARLY_BIRD_HOURS_EXT,
   START_DATE,
   CROWDLOAN_STARTED,
-  CROWDLOAN_MAX_CAP,
+  REWARDS_BUDGET,
 } from "../config";
 
 import { CrowdloanPhase } from "../const";
@@ -127,8 +127,9 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
 
     const updateBaseReward = () => {
       getTotalRaised(api).then((total) => {
+        console.log("total", total);
         setTotalRaised(total);
-        setBaseRewardRate(CROWDLOAN_MAX_CAP / total);
+        setBaseRewardRate(REWARDS_BUDGET / total);
       });
     };
 
