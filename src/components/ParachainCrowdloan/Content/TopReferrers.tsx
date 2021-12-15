@@ -43,7 +43,7 @@ export const TopReferrers: React.FC = () => {
 
   const listItems = useMemo(
     () =>
-      topReferrers
+      topReferrers && Array.isArray(topReferrers)
         ? topReferrers.map((referrer) => ({
             label: truncateAddress(referrer.account),
             value: `${referrer.numberOfTimesUsed}`,

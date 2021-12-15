@@ -34,7 +34,7 @@ export const TopContributors: React.FC = () => {
 
   const listItems = useMemo(
     () =>
-      topContributors
+      topContributors && Array.isArray(topContributors)
         ? topContributors.map((item) => ({
             label: truncateAddress(item.account),
             value: `${formatDOT(item.amount)} DOT`,
