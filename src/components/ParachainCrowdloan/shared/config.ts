@@ -22,12 +22,8 @@ const DEFAULT = {
   CCL_PARACHAIN_ID: 2031, // centrifuge parachain ID
   CCL_VIDEO_ID: "-wXooFsoafM",
 
-  // NOTE: the following values are placeholders.
-  // As soon as they are available (e.g. after we register), replace them with the correct ones
-
-  // these are the FAQ for Altair
   CCL_FAQ_URL:
-    "https://medium.com/altair-network/faq-altair-crowdloan-85b9d9abd235",
+    "https://medium.com/centrifuge/faq-centrifuge-crowdloan-5c744778e03c",
 
   CCL_RESULTS_TITLE: "",
   CCL_RESULTS_SUBTITLE: "",
@@ -52,6 +48,8 @@ export const REWARDS_BUDGET =
   parseFloat(getDebugSearchParam("CCL_REWARDS_BUDGET") || "0") ||
   parseFloat(process.env.CCL_REWARDS_BUDGET || "0") ||
   DEFAULT.CCL_REWARDS_BUDGET;
+
+export const MIN_BASE_REWARD = REWARDS_BUDGET / CROWDLOAN_MAX_CAP;
 
 export const REWARD_HEAVYWEIGHT_FROM =
   parseFloat(getDebugSearchParam("CCL_REWARD_HEAVYWEIGHT_FROM") || "0") ||

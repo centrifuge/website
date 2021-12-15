@@ -14,6 +14,7 @@ import { TextSpan } from "../shared/TextSpan";
 import { onBreakpoint } from "../shared/responsive";
 import { ExternalLink } from "../../Links";
 import {
+  MIN_BASE_REWARD,
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
@@ -73,25 +74,38 @@ const SubscanLink = styled(ExternalLink)`
 `;
 
 type StatType = {
-  value?: string;
+  min: string;
+  current: string;
+};
+
+type StatProps = {
+  value?: StatType;
   label: string;
   color?: string;
 };
-const Stat: React.FC<StatType> = ({ value, label, color }) => {
+const Stat: React.FC<StatProps> = ({ value, label, color }) => {
   const { crowdloanPhase } = useAuctionContext();
 
   const isAuctionEnded = crowdloanPhase === "ended";
 
-  if (!isAuctionEnded && new BigNumber(value || 0).isZero()) return null;
+  const currentBn = new BigNumber(value?.current || 0);
+
+  if (!isAuctionEnded && currentBn.isZero()) return null;
+
+  const formattedVal =
+    !value || currentBn.isZero()
+      ? "0"
+      : `${formatCFG(value.min, 1, false, true, true)} to ${formatCFG(
+          value.current,
+          1,
+          false,
+          true,
+          true
+        )}`;
   return (
     <StatsItem>
       <TextHeading2 color={color}>
-        {value ? (
-          formatCFG(value, 3, false, true, true)
-        ) : (
-          <CustomSpinner color="brand" />
-        )}{" "}
-        CFG
+        {value ? formattedVal : <CustomSpinner color="brand" />} CFG
       </TextHeading2>
       <TextLabel>{label}</TextLabel>
     </StatsItem>
@@ -116,13 +130,13 @@ export const RewardsBreakdown: React.FC<{}> = () => {
 
   const [stakedAmount, setStakedAmount] = useState<string>();
 
-  const [rewardStaking, setRewardStaking] = useState<string>();
-  const [rewardEarlyBird, setRewardEarlyBird] = useState<string>();
-  const [rewardReferral, setRewardReferral] = useState<string>();
-  const [rewardLoyalty, setRewardLoyalty] = useState<string>();
-  const [totalRewards, setTotalRewards] = useState<string>();
+  const [rewardStaking, setRewardStaking] = useState<StatType>();
+  const [rewardEarlyBird, setRewardEarlyBird] = useState<StatType>();
+  const [rewardReferral, setRewardReferral] = useState<StatType>();
+  const [rewardLoyalty, setRewardLoyalty] = useState<StatType>();
+  const [totalRewards, setTotalRewards] = useState<StatType>();
 
-  const hasRewards = !new BigNumber(totalRewards || 0).isZero();
+  const hasRewards = !new BigNumber(totalRewards?.current || 0).isZero();
   const isAuctionEnded = crowdloanPhase === "ended";
 
   useEffect(() => {
@@ -152,33 +166,63 @@ export const RewardsBreakdown: React.FC<{}> = () => {
       .div(DOT_PLANCK) // to DOT
       .times(baseRewardRate)
       .times(CFG_PLANCK); // to CFG
+    const minStakingBonus = curAmount
+      .div(DOT_PLANCK) // to DOT
+      .times(MIN_BASE_REWARD)
+      .times(CFG_PLANCK); // to CFG
     const dataStakingBonus = dataAmount
       .div(DOT_PLANCK) // to DOT
       .times(baseRewardRate)
       .times(CFG_PLANCK); // to CFG
 
     const totalStakingBonus = curStakingBonus.plus(dataStakingBonus);
+    const totalMinStakingBonus = minStakingBonus.plus(dataStakingBonus);
 
     const curEarlyBirdBonus = curStakingBonus.times(earlyBirdFactor);
+    const minEarlyBirdBonus = minStakingBonus.times(earlyBirdFactor);
     const totalEarlyBirdBonus = curEarlyBirdBonus.plus(dataEarlyBirdBonus);
+    const totalMinEarlyBirdBonus = minEarlyBirdBonus.plus(dataEarlyBirdBonus);
 
     const curReferralBonus = curStakingBonus.times(referralFactor);
+    const minReferralBonus = minStakingBonus.times(referralFactor);
     const totalReferralBonus = curReferralBonus.plus(dataReferralBonus);
+    const totalMinReferralBonus = minReferralBonus.plus(dataReferralBonus);
 
     const totalLoyaltyBonus = totalStakingBonus.times(loyaltyFactor);
+    const totalMinLoyaltyBonus = totalMinStakingBonus.times(loyaltyFactor);
 
     const totalBonus = totalStakingBonus
       .plus(totalEarlyBirdBonus)
       .plus(totalReferralBonus)
       .plus(totalLoyaltyBonus);
 
+    const totalMinBonus = totalMinStakingBonus
+      .plus(totalMinEarlyBirdBonus)
+      .plus(totalMinReferralBonus)
+      .plus(totalMinLoyaltyBonus);
+
     // show values
     setStakedAmount(totalAmount.toString());
-    setRewardStaking(totalStakingBonus.toString());
-    setRewardEarlyBird(totalEarlyBirdBonus.toFixed());
-    setRewardReferral(totalReferralBonus.toString());
-    setRewardLoyalty(totalLoyaltyBonus.toString());
-    setTotalRewards(totalBonus.toString());
+    setRewardStaking({
+      current: totalStakingBonus.toString(),
+      min: totalMinStakingBonus.toString(),
+    });
+    setRewardEarlyBird({
+      current: totalEarlyBirdBonus.toFixed(),
+      min: totalMinEarlyBirdBonus.toString(),
+    });
+    setRewardReferral({
+      current: totalReferralBonus.toString(),
+      min: totalMinReferralBonus.toString(),
+    });
+    setRewardLoyalty({
+      current: totalLoyaltyBonus.toString(),
+      min: totalMinLoyaltyBonus.toString(),
+    });
+    setTotalRewards({
+      current: totalBonus.toString(),
+      min: totalMinBonus.toString(),
+    });
   }, [dotAmount, referralCode, rewardsData, baseRewardRate]);
 
   useEffect(() => {
@@ -199,6 +243,8 @@ export const RewardsBreakdown: React.FC<{}> = () => {
       setRewardsData(json);
     })();
   }, [selectedAccount?.address]);
+
+  console.log(rewardStaking);
 
   return (
     <RewardsBreakdownStyled>

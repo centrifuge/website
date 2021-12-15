@@ -172,8 +172,8 @@ export const InfoBoxList = () => {
       {itemList
         .filter((it) => !it.hidden)
         .map(({ title, desc, figure, unit, footnote }) => (
-          <Box gap="4px">
-            <InfoBox key={title}>
+          <Box key={title} gap="4px">
+            <InfoBox>
               <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
 
               <InfoBoxStack>
