@@ -5,7 +5,7 @@ export const AUCTION_START = new Date("12/15/2021");
 // reward config
 
 const DEFAULT = {
-  CCL_START_DATE: "2021-12-15T00:00Z",
+  CCL_START_DATE: "2021-12-15T16:00:00Z",
   CCL_CROWDLOAN_STARTED: true,
 
   CCL_CROWDLOAN_MAX_CAP: 15000000, // 15m
