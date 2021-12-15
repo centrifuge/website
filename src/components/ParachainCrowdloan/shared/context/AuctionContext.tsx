@@ -20,6 +20,7 @@ import { getTotalRaised } from "../getTotalRaised";
 import { usePolkadotApi } from "./PolkadotApiProvider";
 
 const INTERVAL_UPDATE_COUNTERS_MS = 1000; // update counters every second
+const INTERVAL_UPDATE_BASE_REWARD_MS = 1000 * 60 * 15; // update base reward every 15 minutes
 
 const AUCTION_START_DATE = new Date(START_DATE);
 
@@ -123,10 +124,25 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (!api) return;
-    getTotalRaised(api).then((total) => {
-      setTotalRaised(total);
-      setBaseRewardRate(CROWDLOAN_MAX_CAP / total);
-    });
+
+    const updateBaseReward = () => {
+      getTotalRaised(api).then((total) => {
+        setTotalRaised(total);
+        setBaseRewardRate(CROWDLOAN_MAX_CAP / total);
+      });
+    };
+
+    updateBaseReward();
+
+    // repeat every 15 minutes
+    const intervalId = setInterval(
+      updateBaseReward,
+      INTERVAL_UPDATE_BASE_REWARD_MS
+    );
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [api]);
 
   const ctx: AuctionContextType = useMemo<AuctionContextType>(
