@@ -16,7 +16,7 @@ import frederick from "../../images/team/frederick.jpeg";
 import guillermo from "../../images/team/guillermo.jpg";
 import helena from "../../images/team/helena.jpeg";
 import jeannice from "../../images/team/jeannice.jpg";
-import jeroen from "../../images/team/jeroen.png";
+import jeroen from "../../images/team/jeroen.jpg";
 import jp from "../../images/team/jp.jpg";
 import kate from "../../images/team/kate.jpeg";
 import lucas from "../../images/team/lucas.png";
