@@ -28,7 +28,7 @@ const InfoBox = styled.div`
   background-color: ${({ theme }) => theme.global.colors.centrifugeOrange};
   color: #000;
   border-radius: 6px;
-  padding: 16px 8px;
+  padding: 16px;
 
   ${onBreakpoint("L")} {
     min-height: 88px;
