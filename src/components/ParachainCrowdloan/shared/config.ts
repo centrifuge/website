@@ -8,6 +8,8 @@ const DEFAULT = {
   CCL_START_DATE: "2021-12-15T16:00:00Z",
   CCL_CROWDLOAN_STARTED: true,
 
+  CCL_HIDE_LEADERBOARDS: true,
+
   CCL_CROWDLOAN_MAX_CAP: 15000000, // 15m
   CCL_REWARDS_BUDGET: 65700000,
 
@@ -36,8 +38,13 @@ export const START_DATE =
 
 export const CROWDLOAN_STARTED =
   getDebugSearchParam("CCL_CROWDLOAN_STARTED") === "true" ||
-  process.env.CCL_START_DATE === "true" ||
+  process.env.CCL_CROWDLOAN_STARTED === "true" ||
   DEFAULT.CCL_CROWDLOAN_STARTED;
+
+export const HIDE_LEADERBOARDS =
+  getDebugSearchParam("CCL_HIDE_LEADERBOARDS") === "true" ||
+  process.env.CCL_HIDE_LEADERBOARDS === "true" ||
+  DEFAULT.CCL_HIDE_LEADERBOARDS;
 
 export const CROWDLOAN_MAX_CAP =
   parseFloat(getDebugSearchParam("CCL_CROWDLOAN_MAX_CAP") || "0") ||

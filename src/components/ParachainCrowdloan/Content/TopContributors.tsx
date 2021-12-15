@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { TopList } from "../shared/Leaderboard";
 import { formatDOT, truncateAddress } from "../shared/format";
 import { PARACHAIN_NAME } from "../shared/const";
+import { HIDE_LEADERBOARDS } from "../shared/config";
 
 type TopContributorsResponse = {
   numberOfContributions: number;
@@ -10,6 +11,8 @@ type TopContributorsResponse = {
 }[];
 
 export const TopContributors: React.FC = () => {
+  if (HIDE_LEADERBOARDS) return null;
+
   const [topContributors, setTopContributors] = useState<
     TopContributorsResponse
   >();
