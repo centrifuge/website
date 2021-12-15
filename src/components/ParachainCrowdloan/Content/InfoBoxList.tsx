@@ -1,6 +1,7 @@
 import { Box, Spinner } from "grommet";
 import React from "react";
 import styled from "styled-components";
+import { ExternalLink } from "../../Links";
 import {
   REWARD_HEAVYWEIGHT_FROM,
   REWARD_HEAVYWEIGHT_PERCENT,
@@ -8,6 +9,7 @@ import {
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
+  FAQ_URL,
 } from "../shared/config";
 
 import { useAuctionContext } from "../shared/context/AuctionContext";
@@ -115,8 +117,17 @@ export const InfoBoxList = () => {
     {
       figure: formattedReward,
       unit: "CFG",
-      title: "Base reward",
-      desc: "Reward for 1 staked DOT",
+      title: "Current base reward",
+      desc: (
+        <Box>
+          <Box>Reward for 1 staked DOT</Box>
+          {FAQ_URL && (
+            <ExternalLink unstyled={0} href={FAQ_URL}>
+              Learn more
+            </ExternalLink>
+          )}
+        </Box>
+      ),
     },
     {
       hidden: isAuctionStarted && !isEarlyBird,
