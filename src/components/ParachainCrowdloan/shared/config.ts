@@ -5,13 +5,15 @@ export const AUCTION_START = new Date("12/15/2021");
 // reward config
 
 const DEFAULT = {
-  CCL_START_DATE: "2021-12-15T00:00Z",
-  CCL_CROWDLOAN_STARTED: false,
+  CCL_START_DATE: "2021-12-15T16:00:00Z",
+  CCL_CROWDLOAN_STARTED: true,
 
-  CCL_CROWDLOAN_MAX_CAP: 1e7, // 10m
+  CCL_HIDE_LEADERBOARDS: true,
 
-  CCL_REWARD_CFG_PER_DOT: 3.65,
-  CCL_REWARD_HEAVYWEIGHT_FROM: 10000,
+  CCL_CROWDLOAN_MAX_CAP: 15000000, // 15m
+  CCL_REWARDS_BUDGET: 65700000,
+
+  CCL_REWARD_HEAVYWEIGHT_FROM: 5000,
   CCL_REWARD_HEAVYWEIGHT_PERCENT: 5,
   CCL_REWARD_EARLY_BIRD_PERCENT: 10,
   CCL_REWARD_EARLY_BIRD_HOURS: 72,
@@ -22,12 +24,8 @@ const DEFAULT = {
   CCL_PARACHAIN_ID: 2031, // centrifuge parachain ID
   CCL_VIDEO_ID: "-wXooFsoafM",
 
-  // NOTE: the following values are placeholders.
-  // As soon as they are available (e.g. after we register), replace them with the correct ones
-
-  // these are the FAQ for Altair
   CCL_FAQ_URL:
-    "https://medium.com/altair-network/faq-altair-crowdloan-85b9d9abd235",
+    "https://medium.com/centrifuge/faq-centrifuge-crowdloan-5c744778e03c",
 
   CCL_RESULTS_TITLE: "",
   CCL_RESULTS_SUBTITLE: "",
@@ -40,18 +38,25 @@ export const START_DATE =
 
 export const CROWDLOAN_STARTED =
   getDebugSearchParam("CCL_CROWDLOAN_STARTED") === "true" ||
-  process.env.CCL_START_DATE === "true" ||
+  process.env.CCL_CROWDLOAN_STARTED === "true" ||
   DEFAULT.CCL_CROWDLOAN_STARTED;
+
+export const HIDE_LEADERBOARDS =
+  getDebugSearchParam("CCL_HIDE_LEADERBOARDS") === "true" ||
+  process.env.CCL_HIDE_LEADERBOARDS === "true" ||
+  DEFAULT.CCL_HIDE_LEADERBOARDS;
 
 export const CROWDLOAN_MAX_CAP =
   parseFloat(getDebugSearchParam("CCL_CROWDLOAN_MAX_CAP") || "0") ||
   parseFloat(process.env.CCL_CROWDLOAN_MAX_CAP || "0") ||
   DEFAULT.CCL_CROWDLOAN_MAX_CAP;
 
-export const REWARD_CFG_PER_DOT =
-  parseFloat(getDebugSearchParam("CCL_REWARD_CFG_PER_DOT") || "0") ||
-  parseFloat(process.env.CCL_REWARD_CFG_PER_DOT || "0") ||
-  DEFAULT.CCL_REWARD_CFG_PER_DOT;
+export const REWARDS_BUDGET =
+  parseFloat(getDebugSearchParam("CCL_REWARDS_BUDGET") || "0") ||
+  parseFloat(process.env.CCL_REWARDS_BUDGET || "0") ||
+  DEFAULT.CCL_REWARDS_BUDGET;
+
+export const MIN_BASE_REWARD = REWARDS_BUDGET / CROWDLOAN_MAX_CAP;
 
 export const REWARD_HEAVYWEIGHT_FROM =
   parseFloat(getDebugSearchParam("CCL_REWARD_HEAVYWEIGHT_FROM") || "0") ||

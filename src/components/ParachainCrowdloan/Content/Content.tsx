@@ -56,20 +56,19 @@ const LeftCol = styled.div`
   ${onBreakpoint("L")} {
     grid-column: 1 / span 3;
     min-width: 256px;
-    max-width: 256px;
   }
 `;
 
 const ContribSection = styled.div`
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(9, 1fr);
   gap: 16px;
   align-items: flex-start;
 
   grid-column: 1 / span 12;
 
   ${onBreakpoint("L")} {
-    grid-column: 5 / span 8;
+    grid-column: 4 / span 9;
   }
 `;
 
@@ -82,7 +81,9 @@ const CentralCol = styled.div`
   width: 100%;
 
   ${onBreakpoint("M")} {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
+    max-width: 523px;
+    justify-self: center;
   }
 `;
 
@@ -94,7 +95,7 @@ const RightCol = styled.div`
   min-width: initial;
 
   ${onBreakpoint("M")} {
-    grid-column: 6 / span 3;
+    grid-column: 7 / span 3;
   }
 `;
 
@@ -138,7 +139,7 @@ export const Content = () => {
         const response = await fetch("/.netlify/functions/createReferralCode", {
           method: "POST",
           body: JSON.stringify({
-            referrerAddress: encodeAddress(selectedAccount.address, 2),
+            referrerAddress: encodeAddress(selectedAccount.address, 0),
             parachain: PARACHAIN_NAME,
           }),
         });
@@ -168,7 +169,7 @@ export const Content = () => {
               </GetReadyWrapper>
               {VIDEO_ID && (
                 <LearnHowToStake>
-                  <TextHeading1>Learn how to stake DOT</TextHeading1>
+                  <TextHeading1>Learn how to contribute</TextHeading1>
                   <ResponsivePlayer videoId={VIDEO_ID} />
                 </LearnHowToStake>
               )}

@@ -6,12 +6,11 @@ import funnelMobile from "../../../images/parachain-crowdloan/funnel-mobile.svg"
 import funnelDesktop from "../../../images/parachain-crowdloan/funnel-desktop.svg";
 import { AuctionStatusProgress } from "./AuctionStatusProgress";
 import { useAuctionContext } from "../shared/context/AuctionContext";
-import { DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
-import BigNumber from "bignumber.js";
+import { PARACHAIN_NAME } from "../shared/const";
 import { formatShortDate } from "../shared/format";
 import { onBreakpoint } from "../shared/responsive";
 import { Container } from "../shared/Container";
-import { CROWDLOAN_MAX_CAP, PARACHAIN_ID } from "../shared/config";
+import { CROWDLOAN_MAX_CAP } from "../shared/config";
 import { usePolkadotApi } from "../shared/context/PolkadotApiProvider";
 
 const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
@@ -104,12 +103,12 @@ export const AuctionStatus: React.FC = () => {
     earlyBirdHoursLeft,
     daysUntilAuction,
     auctionStartDate,
+    totalRaised,
   } = useAuctionContext();
 
   const { api } = usePolkadotApi();
 
   const [numContributions, setNumContributions] = useState<number>();
-  const [totalStacked, setTotalStacked] = useState<number>();
 
   useEffect(() => {
     (async () => {
@@ -122,20 +121,6 @@ export const AuctionStatus: React.FC = () => {
 
       if (json.numberOfContributions !== null) {
         setNumContributions(json.numberOfContributions);
-      }
-      if (json.totalStaked !== null) {
-        setTotalStacked(
-          new BigNumber(json.totalStaked).div(DOT_PLANCK).toNumber()
-        );
-      } else {
-        // web service is not there, use funds api
-        if (!api) return;
-        const resp = (await api?.query.crowdloan.funds(PARACHAIN_ID)) as any;
-        if (!resp) return;
-
-        setTotalStacked(
-          new BigNumber(resp.value.raised).div(DOT_PLANCK).toNumber()
-        );
       }
     })();
   }, [api]);
@@ -178,7 +163,7 @@ export const AuctionStatus: React.FC = () => {
         {isAuctionStarted && (
           <AuctionStatusProgress
             maxCap={CROWDLOAN_MAX_CAP}
-            stackedAmount={totalStacked}
+            stackedAmount={totalRaised ?? undefined}
             numContributions={numContributions}
           />
         )}

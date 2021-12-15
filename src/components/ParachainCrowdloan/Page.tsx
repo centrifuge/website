@@ -15,9 +15,9 @@ import { onBreakpoint } from "./shared/responsive";
 export const Page = () => {
   return (
     <Web3Provider network="polkadot">
-      <AuctionContextProvider>
-        <StakeFormContextProvider>
-          <PolkadotApiProvider wsProviderUrl={WS_PROVIDER}>
+      <PolkadotApiProvider wsProviderUrl={WS_PROVIDER}>
+        <AuctionContextProvider>
+          <StakeFormContextProvider>
             <FixedHeader>
               <Header />
             </FixedHeader>
@@ -27,9 +27,9 @@ export const Page = () => {
               <RelatedResources />
               <Footer />
             </PageWithFixedHeader>
-          </PolkadotApiProvider>
-        </StakeFormContextProvider>
-      </AuctionContextProvider>
+          </StakeFormContextProvider>
+        </AuctionContextProvider>
+      </PolkadotApiProvider>
     </Web3Provider>
   );
 };

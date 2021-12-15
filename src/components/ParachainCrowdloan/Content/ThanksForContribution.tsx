@@ -23,7 +23,7 @@ export const ThanksForContribution: React.FC<ThanksForContributionProps> = ({
   return (
     <WarningBanner type="success" title="Thanks for the contribution!">
       <TextBody>
-        Your {formatNumber(amount, 12)} DOT are successfully staked.
+        Your {formatNumber(amount, 12)} DOT are successfully contributed.
         <br />
         <ExternalLink
           unstyled={0}

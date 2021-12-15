@@ -1,14 +1,15 @@
-import { Box } from "grommet";
+import { Box, Spinner } from "grommet";
 import React from "react";
 import styled from "styled-components";
+import { ExternalLink } from "../../Links";
 import {
   REWARD_HEAVYWEIGHT_FROM,
   REWARD_HEAVYWEIGHT_PERCENT,
-  REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_HOURS,
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
+  FAQ_URL,
 } from "../shared/config";
 
 import { useAuctionContext } from "../shared/context/AuctionContext";
@@ -27,7 +28,7 @@ const InfoBox = styled.div`
   background-color: ${({ theme }) => theme.global.colors.centrifugeOrange};
   color: #000;
   border-radius: 6px;
-  padding: 16px 8px;
+  padding: 16px;
 
   ${onBreakpoint("L")} {
     min-height: 88px;
@@ -72,6 +73,13 @@ const InfoBoxStack = styled.div`
   justify-content: center;
 `;
 
+const SmallSpinner = styled(Spinner)`
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  padding: 6px;
+`;
+
 const InfoBoxListStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -82,15 +90,44 @@ const InfoBoxListStyled = styled.div`
   }
 `;
 
+const getNumDigits = (v: number) => {
+  if (v < 10) return 2;
+  if (v < 100) return 1;
+  return 0;
+};
+
 export const InfoBoxList = () => {
-  const { isAuctionStarted, isEarlyBird } = useAuctionContext();
+  const { isAuctionStarted, isEarlyBird, baseRewardRate } = useAuctionContext();
+
+  const formattedReward = baseRewardRate ? (
+    formatNumber(
+      baseRewardRate,
+      getNumDigits(baseRewardRate),
+      false,
+      true,
+      false
+    )
+  ) : (
+    <Box margin="0 0 4px">
+      <SmallSpinner color="white" />
+    </Box>
+  );
 
   const itemList = [
     {
-      figure: `${REWARD_CFG_PER_DOT}`,
+      figure: formattedReward,
       unit: "CFG",
-      title: "Base reward",
-      desc: "Reward for 1 staked DOT",
+      title: "Current base reward",
+      desc: (
+        <Box>
+          <Box>Reward for 1 DOT</Box>
+          {FAQ_URL && (
+            <ExternalLink unstyled={0} href={FAQ_URL}>
+              Based on 15% CFG supply
+            </ExternalLink>
+          )}
+        </Box>
+      ),
     },
     {
       hidden: isAuctionStarted && !isEarlyBird,
@@ -123,7 +160,7 @@ export const InfoBoxList = () => {
     {
       figure: `${REWARD_LOYALTY_PERCENT}`,
       unit: "%",
-      title: "Double trouble reward",
+      title: "Loyalty reward",
       desc: "To contributors of Altair and Centrifuge crowdloans",
       footnote:
         "You must contribute DOT using the same account that contributed KSM",
@@ -135,8 +172,8 @@ export const InfoBoxList = () => {
       {itemList
         .filter((it) => !it.hidden)
         .map(({ title, desc, figure, unit, footnote }) => (
-          <Box gap="4px">
-            <InfoBox key={title}>
+          <Box key={title} gap="4px">
+            <InfoBox>
               <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
 
               <InfoBoxStack>
