@@ -1,10 +1,9 @@
-import { Box } from "grommet";
+import { Box, Spinner } from "grommet";
 import React from "react";
 import styled from "styled-components";
 import {
   REWARD_HEAVYWEIGHT_FROM,
   REWARD_HEAVYWEIGHT_PERCENT,
-  REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_HOURS,
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
@@ -72,6 +71,13 @@ const InfoBoxStack = styled.div`
   justify-content: center;
 `;
 
+const SmallSpinner = styled(Spinner)`
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  padding: 6px;
+`;
+
 const InfoBoxListStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -82,12 +88,32 @@ const InfoBoxListStyled = styled.div`
   }
 `;
 
+const getNumDigits = (v: number) => {
+  if (v < 10) return 2;
+  if (v < 100) return 1;
+  return 0;
+};
+
 export const InfoBoxList = () => {
-  const { isAuctionStarted, isEarlyBird } = useAuctionContext();
+  const { isAuctionStarted, isEarlyBird, baseRewardRate } = useAuctionContext();
+
+  const formattedReward = baseRewardRate ? (
+    formatNumber(
+      baseRewardRate,
+      getNumDigits(baseRewardRate),
+      false,
+      true,
+      false
+    )
+  ) : (
+    <Box margin="0 0 4px">
+      <SmallSpinner color="white" />
+    </Box>
+  );
 
   const itemList = [
     {
-      figure: `${REWARD_CFG_PER_DOT}`,
+      figure: formattedReward,
       unit: "CFG",
       title: "Base reward",
       desc: "Reward for 1 staked DOT",

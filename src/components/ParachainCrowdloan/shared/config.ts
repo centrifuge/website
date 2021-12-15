@@ -11,7 +11,6 @@ const DEFAULT = {
   CCL_CROWDLOAN_MAX_CAP: 15000000, // 15m
   CCL_REWARDS_BUDGET: 65700000,
 
-  CCL_REWARD_CFG_PER_DOT: 3.65,
   CCL_REWARD_HEAVYWEIGHT_FROM: 10000,
   CCL_REWARD_HEAVYWEIGHT_PERCENT: 5,
   CCL_REWARD_EARLY_BIRD_PERCENT: 10,
@@ -53,11 +52,6 @@ export const REWARDS_BUDGET =
   parseFloat(getDebugSearchParam("CCL_REWARDS_BUDGET") || "0") ||
   parseFloat(process.env.CCL_REWARDS_BUDGET || "0") ||
   DEFAULT.CCL_REWARDS_BUDGET;
-
-export const REWARD_CFG_PER_DOT =
-  parseFloat(getDebugSearchParam("CCL_REWARD_CFG_PER_DOT") || "0") ||
-  parseFloat(process.env.CCL_REWARD_CFG_PER_DOT || "0") ||
-  DEFAULT.CCL_REWARD_CFG_PER_DOT;
 
 export const REWARD_HEAVYWEIGHT_FROM =
   parseFloat(getDebugSearchParam("CCL_REWARD_HEAVYWEIGHT_FROM") || "0") ||

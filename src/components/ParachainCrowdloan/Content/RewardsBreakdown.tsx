@@ -14,7 +14,6 @@ import { TextSpan } from "../shared/TextSpan";
 import { onBreakpoint } from "../shared/responsive";
 import { ExternalLink } from "../../Links";
 import {
-  REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
@@ -113,7 +112,7 @@ export const RewardsBreakdown: React.FC<{}> = () => {
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
 
   const { dotAmount, referralCode } = useStakeFormContext();
-  const { isEarlyBird, crowdloanPhase } = useAuctionContext();
+  const { isEarlyBird, crowdloanPhase, baseRewardRate } = useAuctionContext();
 
   const [stakedAmount, setStakedAmount] = useState<string>();
 
@@ -127,7 +126,7 @@ export const RewardsBreakdown: React.FC<{}> = () => {
   const isAuctionEnded = crowdloanPhase === "ended";
 
   useEffect(() => {
-    if (!rewardsData) {
+    if (!rewardsData || !baseRewardRate) {
       return;
     }
     const curAmountNum =
@@ -151,11 +150,11 @@ export const RewardsBreakdown: React.FC<{}> = () => {
     // calculate rewards
     const curStakingBonus = curAmount
       .div(DOT_PLANCK) // to DOT
-      .times(REWARD_CFG_PER_DOT)
+      .times(baseRewardRate)
       .times(CFG_PLANCK); // to CFG
     const dataStakingBonus = dataAmount
       .div(DOT_PLANCK) // to DOT
-      .times(REWARD_CFG_PER_DOT)
+      .times(baseRewardRate)
       .times(CFG_PLANCK); // to CFG
 
     const totalStakingBonus = curStakingBonus.plus(dataStakingBonus);
@@ -180,7 +179,7 @@ export const RewardsBreakdown: React.FC<{}> = () => {
     setRewardReferral(totalReferralBonus.toString());
     setRewardLoyalty(totalLoyaltyBonus.toString());
     setTotalRewards(totalBonus.toString());
-  }, [dotAmount, referralCode, rewardsData]);
+  }, [dotAmount, referralCode, rewardsData, baseRewardRate]);
 
   useEffect(() => {
     (async () => {

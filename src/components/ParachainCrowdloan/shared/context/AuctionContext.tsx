@@ -12,9 +12,12 @@ import {
   REWARD_EARLY_BIRD_HOURS_EXT,
   START_DATE,
   CROWDLOAN_STARTED,
+  CROWDLOAN_MAX_CAP,
 } from "../config";
 
 import { CrowdloanPhase } from "../const";
+import { getTotalRaised } from "../getTotalRaised";
+import { usePolkadotApi } from "./PolkadotApiProvider";
 
 const INTERVAL_UPDATE_COUNTERS_MS = 1000; // update counters every second
 
@@ -66,6 +69,8 @@ type AuctionContextType = {
   isEarlyBird: boolean;
   earlyBirdHoursLeft: number;
   crowdloanPhase: CrowdloanPhase;
+  totalRaised?: number;
+  baseRewardRate?: number;
 };
 
 const AuctionContext = createContext<AuctionContextType>({
@@ -75,6 +80,8 @@ const AuctionContext = createContext<AuctionContextType>({
   isEarlyBird: false,
   earlyBirdHoursLeft: 0,
   crowdloanPhase: "notStarted",
+  totalRaised: undefined,
+  baseRewardRate: undefined,
 });
 
 export const AuctionContextProvider: React.FC = ({ children }) => {
@@ -92,6 +99,10 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
   const [crowdloanPhase, setCrowdloanPhase] = useState<CrowdloanPhase>(
     getCrowdloanPhase()
   );
+
+  const [totalRaised, setTotalRaised] = useState<number>();
+  const [baseRewardRate, setBaseRewardRate] = useState<number>();
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setDaysUntilAuction(getDaysUntilAuction());
@@ -106,6 +117,18 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
     };
   }, []);
 
+  // data depending on polkadot API
+
+  const { api } = usePolkadotApi();
+
+  useEffect(() => {
+    if (!api) return;
+    getTotalRaised(api).then((total) => {
+      setTotalRaised(total);
+      setBaseRewardRate(CROWDLOAN_MAX_CAP / total);
+    });
+  }, [api]);
+
   const ctx: AuctionContextType = useMemo<AuctionContextType>(
     () => ({
       auctionStartDate: AUCTION_START_DATE,
@@ -114,6 +137,8 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
       isEarlyBird,
       earlyBirdHoursLeft,
       crowdloanPhase,
+      totalRaised,
+      baseRewardRate,
     }),
     [
       AUCTION_START_DATE,
@@ -122,6 +147,8 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
       isEarlyBird,
       earlyBirdHoursLeft,
       crowdloanPhase,
+      totalRaised,
+      baseRewardRate,
     ]
   );
 
