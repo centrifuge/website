@@ -221,7 +221,7 @@ export const RewardsBreakdown: React.FC<{}> = () => {
           )}{" "}
           DOT
         </TextSpan>
-        <TextLabel>Staked amount</TextLabel>
+        <TextLabel>Contributed amount</TextLabel>
       </StatsItem>
 
       {(hasRewards || isAuctionEnded) && (

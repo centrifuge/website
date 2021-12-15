@@ -169,7 +169,7 @@ export const Content = () => {
               </GetReadyWrapper>
               {VIDEO_ID && (
                 <LearnHowToStake>
-                  <TextHeading1>Learn how to stake DOT</TextHeading1>
+                  <TextHeading1>Learn how to contribute</TextHeading1>
                   <ResponsivePlayer videoId={VIDEO_ID} />
                 </LearnHowToStake>
               )}

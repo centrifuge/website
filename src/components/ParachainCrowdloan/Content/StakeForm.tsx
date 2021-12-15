@@ -472,8 +472,8 @@ export const StakeForm: React.FC = () => {
                 alignSelf="start"
                 type="submit"
                 style={{ width: "100%" }}
-                label="Stake contribution"
-                loadingLabel="Staking in progress"
+                label="Contribute"
+                loadingLabel="Contribution in progress"
                 isLoading={isSubmitting}
               />
             </Box>

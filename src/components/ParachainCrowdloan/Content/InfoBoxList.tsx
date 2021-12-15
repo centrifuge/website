@@ -120,10 +120,10 @@ export const InfoBoxList = () => {
       title: "Current base reward",
       desc: (
         <Box>
-          <Box>Reward for 1 staked DOT</Box>
+          <Box>Reward for 1 DOT</Box>
           {FAQ_URL && (
             <ExternalLink unstyled={0} href={FAQ_URL}>
-              Learn more
+              Based on 15% CFG supply
             </ExternalLink>
           )}
         </Box>
