@@ -29,7 +29,7 @@ const DEFAULT = {
     "https://medium.com/altair-network/faq-altair-crowdloan-85b9d9abd235",
 
   // insert the youtube video ID
-  CCL_VIDEO_ID: "",
+  CCL_VIDEO_ID: "-wXooFsoafM",
 
   CCL_RESULTS_TITLE: "",
   CCL_RESULTS_SUBTITLE: "",
