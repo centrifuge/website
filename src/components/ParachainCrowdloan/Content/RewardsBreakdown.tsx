@@ -242,8 +242,6 @@ export const RewardsBreakdown: React.FC<{}> = () => {
     })();
   }, [selectedAccount?.address]);
 
-  console.log(rewardStaking);
-
   return (
     <RewardsBreakdownStyled>
       <div>

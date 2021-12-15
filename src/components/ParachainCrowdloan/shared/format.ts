@@ -29,9 +29,9 @@ const createFormatNum = (planck: number) => (
   let unitLetter = "";
   if (unit) {
     const unitsArray = Object.entries({
-      b: 1e9,
-      m: 1e6,
-      k: 1e3,
+      B: 1e9,
+      M: 1e6,
+      K: 1e3,
     });
 
     for (let i = 0; i < unitsArray.length; i += 1) {
