@@ -20,6 +20,7 @@ const DEFAULT = {
   CCL_REWARD_LOYALTY_PERCENT: 5,
 
   CCL_PARACHAIN_ID: 2031, // centrifuge parachain ID
+  CCL_VIDEO_ID: "-wXooFsoafM",
 
   // NOTE: the following values are placeholders.
   // As soon as they are available (e.g. after we register), replace them with the correct ones
@@ -27,9 +28,6 @@ const DEFAULT = {
   // these are the FAQ for Altair
   CCL_FAQ_URL:
     "https://medium.com/altair-network/faq-altair-crowdloan-85b9d9abd235",
-
-  // insert the youtube video ID
-  CCL_VIDEO_ID: "-wXooFsoafM",
 
   CCL_RESULTS_TITLE: "",
   CCL_RESULTS_SUBTITLE: "",
