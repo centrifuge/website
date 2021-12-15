@@ -75,11 +75,11 @@ export const AuctionStatusProgress: React.FC<AuctionStatusProgressProps> = ({
           <TextValue>
             {stackedAmount != null && formatDOT(stackedAmount, 2, true)}
           </TextValue>
-          <TextLabel>DOT staked</TextLabel>
+          <TextLabel>DOT contributed</TextLabel>
         </FadeInDiv>
         <FadeInDiv show={maxCap != null}>
           <TextValue>{maxCap != null && formatDOT(maxCap, 0, true)}</TextValue>
-          <TextLabel>DOT maximum cap</TextLabel>
+          <TextLabel>DOT soft cap</TextLabel>
         </FadeInDiv>
       </ProgressRow>
       <AuctionProgressBar maxCap={maxCap || 0} stackedAmount={stackedAmount} />

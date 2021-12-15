@@ -3,6 +3,7 @@ import { TopList } from "../shared/Leaderboard";
 import { truncateAddress } from "../shared/format";
 import { PARACHAIN_NAME } from "../shared/const";
 import { getDebugSearchParam } from "../shared/browserOnly";
+import { HIDE_LEADERBOARDS } from "../shared/config";
 
 type TopReferrersResponse = {
   numberOfTimesUsed: number;
@@ -10,6 +11,7 @@ type TopReferrersResponse = {
 }[];
 
 export const TopReferrers: React.FC = () => {
+  if (HIDE_LEADERBOARDS) return null;
   const [topReferrers, setTopReferrers] = useState<TopReferrersResponse>();
   useEffect(() => {
     let mounted = true;

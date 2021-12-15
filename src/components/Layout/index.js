@@ -10,10 +10,9 @@ import GDPR from "../GDPR";
 
 const ALTAIR_CROWNLOAN_PATH = "/altair/crowdloan";
 const PARACHAIN_PATH = "/parachain";
-const SWAP_ADDRESS_PATH = "/altair/swap-address";
 
 const showEmailSubscription = (pathname = "") =>
-  [ALTAIR_CROWNLOAN_PATH, PARACHAIN_PATH, SWAP_ADDRESS_PATH].reduce(
+  [ALTAIR_CROWNLOAN_PATH, PARACHAIN_PATH].reduce(
     (acc, path) => acc && !pathname.startsWith(path),
     true
   );

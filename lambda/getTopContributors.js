@@ -11,9 +11,9 @@ const exchangeAddresses = [
   "DAgtn9udZHC7GVU5gV7ybN8nTyucK9PEqY6QvXiG6fEW6TA",
 ];
 
-const getAddress = (publicKey) => {
+const getAddress = (publicKey, parachain) => {
   const keyring = new Keyring({ type: "sr25519" });
-  return keyring.encodeAddress(publicKey, 2);
+  return keyring.encodeAddress(publicKey, parachain === 'centrifuge' ? 0 : 2);
 };
 
 exports.handler = async (event) => {
@@ -48,7 +48,7 @@ exports.handler = async (event) => {
       };
     } else {
       acc[cur.account] = {
-        account: getAddress(cur.account),
+        account: getAddress(cur.account, parachain),
         amount: cur.contribution,
         numberOfContributions: 1,
       };
