@@ -231,7 +231,7 @@ export const RewardsBreakdown: React.FC<{}> = () => {
       const response = await fetch("/.netlify/functions/getRewardData", {
         method: "POST",
         body: JSON.stringify({
-          address: encodeAddress(selectedAccount.address, 2),
+          address: encodeAddress(selectedAccount.address, 0),
           parachain: PARACHAIN_NAME,
         }),
       });
