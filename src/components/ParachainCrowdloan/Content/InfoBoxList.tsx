@@ -1,13 +1,18 @@
+import { Box } from "grommet";
 import React from "react";
 import styled from "styled-components";
 import {
+  REWARD_HEAVYWEIGHT_FROM,
+  REWARD_HEAVYWEIGHT_PERCENT,
   REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_HOURS,
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
-} from "../shared/const";
+} from "../shared/config";
+
 import { useAuctionContext } from "../shared/context/AuctionContext";
+import { formatNumber } from "../shared/format";
 
 import { onBreakpoint } from "../shared/responsive";
 import { TextSpan } from "../shared/TextSpan";
@@ -22,7 +27,7 @@ const InfoBox = styled.div`
   background-color: ${({ theme }) => theme.global.colors.centrifugeOrange};
   color: #000;
   border-radius: 6px;
-  padding: 8px 16px;
+  padding: 16px 8px;
 
   ${onBreakpoint("L")} {
     min-height: 88px;
@@ -84,7 +89,7 @@ export const InfoBoxList = () => {
     {
       figure: `${REWARD_CFG_PER_DOT}`,
       unit: "CFG",
-      title: "Staking reward",
+      title: "Base reward",
       desc: "Reward for 1 staked DOT",
     },
     {
@@ -93,8 +98,8 @@ export const InfoBoxList = () => {
       unit: "%",
       title: "Early bird bonus",
       desc: isAuctionStarted
-        ? `On contributions within ${REWARD_EARLY_BIRD_HOURS} hrs after auction opening`
-        : "On early contributions after auction opening",
+        ? `On contributions within ${REWARD_EARLY_BIRD_HOURS} hrs after opening`
+        : "On early contributions after crowdloan opening",
     },
     {
       figure: `${REWARD_REFERRAL_PERCENT}`,
@@ -102,22 +107,26 @@ export const InfoBoxList = () => {
       title: "Referral reward",
       desc: "For both referrer and referred contributor",
     },
-    // removed as it's not confirmed yet
-    // see https://centrifugehq.slack.com/archives/C02BKGJ3090/p1638890613175800
 
-    // {
-    //   figure: `${REWARD_HEAVIWEIGHT_FROM}`,
-    //   unit: "DOT",
-    //   title: "Heavyweight reward",
-    //   desc: isAuctionStarted
-    //     ? `On contributions larger than ${REWARD_HEAVIWEIGHT_FROM} DOT`
-    //     : "On large contributions",
-    // },
+    {
+      figure: REWARD_HEAVYWEIGHT_PERCENT,
+      unit: "%",
+      title: "Heavyweight reward",
+      desc: isAuctionStarted
+        ? `On contributions larger than ${formatNumber(
+            REWARD_HEAVYWEIGHT_FROM,
+            0,
+            true
+          )} DOT`
+        : "On large contributions",
+    },
     {
       figure: `${REWARD_LOYALTY_PERCENT}`,
       unit: "%",
-      title: "Loyalty bonus",
+      title: "Double trouble reward",
       desc: "To contributors of Altair and Centrifuge crowdloans",
+      footnote:
+        "You must contribute DOT using the same account that contributed KSM",
     },
   ];
 
@@ -125,32 +134,52 @@ export const InfoBoxList = () => {
     <InfoBoxListStyled>
       {itemList
         .filter((it) => !it.hidden)
-        .map(({ title, desc, figure, unit }) => (
-          <InfoBox key={title}>
-            {isAuctionStarted && (
+        .map(({ title, desc, figure, unit, footnote }) => (
+          <Box gap="4px">
+            <InfoBox key={title}>
               <InfoBoxCircle unit={unit}>{figure}</InfoBoxCircle>
-            )}
-            <InfoBoxStack>
+
+              <InfoBoxStack>
+                <TextSpan
+                  css={`
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 19.25px;
+                  `}
+                >
+                  {title}
+                  {footnote ? " *" : ""}
+                </TextSpan>
+                <TextSpan
+                  css={`
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 19.25px;
+                  `}
+                >
+                  {desc}
+                </TextSpan>
+              </InfoBoxStack>
+            </InfoBox>
+            {footnote && (
               <TextSpan
                 css={`
-                  font-size: 14px;
-                  font-weight: 600;
-                  line-height: 19.25px;
-                `}
-              >
-                {title}
-              </TextSpan>
-              <TextSpan
-                css={`
-                  font-size: 14px;
+                  font-size: 12px;
                   font-weight: 400;
                   line-height: 19.25px;
+                  color: #757575;
+
+                  ::before {
+                    content: "*";
+                    display: inline-block;
+                    margin-right: 0.5em;
+                  }
                 `}
               >
-                {desc}
+                {footnote}
               </TextSpan>
-            </InfoBoxStack>
-          </InfoBox>
+            )}
+          </Box>
         ))}
     </InfoBoxListStyled>
   );

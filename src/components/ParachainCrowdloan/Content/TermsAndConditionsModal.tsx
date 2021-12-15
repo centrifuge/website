@@ -1,10 +1,18 @@
 import React from "react";
 import { Box, Layer, Text } from "grommet";
+import styled from "styled-components";
 
 type TermsAndConditionsModalProps = {
   open: boolean;
   setOpen: (isOpen: boolean) => void;
 };
+
+const CloseButton = styled.button`
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
 export const TermsAndConditionsModal: React.FC<TermsAndConditionsModalProps> = ({
   open,
   setOpen,
@@ -22,9 +30,17 @@ export const TermsAndConditionsModal: React.FC<TermsAndConditionsModalProps> = (
         pad="24px"
         style={{ borderRadius: "10px" }}
       >
-        <Text size="18px" weight={600}>
-          Terms and conditions
-        </Text>
+        <Box direction="row" justify="between">
+          <Text size="18px" weight={600}>
+            Terms and conditions
+          </Text>
+          <CloseButton onClick={() => setOpen(false)}>
+            <Text size="18px" weight={600}>
+              &#x00D7;
+            </Text>
+          </CloseButton>
+        </Box>
+
         <Text>
           By submitting the form your DOT will be locked on Polkadot for the
           Centrifuge parachain crowdloan. This means that your DOT will be

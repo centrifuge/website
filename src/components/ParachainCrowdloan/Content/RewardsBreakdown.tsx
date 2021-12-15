@@ -7,24 +7,23 @@ import { useWeb3 } from "../../Web3Provider";
 import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
+import { CFG_PLANCK, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
+import { formatCFG, formatDOT } from "../shared/format";
+
+import { TextSpan } from "../shared/TextSpan";
+import { onBreakpoint } from "../shared/responsive";
+import { ExternalLink } from "../../Links";
 import {
-  CFG_PLANCK,
-  DOT_PLANCK,
-  PARACHAIN_NAME,
   REWARD_CFG_PER_DOT,
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
-} from "../shared/const";
-import { formatCFG } from "../shared/format";
+} from "../shared/config";
 
-import { TextSpan } from "../shared/TextSpan";
-import { onBreakpoint } from "../shared/responsive";
-
-const YourContributionStyled = styled.div`
+const RewardsBreakdownStyled = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   background: #f8f8f8;
   border-radius: 6px;
   padding: 24px;
@@ -59,7 +58,7 @@ const StatsItem = styled.div`
 
 const Divider = styled.div`
   height: 1px;
-  background: #e0e0e0;
+  background: #757575;
 `;
 
 const CustomSpinner = styled(Spinner)`
@@ -70,19 +69,30 @@ const CustomSpinner = styled(Spinner)`
   margin-right: 8px;
 `;
 
+const SubscanLink = styled(ExternalLink)`
+  color: #757575;
+`;
+
 type StatType = {
   value?: string;
   label: string;
   color?: string;
 };
 const Stat: React.FC<StatType> = ({ value, label, color }) => {
-  const { isAuctionEnded } = useAuctionContext();
+  const { crowdloanPhase } = useAuctionContext();
+
+  const isAuctionEnded = crowdloanPhase === "ended";
 
   if (!isAuctionEnded && new BigNumber(value || 0).isZero()) return null;
   return (
     <StatsItem>
       <TextHeading2 color={color}>
-        {value ? formatCFG(value, 2) : <CustomSpinner color="brand" />} CFG
+        {value ? (
+          formatCFG(value, 3, false, true, true)
+        ) : (
+          <CustomSpinner color="brand" />
+        )}{" "}
+        CFG
       </TextHeading2>
       <TextLabel>{label}</TextLabel>
     </StatsItem>
@@ -98,12 +108,12 @@ type RewardDataResponse = {
   isFirst250PrevCrwdloan?: boolean;
 };
 
-export const YourContribution: React.FC<{}> = () => {
+export const RewardsBreakdown: React.FC<{}> = () => {
   const { selectedAccount } = useWeb3();
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
 
   const { dotAmount, referralCode } = useStakeFormContext();
-  const { isEarlyBird, isAuctionEnded } = useAuctionContext();
+  const { isEarlyBird, crowdloanPhase } = useAuctionContext();
 
   const [stakedAmount, setStakedAmount] = useState<string>();
 
@@ -114,6 +124,7 @@ export const YourContribution: React.FC<{}> = () => {
   const [totalRewards, setTotalRewards] = useState<string>();
 
   const hasRewards = !new BigNumber(totalRewards || 0).isZero();
+  const isAuctionEnded = crowdloanPhase === "ended";
 
   useEffect(() => {
     if (!rewardsData) {
@@ -163,7 +174,7 @@ export const YourContribution: React.FC<{}> = () => {
       .plus(totalLoyaltyBonus);
 
     // show values
-    setStakedAmount(totalAmount.div(DOT_PLANCK).toString());
+    setStakedAmount(totalAmount.toString());
     setRewardStaking(totalStakingBonus.toString());
     setRewardEarlyBird(totalEarlyBirdBonus.toFixed());
     setRewardReferral(totalReferralBonus.toString());
@@ -191,9 +202,9 @@ export const YourContribution: React.FC<{}> = () => {
   }, [selectedAccount?.address]);
 
   return (
-    <YourContributionStyled>
+    <RewardsBreakdownStyled>
       <div>
-        <TextHeading2>Your contribution</TextHeading2>
+        <TextHeading2>Estimated rewards</TextHeading2>
       </div>
       <StatsItem>
         <TextSpan
@@ -204,7 +215,12 @@ export const YourContribution: React.FC<{}> = () => {
             color: #000;
           `}
         >
-          {stakedAmount ? stakedAmount : <CustomSpinner color="brand" />} DOT
+          {stakedAmount ? (
+            formatDOT(stakedAmount, 3, false, true, true)
+          ) : (
+            <CustomSpinner color="brand" />
+          )}{" "}
+          DOT
         </TextSpan>
         <TextLabel>Staked amount</TextLabel>
       </StatsItem>
@@ -213,16 +229,26 @@ export const YourContribution: React.FC<{}> = () => {
         <>
           <Divider />
 
-          <Stat value={rewardStaking} label="Staking reward" />
+          <Stat value={rewardStaking} label="Base reward" />
           <Stat value={rewardEarlyBird} label="Early bird reward" />
           <Stat value={rewardReferral} label="Referral reward" />
           <Stat value={rewardLoyalty} label="Loyalty reward" />
 
-          <Divider />
-
           <Stat value={totalRewards} label="Total rewards" color="brand" />
         </>
       )}
-    </YourContributionStyled>
+
+      {selectedAccount?.address && (
+        <>
+          <Divider />
+          <SubscanLink
+            unstyled={0}
+            href={`https://polkadot.subscan.io/account/${selectedAccount.address}`}
+          >
+            View account on Subscan
+          </SubscanLink>
+        </>
+      )}
+    </RewardsBreakdownStyled>
   );
 };

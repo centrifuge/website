@@ -1,21 +1,9 @@
 import React from "react";
 
-import { useAuctionContext } from "../shared/context/AuctionContext";
 import { AuctionStatus } from "./AuctionStatus";
 import { AuctionEnded } from "./AuctionEnded";
+import { RESULTS_TITLE } from "../shared/config";
 
 export const Hero: React.FC = () => {
-  const { auctionResults } = useAuctionContext();
-
-  return auctionResults.place &&
-    auctionResults.contributions &&
-    auctionResults.dotRaised ? (
-    <AuctionEnded
-      slotPosition={auctionResults.place}
-      totContributions={auctionResults.contributions}
-      totAmount={auctionResults.dotRaised}
-    />
-  ) : (
-    <AuctionStatus />
-  );
+  return RESULTS_TITLE ? <AuctionEnded /> : <AuctionStatus />;
 };

@@ -11,17 +11,15 @@ function addCommas(x: number | string) {
 
 export function truncateAddress(address: string) {
   const encodedAddress = encodeAddress(address);
-  const first8 = encodedAddress.slice(0, 8);
-  const last3 = encodedAddress.slice(-3);
-
-  return `${first8}...${last3}`;
+  return `${encodedAddress.substr(0, 6)}...${encodedAddress.substr(-6)}`;
 }
 
 const createFormatNum = (planck: number) => (
   value: number | BigNumber | string,
   decimals?: number,
   unit?: boolean,
-  commas?: boolean
+  commas?: boolean,
+  fixed?: boolean
 ) => {
   let bn =
     typeof value === "number"
@@ -38,7 +36,7 @@ const createFormatNum = (planck: number) => (
 
     for (let i = 0; i < unitsArray.length; i += 1) {
       const [letter, base] = unitsArray[i];
-      if (bn.gt(planck * base)) {
+      if (bn.gte(planck * base)) {
         bn = bn.div(base);
         unitLetter = letter;
         break;
@@ -47,7 +45,7 @@ const createFormatNum = (planck: number) => (
   }
 
   let str = `${bn.div(planck).toFormat(decimals || 0)}`;
-  if (str.indexOf(".") !== -1) {
+  if (!fixed && str.indexOf(".") !== -1) {
     str = str.replace(/0+$/, "");
   }
   if (commas == null || commas === true) {

@@ -5,6 +5,7 @@ import { Box, Button } from "grommet";
 import { TextSpan } from "../shared/TextSpan";
 import dotsSvg from "../../../images/parachain-crowdloan/auction-dots-section.svg";
 import { Container } from "../shared/Container";
+import { RESULTS_SUBTITLE, RESULTS_TITLE } from "../shared/config";
 
 const AuctionStatusStyled = styled.div`
   color: #000;
@@ -20,17 +21,7 @@ const LightButton = styled(Button)`
   border: 1px solid black;
 `;
 
-type AuctionEndedProps = {
-  slotPosition: string;
-  totContributions: string;
-  totAmount: string;
-};
-
-export const AuctionEnded: React.FC<AuctionEndedProps> = ({
-  slotPosition,
-  totContributions,
-  totAmount,
-}) => {
+export const AuctionEnded: React.FC = () => {
   return (
     <AuctionStatusStyled>
       <Container>
@@ -43,7 +34,7 @@ export const AuctionEnded: React.FC<AuctionEndedProps> = ({
               line-height: 64px;
             `}
           >
-            Centrifuge wins {slotPosition} slot in Parachain auctions!
+            {RESULTS_TITLE}
           </TextSpan>
         </Box>
         <Box align="center" margin={{ bottom: "16px" }}>
@@ -55,7 +46,7 @@ export const AuctionEnded: React.FC<AuctionEndedProps> = ({
               line-height: 40px;
             `}
           >
-            {totAmount} DOT raised from {totContributions} contributions
+            {RESULTS_SUBTITLE || ""}
           </TextSpan>
         </Box>
         <Box align="center">

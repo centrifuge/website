@@ -21,12 +21,16 @@ const HeaderBar = styled.div`
   }
 `;
 
-const ImgLogo = styled.img`
+const ImgLogo = styled.div`
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(${centrifugeMarquee});
   height: 32px;
-  content: url(${centrifugeMarquee});
+  width: 32px;
 
   ${onBreakpoint("L")} {
-    content: url(${centrifugeWordmark});
+    background-image: url(${centrifugeWordmark});
+    width: 96px;
   }
 `;
 

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   CheckBox,
   Form,
   FormField,
@@ -25,7 +24,6 @@ import {
   DOT_PLANCK,
   MAILCHIMP_URL,
   MIN_CONTRIBUTION_DOT,
-  PARACHAIN_ID,
   PARACHAIN_NAME,
   MIN_EXISTENTIAL_DEPOSIT_PLANCK,
 } from "../shared/const";
@@ -33,9 +31,14 @@ import styled from "styled-components";
 import BigNumber from "bignumber.js";
 import { TermsAndConditionsModal } from "./TermsAndConditionsModal";
 import { WarningUnexpectedError } from "./WarningUnexpectedError";
+import { formatDOT } from "../shared/format";
+import { TextSpan } from "../shared/TextSpan";
+import { ExternalLink } from "../../Links";
+import { FAQ_URL, PARACHAIN_ID } from "../shared/config";
+import { LoadingButton } from "../shared/LoadingButton";
 
-const formatBigNumber = (bn?: BigNumber): string =>
-  bn ? bn.div(DOT_PLANCK).toString() : "";
+const formatBalance = (bn?: BigNumber): string =>
+  bn ? (bn.isZero() ? "0.00" : formatDOT(bn, 12)) : "";
 
 const validateReferralCode = (value: string) => {
   if (value && (value.length !== 20 || !validReferralCode.test(value))) {
@@ -89,6 +92,12 @@ const UnderlineTextButton = styled.button`
   }
 `;
 
+const FormWrapperBox = styled(Box)`
+  & input::placeholder {
+    color: lightgrey !important;
+  }
+`;
+
 export const StakeForm: React.FC = () => {
   const { selectedAccount, isWeb3Injected, web3FromAddress } = useWeb3();
   const { api } = usePolkadotApi();
@@ -118,20 +127,20 @@ export const StakeForm: React.FC = () => {
     false
   );
 
+  const updateBalance = async () => {
+    if (!api || !selectedAccount?.address) return;
+    setFreeBalance(undefined); // set balance as loading
+    const balances = await api.query.system.account(selectedAccount.address);
+    setFreeBalance(new BigNumber(balances.data.free.toString()));
+  };
+
   useEffect(() => {
     (async () => {
       if (selectedAccount?.address && api) {
-        setFreeBalance(undefined); // set balance as loading
-
         const web3Injector = await web3FromAddress(selectedAccount?.address);
-
-        const balances = await api.query.system.account(
-          selectedAccount.address
-        );
-
         setInjector(web3Injector);
 
-        setFreeBalance(new BigNumber(balances.data.free.toString()));
+        await updateBalance();
       }
     })();
   }, [api, selectedAccount]);
@@ -196,53 +205,55 @@ export const StakeForm: React.FC = () => {
         : contributeTransaction;
 
       await new Promise((resolve, reject) => {
-        transactionToSend.signAndSend(
-          selectedAccount.address,
-          { signer: injector.signer },
-          async ({ status, events }) => {
-            // make sure status is finalized
-            if (!status.isFinalized) return;
+        transactionToSend
+          .signAndSend(
+            selectedAccount.address,
+            { signer: injector.signer },
+            async ({ status, events }) => {
+              // make sure status is finalized
+              if (!status.isFinalized) return;
 
-            // get failures if any
-            const errors = events.filter(({ event }) =>
-              api.events.system.ExtrinsicFailed.is(event)
-            );
-
-            // if there are failures, reject the promise
-            if (errors.length) {
-              const errorMsgs = errors.map(
-                ({
-                  event: {
-                    data: [error],
-                  },
-                }) => {
-                  if ((error as any).isModule) {
-                    const decoded = api.registry.findMetaError(
-                      (error as any).asModule
-                    );
-                    const { docs, method, section } = decoded;
-
-                    return `${section}.${method}: ${docs.join(" ")}`;
-                  } else {
-                    return error.toString();
-                  }
-                }
+              // get failures if any
+              const errors = events.filter(({ event }) =>
+                api.events.system.ExtrinsicFailed.is(event)
               );
 
-              reject(new Error(errorMsgs.join("\n")));
-              return;
-            }
+              // if there are failures, reject the promise
+              if (errors.length) {
+                const errorMsgs = errors.map(
+                  ({
+                    event: {
+                      data: [error],
+                    },
+                  }) => {
+                    if ((error as any).isModule) {
+                      const decoded = api.registry.findMetaError(
+                        (error as any).asModule
+                      );
+                      const { docs, method, section } = decoded;
 
-            // check if there was success, resolve the promise
-            const success = events.filter(({ event }) =>
-              api.events.system.ExtrinsicSuccess.is(event)
-            );
+                      return `${section}.${method}: ${docs.join(" ")}`;
+                    } else {
+                      return error.toString();
+                    }
+                  }
+                );
 
-            if (success.length) {
-              resolve("ok");
+                reject(new Error(errorMsgs.join("\n")));
+                return;
+              }
+
+              // check if there was success, resolve the promise
+              const success = events.filter(({ event }) =>
+                api.events.system.ExtrinsicSuccess.is(event)
+              );
+
+              if (success.length) {
+                resolve("ok");
+              }
             }
-          }
-        );
+          )
+          .catch(reject);
       });
 
       // transaction was successful
@@ -252,6 +263,9 @@ export const StakeForm: React.FC = () => {
       if (emailAddress) {
         await addToMailchimp(emailAddress, {}, MAILCHIMP_URL);
       }
+
+      // no need to await, just trigger the update
+      updateBalance();
 
       setIsSubmitting(false);
     } catch (err) {
@@ -328,7 +342,7 @@ export const StakeForm: React.FC = () => {
       {errorMessage && <WarningUnexpectedError errorMessage={errorMessage} />}
 
       {isWeb3Injected && (
-        <Box gap="medium">
+        <FormWrapperBox gap="medium">
           <Form onSubmit={() => contribute()} validate="submit">
             <Box>
               <FormField
@@ -345,7 +359,7 @@ export const StakeForm: React.FC = () => {
                       <span style={{ paddingLeft: "8px" }}>DOT</span>
                     </>
                   }
-                  placeholder={MIN_CONTRIBUTION_DOT}
+                  placeholder={MIN_CONTRIBUTION_DOT.toPrecision(3)}
                   reverse
                   id="polkadot"
                   name="polkadot"
@@ -364,11 +378,7 @@ export const StakeForm: React.FC = () => {
               >
                 <Grid columns={["102px", "auto"]}>
                   <Text>Your balance:</Text>
-                  {freeBalance ? (
-                    formatBigNumber(freeBalance)
-                  ) : (
-                    <CustomSpinner />
-                  )}
+                  {freeBalance ? formatBalance(freeBalance) : <CustomSpinner />}
                 </Grid>
                 <UnderlineTextButton
                   type="button"
@@ -383,7 +393,7 @@ export const StakeForm: React.FC = () => {
                       .minus(gasFee)
                       .minus(MIN_EXISTENTIAL_DEPOSIT_PLANCK);
 
-                    setDotAmount(formatBigNumber(maxContrib));
+                    setDotAmount(formatBalance(maxContrib));
                   }}
                 >
                   Set Max
@@ -409,7 +419,7 @@ export const StakeForm: React.FC = () => {
                 />
               </FormField>
               <FormField
-                label="Stay up to date with the auction (optional)"
+                label="Stay up to date with the crowdloan (optional)"
                 name="emailAddress"
                 htmlFor="emailAddress"
                 validate={(value) => validateEmailAddress(value.trim())}
@@ -453,30 +463,38 @@ export const StakeForm: React.FC = () => {
               style={{
                 flexDirection: "row",
                 paddingTop: "24px",
-                paddingBottom: "32px",
+                paddingBottom: "16px",
               }}
             >
-              {isSubmitting ? (
-                <>
-                  <Spinner />
-                  <Text style={{ paddingLeft: "12px" }}>
-                    Staking in progress...
-                  </Text>
-                </>
-              ) : (
-                <Button
-                  disabled={!isSubmitEnabled}
-                  primary
-                  color="brand"
-                  alignSelf="start"
-                  label="Stake contribution"
-                  type="submit"
-                  style={{ width: "100%" }}
-                />
-              )}
+              <LoadingButton
+                disabled={!isSubmitEnabled}
+                primary
+                alignSelf="start"
+                type="submit"
+                style={{ width: "100%" }}
+                label="Stake contribution"
+                loadingLabel="Staking in progress"
+                isLoading={isSubmitting}
+              />
             </Box>
+            <TextSpan
+              css={`
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 19.25px;
+              `}
+            >
+              Need help?&nbsp;&nbsp;
+              <ExternalLink
+                unstyled={1}
+                style={{ textDecoration: "underline" }}
+                href={FAQ_URL}
+              >
+                Read the FAQ
+              </ExternalLink>
+            </TextSpan>
           </Form>
-        </Box>
+        </FormWrapperBox>
       )}
       <TermsAndConditionsModal
         open={showConditionsModal}

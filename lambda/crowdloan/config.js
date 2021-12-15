@@ -25,8 +25,8 @@ const configs = {
     REFERRAL_TABLE_NAME: "centrifuge",
 
     // TODO: replace with new contributions web service
-    URL_CONTRIBUTIONS: "https://crowdloan-ws.centrifuge.io/contributions",
-    URL_CONTRIBUTOR: "https://crowdloan-ws.centrifuge.io/contributor",
+    URL_CONTRIBUTIONS: "",
+    URL_CONTRIBUTOR: "",
   },
 };
 
@@ -53,7 +53,8 @@ const assertConfigIsValid = (cfg) => {
     !cfg.POSTGRES_CONFIG.port ||
     !cfg.POSTGRES_CONFIG.username ||
     !cfg.REFERRAL_TABLE_NAME ||
-    !cfg.URL_CONTRIBUTIONS
+    typeof cfg.URL_CONTRIBUTIONS !== "string" ||
+    typeof cfg.URL_CONTRIBUTOR !== "string"
   ) {
     throw new Error(
       `Crowdloan config invalid: check config object \n\n${JSON.stringify(
