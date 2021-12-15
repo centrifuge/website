@@ -139,7 +139,7 @@ export const Content = () => {
         const response = await fetch("/.netlify/functions/createReferralCode", {
           method: "POST",
           body: JSON.stringify({
-            referrerAddress: encodeAddress(selectedAccount.address, 2),
+            referrerAddress: encodeAddress(selectedAccount.address, 0),
             parachain: PARACHAIN_NAME,
           }),
         });

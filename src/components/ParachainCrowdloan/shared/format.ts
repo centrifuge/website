@@ -10,8 +10,8 @@ function addCommas(x: number | string) {
 }
 
 export function truncateAddress(address: string) {
-  const encodedAddress = encodeAddress(address);
-  return `${encodedAddress.substr(0, 6)}...${encodedAddress.substr(-6)}`;
+  const encodedAddress = encodeAddress(address, 0);
+  return `${encodedAddress.slice(0, 6)}...${encodedAddress.slice(-6)}`;
 }
 
 const createFormatNum = (planck: number) => (
