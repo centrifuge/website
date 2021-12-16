@@ -153,6 +153,35 @@ export const Content = () => {
     })();
   }, [contribHash, selectedAccount?.address]);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        if (!selectedAccount?.address) {
+          return;
+        }
+        const response = await fetch(
+          "/.netlify/functions/getExistingReferralCode",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              referrerAddress: encodeAddress(selectedAccount.address, 0),
+              parachain: PARACHAIN_NAME,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          const json = await response.json();
+          setNewReferralCode(json.referralCode);
+        } else {
+          setNewReferralCode("");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [selectedAccount?.address]);
+
   return (
     <Container>
       <ContributeStyled>
