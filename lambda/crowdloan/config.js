@@ -23,10 +23,8 @@ const configs = {
   centrifuge: {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "centrifuge",
-
-    // TODO: replace with new contributions web service
-    URL_CONTRIBUTIONS: "",
-    URL_CONTRIBUTOR: "",
+    // TODO Change before merging
+    URL_CROWDLOAN_SERVICE: "http://localhost:4000/graphql",
   },
 };
 
@@ -66,5 +64,26 @@ const assertConfigIsValid = (cfg) => {
   }
 };
 
+const assertCentrifugeConfigIsValid = (cfg) => {
+  if (
+    !cfg.POSTGRES_CONFIG ||
+    !cfg.POSTGRES_CONFIG.database ||
+    !cfg.POSTGRES_CONFIG.host ||
+    !cfg.POSTGRES_CONFIG.password ||
+    !cfg.POSTGRES_CONFIG.port ||
+    !cfg.POSTGRES_CONFIG.username ||
+    !cfg.REFERRAL_TABLE_NAME ||
+    typeof cfg.URL_CROWDLOAN_SERVICE !== "string"
+  ) {
+    throw new Error(
+      `Crowdloan config invalid: check config object \n\n${JSON.stringify(
+        cfg,
+        null,
+        2
+      )}`
+    );
+  }
+};
+
 assertConfigIsValid(configs.altair);
-assertConfigIsValid(configs.centrifuge);
+assertCentrifugeConfigIsValid(configs.centrifuge);
