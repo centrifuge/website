@@ -25,6 +25,7 @@ import { WarningWalletNotConnected } from "./WarningWalletNotConnected";
 import { WarningExtensionNotAuthorized } from "./WarningExtensionNotAuthorized";
 import { WarningExtensionMissing } from "./WarningExtensionMissing";
 import { VIDEO_ID } from "../shared/config";
+import { FloatingDismissable } from "../shared/FloatingDismissable";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -174,6 +175,11 @@ export const Content = () => {
                 </LearnHowToStake>
               )}
             </BeforeAuction>
+          )}
+          {crowdloanPhase !== "notStarted" && crowdloanPhase !== "ended" && (
+            <FloatingDismissable storageKey={VIDEO_ID}>
+              <ResponsivePlayer videoId={VIDEO_ID} />
+            </FloatingDismissable>
           )}
           <CentralCol>
             {!isWeb3Injected && <WarningExtensionMissing />}
