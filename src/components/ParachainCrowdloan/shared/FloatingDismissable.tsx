@@ -1,5 +1,4 @@
-import React from "react";
-import { useLocalStorage } from "react-use";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const FloatingDiv = styled.div`
@@ -56,10 +55,7 @@ export const FloatingDismissable: React.FC<FloatingDismissableProps> = ({
   children,
   storageKey,
 }) => {
-  const [visible, setVisible] = useLocalStorage<boolean>(
-    `FloatingDismissable(${storageKey})`,
-    !!storageKey
-  );
+  const [visible, setVisible] = useState<boolean>(true);
 
   if (!storageKey || !visible) return null;
 
