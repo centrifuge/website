@@ -83,7 +83,7 @@ const CentralCol = styled.div`
 
   ${onBreakpoint("M")} {
     grid-column: 1 / span 6;
-    max-width: 523px;
+    max-width: 393px;
     justify-self: center;
   }
 `;
