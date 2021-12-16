@@ -75,18 +75,10 @@ const BlockInternalLink = () => (
           <FooterLinkItem to="/brand">Brand Assets</FooterLinkItem>
           <FooterLinkItem to="/careers">Careers</FooterLinkItem>
         </Box>
-        <Box height="50px">
-          <FooterLinkItem to="/grant">
-            <Box direction="row">
-              <Image height={42} src={euFlagImage} />
-            </Box>
-          </FooterLinkItem>
-        </Box>
       </Box>
     </List>
   </Item>
 );
-
 
 const SubBlockContact = ({ title, email }) => (
   <Box direction="row" gap="xsmall" align="start">
