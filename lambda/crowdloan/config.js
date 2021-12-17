@@ -23,8 +23,7 @@ const configs = {
   centrifuge: {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "centrifuge",
-    // TODO Change before merging
-    URL_CROWDLOAN_SERVICE: "http://localhost:4000/graphql",
+    URL_CROWDLOAN_SERVICE: "https://app.gc.subsquid.io/centrifuge-crowdloan-v1/graphql",
   },
 };
 

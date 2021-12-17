@@ -3,13 +3,7 @@ import axios from "axios";
 import { Keyring } from "@polkadot/api";
 import { getConfig } from "./crowdloan/config";
 
-// TODO how to handle this scenario of filtering out ids if all computation is done in the graphql server
-// need to add a custom filter
-const exchangeAddresses = [
-  "EkmdfH2Fc6XgPgDwMjye3Nsdj27CCSi9np8Kc7zYoCL2S3G",
-  "F7fq1jMmNj5j2jAHcBxgM26JzUn2N4duXu1U4UZNdkfZEPV",
-  "DAgtn9udZHC7GVU5gV7ybN8nTyucK9PEqY6QvXiG6fEW6TA",
-];
+const exchangeAddresses = [];
 
 const getAddress = (publicKey, parachain) => {
   const keyring = new Keyring({ type: "sr25519" });
@@ -23,6 +17,8 @@ exports.handler = async (event) => {
       body: "Method not allowed. Use GET.",
     };
   }
+
+  console.log("HERE")
 
   const { amount, parachain } = event.queryStringParameters;
 
@@ -42,7 +38,7 @@ exports.handler = async (event) => {
     data: {
       query: `
           query TopContributors {
-            contributors(orderBy: totalContributed_DESC, limit: ${amount}) {
+            contributors(orderBy: totalContributed_DESC, limit: ${Number(amount) + exchangeAddresses.length}) {
               id
               totalContributed
               countContributions
@@ -54,12 +50,14 @@ exports.handler = async (event) => {
 
   let orderedContributors = []
   data.data.contributors.forEach((item) => {
-    let aux = {
-      account: getAddress(item.id, "centrifuge"),
-      amount: item.totalContributed,
-      numberOfContributions: item.countContributions
+    if (!exchangeAddresses.includes(getAddress(item.id, "centrifuge"))) {
+      let aux = {
+        account: getAddress(item.id, "centrifuge"),
+        amount: item.totalContributed,
+        numberOfContributions: item.countContributions
+      }
+      orderedContributors.push(aux)
     }
-    orderedContributors.push(aux)
   })
 
   return {
