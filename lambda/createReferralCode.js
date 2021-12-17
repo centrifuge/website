@@ -20,24 +20,6 @@ exports.handler = async (event) => {
 
     const sql = postgres(POSTGRES_CONFIG);
 
-    // check if the address has a referral code associated with it already
-    const results = await sql`
-      select referral_code from ${sql(
-        REFERRAL_TABLE_NAME
-      )} where wallet_address = ${referrerAddress}
-    `;
-
-    // if a code was found, use it instead of creating a new one
-    if (results.length) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({
-          referralCode: results[0].referral_code,
-          referrerAddress,
-        }),
-      };
-    }
-
     const referralCode = crypto
       .randomBytes(15)
       .toString("base64")
