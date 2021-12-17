@@ -45,7 +45,12 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
         >
           <Box margin="16px 0 0" direction="row" align="center" gap="8px">
             <img src={parallelHeikoLogo} alt="" />
-            <Text size="14px" weight={400} textAlign="left">
+            <Text
+              size="14px"
+              weight={400}
+              textAlign="left"
+              style={{ textDecoration: "underline" }}
+            >
               Contribute with Parallel Heiko
             </Text>
           </Box>
