@@ -12,9 +12,10 @@ export const FormTitle: React.FC<{ margin?: string }> = ({
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          lineHeight: "40px",
         }}
       >
-        <Text size="xxlarge" weight={900}>
+        <Text size="32px" weight={600}>
           {children}
         </Text>
       </Box>
