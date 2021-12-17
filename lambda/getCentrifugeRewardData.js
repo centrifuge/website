@@ -114,14 +114,14 @@ const getEarlyBirdBonus = (contributions) =>
     }, new BigNumber(0))
     .toString();
 
-const getFirstCrowdloanBonus = (contributions) =>
+const getLoyaltyBonus = (contributions) =>
   contributions
     .reduce((sum, contribution) => {
       if (contribution.prevContributed) {
         return sum.plus(
           new BigNumber(contribution.balance)
             .multipliedBy(10 ** 6)
-            .multipliedBy(0.1)
+            .multipliedBy(0.05)
             .multipliedBy(430)
         );
       }
@@ -187,7 +187,7 @@ exports.handler = async (event) => {
         address,
         contributionAmount: "0",
         earlyBirdBonus: "0",
-        firstCrowdloanBonus: "0",
+        loyaltyBonus: "0",
         numberOfReferrals: 0,
         referralBonus: "0",
       }),
@@ -209,7 +209,7 @@ exports.handler = async (event) => {
   const earlyBirdBonus = getEarlyBirdBonus(contributor.contributions);
 
   // TODO Review this first Crowdloan bonus logic
-  const firstCrowdloanBonus = getFirstCrowdloanBonus(contributor.contributions);
+  const loyaltyBonus = getLoyaltyBonus(contributor.contributions);
 
   const contributionAmount = contributor.totalContributed;
 
@@ -235,7 +235,7 @@ exports.handler = async (event) => {
       address,
       contributionAmount,
       earlyBirdBonus,
-      firstCrowdloanBonus,
+      loyaltyBonus,
       numberOfReferrals,
       referralBonus,
     }),

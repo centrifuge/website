@@ -16,7 +16,7 @@ export const TopReferrers: React.FC = () => {
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const response = await fetch("/.netlify/functions/getTopReferrers", {
+      const response = await fetch("/.netlify/functions/getCentrifugeTopReferrers", {
         method: "POST",
         body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
       });
