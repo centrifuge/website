@@ -37,10 +37,14 @@ const getDaysUntilAuction = () =>
 
 const getIsAuctionStarted = () => CROWDLOAN_STARTED;
 
-const getEarlyBirdHoursLeft = () =>
-  Math.ceil(
-    (EARLY_BIRD_EXTENDED_END_DATE.getTime() - Date.now()) / 1000 / 60 / 60
-  );
+const getEarlyBirdHoursLeft = () => {
+  const endDate =
+    getCrowdloanPhase() === "earlyBird"
+      ? EARLY_BIRD_END_DATE
+      : EARLY_BIRD_EXTENDED_END_DATE;
+
+  return Math.ceil((endDate.getTime() - Date.now()) / 1000 / 60 / 60);
+};
 
 const getIsEarlyBird = () =>
   getCrowdloanPhase() === "earlyBird" ||
