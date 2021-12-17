@@ -8,12 +8,10 @@ title: Imprint
 
 # Imprint
 
-**Centrifuge Network Foundation, Inc.**<br />
+**Centrifuge Network Foundation**<br />
 Floor 4, Willow House, Cricket Square<br />
 Grand Cayman KY1‐9010<br />
 Cayman Islands<br />
-
-Content responsibility by names and addresses mentioned above.
 
 info@centrifuge.io
 
@@ -21,7 +19,7 @@ Email communication can be susceptible to security gaps. For example, emails en 
 
 ### Rights of use to the contents
 
-This website is subject to copy and other protection rights. Any duplication or distribution of layout or contents in part or in entirety, in changed or unchanged form, requires written consent. © 2018
+This website is subject to copy and other protection rights. Any duplication or distribution of layout or contents in part or in entirety, in changed or unchanged form, requires written consent.
 
 ### Disclaimer
 
