@@ -1,9 +1,11 @@
 import React, { useContext, useMemo } from "react";
-import { Box, Image, ResponsiveContext, Button } from "grommet";
+import { Box, Image, ResponsiveContext, Button, Text } from "grommet";
 // import { JoinWaitlist } from "./JoinWaitlist.js";
 import TextHeading1 from "./text/TextHeading1.js";
 import hero from "../../images/polkadot/hero.svg";
 import heroMobile from "../../images/polkadot/hero-mobile.svg";
+import parallelHeikoLogo from "../../images/polkadot/parallel-heiko-logo.svg";
+import ExternalLink from "../Links/externalLink.js";
 
 const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
   const size = useContext(ResponsiveContext);
@@ -36,6 +38,23 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
           primary
           href="/parachain/crowdloan"
         />
+        <ExternalLink
+          unstyled={1}
+          href="https://crowdloan.parallel.fi/#/auction/contribute/polkadot/2031"
+          style={{ color: "white" }}
+        >
+          <Box margin="16px 0 0" direction="row" align="center" gap="8px">
+            <img src={parallelHeikoLogo} alt="" />
+            <Text
+              size="14px"
+              weight={400}
+              textAlign="left"
+              style={{ textDecoration: "underline" }}
+            >
+              Contribute with Parallel Heiko
+            </Text>
+          </Box>
+        </ExternalLink>
       </Box>
       <Box
         width={isSmall ? "100%" : "auto"}

@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, Paragraph, Image, Text } from "grommet";
+import { Box, Paragraph, Text } from "grommet";
 
 import { List, Item } from "../List";
 import { ExternalLink, InternalLink } from "../Links";
-
-import euFlagImage from "../../images/eu-flag.svg";
 
 const FooterExternalLinkItem = ({ children, href, ...rest }) => (
   <FooterItem>
@@ -75,18 +73,10 @@ const BlockInternalLink = () => (
           <FooterLinkItem to="/brand">Brand Assets</FooterLinkItem>
           <FooterLinkItem to="/careers">Careers</FooterLinkItem>
         </Box>
-        <Box height="50px">
-          <FooterLinkItem to="/grant">
-            <Box direction="row">
-              <Image height={42} src={euFlagImage} />
-            </Box>
-          </FooterLinkItem>
-        </Box>
       </Box>
     </List>
   </Item>
 );
-
 
 const SubBlockContact = ({ title, email }) => (
   <Box direction="row" gap="xsmall" align="start">

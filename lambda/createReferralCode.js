@@ -34,7 +34,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ referralCode }),
+      body: JSON.stringify({ referralCode, referrerAddress }),
     };
   } catch (error) {
     console.log("error", error);

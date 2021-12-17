@@ -25,6 +25,10 @@ import { WarningWalletNotConnected } from "./WarningWalletNotConnected";
 import { WarningExtensionNotAuthorized } from "./WarningExtensionNotAuthorized";
 import { WarningExtensionMissing } from "./WarningExtensionMissing";
 import { VIDEO_ID } from "../shared/config";
+import {
+  localStorageGetItem,
+  localStorageSetItem,
+} from "../shared/browserOnly";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -82,7 +86,7 @@ const CentralCol = styled.div`
 
   ${onBreakpoint("M")} {
     grid-column: 1 / span 6;
-    max-width: 523px;
+    max-width: 393px;
     justify-self: center;
   }
 `;
@@ -117,6 +121,16 @@ const TextHeading1 = styled.div`
   margin-bottom: 24px;
 `;
 
+const getReferralCodeStorageKey = (address: string) =>
+  `cfgReferralCode[${address}]`;
+
+const setStoredReferralCode = (address: string, referralCode: string) => {
+  localStorageSetItem(getReferralCodeStorageKey(address), referralCode);
+};
+
+const getStoredReferralCode = (address: string) =>
+  localStorageGetItem(getReferralCodeStorageKey(address));
+
 export type ContributionOutcome = {
   amount: string;
 };
@@ -146,11 +160,20 @@ export const Content = () => {
 
         const json = await response.json();
         setNewReferralCode(json.referralCode);
+
+        // store the referral code locally to show it when reloading the page
+        setStoredReferralCode(selectedAccount.address, json.referralCode);
       } catch (error) {
         console.error(error);
       }
     })();
   }, [contribHash, selectedAccount?.address]);
+
+  // show the stored referral code if found
+  useEffect(() => {
+    if (!selectedAccount?.address) return;
+    setNewReferralCode(getStoredReferralCode(selectedAccount.address) || "");
+  }, [selectedAccount?.address]);
 
   return (
     <Container>
@@ -192,12 +215,12 @@ export const Content = () => {
             {isWeb3Injected && isAuctionStarted && !isAuctionEnded && (
               <>
                 <FormTitle margin="8px 0 0">Contribute</FormTitle>
-                {warning === "insufficientFunds" && (
+                {warning === "insufficientFunds" && !contribHash && (
                   <WarningInsufficientFunds
                     gasFee={formatDOT(gasFee || 0, 18)}
                   />
                 )}
-                {warning === "existentialDeposit" && (
+                {warning === "existentialDeposit" && !contribHash && (
                   <WarningExistentialDeposit />
                 )}
                 {!isWeb3Injected && !selectedAccount?.address && (

@@ -29,7 +29,7 @@ export const ThanksForContribution: React.FC<ThanksForContributionProps> = ({
           unstyled={0}
           href={`${TRANSACTION_DETAILS_URL}/${claimHash}`}
         >
-          View Transaction details
+          View transaction details
         </ExternalLink>
       </TextBody>
     </WarningBanner>
