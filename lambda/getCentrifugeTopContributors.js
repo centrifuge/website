@@ -18,8 +18,6 @@ exports.handler = async (event) => {
     };
   }
 
-  console.log("HERE")
-
   const { amount, parachain } = event.queryStringParameters;
 
   const { URL_CROWDLOAN_SERVICE } = getConfig(parachain);
