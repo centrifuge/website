@@ -19,7 +19,7 @@ export const TopContributors: React.FC = () => {
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const response = await fetch("/.netlify/functions/getTopContributors", {
+      const response = await fetch("/.netlify/functions/getCentrifugeTopContributors", {
         method: "POST",
         body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
       });

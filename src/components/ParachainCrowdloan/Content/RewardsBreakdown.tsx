@@ -228,7 +228,7 @@ export const RewardsBreakdown: React.FC<{}> = () => {
       if (!selectedAccount?.address) {
         return;
       }
-      const response = await fetch("/.netlify/functions/getRewardData", {
+      const response = await fetch("/.netlify/functions/getCentrifugeRewardData", {
         method: "POST",
         body: JSON.stringify({
           address: encodeAddress(selectedAccount.address, 0),
