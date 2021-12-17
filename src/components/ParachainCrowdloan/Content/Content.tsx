@@ -227,12 +227,12 @@ export const Content = () => {
             {isWeb3Injected && isAuctionStarted && !isAuctionEnded && (
               <>
                 <FormTitle margin="8px 0 0">Contribute</FormTitle>
-                {warning === "insufficientFunds" && (
+                {warning === "insufficientFunds" && !contribHash && (
                   <WarningInsufficientFunds
                     gasFee={formatDOT(gasFee || 0, 18)}
                   />
                 )}
-                {warning === "existentialDeposit" && (
+                {warning === "existentialDeposit" && !contribHash && (
                   <WarningExistentialDeposit />
                 )}
                 {!isWeb3Injected && !selectedAccount?.address && (
