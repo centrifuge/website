@@ -25,6 +25,10 @@ import { WarningWalletNotConnected } from "./WarningWalletNotConnected";
 import { WarningExtensionNotAuthorized } from "./WarningExtensionNotAuthorized";
 import { WarningExtensionMissing } from "./WarningExtensionMissing";
 import { VIDEO_ID } from "../shared/config";
+import {
+  localStorageGetItem,
+  localStorageSetItem,
+} from "../shared/browserOnly";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -117,6 +121,16 @@ const TextHeading1 = styled.div`
   margin-bottom: 24px;
 `;
 
+const getReferralCodeStorageKey = (address: string) =>
+  `cfgReferralCode[${address}]`;
+
+const setStoredReferralCode = (address: string, referralCode: string) => {
+  localStorageSetItem(getReferralCodeStorageKey(address), referralCode);
+};
+
+const getStoredReferralCode = (address: string) =>
+  localStorageGetItem(getReferralCodeStorageKey(address));
+
 export type ContributionOutcome = {
   amount: string;
 };
@@ -146,39 +160,19 @@ export const Content = () => {
 
         const json = await response.json();
         setNewReferralCode(json.referralCode);
+
+        // store the referral code locally to show it when reloading the page
+        setStoredReferralCode(selectedAccount.address, json.referralCode);
       } catch (error) {
         console.error(error);
       }
     })();
   }, [contribHash, selectedAccount?.address]);
 
+  // show the stored referral code if found
   useEffect(() => {
-    (async () => {
-      try {
-        if (!selectedAccount?.address) {
-          return;
-        }
-        const response = await fetch(
-          "/.netlify/functions/getExistingReferralCode",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              referrerAddress: encodeAddress(selectedAccount.address, 0),
-              parachain: PARACHAIN_NAME,
-            }),
-          }
-        );
-
-        if (response.ok) {
-          const json = await response.json();
-          setNewReferralCode(json.referralCode);
-        } else {
-          setNewReferralCode("");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    if (!selectedAccount?.address) return;
+    setNewReferralCode(getStoredReferralCode(selectedAccount.address) || "");
   }, [selectedAccount?.address]);
 
   return (
