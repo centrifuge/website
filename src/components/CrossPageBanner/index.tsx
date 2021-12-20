@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InternalLink } from "../Links";
+import { ExternalLink } from "../Links";
 
 const CrossPageBannerStyled = styled.div``;
 
@@ -17,7 +17,7 @@ const ContentStyled = styled.div`
   line-height: 25px;
 `;
 
-const InternalLinkCustom = styled(InternalLink)`
+const LinkCustom = styled(ExternalLink)`
   font-weight: 600;
   text-decoration: underline;
   :hover {
@@ -27,9 +27,9 @@ const InternalLinkCustom = styled(InternalLink)`
 const staticContent = (
   <ContentStyled>
     <div>The Centrifuge Crowdloan is live.</div>
-    <InternalLinkCustom to="/parachain/crowdloan" unstyled={1}>
-      Contribute Now
-    </InternalLinkCustom>
+    <LinkCustom href="/parachain/crowdloan" unstyled={1}>
+      Contribute now
+    </LinkCustom>
   </ContentStyled>
 );
 
