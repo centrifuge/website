@@ -12,7 +12,7 @@ const ThanksForContributionStyled = styled.div`
 `;
 
 const TextHeading3 = styled.span`
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   font-weight: 600;
 `;

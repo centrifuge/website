@@ -13,7 +13,7 @@ const WalletMenuBtn = styled.button`
   border: 0;
   margin: 0;
   background: #fff;
-  padding: 12px 8px;
+  padding: 7px 8px;
   border: 1px solid #000;
   border-radius: 100vh;
 
