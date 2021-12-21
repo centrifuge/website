@@ -21,14 +21,14 @@ import { TextSpan } from "../shared/TextSpan";
 const InfoBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 
   min-width: 256px;
 
   background-color: ${({ theme }) => theme.global.colors.centrifugeOrange};
   color: #000;
   border-radius: 6px;
-  padding: 16px;
+  padding: 16px 8px 16px 16px;
 
   ${onBreakpoint("L")} {
     min-height: 88px;
