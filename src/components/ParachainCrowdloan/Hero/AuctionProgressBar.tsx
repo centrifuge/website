@@ -14,7 +14,7 @@ const AuctionProgressBarStyled = styled.div`
 const ProgressIndicator = styled.div<{ percentage: number }>`
   position: absolute;
   height: 100%;
-  background: ${({ theme }) => theme.global.colors["accent-1"]};
+  background: ${({ theme }) => theme.global.colors.centrifugeOrange};
 
   width: ${({ percentage }) => percentage}%;
 
