@@ -46,7 +46,6 @@ const getContributions = async (config, address) => {
             contributors(where: {id_eq: "${hexPublicKey}"}) {
               totalContributed
               contributions {
-                accountId
                 balance
                 earlyBird
                 prevContributed
@@ -85,7 +84,6 @@ const getAllContributions = async (config) => {
              contributions(limit: 1000000) {
               earlyBird
               balance
-              accountId
               prevContributed
               referralCode
               blockNumber
@@ -208,7 +206,6 @@ exports.handler = async (event) => {
 
   const earlyBirdBonus = getEarlyBirdBonus(contributor.contributions);
 
-  // TODO Review this first Crowdloan bonus logic
   const loyaltyBonus = getLoyaltyBonus(contributor.contributions);
 
   const contributionAmount = contributor.totalContributed;

@@ -23,7 +23,7 @@ const configs = {
   centrifuge: {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "centrifuge",
-    URL_CROWDLOAN_SERVICE: "https://app.gc.subsquid.io/centrifuge-crowdloan-v1/graphql",
+    URL_CROWDLOAN_SERVICE: "https://app.gc.subsquid.io/beta/centrifuge-sqd5/v2/graphql",
   },
 };
 
