@@ -15,6 +15,12 @@ const ContentStyled = styled.div`
   font-weight: 500;
   font-size: 18px;
   line-height: 25px;
+
+  margin-top: 32px;
+
+  @media (min-width: 769px) {
+    margin-top: 0;
+  }
 `;
 
 const LinkCustom = styled(ExternalLink)`
