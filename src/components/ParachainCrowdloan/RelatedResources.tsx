@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { ExternalLink } from "../Links";
+import { ResponsivePlayer } from "../News";
 import { Blogpost } from "./shared/Blogpost";
+import { VIDEO_ID } from "./shared/config";
 import { TextSpan } from "./shared/TextSpan";
 
 const StyledRelatedResources = styled.div`
@@ -22,6 +24,7 @@ const TitleRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 24px;
 `;
 
 const BottomRow = styled.div`
@@ -42,6 +45,15 @@ const CardsArea = styled.div`
   margin-top: 40px;
 `;
 
+const VideoWrapper = styled.div`
+  width: 374px;
+`;
+
+const VideoArea = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const RelatedResources = () => {
   return (
     <StyledRelatedResources>
@@ -58,6 +70,12 @@ export const RelatedResources = () => {
           Related resources
         </TextSpan>
       </TitleRow>
+
+      <VideoArea>
+        <VideoWrapper>
+          <ResponsivePlayer videoId={VIDEO_ID} />
+        </VideoWrapper>
+      </VideoArea>
 
       <CardsArea>
         <Blogpost

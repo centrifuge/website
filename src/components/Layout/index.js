@@ -7,6 +7,7 @@ import Footer from "../Footer";
 import Navigation from "../Navigation";
 import EmailSubscription from "../EmailSubscription";
 import GDPR from "../GDPR";
+import CrossPageBanner from "../CrossPageBanner";
 
 const ALTAIR_CROWNLOAN_PATH = "/altair/crowdloan";
 const PARACHAIN_PATH = "/parachain";
@@ -22,6 +23,7 @@ const Layout = ({ dark, children, location }) => {
     <Theme>
       <ThemeContext.Extend value={{ dark }}>
         <Navigation dark={dark} />
+        <CrossPageBanner />
         <main>{children}</main>
         {showEmailSubscription(location?.pathname) && <EmailSubscription />}
         <Footer />
