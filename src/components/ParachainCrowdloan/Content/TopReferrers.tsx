@@ -24,8 +24,6 @@ export const TopReferrers: React.FC = () => {
 
       const json = await response.json();
 
-      console.log(json);
-
       if (mounted) {
         // debug mock values
         const debugPhase = getDebugSearchParam("debugPhase");

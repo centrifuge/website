@@ -132,7 +132,8 @@ const getIncomingReferredContributionsDOT = (allContributions, referralCodes) =>
     .filter((contrib) => referralCodes.includes(contrib.referralCode))
     .reduce((sum, contrib) => {
       return sum.plus(contrib.balance);
-    }, new BigNumber(0));
+    }, new BigNumber(0))
+    .div(1e10);
 
 const DEFAULT_RESPONSE = {
   statusCode: 200,
@@ -221,7 +222,7 @@ exports.handler = async (event) => {
   );
   const incomingReferredDOT = await getIncomingReferredContributionsDOT(
     allContributions,
-    referralCodes
+    await getValidReferralCodes(curConfig, referralCodes)
   );
   const totalReferredDOT = outgoingReferredDOT.plus(incomingReferredDOT);
 
