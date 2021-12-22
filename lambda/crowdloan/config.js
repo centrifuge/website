@@ -1,8 +1,5 @@
-require("dotenv").config({
-  path: require("path").resolve(
-    process.cwd(),
-    `./lambda/.env.${process.env.NODE_ENV}`
-  ),
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
 });
 
 const POSTGRES_CONFIG = {
