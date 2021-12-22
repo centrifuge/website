@@ -105,30 +105,6 @@ const getEarlyBirdTotalContrib = (contributions) =>
     }, new BigNumber(0))
     .div(1e10);
 
-const getOutgoingReferralBonus = async (config, contributions) => {
-  const usedReferralCodes = contributions
-    .filter((contribution) => contribution.referralCode)
-    .map((contribution) => contribution.referralCode);
-
-  const validReferralCodes = await getValidReferralCodes(
-    config,
-    usedReferralCodes
-  );
-
-  return contributions.reduce((sum, contribution) => {
-    if (validReferralCodes.includes(contribution.referralCode)) {
-      return sum.plus(
-        new BigNumber(contribution.balance)
-          .multipliedBy(10 ** 6)
-          .multipliedBy(0.05)
-          .multipliedBy(430)
-      );
-    }
-
-    return sum;
-  }, new BigNumber(0));
-};
-
 const getOutgoingReferredContributionsDOT = async (config, contributions) => {
   const usedReferralCodes = contributions
     .filter((contrib) => !!contrib.referralCode)
@@ -150,20 +126,6 @@ const getOutgoingReferredContributionsDOT = async (config, contributions) => {
     )
     .div(1e10);
 };
-
-const getIncomingReferralBonus = (allContributions, referralCodes) =>
-  allContributions.reduce((sum, contribution) => {
-    if (referralCodes.includes(contribution.referralCode)) {
-      return sum.plus(
-        new BigNumber(contribution.balance)
-          .multipliedBy(10 ** 6)
-          .multipliedBy(0.05)
-          .multipliedBy(430)
-      );
-    }
-
-    return sum;
-  }, new BigNumber(0));
 
 const getIncomingReferredContributionsDOT = (allContributions, referralCodes) =>
   allContributions
