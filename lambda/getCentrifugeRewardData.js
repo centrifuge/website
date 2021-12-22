@@ -7,6 +7,7 @@ import { Keyring } from "@polkadot/api";
 import { u8aToHex } from "@polkadot/util";
 import { BigNumber } from "bignumber.js";
 import { getConfig } from "./crowdloan/config";
+import { fetchTotalContributions } from "./getCentrifugeTotalContributions";
 
 const getReferralCodes = async (config, address) => {
   const { sql, REFERRAL_TABLE_NAME } = config;
@@ -35,11 +36,10 @@ const getContributions = async (config, address) => {
   const hexPublicKey = u8aToHex(keyring.addFromAddress(address).publicKey);
 
   try {
-
     const { data } = await axios({
       url: config.URL_CROWDLOAN_SERVICE,
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       data: {
         query: `
           query QueryContributor {
@@ -54,12 +54,12 @@ const getContributions = async (config, address) => {
               }
             }
           }
-      `
-      }
-    })
+      `,
+      },
+    });
 
     if (data.data.contributors.length === 0) {
-      console.log("error contributor not found:", hexPublicKey)
+      console.log("error contributor not found:", hexPublicKey);
       return [];
     }
 
@@ -76,8 +76,8 @@ const getContributions = async (config, address) => {
 const getAllContributions = async (config) => {
   const { data } = await axios({
     url: config.URL_CROWDLOAN_SERVICE,
-    method: 'post',
-    headers: {'Content-Type': 'application/json'},
+    method: "post",
+    headers: { "Content-Type": "application/json" },
     data: {
       query: `
           query AllContributions {
@@ -89,44 +89,21 @@ const getAllContributions = async (config) => {
               blockNumber
             }
           }
-      `
-    }
-  })
+      `,
+    },
+  });
 
   return data.data.contributions;
 };
 
-const getEarlyBirdBonus = (contributions) =>
+// returns the amount of DOT (BigNumber)
+const getEarlyBirdTotalContrib = (contributions) =>
   contributions
-    .reduce((sum, contribution) => {
-      if (contribution.earlyBird) {
-        return sum.plus(
-          new BigNumber(contribution.balance)
-            .multipliedBy(10 ** 6)
-            .multipliedBy(0.1)
-            .multipliedBy(430)
-        );
-      }
-
-      return sum;
+    .filter((contrib) => contrib.earlyBird)
+    .reduce((sum, contrib) => {
+      return sum.plus(new BigNumber(contrib.balance));
     }, new BigNumber(0))
-    .toString();
-
-const getLoyaltyBonus = (contributions) =>
-  contributions
-    .reduce((sum, contribution) => {
-      if (contribution.prevContributed) {
-        return sum.plus(
-          new BigNumber(contribution.balance)
-            .multipliedBy(10 ** 6)
-            .multipliedBy(0.05)
-            .multipliedBy(430)
-        );
-      }
-
-      return sum;
-    }, new BigNumber(0))
-    .toString();
+    .div(1e10);
 
 const getOutgoingReferralBonus = async (config, contributions) => {
   const usedReferralCodes = contributions
@@ -152,6 +129,28 @@ const getOutgoingReferralBonus = async (config, contributions) => {
   }, new BigNumber(0));
 };
 
+const getOutgoingReferredContributionsDOT = async (config, contributions) => {
+  const usedReferralCodes = contributions
+    .filter((contrib) => !!contrib.referralCode)
+    .map((contrib) => contrib.referralCode);
+
+  const validReferralCodes = await getValidReferralCodes(
+    config,
+    usedReferralCodes
+  );
+
+  const referredContributions = contributions.filter((contrib) =>
+    validReferralCodes.includes(contrib.referralCode)
+  );
+
+  return referredContributions
+    .reduce(
+      (sum, contribution) => sum.plus(contribution.balance),
+      new BigNumber(0)
+    )
+    .div(1e10);
+};
+
 const getIncomingReferralBonus = (allContributions, referralCodes) =>
   allContributions.reduce((sum, contribution) => {
     if (referralCodes.includes(contribution.referralCode)) {
@@ -166,6 +165,25 @@ const getIncomingReferralBonus = (allContributions, referralCodes) =>
     return sum;
   }, new BigNumber(0));
 
+const getIncomingReferredContributionsDOT = (allContributions, referralCodes) =>
+  allContributions
+    .filter((contrib) => referralCodes.includes(contrib.referralCode))
+    .reduce((sum, contrib) => {
+      return sum.plus(contrib.balance);
+    }, new BigNumber(0));
+
+const DEFAULT_RESPONSE = {
+  statusCode: 200,
+  body: JSON.stringify({
+    contributionAmount: "0",
+    hasLoyaltyReward: false,
+    baseRewardRate: { min: "0", cur: "0" },
+    baseReward: { min: "0", cur: "0" },
+    referralReward: { min: "0", cur: "0" },
+    earlyBirdReward: { min: "0", cur: "0" },
+  }),
+};
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
@@ -179,62 +197,108 @@ exports.handler = async (event) => {
   const curConfig = getConfig(parachain);
 
   if (!curConfig.URL_CROWDLOAN_SERVICE) {
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        address,
-        contributionAmount: "0",
-        earlyBirdBonus: "0",
-        loyaltyBonus: "0",
-        numberOfReferrals: 0,
-        referralBonus: "0",
-      }),
-    };
+    return DEFAULT_RESPONSE;
   }
 
   curConfig.sql = postgres(curConfig.POSTGRES_CONFIG);
 
+  const contributor = await getContributions(curConfig, address);
+  if (!contributor || !contributor.totalContributed) {
+    return DEFAULT_RESPONSE;
+  }
+
   const referralCodes = await getReferralCodes(curConfig, address);
 
-  const contributor = await getContributions(curConfig, address);
+  const contributions = contributor.contributions || [];
 
   const allContributions = await getAllContributions(curConfig);
 
-  const numberOfReferrals = allContributions.filter(({ referralCode }) =>
-    referralCodes.includes(referralCode)
-  ).length;
+  const totals = await fetchTotalContributions(parachain);
 
-  const earlyBirdBonus = getEarlyBirdBonus(contributor.contributions);
+  // total amount contributed in DOT
+  const totalAmountContributedBn = new BigNumber(
+    totals.totalAmountContributed
+  ).div(1e10);
 
-  const loyaltyBonus = getLoyaltyBonus(contributor.contributions);
+  // Base rewards rate = rewards budget in CFG / total amount contributed in DOT
+  const baseRewardRate = {
+    min: new BigNumber(curConfig.REWARDS_BUDGET).div(
+      curConfig.CROWDLOAN_MAX_CAP
+    ),
+    cur: new BigNumber(curConfig.REWARDS_BUDGET).div(totalAmountContributedBn),
+  };
 
-  const contributionAmount = contributor.totalContributed;
+  // Base reward = contributed amount * base reward rate
+  const contributedDOT = new BigNumber(contributor.totalContributed).div(1e10);
+  const baseReward = {
+    min: contributedDOT.times(baseRewardRate.min),
+    cur: contributedDOT.times(baseRewardRate.cur),
+  };
 
-  // this user used someone else's referral code
-  const outgoingReferralBonus = await getOutgoingReferralBonus(
+  // Does the contributor have Loyalty reward?
+  const hasLoyaltyReward = contributions.length
+    ? !!contributor.contributions.prevContributed
+    : false;
+
+  // Early bird rewards
+  const contributedDOTWithEarlyBird = getEarlyBirdTotalContrib(contributions);
+
+  const earlyBirdReward = {
+    min: contributedDOTWithEarlyBird
+      .times(baseRewardRate.min)
+      .times(curConfig.REWARD_EARLY_BIRD_PERCENT / 100),
+    cur: contributedDOTWithEarlyBird
+      .times(baseRewardRate.cur)
+      .times(curConfig.REWARD_EARLY_BIRD_PERCENT / 100),
+  };
+
+  // Referral rewards
+  const outgoingReferredDOT = await getOutgoingReferredContributionsDOT(
     curConfig,
-    contributor.contributions
+    contributions
   );
-
-  // someone used a referral code owned by this user
-  const incomingReferralBonus = getIncomingReferralBonus(
+  const incomingReferredDOT = await getIncomingReferredContributionsDOT(
     allContributions,
     referralCodes
   );
+  const totalReferredDOT = outgoingReferredDOT.plus(incomingReferredDOT);
 
-  const referralBonus = incomingReferralBonus
-    .plus(outgoingReferralBonus)
-    .toString();
+  const referralReward = {
+    min: totalReferredDOT
+      .times(baseRewardRate.min)
+      .times(curConfig.REWARD_REFERRAL_PERCENT / 100),
+    cur: totalReferredDOT
+      .times(baseRewardRate.cur)
+      .times(curConfig.REWARD_REFERRAL_PERCENT / 100),
+  };
+
+  // const numberOfReferrals = allContributions.filter(({ referralCode }) =>
+  //   referralCodes.includes(referralCode)
+  // ).length;
+
+  const rewardToString = (reward) => ({
+    min: reward.min.toString(),
+    cur: reward.cur.toString(),
+  });
 
   return {
     statusCode: 200,
     body: JSON.stringify({
       address,
-      contributionAmount,
-      earlyBirdBonus,
-      loyaltyBonus,
-      numberOfReferrals,
-      referralBonus,
+
+      contributionAmount: contributedDOT.toString(),
+      contributionDetail: {
+        earlyBird: contributedDOTWithEarlyBird.toString(),
+        referralOutgoing: outgoingReferredDOT.toString(),
+        referralIncoming: incomingReferredDOT.toString(),
+        referralTotal: totalReferredDOT.toString(),
+      },
+
+      hasLoyaltyReward, // will be applied to the total base reward
+      baseRewardRate: rewardToString(baseRewardRate),
+      baseReward: rewardToString(baseReward),
+      referralReward: rewardToString(referralReward),
+      earlyBirdReward: rewardToString(earlyBirdReward),
     }),
   };
 };

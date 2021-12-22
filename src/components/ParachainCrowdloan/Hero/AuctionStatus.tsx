@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button } from "grommet";
 
@@ -6,12 +6,10 @@ import funnelMobile from "../../../images/parachain-crowdloan/funnel-mobile.svg"
 import funnelDesktop from "../../../images/parachain-crowdloan/funnel-desktop.svg";
 import { AuctionStatusProgress } from "./AuctionStatusProgress";
 import { useAuctionContext } from "../shared/context/AuctionContext";
-import { PARACHAIN_NAME } from "../shared/const";
 import { formatShortDate } from "../shared/format";
 import { onBreakpoint } from "../shared/responsive";
 import { Container } from "../shared/Container";
 import { CROWDLOAN_MAX_CAP } from "../shared/config";
-import { usePolkadotApi } from "../shared/context/PolkadotApiProvider";
 
 const AuctionStatusStyled = styled.div<{ isAuctionStarted: boolean }>`
   color: #ffffff;
@@ -104,26 +102,8 @@ export const AuctionStatus: React.FC = () => {
     daysUntilAuction,
     auctionStartDate,
     totalRaised,
+    totalContributions,
   } = useAuctionContext();
-
-  const { api } = usePolkadotApi();
-
-  const [numContributions, setNumContributions] = useState<number>();
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(
-        "/.netlify/functions/getCentrifugeTotalContributions" +
-          `?parachain=${PARACHAIN_NAME}`
-      );
-
-      const json = await response.json();
-
-      if (json.numberOfContributions !== null) {
-        setNumContributions(json.numberOfContributions);
-      }
-    })();
-  }, [api]);
 
   const subtitle = {
     notStarted: `${daysUntilAuction} days to go until launch`,
@@ -164,7 +144,7 @@ export const AuctionStatus: React.FC = () => {
           <AuctionStatusProgress
             maxCap={CROWDLOAN_MAX_CAP}
             stackedAmount={totalRaised ?? undefined}
-            numContributions={numContributions}
+            numContributions={totalContributions}
           />
         )}
       </Container>

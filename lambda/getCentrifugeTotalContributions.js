@@ -1,6 +1,33 @@
 import axios from "axios";
-import { BigNumber } from "bignumber.js";
 import { getConfig } from "./crowdloan/config";
+
+export const fetchTotalContributions = async (parachain) => {
+  const { URL_CROWDLOAN_SERVICE } = getConfig(parachain);
+
+  if (!URL_CROWDLOAN_SERVICE) {
+    return {
+      totalContributions: null,
+      totalAmountContributed: null,
+    };
+  }
+
+  const { data } = await axios({
+    url: URL_CROWDLOAN_SERVICE,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: {
+      query: `
+          query MetricsQuery {
+          metrics {
+            totalContributions
+            totalAmountContributed
+          }
+        }
+      `,
+    },
+  });
+  return data.data.metrics;
+};
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "GET") {
@@ -14,32 +41,7 @@ exports.handler = async (event) => {
 
   const { URL_CROWDLOAN_SERVICE } = getConfig(parachain);
 
-  if (!URL_CROWDLOAN_SERVICE) {
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        numberOfContributions: null,
-        totalStaked: null,
-      }),
-    };
-  }
-
-  const {data} = await axios({
-    url: URL_CROWDLOAN_SERVICE,
-    method: 'post',
-    headers: {'Content-Type': 'application/json'},
-    data: {
-      query: `
-          query MetricsQuery {
-          metrics {
-            totalContributions
-            totalAmountContributed
-          }
-        }
-      `
-    }
-  })
-  const metrics = data.data.metrics
+  const metrics = await fetchTotalContributions(parachain);
 
   return {
     statusCode: 200,
