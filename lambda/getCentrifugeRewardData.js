@@ -237,7 +237,7 @@ exports.handler = async (event) => {
 
   // Does the contributor have Loyalty reward?
   const hasLoyaltyReward = contributions.length
-    ? !!contributor.contributions.prevContributed
+    ? !!contributor.contributions[0].prevContributed
     : false;
 
   // Early bird rewards
