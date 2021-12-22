@@ -3,7 +3,6 @@ import { TopList } from "../shared/Leaderboard";
 import { truncateAddress } from "../shared/format";
 import { PARACHAIN_NAME } from "../shared/const";
 import { getDebugSearchParam } from "../shared/browserOnly";
-import { HIDE_LEADERBOARDS } from "../shared/config";
 
 type TopReferrersResponse = {
   numberOfTimesUsed: number;
@@ -11,17 +10,21 @@ type TopReferrersResponse = {
 }[];
 
 export const TopReferrers: React.FC = () => {
-  if (HIDE_LEADERBOARDS) return null;
   const [topReferrers, setTopReferrers] = useState<TopReferrersResponse>();
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const response = await fetch("/.netlify/functions/getCentrifugeTopReferrers", {
-        method: "POST",
-        body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
-      });
+      const response = await fetch(
+        "/.netlify/functions/getCentrifugeTopReferrers",
+        {
+          method: "POST",
+          body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
+        }
+      );
 
       const json = await response.json();
+
+      console.log(json);
 
       if (mounted) {
         // debug mock values

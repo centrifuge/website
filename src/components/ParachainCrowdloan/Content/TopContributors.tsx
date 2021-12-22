@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { TopList } from "../shared/Leaderboard";
 import { formatDOT, truncateAddress } from "../shared/format";
 import { PARACHAIN_NAME } from "../shared/const";
-import { HIDE_LEADERBOARDS } from "../shared/config";
 
 type TopContributorsResponse = {
   numberOfContributions: number;
@@ -11,18 +10,19 @@ type TopContributorsResponse = {
 }[];
 
 export const TopContributors: React.FC = () => {
-  if (HIDE_LEADERBOARDS) return null;
-
   const [topContributors, setTopContributors] = useState<
     TopContributorsResponse
   >();
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const response = await fetch("/.netlify/functions/getCentrifugeTopContributors", {
-        method: "POST",
-        body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
-      });
+      const response = await fetch(
+        `/.netlify/functions/getCentrifugeTopContributors?parachain=${PARACHAIN_NAME}&amount=${5}`,
+        {
+          method: "GET",
+          // body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
+        }
+      );
 
       const json = await response.json();
 
