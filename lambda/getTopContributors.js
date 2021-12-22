@@ -1,4 +1,6 @@
-require("dotenv").config({ path: ".env" });
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 import axios from "axios";
 import { Keyring } from "@polkadot/api";
 import { getConfig } from "./crowdloan/config";
