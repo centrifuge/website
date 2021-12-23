@@ -185,7 +185,6 @@ export const InfoBoxList = () => {
                   `}
                 >
                   {title}
-                  {footnote ? " *" : ""}
                 </TextSpan>
                 <TextSpan
                   css={`
@@ -205,12 +204,6 @@ export const InfoBoxList = () => {
                   font-weight: 400;
                   line-height: 19.25px;
                   color: #757575;
-
-                  ::before {
-                    content: "*";
-                    display: inline-block;
-                    margin-right: 0.5em;
-                  }
                 `}
               >
                 {footnote}

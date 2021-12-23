@@ -1,4 +1,4 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
@@ -20,10 +20,29 @@ const configs = {
   centrifuge: {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "centrifuge",
+    URL_CROWDLOAN_SERVICE:
+      "https://app.gc.subsquid.io/beta/centrifuge-sqd5/v2/graphql",
 
-    // TODO: replace with new contributions web service
-    URL_CONTRIBUTIONS: "",
-    URL_CONTRIBUTOR: "",
+    REWARDS_BUDGET: process.env.CCL_REWARDS_BUDGET
+      ? parseFloat(process.env.CCL_REWARDS_BUDGET)
+      : 65700000,
+
+    CROWDLOAN_MAX_CAP: process.env.CCL_CROWDLOAN_MAX_CAP
+      ? parseFloat(process.env.CCL_CROWDLOAN_MAX_CAP)
+      : 15000000, // 15m
+
+    REWARD_HEAVYWEIGHT_PERCENT: process.env.CCL_REWARD_HEAVYWEIGHT_PERCENT
+      ? parseFloat(process.env.CCL_REWARD_HEAVYWEIGHT_PERCENT)
+      : 5,
+    REWARD_EARLY_BIRD_PERCENT: process.env.CCL_REWARD_EARLY_BIRD_PERCENT
+      ? parseFloat(process.env.CCL_REWARD_EARLY_BIRD_PERCENT)
+      : 10,
+    REWARD_REFERRAL_PERCENT: process.env.CCL_REWARD_REFERRAL_PERCENT
+      ? parseFloat(process.env.CCL_REWARD_REFERRAL_PERCENT)
+      : 5,
+    REWARD_LOYALTY_PERCENT: process.env.CCL_REWARD_LOYALTY_PERCENT
+      ? parseFloat(process.env.CCL_REWARD_LOYALTY_PERCENT)
+      : 5,
   },
 };
 
@@ -63,5 +82,26 @@ const assertConfigIsValid = (cfg) => {
   }
 };
 
+const assertCentrifugeConfigIsValid = (cfg) => {
+  if (
+    !cfg.POSTGRES_CONFIG ||
+    !cfg.POSTGRES_CONFIG.database ||
+    !cfg.POSTGRES_CONFIG.host ||
+    !cfg.POSTGRES_CONFIG.password ||
+    !cfg.POSTGRES_CONFIG.port ||
+    !cfg.POSTGRES_CONFIG.username ||
+    !cfg.REFERRAL_TABLE_NAME ||
+    typeof cfg.URL_CROWDLOAN_SERVICE !== "string"
+  ) {
+    throw new Error(
+      `Crowdloan config invalid: check config object \n\n${JSON.stringify(
+        cfg,
+        null,
+        2
+      )}`
+    );
+  }
+};
+
 assertConfigIsValid(configs.altair);
-assertConfigIsValid(configs.centrifuge);
+assertCentrifugeConfigIsValid(configs.centrifuge);
