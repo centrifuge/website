@@ -41,11 +41,6 @@ export const CROWDLOAN_STARTED =
   process.env.CCL_CROWDLOAN_STARTED === "true" ||
   DEFAULT.CCL_CROWDLOAN_STARTED;
 
-export const HIDE_LEADERBOARDS =
-  getDebugSearchParam("CCL_HIDE_LEADERBOARDS") === "true" ||
-  process.env.CCL_HIDE_LEADERBOARDS === "true" ||
-  DEFAULT.CCL_HIDE_LEADERBOARDS;
-
 export const CROWDLOAN_MAX_CAP =
   parseFloat(getDebugSearchParam("CCL_CROWDLOAN_MAX_CAP") || "0") ||
   parseFloat(process.env.CCL_CROWDLOAN_MAX_CAP || "0") ||

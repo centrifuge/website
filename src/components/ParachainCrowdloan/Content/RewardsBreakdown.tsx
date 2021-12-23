@@ -7,8 +7,8 @@ import { useWeb3 } from "../../Web3Provider";
 import { useAuctionContext } from "../shared/context/AuctionContext";
 import { useStakeFormContext } from "../shared/context/StakeFormContext";
 
-import { CFG_PLANCK, DOT_PLANCK, PARACHAIN_NAME } from "../shared/const";
-import { formatCFG, formatDOT } from "../shared/format";
+import { PARACHAIN_NAME } from "../shared/const";
+import { formatNumber } from "../shared/format";
 
 import { TextSpan } from "../shared/TextSpan";
 import { onBreakpoint } from "../shared/responsive";
@@ -75,7 +75,7 @@ const SubscanLink = styled(ExternalLink)`
 
 type StatType = {
   min: BigNumber;
-  current: BigNumber;
+  cur: BigNumber;
 };
 
 type StatProps = {
@@ -83,18 +83,38 @@ type StatProps = {
   label: string;
   color?: string;
 };
+
+type RewardValues = {
+  min: string;
+  cur: string;
+};
+
+type RewardDataResponse = {
+  contributionAmount: string;
+  baseRewardRate: RewardValues;
+  baseReward: RewardValues;
+  earlyBirdReward: RewardValues;
+  referralReward: RewardValues;
+  hasLoyaltyReward: boolean;
+};
+
+const rewardValuesToStatType = (reward: RewardValues): StatType => ({
+  min: new BigNumber(reward.min),
+  cur: new BigNumber(reward.cur),
+});
+
 const Stat: React.FC<StatProps> = ({ value, label, color }) => {
   const { crowdloanPhase } = useAuctionContext();
 
   const isAuctionEnded = crowdloanPhase === "ended";
 
-  if (!isAuctionEnded && value?.current?.isZero()) return null;
+  if (!isAuctionEnded && value?.cur?.isZero()) return null;
 
   const formattedVal =
-    !value || value?.current.isZero()
+    !value || value?.cur.isZero()
       ? "0"
-      : `${formatCFG(value.min, 1, false, true, true)} to ${formatCFG(
-          value.current,
+      : `${formatNumber(value.min, 1, false, true, true)} to ${formatNumber(
+          value.cur,
           1,
           false,
           true,
@@ -110,18 +130,9 @@ const Stat: React.FC<StatProps> = ({ value, label, color }) => {
   );
 };
 
-type RewardDataResponse = {
-  contributionAmount?: string;
-  earlyBirdBonus?: string;
-  firstCrowdloanBonus?: string;
-  numberOfReferrals?: string;
-  referralBonus?: string;
-  isFirst250PrevCrwdloan?: boolean;
-};
-
 export const RewardsBreakdown: React.FC<{}> = () => {
   const { selectedAccount } = useWeb3();
-  const [rewardsData, setRewardsData] = useState<RewardDataResponse>({});
+  const [rewardsData, setRewardsData] = useState<RewardDataResponse>();
 
   const { dotAmount, referralCode } = useStakeFormContext();
   const { isEarlyBird, crowdloanPhase, baseRewardRate } = useAuctionContext();
@@ -134,93 +145,95 @@ export const RewardsBreakdown: React.FC<{}> = () => {
   const [rewardLoyalty, setRewardLoyalty] = useState<StatType>();
   const [totalRewards, setTotalRewards] = useState<StatType>();
 
-  const hasRewards = !new BigNumber(totalRewards?.current || 0).isZero();
+  const hasRewards = !new BigNumber(totalRewards?.cur || 0).isZero();
   const isAuctionEnded = crowdloanPhase === "ended";
 
   useEffect(() => {
     if (!rewardsData || !baseRewardRate) {
       return;
     }
-    const curAmountNum =
+    const amountFormNumber =
       Number.isNaN(parseFloat(dotAmount)) || isAuctionEnded
         ? 0
         : parseFloat(dotAmount);
 
     const earlyBirdFactor = isEarlyBird ? REWARD_EARLY_BIRD_PERCENT / 100 : 0;
     const referralFactor = referralCode ? REWARD_REFERRAL_PERCENT / 100 : 0;
-    const loyaltyFactor = rewardsData.isFirst250PrevCrwdloan
+    const loyaltyFactor = rewardsData.hasLoyaltyReward
       ? REWARD_LOYALTY_PERCENT / 100
       : 0;
 
     // convert values in BN
-    const curAmount = new BigNumber(curAmountNum * DOT_PLANCK);
-    const dataAmount = new BigNumber(rewardsData.contributionAmount || 0);
-    const totalAmount = curAmount.plus(dataAmount);
-    const dataEarlyBirdBonus = new BigNumber(rewardsData.earlyBirdBonus || 0);
-    const dataReferralBonus = new BigNumber(rewardsData.referralBonus || 0);
+    const dotAmountForm = new BigNumber(amountFormNumber);
+    const dotAmountData = new BigNumber(rewardsData.contributionAmount || 0);
+    const totalAmount = dotAmountForm.plus(dotAmountData);
+
+    const baseRewardData = rewardValuesToStatType(rewardsData.baseReward || 0);
+    const earlyBirdRewardData = rewardValuesToStatType(
+      rewardsData.earlyBirdReward || 0
+    );
+    const referralRewardData = rewardValuesToStatType(
+      rewardsData.referralReward || 0
+    );
 
     // calculate rewards
-    const curStakingBonus = curAmount
-      .div(DOT_PLANCK) // to DOT
-      .times(baseRewardRate)
-      .times(CFG_PLANCK); // to CFG
-    const minStakingBonus = curAmount
-      .div(DOT_PLANCK) // to DOT
-      .times(MIN_BASE_REWARD)
-      .times(CFG_PLANCK); // to CFG
-    const dataStakingBonus = dataAmount
-      .div(DOT_PLANCK) // to DOT
-      .times(baseRewardRate)
-      .times(CFG_PLANCK); // to CFG
+    const rewardCfgPerDot = {
+      min: MIN_BASE_REWARD,
+      cur: baseRewardRate,
+    };
 
-    const totalStakingBonus = curStakingBonus.plus(dataStakingBonus);
-    const totalMinStakingBonus = minStakingBonus.plus(dataStakingBonus);
+    const baseRewardForm = {
+      min: dotAmountForm.times(rewardCfgPerDot.min),
+      cur: dotAmountForm.times(rewardCfgPerDot.cur),
+    };
 
-    const curEarlyBirdBonus = curStakingBonus.times(earlyBirdFactor);
-    const minEarlyBirdBonus = minStakingBonus.times(earlyBirdFactor);
-    const totalEarlyBirdBonus = curEarlyBirdBonus.plus(dataEarlyBirdBonus);
-    const totalMinEarlyBirdBonus = minEarlyBirdBonus.plus(dataEarlyBirdBonus);
+    const sumRewards = (...stats: StatType[]): StatType =>
+      stats.reduce(
+        (acc, stat) => ({
+          min: acc.min.plus(stat.min),
+          cur: acc.cur.plus(stat.cur),
+        }),
+        {
+          min: new BigNumber(0),
+          cur: new BigNumber(0),
+        }
+      );
 
-    const curReferralBonus = curStakingBonus.times(referralFactor);
-    const minReferralBonus = minStakingBonus.times(referralFactor);
-    const totalReferralBonus = curReferralBonus.plus(dataReferralBonus);
-    const totalMinReferralBonus = minReferralBonus.plus(dataReferralBonus);
+    const multReward = (stat: StatType, factor: number) => ({
+      min: stat.min.times(factor),
+      cur: stat.cur.times(factor),
+    });
 
-    const totalLoyaltyBonus = totalStakingBonus.times(loyaltyFactor);
-    const totalMinLoyaltyBonus = totalMinStakingBonus.times(loyaltyFactor);
+    const baseRewardTotal = sumRewards(baseRewardForm, baseRewardData);
 
-    const totalBonus = totalStakingBonus
-      .plus(totalEarlyBirdBonus)
-      .plus(totalReferralBonus)
-      .plus(totalLoyaltyBonus);
+    const earlyBirdRewardForm = multReward(baseRewardForm, earlyBirdFactor);
 
-    const totalMinBonus = totalMinStakingBonus
-      .plus(totalMinEarlyBirdBonus)
-      .plus(totalMinReferralBonus)
-      .plus(totalMinLoyaltyBonus);
+    const earlyBirdRewardTotal = sumRewards(
+      earlyBirdRewardForm,
+      earlyBirdRewardData
+    );
+
+    const referralRewardForm = multReward(baseRewardForm, referralFactor);
+    const referralRewardTotal = sumRewards(
+      referralRewardForm,
+      referralRewardData
+    );
+    const loyaltyReward = multReward(baseRewardTotal, loyaltyFactor);
+
+    const totalReward = sumRewards(
+      baseRewardTotal,
+      earlyBirdRewardTotal,
+      referralRewardTotal,
+      loyaltyReward
+    );
 
     // show values
     setStakedAmount(totalAmount.toString());
-    setRewardStaking({
-      current: totalStakingBonus,
-      min: totalMinStakingBonus,
-    });
-    setRewardEarlyBird({
-      current: totalEarlyBirdBonus,
-      min: totalMinEarlyBirdBonus,
-    });
-    setRewardReferral({
-      current: totalReferralBonus,
-      min: totalMinReferralBonus,
-    });
-    setRewardLoyalty({
-      current: totalLoyaltyBonus,
-      min: totalMinLoyaltyBonus,
-    });
-    setTotalRewards({
-      current: totalBonus,
-      min: totalMinBonus,
-    });
+    setRewardStaking(baseRewardTotal);
+    setRewardEarlyBird(earlyBirdRewardTotal);
+    setRewardReferral(referralRewardTotal);
+    setRewardLoyalty(loyaltyReward);
+    setTotalRewards(totalReward);
   }, [dotAmount, referralCode, rewardsData, baseRewardRate]);
 
   useEffect(() => {
@@ -228,15 +241,20 @@ export const RewardsBreakdown: React.FC<{}> = () => {
       if (!selectedAccount?.address) {
         return;
       }
-      const response = await fetch("/.netlify/functions/getRewardData", {
-        method: "POST",
-        body: JSON.stringify({
-          address: encodeAddress(selectedAccount.address, 0),
-          parachain: PARACHAIN_NAME,
-        }),
-      });
+      const response = await fetch(
+        "/.netlify/functions/getCentrifugeRewardData",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            address: encodeAddress(selectedAccount.address, 0),
+            parachain: PARACHAIN_NAME,
+          }),
+        }
+      );
 
       const json = await response.json();
+
+      console.log("rewards", json);
 
       setRewardsData(json);
     })();
@@ -257,7 +275,7 @@ export const RewardsBreakdown: React.FC<{}> = () => {
           `}
         >
           {stakedAmount ? (
-            formatDOT(stakedAmount, 3, false, true, true)
+            formatNumber(stakedAmount, 3, false, true, true)
           ) : (
             <CustomSpinner color="brand" />
           )}{" "}

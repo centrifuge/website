@@ -29,6 +29,7 @@ import {
   localStorageGetItem,
   localStorageSetItem,
 } from "../shared/browserOnly";
+import { ExchangeLinks } from "./ExchangeLinks";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -239,6 +240,7 @@ export const Content = () => {
           </RightCol>
         </ContribSection>
       </ContributeStyled>
+      {isAuctionStarted && !isAuctionEnded && <ExchangeLinks />}
     </Container>
   );
 };

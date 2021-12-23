@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import React, {
   createContext,
   useContext,
@@ -15,7 +16,7 @@ import {
   REWARDS_BUDGET,
 } from "../config";
 
-import { CrowdloanPhase } from "../const";
+import { CrowdloanPhase, DOT_PLANCK, PARACHAIN_NAME } from "../const";
 import { getTotalRaised } from "../getTotalRaised";
 import { usePolkadotApi } from "./PolkadotApiProvider";
 
@@ -75,6 +76,7 @@ type AuctionContextType = {
   earlyBirdHoursLeft: number;
   crowdloanPhase: CrowdloanPhase;
   totalRaised?: number;
+  totalContributions?: number;
   baseRewardRate?: number;
 };
 
@@ -86,6 +88,7 @@ const AuctionContext = createContext<AuctionContextType>({
   earlyBirdHoursLeft: 0,
   crowdloanPhase: "notStarted",
   totalRaised: undefined,
+  totalContributions: undefined,
   baseRewardRate: undefined,
 });
 
@@ -106,7 +109,12 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
   );
 
   const [totalRaised, setTotalRaised] = useState<number>();
-  const [baseRewardRate, setBaseRewardRate] = useState<number>();
+  const [totalContributions, setTotalContributions] = useState<number>();
+
+  const baseRewardRate = useMemo<number>(
+    () => (totalRaised ? REWARDS_BUDGET / totalRaised : 0),
+    [totalRaised]
+  );
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -127,14 +135,29 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
   const { api } = usePolkadotApi();
 
   useEffect(() => {
-    if (!api) return;
-
     const updateBaseReward = () => {
-      getTotalRaised(api).then((total) => {
-        console.log("total", total);
-        setTotalRaised(total);
-        setBaseRewardRate(REWARDS_BUDGET / total);
-      });
+      fetch(
+        "/.netlify/functions/getCentrifugeTotalContributions" +
+          `?parachain=${PARACHAIN_NAME}`
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          setTotalContributions(data.numberOfContributions);
+          const totalRaisedNum = new BigNumber(data.totalStaked)
+            .div(DOT_PLANCK)
+            .toNumber();
+          setTotalRaised(totalRaisedNum);
+          // console.log("total raised", totalRaisedNum);
+          // console.log("base reward rate", REWARDS_BUDGET / totalRaisedNum);
+        })
+        // backup if lambda fails
+        .catch(() =>
+          api
+            ? getTotalRaised(api).then((total) => {
+                setTotalRaised(total);
+              })
+            : null
+        );
     };
 
     updateBaseReward();
@@ -159,6 +182,7 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
       earlyBirdHoursLeft,
       crowdloanPhase,
       totalRaised,
+      totalContributions,
       baseRewardRate,
     }),
     [
@@ -169,6 +193,7 @@ export const AuctionContextProvider: React.FC = ({ children }) => {
       earlyBirdHoursLeft,
       crowdloanPhase,
       totalRaised,
+      totalContributions,
       baseRewardRate,
     ]
   );
