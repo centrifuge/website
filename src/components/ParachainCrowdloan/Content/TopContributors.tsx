@@ -20,7 +20,6 @@ export const TopContributors: React.FC = () => {
         `/.netlify/functions/getCentrifugeTopContributors?parachain=${PARACHAIN_NAME}&amount=${5}`,
         {
           method: "GET",
-          // body: JSON.stringify({ amount: 5, parachain: PARACHAIN_NAME }),
         }
       );
 
