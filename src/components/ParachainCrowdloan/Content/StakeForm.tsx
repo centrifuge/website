@@ -359,7 +359,7 @@ export const StakeForm: React.FC = () => {
                       <span style={{ paddingLeft: "8px" }}>DOT</span>
                     </>
                   }
-                  placeholder={MIN_CONTRIBUTION_DOT.toPrecision(3)}
+                  placeholder="DOT amount"
                   reverse
                   id="polkadot"
                   name="polkadot"
