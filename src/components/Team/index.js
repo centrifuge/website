@@ -9,6 +9,8 @@ import twitter from "../../images/team-social/twitter.svg";
 import instagram from "../../images/team-social/instagram.svg";
 import linkedin from "../../images/team-social/linkedin.svg";
 import favourite from "../../images/team-social/favourite.svg";
+import globe from "../../images/team-social/globe.svg";
+import github from "../../images/team-social/github.svg";
 
 const MemberImageContainer = styled(Box)`
   padding-bottom: 100%;
@@ -43,6 +45,8 @@ const Member = ({ member }) => {
     if (socialLink.includes("linkedin")) return <Image src={linkedin} />;
     else if (socialLink.includes("twitter")) return <Image src={twitter} />;
     else if (socialLink.includes("instagram")) return <Image src={instagram} />;
+    else if (socialLink.includes("github")) return <Image src={github} />;
+    return <Image src={globe} />;
   };
 
   return (
