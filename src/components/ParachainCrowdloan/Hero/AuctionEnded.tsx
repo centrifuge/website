@@ -11,7 +11,7 @@ import { formatDOT, formatNumber } from "../shared/format";
 
 const AuctionStatusStyled = styled.div`
   color: #000;
-  background-color: ${({ theme }) => theme.global.colors["accent-1"]};
+  background-color: ${({ theme }) => theme.global.colors.centrifugeOrange};
   background-image: url(${dotsSvg});
 
   padding-top: 67px;
@@ -19,7 +19,7 @@ const AuctionStatusStyled = styled.div`
 `;
 
 const LightButton = styled(Button)`
-  background: ${({ theme }) => theme.global.colors["accent-1"]};
+  background: ${({ theme }) => theme.global.colors.centrifugeOrange};
   border: 1px solid black;
 `;
 

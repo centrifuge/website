@@ -30,6 +30,7 @@ import {
   localStorageSetItem,
 } from "../shared/browserOnly";
 import { ExchangeLinks } from "./ExchangeLinks";
+import { Box, Stack } from "grommet";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -180,9 +181,10 @@ export const Content = () => {
     <Container>
       <ContributeStyled>
         <LeftCol>
-          {!isAuctionEnded && <InfoBoxList />}
-          {crowdloanPhase !== "notStarted" && <TopReferrers />}
-          {isAuctionEnded && <TopContributors />}
+          <InfoBoxList />
+          {crowdloanPhase !== "notStarted" && !isAuctionEnded && (
+            <TopReferrers />
+          )}
         </LeftCol>
 
         <ContribSection>
@@ -237,6 +239,12 @@ export const Content = () => {
           </CentralCol>
           <RightCol>
             {isAuctionStarted && !isAuctionEnded && <RewardsBreakdown />}
+            {isAuctionEnded && (
+              <Box gap="48px">
+                <TopReferrers />
+                <TopContributors />
+              </Box>
+            )}
           </RightCol>
         </ContribSection>
       </ContributeStyled>

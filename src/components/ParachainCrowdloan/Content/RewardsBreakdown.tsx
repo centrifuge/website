@@ -113,6 +113,8 @@ const Stat: React.FC<StatProps> = ({ value, label, color }) => {
   const formattedVal =
     !value || value?.cur.isZero()
       ? "0"
+      : isAuctionEnded
+      ? formatNumber(value.cur, 1, false, true, true)
       : `${formatNumber(value.min, 1, false, true, true)} to ${formatNumber(
           value.cur,
           1,
@@ -263,7 +265,9 @@ export const RewardsBreakdown: React.FC<{}> = () => {
   return (
     <RewardsBreakdownStyled>
       <div>
-        <TextHeading2>Estimated rewards</TextHeading2>
+        <TextHeading2>
+          {isAuctionEnded ? "Rewards" : "Estimated rewards"}
+        </TextHeading2>
       </div>
       <StatsItem>
         <TextSpan
