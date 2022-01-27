@@ -27,8 +27,9 @@ const DEFAULT = {
   CCL_FAQ_URL:
     "https://medium.com/centrifuge/faq-centrifuge-crowdloan-5c744778e03c",
 
-  CCL_RESULTS_TITLE: "",
-  CCL_RESULTS_SUBTITLE: "",
+  CCL_RESULTS_TITLE: "Boom! Centrifuge wins slot in Parachain auctions",
+  CCL_RESULTS_SUBTITLE:
+    "{totalRaised} DOT raised from {totalContributions} contributions",
 };
 
 export const START_DATE =
