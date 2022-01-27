@@ -32,9 +32,9 @@ const LinkCustom = styled(ExternalLink)`
 `;
 const staticContent = (
   <ContentStyled>
-    <div>The Centrifuge Crowdloan is live.</div>
+    <div>The Crowdloan has ended.</div>
     <LinkCustom href="/parachain/crowdloan" unstyled={1}>
-      Contribute now
+      Check rewards
     </LinkCustom>
   </ContentStyled>
 );

@@ -34,7 +34,7 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
         /> */}
         <Button
           color="brand"
-          label="Join the crowdloan"
+          label="Check rewards"
           primary
           href="/parachain/crowdloan"
         />

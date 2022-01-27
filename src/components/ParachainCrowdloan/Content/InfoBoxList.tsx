@@ -97,7 +97,14 @@ const getNumDigits = (v: number) => {
 };
 
 export const InfoBoxList = () => {
-  const { isAuctionStarted, isEarlyBird, baseRewardRate } = useAuctionContext();
+  const {
+    isAuctionStarted,
+    isEarlyBird,
+    baseRewardRate,
+    crowdloanPhase,
+  } = useAuctionContext();
+
+  const isAuctionEnded = crowdloanPhase === "ended";
 
   const formattedReward = baseRewardRate ? (
     formatNumber(
@@ -130,7 +137,7 @@ export const InfoBoxList = () => {
       ),
     },
     {
-      hidden: isAuctionStarted && !isEarlyBird,
+      hidden: isAuctionStarted && !isEarlyBird && !isAuctionEnded,
       figure: `${REWARD_EARLY_BIRD_PERCENT}`,
       unit: "%",
       title: "Early bird bonus",
