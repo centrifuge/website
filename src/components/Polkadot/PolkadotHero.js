@@ -43,7 +43,7 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
           href="https://crowdloan.parallel.fi/#/auction/contribute/polkadot/2031"
           style={{ color: "white" }}
         >
-          <Box margin="16px 0 0" direction="row" align="center" gap="8px">
+          {/* <Box margin="16px 0 0" direction="row" align="center" gap="8px">
             <img src={parallelHeikoLogo} alt="" />
             <Text
               size="14px"
@@ -53,7 +53,7 @@ const PolkadotHero = ({ isEmailSubmitted, setIsEmailSubmitted }) => {
             >
               Contribute with Parallel Heiko
             </Text>
-          </Box>
+          </Box> */}
         </ExternalLink>
       </Box>
       <Box
