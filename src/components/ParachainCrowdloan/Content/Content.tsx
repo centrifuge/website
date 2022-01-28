@@ -30,7 +30,7 @@ import {
   localStorageSetItem,
 } from "../shared/browserOnly";
 import { ExchangeLinks } from "./ExchangeLinks";
-import { Box, Stack } from "grommet";
+import { Box } from "grommet";
 
 const ContributeStyled = styled.div`
   color: #000;
