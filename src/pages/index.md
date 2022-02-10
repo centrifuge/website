@@ -93,7 +93,7 @@ Borrowers can finance their real-world assets without banks or other intermediar
 <Image src={illustration_2} />
 
 <Text size="large" textAlign="start">
-Providing liquidity is open to everyone. Investors receive an return in stablecoins plus CFG liquidity rewards.
+Providing liquidity is open to everyone. Investors receive a return in stablecoins plus CFG liquidity rewards.
 </Text>
 
 <PlayButton />
