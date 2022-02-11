@@ -19,7 +19,6 @@ const Jobs = () => (
     `}
     render={data => {
       const jobs = data.allLever.edges
-        .filter(edge => edge.node.id !== "c0f7a908-8d9e-4f3c-9b15-a4f81e033484")
         .map(edge => ({ ...edge.node }));
 
       if (jobs.length > 0) {
@@ -33,6 +32,7 @@ const Jobs = () => (
                     rel="noopener noreferrer"
                     target="_blank"
                     href={job.hostedUrl}
+                    style={{ textAlign: "left" }}
                   >
                     {job.text}
                   </Button>
