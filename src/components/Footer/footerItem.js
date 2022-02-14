@@ -48,6 +48,9 @@ const BlockExternalLink = () => (
           <FooterExternalLinkItem href="https://developer.centrifuge.io/">
             Documentation
           </FooterExternalLinkItem>
+          <FooterExternalLinkItem href="https://gov.centrifuge.io/">
+            Governance
+          </FooterExternalLinkItem>
         </Box>
         {/*<Box gap="xsmall" height="50px">*/}
         {/*  <Text size="12px">Find us on</Text>*/}
