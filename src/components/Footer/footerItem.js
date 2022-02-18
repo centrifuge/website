@@ -1,9 +1,8 @@
+import { Box, Paragraph, Text } from "grommet";
 import React from "react";
 import styled from "styled-components";
-import { Box, Paragraph, Text } from "grommet";
-
-import { List, Item } from "../List";
 import { ExternalLink, InternalLink } from "../Links";
+import { Item, List } from "../List";
 
 const FooterExternalLinkItem = ({ children, href, ...rest }) => (
   <FooterItem>
@@ -68,6 +67,7 @@ const BlockInternalLink = () => (
     <List>
       <Box justify="between" height="230px">
         <Box>
+          <FooterLinkItem to="/terms">Terms of Use</FooterLinkItem>
           <FooterLinkItem to="/data-privacy-policy">
             Data Privacy Policy
           </FooterLinkItem>
