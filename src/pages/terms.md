@@ -1,5 +1,5 @@
 ---
-title: Imprint
+title: Terms of Use
 ---
 
 <Section>
