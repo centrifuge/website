@@ -87,6 +87,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@types/json-bigint": "^1.0.1",
     "@types/styled-components": "^5.1.15",
     "dotenv": "10.0.0",
     "husky": "^7.0.0",

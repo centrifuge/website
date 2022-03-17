@@ -1,6 +1,6 @@
 import { encodeAddress } from "@polkadot/util-crypto";
 import BigNumber from "bignumber.js";
-import { Spinner } from "grommet";
+import { Box, Button, Spinner } from "grommet";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useWeb3 } from "../../Web3Provider";
@@ -18,7 +18,9 @@ import {
   REWARD_EARLY_BIRD_PERCENT,
   REWARD_LOYALTY_PERCENT,
   REWARD_REFERRAL_PERCENT,
+  CLAIM_ACTIVE,
 } from "../shared/config";
+import { ClaimProps } from "../shared/useClaimRewards";
 
 const RewardsBreakdownStyled = styled.div`
   display: flex;
@@ -51,6 +53,17 @@ const TextLabel = styled.span`
   color: #757575;
 `;
 
+const TextLearn = styled(ExternalLink)`
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+
+  color: #000;
+  &:hover {
+    color: #000;
+  }
+`;
+
 const StatsItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,12 +74,13 @@ const Divider = styled.div`
   background: #757575;
 `;
 
-const CustomSpinner = styled(Spinner)`
+const CustomSpinner = styled(Spinner)<{ color?: string }>`
   height: 10px;
   width: 10px;
   display: inline-block;
   padding: 6px;
   margin-right: 8px;
+  border-top-color: ${({ color }) => color || undefined};
 `;
 
 const SubscanLink = styled(ExternalLink)`
@@ -132,7 +146,11 @@ const Stat: React.FC<StatProps> = ({ value, label, color }) => {
   );
 };
 
-export const RewardsBreakdown: React.FC<{}> = () => {
+interface RewardsBreakdownProps extends ClaimProps {}
+
+export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
+  claimProps
+) => {
   const { selectedAccount } = useWeb3();
   const [rewardsData, setRewardsData] = useState<RewardDataResponse>();
 
@@ -146,6 +164,13 @@ export const RewardsBreakdown: React.FC<{}> = () => {
   const [rewardReferral, setRewardReferral] = useState<StatType>();
   const [rewardLoyalty, setRewardLoyalty] = useState<StatType>();
   const [totalRewards, setTotalRewards] = useState<StatType>();
+
+  const {
+    claimRewards,
+    isClaimingRewards,
+    hasClaimedRewards,
+    isLoadingClaimStatus,
+  } = claimProps;
 
   const hasRewards = !new BigNumber(totalRewards?.cur || 0).isZero();
   const isAuctionEnded = crowdloanPhase === "ended";
@@ -256,8 +281,6 @@ export const RewardsBreakdown: React.FC<{}> = () => {
 
       const json = await response.json();
 
-      console.log("rewards", json);
-
       setRewardsData(json);
     })();
   }, [selectedAccount?.address]);
@@ -311,6 +334,38 @@ export const RewardsBreakdown: React.FC<{}> = () => {
             View account on Subscan
           </SubscanLink>
         </>
+      )}
+
+      {isAuctionEnded && CLAIM_ACTIVE && (
+        <Box
+          style={{
+            display: "flex",
+            gap: "16px",
+            marginTop: "16px",
+            alignItems: "flex-start",
+          }}
+        >
+          <Button
+            primary
+            label={
+              isClaimingRewards ? (
+                <CustomSpinner color="white" />
+              ) : (
+                "Claim rewards"
+              )
+            }
+            onClick={claimRewards}
+            disabled={isLoadingClaimStatus || hasClaimedRewards}
+            type="button"
+          />
+
+          <TextLearn
+            unstyled={1}
+            href="https://gov.centrifuge.io/t/how-to-claim-cfg-rewards-from-the-centrifuge-crowdloan-on-polkadot/3590"
+          >
+            Learn how to claim
+          </TextLearn>
+        </Box>
       )}
     </RewardsBreakdownStyled>
   );

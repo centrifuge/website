@@ -3,7 +3,7 @@ export const MAILCHIMP_URL =
 
 export const PARACHAIN_NAME = "centrifuge";
 
-export const WS_PROVIDER = "wss://rpc.polkadot.io";
+export const WS_PROVIDER = "ws://127.0.0.1:9946"; // "wss://fullnode.altair.centrifuge.io"; // "wss://rpc.polkadot.io";
 export const TRANSACTION_DETAILS_URL = `https://polkadot.subscan.io/extrinsic`;
 
 // @see https://wiki.polkadot.network/docs/learn-DOT
