@@ -268,6 +268,13 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
       if (!selectedAccount?.address) {
         return;
       }
+      setStakedAmount(undefined);
+      setRewardStaking(undefined);
+      setRewardEarlyBird(undefined);
+      setRewardReferral(undefined);
+      setRewardLoyalty(undefined);
+      setTotalRewards(undefined);
+
       const response = await fetch(
         "/.netlify/functions/getCentrifugeRewardData",
         {
@@ -355,7 +362,7 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
               )
             }
             onClick={claimRewards}
-            disabled={isLoadingClaimStatus || hasClaimedRewards}
+            disabled={isLoadingClaimStatus || hasClaimedRewards || !hasRewards}
             type="button"
           />
 
