@@ -19,6 +19,6 @@ exports.handler = async event => {
 
   return {
     statusCode: 200,
-    body: totalIssuance.toString(),
+    body: totalIssuance,
   };
 };
