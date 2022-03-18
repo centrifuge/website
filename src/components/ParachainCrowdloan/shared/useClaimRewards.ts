@@ -130,6 +130,7 @@ export const useClaimRewards = () => {
         amountType
       );
 
+      setClaimHash("loading");
       await claim.send(({ status, events }) => {
         if (status.isInBlock || status.isFinalized) {
           events.forEach(({ event }) => {
