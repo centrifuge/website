@@ -85,7 +85,7 @@ const DevDocsButton = ({ width }) => (
     label="Developer Docs"
     description="Read documentation."
     icon={<Book width="100%" />}
-    href="https://developer.centrifuge.io/"
+    href="https://docs.centrifuge.io/"
     width={width}
   />
 );
