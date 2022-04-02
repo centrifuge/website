@@ -1,55 +1,45 @@
-import React from "react";
-import { StaticQuery, graphql } from "gatsby";
+import React, { useState, useEffect } from "react";
 import { Button } from "grommet";
 
-const Jobs = () => (
-  <StaticQuery
-    query={graphql`
-      query JobsQuery {
-        allLever {
-          edges {
-            node {
-              id
-              text
-              hostedUrl
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      const jobs = data.allLever.edges
-        .map(edge => ({ ...edge.node }));
+export function useLeverPostings(site) {
+  const [postings, setPostings] = useState();
+  useEffect(() => {
+    (async () => {
+      const url = `https://api.lever.co/v0/postings/${site}?mode=json`;
+      const response = await fetch(url);
+      const postings = await response.json();
+      setPostings(postings);
+    })();
+  }, [site]);
+  return postings;
+}
 
-      if (jobs.length > 0) {
-        return (
-          <>
-            {jobs.map((job, index) => (
-              <div key={index}>
-                <p>
-                  <Button
-                    plain
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    href={job.hostedUrl}
-                    style={{ textAlign: "left" }}
-                  >
-                    {job.text}
-                  </Button>
-                </p>
-              </div>
-            ))}
-          </>
-        );
-      }
+const Jobs = () => {
+  const jobs = useLeverPostings("centrifuge") ?? [];
 
-      return (
-        <>
-          <p>There are no open positions at this time.</p>
-        </>
-      );
-    }}
-  />
-);
+  if (jobs.length === 0) {
+    return <p>There are no open positions at this time.</p>;
+  }
+
+  return (
+    <>
+      {jobs.map((job, index) => (
+        <div key={job.id}>
+          <p>
+            <Button
+              plain
+              rel="noopener noreferrer"
+              target="_blank"
+              href={job.hostedUrl}
+              style={{ textAlign: "left" }}
+            >
+              {job.text}
+            </Button>
+          </p>
+        </div>
+      ))}
+    </>
+  );
+};
 
 export default Jobs;

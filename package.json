@@ -41,7 +41,6 @@
     "gatsby-remark-copy-linked-files": "^2.10.0",
     "gatsby-source-apiserver": "^2.1.8",
     "gatsby-source-filesystem": "^2.11.1",
-    "gatsby-source-lever": "^2.10.0",
     "gatsby-transformer-yaml-plus": "^0.2.2",
     "grommet": "2.17.3",
     "grommet-icons": "^4.4.0",
