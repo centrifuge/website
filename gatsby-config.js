@@ -94,13 +94,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-source-lever`,
-      options: {
-        site: `centrifuge`,
-        verboseOutput: false
-      }
-    },
-    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [
