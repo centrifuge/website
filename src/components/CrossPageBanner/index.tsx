@@ -32,9 +32,9 @@ const LinkCustom = styled(ExternalLink)`
 `;
 const staticContent = (
   <ContentStyled>
-    <div>The Crowdloan has ended.</div>
-    <LinkCustom href="/parachain/crowdloan" unstyled={1}>
-      Check rewards
+    <div>Centrifuge parachain launch in progress, CFG transfer downtime expected.</div>
+    <LinkCustom href="https://gov.centrifuge.io/t/centrifuge-parachain-launch-process-update/3567" unstyled={1}>
+      Find out more
     </LinkCustom>
   </ContentStyled>
 );
