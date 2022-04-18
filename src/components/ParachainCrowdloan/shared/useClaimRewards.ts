@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { ApiPromise, WsProvider } from "@polkadot/api";
 import { useWeb3 } from "../../Web3Provider";
-import { usePolkadotApi } from "./context/PolkadotApiProvider";
 import jsonBigint from "json-bigint";
 import {
   cryptoWaitReady,
@@ -31,7 +31,20 @@ export const useClaimRewards = () => {
   const [hasClaimedRewards, setHasClaimedRewards] = useState<boolean>(false);
   const [claimHash, setClaimHash] = useState<string>("");
 
-  const { api } = usePolkadotApi();
+  const [api, setApi] = useState<ApiPromise>();
+
+  useEffect(() => {
+    (async () => {
+      const wsProvider = new WsProvider("wss://fullnode.catalyst.cntrfg.com");
+
+      const newApi = await ApiPromise.create({
+        provider: wsProvider,
+      });
+
+      setApi(newApi);
+    })();
+  }, []);
+
   const { selectedAccount } = useWeb3();
 
   // check if user has already claimed
@@ -131,33 +144,37 @@ export const useClaimRewards = () => {
       );
 
       setClaimHash("loading");
-      await claim.send(({ status, events }) => {
-        if (status.isInBlock || status.isFinalized) {
-          events.forEach(({ event }) => {
-            if (api.events.system.ExtrinsicSuccess.is(event)) {
-              setHasClaimedRewards(true);
-              setIsClaimingRewards(false);
-              setClaimHash((status.asFinalized as unknown) as string);
-            } else if (api.events.system.ExtrinsicFailed.is(event)) {
-              const [dispatchError] = event.data;
-
-              if (dispatchError.isModule) {
-                const decoded = api.registry.findMetaError(
-                  dispatchError.asModule
-                );
-
-                const errorInfo = `${decoded.section}.${decoded.name}`;
-                setClaimError(errorInfo);
+      await claim.signAndSend(
+        selectedAccount.address,
+        { signer: injector.signer },
+        ({ status, events }) => {
+          if (status.isInBlock || status.isFinalized) {
+            events.forEach(({ event }) => {
+              if (api.events.system.ExtrinsicSuccess.is(event)) {
+                setHasClaimedRewards(true);
                 setIsClaimingRewards(false);
-              } else {
-                const errorInfo = dispatchError.toString();
-                setClaimError(errorInfo);
-                setIsClaimingRewards(false);
+                setClaimHash((status.asFinalized as unknown) as string);
+              } else if (api.events.system.ExtrinsicFailed.is(event)) {
+                const [dispatchError] = event.data;
+
+                if (dispatchError.isModule) {
+                  const decoded = api.registry.findMetaError(
+                    dispatchError.asModule,
+                  );
+
+                  const errorInfo = `${decoded.section}.${decoded.name}`;
+                  setClaimError(errorInfo);
+                  setIsClaimingRewards(false);
+                } else {
+                  const errorInfo = dispatchError.toString();
+                  setClaimError(errorInfo);
+                  setIsClaimingRewards(false);
+                }
               }
-            }
-          });
-        }
-      });
+            });
+          }
+        },
+      );
     } catch (error) {
       console.log("Claim error", error);
       setClaimError((error as Error).toString());
