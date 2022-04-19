@@ -5,20 +5,20 @@ import { graphql, useStaticQuery } from "gatsby";
 import { LatestNews } from "../../components/News";
 
 const LatestNewsSection = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      mediumFeed: lambdaMediumPosts {
-        posts: items {
-          title
-          link
-          thumbnail
-          description
-        }
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     mediumFeed: lambdaMediumPosts {
+  //       posts: items {
+  //         title
+  //         link
+  //         thumbnail
+  //         description
+  //       }
+  //     }
+  //   }
+  // `);
 
-  const mediumPosts = data.mediumFeed.posts?.slice(0, 3);
+  const mediumPosts = [];
   return (
     <Box>
       <LatestNews posts={mediumPosts} />
