@@ -39,6 +39,16 @@ export const useClaimRewards = () => {
 
       const newApi = await ApiPromise.create({
         provider: wsProvider,
+        types: {
+          RootHashOf: "Hash",
+          TrieIndex: "u32",
+          RelayChainAccountId: "AccountId",
+          ParachainAccountIdOf: "AccountId",
+          Proof: {
+            leafHash: "Hash",
+            sortedHashes: "Vec<Hash>",
+          },
+        },
       });
 
       setApi(newApi);
