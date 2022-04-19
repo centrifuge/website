@@ -44,7 +44,7 @@ const BlockExternalLink = () => (
           <FooterExternalLinkItem href="https://github.com/centrifuge/">
             GitHub
           </FooterExternalLinkItem>
-          <FooterExternalLinkItem href="https://developer.centrifuge.io/">
+          <FooterExternalLinkItem href="https://docs.centrifuge.io/">
             Documentation
           </FooterExternalLinkItem>
           <FooterExternalLinkItem href="https://gov.centrifuge.io/">

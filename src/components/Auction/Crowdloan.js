@@ -8,7 +8,6 @@ import {
 } from '@polkadot/util-crypto';
 import { Stats } from './Stats';
 import { ReferralLeaderboard } from './ReferralLeaderboard';
-import { JoinWaitlist } from './JoinWaitlist';
 import { MediaCard } from './MediaCard';
 import { ContributionLeaderboard } from './ContributionLeaderboard';
 import crowdloan_banner from '../../images/altair/crowdloan_banner.svg';
@@ -292,7 +291,7 @@ export const Crowdloan = () => {
           }}
           alignSelf="center"
         >
-          <Grid columns={['269px', 'minmax(364px, 1fr)', '269px']} gap="95px">
+          <Grid columns={['269px', '1fr']} gap="10%">
             <Box>
               <Box style={{ marginBottom: '42px' }}>
                 <ReferralLeaderboard topReferrers={topReferrers} />
@@ -319,9 +318,6 @@ export const Crowdloan = () => {
                   setSelectedAccount={setSelectedAccount}
                 />
               )}
-            </Box>
-            <Box gap="medium">
-              <JoinWaitlist />
             </Box>
           </Grid>
         </Box>
