@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run optimize:images
-git add ./src/images/team
+# npm run optimize:images
+# git add ./src/images/team
