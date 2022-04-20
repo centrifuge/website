@@ -35,7 +35,7 @@ export const useClaimRewards = () => {
 
   useEffect(() => {
     (async () => {
-      const wsProvider = new WsProvider("wss://fullnode.catalyst.cntrfg.com");
+      const wsProvider = new WsProvider("wss://fullnode.parachain.centrifuge.io");
 
       const newApi = await ApiPromise.create({
         provider: wsProvider,
