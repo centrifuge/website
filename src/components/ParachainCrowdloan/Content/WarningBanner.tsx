@@ -5,6 +5,7 @@ import { Alert, CircleAlert, Checkmark } from "grommet-icons";
 type WarningBannerProps = {
   title: string;
   type: "warning" | "error" | "success";
+  accent?: boolean;
 };
 
 const icons: Record<string, React.ReactNode> = {
@@ -17,16 +18,18 @@ const colors: Record<string, React.ReactNode> = {
   warning: "#F5F5F5",
   error: "#FFE8ED",
   success: "#F5F5F5",
+  accent: "#FFC012",
 };
 
 export const WarningBanner: React.FC<WarningBannerProps> = ({
   title,
   type,
   children,
+  accent,
 }) => {
   return (
     <Box
-      background={{ color: colors[type] || "white" }}
+      background={{ color: colors[accent ? "accent" : type] || "white" }}
       style={{
         padding: "24px",
         borderRadius: "6px",

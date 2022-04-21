@@ -31,6 +31,9 @@ import {
 } from "../shared/browserOnly";
 import { ExchangeLinks } from "./ExchangeLinks";
 import { Box } from "grommet";
+import { useClaimRewards } from "../shared/useClaimRewards";
+import { WarningClaimSucceeded } from "./WarningClaimSucceeded";
+import { WarningBanner } from "./WarningBanner";
 
 const ContributeStyled = styled.div`
   color: #000;
@@ -142,6 +145,8 @@ export const Content = () => {
   const { contribHash, dotAmount, warning, gasFee } = useStakeFormContext();
   const { isWeb3Injected, selectedAccount, accounts } = useWeb3();
   const [newReferralCode, setNewReferralCode] = useState<string>("");
+  const claimProps = useClaimRewards();
+  const { hasClaimedRewards, claimHash, claimError } = claimProps;
 
   const isAuctionEnded = crowdloanPhase === "ended";
 
@@ -235,10 +240,20 @@ export const Content = () => {
                 <StakeForm />
               </>
             )}
-            {isAuctionEnded && <RewardsBreakdown />}
+            {isAuctionEnded && <RewardsBreakdown {...claimProps} />}
+            {hasClaimedRewards && (
+              <WarningClaimSucceeded claimHash={claimHash} />
+            )}
+            {claimError && (
+              <WarningBanner type="error" title="Claim reward failed">
+                {claimError}
+              </WarningBanner>
+            )}
           </CentralCol>
           <RightCol>
-            {isAuctionStarted && !isAuctionEnded && <RewardsBreakdown />}
+            {isAuctionStarted && !isAuctionEnded && (
+              <RewardsBreakdown {...claimProps} />
+            )}
             {isAuctionEnded && (
               <Box gap="48px">
                 <TopReferrers />

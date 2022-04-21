@@ -10,6 +10,8 @@ const DEFAULT = {
 
   CCL_HIDE_LEADERBOARDS: true,
 
+  CCL_CLAIM_ACTIVE: true,
+
   CCL_CROWDLOAN_MAX_CAP: 15000000, // 15m
   CCL_REWARDS_BUDGET: 65700000,
 
@@ -41,6 +43,11 @@ export const CROWDLOAN_STARTED =
   getDebugSearchParam("CCL_CROWDLOAN_STARTED") === "true" ||
   process.env.CCL_CROWDLOAN_STARTED === "true" ||
   DEFAULT.CCL_CROWDLOAN_STARTED;
+
+export const CLAIM_ACTIVE =
+  getDebugSearchParam("CCL_CLAIM_ACTIVE") === "true" ||
+  process.env.CCL_CLAIM_ACTIVE === "true" ||
+  DEFAULT.CCL_CLAIM_ACTIVE;
 
 export const CROWDLOAN_MAX_CAP =
   parseFloat(getDebugSearchParam("CCL_CROWDLOAN_MAX_CAP") || "0") ||
