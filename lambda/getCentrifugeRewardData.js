@@ -8,6 +8,7 @@ import { u8aToHex } from "@polkadot/util";
 import { BigNumber } from "bignumber.js";
 import { getConfig } from "./crowdloan/config";
 import { fetchTotalContributions } from "./getCentrifugeTotalContributions";
+import { merkleTree } from '../config/centrifuge-reward-merkle-tree'
 
 const getReferralCodes = async (config, address) => {
   const { sql, REFERRAL_TABLE_NAME } = config;
@@ -31,19 +32,21 @@ const getValidReferralCodes = async (config, referralCodes) => {
   return results.map((result) => result.referral_code);
 };
 
-const getContributions = async (config, address) => {
-  const keyring = new Keyring({ type: "sr25519" });
-  const hexPublicKey = u8aToHex(keyring.addFromAddress(address).publicKey);
+const getPublicKey = address => {
+  const keyring = new Keyring({ type: 'sr25519' });
+  return u8aToHex(keyring.addFromAddress(address).publicKey);
+};
 
+const getContributions = async (config, publicKey) => {
   try {
     const { data } = await axios({
       url: config.URL_CROWDLOAN_SERVICE,
-      method: "post",
-      headers: { "Content-Type": "application/json" },
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
       data: {
         query: `
           query QueryContributor {
-            contributors(where: {id_eq: "${hexPublicKey}"}) {
+            contributors(where: {id_eq: "${publicKey}"}) {
               totalContributed
               contributions {
                 balance
@@ -59,7 +62,7 @@ const getContributions = async (config, address) => {
     });
 
     if (data.data.contributors.length === 0) {
-      console.log("error contributor not found:", hexPublicKey);
+      console.log('error contributor not found:', publicKey);
       return [];
     }
 
@@ -69,7 +72,7 @@ const getContributions = async (config, address) => {
       return [];
     }
 
-    console.log("error", error.message);
+    console.log('error', error.message);
   }
 };
 
@@ -163,10 +166,30 @@ exports.handler = async (event) => {
     return DEFAULT_RESPONSE;
   }
 
+  const publicKey = getPublicKey(address);
+
   curConfig.sql = postgres(curConfig.POSTGRES_CONFIG);
 
-  const contributor = await getContributions(curConfig, address);
+  const contributor = await getContributions(curConfig, publicKey);
+
+  // not found in subsquid
   if (!contributor || !contributor.totalContributed) {
+    const additionalContributor = merkleTree.data.find(
+      ({ account }) => account === publicKey,
+    );
+
+    // found in merkle tree
+    if (additionalContributor) {
+      const { contribution } = additionalContributor;
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          rewardAmount: new BigNumber(contribution).div(10 ** 18).toString(),
+        }),
+      };
+    }
+
     return DEFAULT_RESPONSE;
   }
 
@@ -234,10 +257,6 @@ exports.handler = async (event) => {
       .times(baseRewardRate.cur)
       .times(curConfig.REWARD_REFERRAL_PERCENT / 100),
   };
-
-  // const numberOfReferrals = allContributions.filter(({ referralCode }) =>
-  //   referralCodes.includes(referralCode)
-  // ).length;
 
   const rewardToString = (reward) => ({
     min: reward.min.toString(),

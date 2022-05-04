@@ -37,7 +37,7 @@ import docs from "../../images/issuers/docs-wordmark.svg";
 <Row>
 
 <Col span={12}>
-<Button primary brand label="Access Capital" href="/issuers/form" />
+<Button primary brand label="Submit a Proposal" href="https://gov.centrifuge.io/t/the-pop-template-criteria/3847" />
 </Col>
 
 </Row>
