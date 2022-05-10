@@ -53,7 +53,7 @@ const Hero = () => {
               the billions of dollars locked in crypto.
             </Text>
           </Box>
-          <Button primary label="Access Capital" href="/issuers/form" />
+          <Button primary label="Submit a Proposal" href="https://gov.centrifuge.io/t/the-pop-template-criteria/3847" />
         </Box>
       </FullWidthSection>
       <Box
