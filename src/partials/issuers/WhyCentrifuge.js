@@ -100,8 +100,8 @@ const WhyCentrifuge = () => {
           <Button
             primary
             color="white"
-            label="Access Capital"
-            href="/issuers/form"
+            label="Submit a Proposal"
+            href="https://gov.centrifuge.io/t/the-pop-template-criteria/3847"
           />
           <Button primary color="accent-1" label="Join the Community" href="https://gov.centrifuge.io" />
         </Box>
