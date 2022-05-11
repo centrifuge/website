@@ -188,25 +188,30 @@ exports.handler = async (event) => {
   const contributor = await getContributions(curConfig, publicKey);
 
   // not found in subsquid
-  if (!contributor || !contributor.totalContributed) {
-    const additionalContributor = merkleTree.data.find(
-      ({ account }) => account === publicKey
-    );
+  // if (!contributor || !contributor.totalContributed) {
+  const additionalContributor = merkleTree.data.find(
+    ({ account }) => account === publicKey
+  );
 
-    // found in merkle tree
-    if (additionalContributor) {
-      const { contribution } = additionalContributor;
+  // found in merkle tree
+  if (additionalContributor) {
+    const { contribution } = additionalContributor;
 
-      return {
-        statusCode: 200,
-        body: JSON.stringify({
-          rewardAmount: new BigNumber(contribution).div(10 ** 18).toString(),
-        }),
-      };
-    }
-
-    return DEFAULT_RESPONSE;
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        rewardAmount: new BigNumber(contribution).div(10 ** 18).toString(),
+      }),
+    };
   }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      rewardAmount: new BigNumber("0"),
+    }),
+  };
+  // }
 
   const referralCodes = await getReferralCodes(curConfig, address);
 

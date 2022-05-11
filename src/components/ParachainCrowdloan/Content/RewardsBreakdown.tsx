@@ -106,6 +106,7 @@ type RewardValues = {
 type RewardDataResponse = {
   contributionAmount: string;
   baseRewardRate: RewardValues;
+  heavyweightReward: RewardValues;
   baseReward: RewardValues;
   earlyBirdReward: RewardValues;
   referralReward: RewardValues;
@@ -162,10 +163,11 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
 
   const [rewardStaking, setRewardStaking] = useState<StatType>();
   const [rewardEarlyBird, setRewardEarlyBird] = useState<StatType>();
+  const [rewardHeavyweight, setRewardHeavyweight] = useState<StatType>();
   const [rewardReferral, setRewardReferral] = useState<StatType>();
   const [rewardLoyalty, setRewardLoyalty] = useState<StatType>();
   const [totalRewards, setTotalRewards] = useState<StatType>();
-  const [isAdditionalContributor, setIsAdditionalContributor] = useState(false)
+  const [isAdditionalContributor, setIsAdditionalContributor] = useState(false);
 
   const {
     claimRewards,
@@ -182,12 +184,13 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
       return;
     }
 
-    if (rewardsData.rewardAmount) {
+    if (rewardsData.rewardAmount !== undefined) {
       // show values
       setIsAdditionalContributor(true);
-      setStakedAmount('0');
+      setStakedAmount("0");
       setRewardStaking({ cur: new BigNumber(0), min: new BigNumber(0) });
       setRewardEarlyBird({ cur: new BigNumber(0), min: new BigNumber(0) });
+      setRewardHeavyweight({ cur: new BigNumber(0), min: new BigNumber(0) });
       setRewardReferral({ cur: new BigNumber(0), min: new BigNumber(0) });
       setRewardLoyalty({ cur: new BigNumber(0), min: new BigNumber(0) });
       setTotalRewards({
@@ -264,17 +267,23 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
     );
     const loyaltyReward = multReward(baseRewardTotal, loyaltyFactor);
 
+    const heavyweightRewardTotal = rewardValuesToStatType(
+      rewardsData.heavyweightReward || 0
+    );
+
     const totalReward = sumRewards(
       baseRewardTotal,
       earlyBirdRewardTotal,
       referralRewardTotal,
-      loyaltyReward
+      loyaltyReward,
+      heavyweightRewardTotal
     );
 
     // show values
     setStakedAmount(totalAmount.toString());
     setRewardStaking(baseRewardTotal);
     setRewardEarlyBird(earlyBirdRewardTotal);
+    setRewardHeavyweight(heavyweightRewardTotal);
     setRewardReferral(referralRewardTotal);
     setRewardLoyalty(loyaltyReward);
     setTotalRewards(totalReward);
@@ -289,6 +298,7 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
       setStakedAmount(undefined);
       setRewardStaking(undefined);
       setRewardEarlyBird(undefined);
+      setRewardHeavyweight(undefined);
       setRewardReferral(undefined);
       setRewardLoyalty(undefined);
       setTotalRewards(undefined);
@@ -317,7 +327,7 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
           {isAuctionEnded ? "Rewards" : "Estimated rewards"}
         </TextHeading2>
       </div>
-      {!isAdditionalContributor && (
+      {/* {!isAdditionalContributor && (
         <StatsItem>
           <TextSpan
             css={`
@@ -331,7 +341,7 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
               formatNumber(stakedAmount, 3, false, true, true)
             ) : (
               <CustomSpinner color="brand" />
-            )}{' '}
+            )}{" "}
             DOT
           </TextSpan>
           <TextLabel>Contributed amount</TextLabel>
@@ -344,9 +354,10 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
           <Stat value={rewardStaking} label="Base reward" />
           <Stat value={rewardEarlyBird} label="Early bird reward" />
           <Stat value={rewardReferral} label="Referral reward" />
+          <Stat value={rewardHeavyweight} label="Heavyweight reward" />
           <Stat value={rewardLoyalty} label="Loyalty reward" />
         </>
-      )}
+      )} */}
       <Stat value={totalRewards} label="Total rewards" color="brand" />
 
       {selectedAccount?.address && (
@@ -364,10 +375,10 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
       {isAuctionEnded && CLAIM_ACTIVE && (
         <Box
           style={{
-            display: 'flex',
-            gap: '16px',
-            marginTop: '16px',
-            alignItems: 'flex-start',
+            display: "flex",
+            gap: "16px",
+            marginTop: "16px",
+            alignItems: "flex-start",
           }}
         >
           <Button
@@ -376,7 +387,7 @@ export const RewardsBreakdown: React.FC<RewardsBreakdownProps> = (
               isClaimingRewards || isLoadingClaimStatus ? (
                 <CustomSpinner color="white" />
               ) : (
-                'Claim rewards'
+                "Claim rewards"
               )
             }
             onClick={claimRewards}
