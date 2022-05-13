@@ -5,17 +5,20 @@ import axios from "axios";
 import postgres from "postgres";
 import { Keyring } from "@polkadot/api";
 import { u8aToHex } from "@polkadot/util";
+import { encodeAddress } from "@polkadot/util-crypto";
 import { BigNumber } from "bignumber.js";
 import { getConfig } from "./crowdloan/config";
 import { fetchTotalContributions } from "./getCentrifugeTotalContributions";
-import { merkleTree } from '../config/centrifuge-reward-merkle-tree'
+import { merkleTree } from "../config/centrifuge-reward-merkle-tree";
 
 const getReferralCodes = async (config, address) => {
+  const polkadotAddress = encodeAddress(address, 0);
+  const kusamaAddress = encodeAddress(address, 2);
   const { sql, REFERRAL_TABLE_NAME } = config;
   const results = await sql`
     select referral_code from ${sql(
       REFERRAL_TABLE_NAME
-    )} where wallet_address = ${address}
+    )} where wallet_address = ${kusamaAddress} or wallet_address = ${polkadotAddress}
   `;
 
   return results.map((result) => result.referral_code);
@@ -32,8 +35,8 @@ const getValidReferralCodes = async (config, referralCodes) => {
   return results.map((result) => result.referral_code);
 };
 
-const getPublicKey = address => {
-  const keyring = new Keyring({ type: 'sr25519' });
+const getPublicKey = (address) => {
+  const keyring = new Keyring({ type: "sr25519" });
   return u8aToHex(keyring.addFromAddress(address).publicKey);
 };
 
@@ -41,8 +44,8 @@ const getContributions = async (config, publicKey) => {
   try {
     const { data } = await axios({
       url: config.URL_CROWDLOAN_SERVICE,
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       data: {
         query: `
           query QueryContributor {
@@ -62,7 +65,7 @@ const getContributions = async (config, publicKey) => {
     });
 
     if (data.data.contributors.length === 0) {
-      console.log('error contributor not found:', publicKey);
+      console.log("error contributor not found:", publicKey);
       return [];
     }
 
@@ -72,7 +75,7 @@ const getContributions = async (config, publicKey) => {
       return [];
     }
 
-    console.log('error', error.message);
+    console.log("error", error.message);
   }
 };
 
@@ -103,6 +106,18 @@ const getAllContributions = async (config) => {
 const getEarlyBirdTotalContrib = (contributions) =>
   contributions
     .filter((contrib) => contrib.earlyBird)
+    .reduce((sum, contrib) => {
+      return sum.plus(new BigNumber(contrib.balance));
+    }, new BigNumber(0))
+    .div(1e10);
+
+const getHeavyWeightContributedDOT = (contributions) =>
+  contributions
+    .filter((contrib) =>
+      new BigNumber(contrib.balance).isGreaterThanOrEqualTo(
+        new BigNumber(5000).multipliedBy(1e10)
+      )
+    )
     .reduce((sum, contrib) => {
       return sum.plus(new BigNumber(contrib.balance));
     }, new BigNumber(0))
@@ -173,25 +188,30 @@ exports.handler = async (event) => {
   const contributor = await getContributions(curConfig, publicKey);
 
   // not found in subsquid
-  if (!contributor || !contributor.totalContributed) {
-    const additionalContributor = merkleTree.data.find(
-      ({ account }) => account === publicKey,
-    );
+  // if (!contributor || !contributor.totalContributed) {
+  const additionalContributor = merkleTree.data.find(
+    ({ account }) => account === publicKey
+  );
 
-    // found in merkle tree
-    if (additionalContributor) {
-      const { contribution } = additionalContributor;
+  // found in merkle tree
+  if (additionalContributor) {
+    const { contribution } = additionalContributor;
 
-      return {
-        statusCode: 200,
-        body: JSON.stringify({
-          rewardAmount: new BigNumber(contribution).div(10 ** 18).toString(),
-        }),
-      };
-    }
-
-    return DEFAULT_RESPONSE;
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        rewardAmount: new BigNumber(contribution).div(10 ** 18).toString(),
+      }),
+    };
   }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      rewardAmount: new BigNumber("0"),
+    }),
+  };
+  // }
 
   const referralCodes = await getReferralCodes(curConfig, address);
 
@@ -229,6 +249,11 @@ exports.handler = async (event) => {
   // Early bird rewards
   const contributedDOTWithEarlyBird = getEarlyBirdTotalContrib(contributions);
 
+  const heavyWeightContributedDOT = getHeavyWeightContributedDOT(
+    contributions,
+    curConfig
+  );
+
   const earlyBirdReward = {
     min: contributedDOTWithEarlyBird
       .times(baseRewardRate.min)
@@ -238,15 +263,26 @@ exports.handler = async (event) => {
       .times(curConfig.REWARD_EARLY_BIRD_PERCENT / 100),
   };
 
+  const heavyWeightReward = {
+    min: heavyWeightContributedDOT
+      .times(baseRewardRate.min)
+      .times(curConfig.REWARD_HEAVYWEIGHT_PERCENT / 100),
+    cur: heavyWeightContributedDOT
+      .times(baseRewardRate.cur)
+      .times(curConfig.REWARD_HEAVYWEIGHT_PERCENT / 100),
+  };
+
   // Referral rewards
   const outgoingReferredDOT = await getOutgoingReferredContributionsDOT(
     curConfig,
     contributions
   );
+
   const incomingReferredDOT = await getIncomingReferredContributionsDOT(
     allContributions,
     await getValidReferralCodes(curConfig, referralCodes)
   );
+
   const totalReferredDOT = outgoingReferredDOT.plus(incomingReferredDOT);
 
   const referralReward = {
@@ -281,6 +317,7 @@ exports.handler = async (event) => {
       baseReward: rewardToString(baseReward),
       referralReward: rewardToString(referralReward),
       earlyBirdReward: rewardToString(earlyBirdReward),
+      heavyweightReward: rewardToString(heavyWeightReward),
     }),
   };
 };
