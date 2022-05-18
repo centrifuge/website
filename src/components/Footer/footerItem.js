@@ -105,7 +105,6 @@ const BlockHello = () => (
       label="t.me/centrifuge_chat"
     />
     <SubBlockContact title="Partnerships" email="bizdev@centrifuge.io" />
-    <SubBlockContact title="Media + Press" email="comms@centrifuge.io" />
   </>
 );
 
