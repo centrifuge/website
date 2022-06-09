@@ -37,10 +37,16 @@
             ];
           };
           overrideAttrs = old: {
-            buildInputs = old.buildInputs ++ [ pkgs.tree pkgs.python3 ];
+            buildInputs = old.buildInputs ++ (with pkgs; [ python3 vips ]);
+            preConfigure = ''
+              yarn install --immutable --immutable-cache --mode=skip-build
+              patchShebangs node_modules
+            '';
             buildPhase = "yarn gatsby build";
             installPhase = "mv public $out";
           };
         };
+
+        devShell = pkgs.mkShell { buildInputs = [ yarn ipfs ]; };
       });
 }
