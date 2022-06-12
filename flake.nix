@@ -37,7 +37,8 @@
             ];
           };
           overrideAttrs = old: {
-            buildInputs = old.buildInputs ++ (with pkgs; [ python3 vips ]);
+            buildInputs = old.buildInputs
+              ++ (with pkgs; [ python3 vips pkg-config ]);
             preConfigure = ''
               yarn install --immutable --immutable-cache --mode=skip-build
               patchShebangs node_modules
