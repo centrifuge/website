@@ -16,8 +16,8 @@ jobs:
 
       - uses: cachix/cachix-action@v8
         with:
-          name: kf-website
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          name: centrifuge-website
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: build
         id: build
@@ -28,7 +28,7 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: kf-website-${{ github.sha }}
+          name: centrifuge-website-${{ github.sha }}
           path: ${{ steps.build.outputs.dist }}
 
   publish:
@@ -38,8 +38,8 @@ jobs:
       - name: download artifact
         uses: actions/download-artifact@v2
         with:
-          name: kf-website-${{ github.sha }}
-          path: kf-website
+          name: centrifuge-website-${{ github.sha }}
+          path: centrifuge-website
 
       - uses: ipfs/download-ipfs-distribution-action@v1
 
@@ -50,12 +50,12 @@ jobs:
 
       - uses: ipfs/start-ipfs-daemon-action@v1
         with:
-          args: ''
+          args: ""
 
       - name: publish the website on ipfs
         id: publish
         run: |
-          ipfs add -rQ kf-website | tee ipfs_cid
+          ipfs add -rQ centrifuge-website | tee ipfs_cid
           echo "::set-output name=cid::$(cat ipfs_cid)"
 
       - name: pin the website using pinata
@@ -64,7 +64,7 @@ jobs:
 
           cid=${{ steps.publish.outputs.cid }}
           if ! ipfs pin remote ls --service=pinata --cid=$cid | grep pinned; then
-            ipfs pin remote add --service=pinata --name=kf-website $cid
+            ipfs pin remote add --service=pinata --name=centrifuge-website $cid
           fi
 
       - uses: jwalton/gh-find-current-pr@v1
@@ -73,7 +73,7 @@ jobs:
         with:
           number: ${{ steps.finder.outputs.pr }}
           hide_and_recreate: true
-          hide_classify: 'OUTDATED'
+          hide_classify: "OUTDATED"
           message: |
             <h2 align="center">IPFS Preview for ${{ github.sha }} is ready</h2>
             <p align="center">
