@@ -9581,7 +9581,7 @@ gatsby-plugin-mailchimp@centrifuge/gatsby-plugin-mailchimp:
   dependencies:
     email-validator: ^2.0.4
     jsonp: ^0.2.1
-  checksum: dbef8583ab566a85e09df789f13c170df206c710c32cdf014639e03d2e1ee0fd8760c69a3168edaaac31726c9a57c07430fed9e9eb3b493ae06c9225b33383e6
+  checksum: 74f799214d8fb3718101a0af4bfe399af1641b9962d0ee277fba101e68ad098a2f44027c79e167cdb09d79a69e8af8f9277644541ed6855dbe4831f1c1976a77
   languageName: node
   linkType: hard
 
