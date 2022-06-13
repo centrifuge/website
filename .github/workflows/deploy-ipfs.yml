@@ -22,7 +22,7 @@ jobs:
       - name: build
         id: build
         run: |
-          nix build .
+          nix build -L .
           echo "::set-output name=dist::$(readlink result)"
 
       - name: upload artifact
