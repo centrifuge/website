@@ -1492,13 +1492,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@contentful/rich-text-types@npm:^12.1.2":
-  version: 12.1.2
-  resolution: "@contentful/rich-text-types@npm:12.1.2"
-  checksum: 5438e61c022ff5e58ba9d14a27d7974be2f7d8eb59e924239a9c28d5c51128ce0d7e71df8157d05c66aa046c5cd21f7febe95a97526bf8fb771412efb0631284
-  languageName: node
-  linkType: hard
-
 "@emotion/is-prop-valid@npm:^0.7.3":
   version: 0.7.3
   resolution: "@emotion/is-prop-valid@npm:0.7.3"
@@ -18323,19 +18316,6 @@ gatsby-plugin-mailchimp@centrifuge/gatsby-plugin-mailchimp:
   languageName: node
   linkType: hard
 
-rich-text-react-renderer@mgmolisani/rich-text-react-renderer:
-  version: 1.0.0
-  resolution: "rich-text-react-renderer@https://github.com/mgmolisani/rich-text-react-renderer.git#commit=679af5aeb9221e00552d3a28b3e67851f4e7b6d7"
-  dependencies:
-    "@contentful/rich-text-types": ^12.1.2
-  peerDependencies:
-    prop-types: ^15.5.4
-    react: ^15.0.0 || ^16.0.0
-    react-dom: ^15.0.0 || ^16.0.0
-  checksum: 638dc16dffdc94b32223c48a4bf534ef50c61e0446bfed5c58c0b1919c18a4374927c7c8677cf9909d04ac146c264f51675be2252993ae74a6fa968003ee3895
-  languageName: node
-  linkType: hard
-
 "rimraf@npm:2.6.3":
   version: 2.6.3
   resolution: "rimraf@npm:2.6.3"
@@ -21858,7 +21838,6 @@ rich-text-react-renderer@mgmolisani/rich-text-react-renderer:
     react-player: 1.15.3
     react-use: ^17.3.1
     remark-html: ^11.0.2
-    rich-text-react-renderer: mgmolisani/rich-text-react-renderer
     styled-components: 4.4.1
     styled-icons: 6.12.0
     validator: ^13.6.0

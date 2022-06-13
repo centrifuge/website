@@ -63,7 +63,6 @@
     "react-player": "1.15.3",
     "react-use": "^17.3.1",
     "remark-html": "^11.0.2",
-    "rich-text-react-renderer": "mgmolisani/rich-text-react-renderer",
     "styled-components": "4.4.1",
     "styled-icons": "6.12.0",
     "validator": "^13.6.0",
