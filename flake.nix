@@ -43,7 +43,7 @@
               yarn install --immutable --immutable-cache --mode=skip-build
               patchShebangs node_modules
             '';
-            buildPhase = "yarn gatsby build";
+            buildPhase = "yarn gatsby build --prefix-paths";
             installPhase = "mv public $out";
           };
         };
