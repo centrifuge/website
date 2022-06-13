@@ -50,7 +50,7 @@ jobs:
 
       - uses: ipfs/start-ipfs-daemon-action@v1
         with:
-          args: ""
+          args: "" # skip config init because we already did it above
 
       - name: publish the website on ipfs
         id: publish
@@ -67,6 +67,11 @@ jobs:
             ipfs pin remote add --service=pinata --name=centrifuge-website $cid
           fi
 
+  comment-on-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - uses: jwalton/gh-find-current-pr@v1
         id: finder
       - uses: marocchino/sticky-pull-request-comment@v2.2.0
