@@ -23,7 +23,7 @@ const Layout = ({ dark, children, location }) => {
     <Theme>
       <ThemeContext.Extend value={{ dark }}>
         <Navigation dark={dark} />
-        <CrossPageBanner />
+        {/* <CrossPageBanner /> */}
         <main>{children}</main>
         {showEmailSubscription(location?.pathname) && <EmailSubscription />}
         <Footer />
