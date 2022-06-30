@@ -69,6 +69,9 @@ functions
 yarn-error.log
 .pnp/
 .pnp.js
+# Yarn berry
+.yarn/cache/
+.yarn/install-state.gz
 # Yarn Integrity file
 .yarn-integrity
 

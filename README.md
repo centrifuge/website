@@ -9,8 +9,8 @@ This repo builds the centrifuge.io website with Gatsby and Netlify.
 **NOTE**: Please only branch off of, and merge into `develop`. `master` is reserved for production.
 
 ### Getting Started
+> [NodeJS v16+](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/) are required to run this project.
 
-> NodeJS v16+ and Yarn are required to run this project.
 
 ```sh
 # install dependencies
@@ -20,9 +20,22 @@ yarn
 yarn start
 ```
 
-## MDX Pages
+Building the website requires setting the environment variable `URL` to the production URL of the website.
+
+```sh
+URL=https://centrifuge.io yarn build
+```
+
+### MDX Pages
 
 To see what layout elements are available on MDX pages, launch the site in dev mode and go to `/mdxguide/`
+
+### Nix Flake
+
+[Nix](https://nix.dev/) users with [Flakes](https://nixos.wiki/wiki/Flakes#Installing_flakes) enabled can use the following commands:
+
+- `nix build` to create a reproducible build of the website and a symlink to it named `result`
+- `nix develop` to enter the development environment providing Yarn and ipfs-cli
 
 ## Gotchas
 
