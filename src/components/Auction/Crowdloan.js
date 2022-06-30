@@ -138,33 +138,37 @@ export const Crowdloan = () => {
         amountType,
       );
 
-      await claim.send(({ status, events }) => {
-        if (status.isInBlock || status.isFinalized) {
-          events.forEach(({ event }) => {
-            if (api.events.system.ExtrinsicSuccess.is(event)) {
-              setClaimedRewards(true);
-              setIsClaimingRewards(false);
-              setClaimHash(status.asFinalized);
-            } else if (api.events.system.ExtrinsicFailed.is(event)) {
-              const [dispatchError] = event.data;
-
-              if (dispatchError.isModule) {
-                const decoded = api.registry.findMetaError(
-                  dispatchError.asModule,
-                );
-
-                const errorInfo = `${decoded.section}.${decoded.name}`;
-                setClaimError(errorInfo);
+      await claim.signAndSend(
+        selectedAccount.address,
+        { signer: injector.signer },
+        ({ status, events }) => {
+          if (status.isInBlock || status.isFinalized) {
+            events.forEach(({ event }) => {
+              if (api.events.system.ExtrinsicSuccess.is(event)) {
+                setClaimedRewards(true);
                 setIsClaimingRewards(false);
-              } else {
-                const errorInfo = dispatchError.toString();
-                setClaimError(errorInfo);
-                setIsClaimingRewards(false);
+                setClaimHash(status.asFinalized);
+              } else if (api.events.system.ExtrinsicFailed.is(event)) {
+                const [dispatchError] = event.data;
+
+                if (dispatchError.isModule) {
+                  const decoded = api.registry.findMetaError(
+                    dispatchError.asModule
+                  );
+
+                  const errorInfo = `${decoded.section}.${decoded.name}`;
+                  setClaimError(errorInfo);
+                  setIsClaimingRewards(false);
+                } else {
+                  const errorInfo = dispatchError.toString();
+                  setClaimError(errorInfo);
+                  setIsClaimingRewards(false);
+                }
               }
-            }
-          });
+            });
+          }
         }
-      });
+      );
     } catch (error) {
       setClaimError(error);
       setIsClaimingRewards(false);

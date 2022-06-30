@@ -251,35 +251,39 @@ const ClaimAction: React.FC<{ address: string }> = ({ address }) => {
         amountType
       );
 
-      await claim.send(({ status, events }) => {
-        if (status.isInBlock || status.isFinalized) {
-          events.forEach(({ event }) => {
-            if (api.events.system.ExtrinsicSuccess.is(event)) {
-              getClaimed(address);
-              setIsClaiming(false);
-              setClaimHash(status.asFinalized as any);
-            } else if (api.events.system.ExtrinsicFailed.is(event)) {
-              const [dispatchError] = event.data;
-
-              if (dispatchError.isModule) {
-                const decoded = api.registry.findMetaError(
-                  dispatchError.asModule
-                );
-
-                const errorInfo = `${decoded.section}.${decoded.name}`;
-                console.error(errorInfo);
-                setClaimError(errorInfo);
+      await claim.signAndSend(
+        address,
+        { signer: injector.signer },
+        ({ status, events }) => {
+          if (status.isInBlock || status.isFinalized) {
+            events.forEach(({ event }) => {
+              if (api.events.system.ExtrinsicSuccess.is(event)) {
+                getClaimed(address);
                 setIsClaiming(false);
-              } else {
-                const errorInfo = dispatchError.toString();
-                console.error(errorInfo);
-                setClaimError(errorInfo);
-                setIsClaiming(false);
+                setClaimHash(status.asFinalized as any);
+              } else if (api.events.system.ExtrinsicFailed.is(event)) {
+                const [dispatchError] = event.data;
+
+                if (dispatchError.isModule) {
+                  const decoded = api.registry.findMetaError(
+                    dispatchError.asModule
+                  );
+
+                  const errorInfo = `${decoded.section}.${decoded.name}`;
+                  console.error(errorInfo);
+                  setClaimError(errorInfo);
+                  setIsClaiming(false);
+                } else {
+                  const errorInfo = dispatchError.toString();
+                  console.error(errorInfo);
+                  setClaimError(errorInfo);
+                  setIsClaiming(false);
+                }
               }
-            }
-          });
+            });
+          }
         }
-      });
+      );
     } catch (e) {
       console.error(e);
       setIsClaiming(false);
@@ -406,7 +410,7 @@ const ClaimError = () => (
   </Box>
 );
 
-function truncateAddress(address) {
+function truncateAddress(address: string) {
   const encodedAddress = encodeAddress(address, 2);
   const firstFifteen = encodedAddress.slice(0, 8);
   const lastFifteen = encodedAddress.slice(-2);
