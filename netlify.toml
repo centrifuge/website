@@ -4,4 +4,4 @@
   publish = "public"
 
 [build.environment]
-  YARN_VERSION = "3.2.1"
+  YARN_VERSION = "3.0.1"
