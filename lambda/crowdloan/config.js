@@ -21,7 +21,7 @@ const configs = {
     POSTGRES_CONFIG,
     REFERRAL_TABLE_NAME: "centrifuge",
     URL_CROWDLOAN_SERVICE:
-      "https://app.gc.subsquid.io/beta/centrifuge-sqd5/v2/graphql",
+      "https://app.gc.subsquid.io/beta/centrifuge-firesquid/v1/graphql",
 
     REWARDS_BUDGET: process.env.CCL_REWARDS_BUDGET
       ? parseFloat(process.env.CCL_REWARDS_BUDGET)
