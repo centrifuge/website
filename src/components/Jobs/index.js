@@ -15,7 +15,11 @@ export function useLeverPostings(site) {
 }
 
 const Jobs = () => {
-  const jobs = useLeverPostings("centrifuge") ?? [];
+  const jobs = useLeverPostings("centrifuge");
+
+  if (jobs === undefined) {
+    return <p>Loading...</p>;
+  }
 
   if (jobs.length === 0) {
     return <p>There are no open positions at this time.</p>;
