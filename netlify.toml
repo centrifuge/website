@@ -2,3 +2,4 @@
   command = "npm run build:all"
   functions = "functions"
   publish = "public"
+  YARN_VERSION = "3.2.1"
