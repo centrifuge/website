@@ -126,8 +126,7 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-ipfs`,
-    `gatsby-plugin-netlify-cache`
+    `gatsby-plugin-ipfs`
   ],
   pathPrefix: "__GATSBY_IPFS_PATH_PREFIX__",
   developMiddleware: app => {
