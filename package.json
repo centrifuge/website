@@ -50,7 +50,7 @@
     "lodash.countby": "4.6.0",
     "lodash.uniqby": "4.7.0",
     "lottie-api": "^1.0.2",
-    "lottie-react-web": "2.1.4",
+    "lottie-react-web": "^2.2.2",
     "node-fetch": "2.6.4",
     "postgres": "^1.0.2",
     "prop-types": "15.6.2",
