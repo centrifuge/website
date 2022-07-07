@@ -2,3 +2,6 @@
   command = "npm run build:all"
   functions = "functions"
   publish = "public"
+
+[build.environment]
+  YARN_VERSION = "3.2.1"
