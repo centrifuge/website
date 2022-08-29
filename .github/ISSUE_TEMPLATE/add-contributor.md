@@ -11,5 +11,6 @@ You can propose to add yourself as a contributor to the centrifuge.io website. T
 
 Name:
 Role:
+Affiliation (optional):
 Photo:
 Your favorite link on the internet:
