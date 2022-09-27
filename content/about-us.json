@@ -1,0 +1,12 @@
+{
+  "slug": "/about-us",
+  "title": "About us",
+  "seo": {
+    "dscription": "Lorem ipsum"
+  },
+  "sections": [
+    {
+      "type": "image"
+    }
+  ]
+}

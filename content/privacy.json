@@ -1,0 +1,12 @@
+{
+  "slug": "/privacy",
+  "title": "Privacy",
+  "seo": {
+    "dscription": "Lorem ipsum"
+  },
+  "sections": [
+    {
+      "type": "image"
+    }
+  ]
+}

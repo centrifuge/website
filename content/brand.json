@@ -1,0 +1,12 @@
+{
+  "slug": "/brand",
+  "title": "Brand",
+  "seo": {
+    "dscription": "Lorem ipsum"
+  },
+  "sections": [
+    {
+      "type": "image"
+    }
+  ]
+}
