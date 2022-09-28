@@ -1,20 +1,37 @@
 import * as React from 'react'
 
 import type { TestimonialsProps } from './Testimonials'
+import type { HeroMainProps } from './HeroMain'
+
 import { Testimonials } from './Testimonials'
+import { HeroMain } from './HeroMain'
 
 const types = {
   testimonials: Testimonials,
+  hero_main: HeroMain,
 }
 
-type SectionProps = {
-  sections: TestimonialsProps[]
+export type SectionType = keyof typeof types
+export type SectionProps = TestimonialsProps | HeroMainProps
+
+type SectionsProps = {
+  sections: SectionProps[]
 }
 
-export function Sections({ sections }: SectionProps) {
-  return sections.map((section, index) => {
-    const Comp = types[section.type]
+export function Sections({ sections }: SectionsProps) {
+  return (
+    <>
+      {sections.map((section, index) => {
+        // const key = type as keyof typeof types
+        const { type } = section
 
-    return <Comp key={`${section.type}-${index}`} {...section} />
-  })
+        if (types[type]) {
+          const Comp = types[type]
+          return <Comp key={`${type}-${index}`} {...section} />
+        } else {
+          console.warn('No section of type: ', type)
+        }
+      })}
+    </>
+  )
 }

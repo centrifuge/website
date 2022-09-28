@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { SectionProps } from '../components/Sections'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Sections } from '../components/Sections'
@@ -9,7 +10,7 @@ type PageProps = {
     seo: {
       description: string
     }
-    sections: { type: string }[]
+    sections: SectionProps[]
   }
 }
 

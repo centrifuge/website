@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { SectionType } from './Sections'
 
 type TestimonialProps = {
   body: string
@@ -7,7 +8,7 @@ type TestimonialProps = {
 }
 
 export type TestimonialsProps = {
-  type: string
+  type: SectionType
   title: string
   items: TestimonialProps[]
 }
