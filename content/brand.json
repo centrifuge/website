@@ -2,7 +2,8 @@
   "slug": "/brand",
   "title": "Brand",
   "seo": {
-    "dscription": "Lorem ipsum"
+    "title": "Brand",
+    "description": "Lorem ipsum"
   },
   "sections": [
     {

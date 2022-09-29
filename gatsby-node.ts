@@ -1,23 +1,29 @@
 import { readFile } from 'fs/promises'
 import path from 'path'
 import type { GatsbyNode } from 'gatsby'
+import pages from './config/pages'
 
-export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
+export const createPages: GatsbyNode['createPages'] = async ({ actions }) => {
   const { createPage } = actions
 
-  let pages = JSON.parse(await readFile('./content/pages.json', 'utf8'))
+  await Promise.all(pages.map((page) => readFile(`./content/${page}.json`, 'utf8')))
+    .then((fileBuffers) => {
+      fileBuffers.forEach((fileBuffer) => {
+        const { slug, title, seo, sections } = JSON.parse(fileBuffer)
 
-  for (const page of pages) {
-    const { slug, title, seo, sections } = JSON.parse(await readFile(`./content/${page}.json`, 'utf8'))
-
-    createPage({
-      path: slug,
-      component: path.resolve('./src/templates/base.tsx'),
-      context: {
-        title,
-        seo,
-        sections,
-      },
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/base.tsx'),
+          context: {
+            title,
+            seo,
+            sections,
+          },
+        })
+      })
     })
-  }
+    .catch((error) => {
+      console.error(error.message)
+      process.exit(1)
+    })
 }

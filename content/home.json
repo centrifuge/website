@@ -1,9 +1,6 @@
 {
   "slug": "/",
   "title": "Home page",
-  "seo": {
-    "dscription": "Lorem ipsum"
-  },
   "sections": [
     {
       "type": "hero_main",

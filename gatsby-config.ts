@@ -2,8 +2,12 @@ import type { GatsbyConfig } from 'gatsby'
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Centrifuge website`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: 'Centrifuge: Real World DeFi',
+    description:
+      'Decentralized asset finance: asset Originators can access bankless liquidity, and investors can earn attractive yields from an open marketplace of asset pools',
+    twitterUsername: '@centrifuge',
+    image: '/ogimage.png',
+    siteUrl: 'https://centrifuge.io/',
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

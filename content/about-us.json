@@ -2,7 +2,8 @@
   "slug": "/about-us",
   "title": "About us",
   "seo": {
-    "dscription": "Lorem ipsum"
+    "title": "About us",
+    "description": "Lorem ipsum"
   },
   "sections": [
     {
