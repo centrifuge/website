@@ -1,3 +1,1 @@
-const pages = ['about-us', 'brand', 'governance', 'home', 'privacy']
-
-export default pages
+export const pages = ['about-us', 'brand', 'governance', 'home', 'privacy']

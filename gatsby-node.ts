@@ -1,7 +1,7 @@
 import { readFile } from 'fs/promises'
 import path from 'path'
 import type { GatsbyNode } from 'gatsby'
-import pages from './config/pages'
+import { pages } from './config/pages'
 
 export const createPages: GatsbyNode['createPages'] = async ({ actions }) => {
   const { createPage } = actions
