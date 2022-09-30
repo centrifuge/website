@@ -1,35 +1,26 @@
 import * as React from 'react'
 import type { SectionProps } from '../components/Sections'
+import type { SEOProps } from '../components/Seo'
 import { SEO } from '../components/Seo'
-import { Header } from '../components/Header'
-import { Footer } from '../components/Footer'
 import { Sections } from '../components/Sections'
+import { Layout } from '../components/Layout'
 
 type PageProps = {
   pageContext: {
     title: string
-    seo: {
-      title: string
-      description: string
-    }
+    seo: SEOProps
     sections: SectionProps[]
   }
 }
 
 export default function Base({ pageContext }: PageProps) {
-  const { title, seo, sections } = pageContext
+  const { title, sections } = pageContext
 
   return (
-    <>
-      <Header />
-
-      <main>
-        <h1>{title}</h1>
-        <Sections sections={sections} />
-      </main>
-
-      <Footer />
-    </>
+    <Layout>
+      <h1>{title}</h1>
+      <Sections sections={sections} />
+    </Layout>
   )
 }
 
