@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const RootStyle = createGlobalStyle`
+export const FontStyle = createGlobalStyle`
   @font-face {
     font-family: 'Inter';
     font-weight: 400 700;

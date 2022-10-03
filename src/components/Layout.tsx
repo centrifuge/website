@@ -1,7 +1,7 @@
 import * as React from 'react'
 import centrifugeLight from '@centrifuge/fabric/dist/theme/centrifugeLight'
 import { GlobalStyle } from '@centrifuge/fabric'
-import { RootStyle } from './RootStyle'
+import { FontStyle } from './RootStyle'
 import { ThemeProvider } from 'styled-components'
 import { Header } from './Header'
 import { Footer } from './Footer'
@@ -14,7 +14,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <ThemeProvider theme={centrifugeLight}>
       <GlobalStyle />
-      <RootStyle />
+      <FontStyle />
       <Header />
       <main>{children}</main>
       <Footer />
