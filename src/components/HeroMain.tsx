@@ -1,5 +1,6 @@
 import * as React from 'react'
 import type { SectionType } from './Sections'
+import { links } from '../../config/links'
 
 export type HeroMainProps = {
   type: SectionType
@@ -16,7 +17,7 @@ export function HeroMain({ title, body }: HeroMainProps) {
         <p key={`${index}`}>{entry}</p>
       ))}
 
-      <a href="https://tinlake.centrifuge.io/" rel="noopener noreferrer" target="_blank">
+      <a href={links.app} rel="noopener noreferrer" target="_blank">
         Enter App
       </a>
     </section>
