@@ -10,28 +10,14 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
-console.log('centrifugeLight', centrifugeLight)
-
 export function Layout({ children }: LayoutProps) {
   return (
-    <FabricProvider theme={centrifugeLight}>
-      <FabricGlobalStyle />
+    <ThemeProvider theme={centrifugeLight}>
+      <FabricGlobalStyle theme={centrifugeLight} />
       <GlobalStyle />
       <Header />
       <main>{children}</main>
       <Footer />
-    </FabricProvider>
+    </ThemeProvider>
   )
 }
-
-// export function Layout({ children }: LayoutProps) {
-//   return (
-//     <ThemeProvider theme={centrifugeLight}>
-//       <FabricGlobalStyle theme={centrifugeLight} />
-//       <GlobalStyle />
-//       <Header />
-//       <main>{children}</main>
-//       <Footer />
-//     </ThemeProvider>
-//   )
-// }
