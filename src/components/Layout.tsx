@@ -12,26 +12,26 @@ type LayoutProps = {
 
 console.log('centrifugeLight', centrifugeLight)
 
-// export function Layout({ children }: LayoutProps) {
-//   return (
-//     <FabricProvider theme={centrifugeLight}>
-//       <FabricGlobalStyle />
-//       <GlobalStyle />
-//       <Header />
-//       <main>{children}</main>
-//       <Footer />
-//     </FabricProvider>
-//   )
-// }
-
 export function Layout({ children }: LayoutProps) {
   return (
-    <ThemeProvider theme={centrifugeLight}>
-      <FabricGlobalStyle theme={centrifugeLight} />
+    <FabricProvider theme={centrifugeLight}>
+      <FabricGlobalStyle />
       <GlobalStyle />
       <Header />
       <main>{children}</main>
       <Footer />
-    </ThemeProvider>
+    </FabricProvider>
   )
 }
+
+// export function Layout({ children }: LayoutProps) {
+//   return (
+//     <ThemeProvider theme={centrifugeLight}>
+//       <FabricGlobalStyle theme={centrifugeLight} />
+//       <GlobalStyle />
+//       <Header />
+//       <main>{children}</main>
+//       <Footer />
+//     </ThemeProvider>
+//   )
+// }
