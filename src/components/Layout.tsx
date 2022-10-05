@@ -1,4 +1,4 @@
-import { GlobalStyle as FabricGlobalStyle } from '@centrifuge/fabric'
+import { Box, GlobalStyle as FabricGlobalStyle } from '@centrifuge/fabric'
 import * as React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../theme'
@@ -15,7 +15,9 @@ export function Layout({ children }: LayoutProps) {
       <FabricGlobalStyle />
       <GlobalStyle />
       <Header />
-      <main>{children}</main>
+      <Box as="main" pb={200} px={3}>
+        {children}
+      </Box>
       <Footer />
     </ThemeProvider>
   )

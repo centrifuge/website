@@ -12,13 +12,13 @@ export const theme: DefaultTheme = {
   typography: {
     ...centrifugeLight.typography,
     heading1: {
-      fontSize: [20, 80],
+      fontSize: [64, 80],
       lineHeight: 1.167,
       fontWeight: [600, 400],
       color: 'textPrimary',
     },
     heading2: {
-      fontSize: [18, 72],
+      fontSize: [36, 72],
       lineHeight: 1.2,
       fontWeight: [600, 500],
       color: 'textPrimary',
@@ -38,7 +38,7 @@ export const theme: DefaultTheme = {
     heading5: {
       fontSize: 28,
       lineHeight: 1.4,
-      fontWeight: 600,
+      fontWeight: 400,
       color: 'textPrimary',
     },
     heading6: {
@@ -52,6 +52,7 @@ export const theme: DefaultTheme = {
       lineHeight: 1.2,
       fontWeight: 500,
       color: 'textDisabled',
+      textTransform: 'uppercase',
     },
     emphasized: {
       fontWeight: 600,
