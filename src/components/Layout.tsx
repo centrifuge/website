@@ -1,20 +1,20 @@
-import * as React from 'react'
-import centrifugeLight from '@centrifuge/fabric/dist/theme/centrifugeLight'
 import { GlobalStyle as FabricGlobalStyle } from '@centrifuge/fabric'
-import { GlobalStyle } from './GlobalStyle'
+import * as React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { Header } from './header'
+import { theme } from '../theme'
 import { Footer } from './footer'
+import { GlobalStyle } from './GlobalStyle'
+import { Header } from './header'
 
 type LayoutProps = {
   children: React.ReactNode
 }
 
-console.log('centrifugeLight', centrifugeLight)
+console.log('centrifugeLight', theme)
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <ThemeProvider theme={centrifugeLight}>
+    <ThemeProvider theme={theme}>
       <FabricGlobalStyle />
       <GlobalStyle />
       <Header />
