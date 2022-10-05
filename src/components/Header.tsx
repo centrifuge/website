@@ -7,8 +7,8 @@ export function Header() {
   return (
     <header>
       <Link to="/">Home</Link>
-      <MobileMenu />
-      <DesktopMenu />
+      {/* <MobileMenu />
+      <DesktopMenu /> */}
     </header>
   )
 }

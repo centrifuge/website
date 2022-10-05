@@ -10,6 +10,8 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
+console.log('centrifugeLight', centrifugeLight)
+
 export function Layout({ children }: LayoutProps) {
   return (
     <ThemeProvider theme={centrifugeLight}>
