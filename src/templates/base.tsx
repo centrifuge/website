@@ -1,7 +1,7 @@
 import * as React from 'react'
 import type { SectionProps } from '../components/Sections'
-import type { SEOProps } from '../components/Seo'
-import { SEO } from '../components/Seo'
+import type { SEOProps } from '../components/SEO'
+import { SEO } from '../components/SEO'
 import { Sections } from '../components/Sections'
 import { Layout } from '../components/Layout'
 

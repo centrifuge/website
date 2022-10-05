@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const FontStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Inter';
     font-weight: 400 700;
@@ -10,7 +10,16 @@ export const FontStyle = createGlobalStyle`
     src: url(/fonts/Inter-roman.var.woff2) format("woff2");
   }
 
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     font-family: Inter, sans-serif;
+  }
+
+  *:focus-visible {
+    outline: solid blue;
   }
 `
