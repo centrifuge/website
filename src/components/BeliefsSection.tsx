@@ -1,11 +1,11 @@
 import { Container, Divider, Grid, Stack, Text } from '@centrifuge/fabric'
 import * as React from 'react'
 
-export type EthicsSectionProps = {
+export type BeliefsSectionProps = {
   title: string
 }
 
-export function EthicsSection({ title }: EthicsSectionProps) {
+export function BeliefsSection({ title }: BeliefsSectionProps) {
   return (
     <Container>
       <Stack gap={5}>

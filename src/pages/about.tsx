@@ -1,6 +1,6 @@
 import { Stack } from '@centrifuge/fabric'
 import * as React from 'react'
-import { EthicsSection } from '../components/EthicsSection'
+import { BeliefsSection } from '../components/BeliefsSection'
 import { HeroVideo } from '../components/HeroVideo'
 import { Layout } from '../components/Layout'
 import { OrgSection } from '../components/OrgSection'
@@ -13,7 +13,7 @@ function AboutPage() {
         <HeroVideo title="hello" body="body" videoUrl="asd" />
         <OrgSection title="How we work" />
         <ValuesSection title="Our values" />
-        <EthicsSection title="We believe in" />
+        <BeliefsSection title="We believe in" />
       </Stack>
     </Layout>
   )
