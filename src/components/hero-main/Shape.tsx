@@ -3,7 +3,6 @@ import * as React from 'react'
 export function Shape() {
   return (
     <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="500" height="500" fill="white" />
       <path
         d="M233.808 213.302C234.069 213.272 234.332 213.277 234.595 213.27L235.392 213.244H235.463L235.539 186.096H235.392L233.764 186.131C233.764 186.131 233.76 186.131 233.757 186.131C233.219 186.147 232.684 186.154 232.146 186.2L233.803 213.302H233.808Z"
         fill="#2762FF"

@@ -13,7 +13,7 @@ export type HeroMainProps = {
 
 export function HeroMain({ title, body }: HeroMainProps) {
   return (
-    <Box as="section" p={2}>
+    <Box as="section" px={2} py={[2, 4, 6]}>
       <Inner>
         <Title>
           Real-World

@@ -16,7 +16,7 @@ export const Title = styled.h1`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     font-size: 10vw;
-    font-size: min(10vw, 8rem);
+    font-size: min(10vw, 7rem);
     grid-area: inner;
   }
 `
@@ -35,8 +35,6 @@ export const Graphic = styled.div`
   display: none;
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background-color: green;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     display: block;
