@@ -7,7 +7,7 @@ export type HeroVideoProps = {
   videoUrl: string
 }
 
-export const HeroVideo: React.FC<HeroVideoProps> = ({ title, body, videoUrl }) => {
+export function HeroVideo({ title, body, videoUrl }: HeroVideoProps) {
   return (
     <Container>
       <Stack gap={2}>

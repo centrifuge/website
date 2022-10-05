@@ -7,7 +7,7 @@ type Props = {
   body?: string
 }
 
-export const HeroTitle: React.FC<Props> = ({ title, subtitle, body }) => {
+export function HeroTitle({ title, subtitle, body }: Props) {
   return (
     <Stack gap={2}>
       {title && (
