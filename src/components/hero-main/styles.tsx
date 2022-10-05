@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container } from '@centrifuge/fabric'
+import { AnchorButton, Container } from '@centrifuge/fabric'
 
 export const Inner = styled(Container)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
@@ -16,18 +16,26 @@ export const Title = styled.h1`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     font-size: 10vw;
-    font-size: min(10vw, 7rem);
+    font-size: min(10vw, 9rem);
     grid-area: inner;
   }
 `
 
 export const Content = styled.div`
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
+    margin-top: 3vw;
     grid-area: inner;
     width: 50%;
     max-width: 500px;
     justify-self: end;
     text-align: center;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints['M']}) {
+    margin-top: 0;
   }
 `
 
@@ -52,11 +60,14 @@ export const Paragraph = styled.p`
   font-size: 1.1rem;
   line-height: 1.4;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints['M']}) {
     font-size: 1.3rem;
   }
 
   & + & {
-    margin-block-start: 0.3em;
+    margin-top: 0.3em;
   }
+`
+export const CTA = styled(AnchorButton)`
+  margin-top: 1.5rem;
 `
