@@ -43,6 +43,7 @@ export const Graphic = styled.div`
   display: none;
   width: 100%;
   aspect-ratio: 1 / 1;
+  margin-bottom: 1rem;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     display: block;
@@ -56,13 +57,6 @@ export const Graphic = styled.div`
   }
 `
 
-export const Paragraph = styled(Text)`
-  margin: 0;
-
-  & + & {
-    margin-top: 0.3em;
-  }
-`
 export const CTA = styled(AnchorButton)`
   margin-top: 1.5rem;
 `

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Box } from '@centrifuge/fabric'
+import { Box, Text } from '@centrifuge/fabric'
 import type { SectionType } from '../Sections'
 import { links } from '../../../config/links'
 import { ChainStats } from '../chain-stats/ChainStats'
 import test from '../../images/hero-main-shape.svg'
-import { Inner, Title, Content, Graphic, Paragraph, CTA } from './styles'
+import { Inner, Title, Content, Graphic, CTA } from './styles'
 
 export type HeroMainProps = {
   type: SectionType
@@ -28,9 +28,9 @@ export function HeroMain({ title, body }: HeroMainProps) {
           </Graphic>
 
           {body.map((entry, index) => (
-            <Paragraph key={`${index}`} variant="body1">
+            <Text key={`${index}`} variant="body1" as="p">
               {entry}
-            </Paragraph>
+            </Text>
           ))}
 
           <CTA href={links.app} target="_blank" small>
