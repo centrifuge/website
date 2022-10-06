@@ -3,7 +3,7 @@ import { Box } from '@centrifuge/fabric'
 import type { SectionType } from '../Sections'
 import { links } from '../../../config/links'
 import { ChainStats } from '../chain-stats/ChainStats'
-import { Shape } from './Shape'
+import test from '../../images/hero-main-shape.svg'
 import { Inner, Title, Content, Graphic, Paragraph, CTA } from './styles'
 
 export type HeroMainProps = {
@@ -24,7 +24,7 @@ export function HeroMain({ title, body }: HeroMainProps) {
 
         <Content>
           <Graphic>
-            <Shape />
+            <img src={test} alt="" />
           </Graphic>
 
           {body.map((entry, index) => (

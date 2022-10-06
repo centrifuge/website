@@ -48,10 +48,11 @@ export const Graphic = styled.div`
     display: block;
   }
 
-  svg {
+  img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
   }
 `
 
