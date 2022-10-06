@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { AnchorButton, Container } from '@centrifuge/fabric'
+import { AnchorButton, Container, Text } from '@centrifuge/fabric'
 
 export const Inner = styled(Container)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
@@ -55,14 +55,8 @@ export const Graphic = styled.div`
   }
 `
 
-export const Paragraph = styled.p`
+export const Paragraph = styled(Text)`
   margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.4;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints['M']}) {
-    font-size: 1.3rem;
-  }
 
   & + & {
     margin-top: 0.3em;

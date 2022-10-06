@@ -28,7 +28,9 @@ export function HeroMain({ title, body }: HeroMainProps) {
           </Graphic>
 
           {body.map((entry, index) => (
-            <Paragraph key={`${index}`}>{entry}</Paragraph>
+            <Paragraph key={`${index}`} variant="body1">
+              {entry}
+            </Paragraph>
           ))}
 
           <CTA href={links.app} target="_blank" small>
