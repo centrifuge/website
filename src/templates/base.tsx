@@ -18,7 +18,6 @@ export default function Base({ pageContext }: PageProps) {
 
   return (
     <Layout>
-      <h1>{title}</h1>
       <Sections sections={sections} />
     </Layout>
   )
