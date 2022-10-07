@@ -9,13 +9,14 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions }) => {
   await Promise.all(pages.map((page) => readFile(`./content/${page}.json`, 'utf8')))
     .then((fileBuffers) => {
       fileBuffers.forEach((fileBuffer) => {
-        const { slug, title, seo, sections } = JSON.parse(fileBuffer)
+        const { slug, title, menuButtonVariant, seo, sections } = JSON.parse(fileBuffer)
 
         createPage({
           path: slug,
           component: path.resolve('./src/templates/base.tsx'),
           context: {
             title,
+            menuButtonVariant,
             seo,
             sections,
           },
