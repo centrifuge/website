@@ -11,7 +11,7 @@ export function Header() {
 
   return (
     <Root as="header" position="fixed" zIndex={zIndices.sticky} top={0} px={2} height={sizes.headerHeight}>
-      <Container as={Shelf} alignItems="center" height="100%" maxWidth="containerHeader">
+      <Container as={Shelf} justifyContent="space-between" alignItems="center" height="100%" maxWidth="containerHeader">
         <LogoLink to="/" title="Home page">
           <Logo />
         </LogoLink>
