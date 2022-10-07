@@ -8,6 +8,7 @@ export const theme: DefaultTheme = {
     container: '1430px',
     containerHeader: '1600px',
     containerNarrow: '1140px',
+    headerHeight: [50, 65, 65],
   },
   typography: {
     ...centrifugeLight.typography,
@@ -97,6 +98,11 @@ export const theme: DefaultTheme = {
       lineHeight: 1.375,
       fontWeight: 500,
       color: 'textSecondary',
+    },
+    menuAnchor: {
+      fontSize: 20,
+      fontWeight: 400,
+      color: 'textPrimary',
     },
   },
 }
