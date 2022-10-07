@@ -1,6 +1,7 @@
 import { GlobalStyle as FabricGlobalStyle } from '@centrifuge/fabric'
 import * as React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { Box } from '@centrifuge/fabric'
 import { theme } from '../theme'
 import { Footer } from './footer'
 import { GlobalStyle } from './GlobalStyle'
@@ -16,7 +17,9 @@ export function Layout({ children }: LayoutProps) {
       <FabricGlobalStyle />
       <GlobalStyle />
       <Header />
-      <main>{children}</main>
+      <Box as="main" pt={theme.sizes.headerHeight} flexGrow={2}>
+        {children}
+      </Box>
       <Footer />
     </ThemeProvider>
   )
