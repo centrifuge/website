@@ -1,7 +1,7 @@
 import * as React from 'react'
 import FocusTrap from 'focus-trap-react'
 import { Box } from '@centrifuge/fabric'
-import { Burger } from '../Burger'
+import { Burger } from '../burger'
 import { mobileMenu } from '../../../config/menu'
 import { Panel } from './styles'
 import { SubMenu } from './SubMenu'

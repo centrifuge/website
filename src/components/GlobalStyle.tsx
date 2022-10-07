@@ -20,6 +20,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   *:focus-visible {
-    outline: solid blue;
+    outline: solid #2762ff;
   }
 `
