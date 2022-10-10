@@ -1,12 +1,18 @@
 import { Box, Divider, Grid, Shelf, Stack, Text } from '@centrifuge/fabric'
 import * as React from 'react'
-import org1 from '../images/org1.svg'
-import org2 from '../images/org2.svg'
-import org3 from '../images/org3.svg'
+import center from '../images/org-center.svg'
+import group from '../images/org-group.svg'
+import remote from '../images/org-remote.svg'
 import { CenterContainer } from './CenterContainer'
 
+const images = {
+  center,
+  remote,
+  group,
+}
+
 type ItemProps = {
-  image: string
+  image: keyof typeof images
   title: string
   body: string
 }
@@ -19,7 +25,7 @@ function Item({ image, title, body }: ItemProps) {
         alignSelf="flex-start"
         width="50%"
         as="img"
-        src={image}
+        src={images[image]}
         flex={['0', '0 0 30%', '0']}
         alt=""
       />
@@ -40,9 +46,10 @@ function Item({ image, title, body }: ItemProps) {
 
 export type OrgSectionProps = {
   title: string
+  items: ItemProps[]
 }
 
-export function OrgSection({ title }: OrgSectionProps) {
+export function OrgSection({ title, items }: OrgSectionProps) {
   return (
     <CenterContainer>
       <Stack as="section" gap={8}>
@@ -50,13 +57,9 @@ export function OrgSection({ title }: OrgSectionProps) {
           {title}
         </Text>
         <Grid columns={[1, 1, 3]} gap={[8, 8, 5]} equalColumns role="list">
-          <Item
-            image={org1}
-            title="Self-managed organization (SMO)"
-            body="As an SMO, we work to minimize hierarchy and decentralize power, similar to the way our product is built."
-          />
-          <Item image={org2} title="Fully remote" body="Work anywhere in the world" />
-          <Item image={org3} title="Retreat" body="In-person retreats bi-annually" />
+          {items.map((i) => (
+            <Item {...i} key={i.title} />
+          ))}
         </Grid>
       </Stack>
     </CenterContainer>

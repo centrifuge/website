@@ -4,9 +4,10 @@ import { CenterContainer } from './CenterContainer'
 
 export type ValuesSectionProps = {
   title: string
+  items: [string, string, string, string]
 }
 
-export function ValuesSection({ title }: ValuesSectionProps) {
+export function ValuesSection({ title, items }: ValuesSectionProps) {
   return (
     <CenterContainer as="section">
       <Stack alignItems="center">
