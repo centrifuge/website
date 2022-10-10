@@ -5,7 +5,41 @@
     {
       "type": "hero_main",
       "title": ["DeFi", "Assets", "Utility", "Impact", "Finance", "Value"],
-      "body": ["The on-chain ecosystem for structured credit.", "Transparent. Affordable. Limitless."]
+      "body": ["The on-chain ecosystem for structured credit.", "Transparent. Affordable. Limitless."],
+      "partners": [
+        {
+          "logo": "polkadot",
+          "alt": "Polkadot"
+        },
+        {
+          "logo": "maker",
+          "alt": "Maker"
+        },
+        {
+          "logo": "aave",
+          "alt": "AAVE"
+        },
+        {
+          "logo": "ethereum",
+          "alt": "Ethereum"
+        },
+        {
+          "logo": "blocktower",
+          "alt": "Block Tower"
+        },
+        {
+          "logo": "acala",
+          "alt": "Acala"
+        },
+        {
+          "logo": "nomad",
+          "alt": "Nomad"
+        },
+        {
+          "logo": "moonbeam",
+          "alt": "Moonbeam"
+        }
+      ]
     },
     {
       "type": "testimonials",
