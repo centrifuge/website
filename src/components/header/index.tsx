@@ -1,12 +1,17 @@
 import * as React from 'react'
 import { Container, Shelf } from '@centrifuge/fabric'
+import type { ButtonVariant } from '../desktop-menu/SubMenu'
 import { Logo } from '../Logo'
 import { MobileMenu } from '../mobile-menu'
-import { DesktopMenu } from '../DesktopMenu'
+import { DesktopMenu } from '../desktop-menu'
 import { Root, LogoLink } from './styles'
 import { useTheme } from 'styled-components'
 
-export function Header() {
+type HeaderProps = {
+  menuButtonVariant: ButtonVariant
+}
+
+export function Header({ menuButtonVariant }: HeaderProps) {
   const { sizes, zIndices } = useTheme()
 
   return (
@@ -17,7 +22,7 @@ export function Header() {
         </LogoLink>
 
         <MobileMenu />
-        {/* <DesktopMenu /> */}
+        <DesktopMenu menuButtonVariant={menuButtonVariant} />
       </Container>
     </Root>
   )

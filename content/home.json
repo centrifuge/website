@@ -1,6 +1,7 @@
 {
   "slug": "/",
   "title": "Home page",
+  "menuButtonVariant": "secondary",
   "sections": [
     {
       "type": "hero_main",
