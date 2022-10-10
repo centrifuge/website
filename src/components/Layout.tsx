@@ -10,7 +10,7 @@ import { Header } from './header'
 type LayoutProps = {
   children: React.ReactNode
 }
-
+console.log('theme', theme)
 export function Layout({ children }: LayoutProps) {
   return (
     <ThemeProvider theme={theme}>
