@@ -15,7 +15,7 @@ export function Layout({ children }: LayoutProps) {
       <FabricGlobalStyle />
       <GlobalStyle />
       <Header />
-      <Box as="main" pb={200} px={3}>
+      <Box as="main" pb={200}>
         {children}
       </Box>
       <Footer />

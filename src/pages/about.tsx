@@ -10,7 +10,11 @@ function AboutPage() {
   return (
     <Layout>
       <Stack gap={168}>
-        <HeroVideo title="hello" body="body" videoUrl="asd" />
+        <HeroVideo
+          title="Mission"
+          body="Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively; free of intermediaries and the inefficiencies of traditional finance."
+          videoUrl="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        />
         <OrgSection title="How we work" />
         <ValuesSection title="Our values" />
         <BeliefsSection title="We believe in" />
