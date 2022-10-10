@@ -29,6 +29,7 @@ export function HeroVideo({ title, body, videoUrl }: HeroVideoProps) {
           src={videoUrl}
           autoPlay
           muted
+          loop
         />
       </Stack>
     </CenterContainer>
