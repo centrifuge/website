@@ -3,7 +3,9 @@ import { Box } from '@centrifuge/fabric'
 import styled from 'styled-components'
 
 export const Root = styled(Box)`
+  width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundPage};
 `
 
 export const LogoLink = styled(Link)`

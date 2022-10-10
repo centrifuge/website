@@ -6,9 +6,15 @@ declare module 'styled-components' {
     sizes: FabricTheme['sizes'] & {
       containerHeader: string
       containerNarrow: string
+      headerHeight: number[]
     }
     typography: FabricTheme['typography'] & {
       tag: ThemeTypography['heading1']
+      menuAnchor: {
+        fontSize: number
+        fontWeight: number
+        color: string
+      }
     }
   }
 }

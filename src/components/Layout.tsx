@@ -9,13 +9,14 @@ import { Header } from './header'
 type LayoutProps = {
   children: React.ReactNode
 }
+
 export function Layout({ children }: LayoutProps) {
   return (
     <ThemeProvider theme={theme}>
       <FabricGlobalStyle />
       <GlobalStyle />
       <Header />
-      <Box as="main" pb={200}>
+      <Box as="main" pt={theme.sizes.headerHeight} pb={200} flexGrow={2}>
         {children}
       </Box>
       <Footer />

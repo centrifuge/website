@@ -15,11 +15,28 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  #gatsby-focus-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;  
+  }
+
+  @supports (min-height: 100dvh) {
+    #gatsby-focus-wrapper {
+      min-height: 100dvh;
+    }
+  }
+
+  #gatsby-focus-wrapper > * {
+    min-width: 0;
+    width: 100%;
+  }
+
   body {
     font-family: Inter, sans-serif;
   }
 
   *:focus-visible {
-    outline: solid blue;
+    outline: solid #2762ff;
   }
 `

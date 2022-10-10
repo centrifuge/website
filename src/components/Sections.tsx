@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import type { TestimonialsProps } from './Testimonials'
-import type { HeroMainProps } from './HeroMain'
+import type { HeroMainProps } from './hero-main'
 
 import { Testimonials } from './Testimonials'
-import { HeroMain } from './HeroMain'
+import { HeroMain } from './hero-main'
 
 const types = {
   testimonials: Testimonials,
