@@ -46,7 +46,8 @@ const menu = [
       },
       {
         label: 'FAQs',
-        href: '/faq',
+        href: 'https://docs.centrifuge.io/faq/',
+        isExternal: true,
       },
       {
         label: 'Documentation',
