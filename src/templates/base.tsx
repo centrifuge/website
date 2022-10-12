@@ -1,12 +1,14 @@
 import * as React from 'react'
 import type { SectionProps } from '../components/Sections'
 import type { SEOProps } from '../components/SEO'
+import type { ButtonVariant } from '../components/desktop-menu/SubMenu'
 import { SEO } from '../components/SEO'
 import { Sections } from '../components/Sections'
 import { Layout } from '../components/Layout'
 
 type PageProps = {
   pageContext: {
+    menuButtonVariant?: ButtonVariant
     title: string
     seo: SEOProps
     sections: SectionProps[]
@@ -14,10 +16,10 @@ type PageProps = {
 }
 
 export default function Base({ pageContext }: PageProps) {
-  const { title, sections } = pageContext
+  const { menuButtonVariant, sections } = pageContext
 
   return (
-    <Layout>
+    <Layout menuButtonVariant={menuButtonVariant || 'primary'}>
       <Sections sections={sections} />
     </Layout>
   )

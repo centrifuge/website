@@ -1,11 +1,46 @@
 {
   "slug": "/",
   "title": "Home page",
+  "menuButtonVariant": "secondary",
   "sections": [
     {
       "type": "hero_main",
       "title": ["DeFi", "Assets", "Utility", "Impact", "Finance", "Value"],
-      "body": ["The on-chain ecosystem for structured credit.", "Transparent. Affordable. Limitless."]
+      "body": ["The on-chain ecosystem for structured credit.", "Transparent. Affordable. Limitless."],
+      "partners": [
+        {
+          "logo": "polkadot",
+          "alt": "Polkadot"
+        },
+        {
+          "logo": "maker",
+          "alt": "Maker"
+        },
+        {
+          "logo": "aave",
+          "alt": "AAVE"
+        },
+        {
+          "logo": "ethereum",
+          "alt": "Ethereum"
+        },
+        {
+          "logo": "blocktower",
+          "alt": "Block Tower"
+        },
+        {
+          "logo": "acala",
+          "alt": "Acala"
+        },
+        {
+          "logo": "nomad",
+          "alt": "Nomad"
+        },
+        {
+          "logo": "moonbeam",
+          "alt": "Moonbeam"
+        }
+      ]
     },
     {
       "type": "testimonials",
@@ -30,6 +65,43 @@
           "body": "The RWA Market is a much needed building block not only for protocols such as Aave, but across DeFi as a whole. Knocking down barriers of entry and making DeFi accessible to all is part of the Aave Companies’ vision, and we are excited to be fulfilling this through the collateralization of real-world assets, made possible by Centrifuge.",
           "cite": "Stani, Aave Founder & CEO",
           "image": "dell-ff11JzQk690-unsplash.jpg"
+        }
+      ]
+    },
+    {
+      "type": "usp_section",
+      "title": "The on-chain ecosystem for structured credit",
+      "body": "As the first protocol to bring real-world assets on-chain, we’re building a better financial system.",
+      "items": [
+        {
+          "title": "Transparency",
+          "body": "Obtain end-to-end transparency as the entire capital structure,  securitization, and servicing of debt facilities is brought on-chain - multi-tranching, NAV, privacy-first tokenization, securitization, reporting, and more.",
+          "image": "transparency"
+        },
+        {
+          "title": "Lower cost of capital",
+          "body": "A decentralized infrastructure that compresses costs of traditional off-chain securitization and uses open-source services to reduce the intermediary costs and complexity of TradFi",
+          "image": "costs"
+        },
+        {
+          "title": "Equal & open participation",
+          "body": "Decentralized on-chain governance provides equal, open access to all parties in the securitization process - new issuer proposals, underwriting, servicing, and more.",
+          "image": "participation"
+        },
+        {
+          "title": "DeFi liquidity access",
+          "body": "Leverage the entire capital stack by accessing senior and super senior capital from the leading DeFi stablecoin protocols.",
+          "image": "liquidity"
+        },
+        {
+          "title": "Diversification",
+          "body": "Diversify stablecoin and treasury collateral with yield correlated to real-world assets, stabilizing long-term value and protocol health.",
+          "image": "diversification"
+        },
+        {
+          "title": "Security",
+          "body": "A protocol with legal recourse and strong regulatory and compliance requirements - KYC, sanctions screenings, accredited invester checks - as well as robust technical audits.",
+          "image": "security"
         }
       ]
     }

@@ -4,12 +4,6 @@ export const Button = styled.button`
   --size: 40px;
 
   position: relative;
-  padding: 0;
-  appearance: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-
   display: block;
   width: var(--size);
   height: var(--size);

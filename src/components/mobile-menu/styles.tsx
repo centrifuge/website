@@ -52,12 +52,6 @@ export const Wrapper = styled(Box)`
 `
 
 export const Toggle = styled.button`
-  padding: 0;
-  appearance: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-
   width: 100%;
   display: flex;
   justify-content: space-between;

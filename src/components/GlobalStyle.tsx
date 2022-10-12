@@ -39,4 +39,12 @@ export const GlobalStyle = createGlobalStyle`
   *:focus-visible {
     outline: solid #2762ff;
   }
+
+  button {
+    padding: 0;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 `
