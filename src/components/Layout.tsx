@@ -1,4 +1,4 @@
-import { GlobalStyle as FabricGlobalStyle } from '@centrifuge/fabric'
+import { Box, GlobalStyle as FabricGlobalStyle } from '@centrifuge/fabric'
 import * as React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Box } from '@centrifuge/fabric'
@@ -19,7 +19,7 @@ export function Layout({ menuButtonVariant, children }: LayoutProps) {
       <FabricGlobalStyle />
       <GlobalStyle />
       <Header menuButtonVariant={menuButtonVariant} />
-      <Box as="main" pt={theme.sizes.headerHeight} flexGrow={2}>
+      <Box as="main" pt={theme.sizes.headerHeight} pb={200} flexGrow={2}>
         {children}
       </Box>
       <Footer />
