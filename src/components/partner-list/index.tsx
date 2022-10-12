@@ -22,14 +22,14 @@ export type PartnerProps = {
 }
 
 const logos = {
-  aave: aave,
-  acala: acala,
-  blocktower: blocktower,
-  ethereum: ethereum,
-  maker: maker,
-  moonbeam: moonbeam,
-  nomad: nomad,
-  polkadot: polkadot,
+  aave,
+  acala,
+  blocktower,
+  ethereum,
+  maker,
+  moonbeam,
+  nomad,
+  polkadot,
 }
 
 export function PartnerList({ partners }: PartnerListProps) {
