@@ -1,6 +1,14 @@
 import { Stack, Text } from '@centrifuge/fabric'
 import * as React from 'react'
+import { graphql } from 'gatsby'
 import { CenterContainer } from './CenterContainer'
+
+export const query = graphql`
+  fragment ValuesSectionFragment on DataJsonValue_section {
+    title
+    items
+  }
+`
 
 export type ValuesSectionProps = {
   title: string

@@ -6,6 +6,7 @@ import { links } from '../../../config/links'
 import { ChainStats } from '../chain-stats/ChainStats'
 import { PartnerList } from '../partner-list'
 import { Image } from '../Image'
+import type { ImageProps } from '../Image'
 import { Inner, Title, Content, Graphic, CTA } from './styles'
 
 export const query = graphql`
@@ -31,7 +32,7 @@ export type HeroMainProps = {
   title: string
   ticker: string[]
   body: string[]
-  image: string
+  image: ImageProps
   partners: PartnerProps[]
 }
 

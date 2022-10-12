@@ -4,10 +4,5 @@
   "seo": {
     "title": "Brand",
     "description": "Lorem ipsum"
-  },
-  "sections": [
-    {
-      "section_type": "image"
-    }
-  ]
+  }
 }

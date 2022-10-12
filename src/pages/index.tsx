@@ -5,6 +5,7 @@ import { Layout } from '../components/Layout'
 import { HeroMain } from '../components/hero-main'
 import { Testimonials } from '../components/Testimonials'
 import { UspSection } from '../components/usp-section'
+import type { HeadProps } from 'gatsby'
 import type { HeroMainProps } from '../components/hero-main'
 import type { TestimonialsProps } from '../components/Testimonials'
 import type { UspSectionProps } from '../components/usp-section'
@@ -51,6 +52,8 @@ export default function Home({ data }: HomeProps) {
   )
 }
 
-export const Head = () => {
-  return <SEO pathname="/" />
+export const Head = ({ location }: HeadProps) => {
+  const { pathname } = location
+
+  return <SEO pathname={pathname} />
 }
