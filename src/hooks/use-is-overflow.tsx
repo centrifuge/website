@@ -3,7 +3,7 @@ import * as React from 'react'
 export const useIsOverflow = (ref: React.RefObject<HTMLDivElement>) => {
   const [isOverflow, setIsOverflow] = React.useState(false)
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const { current } = ref
 
     const trigger = () => {
