@@ -2,6 +2,7 @@ import * as React from 'react'
 
 export const useIsOverflow = (ref: React.RefObject<HTMLDivElement>) => {
   const [isOverflow, setIsOverflow] = React.useState(false)
+  let observer: ResizeObserver | null = null
 
   React.useEffect(() => {
     const { current } = ref
@@ -14,10 +15,20 @@ export const useIsOverflow = (ref: React.RefObject<HTMLDivElement>) => {
 
     if (current) {
       if ('ResizeObserver' in window) {
-        new ResizeObserver(trigger).observe(current)
+        if (observer) {
+          observer.unobserve(current)
+        }
+        observer = new ResizeObserver(trigger)
+        observer.observe(current)
       }
 
       trigger()
+    }
+
+    return () => {
+      if (observer && current) {
+        observer.unobserve(current)
+      }
     }
   }, [ref])
 
