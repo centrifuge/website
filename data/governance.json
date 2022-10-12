@@ -7,7 +7,7 @@
   },
   "sections": [
     {
-      "type": "image"
+      "section_type": "image"
     }
   ]
 }

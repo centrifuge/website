@@ -15,7 +15,7 @@ function AboutPage() {
           body="Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively; free of intermediaries and the inefficiencies of traditional finance."
           videoUrl="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         />
-        <OrgSection
+        {/* <OrgSection
           title="How we work"
           items={[
             {
@@ -26,7 +26,7 @@ function AboutPage() {
             { image: 'remote', title: 'Fully remote', body: 'Work anywhere in the world' },
             { image: 'group', title: 'Retreat', body: 'In-person retreats bi-annually' },
           ]}
-        />
+        /> */}
         <ValuesSection title="Our values" items={['Bold', 'Trustworthy', 'Inclusive', 'Collaborative']} />
         <BeliefsSection
           title="We believe in"

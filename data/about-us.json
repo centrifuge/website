@@ -1,0 +1,32 @@
+{
+  "slug": "/about-us",
+  "seo": {
+    "title": "About us",
+    "description": "Lorem ipsum"
+  },
+  "hero_video": {
+    "title": "Mission",
+    "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively; free of intermediaries and the inefficiencies of traditional finance.",
+    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+  },
+  "org_section": {
+    "title": "How we work",
+    "items": [
+      {
+        "title": "Self-managed organization (SMO)",
+        "body": "As an SMO, we work to minimize hierarchy and decentralize power, similar to the way our product is built.",
+        "image": "./images/organisation/center.svg"
+      },
+      {
+        "title": "Fully remote",
+        "body": "Work anywhere in the world",
+        "image": "./images/organisation/remote.svg"
+      },
+      {
+        "title": "Retreat",
+        "body": "In-person retreats bi-annually",
+        "image": "./images/organisation/group.svg"
+      }
+    ]
+  }
+}

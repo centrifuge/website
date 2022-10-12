@@ -11,8 +11,10 @@ export const ItemContent = styled(Stack)`
   border-top: 1px solid ${({ theme }) => theme.colors.borderPrimary};
 `
 
-export const Image = styled.img`
-  display: block;
-  width: 100%;
-  height: auto;
+export const Media = styled(Box)`
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 `

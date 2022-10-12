@@ -25,13 +25,13 @@ export function Sections({ sections }: SectionsProps) {
   return (
     <>
       {sections.map((section, index) => {
-        const { type } = section
+        const { section_type } = section
 
-        if (types[type]) {
-          const Comp = types[type]
-          return <Comp key={`${type}-${index}`} {...section} />
+        if (types[section_type]) {
+          const Comp = types[section_type]
+          return <Comp key={`${section_type}-${index}`} {...section} />
         } else {
-          console.warn('No section of type: ', type)
+          console.warn('No section of type: ', section_type)
         }
       })}
     </>
