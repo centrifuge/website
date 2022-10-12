@@ -19,9 +19,10 @@ export const theme: DefaultTheme = {
       color: 'textPrimary',
     },
     heading2: {
-      fontSize: [18, 72],
-      lineHeight: 1.2,
+      fontSize: [36, 52, 70],
+      lineHeight: 1,
       fontWeight: [600, 500],
+      letterSpacing: '-0.04em',
       color: 'textPrimary',
     },
     heading3: {
@@ -31,9 +32,10 @@ export const theme: DefaultTheme = {
       color: 'textPrimary',
     },
     heading4: {
-      fontSize: 32,
-      lineHeight: 1.375,
+      fontSize: [28, 28, 32],
+      lineHeight: 1.2,
       fontWeight: 500,
+      letterSpacing: '-0.04em',
       color: 'textPrimary',
     },
     heading5: {
