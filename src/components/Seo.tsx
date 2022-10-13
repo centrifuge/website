@@ -1,5 +1,13 @@
 import * as React from 'react'
+import { graphql } from 'gatsby'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
+
+export const query = graphql`
+  fragment SeoFragment on DataJsonSeo {
+    title
+    description
+  }
+`
 
 export type SEOProps = {
   title?: string

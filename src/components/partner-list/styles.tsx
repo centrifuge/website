@@ -4,10 +4,20 @@ import { Shelf, Text } from '@centrifuge/fabric'
 export const Inner = styled(Shelf)`
   overflow: hidden;
 
+  img {
+    display: block;
+    width: auto;
+    height: 20px;
+  }
+
   .marquee-container {
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .marquee-container img {
+    margin-left: 30px;
   }
 
   > span {
@@ -22,11 +32,4 @@ export const Inner = styled(Shelf)`
 
 export const List = styled(Shelf)`
   list-style: none;
-`
-
-export const Image = styled.img<{ spaced?: boolean }>`
-  display: block;
-  width: auto;
-  height: 20px;
-  margin-left: ${({ spaced }) => (spaced ? '30px' : '0')};
 `
