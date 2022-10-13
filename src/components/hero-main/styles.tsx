@@ -49,7 +49,7 @@ export const Graphic = styled.div`
     display: block;
   }
 
-  img {
+  svg {
     display: block;
     width: 100%;
     height: 100%;
