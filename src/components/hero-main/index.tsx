@@ -45,7 +45,7 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
           <Title>
             {title}
             <br />
-            <Typewriter phrases={title} />
+            <Typewriter phrases={ticker} />
           </Title>
 
           <Content>
