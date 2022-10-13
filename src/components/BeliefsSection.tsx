@@ -1,6 +1,17 @@
 import { Divider, Grid, Stack, Text } from '@centrifuge/fabric'
 import * as React from 'react'
+import { graphql } from 'gatsby'
 import { CenterContainer } from './CenterContainer'
+
+export const query = graphql`
+  fragment BeliefsSectionFragment on DataJsonBeliefs_section {
+    title
+    items {
+      title
+      body
+    }
+  }
+`
 
 export type BeliefsSectionProps = {
   title: string

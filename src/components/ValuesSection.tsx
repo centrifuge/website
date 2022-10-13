@@ -1,8 +1,16 @@
 import { Box, Grid, Shelf, ShelfProps, Stack, Text } from '@centrifuge/fabric'
+import { graphql } from 'gatsby'
 import type { Body as MatterBody } from 'matter-js'
 import * as React from 'react'
 import styled from 'styled-components'
 import { CenterContainer } from './CenterContainer'
+
+export const query = graphql`
+  fragment ValuesSectionFragment on DataJsonValue_section {
+    title
+    items
+  }
+`
 
 export type ValuesSectionProps = {
   title: string

@@ -1,18 +1,27 @@
 import { Box, Divider, Grid, Shelf, Stack, Text } from '@centrifuge/fabric'
 import * as React from 'react'
-import center from '../images/org-center.svg'
-import group from '../images/org-group.svg'
-import remote from '../images/org-remote.svg'
-import { CenterContainer } from './CenterContainer'
+import { graphql } from 'gatsby'
+import { Image } from '../Image'
+import type { ImageProps } from '../Image'
+import { CenterContainer } from '../CenterContainer'
+import { Media } from './styles'
 
-const images = {
-  center,
-  remote,
-  group,
-}
+export const query = graphql`
+  fragment OrgSectionFragment on DataJsonOrg_section {
+    title
+    items {
+      title
+      body
+      image {
+        publicURL
+        extension
+      }
+    }
+  }
+`
 
 type ItemProps = {
-  image: keyof typeof images
+  image: ImageProps
   title: string
   body: string
 }
@@ -20,15 +29,9 @@ type ItemProps = {
 function Item({ image, title, body }: ItemProps) {
   return (
     <Shelf gap={[3, 7, 3]} flexDirection={['column', 'row', 'column']} alignItems="stretch" role="listitem">
-      <Box
-        aspectRatio="1 / 1"
-        alignSelf="flex-start"
-        width="50%"
-        as="img"
-        src={images[image]}
-        flex={['0', '0 0 30%', '0']}
-        alt=""
-      />
+      <Media aspectRatio="1 / 1" alignSelf="flex-start" width="50%" flex={['0', '0 0 30%', '0']}>
+        <Image data={image} />
+      </Media>
       <Stack gap={3} flex="1">
         <Divider />
         <Stack gap={2}>
