@@ -8,11 +8,11 @@ import { GlobalStyle } from './GlobalStyle'
 import { Header } from './header'
 
 type LayoutProps = {
-  menuButtonVariant: ButtonVariant
+  menuButtonVariant?: ButtonVariant
   children: React.ReactNode
 }
 
-export function Layout({ menuButtonVariant, children }: LayoutProps) {
+export function Layout({ menuButtonVariant = 'primary', children }: LayoutProps) {
   return (
     <ThemeProvider theme={theme}>
       <FabricGlobalStyle />

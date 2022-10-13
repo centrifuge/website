@@ -1,29 +1,45 @@
-import * as React from 'react'
 import { Box, Text } from '@centrifuge/fabric'
-import type { SectionType } from '../Sections'
-import type { PartnerProps } from '../partner-list'
+import { graphql } from 'gatsby'
+import * as React from 'react'
 import { links } from '../../../config/links'
 import { ChainStats } from '../chain-stats/ChainStats'
+import type { PartnerProps } from '../partner-list'
 import { PartnerList } from '../partner-list'
-import { Inner, Title, Content, Graphic, CTA } from './styles'
 import { Swirl } from './Swirl'
+import { Typewriter } from '../Typewriter'
+import { Inner, Title, Content, Graphic, CTA } from './styles'
+
+export const query = graphql`
+  fragment HeroMainFragment on DataJsonHero_main {
+    title
+    ticker
+    body
+    partners {
+      image {
+        publicURL
+        extension
+      }
+      alt
+    }
+  }
+`
 
 export type HeroMainProps = {
-  type: SectionType
-  title: string[]
+  title: string
+  ticker: string[]
   body: string[]
   partners: PartnerProps[]
 }
 
-export function HeroMain({ title, body, partners }: HeroMainProps) {
+export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
   return (
     <Box as="section">
       <Box px={2} pt={[2, 4, 6]}>
         <Inner maxWidth="container">
           <Title>
-            Real-World
+            {title}
             <br />
-            {title[0]}
+            <Typewriter phrases={ticker} />
           </Title>
 
           <Content>
