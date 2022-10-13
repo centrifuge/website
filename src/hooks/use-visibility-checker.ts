@@ -23,9 +23,11 @@ export function useVisibilityChecker({
     triggered: false,
     wasVisible: false,
     isVisible: false,
-    io: new IntersectionObserver(handleIntersection, {
-      rootMargin: `${marginBottom}px 0px ${marginTop}px 0px`,
-    }),
+    io:
+      typeof window !== 'undefined' &&
+      new IntersectionObserver(handleIntersection, {
+        rootMargin: `${marginBottom}px 0px ${marginTop}px 0px`,
+      }),
   }).current
 
   function handleIntersection(entries: IntersectionObserverEntry[]) {
@@ -61,10 +63,10 @@ export function useVisibilityChecker({
 
   React.useEffect(() => {
     const node = ref.current
-    if (node) state.io.observe(node)
+    if (node && state.io) state.io.observe(node)
 
     return () => {
-      if (node) state.io.unobserve(node)
+      if (node && state.io) state.io.unobserve(node)
     }
     // eslint-disable-next-line
   }, [])
