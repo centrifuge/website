@@ -14,7 +14,6 @@ export const Slide = styled.li<{ selected: boolean; offsetX: number; offsetY: nu
 
 export const Media = styled(Box)`
   width: 100%;
-  /* max-width: 200px; */
 
   img {
     display: block;
@@ -40,6 +39,6 @@ export const Dot = styled.button<{ selected: boolean }>`
     background-color: ${({ selected, theme }) =>
       selected ? theme.colors.accentSecondary : theme.colors.borderPrimary};
     border-radius: 50%;
-    transform: scale(0.6);
+    transform: scale(0.4);
   }
 `

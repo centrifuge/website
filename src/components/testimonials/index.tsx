@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { Shelf, Box, Container, Text } from '@centrifuge/fabric'
+import { Shelf, Box, Container, Text, Grid } from '@centrifuge/fabric'
 import useEmblaCarousel from 'embla-carousel-react'
 import { Testimonial } from './Testimonial'
 import type { TestimonialProps } from './Testimonial'
@@ -60,9 +60,9 @@ export function Testimonials({ title, items }: TestimonialsProps) {
           {title}
         </Text>
 
-        <Container maxWidth="containerNarrow" pt={100}>
+        <Grid maxWidth="containerNarrow" pt={100} gridTemplateColumns={['1fr', '1fr 30px']} gap={4} mr="auto" ml="auto">
           <Box ref={emblaRef} style={{ overflow: 'hidden' }}>
-            <Shelf as="ul" p={0} m={0} role="list" style={{ listStyle: 'none' }}>
+            <Shelf as="ul" p={0} m={0} role="list">
               {items.map((item, index) => (
                 <Slide
                   key={`${item.cite}-${index}`}
@@ -75,16 +75,20 @@ export function Testimonials({ title, items }: TestimonialsProps) {
               ))}
             </Shelf>
           </Box>
-          {items.map(({ cite }, index) => (
-            <Dot
-              key={`${cite}${index}`}
-              role="button"
-              title={`Go to testimonial by "${cite}"`}
-              onClick={() => scrollTo(index)}
-              selected={index === selectedIndex}
-            />
-          ))}
-        </Container>
+
+          <Shelf as="ul" role="list" flexDirection={['row', 'column']} justifyContent={['center', 'start']}>
+            {items.map(({ cite }, index) => (
+              <li key={`${cite}${index}`}>
+                <Dot
+                  role="button"
+                  title={`Go to testimonial by "${cite}"`}
+                  onClick={() => scrollTo(index)}
+                  selected={index === selectedIndex}
+                />
+              </li>
+            ))}
+          </Shelf>
+        </Grid>
       </Container>
     </Box>
   )

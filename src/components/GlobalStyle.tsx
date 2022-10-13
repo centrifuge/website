@@ -36,6 +36,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Inter, sans-serif;
   }
 
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
   *:focus-visible {
     outline: solid #2762ff;
   }

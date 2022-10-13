@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { Box } from '@centrifuge/fabric'
 
 export const Root = styled(Box)`
-  list-style: none;
-
   @media (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     display: flex;
     gap: ${({ theme }) => theme.space[3]}px;
