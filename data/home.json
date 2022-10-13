@@ -5,7 +5,6 @@
     "title": "Real-World",
     "ticker": ["DeFi", "Assets", "Utility", "Impact", "Finance", "Value"],
     "body": ["The on-chain ecosystem for structured credit.", "Transparent. Affordable. Limitless."],
-    "image": "./images/hero-main-shape.svg",
     "partners": [
       {
         "image": "./images/partner/polkadot.svg",
