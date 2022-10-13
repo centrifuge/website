@@ -1,8 +1,24 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import { Box, Container, Grid, Text } from '@centrifuge/fabric'
 import type { UspItemProps } from './UspItem'
 import { UspItem } from './UspItem'
 import { Intro } from './styles'
+
+export const query = graphql`
+  fragment UspSectionFragment on DataJsonUsp_section {
+    title
+    body
+    items {
+      title
+      body
+      image {
+        publicURL
+        extension
+      }
+    }
+  }
+`
 
 export type UspSectionProps = {
   title: string
@@ -18,7 +34,7 @@ export function UspSection({ title, body, items }: UspSectionProps) {
           {title}
         </Text>
         <Intro mt={2}>
-          <Text as="p" variant="body1" color="textSecondary">
+          <Text variant="body1" as="p" color="textSecondary">
             {body}
           </Text>
         </Intro>

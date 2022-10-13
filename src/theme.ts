@@ -54,7 +54,7 @@ export const theme: DefaultTheme = {
       fontSize: 16,
       lineHeight: 1.2,
       fontWeight: 500,
-      color: 'textDisabled',
+      color: 'textSecondary',
       textTransform: 'uppercase',
     },
     emphasized: {

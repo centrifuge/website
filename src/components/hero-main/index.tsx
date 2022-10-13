@@ -1,35 +1,56 @@
 import { Box, Text } from '@centrifuge/fabric'
+import { graphql } from 'gatsby'
 import * as React from 'react'
 import { links } from '../../../config/links'
-import shape from '../../images/hero-main-shape.svg'
 import { ChainStats } from '../chain-stats/ChainStats'
+import type { ImageProps } from '../Image'
+import { Image } from '../Image'
 import type { PartnerProps } from '../partner-list'
 import { PartnerList } from '../partner-list'
-import type { SectionType } from '../Sections'
 import { Typewriter } from '../Typewriter'
 import { Content, CTA, Graphic, Inner, Title } from './styles'
 
+export const query = graphql`
+  fragment HeroMainFragment on DataJsonHero_main {
+    title
+    ticker
+    body
+    image {
+      publicURL
+      extension
+    }
+    partners {
+      image {
+        publicURL
+        extension
+      }
+      alt
+    }
+  }
+`
+
 export type HeroMainProps = {
-  type: SectionType
-  title: string[]
+  title: string
+  ticker: string[]
   body: string[]
+  image: ImageProps
   partners: PartnerProps[]
 }
 
-export function HeroMain({ title, body, partners }: HeroMainProps) {
+export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps) {
   return (
     <Box as="section">
       <Box px={2} pt={[2, 4, 6]}>
         <Inner maxWidth="container">
           <Title>
-            Real-World
+            {title}
             <br />
             <Typewriter phrases={title} />
           </Title>
 
           <Content>
             <Graphic>
-              <img src={shape} alt="" />
+              <Image data={image} />
             </Graphic>
 
             {body.map((entry, index) => (

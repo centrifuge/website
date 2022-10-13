@@ -16,7 +16,7 @@ type SubMenuProps = {
   buttonVariant: ButtonVariant
 }
 
-export function SubMenu({ label, items, href, isExternal, isButton, buttonVariant = 'primary' }: SubMenuProps) {
+export function SubMenu({ label, items, href, isExternal, isButton, buttonVariant }: SubMenuProps) {
   return (
     <>
       {href ? (

@@ -1,14 +1,23 @@
 import { Box, Stack, Text } from '@centrifuge/fabric'
 import * as React from 'react'
+import { graphql } from 'gatsby'
 import { CenterContainer } from './CenterContainer'
+
+export const query = graphql`
+  fragment HeroVideoFragment on DataJsonHero_video {
+    title
+    body
+    video
+  }
+`
 
 export type HeroVideoProps = {
   title: string
   body: string
-  videoUrl: string
+  video: string
 }
 
-export function HeroVideo({ title, body, videoUrl }: HeroVideoProps) {
+export function HeroVideo({ title, body, video }: HeroVideoProps) {
   return (
     <CenterContainer as="section" pt={8}>
       <Stack gap={2}>
@@ -26,7 +35,7 @@ export function HeroVideo({ title, body, videoUrl }: HeroVideoProps) {
           aspectRatio="16 / 9"
           alignSelf="flex-end"
           width={['100%', '100%', '75%']}
-          src={videoUrl}
+          src={video}
           autoPlay
           muted
           loop
