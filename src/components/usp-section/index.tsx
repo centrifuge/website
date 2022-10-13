@@ -28,7 +28,7 @@ export type UspSectionProps = {
 
 export function UspSection({ title, body, items }: UspSectionProps) {
   return (
-    <Box as="section" px={2} py={6}>
+    <Box as="section" px={2}>
       <Container maxWidth="container">
         <Text as="h2" variant="heading2">
           {title}
