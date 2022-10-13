@@ -5,8 +5,8 @@ import type { PartnerProps } from '../partner-list'
 import { links } from '../../../config/links'
 import { ChainStats } from '../chain-stats/ChainStats'
 import { PartnerList } from '../partner-list'
-import shape from '../../images/hero-main-shape.svg'
 import { Inner, Title, Content, Graphic, CTA } from './styles'
+import { Swirl } from './Swirl'
 
 export type HeroMainProps = {
   type: SectionType
@@ -28,7 +28,7 @@ export function HeroMain({ title, body, partners }: HeroMainProps) {
 
           <Content>
             <Graphic>
-              <img src={shape} alt="" />
+              <Swirl />
             </Graphic>
 
             {body.map((entry, index) => (

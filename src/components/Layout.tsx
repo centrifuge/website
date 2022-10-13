@@ -1,7 +1,6 @@
 import { Box, GlobalStyle as FabricGlobalStyle } from '@centrifuge/fabric'
 import * as React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { Box } from '@centrifuge/fabric'
 import type { ButtonVariant } from './desktop-menu/SubMenu'
 import { theme } from '../theme'
 import { Footer } from './footer'
