@@ -104,5 +104,28 @@
         "image": "./images/usps/security.svg"
       }
     ]
+  },
+  "work_principle": {
+    "title": "How it works",
+    "items": [
+      {
+        "label": "Issuers",
+        "title": "Borrow",
+        "body": "Finance your real-world assets by accessing affordable DeFi capital without banks or other intermediaries.",
+        "image": "./images/work-principle/borrow.svg"
+      },
+      {
+        "label": "Institutions & DeFi Protocols",
+        "title": "Lend",
+        "body": "Gain access to a more diversified and stable junior and senior yield backed by productive assets from the real-world - invoices, real-estate, revenue-based financing, and more.",
+        "image": "./images/work-principle/lend.svg"
+      },
+      {
+        "label": "CFG Token Holders",
+        "title": "Vote",
+        "body": "Become active in protocol governance to help shape the future of Centrifuge through active participation and voting.",
+        "image": "./images/work-principle/vote.svg"
+      }
+    ]
   }
 }
