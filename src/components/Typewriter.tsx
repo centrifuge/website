@@ -17,6 +17,17 @@ const Blink = styled.span`
 `
 
 export function Typewriter({ phrases, paused }: TypewriterProps) {
+  const txt = useTypewriter(phrases, paused)
+
+  return (
+    <>
+      {txt}
+      <Blink>_</Blink>
+    </>
+  )
+}
+
+function useTypewriter(phrases: string[], paused?: boolean) {
   const [txtIndex, setTxtIndex] = React.useState(phrases[0].length)
   const [isDeleting, setIsDeleting] = React.useState(false)
   const [phraseIndex, setPhraseIndex] = React.useState(0)
@@ -63,10 +74,5 @@ export function Typewriter({ phrases, paused }: TypewriterProps) {
     setTxtIndex(phrases[0].length)
   }, [phrases])
 
-  return (
-    <>
-      {txt}
-      <Blink>_</Blink>
-    </>
-  )
+  return txt
 }
