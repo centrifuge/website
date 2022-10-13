@@ -1,13 +1,14 @@
-import * as React from 'react'
-import { graphql } from 'gatsby'
 import { Box, Text } from '@centrifuge/fabric'
-import type { PartnerProps } from '../partner-list'
+import { graphql } from 'gatsby'
+import * as React from 'react'
 import { links } from '../../../config/links'
 import { ChainStats } from '../chain-stats/ChainStats'
-import { PartnerList } from '../partner-list'
-import { Image } from '../Image'
 import type { ImageProps } from '../Image'
-import { Inner, Title, Content, Graphic, CTA } from './styles'
+import { Image } from '../Image'
+import type { PartnerProps } from '../partner-list'
+import { PartnerList } from '../partner-list'
+import { Typewriter } from '../Typewriter'
+import { Content, CTA, Graphic, Inner, Title } from './styles'
 
 export const query = graphql`
   fragment HeroMainFragment on DataJsonHero_main {
@@ -44,7 +45,7 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
           <Title>
             {title}
             <br />
-            {ticker[0]}
+            <Typewriter phrases={title} />
           </Title>
 
           <Content>
