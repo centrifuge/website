@@ -1059,10 +1059,10 @@
   resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.5.4.tgz#1a89069978734e132fa4a59414ddb64e4b94fde7"
   integrity sha512-qnikpQgi30AS01aFlNQV6l8/qdZIcP76mp90ti+u4rucXHsn4afSKivQXApqxvrQG9+Ibv45STyvHizvxef/7A==
 
-"@centrifuge/fabric@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@centrifuge/fabric/-/fabric-1.0.1.tgz#94e50cc65398132dfffe75ad05d10ca3d4bba4ad"
-  integrity sha512-mBIdPyKVw6ULf5p6cVm87fAnigcaZi1UbVQa+NK6ntsNVPzMSKaMe8BMBGYJDT3gnnZZgMtD1x/wnxC461pbvQ==
+"@centrifuge/fabric@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@centrifuge/fabric/-/fabric-1.0.5.tgz#38f8db71e6b96eabd44197e2773858d9f8744203"
+  integrity sha512-aqBg0QVLeiZBCIGq/1RgO+vUsYZeUxcFNGVZAvoLMnhpvsrlcGVi85S/FJDeiXyck/y6Qmwmw/nRXNKrp3Cx4w==
   dependencies:
     "@polkadot/react-identicon" "^2.2.1"
     "@react-aria/button" "^3.3.4"
@@ -1074,6 +1074,7 @@
     "@react-stately/tooltip" "^3.0.8"
     "@styled-system/css" "^5.1.5"
     "@styled-system/should-forward-prop" "^5.1.5"
+    "@types/styled-system" "^5.1.15"
     styled-system "^5.1.5"
 
 "@emotion/is-prop-valid@^0.8.1":
@@ -2843,6 +2844,11 @@
   version "4.14.185"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.185.tgz#c9843f5a40703a8f5edfd53358a58ae729816908"
   integrity sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==
+
+"@types/matter-js@^0.18.2":
+  version "0.18.2"
+  resolved "https://registry.yarnpkg.com/@types/matter-js/-/matter-js-0.18.2.tgz#68a971386368882d3445de95dcf31289346dc22f"
+  integrity sha512-W9UC9DOPNBRTUocqqPZmzX3cbHmlZBI9jLn6SuxZz0n5QrPk382Ig3hbBWHqYU8TRUmTCJJhuanXeyMTavF7Mg==
 
 "@types/minimatch@*":
   version "5.1.2"
@@ -7500,6 +7506,11 @@ map-cache@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
   integrity sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==
+
+matter-js@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/matter-js/-/matter-js-0.18.0.tgz#083ced04eb6768f7664dc7ca8948a10e46ad3ed6"
+  integrity sha512-/ZVem4WygUnbmo/iE4oHZpZS97btfBtYy5Iwn1396vUZU7YhgVEN8J4UWwfZwY1ZqoTYlPgjvSw9WXauuXL0mg==
 
 md5-file@^5.0.0:
   version "5.0.0"
