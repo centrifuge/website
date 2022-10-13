@@ -1,12 +1,13 @@
-import * as React from 'react'
 import { Box, Text } from '@centrifuge/fabric'
-import type { SectionType } from '../Sections'
-import type { PartnerProps } from '../partner-list'
+import * as React from 'react'
 import { links } from '../../../config/links'
-import { ChainStats } from '../chain-stats/ChainStats'
-import { PartnerList } from '../partner-list'
 import shape from '../../images/hero-main-shape.svg'
-import { Inner, Title, Content, Graphic, CTA } from './styles'
+import { ChainStats } from '../chain-stats/ChainStats'
+import type { PartnerProps } from '../partner-list'
+import { PartnerList } from '../partner-list'
+import type { SectionType } from '../Sections'
+import { Typewriter } from '../Typewriter'
+import { Content, CTA, Graphic, Inner, Title } from './styles'
 
 export type HeroMainProps = {
   type: SectionType
@@ -23,7 +24,7 @@ export function HeroMain({ title, body, partners }: HeroMainProps) {
           <Title>
             Real-World
             <br />
-            {title[0]}
+            <Typewriter phrases={title} />
           </Title>
 
           <Content>
