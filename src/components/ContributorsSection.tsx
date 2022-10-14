@@ -41,7 +41,7 @@ export type ContributorsSectionProps = {
 
 function Contributor({ item }: { item: Item }) {
   return (
-    <Shelf flexDirection={['row', 'column']} width={['auto', 200, 330]} gap={[4, 2]} role="listitem">
+    <Shelf flexDirection={['row', 'column']} width={['auto', 200, 260]} gap={[4, 2]} role="listitem">
       <Box width={[150, 'auto']} maxWidth={[150, 'initial']} position="relative" pl={[20, 0]}>
         <Box borderRadius="50%" overflow="hidden">
           <Image data={item.image} />
