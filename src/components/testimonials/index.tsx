@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { Shelf, Box, Container, Text, Grid } from '@centrifuge/fabric'
+import { Shelf, Box, Container, Text } from '@centrifuge/fabric'
 import useEmblaCarousel from 'embla-carousel-react'
 import { Testimonial } from './Testimonial'
 import type { TestimonialProps } from './Testimonial'
-import { Slide, Dot } from './styles'
+import { Content, Slide, Dot } from './styles'
 
 export const query = graphql`
   fragment TestimonialsFragment on DataJsonTestimonials {
@@ -60,7 +60,14 @@ export function Testimonials({ title, items }: TestimonialsProps) {
           {title}
         </Text>
 
-        <Grid maxWidth="containerNarrow" pt={100} gridTemplateColumns={['1fr', '1fr 30px']} gap={4} mr="auto" ml="auto">
+        <Content
+          maxWidth="containerNarrow"
+          pt={[100, 100, 150]}
+          gridTemplateColumns={['1fr', '1fr 30px']}
+          gap={4}
+          mr="auto"
+          ml="auto"
+        >
           <Box ref={emblaRef} style={{ overflow: 'hidden' }}>
             <Shelf as="ul" p={0} m={0} role="list">
               {items.map((item, index) => (
@@ -88,7 +95,7 @@ export function Testimonials({ title, items }: TestimonialsProps) {
               </li>
             ))}
           </Shelf>
-        </Grid>
+        </Content>
       </Container>
     </Box>
   )
