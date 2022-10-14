@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { useTheme } from 'styled-components'
-import { Text } from '@centrifuge/fabric'
+import { Box, Text } from '@centrifuge/fabric'
 import type { AnchorProps } from './Anchor'
 import { Anchor } from './Anchor'
-import { List, ListItem } from './styles'
 
 type ColumnProps = {
   title: string
@@ -19,13 +18,13 @@ export function Column({ title, items }: ColumnProps) {
         {title}
       </Text>
 
-      <List>
+      <Box as="ul" role="list" mt={1}>
         {items.map((item, index) => (
-          <ListItem key={`${item.label}-${index}`}>
+          <Box as="li" key={`${item.label}-${index}`} mt={index > 0 ? '0.2em' : 0}>
             <Anchor {...item} />
-          </ListItem>
+          </Box>
         ))}
-      </List>
+      </Box>
     </div>
   )
 }

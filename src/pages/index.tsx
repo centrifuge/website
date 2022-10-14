@@ -1,14 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { Stack } from '@centrifuge/fabric'
 import { SEO } from '../components/Seo'
 import { Layout } from '../components/Layout'
 import { HeroMain } from '../components/hero-main'
-import { Testimonials } from '../components/Testimonials'
+import { Testimonials } from '../components/testimonials'
 import { UspSection } from '../components/usp-section'
 import { WorkPrinciple } from '../components/work-principle'
 import type { HeadProps } from 'gatsby'
 import type { HeroMainProps } from '../components/hero-main'
-import type { TestimonialsProps } from '../components/Testimonials'
+import type { TestimonialsProps } from '../components/testimonials'
 import type { UspSectionProps } from '../components/usp-section'
 import type { WorkPrincipleProps } from '../components/work-principle'
 
@@ -52,10 +53,12 @@ export default function Home({ data }: HomeProps) {
 
   return (
     <Layout menuButtonVariant="secondary">
-      <HeroMain {...hero_main} />
-      <Testimonials {...testimonials} />
-      <UspSection {...usp_section} />
-      <WorkPrinciple {...work_principle} />
+      <Stack gap={['layoutSmall', 'layoutMedium', 'layoutLarge']}>
+        <HeroMain {...hero_main} />
+        <UspSection {...usp_section} />
+        <WorkPrinciple {...work_principle} />
+        <Testimonials {...testimonials} />
+      </Stack>
     </Layout>
   )
 }

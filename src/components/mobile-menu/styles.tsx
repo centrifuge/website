@@ -2,9 +2,6 @@ import { Box } from '@centrifuge/fabric'
 import styled from 'styled-components'
 
 const List = styled.ul<{ open: boolean }>`
-  margin: 0;
-  padding: 0;
-  list-style: none;
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
 `
 

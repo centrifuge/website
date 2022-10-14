@@ -29,7 +29,3 @@ export const Inner = styled(Shelf)`
     }
   }
 `
-
-export const List = styled(Shelf)`
-  list-style: none;
-`
