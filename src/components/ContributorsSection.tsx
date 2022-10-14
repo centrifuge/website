@@ -136,11 +136,13 @@ export function ContributorsSection({ title, items }: ContributorsSectionProps) 
                   variant="tertiary"
                   icon={IconArrowLeft}
                   onClick={() => setPage((prev) => (prev - 1 + numPages) % numPages)}
+                  aria-label="Previous contributors"
                 />
                 <Button
                   variant="tertiary"
                   icon={IconArrowRight}
                   onClick={() => setPage((prev) => (prev + 1) % numPages)}
+                  aria-label="Next contributors"
                 />
               </Shelf>
             </ButtonWrapper>
