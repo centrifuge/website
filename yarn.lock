@@ -1059,10 +1059,10 @@
   resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.5.4.tgz#1a89069978734e132fa4a59414ddb64e4b94fde7"
   integrity sha512-qnikpQgi30AS01aFlNQV6l8/qdZIcP76mp90ti+u4rucXHsn4afSKivQXApqxvrQG9+Ibv45STyvHizvxef/7A==
 
-"@centrifuge/fabric@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@centrifuge/fabric/-/fabric-1.0.5.tgz#38f8db71e6b96eabd44197e2773858d9f8744203"
-  integrity sha512-aqBg0QVLeiZBCIGq/1RgO+vUsYZeUxcFNGVZAvoLMnhpvsrlcGVi85S/FJDeiXyck/y6Qmwmw/nRXNKrp3Cx4w==
+"@centrifuge/fabric@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@centrifuge/fabric/-/fabric-1.0.6.tgz#7f8fd07123b8869d4ea9a067a7af118082404506"
+  integrity sha512-eNt+cHBhNSGhi5/P/K63nTO11f2SvFW85g1jCIPEFoJKcZ82u2US2clXgcQDf2PLMFLqbiG+K66eyLIozgzu9A==
   dependencies:
     "@polkadot/react-identicon" "^2.2.1"
     "@react-aria/button" "^3.3.4"

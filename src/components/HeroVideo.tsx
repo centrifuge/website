@@ -1,6 +1,6 @@
 import { Box, Stack, Text } from '@centrifuge/fabric'
-import * as React from 'react'
 import { graphql } from 'gatsby'
+import * as React from 'react'
 import { CenterContainer } from './CenterContainer'
 
 export const query = graphql`
@@ -39,6 +39,7 @@ export function HeroVideo({ title, body, video }: HeroVideoProps) {
           autoPlay
           muted
           loop
+          mt={6}
         />
       </Stack>
     </CenterContainer>

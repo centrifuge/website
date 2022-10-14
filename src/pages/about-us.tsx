@@ -1,20 +1,15 @@
 import { Stack } from '@centrifuge/fabric'
-import * as React from 'react'
-import { graphql } from 'gatsby'
 import type { HeadProps } from 'gatsby'
+import { graphql } from 'gatsby'
+import * as React from 'react'
 
-import { SEO } from '../components/Seo'
+import { BeliefsSection, BeliefsSectionProps } from '../components/BeliefsSection'
+import { ContributorsSection, ContributorsSectionProps } from '../components/ContributorsSection'
+import { HeroVideo, HeroVideoProps } from '../components/HeroVideo'
 import { Layout } from '../components/Layout'
-import { BeliefsSection } from '../components/BeliefsSection'
-import { HeroVideo } from '../components/HeroVideo'
-import { OrgSection } from '../components/org-section'
-import { ValuesSection } from '../components/ValuesSection'
-
-import type { SEOProps } from '../components/Seo'
-import type { HeroVideoProps } from '../components/HeroVideo'
-import type { OrgSectionProps } from '../components/org-section'
-import type { ValuesSectionProps } from '../components/ValuesSection'
-import type { BeliefsSectionProps } from '../components/BeliefsSection'
+import { OrgSection, OrgSectionProps } from '../components/org-section'
+import { SEO, SEOProps } from '../components/Seo'
+import { ValuesSection, ValuesSectionProps } from '../components/ValuesSection'
 
 export const query = graphql`
   query {
@@ -40,6 +35,10 @@ export const query = graphql`
       beliefs_section {
         ...BeliefsSectionFragment
       }
+
+      contributors_section {
+        ...ContributorsSectionFragment
+      }
     }
   }
 `
@@ -52,12 +51,13 @@ type AboutProps = {
       org_section: OrgSectionProps
       value_section: ValuesSectionProps
       beliefs_section: BeliefsSectionProps
+      contributors_section: ContributorsSectionProps
     }
   }
 }
 
 export default function About({ data }: AboutProps) {
-  const { hero_video, org_section, value_section, beliefs_section } = data.dataJson
+  const { hero_video, org_section, value_section, beliefs_section, contributors_section } = data.dataJson
 
   return (
     <Layout>
@@ -66,6 +66,7 @@ export default function About({ data }: AboutProps) {
         <OrgSection {...org_section} />
         <ValuesSection {...value_section} />
         <BeliefsSection {...beliefs_section} />
+        <ContributorsSection {...contributors_section} />
       </Stack>
     </Layout>
   )
