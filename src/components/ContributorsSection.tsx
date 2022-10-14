@@ -41,7 +41,7 @@ export type ContributorsSectionProps = {
 
 function Contributor({ item }: { item: Item }) {
   return (
-    <Shelf flexDirection={['row', 'column']} width={['auto', 200, 330]} gap={[4, 2]}>
+    <Shelf flexDirection={['row', 'column']} width={['auto', 200, 330]} gap={[4, 2]} role="listitem">
       <Box width={[150, 'auto']} maxWidth={[150, 'initial']} position="relative" pl={[20, 0]}>
         <Box borderRadius="50%" overflow="hidden">
           <Image data={item.image} />
@@ -97,7 +97,7 @@ const StyledGrid = styled(Grid)<{ $page: number; $pages: number }>(
 
 function ContributorsMarquee({ items, direction = 'left' }: { items: Item[]; direction?: 'left' | 'right' }) {
   return (
-    <MarqueeWrapper display={['none', 'block']}>
+    <MarqueeWrapper display={['none', 'block']} role="list">
       <Marquee gradient={false} speed={100} direction={direction} pauseOnHover>
         <Shelf alignItems="flex-start">
           {items.map((item) => (
@@ -157,6 +157,7 @@ export function ContributorsSection({ title, items }: ContributorsSectionProps) 
             rowGap={4}
             width={[`calc(100% * ${numPages})`, 'auto']}
             style={{ transform: `translateX(calc((-${page} / ${numPages}) * 100%))` }}
+            role="list"
           >
             {items.map((item) => (
               <Contributor item={item} key={item.name} />
