@@ -1,7 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Box, Container, Shelf, Text } from '@centrifuge/fabric'
+import { AnchorButton, Box, Container, Shelf, Text } from '@centrifuge/fabric'
 import { Image, ImageProps } from '../Image'
+import { links } from '../../../config/links'
+import { Media } from './styles'
 
 export const query = graphql`
   fragment AuditSectionFragment on DataJsonAudit_section {
@@ -28,14 +30,20 @@ export function AuditSection({ title, items }: AuditSectionProps) {
   return (
     <Box as="section" px={2}>
       <Container>
-        <Shelf>
-          <Text as="h2">{title}</Text>
+        <Shelf alignItems="center" flexWrap="wrap" gap={4} rowGap={1}>
+          <Text as="h2" variant="heading2">
+            {title}
+          </Text>
+          <AnchorButton href={links.audits} rel="noopener noreferrer" target="_blank" variant="secondary" small>
+            View audit history
+          </AnchorButton>
         </Shelf>
-        <Shelf as="ul">
+
+        <Shelf as="ul" role="list" alignItems="center" flexWrap="wrap" gap={[4, 6, 10]} rowGap={3} mt={[4, 6]}>
           {items.map(({ alt, image }, index) => (
-            <li key={`${alt}${index}`}>
+            <Media key={`${alt}${index}`}>
               <Image data={image} alt={alt} />
-            </li>
+            </Media>
           ))}
         </Shelf>
       </Container>
