@@ -46,22 +46,26 @@
       {
         "body": "This integration not only advances DeFi but it also brings many benefits to the MakerDAO ecosystem. By diversifying the collateral backing DAI and adding non-crypto related assets, it increases the DAI safety and makes it extremely stable. This move will also help MakerDAO meet the increasing demand of DAI by tapping in a multi trillion-dollar asset class.",
         "cite": "Maker DAO",
-        "image": "./images/partner/nomad.svg"
+        "image": "./images/testimonials/maker.svg",
+        "image_max_width": 200
       },
       {
         "body": "Blockchain technology has long-held promise to overhaul the plumbing of the world’s financial services. To this end, BlockTower is excited to support the Centrifuge team as they democratize access to and generate efficiencies in the securitization industry; we believe these strategic partnerships are essential to usher in the future of finance.",
         "cite": "Stani, Aave Founder & CEO",
-        "image": "./images/partner/nomad.svg"
+        "image": "./images/testimonials/aave.svg",
+        "image_max_width": 200
       },
       {
         "body": "Bringing real-world assets to blockchain has been a long-term dream of ours. Centrifuge has built a great product and we are happy to partner with one of the best teams in the space.",
         "cite": "Kirill, New Silver Managing Director",
-        "image": "./images/partner/nomad.svg"
+        "image": "./images/testimonials/new-silver.svg",
+        "image_max_width": 300
       },
       {
         "body": "The RWA Market is a much needed building block not only for protocols such as Aave, but across DeFi as a whole. Knocking down barriers of entry and making DeFi accessible to all is part of the Aave Companies’ vision, and we are excited to be fulfilling this through the collateralization of real-world assets, made possible by Centrifuge.",
         "cite": "Stani, Aave Founder & CEO",
-        "image": "./images/partner/nomad.svg"
+        "image": "./images/testimonials/blocktower.svg",
+        "image_max_width": 300
       }
     ]
   },

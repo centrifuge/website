@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Box, Container, Text } from '@centrifuge/fabric'
+import { Box, Container, Text, Shelf } from '@centrifuge/fabric'
 import Marquee from 'react-fast-marquee'
 import { useIsOverflow } from '../../hooks/use-is-overflow'
-import { List, Inner } from './styles'
+import { Inner } from './styles'
 import { Image } from '../Image'
 import type { ImageProps } from '../Image'
 
@@ -28,13 +28,13 @@ export function PartnerList({ partners }: PartnerListProps) {
           </Text>
 
           <Box position="relative">
-            <List as="ul" m={0} p={0} gap={4} alignItems="center" role="list" style={{ opacity: isOverflow ? 0 : 1 }}>
+            <Shelf as="ul" m={0} p={0} gap={4} alignItems="center" role="list" style={{ opacity: isOverflow ? 0 : 1 }}>
               {partners.map(({ image, alt }, index) => (
                 <li key={`${alt}-${index}`}>
                   <Image data={image} />
                 </li>
               ))}
-            </List>
+            </Shelf>
 
             {isOverflow && (
               <Marquee gradient={false} speed={200}>

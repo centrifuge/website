@@ -28,7 +28,7 @@ export type UspSectionProps = {
 
 export function UspSection({ title, body, items }: UspSectionProps) {
   return (
-    <Box as="section" px={2} py={6}>
+    <Box as="section" px={2}>
       <Container maxWidth="container">
         <Text as="h2" variant="heading2">
           {title}
@@ -40,17 +40,7 @@ export function UspSection({ title, body, items }: UspSectionProps) {
         </Intro>
 
         <Container maxWidth="containerNarrow">
-          <Grid
-            as="ul"
-            role="list"
-            columns={[1, 1, 2]}
-            gap={10}
-            rowGap={8}
-            m={0}
-            mt={10}
-            p={0}
-            style={{ listStyle: 'none' }}
-          >
+          <Grid as="ul" role="list" columns={[1, 1, 2]} gap={10} rowGap={8} mt={10}>
             {items.map((item, index) => (
               <li key={`${item.title}${index}`}>
                 <UspItem {...item} />

@@ -15,6 +15,11 @@ export const footer = [
         isExternal: true,
       },
       {
+        label: 'Discord',
+        href: links.discord,
+        isExternal: true,
+      },
+      {
         label: 'Medium',
         href: links.medium,
         isExternal: true,
