@@ -10,6 +10,11 @@ export const theme: DefaultTheme = {
     containerNarrow: '1140px',
     headerHeight: [50, 65, 65],
   },
+  space: Object.assign([], centrifugeLight.space, {
+    layoutSmall: 80,
+    layoutMedium: 144,
+    layoutLarge: 168,
+  }),
   typography: {
     ...centrifugeLight.typography,
     heading1: {

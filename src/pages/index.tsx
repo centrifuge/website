@@ -53,7 +53,7 @@ export default function Home({ data }: HomeProps) {
 
   return (
     <Layout menuButtonVariant="secondary">
-      <Stack gap={100}>
+      <Stack gap={['layoutSmall', 'layoutMedium', 'layoutLarge']}>
         <HeroMain {...hero_main} />
         <UspSection {...usp_section} />
         <WorkPrinciple {...work_principle} />
