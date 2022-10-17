@@ -15,7 +15,7 @@ export function HeroTitle({ title, subtitle, body }: Props) {
           {title}
         </Text>
       )}
-      {subtitle && <Text variant="heading1"></Text>}
+      {subtitle && <Text variant="heading1">{subtitle}</Text>}
       {body && (
         <Stack gap={1} mt={1}>
           <Divider />

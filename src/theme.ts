@@ -21,6 +21,7 @@ export const theme: DefaultTheme = {
       fontSize: [64, 80],
       lineHeight: 1.167,
       fontWeight: [600, 400],
+      letterSpacing: '-0.04em',
       color: 'textPrimary',
     },
     heading2: {
@@ -78,7 +79,7 @@ export const theme: DefaultTheme = {
       color: 'textPrimary',
     },
     body1: {
-      fontSize: [16, 20],
+      fontSize: [16, 18],
       lineHeight: 1.3,
       fontWeight: 400,
       color: 'textPrimary',

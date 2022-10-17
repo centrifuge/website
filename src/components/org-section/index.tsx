@@ -1,9 +1,8 @@
-import { Box, Divider, Grid, Shelf, Stack, Text } from '@centrifuge/fabric'
-import * as React from 'react'
+import { Divider, Grid, Shelf, Stack, Text } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
-import { Image } from '../Image'
-import type { ImageProps } from '../Image'
+import * as React from 'react'
 import { CenterContainer } from '../CenterContainer'
+import { Image, ImageProps } from '../Image'
 import { Media } from './styles'
 
 export const query = graphql`
@@ -21,7 +20,7 @@ export const query = graphql`
 `
 
 type ItemProps = {
-  image: ImageProps
+  image: ImageProps['data']
   title: string
   body: string
 }

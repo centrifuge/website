@@ -3,6 +3,31 @@
   "title": "Governance",
   "seo": {
     "title": "Governance",
-    "description": "Lorem ipsum"
+    "description": "Participate and vote on key decisions that impact the future of Centrifuge."
+  },
+  "hero_governance": {
+    "title": "Governance",
+    "subtitle": "Participate and vote on key decisions that impact the future of Centrifuge",
+    "body": "Governance tokens distribute decision-making power from a centralized structure to an entire community, enabling token holders to vote on key protocol decisions.",
+    "items": [
+      {
+        "title": "Discuss",
+        "body": "Discuss your thoughts with other token holders",
+        "image": "./images/governance/discuss.svg",
+        "link": "https://gov.centrifuge.io/"
+      },
+      {
+        "title": "Vote",
+        "body": "Vote on open proposals",
+        "image": "./images/governance/vote.svg",
+        "link": "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ffullnode.parachain.centrifuge.io#/democracy"
+      },
+      {
+        "title": "Learn",
+        "body": "Learn more about our governance process",
+        "image": "./images/governance/learn.svg",
+        "link": "https://developer.centrifuge.io/use/participate-in-network/"
+      }
+    ]
   }
 }
