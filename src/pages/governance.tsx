@@ -35,7 +35,7 @@ export default function Governance({ data }: GovernanceProps) {
   const { hero_governance } = data.dataJson
   return (
     <Layout>
-      <Stack gap={168}>
+      <Stack gap={['layoutSmall', 'layoutMedium', 'layoutLarge']}>
         <HeroGovernance {...hero_governance} />
       </Stack>
     </Layout>

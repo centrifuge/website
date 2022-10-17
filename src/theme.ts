@@ -79,7 +79,7 @@ export const theme: DefaultTheme = {
       color: 'textPrimary',
     },
     body1: {
-      fontSize: [16, 20],
+      fontSize: [16, 18],
       lineHeight: 1.3,
       fontWeight: 400,
       color: 'textPrimary',

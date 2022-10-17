@@ -51,7 +51,15 @@ export function HeroGovernance({ title, subtitle, body, items }: HeroGovernanceP
         </Shelf>
         <Grid columns={[1, 2, 3]} equalColumns gap={3}>
           {items.map((item) => (
-            <Card p={3} variant="interactive" as="a" rel="noopener noreferrer" target="_blank" href={item.link}>
+            <Card
+              p={3}
+              variant="interactive"
+              as="a"
+              rel="noopener noreferrer"
+              target="_blank"
+              href={item.link}
+              key={item.title}
+            >
               <Stack gap={2}>
                 <Shelf
                   justifyContent="center"
@@ -65,7 +73,9 @@ export function HeroGovernance({ title, subtitle, body, items }: HeroGovernanceP
                   <Box as="img" src={item.image.publicURL} alt="" maxWidth="100%" />
                 </Shelf>
                 <Text variant="heading4">{item.title}</Text>
-                <Text variant="body1">{item.body}</Text>
+                <Text as="p" variant="body1">
+                  {item.body}
+                </Text>
               </Stack>
             </Card>
           ))}
