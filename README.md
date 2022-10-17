@@ -52,3 +52,22 @@
 Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
 [<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+
+## Lambdas (gcloud)
+
+### Development
+
+Starting the gatsby dev server will also start a server on `http://localhost:8080` as the lambda API endpoint.
+
+To add a new endpoint create a typescript file in `lambda/src/exampleEndpoint.ts`
+
+Next add the new route in the `routes.json` file using the same `name` as the file. Here you can add additional rules per route if necessary.
+
+```json
+[
+  {
+    "name" "exampleEndpoint"
+  }
+...
+]
+```
