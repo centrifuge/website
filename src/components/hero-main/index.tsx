@@ -1,4 +1,4 @@
-import { Box, Text } from '@centrifuge/fabric'
+import { Text, Shelf, Box } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { links } from '../../../config/links'
@@ -8,7 +8,7 @@ import type { PartnerProps } from '../partner-list'
 import { PartnerList } from '../partner-list'
 import { Swirl } from './Swirl'
 import { Typewriter } from '../Typewriter'
-import { Inner, Title, Content, Graphic, CTA } from './styles'
+import { Root, Inner, Title, Content, Graphic, CTA } from './styles'
 
 export const query = graphql`
   fragment HeroMainFragment on DataJsonHero_main {
@@ -42,9 +42,9 @@ export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
   })
 
   return (
-    <Box as="section" ref={ref}>
-      <Box px={2} pt={[2, 4, 6]}>
-        <Inner maxWidth="container">
+    <Root as="section" ref={ref} flexDirection="column">
+      <Shelf px={2} pt={[2, 4, 6]} flexGrow={2}>
+        <Inner maxWidth="container" alignSelf="start">
           <Title>
             {title}
             <br />
@@ -66,11 +66,14 @@ export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
               Enter App
             </CTA>
           </Content>
-
-          <ChainStats />
         </Inner>
+      </Shelf>
+
+      <Box px={2}>
+        <ChainStats />
       </Box>
+
       <PartnerList partners={partners} />
-    </Box>
+    </Root>
   )
 }

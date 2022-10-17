@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Box } from '@centrifuge/fabric'
+import { Box, Container } from '@centrifuge/fabric'
 
-export const Root = styled(Box)`
+export const Root = styled(Container)`
   @media (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     display: flex;
     gap: ${({ theme }) => theme.space[3]}px;

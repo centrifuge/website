@@ -7,11 +7,13 @@ import { HeroMain } from '../components/hero-main'
 import { Testimonials } from '../components/testimonials'
 import { UspSection } from '../components/usp-section'
 import { WorkPrinciple } from '../components/work-principle'
+import { AuditSection } from '../components/audit-section'
 import type { HeadProps } from 'gatsby'
 import type { HeroMainProps } from '../components/hero-main'
 import type { TestimonialsProps } from '../components/testimonials'
 import type { UspSectionProps } from '../components/usp-section'
 import type { WorkPrincipleProps } from '../components/work-principle'
+import type { AuditSectionProps } from '../components/audit-section'
 
 export const query = graphql`
   query {
@@ -33,6 +35,10 @@ export const query = graphql`
       work_principle {
         ...WorkPrincipleFragment
       }
+
+      audit_section {
+        ...AuditSectionFragment
+      }
     }
   }
 `
@@ -44,12 +50,13 @@ type HomeProps = {
       testimonials: TestimonialsProps
       usp_section: UspSectionProps
       work_principle: WorkPrincipleProps
+      audit_section: AuditSectionProps
     }
   }
 }
 
 export default function Home({ data }: HomeProps) {
-  const { hero_main, testimonials, usp_section, work_principle } = data.dataJson
+  const { hero_main, testimonials, usp_section, work_principle, audit_section } = data.dataJson
 
   return (
     <Layout menuButtonVariant="secondary">
@@ -58,6 +65,7 @@ export default function Home({ data }: HomeProps) {
         <UspSection {...usp_section} />
         <WorkPrinciple {...work_principle} />
         <Testimonials {...testimonials} />
+        <AuditSection {...audit_section} />
       </Stack>
     </Layout>
   )
