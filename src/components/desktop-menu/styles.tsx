@@ -1,9 +1,5 @@
 import styled, { css } from 'styled-components'
-import { Shelf, Box } from '@centrifuge/fabric'
-
-export const Menu = styled(Shelf)`
-  list-style: none;
-`
+import { Box } from '@centrifuge/fabric'
 
 const dropDownOpen = css`
   visibility: visible;
@@ -19,7 +15,6 @@ export const Dropdown = styled(Box)`
   top: calc(100% + var(--offset));
   left: calc(var(--offset) * -1);
 
-  list-style: none;
   visibility: hidden;
 
   background-color: ${({ theme }) => theme.colors.backgroundPage};

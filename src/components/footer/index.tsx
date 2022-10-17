@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { Container, Shelf, Grid } from '@centrifuge/fabric'
+import { Container, Grid, Box } from '@centrifuge/fabric'
 import { footer } from '../../../config/footer'
 import { Column } from './Column'
-import { Root } from './styles'
 
 export function Footer() {
   return (
-    <Root as="footer" px={2} py={4}>
+    <Box as="footer" px={2} py={4} backgroundColor="textPrimary">
       <Container>
         <Grid as="nav" columns={[1, 2, 4]} gap={6}>
           {footer.map((column, index) => (
@@ -14,6 +13,6 @@ export function Footer() {
           ))}
         </Grid>
       </Container>
-    </Root>
+    </Box>
   )
 }
