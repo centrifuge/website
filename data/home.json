@@ -127,5 +127,30 @@
         "image": "./images/work-principle/vote.svg"
       }
     ]
+  },
+  "audit_section": {
+    "title": "Audited by",
+    "items": [
+      {
+        "image": "./images/audit/trails-of-bits.svg",
+        "alt": "Trails of Bits"
+      },
+      {
+        "image": "./images/audit/security-research-labs.svg",
+        "alt": "Security Reseach Labs"
+      },
+      {
+        "image": "./images/audit/dapp-org.svg",
+        "alt": "dapp.org"
+      },
+      {
+        "image": "./images/audit/least-authority.png",
+        "alt": "Least Authority - Privacy matters"
+      },
+      {
+        "image": "./images/audit/consensys-diligence.svg",
+        "alt": "Consensys Diligence"
+      }
+    ]
   }
 }
