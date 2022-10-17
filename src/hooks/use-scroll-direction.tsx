@@ -7,10 +7,6 @@ export function useScrollDirection(threshold = 0) {
   const prevScrollY = React.useRef(0)
 
   React.useEffect(() => {
-    if (typeof window === 'undefined') {
-      return
-    }
-
     prevScrollY.current = window.pageYOffset
 
     const updateScrollDirection = () => {
