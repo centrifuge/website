@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@centrifuge/fabric": "^1.0.5",
+    "@centrifuge/fabric": "^1.0.6",
     "babel-plugin-styled-components": "^2.0.7",
     "embla-carousel-react": "^7.0.3",
     "focus-trap-react": "^10.0.0",
