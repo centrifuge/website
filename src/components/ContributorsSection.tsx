@@ -43,29 +43,38 @@ function Contributor({ item }: { item: Item }) {
   return (
     <Shelf flexDirection={['row', 'column']} width={['auto', 200, 260]} gap={[4, 2]} role="listitem">
       <Box width={[150, 'auto']} maxWidth={[150, 'initial']} position="relative" pl={[20, 0]}>
-        <Box borderRadius="50%" overflow="hidden">
+        <Box
+          borderRadius="50%"
+          overflow="hidden"
+          style={{
+            // New stacking context to fix border radius in Safari
+            isolation: 'isolate',
+          }}
+        >
           <Image data={item.image} />
         </Box>
-        <Box
-          as="a"
-          href={item.social}
-          rel="noopener noreferrer"
-          target="_blank"
-          aria-label="Social media"
-          position="absolute"
-          top={[0, 'initial']}
-          left={[0, 'initial']}
-          bottom={['initial', 0]}
-          right={['initial', 0]}
-        >
-          <Box as="img" display="block" src={link} maxWidth={[24, 30]} />
-        </Box>
+        {item.social && (
+          <Box
+            as="a"
+            href={item.social}
+            rel="noopener noreferrer"
+            target="_blank"
+            title={`Find ${item.name} on Social media`}
+            position="absolute"
+            top={[0, 'initial']}
+            left={[0, 'initial']}
+            bottom={['initial', 0]}
+            right={['initial', 0]}
+          >
+            <Box as="img" display="block" src={link} maxWidth={[24, 30]} alt="" />
+          </Box>
+        )}
       </Box>
       <Stack alignItems={['flex-start', 'center']} textAlign={['left', 'center']}>
-        <Text variant="heading6" as="h3">
+        <Text variant="heading6" as="h3" color="textPrimary">
           {item.name}
         </Text>
-        <Text variant="body1" color="textDisabled">
+        <Text variant="body1" color="textSecondary">
           {item.role}
         </Text>
       </Stack>
@@ -171,27 +180,27 @@ export function ContributorsSection({ title, items }: ContributorsSectionProps) 
       <noscript
         dangerouslySetInnerHTML={{
           __html: `<style>
-						${MarqueeWrapper} {
-							display: none !important;
-						}
-						${GridWrapper} {
-							display: block !important;
-						}
-						${StyledGrid} {
-							width: 100% !important;
-						}
-						@media (max-width: ${theme.breakpoints['S']}) {
-							${StyledGrid} {
-								grid-template-columns: 1fr !important;
-							}
-						}
-						${StyledGrid} > * {
-							opacity: 1 !important;
-						}
-						${ButtonWrapper} {
-							display: none !important;
-						}
-					</style>`,
+            ${MarqueeWrapper} {
+              display: none !important;
+            }
+            ${GridWrapper} {
+              display: block !important;
+            }
+            ${StyledGrid} {
+              width: 100% !important;
+            }
+            @media (max-width: ${theme.breakpoints['S']}) {
+              ${StyledGrid} {
+                grid-template-columns: 1fr !important;
+              }
+            }
+            ${StyledGrid} > * {
+              opacity: 1 !important;
+            }
+            ${ButtonWrapper} {
+              display: none !important;
+            }
+          </style>`,
         }}
       />
     </>
