@@ -2,10 +2,12 @@ import { Link } from 'gatsby'
 import { Box } from '@centrifuge/fabric'
 import styled from 'styled-components'
 
-export const Root = styled(Box)`
+export const Root = styled(Box)<{ isHidden: boolean }>`
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   background-color: ${({ theme }) => theme.colors.backgroundPage};
+  transition: transform 0.25s;
+  transform: ${({ isHidden }) => `translateY(${isHidden ? -100 : 0}%)`};
 `
 
 export const LogoLink = styled(Link)`

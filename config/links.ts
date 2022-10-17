@@ -7,4 +7,5 @@ export const links = {
   github: 'https://github.com/centrifuge/',
   docs: 'https://docs.centrifuge.io/',
   app: 'https://tinlake.centrifuge.io/',
+  audits: 'https://github.com/centrifuge/security/tree/main/audits',
 }
