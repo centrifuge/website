@@ -53,7 +53,9 @@ function ColorBlock({ title, value, outline, inverted }: ColorBlockProps) {
       pb={1}
       alignItems="end"
       gap={2}
-      style={{ border: outline ? `1px solid ${colors.borderPrimary}` : 0 }}
+      borderStyle="solid"
+      borderWidth={outline ? 1 : 0}
+      borderColor="borderPrimary"
       maxWidth="containerNarrow"
     >
       <Text as="dt" variant="body1" color={textColor}>
