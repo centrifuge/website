@@ -9,7 +9,8 @@ export const Column = styled(Box)<{ flipped: boolean }>`
   img {
     display: block;
     width: 100%;
-    max-width: 300px;
+    max-width: 370px;
+    max-height: 310px;
     height: auto;
 
     @media (min-width: ${({ theme }) => theme.breakpoints['M']}) {
