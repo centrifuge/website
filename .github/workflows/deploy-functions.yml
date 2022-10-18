@@ -1,8 +1,9 @@
 name: gcloud functions deploy
 on:
-  branches:
-    - version-2
-    - 'feat/fetch-medium-articles-475'
+  push:
+    branches:
+      - version-2
+      - 'feat/fetch-medium-articles-475'
 
 jobs:
   job_id:
