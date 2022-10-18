@@ -33,7 +33,9 @@ export function PrivacySection({ title, sections, imprint }: PrivacySectionProps
     <CenterContainer as="section">
       <Stack gap={140} pt={8}>
         <Stack gap={3}>
-          <Text variant="tag">Imprint</Text>
+          <Text variant="tag" as="h2">
+            Imprint
+          </Text>
           <Stack gap={1} as="address">
             <Text variant="heading6">{imprint.name}</Text>
             <Text variant="body2" as="pre">
@@ -52,7 +54,7 @@ export function PrivacySection({ title, sections, imprint }: PrivacySectionProps
             <Stack gap={8}>
               {sections.map((section) => (
                 <Stack key={section.title} gap={2}>
-                  <Text variant="heading4" as="h3" role="listitem">
+                  <Text variant="heading4" as="h2">
                     {section.title}
                   </Text>
                   <Text variant="body1" as="p">

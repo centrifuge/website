@@ -22,6 +22,7 @@ export const onRenderBody = ({ setHeadComponents, setHtmlAttributes }) => {
             src: url(/fonts/Inter-roman.var.woff2) format("woff2");
           }`,
       }}
+      key="fontface"
     />,
   ])
   setHtmlAttributes({ lang: 'en-US' })
