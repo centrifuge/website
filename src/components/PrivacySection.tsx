@@ -37,7 +37,7 @@ export function PrivacySection({ title, sections, imprint }: PrivacySectionProps
             Imprint
           </Text>
           <Stack gap={1} as="address">
-            <Text variant="heading6">{imprint.name}</Text>
+            <Text variant="heading6" as="h3">{imprint.name}</Text>
             <Text variant="body2" as="pre">
               {imprint.address}
             </Text>
