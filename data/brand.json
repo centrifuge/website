@@ -3,6 +3,149 @@
   "title": "Brand",
   "seo": {
     "title": "Brand",
-    "description": "Lorem ipsum"
-  }
+    "description": "Brand guidelines for Centrifuge and Altair."
+  },
+  "brands": [
+    {
+      "title": "Centrifuge brand",
+
+      "color": {
+        "title": "Color",
+        "items": [
+          {
+            "title": "Primary Colors",
+            "body": "Solid white and orange are used as the primary brand colors. White are the primary background color and yellow is the primary accent color.",
+            "colors": [
+              {
+                "title": "White",
+                "value": "#FFFFFF",
+                "outline": true
+              },
+              {
+                "title": "Centrifuge Yellow",
+                "value": "#FFC012"
+              }
+            ]
+          },
+          {
+            "title": "Secondary colors",
+            "body": "Black is used predominantly as text color and sometimes used as background color. Centrifuge Blue is used as secondary highlight color, in addition to orange, and on hover states. Centrifuge Orange is used a secondary highlight color.",
+            "colors": [
+              {
+                "title": "Black",
+                "value": "#000000",
+                "inverted": true
+              },
+              {
+                "title": "Centrifuge Blue",
+                "value": "#1253FF",
+                "inverted": true
+              }
+            ]
+          }
+        ]
+      },
+
+      "font": {
+        "title": "Typeface",
+        "body": "We use Regular weight (400) for body; Medium weight (500), Semibold weight (500), and Bold weight (600) for headlines.",
+        "image": "./images/brand/inter-typeface.svg"
+      },
+
+      "logo": {
+        "title": "Logo",
+        "items": [
+          {
+            "title": "Wordmark",
+            "body": "Wordmark is the primary logo and is exclusively used either white on black background or black on white background.",
+            "images": ["./images/brand/centrifuge-wordmark-black.svg", "./images/brand/centrifuge-wordmark-white.svg"]
+          },
+          {
+            "title": "Logomark",
+            "body": "Logomark is only used within the Centrifuge ecosystem when the context is clearly established.",
+            "images": ["./images/brand/centrifuge-logomark-black.svg", "./images/brand/centrifuge-logomark-white.svg"]
+          },
+          {
+            "title": "Spacing",
+            "body": "The logo should be unobstructed or overlayed, seperated from other elements by at least equal to the letter “e” in the logo.",
+            "images": [
+              "./images/brand/centrifuge-spacing-wordmark.svg",
+              "./images/brand/centrifuge-spacing-logomark.svg"
+            ]
+          },
+          {
+            "title": "Improper usage",
+            "body": "The logo should remain in its shade of black or white, without rotation or distortion. There should be no borders around the logo’s respective background color.",
+            "images": [
+              "./images/brand/centrifuge-improper-1.png",
+              "./images/brand/centrifuge-improper-2.png",
+              "./images/brand/centrifuge-improper-3.png",
+              "./images/brand/centrifuge-improper-4.png"
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "title": "Altair brand",
+
+      "color": {
+        "title": "Color",
+        "items": [
+          {
+            "title": "Color Primary",
+            "body": "Solid black and solid white are used as the primary brand colors in text and as background colors.",
+            "colors": [
+              {
+                "title": "Black",
+                "value": "#000000",
+                "inverted": true
+              },
+              {
+                "title": "Centrifuge Yellow",
+                "value": "#FFC012"
+              },
+              {
+                "title": "White",
+                "value": "#FFFFFF",
+                "outline": true
+              }
+            ]
+          }
+        ]
+      },
+
+      "logo": {
+        "title": "Logo",
+        "items": [
+          {
+            "title": "Wordmark",
+            "body": "Wordmark is the primary logo and is exclusively used either white on black background or black on white background.",
+            "images": ["./images/brand/altair-wordmark-white.svg", "./images/brand/altair-wordmark-black.svg"]
+          },
+          {
+            "title": "Logomark",
+            "body": "Logomark is only used as a token symbol or when the context is clearly established within Altair.",
+            "images": ["./images/brand/altair-logomark-white.svg", "./images/brand/altair-logomark-black.svg"]
+          },
+          {
+            "title": "Spacing",
+            "body": "The logo should be unobstructed or overlayed, seperated from other elements by at least equal to 32px.",
+            "images": ["./images/brand/altair-spacing-wordmark.svg", "./images/brand/altair-spacing-logomark.svg"]
+          },
+          {
+            "title": "Improper usage",
+            "body": "The logo should remain in its original gradient colors, without rotation or distortion. There should be no borders around the logo’s respective background color.",
+            "images": [
+              "./images/brand/altair-improper-1.png",
+              "./images/brand/altair-improper-2.png",
+              "./images/brand/altair-improper-3.png",
+              "./images/brand/altair-improper-4.png"
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
