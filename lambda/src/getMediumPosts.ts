@@ -2,9 +2,8 @@ import nodeFetch from 'node-fetch'
 import cheerio from 'cheerio'
 import { Request, Response } from 'express'
 
-const unescapeSpecialChars = (str) => {
-  /// @ts-ignore
-  return cheerio.load(`<!doctype html><body>${str}</body>`, 'text/html').text()
+const unescapeSpecialChars = (str: string) => {
+  return cheerio.load(`<!doctype html><body>${str}</body>`, 'text/html' as any).text()
 }
 
 export default async function getMediumPosts(req: Request, res: Response) {
@@ -19,7 +18,7 @@ export default async function getMediumPosts(req: Request, res: Response) {
     return res.status(422).send(JSON.stringify(error))
   }
 
-  const mediumPosts = { items: [] }
+  const mediumPosts: Record<'items', any[]> = { items: [] }
   for (let item of responseJson.items) {
     try {
       item.title = unescapeSpecialChars(item.title)
@@ -45,7 +44,6 @@ export default async function getMediumPosts(req: Request, res: Response) {
         item.thumbnail = _image
       }
     } finally {
-      // @ts-ignore
       mediumPosts.items.push(item)
     }
   }
