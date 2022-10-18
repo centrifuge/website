@@ -10,6 +10,7 @@ exports.handler = async (req: Request, res: Response) => {
       const method = require(`./src/${route.name}`)
       return method.default(req, res)
     }
+    return res.status(400).send('Route not defined')
   }
   return res.status(500).send('An error occured')
 }
