@@ -71,7 +71,7 @@ function Contributor({ item }: { item: Item }) {
         )}
       </Box>
       <Stack alignItems={['flex-start', 'center']} textAlign={['left', 'center']}>
-        <Text variant="heading6" as="h3" color="textPrimary">
+        <Text variant="heading6" as="h3">
           {item.name}
         </Text>
         <Text variant="body1" color="textSecondary">

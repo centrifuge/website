@@ -54,7 +54,7 @@ export const theme: DefaultTheme = {
       fontSize: 24,
       lineHeight: 1.2,
       fontWeight: 400,
-      color: 'textSecondary',
+      color: 'textPrimary',
     },
     tag: {
       fontSize: 16,
