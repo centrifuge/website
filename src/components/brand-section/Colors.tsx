@@ -42,7 +42,7 @@ type ColorBlockProps = {
 }
 
 function ColorBlock({ title, value, outline, inverted }: ColorBlockProps) {
-  const { colors, sizes } = useTheme()
+  const { colors } = useTheme()
   const textColor = inverted ? colors.textInverted : colors.textPrimary
 
   return (
@@ -54,7 +54,7 @@ function ColorBlock({ title, value, outline, inverted }: ColorBlockProps) {
       alignItems="end"
       gap={2}
       style={{ border: outline ? `1px solid ${colors.borderPrimary}` : 0 }}
-      maxWidth={sizes.containerNarrow}
+      maxWidth="containerNarrow"
     >
       <Text as="dt" variant="body1" color={textColor}>
         {title}
