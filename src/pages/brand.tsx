@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/Seo'
 import { BrandSection } from '../components/brand-section'
+import { SROnly } from '../components/SROnly'
 
 import type { SEOProps } from '../components/Seo'
 import type { HeadProps } from 'gatsby'
@@ -41,7 +42,7 @@ export default function Brand({ data }: BrandProps) {
 
   return (
     <Layout>
-      <h1 className="sr-only">{title}</h1>
+      <SROnly as="h1">{title}</SROnly>
       <Stack gap={['layoutSmall', 'layoutMedium', 'layoutLarge']} mt={8}>
         {brands.map((brand, index) => (
           <BrandSection key={`${brand.title}${index}`} {...brand} />
