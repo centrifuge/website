@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'gatsby'
-import styled, { useTheme } from 'styled-components'
+import { useTheme } from 'styled-components'
 import Cookies from 'js-cookie'
 import { Button, Text, Shelf } from '@centrifuge/fabric'
-
-// const Anchor = styled(Link)`
-//   color: ${({ theme }) => theme.colors.textPrimary}
-
-// `
 
 export function GDPRBanner() {
   const { zIndices, shadows } = useTheme()
