@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'gatsby'
 import { useTheme } from 'styled-components'
-import Cookies from 'js-cookie'
 import { Button, Text, Shelf } from '@centrifuge/fabric'
+
+const STORAGE_KEY = 'GDPRBannerDismissed'
 
 export function GDPRBanner() {
   const { zIndices, shadows } = useTheme()
   const [bannerEnabled, setBannerEnabled] = useState(false)
 
-  useEffect(
-    () => (Cookies.get('bannerCookieDismissed') === 'true' ? setBannerEnabled(false) : setBannerEnabled(true)),
-    []
-  )
+  useEffect(() => (localStorage.getItem(STORAGE_KEY) === 'true' ? setBannerEnabled(false) : setBannerEnabled(true)), [])
 
   if (!bannerEnabled) {
     return null
@@ -51,7 +49,7 @@ export function GDPRBanner() {
           variant="secondary"
           onClick={() => {
             setBannerEnabled(false)
-            Cookies.set('bannerCookieDismissed', 'true')
+            localStorage.setItem(STORAGE_KEY, 'true')
           }}
         >
           Accept
