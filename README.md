@@ -1,54 +1,55 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+<h1>
+  <a href="https://centrifuge.io/" target="_blank" style="color: inherit">
+    Centrifuge: Real World DeFi
   </a>
-</p>
-<h1 align="center">
-  Gatsby minimal TypeScript starter
 </h1>
 
-## 🚀 Quick start
+Build upon [Gatsby minimal TypeScript starter](https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
 
-1.  **Create a Gatsby site.**
+## Development
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+```shell
+yarn install
+yarn start
+```
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby
-    ```
+Site runs on http://localhost:8000
 
-2.  **Start developing.**
+Graphql playground runs on http://localhost:8000/\_\_\_graphql
 
-    Navigate into your new site’s directory and start it up.
+---
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## Deployment
 
-3.  **Open the code and start customizing!**
+Create a build
 
-    Your site is now running at http://localhost:8000!
+```shell
+yarn build
+```
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+Test a build locally
 
-4.  **Learn more**
+```shell
+yarn build
+yarn serve
+```
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+---
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+## Pages and data
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+Each page gets its data from a json file in `/data/<page-name>.json`. Data is available in page component using a graphql query filtered by <page-slug>
 
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+```javascript
+export const query = graphql`
+  query {
+    dataJson(slug: { eq: "/<page-slug>" }) {
+      seo {
+        ...SeoFragment
+      }
+    }
+  }
+`
+```
 
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+Official docs on how to use [GraphQL Fragments](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/using-graphql-fragments/)
