@@ -30,18 +30,6 @@ const Title = styled.span`
   }
 `
 
-const Body = styled.span`
-  font-size: 18px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
-    font-size: 25px;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints['M']}) {
-    font-size: 35px;
-  }
-`
-
 export default function NotFoundPage() {
   return (
     <Layout>
@@ -55,7 +43,7 @@ export default function NotFoundPage() {
           <Text as="h1" textAlign={['center', 'center', 'left']} style={{ width: 'max-content' }}>
             <Title>404</Title>
             <br />
-            <Body>Oops! Page not found</Body>
+            <Text fontSize={[18, 25, 35]}>Oops! Page not found</Text>
           </Text>
 
           <Box mt={2}>
