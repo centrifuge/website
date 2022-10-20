@@ -5,6 +5,7 @@ import type { ButtonVariant } from './desktop-menu/SubMenu'
 import { theme } from '../theme'
 import { Footer } from './footer'
 import { Header } from './header'
+import { GDPRBanner } from './GDPRBanner'
 
 type LayoutProps = {
   menuButtonVariant?: ButtonVariant
@@ -18,6 +19,7 @@ export function Layout({ menuButtonVariant = 'primary', children }: LayoutProps)
       <Box as="main" pt={theme.sizes.headerHeight} pb={200} flexGrow={2}>
         {children}
       </Box>
+      <GDPRBanner />
       <Footer />
     </Base>
   )
