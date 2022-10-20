@@ -51,7 +51,7 @@ export default function Explore({ data }: ExploreProps) {
     <Base>
       <Box as="main" py={6} px={2} flexGrow={2}>
         <Shelf as="header" flexDirection="column" alignItems="center" gap={2}>
-          <LogoLink to="/">
+          <LogoLink to="/" title="Go to centrifuge.io">
             <Logo />
           </LogoLink>
           <Text as="h1" varaint="body1" textAlign="center">
