@@ -39,7 +39,7 @@ export type HeroGovernanceProps = {
 
 export function HeroGovernance({ title, subtitle, body, items }: HeroGovernanceProps) {
   return (
-    <CenterContainer>
+    <CenterContainer as="section">
       <Stack gap={8} pt={8}>
         <Shelf gap={8} alignItems="flex-start">
           <Box flex="1 1 65%">
@@ -72,7 +72,9 @@ export function HeroGovernance({ title, subtitle, body, items }: HeroGovernanceP
                 >
                   <Box as="img" src={item.image.publicURL} alt="" maxWidth="100%" />
                 </Shelf>
-                <Text variant="heading4">{item.title}</Text>
+                <Text variant="heading4" as="h2">
+                  {item.title}
+                </Text>
                 <Text as="p" variant="body1">
                   {item.body}
                 </Text>

@@ -11,15 +11,21 @@ export function HeroTitle({ title, subtitle, body }: Props) {
   return (
     <Stack gap={2}>
       {title && (
-        <Text variant="tag" as="h1">
+        <Text variant="tag" as={!subtitle ? 'h1' : 'span'}>
           {title}
         </Text>
       )}
-      {subtitle && <Text variant="heading1">{subtitle}</Text>}
+      {subtitle && (
+        <Text as="h1" variant="heading1">
+          {subtitle}
+        </Text>
+      )}
       {body && (
         <Stack gap={1} mt={1}>
           <Divider />
-          <Text variant="body1">{body}</Text>
+          <Text as="p" variant="body1">
+            {body}
+          </Text>
         </Stack>
       )}
     </Stack>
