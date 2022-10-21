@@ -27,11 +27,14 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Inter, sans-serif;
   }
 
+  ul {
+    list-style: none;
+  }
+
   ul,
   li {
     margin: 0;
     padding: 0;
-    list-style: none;
   }
 
   *:focus-visible {
