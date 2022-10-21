@@ -114,13 +114,7 @@ export function MarkdownSection({ childMarkdownRemark }: MarkdownSectionProps) {
                 {children}
               </Text>
             ) : (
-              <Text
-                as={Link}
-                to={href}
-                color="textPrimary"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'underline' }}
-              >
+              <Text as={Link} to={href} color="textPrimary" style={{ textDecoration: 'underline' }}>
                 {children}
               </Text>
             )
