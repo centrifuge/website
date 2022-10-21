@@ -70,7 +70,7 @@ Any services or products hosted, or developed by 3rd party providers and service
 - Github
 - Slack
 - TravisCI
-- [www.centrifuge.io](www.centrifuge.io)
+- [www.centrifuge.io](https://www.centrifuge.io)
 - ...
 
 In the interest of the safety of our users, staff, the Internet at large and you as a security researcher, the following test types are excluded from scope:

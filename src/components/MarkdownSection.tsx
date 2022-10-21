@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { Stack, Text, Box } from '@centrifuge/fabric'
 import styled from 'styled-components'
 
@@ -95,11 +95,36 @@ export function MarkdownSection({ childMarkdownRemark }: MarkdownSectionProps) {
               {children}
             </Text>
           ),
-          a: ({ children, href }) => (
-            <Text as="a" href={href} color="textPrimary" style={{ textDecoration: 'underline' }}>
-              {children}
-            </Text>
-          ),
+          a: ({ children, href }) => {
+            const isExternal = !href?.startsWith('/')
+
+            if (!href) {
+              return <Text as="span">{children}</Text>
+            }
+
+            return isExternal ? (
+              <Text
+                as="a"
+                href={href}
+                color="textPrimary"
+                rel="noopener noreferrer"
+                target="_blank"
+                style={{ textDecoration: 'underline' }}
+              >
+                {children}
+              </Text>
+            ) : (
+              <Text
+                as={Link}
+                to={href}
+                color="textPrimary"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'underline' }}
+              >
+                {children}
+              </Text>
+            )
+          },
         }}
       />
     </Root>
