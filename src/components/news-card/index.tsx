@@ -10,9 +10,19 @@ export type NewsCardProps = MediaProps &
     body: string
     boxed?: boolean
     featured?: boolean
+    isLoading?: boolean
   }
 
-export function NewsCard({ label, title, body, image, href, boxed = false, featured = false }: NewsCardProps) {
+export function NewsCard({
+  label,
+  title,
+  body,
+  image,
+  href,
+  boxed = false,
+  featured = false,
+  isLoading = false,
+}: NewsCardProps) {
   const { shadows } = useTheme()
 
   return featured ? (
@@ -69,7 +79,7 @@ function Label({ children }: { children: React.ReactNode }) {
 
 function Title({ featured = false, children }: { featured: boolean; children: React.ReactNode }) {
   return (
-    <Text as="h2" variant={featured ? 'heading4' : 'heading3'}>
+    <Text as="h2" variant={featured ? 'heading5' : 'heading4'}>
       {children}
     </Text>
   )
