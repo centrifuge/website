@@ -7,7 +7,9 @@
   "hero_video": {
     "title": "Mission",
     "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively; free of intermediaries and the inefficiencies of traditional finance.",
-    "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    "video": {
+      "youtubeId": "h8tfJ9EtIpY"
+    }
   },
   "org_section": {
     "title": "How we work",
