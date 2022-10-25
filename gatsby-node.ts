@@ -14,6 +14,18 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions: { create
         },
       })
     })
+
+    const crowdloanPages = ['/altair', '/parachain']
+
+    crowdloanPages.forEach((route) => {
+      createPage({
+        path: `${route}/crowdloan`,
+        component: path.resolve('./src/templates/crowdloan.tsx'),
+        context: {
+          slug: route,
+        },
+      })
+    })
   } catch (err) {
     console.log('error', err)
   }
