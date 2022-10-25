@@ -46,10 +46,6 @@ const menu = [
         href: '/news',
       },
       {
-        label: 'Litepaper',
-        href: '',
-      },
-      {
         label: 'FAQs',
         href: 'https://docs.centrifuge.io/faq/',
         isExternal: true,
