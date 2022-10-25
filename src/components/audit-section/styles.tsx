@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Media = styled.li`
-  img {
+  img,
+  .gatsby-image-wrapper img {
     display: block;
     width: auto;
     height: 30px;
