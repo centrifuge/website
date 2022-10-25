@@ -9,7 +9,6 @@ import { StatsCrowdloan } from '../components/StatsCrowdloan'
 
 import type { HeroCrowdloanProps } from '../components/hero-crowdloan'
 import type { StatsCrowdloanProps } from '../components/StatsCrowdloan'
-
 import type { SEOProps } from '../components/Seo'
 import { CrowdloanUser } from '../components/CrowdloanUser'
 
