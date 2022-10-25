@@ -60,123 +60,199 @@
     "title": "Contributors",
     "items": [
       {
-        "name": "Dennis Wellmann",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/financeundtech",
-        "image": "./images/team/dennis.jpeg"
-      },
-      {
-        "name": "Kate Beecroft",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/kbeecroft",
-        "image": "./images/team/kate.jpeg"
-      },
-      {
-        "name": "Miguel Hervas",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/mikiquantum",
-        "image": "./images/team/miguel.png"
-      },
-      {
-        "name": "Jeroen Offerijns",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/Offerijns",
-        "image": "./images/team/jeroen.jpg"
-      },
-      {
-        "name": "Cassidy Daly",
-        "role": "Engineer @ K/F",
-        "social": "https://www.twitter.com/cassidydaly",
-        "image": "./images/team/cassidy.jpg"
-      },
-      {
-        "name": "Alina Sinelnikova",
-        "role": "Engineer @ K/F",
-        "social": "https://www.linkedin.com/in/alina-sinelnikova-5474a782/",
-        "image": "./images/team/alina.jpeg"
-      },
-      {
-        "name": "Martin Quensel",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/mr_optimax",
-        "image": "./images/team/martin.png"
-      },
-      {
-        "name": "Lucas Vogelsang",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/lucasvo",
-        "image": "./images/team/lucas.png"
-      },
-      {
-        "name": "Mike Ruzic",
-        "role": "Engineer @ K/F",
-        "social": "https://www.linkedin.com/in/michael-ruzic-gauthier/",
-        "image": "./images/team/mike.jpg"
-      },
-      {
-        "name": "Devin Black",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/d_evvy",
-        "image": "./images/team/devin.jpg"
-      },
-      {
-        "name": "JP Angelle",
-        "role": "Engineer @ K/F",
-        "social": "https://www.linkedin.com/in/jeanpaulangelle/",
-        "image": "./images/team/jp.jpg"
-      },
-      {
-        "name": "Frederik Schulz",
-        "role": "Engineer @ K/F",
-        "social": "https://www.linkedin.com/in/frederik-lukas-schulz/",
-        "image": "./images/team/frederick.jpeg"
-      },
-      {
-        "name": "Anna Mehrländer",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/baenaenanna",
-        "image": "./images/team/anna.jpeg"
-      },
-      {
-        "name": "Onno Visser",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/_onnovisser",
-        "image": "./images/team/onno.jpeg"
-      },
-      {
-        "name": "Colin Cunning",
-        "role": "Engineer @ K/F",
-        "social": "https://twitter.com/ctcunning",
-        "image": "./images/team/colin.jpeg"
-      },
-      {
         "name": "Adam Stockermans",
-        "role": "Engineer @ K/F",
+        "role": "Engineer @ k/f",
         "social": "https://github.com/astox",
         "image": "./images/team/adam.jpg"
       },
       {
+        "name": "Alina Sinelnikova",
+        "role": "Engineer @ k/f",
+        "social": "https://www.linkedin.com/in/alina-sinelnikova-5474a782/",
+        "image": "./images/team/alina.jpg"
+      },
+      {
+        "name": "Anna Mehrländer",
+        "role": "Product @ k/f",
+        "social": "https://twitter.com/baenaenanna",
+        "image": "./images/team/anna-mehrlaender.jpg"
+      },
+      {
+        "name": "Asad Khan",
+        "role": "DeFi Politician @ k/f",
+        "social": "https://twitter.com/fintech_khan",
+        "image": "./images/team/asad-khan.jpg"
+      },
+      {
+        "name": "Aubry Kessel",
+        "role": "",
+        "social": "https://www.instagram.com/aubs.23/",
+        "image": "./images/team/aubry-kessel.jpg"
+      },
+      {
+        "name": "Bastian Gruber",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/recvonline",
+        "image": "./images/team/bastian-gruber.jpg"
+      },
+      {
+        "name": "Ben Deitmer",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/HORNEBOM",
+        "image": "./images/team/ben.jpg"
+      },
+      {
+        "name": "Cassidy Daly",
+        "role": "",
+        "social": "https://www.twitter.com/cassidydaly",
+        "image": "./images/team/cassidy.jpg"
+      },
+      {
+        "name": "Colin Cunningham",
+        "role": "Business Development @ k/f",
+        "social": "https://twitter.com/ctcunning",
+        "image": "./images/team/colin.jpg"
+      },
+      {
+        "name": "Dennis Wellmann",
+        "role": "Product @ k/f",
+        "social": "https://twitter.com/financeundtech",
+        "image": "./images/team/dennis.jpg"
+      },
+      {
+        "name": "Devin Black",
+        "role": "Marketing @ k/f",
+        "social": "https://twitter.com/d_evvy",
+        "image": "./images/team/devin.jpg"
+      },
+      {
+        "name": "Eli Cohen",
+        "role": "Legal @ k/f",
+        "social": "https://www.linkedin.com/in/eli-cohen-356241/",
+        "image": "./images/team/eli.jpg"
+      },
+      {
         "name": "Erica Blomquist",
-        "role": "Engineer @ K/F",
+        "role": "",
         "image": "./images/team/erica.jpg"
       },
       {
+        "name": "Frederik Gartenmeister",
+        "role": "Product and Engineering @ k/f",
+        "social": "https://twitter.com/mustermeiszer2",
+        "image": "./images/team/frederik.jpg"
+      },
+      {
         "name": "Guillermo Perez",
-        "role": "Engineer @ K/F",
+        "role": "Product Ops @ k/f",
         "social": "https://www.linkedin.com/in/gpmayorga/",
-        "image": "./images/team/guillermo.jpg"
+        "image": "./images/team/guillermo-perez.jpg"
+      },
+      {
+        "name": "Jay Danzer",
+        "role": "Tech Operations Manager @ k/f",
+        "social": "https://www.linkedin.com/in/jared-danzer/",
+        "image": "./images/team/jay.jpg"
       },
       {
         "name": "Jeannice Tse",
-        "role": "Engineer @ K/F",
+        "role": "Business Development @ k/f",
         "social": "https://www.linkedin.com/in/jeannicetse/",
         "image": "./images/team/jeannice.jpg"
       },
       {
+        "name": "Jeroen Offerijns",
+        "role": "Product and Engineering @ k/f",
+        "social": "https://twitter.com/offerijns",
+        "image": "./images/team/jeroen.jpg"
+      },
+      {
+        "name": "Joe Hyland",
+        "role": "Marketing @ k/f",
+        "image": "./images/team/joe.jpg"
+      },
+      {
+        "name": "JP Angelle",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/gwei_whale",
+        "image": "./images/team/jp-angelle.jpg"
+      },
+      {
+        "name": "Kate Beecroft",
+        "role": "DAO and Community",
+        "social": "https://twitter.com/kbeecroft",
+        "image": "./images/team/kate.jpg"
+      },
+      {
+        "name": "Lucas Vogelsang",
+        "role": "Director @ CNF",
+        "social": "https://twitter.com/lucasvo",
+        "image": "./images/team/lucas.jpg"
+      },
+      {
+        "name": "Luis Enrique Muñoz",
+        "role": "Protocol Engineer @ k/f",
+        "social": "https://github.com/lemunozm",
+        "image": "./images/team/luis.jpg"
+      },
+      {
+        "name": "Martin Quensel",
+        "role": "",
+        "social": "https://twitter.com/mr_optimax",
+        "image": "./images/team/martin.jpg"
+      },
+      {
+        "name": "Mary Gribbin",
+        "role": "Head of People Ops",
+        "social": "https://twitter.com/maryagribbin",
+        "image": "./images/team/mary.jpg"
+      },
+      {
+        "name": "Miguel Hervas",
+        "role": "Protocol Engineer @ k/f",
+        "social": "https://twitter.com/mikiquantum",
+        "image": "./images/team/miguel.jpg"
+      },
+      {
+        "name": "Mike Ruzic",
+        "role": "CEO @ DCM",
+        "social": "https://www.linkedin.com/in/michael-ruzic-gauthier/",
+        "image": "./images/team/mike.jpg"
+      },
+      {
+        "name": "Nicolo Montagna",
+        "role": "DeFi Analyst @ DCM",
+        "image": "./images/team/nico.jpg"
+      },
+      {
         "name": "Nuno Alexandre",
-        "role": "Engineer @ K/F",
-        "social": "https://nunoalexandre.com",
-        "image": "./images/team/nuno.jpg"
+        "role": "Protocol Engineer @ k/f",
+        "social": "nunoalexandre.com",
+        "image": "./images/team/nuno-alexandre.jpg"
+      },
+      {
+        "name": "Onno Visser",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/_onnovisser",
+        "image": "./images/team/onno.jpg"
+      },
+      {
+        "name": "Rohan Hemani",
+        "role": "Marketing @ k/f",
+        "social": "https://twitter.com/RohanHemani",
+        "image": "./images/team/rohan.jpg"
+      },
+      {
+        "name": "Sophia Littlejohn",
+        "role": "Engineer @ k/f",
+        "social": "https://www.linkedin.com/in/sophia-littlejohn/",
+        "image": "./images/team/sophia.jpg"
+      },
+      {
+        "name": "Romina Bungert",
+        "role": "CFO @CNF",
+        "social": "https://twitter.com/lianefiligrane",
+        "image": "./images/team/romina.jpg"
       }
     ]
   }
