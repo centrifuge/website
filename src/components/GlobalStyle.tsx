@@ -37,7 +37,8 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  *:focus-visible {
+  a:focus-visible,
+  button:focus-visible {
     outline: solid #2762ff;
   }
 

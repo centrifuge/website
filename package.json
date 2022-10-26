@@ -23,6 +23,7 @@
     "gatsby": "^4.23.1",
     "gatsby-plugin-google-gtag": "^4.24.0",
     "gatsby-plugin-image": "^2.24.0",
+    "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-sharp": "^4.24.0",
     "gatsby-plugin-styled-components": "^5.23.0",
     "gatsby-source-filesystem": "^4.24.0",

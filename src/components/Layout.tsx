@@ -11,7 +11,7 @@ type LayoutProps = {
   menuButtonVariant?: ButtonVariant
   children: React.ReactNode
 }
-
+console.log(theme)
 export function Layout({ menuButtonVariant = 'primary', children }: LayoutProps) {
   return (
     <Base>
