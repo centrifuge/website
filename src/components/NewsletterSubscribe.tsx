@@ -18,7 +18,8 @@ export function NewsletterSubscribe() {
   function onSubmit(event: React.FormEvent) {
     event.preventDefault()
 
-    const formData = new FormData(event.target as HTMLFormElement)
+    const form = event.target as HTMLFormElement
+    const formData = new FormData(form)
     const email = formData.get(INPUT_NAME) as string
 
     setValid(isValidEmail(email))
@@ -32,6 +33,10 @@ export function NewsletterSubscribe() {
         })
         .then(() => {
           setIsSubmitting(false)
+          setTimeout(() => {
+            setMessage(undefined)
+            form.reset()
+          }, 1000)
         })
     } else {
     }
@@ -50,8 +55,8 @@ export function NewsletterSubscribe() {
       id="newsletter-subscribe"
       onSubmit={onSubmit}
       noValidate
-      backgroundColor="backgroundPrimary"
       p={2}
+      backgroundColor="backgroundPrimary"
       borderRadius="input"
       alignItems="start"
       gap={1}
