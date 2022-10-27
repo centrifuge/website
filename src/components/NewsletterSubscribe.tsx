@@ -84,7 +84,7 @@ export function NewsletterSubscribe() {
           </Text>
         </Box>
       )}
-      <Button variant="secondary" type="submit" small disabled={isSubmitting}>
+      <Button variant="secondary" type="submit" small loading={isSubmitting}>
         Subscribe
       </Button>
     </Stack>
