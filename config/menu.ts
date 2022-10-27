@@ -14,13 +14,13 @@ const menu = [
         isExternal: true,
       },
       {
-        label: 'LinkedIn',
-        href: links.linkedin,
+        label: 'Discord',
+        href: links.discord,
         isExternal: true,
       },
       {
-        label: 'Discord',
-        href: links.discord,
+        label: 'LinkedIn',
+        href: links.linkedin,
         isExternal: true,
       },
       {
