@@ -51,8 +51,6 @@ export function NewsletterSubscribe() {
   return (
     <Stack
       as="form"
-      method="POST"
-      id="newsletter-subscribe"
       onSubmit={onSubmit}
       noValidate
       p={2}
