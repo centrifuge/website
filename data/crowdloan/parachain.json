@@ -3,6 +3,7 @@
   "seo": {
     "title": "Centrifuge Parachain Crowdloan | Centrifuge"
   },
+  "network": "centrifuge",
   "hero_crowdloan": {
     "title": "Boom! Centrifuge wins slot in Parachain auctions",
     "body": "5,435,161 DOT raised from 27,101 contributions",

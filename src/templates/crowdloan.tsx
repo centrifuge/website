@@ -1,16 +1,17 @@
+import { UserProvidedConfig } from '@centrifuge/centrifuge-js'
+import { Provider } from '@centrifuge/centrifuge-react'
+import { Box, Stack, Text } from '@centrifuge/fabric'
 import type { HeadProps } from 'gatsby'
 import { graphql } from 'gatsby'
-import React from 'react'
-import { Stack, Box, Text } from '@centrifuge/fabric'
-import { Layout } from '../components/Layout'
-import { SEO } from '../components/Seo'
-import { HeroCrowdloan } from '../components/hero-crowdloan'
-import { StatsCrowdloan } from '../components/StatsCrowdloan'
-
-import type { HeroCrowdloanProps } from '../components/hero-crowdloan'
-import type { StatsCrowdloanProps } from '../components/StatsCrowdloan'
-import type { SEOProps } from '../components/Seo'
+import React, { useMemo } from 'react'
 import { CrowdloanUser } from '../components/CrowdloanUser'
+import type { HeroCrowdloanProps } from '../components/hero-crowdloan'
+import { HeroCrowdloan } from '../components/hero-crowdloan'
+import { Layout } from '../components/Layout'
+import type { SEOProps } from '../components/Seo'
+import { SEO } from '../components/Seo'
+import type { StatsCrowdloanProps } from '../components/StatsCrowdloan'
+import { StatsCrowdloan } from '../components/StatsCrowdloan'
 
 export const query = graphql`
   query ($slug: String!) {
@@ -18,6 +19,8 @@ export const query = graphql`
       seo {
         title
       }
+
+      network
 
       hero_crowdloan {
         ...HeroCrowdloanFragment
@@ -34,6 +37,7 @@ type CrowdloanPageProps = {
   data: {
     crowdloanJson: {
       seo: SEOProps
+      network: 'altair' | 'centrifuge'
       hero_crowdloan: HeroCrowdloanProps
       stats: StatsCrowdloanProps['stats']
     }
@@ -41,21 +45,24 @@ type CrowdloanPageProps = {
 }
 
 export default function CrowdloanPage({ data }: CrowdloanPageProps) {
-  const { hero_crowdloan, stats } = data.crowdloanJson
+  const { hero_crowdloan, stats, network } = data.crowdloanJson
+  const centConfig: UserProvidedConfig = useMemo(() => ({ network }), [])
 
   return (
-    <Layout>
-      <Box as="aside" textAlign="center" backgroundColor="accentPrimary" p={2}>
-        <Text as="em" variant="body1" color="textInverted" fontStyle="normal">
-          Auction ended — Closed for contribution
-        </Text>
-      </Box>
-      <Stack px={2} pt={[4, 6, 8]} gap={[6, 8]}>
-        <HeroCrowdloan {...hero_crowdloan} />
-        <CrowdloanUser />
-        <StatsCrowdloan stats={stats} />
-      </Stack>
-    </Layout>
+    <Provider centrifugeConfig={centConfig}>
+      <Layout>
+        <Box as="aside" textAlign="center" backgroundColor="accentPrimary" p={2}>
+          <Text as="em" variant="body1" color="textInverted" fontStyle="normal">
+            Auction ended — Closed for contribution
+          </Text>
+        </Box>
+        <Stack px={2} pt={[4, 6, 8]} gap={[6, 8]}>
+          <HeroCrowdloan {...hero_crowdloan} />
+          <CrowdloanUser />
+          <StatsCrowdloan stats={stats} />
+        </Stack>
+      </Layout>
+    </Provider>
   )
 }
 
