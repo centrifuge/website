@@ -1,6 +1,6 @@
-import { Box, Shelf, Grid, Text, Stack, TextWithPlaceholder } from '@centrifuge/fabric'
+import { Box, Shelf, Grid, Text, Stack, TextWithPlaceholder, Placeholder } from '@centrifuge/fabric'
 import React from 'react'
-import styled, { useTheme, keyframes } from 'styled-components'
+import { useTheme } from 'styled-components'
 import { Anchor } from './styles'
 
 export type NewsCardProps = MediaProps &
@@ -143,26 +143,6 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
 
 type MediaProps = { image: string }
 
-const load = keyframes`
-  from {
-	  background-position-x: 0;
-  }
-  to {
-	  background-position-x: -200%;
-  }
-`
-
-const MediaPlaceholder = styled(Box)`
-  --color1: ${({ theme }) => theme.colors.borderPrimary};
-  --color2: ${({ theme }) => theme.colors.borderSecondary};
-
-  background: linear-gradient(90deg, var(--color1), var(--color2), var(--color1));
-  background-size: 200% 80%;
-  background-position-y: 50%;
-  background-repeat: repeat-x;
-  animation: ${load} 1.5s ease infinite;
-`
-
 function Media({
   image,
   order = 0,
@@ -170,7 +150,7 @@ function Media({
 }: MediaProps & { order?: number | number[]; isLoading?: boolean }) {
   return (
     <Box
-      as={isLoading ? MediaPlaceholder : 'img'}
+      as={isLoading ? Placeholder : 'img'}
       src={isLoading ? undefined : image}
       alt=""
       order={order}
