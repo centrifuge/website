@@ -1,0 +1,9 @@
+{
+  "slug": "/security",
+  "title": "Security Vulnerability Disclosure",
+  "seo": {
+    "title": "Security Vulnerability Disclosure | Centrifuge"
+  },
+
+  "markdown_section": "./legal/security.md"
+}

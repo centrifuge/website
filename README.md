@@ -61,6 +61,19 @@ export const query = graphql`
 
 ---
 
+## Legal Pages
+
+Because of it's repetitive content, legal pages
+
+- `/imprint`
+- `/terms`
+- `/security`
+- `/data-privacy-policy`
+
+are generated in `gatsby-node.ts`. The pages text content is stored in markdown files `/data/legal/<site-slug>.md`. Loaded markdown files are transfomed via `gatsby-transformer-remark`.
+
+---
+
 ## GraphQL Fragments
 
 Queries of component data are defined inside the component file. To be able to spread them into the page query, they are exported as fragments.

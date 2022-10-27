@@ -31,10 +31,6 @@
         "alt": "Acala"
       },
       {
-        "image": "./images/partner/nomad.svg",
-        "alt": "Nomad"
-      },
-      {
         "image": "./images/partner/moonbeam.svg",
         "alt": "Moonbeam"
       }
@@ -45,26 +41,26 @@
     "items": [
       {
         "body": "This integration not only advances DeFi but it also brings many benefits to the MakerDAO ecosystem. By diversifying the collateral backing DAI and adding non-crypto related assets, it increases the DAI safety and makes it extremely stable. This move will also help MakerDAO meet the increasing demand of DAI by tapping in a multi trillion-dollar asset class.",
-        "cite": "Maker DAO",
+        "cite": "Sébastien Derivaux, MakerDAO",
         "image": "./images/testimonials/maker.svg",
         "image_max_width": 200
       },
       {
-        "body": "Blockchain technology has long-held promise to overhaul the plumbing of the world’s financial services. To this end, BlockTower is excited to support the Centrifuge team as they democratize access to and generate efficiencies in the securitization industry; we believe these strategic partnerships are essential to usher in the future of finance.",
-        "cite": "Stani, Aave Founder & CEO",
+        "body": "The RWA Market is a much needed building block not only for protocols such as Aave, but across DeFi as a whole. Knocking down barriers of entry and making DeFi accessible to all is part of the Aave Companies’ vision, and we are excited to be fulfilling this through the collateralization of real-world assets, made possible by Centrifuge.",
+        "cite": "Stani Kulechev, Aave Founder & CEO",
         "image": "./images/testimonials/aave.svg",
         "image_max_width": 200
       },
       {
-        "body": "Bringing real-world assets to blockchain has been a long-term dream of ours. Centrifuge has built a great product and we are happy to partner with one of the best teams in the space.",
-        "cite": "Kirill, New Silver Managing Director",
-        "image": "./images/testimonials/new-silver.svg",
+        "body": "Blockchain technology has long-held promise to overhaul the plumbing of the world’s financial services. To this end, BlockTower is excited to support the Centrifuge team as they democratize access to and generate efficiencies in the securitization industry; we believe these strategic partnerships are essential to usher in the future of finance.",
+        "cite": "Matthew Goetz, BlockTower Capital Advisors CEO",
+        "image": "./images/testimonials/blocktower.svg",
         "image_max_width": 300
       },
       {
-        "body": "The RWA Market is a much needed building block not only for protocols such as Aave, but across DeFi as a whole. Knocking down barriers of entry and making DeFi accessible to all is part of the Aave Companies’ vision, and we are excited to be fulfilling this through the collateralization of real-world assets, made possible by Centrifuge.",
-        "cite": "Stani, Aave Founder & CEO",
-        "image": "./images/testimonials/blocktower.svg",
+        "body": "Bringing real-world assets to blockchain has been a long-term dream of ours. Centrifuge has built a great product and we are happy to partner with one of the best teams in the space.",
+        "cite": "Kirill Bensonoff, New Silver Managing Director",
+        "image": "./images/testimonials/new-silver.svg",
         "image_max_width": 300
       }
     ]
@@ -75,7 +71,7 @@
     "items": [
       {
         "title": "Transparency",
-        "body": "Obtain end-to-end transparency as the entire capital structure,  securitization, and servicing of debt facilities is brought on-chain - multi-tranching, NAV, privacy-first tokenization, securitization, reporting, and more.",
+        "body": "Obtain end-to-end transparency as the entire capital structure, securitization, and servicing of debt facilities is brought on-chain — multi-tranching, NAV, privacy-first tokenization, securitization, reporting, and more.",
         "image": "./images/usps/transparency.svg"
       },
       {
@@ -85,7 +81,7 @@
       },
       {
         "title": "Equal & open participation",
-        "body": "Decentralized on-chain governance provides equal, open access to all parties in the securitization process - new issuer proposals, underwriting, servicing, and more.",
+        "body": "Decentralized on-chain governance provides equal, open access to all parties in the securitization process — new issuer proposals, underwriting, servicing, and more.",
         "image": "./images/usps/participation.svg"
       },
       {
@@ -100,7 +96,7 @@
       },
       {
         "title": "Security",
-        "body": "A protocol with legal recourse and strong regulatory and compliance requirements - KYC, sanctions screenings, accredited invester checks - as well as robust technical audits.",
+        "body": "A protocol with legal recourse and strong regulatory and compliance requirements — KYC, sanctions screenings, accredited invester checks - as well as robust technical audits.",
         "image": "./images/usps/security.svg"
       }
     ]

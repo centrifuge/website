@@ -21,6 +21,12 @@ const config: GatsbyConfig = {
         path: './data/',
       },
     },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        gfm: true,
+      },
+    },
     'gatsby-plugin-image',
     'gatsby-transformer-json',
     'gatsby-transformer-sharp',
