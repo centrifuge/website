@@ -17,6 +17,12 @@ type SubMenuProps = {
 }
 
 export function SubMenu({ label, items, href, isExternal, isButton, buttonVariant }: SubMenuProps) {
+  function onKeyUp(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      ;(event.target as HTMLElement).blur()
+    }
+  }
+
   return (
     <>
       {href ? (
@@ -36,7 +42,7 @@ export function SubMenu({ label, items, href, isExternal, isButton, buttonVarian
           </Text>
         )
       ) : (
-        <Text as="button" variant="body2" role="button">
+        <Text as="button" variant="body2" type="button" onKeyUp={onKeyUp}>
           {label}
         </Text>
       )}
@@ -45,7 +51,7 @@ export function SubMenu({ label, items, href, isExternal, isButton, buttonVarian
         <Dropdown as="ul" px={2} py={1} role="list">
           {items.map((item, index) => (
             <Box as="li" key={`${item.label}-${index}`} mt={index > 0 ? 1 : 0}>
-              <Anchor {...item} />
+              <Anchor {...item} onKeyUp={(event) => onKeyUp(event)} />
             </Box>
           ))}
         </Dropdown>

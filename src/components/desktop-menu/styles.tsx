@@ -45,7 +45,7 @@ export const Dropdown = styled(Box)`
 `
 
 export const ListItem = styled(Box)`
-  > *:hover + ${Dropdown}, > *:focus + ${Dropdown} {
+  > *:hover + ${Dropdown}, > *:focus-visible + ${Dropdown} {
     ${dropDownOpen}
   }
 `
