@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import { Box, Container, Grid, Text } from '@centrifuge/fabric'
 import type { UspItemProps } from './UspItem'
 import { UspItem } from './UspItem'
-import { Intro } from './styles'
 
 export const query = graphql`
   fragment UspSectionFragment on DataJsonUsp_section {
@@ -33,11 +32,11 @@ export function UspSection({ title, body, items }: UspSectionProps) {
         <Text as="h2" variant="heading2">
           {title}
         </Text>
-        <Intro mt={2}>
+        <Box mt={2}>
           <Text variant="body1" as="p" color="textSecondary">
             {body}
           </Text>
-        </Intro>
+        </Box>
 
         <Container maxWidth="containerNarrow">
           <Grid as="ul" role="list" columns={[1, 1, 2]} gap={10} rowGap={8} mt={10}>
