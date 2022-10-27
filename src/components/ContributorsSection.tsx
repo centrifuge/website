@@ -41,7 +41,7 @@ export type ContributorsSectionProps = {
 
 function Contributor({ item }: { item: Item }) {
   return (
-    <Shelf flexDirection={['row', 'column']} width={['auto', 200, 260]} gap={[4, 2]} role="listitem">
+    <Shelf flexDirection={['row', 'column']} width={['auto', 180, 220]} gap={[4, 2]} role="listitem">
       <Box width={[150, 'auto']} maxWidth={[150, 'initial']} position="relative" pl={[20, 0]}>
         <Box
           borderRadius="50%"
@@ -71,10 +71,10 @@ function Contributor({ item }: { item: Item }) {
         )}
       </Box>
       <Stack alignItems={['flex-start', 'center']} textAlign={['left', 'center']}>
-        <Text variant="heading6" as="h3">
+        <Text variant="body1" as="h3">
           {item.name}
         </Text>
-        <Text variant="body1" color="textSecondary">
+        <Text variant="body2" color="textSecondary">
           {item.role}
         </Text>
       </Stack>
@@ -109,8 +109,8 @@ function ContributorsMarquee({ items, direction = 'left' }: { items: Item[]; dir
     <MarqueeWrapper display={['none', 'block']} role="list">
       <Marquee gradient={false} speed={100} direction={direction} pauseOnHover>
         <Shelf alignItems="flex-start">
-          {items.map((item) => (
-            <Box mr={5}>
+          {items.map((item, index) => (
+            <Box mr={5} key={`${item.name}${index}`}>
               <Contributor item={item} key={item.name} />
             </Box>
           ))}
