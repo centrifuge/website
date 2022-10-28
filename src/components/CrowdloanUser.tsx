@@ -5,8 +5,8 @@ import {
   useCentrifugeQuery,
   useCentrifugeTransaction,
   useWallet,
+  WalletMenu,
 } from '@centrifuge/centrifuge-react'
-import { WalletMenu } from '@centrifuge/centrifuge-react/dist/components/WalletMenu'
 import { Button, Container, Shelf, Stack, Text } from '@centrifuge/fabric'
 import { cryptoWaitReady, decodeAddress, signatureVerify } from '@polkadot/util-crypto'
 import BN from 'bn.js'
@@ -18,12 +18,8 @@ import { useTheme } from 'styled-components'
 const JsonBig = jsonBigInt({ useNativeBigInt: true, alwaysParseAsBig: true })
 
 export function CrowdloanUser() {
-  const [isExtension, setIsExtension] = React.useState(true)
-  const [account, setAccount] = React.useState('dfknver')
-  const [rewards, setRewards] = React.useState(0)
   const { shadows } = useTheme()
   const { selectedAccount } = useWallet()
-
   const didClaim = useDidClaim(selectedAccount?.address)
   const totalRewards = useTotalRewards()
   const centrifuge = useCentrifuge()
