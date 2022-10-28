@@ -11,11 +11,15 @@ type MobileCarouselProps = {
 const ITEMS_PER_CHUNK = 5
 
 export function MobileCarousel({ items }: MobileCarouselProps) {
-  const chunks: ContributorProps[][] = items.reduce((all, one, index) => {
-    const chunkIndex = Math.floor(index / ITEMS_PER_CHUNK)
-    all[chunkIndex] = [].concat(all[chunkIndex] || [], one)
-    return all
-  }, [])
+  const chunks = React.useMemo(
+    () =>
+      items.reduce((chunks: ContributorProps[][], item: ContributorProps, index) => {
+        const chunk = Math.floor(index / ITEMS_PER_CHUNK)
+        chunks[chunk] = ([] as ContributorProps[]).concat(chunks[chunk] || [], item)
+        return chunks
+      }, []),
+    [items]
+  )
 
   const [viewportRef, embla] = useEmblaCarousel({
     skipSnaps: false,
@@ -59,7 +63,7 @@ export function MobileCarousel({ items }: MobileCarouselProps) {
       </Shelf>
 
       <Viewport ref={viewportRef} overflow="hidden" mt={2}>
-        <Shelf>
+        <Shelf alignItems="start">
           {chunks.map((chunk) => (
             <Stack key={chunk[0].name} as="ul" gap={4} flexShrink={0} flexBasis="100%" flexGrow={0} px={2}>
               {chunk.map((item) => (
