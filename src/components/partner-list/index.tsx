@@ -37,7 +37,7 @@ export function PartnerList({ partners }: PartnerListProps) {
             </Shelf>
 
             {isOverflow && (
-              <Marquee gradient={false} speed={200}>
+              <Marquee gradient={false} speed={80}>
                 {partners.map(({ image, alt }, index) => (
                   <Image key={`${alt}-${index}`} data={image} />
                 ))}
