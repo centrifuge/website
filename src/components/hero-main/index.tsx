@@ -1,45 +1,79 @@
+import { Text, Shelf, Box } from '@centrifuge/fabric'
+import { graphql } from 'gatsby'
 import * as React from 'react'
-import { Box, Text } from '@centrifuge/fabric'
-import type { SectionType } from '../Sections'
 import { links } from '../../../config/links'
+import { useVisibilityChecker } from '../../hooks/use-visibility-checker'
 import { ChainStats } from '../chain-stats/ChainStats'
-import test from '../../images/hero-main-shape.svg'
-import { Inner, Title, Content, Graphic, CTA } from './styles'
+import type { PartnerProps } from '../partner-list'
+import { PartnerList } from '../partner-list'
+import { Swirl } from './Swirl'
+import { Typewriter } from '../Typewriter'
+import { Root, Inner, Title, Content, Graphic, CTA } from './styles'
+
+export const query = graphql`
+  fragment HeroMainFragment on DataJsonHero_main {
+    title
+    ticker
+    body
+    partners {
+      image {
+        publicURL
+        extension
+      }
+      alt
+    }
+  }
+`
 
 export type HeroMainProps = {
-  type: SectionType
-  title: string[]
+  title: string
+  ticker: string[]
   body: string[]
+  partners: PartnerProps[]
 }
 
-export function HeroMain({ title, body }: HeroMainProps) {
+export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
+  const [animate, setAnimate] = React.useState(false)
+  const ref = React.useRef<HTMLElement>(null)
+  useVisibilityChecker({
+    ref,
+    onEnter: () => setAnimate(true),
+    onLeave: () => setAnimate(false),
+  })
+
   return (
-    <Box as="section" px={2} py={[2, 4, 6]}>
-      <Inner maxWidth="container">
-        <Title>
-          Real-World
-          <br />
-          {title[0]}
-        </Title>
+    <Root as="section" ref={ref} flexDirection="column">
+      <Shelf px={2} pt={[2, 4, 6]} flexGrow={2}>
+        <Inner maxWidth="container" alignSelf="start">
+          <Title>
+            {title}
+            <br />
+            <Typewriter phrases={ticker} paused={!animate} />
+          </Title>
 
-        <Content>
-          <Graphic>
-            <img src={test} alt="" />
-          </Graphic>
+          <Content>
+            <Graphic>
+              <Swirl animate={animate} />
+            </Graphic>
 
-          {body.map((entry, index) => (
-            <Text key={`${index}`} variant="body1" as="p">
-              {entry}
-            </Text>
-          ))}
+            {body.map((entry, index) => (
+              <Text key={`${index}`} variant="body1" as="p">
+                {entry}
+              </Text>
+            ))}
 
-          <CTA href={links.app} target="_blank" small>
-            Enter App
-          </CTA>
-        </Content>
+            <CTA href={links.app} target="_blank" small>
+              Enter App
+            </CTA>
+          </Content>
+        </Inner>
+      </Shelf>
 
+      <Box px={2}>
         <ChainStats />
-      </Inner>
-    </Box>
+      </Box>
+
+      <PartnerList partners={partners} />
+    </Root>
   )
 }

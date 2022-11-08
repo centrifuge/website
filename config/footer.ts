@@ -10,8 +10,18 @@ export const footer = [
         isExternal: true,
       },
       {
+        label: 'LinkedIn',
+        href: links.linkedin,
+        isExternal: true,
+      },
+      {
         label: 'Telegram',
         href: links.telegram,
+        isExternal: true,
+      },
+      {
+        label: 'Discord',
+        href: links.discord,
         isExternal: true,
       },
       {

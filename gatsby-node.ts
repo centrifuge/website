@@ -1,30 +1,20 @@
-import { readFile } from 'fs/promises'
-import path from 'path'
 import type { GatsbyNode } from 'gatsby'
-import { pages } from './config/pages'
+import path from 'path'
 
-export const createPages: GatsbyNode['createPages'] = async ({ actions }) => {
-  const { createPage } = actions
+export const createPages: GatsbyNode['createPages'] = async ({ actions: { createPage } }) => {
+  try {
+    const legalPages = ['/imprint', '/terms', '/security', '/data-privacy-policy']
 
-  await Promise.all(pages.map((page) => readFile(`./content/${page}.json`, 'utf8')))
-    .then((fileBuffers) => {
-      fileBuffers.forEach((fileBuffer) => {
-        const { slug, title, menuButtonVariant, seo, sections } = JSON.parse(fileBuffer)
-
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/base.tsx'),
-          context: {
-            title,
-            menuButtonVariant,
-            seo,
-            sections,
-          },
-        })
+    legalPages.forEach((slug) => {
+      createPage({
+        path: slug,
+        component: path.resolve('./src/templates/legal.tsx'),
+        context: {
+          slug,
+        },
       })
     })
-    .catch((error) => {
-      console.error(error.message)
-      process.exit(1)
-    })
+  } catch (err) {
+    console.log('error', err)
+  }
 }

@@ -1,0 +1,9 @@
+{
+  "slug": "/terms",
+  "title": "Website Terms of Use",
+  "seo": {
+    "title": "Website Terms of Use | Centrifuge"
+  },
+
+  "markdown_section": "./legal/terms.md"
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "/imprint",
+  "title": "Imprint",
+  "seo": {
+    "title": "Imprint | Centrifuge"
+  },
+  "markdown_section": "./legal/imprint.md"
+}

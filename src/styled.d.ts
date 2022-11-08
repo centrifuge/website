@@ -8,6 +8,11 @@ declare module 'styled-components' {
       containerNarrow: string
       headerHeight: number[]
     }
+    space: FabricTheme['space'] & {
+      layoutSmall: number
+      layoutMedium: number
+      layoutLarge: number
+    }
     typography: FabricTheme['typography'] & {
       tag: ThemeTypography['heading1']
       menuAnchor: {

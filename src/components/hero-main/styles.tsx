@@ -1,5 +1,23 @@
 import styled from 'styled-components'
-import { AnchorButton, Container, Text } from '@centrifuge/fabric'
+import { AnchorButton, Container, Shelf } from '@centrifuge/fabric'
+
+export const Root = styled(Shelf)`
+  --header-height: ${({ theme }) => theme.sizes.headerHeight[0]}px;
+  min-height: calc(100vh - var(--header-height));
+
+  @supports (min-height: 100dvh) {
+    min-height: calc(100dvh - var(--header-height));
+  }
+
+  > * {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
+    --header-height: ${({ theme }) => theme.sizes.headerHeight[1]}px;
+  }
+`
 
 export const Inner = styled(Container)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
@@ -49,7 +67,7 @@ export const Graphic = styled.div`
     display: block;
   }
 
-  img {
+  svg {
     display: block;
     width: 100%;
     height: 100%;

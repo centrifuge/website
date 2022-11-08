@@ -1,14 +1,11 @@
 import { Box } from '@centrifuge/fabric'
 import styled from 'styled-components'
 
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
+const List = styled.ul<{ open: boolean }>`
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
 `
 
-export const Panel = styled(List)`
+export const Panel = styled(List)<{ open: boolean }>`
   --offset: ${({ theme }) => theme.sizes.headerHeight[0]}px;
 
   position: fixed;
@@ -34,7 +31,7 @@ export const Collapsable = styled(List)`
   height: ${({ open }) => (open ? 'auto' : '0px')};
 `
 
-export const Wrapper = styled(Box)`
+export const Wrapper = styled(Box)<{ open: boolean }>`
   position: relative;
 
   &:before {
@@ -60,7 +57,7 @@ export const Toggle = styled.button`
   font-weight: 400;
 `
 
-export const ToogleIcon = styled.span`
+export const ToogleIcon = styled.span<{ open: boolean }>`
   position: relative;
   width: 0.8em;
   height: 0.8em;

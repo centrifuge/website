@@ -19,6 +19,11 @@ const menu = [
         isExternal: true,
       },
       {
+        label: 'LinkedIn',
+        href: links.linkedin,
+        isExternal: true,
+      },
+      {
         label: 'Telegram',
         href: links.telegram,
         isExternal: true,
@@ -39,10 +44,6 @@ const menu = [
       {
         label: 'In the news',
         href: '/news',
-      },
-      {
-        label: 'Litepaper',
-        href: '',
       },
       {
         label: 'FAQs',
