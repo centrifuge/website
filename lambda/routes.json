@@ -1,6 +1,7 @@
 [
   {
-    "name": "getMediumPosts"
+    "name": "getMediumPosts",
+    "options": {}
   },
   {
     "name": "getExample"

@@ -8,9 +8,8 @@ exports.handler = async (req: Request, res: Response) => {
   for (let route of routes) {
     if (req.path.replace('/', '') === route.name) {
       const method = require(`./src/${route.name}`)
-      return method.default(req, res)
+      return method.default(req, res, route?.options ?? {})
     }
-    return res.status(400).send('Route not defined')
   }
   return res.status(500).send('An error occured')
 }
