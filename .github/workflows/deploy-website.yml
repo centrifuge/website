@@ -2,8 +2,8 @@ name: Cloudflare Pages website deploy
 on:
   push:
     branches:
-      - version-2
-      - 'feat/fetch-medium-articles-475'
+      # - version-2
+      # - 'feat/fetch-medium-articles-475'
 
 jobs:
   job_id:
