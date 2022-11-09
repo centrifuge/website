@@ -55,6 +55,10 @@ export const Content = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['M']}) {
     margin-top: 0;
   }
+
+  p + p {
+    margin-top: 0.5em;
+  }
 `
 
 export const Graphic = styled.div`

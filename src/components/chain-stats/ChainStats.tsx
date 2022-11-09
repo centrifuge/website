@@ -4,7 +4,7 @@ import { Root, ListItem } from './styles'
 
 export function ChainStats() {
   return (
-    <Root as="ul" role="list" py={[2, 0, 0]}>
+    <Root as="ul" role="list" py={[2, 1, 1, 2]}>
       <Item>
         <Label>Assets Financed</Label>
         <Value>$ 176M</Value>
