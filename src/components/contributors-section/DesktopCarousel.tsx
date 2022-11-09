@@ -27,7 +27,7 @@ export function DesktopCarousel({ items, align = 'center' }: DesktopCarouselProp
   return (
     <Box display={['none', 'block']}>
       <Viewport ref={viewportRef} overflow="hidden">
-        <Shelf as="ul">
+        <Shelf as="ul" alignItems="start">
           {items.map((item) => (
             <Contributor item={item} key={item.name} />
           ))}
