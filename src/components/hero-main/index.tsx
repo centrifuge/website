@@ -34,12 +34,27 @@ export type HeroMainProps = {
 
 export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
   const [animate, setAnimate] = React.useState(false)
+  const [delta, setDelta] = React.useState(0)
   const ref = React.useRef<HTMLElement>(null)
   useVisibilityChecker({
     ref,
     onEnter: () => setAnimate(true),
     onLeave: () => setAnimate(false),
   })
+
+  function onScroll() {
+    setDelta(window.pageYOffset)
+  }
+
+  React.useEffect(() => {
+    if (animate) {
+      window.addEventListener('scroll', onScroll)
+    } else {
+      window.removeEventListener('scroll', onScroll)
+    }
+
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [animate])
 
   return (
     <Root as="section" ref={ref} flexDirection="column">
@@ -53,7 +68,7 @@ export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
 
           <Content>
             <Graphic>
-              <Swirl animate={animate} />
+              <Swirl animate={animate} delta={delta} />
             </Graphic>
 
             {body.map((entry, index) => (

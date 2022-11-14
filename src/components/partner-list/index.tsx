@@ -20,7 +20,7 @@ export function PartnerList({ partners }: PartnerListProps) {
   const isOverflow = useIsOverflow(ref)
 
   return (
-    <Box p={2} backgroundColor="textPrimary">
+    <Box p={[2, 3]} backgroundColor="textPrimary">
       <Container maxWidth="container">
         <Inner gap={2} ref={ref}>
           <Text as="span" color="textInverted" variant="body3">
@@ -37,7 +37,7 @@ export function PartnerList({ partners }: PartnerListProps) {
             </Shelf>
 
             {isOverflow && (
-              <Marquee gradient={false} speed={200}>
+              <Marquee gradient={false} speed={80}>
                 {partners.map(({ image, alt }, index) => (
                   <Image key={`${alt}-${index}`} data={image} />
                 ))}

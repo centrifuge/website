@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 
 import { BeliefsSection, BeliefsSectionProps } from '../components/BeliefsSection'
-import { ContributorsSection, ContributorsSectionProps } from '../components/ContributorsSection'
+import { ContributorsSection, ContributorsSectionProps } from '../components/contributors-section'
 import { HeroVideo, HeroVideoProps } from '../components/HeroVideo'
 import { Layout } from '../components/Layout'
 import { OrgSection, OrgSectionProps } from '../components/org-section'

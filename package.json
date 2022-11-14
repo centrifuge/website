@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "centrifuge-website",
-  "author": "Hornebom",
+  "author": "Centrifuge",
   "keywords": [
     "gatsby"
   ],
@@ -22,7 +22,7 @@
     "watch:lambda": "nodemon --watch ./lambda/dist/ --exec npx functions-framework --source=lambda/dist --target=handler"
   },
   "dependencies": {
-    "@centrifuge/fabric": "^1.0.6",
+    "@centrifuge/fabric": "1.2.0",
     "babel-plugin-styled-components": "^2.0.7",
     "cheerio": "^1.0.0-rc.12",
     "embla-carousel-react": "^7.0.3",

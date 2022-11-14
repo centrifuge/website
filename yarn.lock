@@ -1056,7 +1056,7 @@
   resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.5.4.tgz#1a89069978734e132fa4a59414ddb64e4b94fde7"
   integrity sha512-qnikpQgi30AS01aFlNQV6l8/qdZIcP76mp90ti+u4rucXHsn4afSKivQXApqxvrQG9+Ibv45STyvHizvxef/7A==
 
-"@centrifuge/fabric@^1.0.6":
+"@centrifuge/fabric@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@centrifuge/fabric/-/fabric-1.2.0.tgz#932e2e276c0f4d5d1bc25308328157f6ebe09b78"
   integrity sha512-VV3pLTkgyVfZjIyaRf+jMXWMI7TSIn9E30EjoMMDeJFXX4+ZGtx84+nRGq7xHwQ2Mwu25qXWld8I1J1kdhmX5A==
