@@ -124,6 +124,10 @@
       }
     ]
   },
+  "news_section": {
+    "title": "Centrifuge Blog",
+    "count": 10
+  },
   "audit_section": {
     "title": "Audited by",
     "items": [
