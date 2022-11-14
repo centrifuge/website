@@ -72,7 +72,7 @@ export default function Home({ data }: HomeProps) {
         <UspSection {...usp_section} />
         <WorkPrinciple {...work_principle} />
         <Testimonials {...testimonials} />
-        {/* <NewsSection {...news_section} /> */}
+        <NewsSection {...news_section} />
         <AuditSection {...audit_section} />
       </Stack>
     </Layout>

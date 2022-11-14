@@ -1,6 +1,18 @@
+# Dependency directories
 node_modules/
+
+# gatsby files
 .cache/
 public
 src/gatsby-types.d.ts
+
+# Mac files
 .DS_Store**
+
+# lambda dist
 dist/
+
+# dotenv environment variables file
+.env
+.env.development
+.env.production

@@ -46,6 +46,7 @@ export function NewsCard({
     <Shelf
       as="article"
       position="relative"
+      minHeight="100%"
       p={boxed ? 2 : 0}
       flexDirection="column"
       alignItems="start"
@@ -79,7 +80,19 @@ export function NewsCard({
 
 function Label({ children, isLoading = false }: { children: React.ReactNode; isLoading?: boolean }) {
   return (
-    <TextWithPlaceholder as="span" variant="tag" isLoading={isLoading}>
+    <TextWithPlaceholder
+      as="span"
+      variant="body3"
+      color="textSecondary"
+      isLoading={isLoading}
+      style={{
+        display: 'block',
+        maxWidth: '100%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}
+    >
       {children}
     </TextWithPlaceholder>
   )

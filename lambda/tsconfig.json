@@ -1,19 +1,16 @@
 {
-    "compilerOptions": {
-      "target": "ESNext" ,
-      "lib": [
-        "esnext"
-      ],
-      "module": "CommonJS" ,
-      "moduleResolution": "node",
-      "resolveJsonModule": true,                  
-      "sourceMap": false,                             
-       "outDir": "./dist",                         
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true ,
-      "strict": false,
-     "skipLibCheck": true,
-    },
-    "include": ["./index.ts","./src/**/*", "routes.json"]
-  }
-  
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["esnext"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "include": ["./index.ts", "./src/**/*", "routes.json"]
+}

@@ -2,8 +2,11 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Text, Box, Container, Shelf } from '@centrifuge/fabric'
 import useEmblaCarousel from 'embla-carousel-react'
+import { useMediumPosts } from '../../hooks/use-medium-posts'
+import { toLocaleDate } from '../../utils/date'
 import { InternalLink } from '../InternalLink'
 import { NewsCard } from '../news-card'
+import { NoteCard } from '../NoteCard'
 import { Arrow, Control } from './styles'
 
 export const query = graphql`
@@ -19,6 +22,7 @@ export type NewsSectionProps = {
 }
 
 export function NewsSection({ title, count }: NewsSectionProps) {
+  const { isLoading, isError, posts } = useMediumPosts(count)
   const [prevBtnEnabled, setPrevBtnEnabled] = React.useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = React.useState(false)
   const [emblaRef, embla] = useEmblaCarousel({
@@ -53,33 +57,44 @@ export function NewsSection({ title, count }: NewsSectionProps) {
             View all articles
           </InternalLink>
 
-          <Shelf gap={2} ml="auto" width={['100%', '100%', 'auto']} justifyContent="end">
-            <Control onClick={scrollPrev} disabled={!prevBtnEnabled} title="Previous" flipped>
-              <Arrow />
-            </Control>
-            <Control onClick={scrollNext} disabled={!nextBtnEnabled} title="Next">
-              <Arrow />
-            </Control>
-          </Shelf>
+          {!isError && (
+            <Shelf gap={2} ml="auto" width={['100%', '100%', 'auto']} justifyContent="end">
+              <Control onClick={scrollPrev} disabled={!prevBtnEnabled} title="Previous" flipped>
+                <Arrow />
+              </Control>
+              <Control onClick={scrollNext} disabled={!nextBtnEnabled} title="Next">
+                <Arrow />
+              </Control>
+            </Shelf>
+          )}
         </Shelf>
 
-        <Box ref={emblaRef} style={{ overflow: 'visible' }} mt={[1, 1, 6]} py={1}>
-          <Shelf as="ul" p={0} m={0} role="list" gap={2}>
-            {new Array(count).fill('').map((_, index) => (
-              <Box as="li" key={index} width={[300, 400, 480]} flexShrink={0}>
-                <NewsCard
-                  label="Kuma"
-                  title="AIR/aUSD Listing and Liquidity Incentive Program Launching on Karura Swap"
-                  body="48-hour bootstrap provisioning period expected live on July 13"
-                  image="https://miro.medium.com/max/1400/0*RBrfPdKqaa_Xm-JF"
-                  href="https://medium.com/centrifuge/air-ausd-listing-and-liquidity-incentive-program-launching-on-karura-swap-3bdd0fa6493b"
-                  boxed
-                  isLoading
-                />
-              </Box>
-            ))}
-          </Shelf>
-        </Box>
+        {!isError ? (
+          <Box ref={emblaRef} style={{ overflow: 'visible' }} mt={[1, 1, 6]} py={1}>
+            <Shelf as="ul" p={0} m={0} role="list" gap={2} alignItems="normal">
+              {posts.map(({ guid, title, link, thumbnail, description, pubDate }, index) => (
+                <Box as="li" key={`${guid}${index}`} width={[300, 400, 480]} flexShrink={0}>
+                  <NewsCard
+                    label={toLocaleDate(pubDate)}
+                    title={title}
+                    body={description}
+                    image={thumbnail}
+                    href={link}
+                    boxed
+                    isLoading={isLoading}
+                  />
+                </Box>
+              ))}
+            </Shelf>
+          </Box>
+        ) : (
+          <NoteCard status="info" mt={[1, 1, 6]}>
+            <Text as="strong" variant="heading6">
+              Unable to display latest articles
+            </Text>
+            <Text>Please refresh the page or try again later.</Text>
+          </NoteCard>
+        )}
       </Container>
     </Box>
   )
