@@ -9,14 +9,16 @@ exports.handler = async (req: Request, res: Response) => {
     return res.status(400).send('No functions defined')
   }
 
-  const origin = req.get('origin')
+  // const origin = req.get('origin')
 
-  if (corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
-    res.set('Access-Control-Allow-Origin', origin)
-    res.set('Access-Control-Allow-Methods', 'GET')
-  } else {
-    return res.status(405).send('Not allowed')
-  }
+  res.set('Access-Control-Allow-Origin', '*')
+  res.set('Access-Control-Allow-Methods', 'GET')
+  // if (corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
+  //   res.set('Access-Control-Allow-Origin', origin)
+  //   res.set('Access-Control-Allow-Methods', 'GET')
+  // } else {
+  //   return res.status(405).send('Not allowed')
+  // }
 
   for (let route of routes) {
     if (req.path.replace('/', '') === route.name) {

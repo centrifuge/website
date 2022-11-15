@@ -15,7 +15,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "deploy:lambda": "gcloud functions deploy websiteLambdas --region=us-central1 --source=lambda/dist --project=peak-vista-185616 --trigger-http --runtime=nodejs16 --service-account=functions-firestore@peak-vista-185616.iam.gserviceaccount.com --allow-unauthenticated --entry-point=handler",
+    "deploy:lambda": "gcloud functions deploy website --region=us-central1 --source=lambda/dist --project=peak-vista-185616 --trigger-http --runtime=nodejs16 --service-account=functions-firestore@peak-vista-185616.iam.gserviceaccount.com --allow-unauthenticated --entry-point=handler",
     "start:lambda": "run-p types:lambda watch:lambda",
     "types:lambda": "node lambda/build.js dev",
     "build:lambda": "node lambda/build.js",
