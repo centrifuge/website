@@ -17,8 +17,8 @@
     "typecheck": "tsc --noEmit",
     "deploy:lambda": "gcloud functions deploy website --region=us-central1 --source=lambda/dist --project=peak-vista-185616 --trigger-http --runtime=nodejs16 --service-account=functions-firestore@peak-vista-185616.iam.gserviceaccount.com --allow-unauthenticated --entry-point=handler",
     "start:lambda": "run-p types:lambda watch:lambda",
-    "types:lambda": "node lambda/build.js dev",
-    "build:lambda": "node lambda/build.js",
+    "types:lambda": "node lambda/esbuild dev",
+    "build:lambda": "node lambda/esbuild",
     "watch:lambda": "nodemon --watch ./lambda/dist/ --exec npx functions-framework --source=lambda/dist --target=handler"
   },
   "dependencies": {
