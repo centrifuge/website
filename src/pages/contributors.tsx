@@ -13,7 +13,7 @@ import { ValuesSection, ValuesSectionProps } from '../components/ValuesSection'
 
 export const query = graphql`
   query {
-    dataJson(slug: { eq: "/about-us" }) {
+    dataJson(slug: { eq: "/contributors" }) {
       title
 
       seo {
@@ -43,7 +43,7 @@ export const query = graphql`
   }
 `
 
-type AboutProps = {
+type ContributorsProps = {
   data: {
     dataJson: {
       seo: SEOProps
@@ -56,7 +56,7 @@ type AboutProps = {
   }
 }
 
-export default function About({ data }: AboutProps) {
+export default function Contributors({ data }: ContributorsProps) {
   const { hero_video, org_section, value_section, beliefs_section, contributors_section } = data.dataJson
 
   return (
@@ -72,7 +72,7 @@ export default function About({ data }: AboutProps) {
   )
 }
 
-export const Head = ({ data, location }: AboutProps & HeadProps) => {
+export const Head = ({ data, location }: ContributorsProps & HeadProps) => {
   const { seo } = data.dataJson
   const { pathname } = location
 
