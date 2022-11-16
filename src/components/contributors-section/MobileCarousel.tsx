@@ -1,8 +1,9 @@
 import React from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
 import { Shelf, Box, Stack, IconArrowLeft, IconArrowRight } from '@centrifuge/fabric'
+import { useCarousel } from '../../hooks/use-carousel'
 import { Contributor, ContributorProps } from './Contributor'
-import { Viewport, Control } from './styles'
+import { Viewport } from './styles'
+import { Control } from '../Control'
 
 type MobileCarouselProps = {
   items: ContributorProps[]
@@ -21,35 +22,9 @@ export function MobileCarousel({ items }: MobileCarouselProps) {
     [items]
   )
 
-  const [viewportRef, embla] = useEmblaCarousel({
+  const { viewportRef, prevBtnEnabled, nextBtnEnabled, scrollPrev, scrollNext } = useCarousel({
     skipSnaps: false,
   })
-
-  const [prevBtnEnabled, setPrevBtnEnabled] = React.useState(false)
-  const [nextBtnEnabled, setNextBtnEnabled] = React.useState(false)
-
-  const scrollPrev = React.useCallback(() => embla && embla.scrollPrev(), [embla])
-  const scrollNext = React.useCallback(() => embla && embla.scrollNext(), [embla])
-
-  const onSelect = React.useCallback(() => {
-    if (!embla) {
-      return
-    }
-
-    setPrevBtnEnabled(embla.canScrollPrev())
-    setNextBtnEnabled(embla.canScrollNext())
-  }, [embla])
-
-  React.useEffect(() => {
-    if (!embla) {
-      return
-    }
-
-    onSelect()
-    embla.on('select', onSelect)
-
-    return () => embla && embla.destroy()
-  }, [embla, onSelect])
 
   return (
     <Box display={['block', 'none']}>
