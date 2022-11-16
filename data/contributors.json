@@ -6,10 +6,32 @@
   },
   "hero_video": {
     "title": "Mission",
-    "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively; free of intermediaries and the inefficiencies of traditional finance.",
+    "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively.",
     "video": {
       "youtubeId": "h8tfJ9EtIpY"
     }
+  },
+  "maker_section": {
+    "title": "Who’s building Centrifuge",
+    "items": [
+      {
+        "title": "k/factory",
+        "body": [
+          "k/factory (k/f) is a software studio founded by the original contributors to the Centrifuge protocol.",
+          "k/f builds open source software powering the financial system of tomorrow, contributing to the Centrifuge protocol by providing core infrastructure and working with its users to ensure adoption."
+        ],
+        "link": {
+          "label": "Learn about k/factory and see open roles",
+          "href": "https://k-f.co/"
+        }
+      },
+      {
+        "title": "Centrifuge Network Foundation (CNF)",
+        "body": [
+          "The Centrifuge Network Foundation (CNF) nurtures the Centrifuge ecosystem by funding protocol development and grants."
+        ]
+      }
+    ]
   },
   "org_section": {
     "title": "How we work",
