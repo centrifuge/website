@@ -47,9 +47,14 @@ export function ContributorsSection({ title, items }: ContributorsSectionProps) 
 
       <MobileCarousel items={items} />
 
-      <Stack gap={6} mt={[0, 6]}>
+      <Stack gap={6}>
         {[firstHalf, secondHalf].map((chunk, index) => (
-          <DesktopCarousel key={chunk[0].name} items={chunk} align={index % 2 === 0 ? 'start' : 1 / n / 2} />
+          <DesktopCarousel
+            key={chunk[0].name}
+            items={chunk}
+            align={index % 2 === 0 ? 'start' : 1 / n / 2}
+            flipped={index > 0}
+          />
         ))}
       </Stack>
     </Box>
