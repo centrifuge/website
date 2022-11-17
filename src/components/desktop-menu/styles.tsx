@@ -41,6 +41,10 @@ export const Dropdown = styled(Box)`
 
   a {
     white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `
 

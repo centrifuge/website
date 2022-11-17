@@ -42,7 +42,7 @@ export function SubMenu({ label, items, href, isExternal, isButton, buttonVarian
           </Text>
         )
       ) : (
-        <Text as="button" variant="body2" type="button" onKeyUp={onKeyUp}>
+        <Text as="button" variant="body1" type="button" onKeyUp={onKeyUp}>
           {label}
         </Text>
       )}
