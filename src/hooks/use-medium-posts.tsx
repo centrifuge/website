@@ -9,11 +9,11 @@ const rawDataEntry = {
   guid: '',
   link: '',
   pubDate: '',
-  thumbnail: '',
+  thumbnail: undefined,
 }
 
 export function useMediumPosts(count = 10) {
-  const [isLoading, setIsLoading] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(true)
   const [isError, setIsError] = React.useState(false)
   const [posts, setPosts] = React.useState<typeof rawDataEntry[]>(new Array(count).fill(rawDataEntry))
 

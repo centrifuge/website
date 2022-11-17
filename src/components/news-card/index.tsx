@@ -154,7 +154,7 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
   )
 }
 
-type MediaProps = { image: string }
+type MediaProps = { image?: string }
 
 function Media({
   image,
@@ -163,8 +163,8 @@ function Media({
 }: MediaProps & { order?: number | number[]; isLoading?: boolean }) {
   return (
     <Box
-      as={isLoading ? Placeholder : 'img'}
-      src={isLoading ? undefined : image}
+      as={isLoading || !image ? Placeholder : 'img'}
+      src={image}
       alt=""
       order={order}
       aspectRatio="1.88 / 1" // 1024:545 medium article thumbnail ratio
