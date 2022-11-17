@@ -38,8 +38,8 @@ const menu = [
     label: 'Learn',
     items: [
       {
-        label: 'About us',
-        href: '/about-us',
+        label: 'Contributors',
+        href: '/contributors',
       },
       {
         label: 'In the news',

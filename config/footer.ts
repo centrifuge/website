@@ -95,7 +95,7 @@ export const footer = [
       },
       {
         label: 'Careers',
-        href: '/about-us/#careers',
+        href: '/contributors/#careers',
       },
     ],
   },

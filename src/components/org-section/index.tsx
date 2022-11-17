@@ -43,7 +43,7 @@ function Item({ image, title, body }: ItemProps) {
           <Text variant="heading4" as="h3">
             {title}
           </Text>
-          <Text variant="body2" as="p">
+          <Text variant="body1" as="p">
             {body}
           </Text>
         </Stack>

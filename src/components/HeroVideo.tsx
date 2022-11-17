@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from '@centrifuge/fabric'
+import { Box, Stack, Text, Grid } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from './CenterContainer'
@@ -38,13 +38,13 @@ export function HeroVideo({ title, body, video }: HeroVideoProps) {
             {body}
           </Text>
         </Box>
-        <Box alignSelf="flex-end" width={['100%', '100%', '75%']} mt={6}>
+        <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(3, minmax(0, 1fr))']} gap={6} mt={6}>
           {'youtubeId' in video ? (
-            <YoutubeEmbed videoId={video.youtubeId} width="100%" />
+            <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
           ) : (
             <Box as="video" aspectRatio="16 / 9" width="100%" src={video.url} autoPlay muted loop />
           )}
-        </Box>
+        </Grid>
       </Stack>
     </CenterContainer>
   )

@@ -1,0 +1,301 @@
+{
+  "slug": "/contributors",
+  "seo": {
+    "title": "Contributors | Centrifuge",
+    "description": "We are a fully remote blockchain project with a mission to create economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively."
+  },
+  "hero_video": {
+    "title": "Mission",
+    "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively.",
+    "video": {
+      "youtubeId": "h8tfJ9EtIpY"
+    }
+  },
+  "maker_section": {
+    "title": "Who’s building Centrifuge",
+    "items": [
+      {
+        "title": "k/factory",
+        "body": "k/factory (k/f) is a software studio founded by the original contributors to the Centrifuge protocol. k/f contributes to the Centrifuge protocol by providing core infrastructure and works with its users to ensure adoption.",
+        "link": {
+          "label": "Learn about k/factory and see open roles",
+          "href": "https://k-f.co/"
+        }
+      },
+      {
+        "title": "Centrifuge Network Foundation",
+        "body": "The Centrifuge Network Foundation (CNF) nurtures the Centrifuge ecosystem by funding protocol development and grants."
+      }
+    ]
+  },
+  "org_section": {
+    "title": "How we work",
+    "items": [
+      {
+        "title": "Philosophy of Self-Management",
+        "body": "At k/factory, we believe Self-Managed Organizations (SMO) are the future of work. We work to minimize hierarchy and decentralize power, similar to the way our product is built. We're a fully distributed team of 40+ people in 5+ time zones committed to designing better ways to work together. We're passionate about transparency, autonomy, and freedom in the workplace.",
+        "image": "./images/organisation/center.svg"
+      },
+      {
+        "title": "Worldwide",
+        "body": "Centrifuge’s core contributors build from all over the world. And, to nurture and deepen our connection, we come together for regular, off-site team retreats. We take time to invest in building trusted relationships and a sense of community with one another.",
+        "image": "./images/organisation/remote.svg"
+      },
+      {
+        "title": "Core values principles in practice",
+        "body": "We’re practicing principles such as shared responsibility (avoiding a \"somebody should\" mindset), healthy feedback culture, and genuine interest in each other. We're committed to trusting first while managing our attention economy, working to create safe space and communicating openly and thoughtfully.",
+        "image": "./images/organisation/group.svg"
+      }
+    ]
+  },
+  "value_section": {
+    "title": "Our values",
+    "items": ["Bold", "Inclusive", "Trustworthy", "Collaborative"]
+  },
+  "beliefs_section": {
+    "title": "Our Beliefs",
+    "items": [
+      {
+        "title": "No Boundaries",
+        "body": "We’re building a culture of deep curiosity: one that nurtures intellectual exploration above all. We want to give space for presenting ideas, exploring tangents, and releasing ourselves from rigid thought patterns."
+      },
+      {
+        "title": "Autonomy & Accountability",
+        "body": "We nurture a high sense of responsibility to ourselves, to our team members, and to the mission carried out. We work on our own terms, but keep our eye on the collective goal."
+      },
+      {
+        "title": "Knowledge Sharing",
+        "body": "We believe that a collective brain is more valuable than individual ones, so we foster a culture of knowledge sharing, transparency, and working in public."
+      },
+      {
+        "title": "Enthusiasm!",
+        "body": "We want people to be excited to work for Centrifuge — and we respect that people get out of bed for different reasons. We aim to build an inclusive organization, onboarding people from different backgrounds with a passion for something outside themselves, whether for alternative governance or techno, community activism or decentralization."
+      }
+    ]
+  },
+  "contributors_section": {
+    "title": "Contributors",
+    "items": [
+      {
+        "name": "Adam Stockermans",
+        "role": "Engineer @ k/f",
+        "social": "https://github.com/astox",
+        "image": "./images/contributors/adam.jpg"
+      },
+      {
+        "name": "Alina Sinelnikova",
+        "role": "Engineer @ k/f",
+        "social": "https://www.linkedin.com/in/alina-sinelnikova-5474a782/",
+        "image": "./images/contributors/alina.jpg"
+      },
+      {
+        "name": "Anna Mehrländer",
+        "role": "Product @ k/f",
+        "social": "https://twitter.com/annmehr",
+        "image": "./images/contributors/anna-mehrlaender.jpg"
+      },
+      {
+        "name": "Asad Khan",
+        "role": "DeFi Politician @ k/f",
+        "social": "https://twitter.com/fintech_khan",
+        "image": "./images/contributors/asad-khan.jpg"
+      },
+      {
+        "name": "Bastian Gruber",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/recvonline",
+        "image": "./images/contributors/bastian-gruber.jpg"
+      },
+      {
+        "name": "Ben Deitmer",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/HORNEBOM",
+        "image": "./images/contributors/ben.jpg"
+      },
+      {
+        "name": "Branan Riley",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/brananarchy",
+        "image": "./images/contributors/branan.jpg"
+      },
+      {
+        "name": "Cassidy Daly",
+        "role": "Token strategy @ CNF",
+        "social": "https://www.twitter.com/cassidydaly",
+        "image": "./images/contributors/cassidy.jpg"
+      },
+      {
+        "name": "Christian",
+        "role": "Centrifuge DAO Forum Facilitator",
+        "image": "./images/contributors/christian.jpg"
+      },
+      {
+        "name": "Colin Cunningham",
+        "role": "Business Development @ k/f",
+        "social": "https://twitter.com/ctcunning",
+        "image": "./images/contributors/colin.jpg"
+      },
+      {
+        "name": "Cosmin Damian",
+        "role": "Engineer @ k/f",
+        "social": "https://www.linkedin.com/in/cosmin-damian-a634b0166/",
+        "image": "./images/contributors/cosmin.jpg"
+      },
+      {
+        "name": "Dennis Wellmann",
+        "role": "Product @ k/f",
+        "social": "https://twitter.com/financeundtech",
+        "image": "./images/contributors/dennis.jpg"
+      },
+      {
+        "name": "Devin Black",
+        "role": "Marketing @ k/f",
+        "social": "https://twitter.com/d_evvy",
+        "image": "./images/contributors/devin.jpg"
+      },
+      {
+        "name": "Eli Cohen",
+        "role": "Legal @ k/f",
+        "social": "https://www.linkedin.com/in/eli-cohen-356241/",
+        "image": "./images/contributors/eli.jpg"
+      },
+      {
+        "name": "Erica Blomquist",
+        "role": "EA @ CNF",
+        "social": "https://www.linkedin.com/in/ericablomquist/",
+        "image": "./images/contributors/erica.jpg"
+      },
+      {
+        "name": "Frederik Gartenmeister",
+        "role": "Product and Engineering @ k/f",
+        "social": "https://twitter.com/mustermeiszer2",
+        "image": "./images/contributors/frederik.jpg"
+      },
+      {
+        "name": "Guillermo Perez",
+        "role": "Product Ops @ k/f",
+        "social": "https://www.linkedin.com/in/gpmayorga/",
+        "image": "./images/contributors/guillermo-perez.jpg"
+      },
+      {
+        "name": "Ivan Postavskyy",
+        "role": "Centrifuge DAO Governance Facilitator",
+        "social": "https://twitter.com/Gbbigbuy",
+        "image": "./images/contributors/ivan.jpg"
+      },
+      {
+        "name": "Jay Danzer",
+        "role": "Tech Operations @ k/f",
+        "social": "https://www.linkedin.com/in/jared-danzer/",
+        "image": "./images/contributors/jay.jpg"
+      },
+      {
+        "name": "Jeannice Tse",
+        "role": "Business Development @ k/f",
+        "social": "https://www.linkedin.com/in/jeannicetse/",
+        "image": "./images/contributors/jeannice.jpg"
+      },
+      {
+        "name": "Jeroen Offerijns",
+        "role": "Product and Engineering @ k/f",
+        "social": "https://twitter.com/offerijns",
+        "image": "./images/contributors/jeroen.jpg"
+      },
+      {
+        "name": "Joe Hyland",
+        "role": "Marketing @ k/f",
+        "image": "./images/contributors/joe.jpg"
+      },
+      {
+        "name": "JP Angelle",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/gwei_whale",
+        "image": "./images/contributors/jp-angelle.jpg"
+      },
+      {
+        "name": "Kate Beecroft",
+        "role": "DAO and Community @ CNF",
+        "social": "https://twitter.com/kbeecroft",
+        "image": "./images/contributors/kate.jpg"
+      },
+      {
+        "name": "Lucas Vogelsang",
+        "role": "Director @ CNF",
+        "social": "https://twitter.com/lucasvo",
+        "image": "./images/contributors/lucas.jpg"
+      },
+      {
+        "name": "Luis Enrique Muñoz",
+        "role": "Protocol Engineer @ k/f",
+        "social": "https://github.com/lemunozm",
+        "image": "./images/contributors/luis.jpg"
+      },
+      {
+        "name": "Martin Quensel",
+        "role": "Director @ k/f",
+        "social": "https://twitter.com/mr_optimax",
+        "image": "./images/contributors/martin.jpg"
+      },
+      {
+        "name": "Mary Gribbin",
+        "role": "People Ops @ k/f",
+        "social": "https://twitter.com/maryagribbin",
+        "image": "./images/contributors/mary.jpg"
+      },
+      {
+        "name": "Miguel Hervas",
+        "role": "Protocol Engineer @ k/f",
+        "social": "https://twitter.com/mikiquantum",
+        "image": "./images/contributors/miguel.jpg"
+      },
+      {
+        "name": "Mike Ruzic",
+        "role": "CEO @ DCM",
+        "social": "https://www.linkedin.com/in/michael-ruzic-gauthier/",
+        "image": "./images/contributors/mike.jpg"
+      },
+      {
+        "name": "Nicolò Montagna",
+        "role": "DeFi Analyst @ DCM",
+        "social": "https://www.linkedin.com/in/nicolo-montagna/",
+        "image": "./images/contributors/nicolo.jpg"
+      },
+      {
+        "name": "Nuno Alexandre",
+        "role": "Protocol Engineer @ k/f",
+        "social": "nunoalexandre.com",
+        "image": "./images/contributors/nuno-alexandre.jpg"
+      },
+      {
+        "name": "Onno Visser",
+        "role": "Engineer @ k/f",
+        "social": "https://twitter.com/_onnovisser",
+        "image": "./images/contributors/onno.jpg"
+      },
+      {
+        "name": "Orhan Klardashti",
+        "role": "Centrifuge DAO Governance Facilitator",
+        "social": "https://twitter.com/Rhano72834065",
+        "image": "./images/contributors/orhan.jpg"
+      },
+      {
+        "name": "Rohan Hemani",
+        "role": "Marketing @ k/f",
+        "social": "https://twitter.com/RohanHemani",
+        "image": "./images/contributors/rohan.jpg"
+      },
+      {
+        "name": "Sophia Littlejohn",
+        "role": "Engineer @ k/f",
+        "social": "https://www.linkedin.com/in/sophia-littlejohn/",
+        "image": "./images/contributors/sophia.jpg"
+      },
+      {
+        "name": "Romina Bungert",
+        "role": "CFO @ CNF",
+        "social": "https://twitter.com/lianefiligrane",
+        "image": "./images/contributors/romina.jpg"
+      }
+    ]
+  }
+}
