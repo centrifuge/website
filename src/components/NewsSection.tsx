@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Text, Box, Container, Shelf, IconArrowLeft, IconArrowRight } from '@centrifuge/fabric'
+import { Text, Box, Container, Shelf, IconArrowLeft, IconArrowRight, AnchorButton } from '@centrifuge/fabric'
 import { useMediumPosts } from '../hooks/use-medium-posts'
 import { useCarousel } from '../hooks/use-carousel'
 import { toLocaleDate } from '../utils/date'
@@ -16,6 +16,7 @@ export const query = graphql`
     link {
       label
       href
+      isExternal
     }
     note {
       title
@@ -27,7 +28,7 @@ export const query = graphql`
 export type NewsSectionProps = {
   title: string
   count: number
-  link: { label: string; href: string }
+  link: { label: string; href: string; isExternal: boolean }
   note: { title: string; body: string }
 }
 
@@ -47,9 +48,16 @@ export function NewsSection({ title, count, link, note }: NewsSectionProps) {
           <Text as="h2" variant="heading2">
             {title}
           </Text>
-          <InternalLink to={link.href} variant="secondary" small>
-            {link.label}
-          </InternalLink>
+
+          {link.isExternal ? (
+            <AnchorButton href={link.href} variant="secondary" small rel="noopener noreferrer" target="_blank">
+              {link.label}
+            </AnchorButton>
+          ) : (
+            <InternalLink to={link.href} variant="secondary" small>
+              {link.label}
+            </InternalLink>
+          )}
 
           {!isError && (
             <Shelf gap={2} ml="auto" width={['100%', '100%', 'auto']} justifyContent="end">
