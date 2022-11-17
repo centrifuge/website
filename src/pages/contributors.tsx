@@ -10,10 +10,11 @@ import { Layout } from '../components/Layout'
 import { OrgSection, OrgSectionProps } from '../components/org-section'
 import { SEO, SEOProps } from '../components/Seo'
 import { ValuesSection, ValuesSectionProps } from '../components/ValuesSection'
+import { MakerSection, MakerSectionProps } from '../components/MakerSection'
 
 export const query = graphql`
   query {
-    dataJson(slug: { eq: "/about-us" }) {
+    dataJson(slug: { eq: "/contributors" }) {
       title
 
       seo {
@@ -22,6 +23,10 @@ export const query = graphql`
 
       hero_video {
         ...HeroVideoFragment
+      }
+
+      maker_section {
+        ...MakerSectionFragment
       }
 
       org_section {
@@ -43,11 +48,12 @@ export const query = graphql`
   }
 `
 
-type AboutProps = {
+type ContributorsProps = {
   data: {
     dataJson: {
       seo: SEOProps
       hero_video: HeroVideoProps
+      maker_section: MakerSectionProps
       org_section: OrgSectionProps
       value_section: ValuesSectionProps
       beliefs_section: BeliefsSectionProps
@@ -56,13 +62,14 @@ type AboutProps = {
   }
 }
 
-export default function About({ data }: AboutProps) {
-  const { hero_video, org_section, value_section, beliefs_section, contributors_section } = data.dataJson
+export default function Contributors({ data }: ContributorsProps) {
+  const { hero_video, maker_section, org_section, value_section, beliefs_section, contributors_section } = data.dataJson
 
   return (
     <Layout>
       <Stack gap={168}>
         <HeroVideo {...hero_video} />
+        <MakerSection {...maker_section} />
         <OrgSection {...org_section} />
         <ValuesSection {...value_section} />
         <BeliefsSection {...beliefs_section} />
@@ -72,7 +79,7 @@ export default function About({ data }: AboutProps) {
   )
 }
 
-export const Head = ({ data, location }: AboutProps & HeadProps) => {
+export const Head = ({ data, location }: ContributorsProps & HeadProps) => {
   const { seo } = data.dataJson
   const { pathname } = location
 

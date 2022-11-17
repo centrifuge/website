@@ -1,32 +1,49 @@
 {
-  "slug": "/about-us",
+  "slug": "/contributors",
   "seo": {
-    "title": "About Us | Centrifuge",
+    "title": "Contributors | Centrifuge",
     "description": "We are a fully remote blockchain project with a mission to create economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively."
   },
   "hero_video": {
     "title": "Mission",
-    "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively; free of intermediaries and the inefficiencies of traditional finance.",
+    "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively.",
     "video": {
       "youtubeId": "h8tfJ9EtIpY"
     }
+  },
+  "maker_section": {
+    "title": "Who’s building Centrifuge",
+    "items": [
+      {
+        "title": "k/factory",
+        "body": "k/factory (k/f) is a software studio founded by the original contributors to the Centrifuge protocol. k/f contributes to the Centrifuge protocol by providing core infrastructure and works with its users to ensure adoption.",
+        "link": {
+          "label": "Learn about k/factory and see open roles",
+          "href": "https://k-f.co/"
+        }
+      },
+      {
+        "title": "Centrifuge Network Foundation",
+        "body": "The Centrifuge Network Foundation (CNF) nurtures the Centrifuge ecosystem by funding protocol development and grants."
+      }
+    ]
   },
   "org_section": {
     "title": "How we work",
     "items": [
       {
-        "title": "Self-managed organization (SMO)",
-        "body": "As an SMO, we work to minimize hierarchy and decentralize power, similar to the way our product is built.",
+        "title": "Philosophy of Self-Management",
+        "body": "At k/factory, we believe Self-Managed Organizations (SMO) are the future of work. We work to minimize hierarchy and decentralize power, similar to the way our product is built. We're a fully distributed team of 40+ people in 5+ time zones committed to designing better ways to work together. We're passionate about transparency, autonomy, and freedom in the workplace.",
         "image": "./images/organisation/center.svg"
       },
       {
-        "title": "Fully remote",
-        "body": "Work anywhere in the world",
+        "title": "Worldwide",
+        "body": "Centrifuge’s core contributors build from all over the world. And, to nurture and deepen our connection, we come together for regular, off-site team retreats. We take time to invest in building trusted relationships and a sense of community with one another.",
         "image": "./images/organisation/remote.svg"
       },
       {
-        "title": "Retreat",
-        "body": "In-person retreats bi-annually",
+        "title": "Core values principles in practice",
+        "body": "We’re practicing principles such as shared responsibility (avoiding a \"somebody should\" mindset), healthy feedback culture, and genuine interest in each other. We're committed to trusting first while managing our attention economy, working to create safe space and communicating openly and thoughtfully.",
         "image": "./images/organisation/group.svg"
       }
     ]
@@ -36,23 +53,23 @@
     "items": ["Bold", "Inclusive", "Trustworthy", "Collaborative"]
   },
   "beliefs_section": {
-    "title": "We believe in",
+    "title": "Our Beliefs",
     "items": [
       {
-        "title": "No boundaries",
-        "body": "We want to build a culture of deep curiosity- one that nurtures intellectual exploration above all. We want to give space for ideas to flourish, explore tangents and for releasing ourselves from rigid thought patterns."
+        "title": "No Boundaries",
+        "body": "We’re building a culture of deep curiosity: one that nurtures intellectual exploration above all. We want to give space for presenting ideas, exploring tangents, and releasing ourselves from rigid thought patterns."
       },
       {
         "title": "Autonomy & Accountability",
-        "body": "We nurture a high sense of responsibility to ourselves, to our team members and the mission carried out. We work on our own terms, but keep our eye on the collective goal."
+        "body": "We nurture a high sense of responsibility to ourselves, to our team members, and to the mission carried out. We work on our own terms, but keep our eye on the collective goal."
       },
       {
         "title": "Knowledge Sharing",
-        "body": "We believe that a collective brain is more valuable than individual ones, so we foster a culture of sharing and transparency. From weekly all-hands, monthly book clubs and quarterly personal feedback to cooking up big group lunches, encouraging transparency and knowledge sharing is crucial at Centrifuge."
+        "body": "We believe that a collective brain is more valuable than individual ones, so we foster a culture of knowledge sharing, transparency, and working in public."
       },
       {
         "title": "Enthusiasm!",
-        "body": "We want people to be excited to work for Centrifuge and respect that people get out of bed for different reasons. We are flexible with schedules and allow our employees to climb, dance or do yoga when it suits them. We aim to build an inclusive company- hiring people from different backgrounds with a passion for something outside themselves, whether for alternative governance or techno, community activism or decentralization."
+        "body": "We want people to be excited to work for Centrifuge — and we respect that people get out of bed for different reasons. We aim to build an inclusive organization, onboarding people from different backgrounds with a passion for something outside themselves, whether for alternative governance or techno, community activism or decentralization."
       }
     ]
   },
