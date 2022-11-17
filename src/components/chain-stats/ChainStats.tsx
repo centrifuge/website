@@ -16,7 +16,7 @@ export function ChainStats() {
       </Item>
 
       <Item>
-        <Label>TL Growth (YTD)</Label>
+        <Label>TVL Growth (YoY)</Label>
         <Value>+ 150%</Value>
       </Item>
     </Root>
