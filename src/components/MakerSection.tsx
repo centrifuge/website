@@ -29,7 +29,11 @@ export function MakerSection({ title, items }: MakerSectionProps) {
           {title}
         </Text>
 
-        <Grid gap={6} gridTemplateColumns={['1fr', '1fr', 'repeat(2, minmax(0, 1fr))']} mt={[4, 4, 6]}>
+        <Grid
+          gap={6}
+          gridTemplateColumns={['1fr', '1fr', 'repeat(2, minmax(0, 1fr))', 'repeat(3, minmax(0, 1fr))']}
+          mt={[4, 4, 6]}
+        >
           {items.map((item, index) => (
             <Item {...item} key={index} />
           ))}
@@ -41,7 +45,7 @@ export function MakerSection({ title, items }: MakerSectionProps) {
 
 type ItemProps = {
   title: string
-  body: string[]
+  body: string
   link?: {
     label: string
     href: string
@@ -55,14 +59,19 @@ function Item({ title, body, link }: ItemProps) {
         {title}
       </Text>
 
-      {body.map((paragraph, index) => (
-        <Text key={index} as="p" variant="body1">
-          {paragraph}
-        </Text>
-      ))}
+      <Text as="p" variant="body1">
+        {body}
+      </Text>
 
       {link && (
-        <Text as="a" href={link.href} rel="noopener noreferrer" target="_blank" style={{ textDecoration: 'underline' }}>
+        <Text
+          as="a"
+          href={link.href}
+          rel="noopener noreferrer"
+          target="_blank"
+          variant="body1"
+          style={{ textDecoration: 'underline' }}
+        >
           {link.label}
         </Text>
       )}

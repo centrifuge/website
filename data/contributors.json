@@ -16,20 +16,15 @@
     "items": [
       {
         "title": "k/factory",
-        "body": [
-          "k/factory (k/f) is a software studio founded by the original contributors to the Centrifuge protocol.",
-          "k/f builds open source software powering the financial system of tomorrow, contributing to the Centrifuge protocol by providing core infrastructure and working with its users to ensure adoption."
-        ],
+        "body": "k/factory (k/f) is a software studio founded by the original contributors to the Centrifuge protocol. k/f contributes to the Centrifuge protocol by providing core infrastructure and works with its users to ensure adoption.",
         "link": {
           "label": "Learn about k/factory and see open roles",
           "href": "https://k-f.co/"
         }
       },
       {
-        "title": "Centrifuge Network Foundation (CNF)",
-        "body": [
-          "The Centrifuge Network Foundation (CNF) nurtures the Centrifuge ecosystem by funding protocol development and grants."
-        ]
+        "title": "CNF",
+        "body": "The Centrifuge Network Foundation (CNF) nurtures the Centrifuge ecosystem by funding protocol development and grants."
       }
     ]
   },
@@ -37,18 +32,18 @@
     "title": "How we work",
     "items": [
       {
-        "title": "Self-managed",
-        "body": "k/factory is a self-managed organization (SMO). We work to minimize hierarchy and decentralize power, similar to the way our product is built.",
+        "title": "Philosophy of Self-Management",
+        "body": "At k/factory, we believe Self-Managed Organizations (SMO) are the future of work. We work to minimize hierarchy and decentralize power, similar to the way our product is built. We're a fully distributed team of 40+ people in 5+ time zones committed to designing better ways to work together. We're passionate about transparency, autonomy, and freedom in the workplace.",
         "image": "./images/organisation/center.svg"
       },
       {
         "title": "Worldwide",
-        "body": "Centrifuge’s core contributors build from all over the world. And we all come together to meet in person bi-anually.",
+        "body": "Centrifuge’s core contributors build from all over the world. And, to nurture and deepen our connection, we come together for regular, off-site team retreats. We take time to invest in building trusted relationships and a sense of community with one another.",
         "image": "./images/organisation/remote.svg"
       },
       {
-        "title": "Retreat",
-        "body": "In-person retreats bi-annually",
+        "title": "Core values principles in practice",
+        "body": "We’re practicing principles such as shared responsibility (avoiding a \"somebody should\" mindset), healthy feedback culture, and genuine interest in each other. We're committed to trusting first while managing our attention economy, working to create safe space and communicating openly and thoughtfully.",
         "image": "./images/organisation/group.svg"
       }
     ]
