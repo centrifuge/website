@@ -1,26 +1,37 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useMediumPosts } from '../../hooks/use-medium-posts'
-import { toLocaleDate } from '../../utils/date'
-import { InternalLink } from '../InternalLink'
-import { NoteCard } from '../NoteCard'
 import { Text, Box, Container, Shelf, IconArrowLeft, IconArrowRight } from '@centrifuge/fabric'
-import { NewsCard } from '../news-card'
-import { Control } from '../Control'
-import { useCarousel } from '../../hooks/use-carousel'
+import { useMediumPosts } from '../hooks/use-medium-posts'
+import { useCarousel } from '../hooks/use-carousel'
+import { toLocaleDate } from '../utils/date'
+import { InternalLink } from './InternalLink'
+import { NoteCard } from './NoteCard'
+import { NewsCard } from './news-card'
+import { Control } from './Control'
 
 export const query = graphql`
+  fragment NewsSectionFragment on DataJsonNews_section {
     title
     count
+    link {
+      label
+      href
+    }
+    note {
+      title
+      body
+    }
   }
 `
 
 export type NewsSectionProps = {
   title: string
   count: number
+  link: { label: string; href: string }
+  note: { title: string; body: string }
 }
 
-export function NewsSection({ title, count }: NewsSectionProps) {
+export function NewsSection({ title, count, link, note }: NewsSectionProps) {
   const { isLoading, isError, posts } = useMediumPosts(count)
 
   const { viewportRef, prevBtnEnabled, nextBtnEnabled, scrollPrev, scrollNext } = useCarousel({
@@ -36,8 +47,8 @@ export function NewsSection({ title, count }: NewsSectionProps) {
           <Text as="h2" variant="heading2">
             {title}
           </Text>
-          <InternalLink to="/news" variant="secondary" small>
-            View all articles
+          <InternalLink to={link.href} variant="secondary" small>
+            {link.label}
           </InternalLink>
 
           {!isError && (
@@ -73,9 +84,11 @@ export function NewsSection({ title, count }: NewsSectionProps) {
         ) : (
           <NoteCard status="info" mt={[1, 1, 6]}>
             <Text as="strong" variant="heading6">
-              Unable to display latest articles
+              {note.title}
             </Text>
-            <Text>Please refresh the page or try again later.</Text>
+            <Text as="p" variant="body1">
+              {note.body}
+            </Text>
           </NoteCard>
         )}
       </Container>
