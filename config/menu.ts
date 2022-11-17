@@ -5,8 +5,9 @@ const menu = [
     label: 'Connect',
     items: [
       {
-        label: 'Governance',
-        href: '/governance',
+        label: 'Discord',
+        href: links.discord,
+        isExternal: true,
       },
       {
         label: 'Twitter',
@@ -14,18 +15,8 @@ const menu = [
         isExternal: true,
       },
       {
-        label: 'Discord',
-        href: links.discord,
-        isExternal: true,
-      },
-      {
         label: 'LinkedIn',
         href: links.linkedin,
-        isExternal: true,
-      },
-      {
-        label: 'Telegram',
-        href: links.telegram,
         isExternal: true,
       },
       {
@@ -38,12 +29,8 @@ const menu = [
     label: 'Learn',
     items: [
       {
-        label: 'Contributors',
-        href: '/contributors',
-      },
-      {
-        label: 'In the news',
-        href: '/news',
+        label: 'Governance',
+        href: '/governance',
       },
       {
         label: 'FAQs',
@@ -51,9 +38,8 @@ const menu = [
         isExternal: true,
       },
       {
-        label: 'Documentation',
-        href: links.docs,
-        isExternal: true,
+        label: 'Contributors',
+        href: '/contributors',
       },
       {
         label: 'Blog',
@@ -65,16 +51,16 @@ const menu = [
         href: links.youtube,
         isExternal: true,
       },
-      {
-        label: 'Token summary',
-        href: 'https://centrifuge.io/cfg_token_summary.pdf',
-        isExternal: true,
-      },
     ],
   },
   {
     label: 'Develop',
     items: [
+      {
+        label: 'Documentation',
+        href: links.docs,
+        isExternal: true,
+      },
       {
         label: 'Altair',
         href: 'https://centrifuge.io/altair/',

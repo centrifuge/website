@@ -18,7 +18,7 @@ export const Dropdown = styled(Box)`
   visibility: hidden;
 
   background-color: ${({ theme }) => theme.colors.backgroundPage};
-  box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.2);
   border-radius: ${({ theme }) => theme.radii.tooltip}px;
 
   transform: translateY(10px);
@@ -41,6 +41,10 @@ export const Dropdown = styled(Box)`
 
   a {
     white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `
 

@@ -11,11 +11,11 @@ export type AnchorProps = {
 
 export function Anchor({ label, href, isExternal, onKeyUp }: AnchorProps) {
   return isExternal ? (
-    <Text as="a" href={href} rel="noopener noreferrer" target="_blank" variant="menuAnchor" onKeyUp={onKeyUp}>
+    <Text as="a" href={href} rel="noopener noreferrer" target="_blank" variant="body1" onKeyUp={onKeyUp}>
       {label}
     </Text>
   ) : (
-    <Text as={Link} to={href} variant="menuAnchor" onKeyUp={onKeyUp}>
+    <Text as={Link} to={href} variant="body1" onKeyUp={onKeyUp}>
       {label}
     </Text>
   )
