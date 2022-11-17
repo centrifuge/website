@@ -79,11 +79,6 @@ export const footer = [
     title: 'Get in touch',
     items: [
       {
-        label: 'Telegram: t.me/centrifuge_chat',
-        href: links.telegram,
-        isExternal: true,
-      },
-      {
         label: 'Partnerships: bizdev@centrifuge.io',
         href: 'mailto:bizdev@centrifuge.io',
         isExternal: true,
