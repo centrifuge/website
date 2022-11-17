@@ -46,6 +46,7 @@ export function NewsCard({
     <Shelf
       as="article"
       position="relative"
+      minHeight="100%"
       p={boxed ? 2 : 0}
       flexDirection="column"
       alignItems="start"
@@ -79,7 +80,19 @@ export function NewsCard({
 
 function Label({ children, isLoading = false }: { children: React.ReactNode; isLoading?: boolean }) {
   return (
-    <TextWithPlaceholder as="span" variant="tag" isLoading={isLoading}>
+    <TextWithPlaceholder
+      as="span"
+      variant="body3"
+      color="textSecondary"
+      isLoading={isLoading}
+      style={{
+        display: 'block',
+        maxWidth: '100%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}
+    >
       {children}
     </TextWithPlaceholder>
   )
@@ -141,7 +154,7 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
   )
 }
 
-type MediaProps = { image: string }
+type MediaProps = { image?: string }
 
 function Media({
   image,
@@ -150,8 +163,8 @@ function Media({
 }: MediaProps & { order?: number | number[]; isLoading?: boolean }) {
   return (
     <Box
-      as={isLoading ? Placeholder : 'img'}
-      src={isLoading ? undefined : image}
+      as={isLoading || !image ? Placeholder : 'img'}
+      src={image}
       alt=""
       order={order}
       aspectRatio="1.88 / 1" // 1024:545 medium article thumbnail ratio

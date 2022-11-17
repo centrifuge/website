@@ -130,7 +130,16 @@
   },
   "news_section": {
     "title": "Centrifuge Blog",
-    "count": 10
+    "count": 10,
+    "link": {
+      "label": "View all articles",
+      "href": "https://medium.com/centrifuge",
+      "isExternal": true
+    },
+    "note": {
+      "title": "Unable to display latest articles",
+      "body": "Please refresh the page or try again later."
+    }
   },
   "audit_section": {
     "title": "Audited by",

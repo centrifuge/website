@@ -1,0 +1,50 @@
+name: gcloud functions deploy
+on:
+  push:
+    branches:
+      # - version-2
+      # - 'feat/fetch-medium-articles-475'
+
+jobs:
+  job_id:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build:lambda
+
+      - id: Auth gcloud
+        uses: google-github-actions/auth@v0
+        with:
+          workload_identity_provider: ''
+          service_account: 'functions-firestore@peak-vista-185616.iam.gserviceaccount.com'
+
+      - id: Deploy gcloud
+        uses: 'google-github-actions/deploy-cloud-functions@v0'
+        with:
+          name: 'api'
+          runtime: 'nodejs16'
+          region: 'central1'
+          source_dir: 'lambda/dist'
+          project: 'peak-vista-185616'
+          service_account: 'functions-firestore@peak-vista-185616.iam.gserviceaccount.com'
+          allow_unauthenticated: true
+          entry_point: 'handler'
+
+      - id: 'output test'
+        run: 'curl "${{ steps.deploy.outputs.url }}"'

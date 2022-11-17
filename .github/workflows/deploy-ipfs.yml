@@ -1,5 +1,5 @@
 name: deploy
-on: push
+# on: push
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
       - uses: cachix/cachix-action@v8
         with:
           name: centrifuge-website
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: build
         id: build
@@ -50,7 +50,7 @@ jobs:
 
       - uses: ipfs/start-ipfs-daemon-action@v1
         with:
-          args: "" # skip config init because we already did it above
+          args: '' # skip config init because we already did it above
 
       - name: publish the website on ipfs
         id: publish
@@ -78,7 +78,7 @@ jobs:
         with:
           number: ${{ steps.finder.outputs.pr }}
           hide_and_recreate: true
-          hide_classify: "OUTDATED"
+          hide_classify: 'OUTDATED'
           message: |
             <h2 align="center">IPFS Preview for ${{ github.sha }} is ready</h2>
             <p align="center">
