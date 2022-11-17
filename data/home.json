@@ -33,6 +33,10 @@
       {
         "image": "./images/partner/moonbeam.svg",
         "alt": "Moonbeam"
+      },
+      {
+        "image": "./images/partner/flowcarbon.svg",
+        "alt": "Flowcarbon"
       }
     ]
   },

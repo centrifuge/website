@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Text, Box, Container, Shelf } from '@centrifuge/fabric'
-import useEmblaCarousel from 'embla-carousel-react'
+import { Text, Box, Container, Shelf, IconArrowLeft, IconArrowRight } from '@centrifuge/fabric'
+import { useCarousel } from '../../hooks/use-carousel'
 import { InternalLink } from '../InternalLink'
 import { NewsCard } from '../news-card'
-import { Arrow, Control } from './styles'
+import { Control } from '../Control'
 
 export const query = graphql`
   fragment NewsSectionFragment on DataJsonNews_section {
@@ -19,28 +19,11 @@ export type NewsSectionProps = {
 }
 
 export function NewsSection({ title, count }: NewsSectionProps) {
-  const [prevBtnEnabled, setPrevBtnEnabled] = React.useState(false)
-  const [nextBtnEnabled, setNextBtnEnabled] = React.useState(false)
-  const [emblaRef, embla] = useEmblaCarousel({
+  const { viewportRef, prevBtnEnabled, nextBtnEnabled, scrollPrev, scrollNext } = useCarousel({
     align: 'start',
     containScroll: 'trimSnaps',
     dragFree: true,
   })
-
-  const scrollPrev = React.useCallback(() => embla && embla.scrollPrev(), [embla])
-  const scrollNext = React.useCallback(() => embla && embla.scrollNext(), [embla])
-
-  const onSelect = React.useCallback(() => {
-    if (!embla) return
-    setPrevBtnEnabled(embla.canScrollPrev())
-    setNextBtnEnabled(embla.canScrollNext())
-  }, [embla])
-
-  React.useEffect(() => {
-    if (!embla) return
-    onSelect()
-    embla.on('select', onSelect)
-  }, [embla, onSelect])
 
   return (
     <Box as="section" px={2} style={{ overflow: 'hidden' }}>
@@ -54,16 +37,16 @@ export function NewsSection({ title, count }: NewsSectionProps) {
           </InternalLink>
 
           <Shelf gap={2} ml="auto" width={['100%', '100%', 'auto']} justifyContent="end">
-            <Control onClick={scrollPrev} disabled={!prevBtnEnabled} title="Previous" flipped>
-              <Arrow />
+            <Control onClick={scrollPrev} disabled={!prevBtnEnabled} title="Previous">
+              <IconArrowLeft />
             </Control>
             <Control onClick={scrollNext} disabled={!nextBtnEnabled} title="Next">
-              <Arrow />
+              <IconArrowRight />
             </Control>
           </Shelf>
         </Shelf>
 
-        <Box ref={emblaRef} style={{ overflow: 'visible' }} mt={[1, 1, 6]} py={1}>
+        <Box ref={viewportRef} style={{ overflow: 'visible' }} mt={[1, 1, 6]} py={1}>
           <Shelf as="ul" p={0} m={0} role="list" gap={2}>
             {new Array(count).fill('').map((_, index) => (
               <Box as="li" key={index} width={[300, 400, 480]} flexShrink={0}>
