@@ -48,7 +48,7 @@ export function SubMenu({ label, items, href, isExternal, isButton, buttonVarian
       )}
 
       {!!items && (
-        <Dropdown as="ul" px={2} py={1} role="list">
+        <Dropdown as="ul" px={2} py={2} role="list">
           {items.map((item, index) => (
             <Box as="li" key={`${item.label}-${index}`} mt={index > 0 ? 1 : 0}>
               <Anchor {...item} onKeyUp={(event) => onKeyUp(event)} />
