@@ -2,8 +2,8 @@ import React from 'react'
 
 type PositionProps = {
   id: string
-  position: string
-  link: string
+  title: string
+  href: string
 }
 
 export function useLeverPositions() {

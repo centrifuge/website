@@ -11,6 +11,7 @@ import { OrgSection, OrgSectionProps } from '../components/org-section'
 import { SEO, SEOProps } from '../components/Seo'
 import { ValuesSection, ValuesSectionProps } from '../components/ValuesSection'
 import { MakerSection, MakerSectionProps } from '../components/MakerSection'
+import { CareerSection, CareerSectionProps } from '../components/career-section'
 
 export const query = graphql`
   query {
@@ -44,6 +45,10 @@ export const query = graphql`
       contributors_section {
         ...ContributorsSectionFragment
       }
+
+      career_section {
+        ...CareerSectionFragment
+      }
     }
   }
 `
@@ -58,12 +63,21 @@ type ContributorsProps = {
       value_section: ValuesSectionProps
       beliefs_section: BeliefsSectionProps
       contributors_section: ContributorsSectionProps
+      career_section: CareerSectionProps
     }
   }
 }
 
 export default function Contributors({ data }: ContributorsProps) {
-  const { hero_video, maker_section, org_section, value_section, beliefs_section, contributors_section } = data.dataJson
+  const {
+    hero_video,
+    maker_section,
+    org_section,
+    value_section,
+    beliefs_section,
+    contributors_section,
+    career_section,
+  } = data.dataJson
 
   return (
     <Layout>
@@ -74,6 +88,7 @@ export default function Contributors({ data }: ContributorsProps) {
         <ValuesSection {...value_section} />
         <BeliefsSection {...beliefs_section} />
         <ContributorsSection {...contributors_section} />
+        <CareerSection {...career_section} />
       </Stack>
     </Layout>
   )
