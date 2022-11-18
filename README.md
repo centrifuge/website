@@ -166,7 +166,8 @@ Next add the new route in the `routes.json` file using the same `name` as the fi
 ```json
 [
   {
-    "name": "exampleEndpoint"
+    "name": "exampleEndpoint",
+    "options": {}
   }
   // ...
 ]

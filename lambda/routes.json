@@ -1,7 +1,9 @@
 [
   {
-    "name": "getMediumPosts",
-    "options": {}
+    "name": "getMediumPosts"
+  },
+  {
+    "name": "getLeverPositions"
   },
   {
     "name": "getExample"
