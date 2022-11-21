@@ -297,5 +297,13 @@
         "image": "./images/contributors/romina.jpg"
       }
     ]
+  },
+  "career_section": {
+    "title": "Current openings",
+    "fallback": "We currently have no openings",
+    "note": {
+      "title": "Unable to load vacancies",
+      "body": "Please refresh the page or try again later."
+    }
   }
 }

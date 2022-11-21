@@ -9,8 +9,8 @@ export default async function getLeverPositions(req: Request, res: Response) {
     positions = positions
       .map((position) => ({
         id: position.id,
-        position: position.text,
-        link: position.hostedUrl,
+        title: position.text,
+        href: position.hostedUrl,
       }))
       .filter(
         // Don't see your role?
