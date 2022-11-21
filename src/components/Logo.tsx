@@ -2,24 +2,24 @@ import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const blink = keyframes`
-	0%, 99.99% {
-		opacity: 0;
-	}
-  100% {
+	0%, 29.99% {
 		opacity: 1;
+	}
+  30%, 100% {
+		opacity: 0;
 	}
 `
 
-function testAapje() {
+function pathStyles() {
   let styles = ''
-  const delay = 0.1
+  const stagger = 0.1
 
   for (let i = 1; i <= 9; i++) {
     styles += `
       path:nth-child(${i}) {
-        animation-duration: 10s;
+        animation-duration: 3s;
         animation-iteration-count: infinite;
-        animation-delay: ${delay * i}s;
+        animation-delay: ${stagger * i}s;
       }
     `
   }
@@ -29,12 +29,12 @@ function testAapje() {
 
 const Letters = styled.g`
   path {
+    opacity: 0;
     animation-name: ${blink};
   }
 
-  ${testAapje()}
+  ${pathStyles()}
 `
-// /* ${testAapje()} */
 
 export function Logo() {
   return (
