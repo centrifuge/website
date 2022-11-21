@@ -6,6 +6,12 @@
     "name": "getLeverPositions"
   },
   {
+    "name": "getPoolsData"
+  },
+  {
+    "name": "getLoansData"
+  },
+  {
     "name": "getExample"
   }
 ]
