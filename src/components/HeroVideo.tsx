@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Grid } from '@centrifuge/fabric'
+import { Box, Stack, Text, Grid, Button, AnchorButton } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from './CenterContainer'
@@ -8,6 +8,10 @@ export const query = graphql`
   fragment HeroVideoFragment on DataJsonHero_video {
     title
     body
+    cta {
+      title
+      href
+    }
     video {
       youtubeId
     }
@@ -17,6 +21,10 @@ export const query = graphql`
 export type HeroVideoProps = {
   title: string
   body: string
+  cta?: {
+    title: string
+    href: string
+  }
   video:
     | {
         youtubeId: string
@@ -26,10 +34,10 @@ export type HeroVideoProps = {
       }
 }
 
-export function HeroVideo({ title, body, video }: HeroVideoProps) {
+export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
   return (
     <CenterContainer as="section" pt={8}>
-      <Stack gap={2}>
+      <Stack gap={2} alignItems="start">
         <Text variant="tag" as="h1">
           {title}
         </Text>
@@ -38,7 +46,14 @@ export function HeroVideo({ title, body, video }: HeroVideoProps) {
             {body}
           </Text>
         </Box>
-        <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(3, minmax(0, 1fr))']} gap={6} mt={6}>
+
+        {cta && (
+          <AnchorButton href={cta.href} variant="secondary">
+            {cta.title}
+          </AnchorButton>
+        )}
+
+        <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(3, minmax(0, 1fr))']} gap={6} mt={6} width="100%">
           {'youtubeId' in video ? (
             <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
           ) : (
