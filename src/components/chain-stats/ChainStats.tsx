@@ -20,7 +20,7 @@ export function ChainStats() {
       )}
 
       <Item>
-        <Label>Total Assets tokenized</Label>
+        <Label>Total Assets Tokenized</Label>
         <Value isLoading={totalAssetsTokenized.isLoading}>
           {totalAssetsTokenized?.isLoading || !totalAssetsTokenized?.data ? '—' : totalAssetsTokenized?.data}
         </Value>
