@@ -11,18 +11,17 @@ export function ChainStats() {
   React.useEffect(() => {
     console.log('pools isLoading', pools.isLoading)
     console.log('pools isError', pools.isError)
-    if (pools.data) {
+
+    if (pools?.data) {
       console.log('pools data', pools.data)
     }
-  }, [pools.data, pools.isLoading, pools.isError])
 
-  React.useEffect(() => {
     console.log('loans isLoading', loans.isLoading)
     console.log('loans isError', loans.isError)
-    if (loans.data) {
+    if (loans?.data) {
       console.log('data loans', loans.data)
     }
-  }, [loans.data, loans.isLoading, loans.isError])
+  }, [pools, loans])
 
   return (
     <Root as="ul" role="list" py={[2, 1, 1, 2]}>
@@ -33,7 +32,7 @@ export function ChainStats() {
 
       <Item>
         <Label>Total Assets tokenized</Label>
-        <Value>1000</Value>
+        <Value isLoading={pools.isLoading}>1000</Value>
       </Item>
 
       <Item>

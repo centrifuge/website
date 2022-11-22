@@ -1,8 +1,8 @@
 import BN from 'bn.js'
 import { Request, Response } from 'express'
-import { fetchSubgraphData } from './fetchSubgraphData'
+import { chunkedFetch } from './subgraphUtils'
 
-function getQuery({ skip, first }: { skip: number; first: number }) {
+function getPoolsQuery({ skip, first }: { skip: number; first: number }) {
   return `
     query {
       pools(first: ${first}, skip: ${skip}) {
@@ -34,27 +34,11 @@ function getTotalAssetsFinanced(pools) {
 
 export default async function getPoolsData(req: Request, res: Response) {
   try {
-    let start = 0
-    const limit = 1000
-
-    const pools = []
-
-    // subgraph only returns 1000 entries, fetch until no more entries are returned
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      const query = getQuery({ skip: start, first: limit })
-      const data = await fetchSubgraphData(query)
-
-      if (!data.pools.length) {
-        break
-      }
-
-      if (data.pools.length) {
-        pools.push(...data.pools)
-      }
-
-      start += limit
-    }
+    const pools = await chunkedFetch({
+      getQuery: getPoolsQuery,
+      getProperty: (obj) => obj?.pools,
+      chunkSize: 1000,
+    })
 
     const totalValueLocked = getTotalValueLocked(pools)
     const totalAssetsFinanced = getTotalAssetsFinanced(pools)
