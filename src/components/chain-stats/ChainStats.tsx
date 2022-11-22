@@ -13,20 +13,24 @@ export function ChainStats() {
       {pools && (
         <Item>
           <Label>Assets Financed</Label>
-          <Value isLoading={pools.isLoading}>{pools?.isLoading ? ' ' : `$ ${pools?.data?.totalAssetsFinanced}M`}</Value>
+          <Value isLoading={pools.isLoading}>
+            {pools?.isLoading || !pools?.data?.totalAssetsFinanced ? '—' : `$ ${pools?.data?.totalAssetsFinanced}M`}
+          </Value>
         </Item>
       )}
 
       <Item>
         <Label>Total Assets tokenized</Label>
         <Value isLoading={totalAssetsTokenized.isLoading}>
-          {totalAssetsTokenized?.isLoading ? ' ' : totalAssetsTokenized?.data}
+          {totalAssetsTokenized?.isLoading || !totalAssetsTokenized?.data ? '—' : totalAssetsTokenized?.data}
         </Value>
       </Item>
 
       <Item>
         <Label>TVL Growth (YoY)</Label>
-        <Value isLoading={pools.isLoading}>{pools?.isLoading ? ' ' : `+ ${pools?.data?.totalValueLocked}%`}</Value>
+        <Value isLoading={pools.isLoading}>
+          {pools?.isLoading || !pools?.data?.totalValueLocked ? '—' : `+ ${pools?.data?.totalValueLocked}%`}
+        </Value>
       </Item>
     </Root>
   )
