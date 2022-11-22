@@ -12,7 +12,7 @@ export function useLoansData() {
       try {
         await fetch(`${process.env.GATSBY_LAMBDA_URL}/getLoansData`)
           .then((res) => res.json())
-          .then((_data) => setData(_data))
+          .then((obj) => setData(obj))
       } catch (error) {
         if (process.env.NODE_ENV === 'development') {
           console.warn('Error while fetching sub graph data:', error)
