@@ -15,7 +15,7 @@ esbuild
       'lambda/src/getMediumPosts.ts',
       'lambda/src/getLeverPositions.ts',
       'lambda/src/getPoolsData.ts',
-      'lambda/src/getLoansData.ts',
+      'lambda/src/getTotalAssetsTokenized.ts',
     ],
     outdir: 'lambda/dist',
     bundle: true,

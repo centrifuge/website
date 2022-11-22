@@ -1,43 +1,30 @@
 import * as React from 'react'
 import { Text, TextWithPlaceholder } from '@centrifuge/fabric'
 import { usePoolsData } from '../../hooks/use-pools-data'
-import { useLoansData } from '../../hooks/use-loans-data'
+import { useTotalAssetsTokenized } from '../../hooks/use-get-total-assets-tokenized'
 import { Root, ListItem } from './styles'
 
 export function ChainStats() {
   const pools = usePoolsData()
-  const loans = useLoansData()
-
-  React.useEffect(() => {
-    console.log('pools isLoading', pools.isLoading)
-    console.log('pools isError', pools.isError)
-
-    if (pools?.data) {
-      console.log('pools data', pools.data)
-    }
-
-    console.log('loans isLoading', loans.isLoading)
-    console.log('loans isError', loans.isError)
-    if (loans?.data) {
-      console.log('data loans', loans.data)
-    }
-  }, [pools, loans])
+  const totalAssetsTokenized = useTotalAssetsTokenized()
 
   return (
     <Root as="ul" role="list" py={[2, 1, 1, 2]}>
-      <Item>
-        <Label>Assets Financed</Label>
-        <Value isLoading={pools.isLoading}>$ 176M</Value>
-      </Item>
+      {pools && (
+        <Item>
+          <Label>Assets Financed</Label>
+          <Value isLoading={pools.isLoading}>$ {pools?.data?.totalAssetsFinanced}M</Value>
+        </Item>
+      )}
 
       <Item>
         <Label>Total Assets tokenized</Label>
-        <Value isLoading={pools.isLoading}>1000</Value>
+        <Value isLoading={totalAssetsTokenized.isLoading}>{totalAssetsTokenized?.data}</Value>
       </Item>
 
       <Item>
         <Label>TVL Growth (YoY)</Label>
-        <Value isLoading={loans.isLoading}>+ 150%</Value>
+        <Value isLoading={pools.isLoading}>+ {pools?.data?.totalValueLocked}%</Value>
       </Item>
     </Root>
   )

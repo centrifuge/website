@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { chunkedFetch } from './subgraphUtils'
 
-export default async function getLoansData(req: Request, res: Response) {
+export default async function getTotalAssetsTokenized(req: Request, res: Response) {
   try {
     const poolIds = await chunkedFetch({
       getQuery: getPoolsQuery,
@@ -16,9 +16,9 @@ export default async function getLoansData(req: Request, res: Response) {
       })
     )
 
-    let totalLoansCount = await Promise.all(requests).then((results) => results.flat().length)
+    let totalAssetsTokenized = await Promise.all(requests).then((results) => results.flat().length)
 
-    return res.status(200).send(JSON.stringify({ totalLoansCount }))
+    return res.status(200).send(JSON.stringify({ totalAssetsTokenized }))
   } catch (error) {
     return res.status(422).send(JSON.stringify(error))
   }
@@ -37,7 +37,7 @@ function getLoansQuery({ skip, first, id }: { skip: number; first: number; id: s
   return `
     query {
       pool(id: "${id}") {
-        loans(first: ${first}, skip: ${skip}) {
+        loans(where: {borrowsAggregatedAmount_gt: "0"}, first: ${first}, skip: ${skip}) {
           id
         }
       }

@@ -9,7 +9,7 @@
     "name": "getPoolsData"
   },
   {
-    "name": "getLoansData"
+    "name": "getTotalAssetsTokenized"
   },
   {
     "name": "getExample"

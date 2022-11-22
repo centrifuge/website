@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function useLoansData() {
+export function useTotalAssetsTokenized() {
   const [isLoading, setIsLoading] = React.useState(false)
   const [isError, setIsError] = React.useState(false)
   const [data, setData] = React.useState<any>()
@@ -10,12 +10,12 @@ export function useLoansData() {
 
     async function getData() {
       try {
-        await fetch(`${process.env.GATSBY_LAMBDA_URL}/getLoansData`)
+        await fetch(`${process.env.GATSBY_LAMBDA_URL}/getTotalAssetsTokenized`)
           .then((res) => res.json())
-          .then((obj) => setData(obj))
+          .then((obj) => setData(obj.totalAssetsTokenized))
       } catch (error) {
         if (process.env.NODE_ENV === 'development') {
-          console.warn('Error while fetching sub graph data:', error)
+          console.warn('Error while fetching "getTotalAssetsTokenized":', error)
         }
         setIsError(true)
       } finally {
