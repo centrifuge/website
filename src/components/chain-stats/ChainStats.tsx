@@ -4,7 +4,7 @@ import { Root, ListItem } from './styles'
 
 export function ChainStats() {
   return (
-    <Root as="ul" role="list" py={[2, 0, 0]}>
+    <Root as="ul" role="list" py={[2, 1, 1, 2]}>
       <Item>
         <Label>Assets Financed</Label>
         <Value>$ 176M</Value>
@@ -16,7 +16,7 @@ export function ChainStats() {
       </Item>
 
       <Item>
-        <Label>TL Growth (YTD)</Label>
+        <Label>TVL Growth (YoY)</Label>
         <Value>+ 150%</Value>
       </Item>
     </Root>

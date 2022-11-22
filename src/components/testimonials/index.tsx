@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import { Shelf, Box, Container, Text } from '@centrifuge/fabric'
-import useEmblaCarousel from 'embla-carousel-react'
+import { useCarousel } from '../../hooks/use-carousel'
 import { Testimonial } from './Testimonial'
 import type { TestimonialProps } from './Testimonial'
 import { Content, Slide, Dot } from './styles'
@@ -27,31 +27,10 @@ export type TestimonialsProps = {
 }
 
 export function Testimonials({ title, items }: TestimonialsProps) {
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
-  const [emblaRef, embla] = useEmblaCarousel({
+  const { viewportRef, selectedIndex, scrollTo } = useCarousel({
     axis: 'x',
     draggable: false,
   })
-  const scrollTo = React.useCallback((index: number) => embla && embla.scrollTo(index), [embla])
-
-  const onSelect = React.useCallback(() => {
-    if (!embla) {
-      return
-    }
-
-    setSelectedIndex(embla.selectedScrollSnap())
-  }, [embla, setSelectedIndex])
-
-  React.useEffect(() => {
-    if (!embla) {
-      return
-    }
-
-    onSelect()
-    embla.on('select', onSelect)
-
-    return () => embla && embla.destroy()
-  }, [embla, onSelect])
 
   return (
     <Box as="section" px={2}>
@@ -68,7 +47,7 @@ export function Testimonials({ title, items }: TestimonialsProps) {
           mr="auto"
           ml="auto"
         >
-          <Box ref={emblaRef} style={{ overflow: 'hidden' }}>
+          <Box ref={viewportRef} style={{ overflow: 'hidden' }}>
             <Shelf as="ul" p={0} m={0} role="list">
               {items.map((item, index) => (
                 <Slide

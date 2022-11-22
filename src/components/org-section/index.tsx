@@ -27,8 +27,14 @@ type ItemProps = {
 
 function Item({ image, title, body }: ItemProps) {
   return (
-    <Shelf gap={[3, 7, 3]} flexDirection={['column', 'row', 'column']} alignItems="stretch" role="listitem">
-      <Media aspectRatio="1 / 1" alignSelf="flex-start" width="50%" flex={['0', '0 0 30%', '0']}>
+    <Shelf gap={[3, 7, 3]} flexDirection={['column', 'row', 'column']} alignItems="stretch" as="li">
+      <Media
+        aspectRatio="1 / 1"
+        alignSelf="flex-start"
+        width="50%"
+        maxWidth={[120, 160, 180]}
+        flex={['0', '0 0 30%', '0']}
+      >
         <Image data={image} />
       </Media>
       <Stack gap={3} flex="1">
@@ -37,7 +43,7 @@ function Item({ image, title, body }: ItemProps) {
           <Text variant="heading4" as="h3">
             {title}
           </Text>
-          <Text variant="body2" as="p">
+          <Text variant="body1" as="p">
             {body}
           </Text>
         </Stack>
@@ -58,7 +64,7 @@ export function OrgSection({ title, items }: OrgSectionProps) {
         <Text variant="heading2" as="h2">
           {title}
         </Text>
-        <Grid columns={[1, 1, 3]} gap={[8, 8, 5]} equalColumns role="list">
+        <Grid columns={[1, 1, 3]} gap={[8, 8, 5]} equalColumns as="ul" role="list">
           {items.map((i) => (
             <Item {...i} key={i.title} />
           ))}

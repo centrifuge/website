@@ -9,7 +9,7 @@ export type AnchorProps = {
 }
 
 const textProps = {
-  variant: 'body1',
+  variant: 'body2',
   color: 'textInverted',
 }
 

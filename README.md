@@ -44,7 +44,7 @@ Each page gets its data from a json file in `/data/<page-name>.json`. Data is av
 
 Mandatory entries in each json file (except for `index.tsx`)
 
-- slug: same as file name in pages folder (eg: `pages/about-us.tsx` -> `"slug": "/about-us"`)
+- slug: same as file name in pages folder (eg: `pages/contributors.tsx` -> `"slug": "/contributors"`)
 - seo: `title` and `description` (if not set it falls back to `siteMetadata` in `gatsby-config.ts`)
 
 ```javascript
@@ -163,3 +163,49 @@ image {
 ## Formatting
 
 Code should be automaically formatted by config set in `.prettierrc.js`. If working with VisualStudioCode, one can install and enable the plugin [prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+## Lambdas (gcloud)
+
+### Development
+
+Starting the gatsby dev server will also start a server on `http://localhost:8080` as the lambda API endpoint.
+
+To add a new endpoint create a typescript file in `lambda/src/exampleEndpoint.ts`
+
+Next add the new route in the `routes.json` file using the same `name` as the file. Here you can add additional rules per route if necessary.
+
+```json
+[
+  {
+    "name": "exampleEndpoint",
+    "options": {}
+  }
+  // ...
+]
+```
+
+### Deployment
+
+1. Ask for the necessary "cloud functions deployment" permissions from devops
+2. If `gcloud CLI` is not installed, please install it:
+
+- [brew formula](https://formulae.brew.sh/cask/google-cloud-sdk)
+- [gcloud docs](https://cloud.google.com/sdk/docs/install)
+
+3. Authenicate with gcloud
+
+```
+  gcloud auth login
+```
+
+4. Build the application locally
+
+```
+  yarn build:lambda
+```
+
+5. Finally, deploy the bundled application
+
+```
+  yarn deploy:lambda
+```

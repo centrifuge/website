@@ -10,6 +10,11 @@ export const footer = [
         isExternal: true,
       },
       {
+        label: 'LinkedIn',
+        href: links.linkedin,
+        isExternal: true,
+      },
+      {
         label: 'Telegram',
         href: links.telegram,
         isExternal: true,
@@ -74,11 +79,6 @@ export const footer = [
     title: 'Get in touch',
     items: [
       {
-        label: 'Telegram: t.me/centrifuge_chat',
-        href: links.telegram,
-        isExternal: true,
-      },
-      {
         label: 'Partnerships: bizdev@centrifuge.io',
         href: 'mailto:bizdev@centrifuge.io',
         isExternal: true,
@@ -90,7 +90,7 @@ export const footer = [
       },
       {
         label: 'Careers',
-        href: '/about-us/#careers',
+        href: '/contributors/#careers',
       },
     ],
   },

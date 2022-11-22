@@ -26,11 +26,10 @@ const StyledBall = styled(Shelf)`
 `
 
 type BallProps = ShelfProps
-
 const Ball = React.forwardRef<HTMLDivElement, BallProps>(({ children, ...rest }, ref) => {
   return (
     <StyledBall ref={ref} role="listitem" p={3} {...rest}>
-      <Text fontSize={[20, 32, 48, 56]} fontWeight={500} color="accentPrimary">
+      <Text fontSize={['5vw', '2.5vw', 30]} fontWeight={500} color="accentPrimary" lineHeight={0}>
         {children}
       </Text>
     </StyledBall>
@@ -234,8 +233,8 @@ export function ValuesSection({ title, items }: ValuesSectionProps) {
         </Box>
         <Grid columns={[1, 1, 2]} role="list" alignItems="center" justifyItems="center" gap={1}>
           <Ball
-            width={['60vw', '70vw', '50vw']}
-            maxWidth="580px"
+            width={['50vw', '30vw', '30vw']}
+            maxWidth="380px"
             position="relative"
             left={['-10vw', '-10vw', 0, '-5vw']}
             ref={state.ballRefs[0]}
@@ -243,8 +242,8 @@ export function ValuesSection({ title, items }: ValuesSectionProps) {
             {one}
           </Ball>
           <Ball
-            width={['35vw', '35vw', '35vw']}
-            maxWidth="300px"
+            width={['35vw', '15vw', '15vw']}
+            maxWidth="180px"
             position="relative"
             left={['20vw', '20vw', 0, '-5vw']}
             ref={state.ballRefs[1]}
@@ -252,8 +251,8 @@ export function ValuesSection({ title, items }: ValuesSectionProps) {
             {two}
           </Ball>
           <Ball
-            width={['45vw', '45vw', '40vw']}
-            maxWidth="420px"
+            width={['40vw', '20vw', '20vw']}
+            maxWidth="220px"
             position="relative"
             left={['-10vw', '-10vw', 0, '5vw']}
             ref={state.ballRefs[2]}
@@ -261,8 +260,8 @@ export function ValuesSection({ title, items }: ValuesSectionProps) {
             {three}
           </Ball>
           <Ball
-            width={['50vw', '60vw', '45vw']}
-            maxWidth="500px"
+            width={['45vw', '25vw', '25vw']}
+            maxWidth="300px"
             position="relative"
             left={['10vw', '10vw', 0, '5vw']}
             ref={state.ballRefs[3]}

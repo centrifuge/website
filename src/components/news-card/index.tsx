@@ -1,4 +1,4 @@
-import { Box, Shelf, Grid, Text, Stack } from '@centrifuge/fabric'
+import { Box, Shelf, Grid, Text, Stack, TextWithPlaceholder, Placeholder } from '@centrifuge/fabric'
 import React from 'react'
 import { useTheme } from 'styled-components'
 import { Anchor } from './styles'
@@ -10,20 +10,34 @@ export type NewsCardProps = MediaProps &
     body: string
     boxed?: boolean
     featured?: boolean
+    isLoading?: boolean
   }
 
-export function NewsCard({ label, title, body, image, href, boxed = false, featured = false }: NewsCardProps) {
+export function NewsCard({
+  label,
+  title,
+  body,
+  image,
+  href,
+  boxed = false,
+  featured = false,
+  isLoading = false,
+}: NewsCardProps) {
   const { shadows } = useTheme()
 
   return featured ? (
     <Box>
-      <Label>{label}</Label>
+      <Label isLoading={isLoading}>{label}</Label>
       <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(2, minmax(0, 1fr))']} gap={[2, 2, 4]} mt={[1, 1, 2]}>
-        <Media image={image} order={[1, 1, 2]} />
+        <Media image={image} order={[1, 1, 2]} isLoading={isLoading} />
 
         <Stack gap={2} order={[2, 2, 1]}>
-          <Title featured={featured}>{title}</Title>
-          <Body featured={featured}>{body}</Body>
+          <Title featured={featured} isLoading={isLoading}>
+            {title}
+          </Title>
+          <Body featured={featured} isLoading={isLoading}>
+            {body}
+          </Body>
           <ReadMore href={href} boxed={false} />
         </Stack>
       </Grid>
@@ -32,6 +46,7 @@ export function NewsCard({ label, title, body, image, href, boxed = false, featu
     <Shelf
       as="article"
       position="relative"
+      minHeight="100%"
       p={boxed ? 2 : 0}
       flexDirection="column"
       alignItems="start"
@@ -43,13 +58,17 @@ export function NewsCard({ label, title, body, image, href, boxed = false, featu
         boxShadow: boxed ? shadows.cardInteractive : 'none',
       }}
     >
-      <Label>{label}</Label>
+      <Label isLoading={isLoading}>{label}</Label>
 
-      <Media image={image} />
+      <Media image={image} isLoading={isLoading} />
 
       <Shelf mt={2} gap={1} flexDirection="column" alignItems="start" flexGrow={2}>
-        <Title featured={featured}>{title}</Title>
-        <Body featured={featured}>{body}</Body>
+        <Title featured={featured} isLoading={isLoading}>
+          {title}
+        </Title>
+        <Body featured={featured} isLoading={isLoading}>
+          {body}
+        </Body>
 
         <Box mt="auto" pt={boxed ? 0 : 1}>
           <ReadMore href={href} boxed={boxed} />
@@ -59,27 +78,55 @@ export function NewsCard({ label, title, body, image, href, boxed = false, featu
   )
 }
 
-function Label({ children }: { children: React.ReactNode }) {
+function Label({ children, isLoading = false }: { children: React.ReactNode; isLoading?: boolean }) {
   return (
-    <Text as="span" variant="tag">
+    <TextWithPlaceholder
+      as="span"
+      variant="body3"
+      color="textSecondary"
+      isLoading={isLoading}
+      style={{
+        display: 'block',
+        maxWidth: '100%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}
+    >
       {children}
-    </Text>
+    </TextWithPlaceholder>
   )
 }
 
-function Title({ featured = false, children }: { featured: boolean; children: React.ReactNode }) {
+function Title({
+  featured = false,
+  children,
+  isLoading = false,
+}: {
+  featured: boolean
+  children: React.ReactNode
+  isLoading?: boolean
+}) {
   return (
-    <Text as="h2" variant={featured ? 'heading4' : 'heading3'}>
+    <TextWithPlaceholder as="h2" variant={featured ? 'heading5' : 'heading4'} isLoading={isLoading}>
       {children}
-    </Text>
+    </TextWithPlaceholder>
   )
 }
 
-function Body({ featured = false, children }: { featured: boolean; children: React.ReactNode }) {
+function Body({
+  featured = false,
+  children,
+  isLoading = false,
+}: {
+  featured: boolean
+  children: React.ReactNode
+  isLoading?: boolean
+}) {
   return (
-    <Text as="p" variant={featured ? 'body1' : 'body2'}>
+    <TextWithPlaceholder as={isLoading ? 'div' : 'p'} variant={featured ? 'body1' : 'body2'} isLoading={isLoading}>
       {children}
-    </Text>
+    </TextWithPlaceholder>
   )
 }
 
@@ -107,12 +154,16 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
   )
 }
 
-type MediaProps = { image: string }
+type MediaProps = { image?: string }
 
-function Media({ image, order = 0 }: MediaProps & { order?: number | number[] }) {
+function Media({
+  image,
+  order = 0,
+  isLoading = false,
+}: MediaProps & { order?: number | number[]; isLoading?: boolean }) {
   return (
     <Box
-      as="img"
+      as={isLoading || !image ? Placeholder : 'img'}
       src={image}
       alt=""
       order={order}
