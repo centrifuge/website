@@ -79,6 +79,11 @@
   },
   "contributors_section": {
     "title": "Contributors",
+    "cta": {
+      "body": "Would you like to be added as a Centrifuge Contributor?",
+      "label": "Propose as contributor",
+      "href": "https://github.com/centrifuge/website/issues/new?assignees=&labels=contributor-page&template=add-contributor.md&title=Add+Contributor%3A+%5BNAME%5D"
+    },
     "items": [
       {
         "name": "Adam Stockermans",

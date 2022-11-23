@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from '@centrifuge/fabric'
+import { AnchorButton, Box, Stack, Text } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from '../CenterContainer'
@@ -9,6 +9,11 @@ import { MobileCarousel } from './MobileCarousel'
 export const query = graphql`
   fragment ContributorsSectionFragment on DataJsonContributors_section {
     title
+    cta {
+      body
+      label
+      href
+    }
     items {
       name
       role
@@ -29,10 +34,15 @@ export const query = graphql`
 
 export type ContributorsSectionProps = {
   title: string
+  cta: {
+    body: string
+    label: string
+    href: string
+  }
   items: ContributorProps[]
 }
 
-export function ContributorsSection({ title, items }: ContributorsSectionProps) {
+export function ContributorsSection({ title, cta, items }: ContributorsSectionProps) {
   const n = Math.floor(items.length / 2)
   const firstHalf = items.slice(0, n)
   const secondHalf = items.slice(n)
@@ -57,6 +67,17 @@ export function ContributorsSection({ title, items }: ContributorsSectionProps) 
           />
         ))}
       </Stack>
+
+      {cta && (
+        <CenterContainer textAlign="center" mt={6}>
+          <Text variant="body2" as="p" style={{ marginBottom: '1em' }}>
+            {cta.body}
+          </Text>
+          <AnchorButton href={cta.href} variant="secondary" small target="_blank">
+            {cta.label}
+          </AnchorButton>
+        </CenterContainer>
+      )}
     </Box>
   )
 }
