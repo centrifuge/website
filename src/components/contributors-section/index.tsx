@@ -1,4 +1,4 @@
-import { AnchorButton, Box, Stack, Text } from '@centrifuge/fabric'
+import { AnchorButton, Box, Text } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from '../CenterContainer'
@@ -43,10 +43,6 @@ export type ContributorsSectionProps = {
 }
 
 export function ContributorsSection({ title, cta, items }: ContributorsSectionProps) {
-  const n = Math.floor(items.length / 2)
-  const firstHalf = items.slice(0, n)
-  const secondHalf = items.slice(n)
-
   return (
     <Box as="section">
       <CenterContainer>
@@ -56,17 +52,7 @@ export function ContributorsSection({ title, cta, items }: ContributorsSectionPr
       </CenterContainer>
 
       <MobileCarousel items={items} />
-
-      <Stack gap={6}>
-        {[firstHalf, secondHalf].map((chunk, index) => (
-          <DesktopCarousel
-            key={chunk[0].name}
-            items={chunk}
-            align={index % 2 === 0 ? 'start' : 1 / n / 2}
-            flipped={index > 0}
-          />
-        ))}
-      </Stack>
+      <DesktopCarousel items={items} />
 
       {cta && (
         <CenterContainer textAlign="center" mt={6}>
