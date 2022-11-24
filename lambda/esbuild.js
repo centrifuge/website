@@ -8,6 +8,7 @@ esbuild
       'lambda/src/getExample.ts',
       'lambda/src/getMediumPosts.ts',
       'lambda/src/getLeverPositions.ts',
+      'lambda/src/createCentrifugeProof.ts',
     ],
     outdir: 'lambda/dist',
     bundle: true,

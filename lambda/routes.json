@@ -6,6 +6,9 @@
     "name": "getLeverPositions"
   },
   {
+    "name": "createCentrifugeProof"
+  },
+  {
     "name": "getExample"
   }
 ]
