@@ -7,6 +7,10 @@ export type ContributorProps = {
   name: string
   role: string
   social: string
+  entity: {
+    name: string
+    href?: string
+  }
   image: ImageProps
 }
 
@@ -53,8 +57,19 @@ export function Contributor({ item }: { item: ContributorProps }) {
         <Text variant="body1" as="h3">
           {item.name}
         </Text>
-        <Text variant="body2" color="textSecondary" as="span">
+        <Text variant="body3" color="textSecondary" as="span">
           {item.role}
+        </Text>
+        <Text
+          href={item.entity.href}
+          as="a"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="body3"
+          color="textSecondary"
+          style={{ textDecoration: 'underline' }}
+        >
+          {item.entity.name}
         </Text>
       </Stack>
     </Grid>

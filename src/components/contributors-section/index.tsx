@@ -18,6 +18,10 @@ export const query = graphql`
       name
       role
       social
+      entity {
+        name
+        href
+      }
       image {
         childImageSharp {
           gatsbyImageData(
