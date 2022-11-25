@@ -65,7 +65,7 @@ export function CrowdloanUser() {
   async function claim() {
     if (!selectedAccount) return
 
-    const response = await fetch('/.netlify/functions/createCentrifugeProof', {
+    const response = await fetch(`${process.env.GATSBY_LAMBDA_URL}/createCentrifugeProof`, {
       method: 'POST',
       body: JSON.stringify({ address: selectedAccount.address }),
     })
@@ -138,6 +138,7 @@ function useTotalRewards() {
 }
 
 function useDidClaim(address?: string) {
+  console.log('address in useDidClaim', address)
   const [data] = useCentrifugeQuery(
     ['claimedRewards', address],
     (cent) => {

@@ -9,6 +9,9 @@
     "name": "createCentrifugeProof"
   },
   {
+    "name": "getRewardData"
+  },
+  {
     "name": "getExample"
   }
 ]

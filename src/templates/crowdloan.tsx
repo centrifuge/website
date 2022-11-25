@@ -46,7 +46,16 @@ type CrowdloanPageProps = {
 
 export default function CrowdloanPage({ data }: CrowdloanPageProps) {
   const { hero_crowdloan, stats, network } = data.crowdloanJson
-  const centConfig: UserProvidedConfig = useMemo(() => ({ network }), [])
+  const centConfig: UserProvidedConfig = useMemo(
+    () => ({
+      network,
+      ...(process.env.NODE_ENV === 'development' && {
+        centrifugeWsUrl: 'wss://fullnode.development.cntrfg.com',
+        altairWsUrl: 'wss://fullnode.development.cntrfg.com',
+      }),
+    }),
+    []
+  )
 
   return (
     <Provider centrifugeConfig={centConfig}>

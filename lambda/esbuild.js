@@ -1,5 +1,11 @@
 const esbuild = require('esbuild')
+require('dotenv').config({ path: 'lambda/.env' })
 const isDevelopment = process.argv[2] === 'dev'
+
+const define = {}
+for (const k in process.env) {
+  define[`process.env.${k}`] = JSON.stringify(process.env[k])
+}
 
 esbuild
   .build({
@@ -9,6 +15,7 @@ esbuild
       'lambda/src/getMediumPosts.ts',
       'lambda/src/getLeverPositions.ts',
       'lambda/src/createCentrifugeProof.ts',
+      'lambda/src/getRewardData.ts',
     ],
     outdir: 'lambda/dist',
     bundle: true,
@@ -18,5 +25,6 @@ esbuild
     sourcemap: true,
     watch: isDevelopment,
     tsconfig: 'lambda/tsconfig.json',
+    define,
   })
   .catch(() => process.exit(1))
