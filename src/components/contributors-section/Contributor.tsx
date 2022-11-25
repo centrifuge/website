@@ -15,7 +15,7 @@ export function Contributor({ item }: { item: ContributorProps }) {
     <Grid
       as="li"
       gridTemplateColumns={['minmax(0, 38vw) 1fr', '1fr']}
-      width={['100%', 200, 260]}
+      width={['100%']}
       flexShrink={0}
       gap={['5vw', 2]}
       px={[0, 2]}
