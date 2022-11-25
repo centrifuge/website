@@ -29,7 +29,9 @@ export function ChainStats() {
       <Item>
         <Label>TVL Growth (YoY)</Label>
         <Value isLoading={pools.isLoading}>
-          {pools?.isLoading || !pools?.data?.totalValueLocked ? '—' : `+ ${pools?.data?.totalValueLocked}%`}
+          {pools?.isLoading || !pools?.data?.totalValueLockedGrowth
+            ? '—'
+            : `+ ${pools?.data?.totalValueLockedGrowth.toFixed(2)}%`}
         </Value>
       </Item>
     </Root>

@@ -19,11 +19,13 @@ async function fetchSubgraphData(query) {
 
 export async function chunkedFetch({
   id,
+  day,
   getQuery,
   getProperty,
   chunkSize = 100,
 }: {
   id?: string
+  day?: number
   getQuery: Function
   getProperty: Function
   chunkSize?: number
@@ -38,6 +40,7 @@ export async function chunkedFetch({
         skip: start,
         first: limit,
         ...(id && { id }),
+        ...(day && { day }),
       }
       const query = getQuery(queryOptions)
       const response = await fetchSubgraphData(query)
