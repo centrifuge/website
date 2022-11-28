@@ -58,7 +58,7 @@ export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
 
   return (
     <Root as="section" ref={ref} flexDirection="column">
-      <Shelf px={2} pt={[2, 4, 6]} flexGrow={2}>
+      <Shelf px={2} pt={[2, 4, 6]}>
         <Inner maxWidth="container" alignSelf="start">
           <Title>
             {title}
@@ -84,7 +84,7 @@ export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
         </Inner>
       </Shelf>
 
-      <Box px={2}>
+      <Box px={2} mt="auto">
         <ChainStats />
       </Box>
 
