@@ -31,7 +31,7 @@ export function ChainStats() {
         <Value isLoading={pools.isLoading}>
           {pools?.isLoading || !pools?.data?.totalValueLockedGrowth
             ? '—'
-            : `+ ${pools?.data?.totalValueLockedGrowth.toFixed(2)}%`}
+            : `+ ${Math.round(pools?.data?.totalValueLockedGrowth)}%`}
         </Value>
       </Item>
     </Root>
