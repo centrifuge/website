@@ -14,6 +14,10 @@ export const Root = styled(Shelf)`
     max-width: 100%;
   }
 
+  @media screen and (min-height: 1200px) {
+    min-height: calc(1200px - var(--header-height));
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     --header-height: ${({ theme }) => theme.sizes.headerHeight[1]}px;
   }
@@ -69,6 +73,12 @@ export const Graphic = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     display: block;
+  }
+
+  @media screen and (max-height: 1000px) {
+    width: 40vh;
+    min-width: 280px;
+    margin-inline: auto;
   }
 
   svg {

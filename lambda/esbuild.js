@@ -16,6 +16,8 @@ esbuild
       'lambda/src/getLeverPositions.ts',
       'lambda/src/createCentrifugeProof.ts',
       'lambda/src/getRewardData.ts',
+      'lambda/src/getPoolsData.ts',
+      'lambda/src/getTotalAssetsTokenized.ts',
     ],
     outdir: 'lambda/dist',
     bundle: true,

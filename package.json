@@ -60,6 +60,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
     "@types/styled-system": "^5.1.15",
+    "bn.js": "^5.2.1",
     "dotenv": "^16.0.3",
     "esbuild": "^0.15.13",
     "gatsby-transformer-remark": "^5.24.0",

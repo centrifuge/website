@@ -12,6 +12,12 @@
     "name": "getRewardData"
   },
   {
+    "name": "getPoolsData"
+  },
+  {
+    "name": "getTotalAssetsTokenized"
+  },
+  {
     "name": "getExample"
   }
 ]
