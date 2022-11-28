@@ -16,3 +16,6 @@ dist/
 .env
 .env.development
 .env.production
+
+# logs
+yarn-error.log*
