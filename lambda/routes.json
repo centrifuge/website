@@ -6,6 +6,12 @@
     "name": "getLeverPositions"
   },
   {
+    "name": "getPoolsData"
+  },
+  {
+    "name": "getTotalAssetsTokenized"
+  },
+  {
     "name": "getExample"
   }
 ]
