@@ -13,6 +13,7 @@ import BN from 'bn.js'
 import jsonBigInt from 'json-bigint'
 import * as React from 'react'
 import { map, switchMap } from 'rxjs'
+import { ErrorBoundary } from './ErrorBoundary'
 
 const JsonBig = jsonBigInt({ useNativeBigInt: true, alwaysParseAsBig: true })
 
@@ -81,7 +82,9 @@ export function CrowdloanUser() {
 
     const signRaw = selectedAccount.wallet?.signer?.signRaw
 
-    if (!signRaw) throw new Error('signRaw was not defined')
+    if (!signRaw) {
+      throw new Error('signRaw was not defined')
+    }
 
     const { signature } = await signRaw({
       address: selectedAccount.address,
@@ -103,41 +106,43 @@ export function CrowdloanUser() {
         border="1px solid"
         borderColor="borderPrimary"
       >
-        <WalletMenu />
+        <ErrorBoundary>
+          <WalletMenu />
 
-        {didClaim != null &&
-          (didClaim ? (
-            <Text varaint="body1" as="p">
-              <Text as="strong" variant="emphasized">
-                Rewards already claimed
-              </Text>
-            </Text>
-          ) : (
-            <Shelf gap={3} rowGap={1} flexWrap="wrap" justifyContent="space-between" width="100%" mb={2}>
-              <Text as="p" variant="body1">
-                Total rewards:{' '}
+          {didClaim != null &&
+            (didClaim ? (
+              <Text varaint="body1" as="p">
                 <Text as="strong" variant="emphasized">
-                  {formatBalanceAbbreviated(totalRewards, currency)}
+                  Rewards already claimed
                 </Text>
               </Text>
-              {totalRewards.gt(new BN(0)) && (
-                <Button onClick={claim} loading={isLoading}>
-                  Claim rewards
-                </Button>
-              )}
-            </Shelf>
-          ))}
+            ) : (
+              <Shelf gap={3} rowGap={1} flexWrap="wrap" justifyContent="space-between" width="100%" mb={2}>
+                <Text as="p" variant="body1">
+                  Total rewards:{' '}
+                  <Text as="strong" variant="emphasized">
+                    {formatBalanceAbbreviated(totalRewards, currency)}
+                  </Text>
+                </Text>
+                {totalRewards.gt(new BN(0)) && (
+                  <Button onClick={claim} loading={isLoading}>
+                    Claim rewards
+                  </Button>
+                )}
+              </Shelf>
+            ))}
 
-        <Text
-          as="a"
-          href="https://gov.centrifuge.io/t/how-to-claim-cfg-rewards-from-the-centrifuge-crowdloan-on-polkadot/3590"
-          rel="noopener noreferrer"
-          target="_blank"
-          variant="body3"
-          style={{ textDecoration: 'underline' }}
-        >
-          Learn how to claim
-        </Text>
+          <Text
+            as="a"
+            href="https://gov.centrifuge.io/t/how-to-claim-cfg-rewards-from-the-centrifuge-crowdloan-on-polkadot/3590"
+            rel="noopener noreferrer"
+            target="_blank"
+            variant="body3"
+            style={{ textDecoration: 'underline' }}
+          >
+            Learn how to claim
+          </Text>
+        </ErrorBoundary>
       </Stack>
     </Container>
   )

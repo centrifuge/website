@@ -34,5 +34,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions: { create
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
     externals: ['fs', 'path', 'crypto'],
+    // externalsPresets: { node: true },
   })
 }

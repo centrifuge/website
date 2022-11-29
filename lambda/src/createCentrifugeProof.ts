@@ -14,7 +14,7 @@ export default async function createCentrifugeProof(req: Request, res: Response)
   }
 
   try {
-    const { address } = req.body
+    const { address } = JSON.parse(req.body)
     const hexAddress = u8aToHex(decodeAddress(address))
 
     const proof = await createProof(hexAddress, merkleTree)
