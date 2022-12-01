@@ -8,6 +8,7 @@ import {
 } from '@centrifuge/centrifuge-react'
 import { Button, Container, Shelf, Stack, Text } from '@centrifuge/fabric'
 import { decodeAddress, signatureVerify } from '@polkadot/util-crypto'
+import type { WalletAccount } from '@subwallet/wallet-connect/types'
 import BN from 'bn.js'
 import { switchMap } from 'rxjs'
 import { useTotalRewards, useDidClaim, getAccountDetails } from './utils'
@@ -57,15 +58,15 @@ export function User() {
       }
   )
 
-  async function claim() {
-    if (!selectedAccount) {
+  async function claim(account: WalletAccount | null, callback: typeof execute) {
+    if (!account || !callback) {
       return
     }
 
-    await getAccountDetails(selectedAccount)
+    await getAccountDetails(account)
       .then((payload) => {
         if (payload) {
-          execute(payload)
+          callback(payload)
         }
       })
       .catch((error) => console.log(error))
@@ -100,7 +101,7 @@ export function User() {
                 </Text>
               </Text>
               {totalRewards.gt(new BN(0)) && (
-                <Button onClick={claim} loading={isLoading}>
+                <Button onClick={() => claim(selectedAccount, execute)} loading={isLoading}>
                   Claim rewards
                 </Button>
               )}

@@ -1,6 +1,6 @@
 import { CurrencyBalance } from '@centrifuge/centrifuge-js'
 import { useCentrifugeQuery } from '@centrifuge/centrifuge-react'
-import { WalletAccount } from '@subwallet/wallet-connect/types'
+import type { WalletAccount } from '@subwallet/wallet-connect/types'
 import { map, switchMap } from 'rxjs'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
 import jsonBigInt from 'json-bigint'
