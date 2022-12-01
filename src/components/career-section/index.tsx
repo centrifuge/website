@@ -3,7 +3,8 @@ import { graphql } from 'gatsby'
 import { Box, Container, Text, IconArrowUpRight, IconBrandSpinner } from '@centrifuge/fabric'
 import { useLeverPositions } from '../../hooks/use-lever-positions'
 import { NoteCard } from '../NoteCard'
-import { Vacancy, Spinner } from './styles'
+import { Spinner } from '../Spinner'
+import { Vacancy } from './styles'
 
 export const query = graphql`
   fragment CareerSectionFragment on DataJsonCareer_section {
