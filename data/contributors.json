@@ -7,6 +7,10 @@
   "hero_video": {
     "title": "Mission",
     "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively.",
+    "cta": {
+      "title": "We are hiring 🚀",
+      "href": "#careers"
+    },
     "video": {
       "youtubeId": "h8tfJ9EtIpY"
     }
@@ -74,227 +78,380 @@
     ]
   },
   "contributors_section": {
-    "title": "Contributors",
+    "title": "DAO Contributors",
+    "cta": {
+      "body": "Would you like to be added as a Centrifuge Contributor?",
+      "label": "Apply as contributor ✨",
+      "href": "https://github.com/centrifuge/website/issues/new?assignees=&labels=contributor-page&template=add-contributor.md&title=Add+Contributor%3A+%5BNAME%5D"
+    },
     "items": [
       {
         "name": "Adam Stockermans",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://github.com/astox",
-        "image": "./images/contributors/adam.jpg"
+        "image": "./images/contributors/adam.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Alina Sinelnikova",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://www.linkedin.com/in/alina-sinelnikova-5474a782/",
-        "image": "./images/contributors/alina.jpg"
+        "image": "./images/contributors/alina.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Anna Mehrländer",
-        "role": "Product @ k/f",
+        "role": "Product",
         "social": "https://twitter.com/annmehr",
-        "image": "./images/contributors/anna-mehrlaender.jpg"
+        "image": "./images/contributors/anna-mehrlaender.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Asad Khan",
-        "role": "DeFi Politician @ k/f",
+        "role": "DeFi Politician",
         "social": "https://twitter.com/fintech_khan",
-        "image": "./images/contributors/asad-khan.jpg"
+        "image": "./images/contributors/asad-khan.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Bastian Gruber",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://twitter.com/recvonline",
-        "image": "./images/contributors/bastian-gruber.jpg"
+        "image": "./images/contributors/bastian-gruber.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Ben Deitmer",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://twitter.com/HORNEBOM",
-        "image": "./images/contributors/ben.jpg"
+        "image": "./images/contributors/ben.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Branan Riley",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://twitter.com/brananarchy",
-        "image": "./images/contributors/branan.jpg"
+        "image": "./images/contributors/branan.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Cassidy Daly",
-        "role": "Token strategy @ CNF",
+        "role": "Token strategy",
         "social": "https://www.twitter.com/cassidydaly",
-        "image": "./images/contributors/cassidy.jpg"
+        "image": "./images/contributors/cassidy.jpg",
+        "entity": {
+          "name": "CNF",
+          "href": "http://centrifuge.foundation/"
+        }
       },
       {
         "name": "Christian",
         "role": "Centrifuge DAO Forum Facilitator",
-        "image": "./images/contributors/christian.jpg"
+        "image": "./images/contributors/christian.jpg",
+        "entity": {
+          "name": "GCG",
+          "href": "https://gov.centrifuge.io/t/rfc-proposal-for-mandate-for-governance-coordination-group/4609"
+        }
       },
       {
         "name": "Colin Cunningham",
-        "role": "Business Development @ k/f",
+        "role": "Business Development",
         "social": "https://twitter.com/ctcunning",
-        "image": "./images/contributors/colin.jpg"
+        "image": "./images/contributors/colin.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Cosmin Damian",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://www.linkedin.com/in/cosmin-damian-a634b0166/",
-        "image": "./images/contributors/cosmin.jpg"
+        "image": "./images/contributors/cosmin.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Dennis Wellmann",
-        "role": "Product @ k/f",
+        "role": "Product",
         "social": "https://twitter.com/financeundtech",
-        "image": "./images/contributors/dennis.jpg"
+        "image": "./images/contributors/dennis.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Devin Black",
-        "role": "Marketing @ k/f",
+        "role": "Marketing",
         "social": "https://twitter.com/d_evvy",
-        "image": "./images/contributors/devin.jpg"
+        "image": "./images/contributors/devin.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Eli Cohen",
-        "role": "Legal @ k/f",
+        "role": "Legal",
         "social": "https://www.linkedin.com/in/eli-cohen-356241/",
-        "image": "./images/contributors/eli.jpg"
+        "image": "./images/contributors/eli.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Erica Blomquist",
-        "role": "EA @ CNF",
+        "role": "EA",
         "social": "https://www.linkedin.com/in/ericablomquist/",
-        "image": "./images/contributors/erica.jpg"
+        "image": "./images/contributors/erica.jpg",
+        "entity": {
+          "name": "CNF",
+          "href": "http://centrifuge.foundation/"
+        }
       },
       {
         "name": "Frederik Gartenmeister",
-        "role": "Product and Engineering @ k/f",
+        "role": "Product and Engineering",
         "social": "https://twitter.com/mustermeiszer2",
-        "image": "./images/contributors/frederik.jpg"
+        "image": "./images/contributors/frederik.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Guillermo Perez",
-        "role": "Product Ops @ k/f",
+        "role": "Product Ops",
         "social": "https://www.linkedin.com/in/gpmayorga/",
-        "image": "./images/contributors/guillermo-perez.jpg"
+        "image": "./images/contributors/guillermo-perez.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Ivan Postavskyy",
         "role": "Centrifuge DAO Governance Facilitator",
         "social": "https://twitter.com/Gbbigbuy",
-        "image": "./images/contributors/ivan.jpg"
+        "image": "./images/contributors/ivan.jpg",
+        "entity": {
+          "name": "GCG",
+          "href": "https://gov.centrifuge.io/t/rfc-proposal-for-mandate-for-governance-coordination-group/4609"
+        }
       },
       {
         "name": "Jay Danzer",
-        "role": "Tech Operations @ k/f",
+        "role": "Tech Operations",
         "social": "https://www.linkedin.com/in/jared-danzer/",
-        "image": "./images/contributors/jay.jpg"
+        "image": "./images/contributors/jay.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Jeannice Tse",
-        "role": "Business Development @ k/f",
+        "role": "Business Development",
         "social": "https://www.linkedin.com/in/jeannicetse/",
-        "image": "./images/contributors/jeannice.jpg"
+        "image": "./images/contributors/jeannice.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Jeroen Offerijns",
-        "role": "Product and Engineering @ k/f",
+        "role": "Product and Engineering",
         "social": "https://twitter.com/offerijns",
-        "image": "./images/contributors/jeroen.jpg"
+        "image": "./images/contributors/jeroen.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Joe Hyland",
-        "role": "Marketing @ k/f",
-        "image": "./images/contributors/joe.jpg"
+        "role": "Marketing",
+        "image": "./images/contributors/joe.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "JP Angelle",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://twitter.com/gwei_whale",
-        "image": "./images/contributors/jp-angelle.jpg"
+        "image": "./images/contributors/jp-angelle.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Kate Beecroft",
-        "role": "DAO and Community @ CNF",
+        "role": "DAO and Community",
         "social": "https://twitter.com/kbeecroft",
-        "image": "./images/contributors/kate.jpg"
+        "image": "./images/contributors/kate.jpg",
+        "entity": {
+          "name": "CNF",
+          "href": "http://centrifuge.foundation/"
+        }
       },
       {
         "name": "Lucas Vogelsang",
-        "role": "Director @ CNF",
+        "role": "Director",
         "social": "https://twitter.com/lucasvo",
-        "image": "./images/contributors/lucas.jpg"
+        "image": "./images/contributors/lucas.jpg",
+        "entity": {
+          "name": "CNF",
+          "href": "http://centrifuge.foundation/"
+        }
       },
       {
         "name": "Luis Enrique Muñoz",
-        "role": "Protocol Engineer @ k/f",
+        "role": "Protocol Engineer",
         "social": "https://github.com/lemunozm",
-        "image": "./images/contributors/luis.jpg"
+        "image": "./images/contributors/luis.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Martin Quensel",
-        "role": "Director @ k/f",
+        "role": "Director",
         "social": "https://twitter.com/mr_optimax",
-        "image": "./images/contributors/martin.jpg"
+        "image": "./images/contributors/martin.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Mary Gribbin",
-        "role": "People Ops @ k/f",
+        "role": "People Ops",
         "social": "https://twitter.com/maryagribbin",
-        "image": "./images/contributors/mary.jpg"
+        "image": "./images/contributors/mary.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Miguel Hervas",
-        "role": "Protocol Engineer @ k/f",
+        "role": "Protocol Engineer",
         "social": "https://twitter.com/mikiquantum",
-        "image": "./images/contributors/miguel.jpg"
+        "image": "./images/contributors/miguel.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Mike Ruzic",
-        "role": "CEO @ DCM",
+        "role": "CEO",
         "social": "https://www.linkedin.com/in/michael-ruzic-gauthier/",
-        "image": "./images/contributors/mike.jpg"
+        "image": "./images/contributors/mike.jpg",
+        "entity": {
+          "name": "DCM",
+          "href": "https://gov.centrifuge.io/t/council-candidate-introduction-defi-capital-markets/4205"
+        }
       },
       {
         "name": "Nicolò Montagna",
-        "role": "DeFi Analyst @ DCM",
+        "role": "DeFi Analyst",
         "social": "https://www.linkedin.com/in/nicolo-montagna/",
-        "image": "./images/contributors/nicolo.jpg"
+        "image": "./images/contributors/nicolo.jpg",
+        "entity": {
+          "name": "DCM",
+          "href": "https://gov.centrifuge.io/t/council-candidate-introduction-defi-capital-markets/4205"
+        }
       },
       {
         "name": "Nuno Alexandre",
-        "role": "Protocol Engineer @ k/f",
+        "role": "Protocol Engineer",
         "social": "nunoalexandre.com",
-        "image": "./images/contributors/nuno-alexandre.jpg"
+        "image": "./images/contributors/nuno-alexandre.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Onno Visser",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://twitter.com/_onnovisser",
-        "image": "./images/contributors/onno.jpg"
+        "image": "./images/contributors/onno.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Orhan Klardashti",
         "role": "Centrifuge DAO Governance Facilitator",
         "social": "https://twitter.com/Rhano72834065",
-        "image": "./images/contributors/orhan.jpg"
+        "image": "./images/contributors/orhan.jpg",
+        "entity": {
+          "name": "GCG",
+          "href": "https://gov.centrifuge.io/t/rfc-proposal-for-mandate-for-governance-coordination-group/4609"
+        }
       },
       {
         "name": "Rohan Hemani",
-        "role": "Marketing @ k/f",
+        "role": "Marketing",
         "social": "https://twitter.com/RohanHemani",
-        "image": "./images/contributors/rohan.jpg"
+        "image": "./images/contributors/rohan.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Sophia Littlejohn",
-        "role": "Engineer @ k/f",
+        "role": "Engineer",
         "social": "https://www.linkedin.com/in/sophia-littlejohn/",
-        "image": "./images/contributors/sophia.jpg"
+        "image": "./images/contributors/sophia.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
       },
       {
         "name": "Romina Bungert",
-        "role": "CFO @ CNF",
+        "role": "CFO",
         "social": "https://twitter.com/lianefiligrane",
-        "image": "./images/contributors/romina.jpg"
+        "image": "./images/contributors/romina.jpg",
+        "entity": {
+          "name": "CNF",
+          "href": "http://centrifuge.foundation/"
+        }
       }
     ]
   },

@@ -23,6 +23,10 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: Inter, sans-serif;
   }
