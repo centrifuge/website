@@ -15,7 +15,7 @@ import { CareerSection, CareerSectionProps } from '../components/career-section'
 
 export const query = graphql`
   query {
-    dataJson(slug: { eq: "/contributors" }) {
+    dataJson(slug: { eq: "/about" }) {
       title
 
       seo {

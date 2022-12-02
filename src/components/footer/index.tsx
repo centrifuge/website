@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Container, Stack, Grid, Box } from '@centrifuge/fabric'
-import { footer } from '../../../config/footer'
+import { columns, socials } from '../../../config/footer'
+import { NewsletterSubscribe } from '../NewsletterSubscribe'
 import { Column } from './Column'
 import { ColumnTitle } from './ColumnTitle'
-import { NewsletterSubscribe } from '../NewsletterSubscribe'
+import { Socials, SocialProp } from './Socials'
 
 export function Footer() {
   return (
-    <Box as="footer" px={2} py={4} backgroundColor="textPrimary">
+    <Box as="footer" px={2} py={6} backgroundColor="textPrimary">
       <Container maxWidth="containerHeader">
         <Grid
           as="nav"
@@ -19,15 +20,18 @@ export function Footer() {
             'repeat(5, minmax(0, 1fr))',
           ]}
           gap={6}
+          alignItems="start"
         >
           <Stack gap={1} gridColumn={['auto', '1/3', '1/3', 'auto', 'auto']}>
             <ColumnTitle>Newsletter</ColumnTitle>
             <NewsletterSubscribe />
           </Stack>
 
-          {footer.map((column, index) => (
+          {columns.map((column, index) => (
             <Column key={`${index}`} {...column} />
           ))}
+
+          <Socials items={socials as SocialProp[]} />
         </Grid>
       </Container>
     </Box>

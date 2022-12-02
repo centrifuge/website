@@ -9,4 +9,5 @@ export const links = {
   docs: 'https://docs.centrifuge.io/',
   app: 'https://tinlake.centrifuge.io/',
   audits: 'https://github.com/centrifuge/security/tree/main/audits',
+  forum: 'https://gov.centrifuge.io/',
 }

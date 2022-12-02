@@ -1,37 +1,30 @@
 import { links } from './links'
 
-export const footer = [
+export const columns = [
   {
-    title: 'Outreach',
+    title: 'Build',
     items: [
       {
-        label: 'Twitter',
-        href: links.twitter,
+        label: 'Documentation',
+        href: links.docs,
         isExternal: true,
       },
       {
-        label: 'LinkedIn',
-        href: links.linkedin,
-        isExternal: true,
-      },
-      {
-        label: 'Telegram',
-        href: links.telegram,
-        isExternal: true,
-      },
-      {
-        label: 'Discord',
-        href: links.discord,
-        isExternal: true,
-      },
-      {
-        label: 'Medium',
-        href: links.medium,
-        isExternal: true,
-      },
-      {
-        label: 'Governance Forum',
+        label: 'Governance',
         href: '/governance',
+      },
+      {
+        label: 'GitHub',
+        href: links.github,
+        isExternal: true,
+      },
+      {
+        label: 'Brand',
+        href: '/brand',
+      },
+      {
+        label: 'Security',
+        href: '/security',
       },
     ],
   },
@@ -39,16 +32,12 @@ export const footer = [
     title: 'Privacy',
     items: [
       {
-        label: 'Terms of use',
-        href: '/terms',
-      },
-      {
         label: 'Data Privacy Policy',
         href: '/data-privacy-policy',
       },
       {
-        label: 'Security',
-        href: '/security',
+        label: 'Terms of Use',
+        href: '/terms',
       },
       {
         label: 'Imprint',
@@ -57,21 +46,15 @@ export const footer = [
     ],
   },
   {
-    title: 'Learn & Develop',
+    title: 'Crowdloan',
     items: [
       {
-        label: 'Github',
-        href: links.github,
-        isExternal: true,
+        label: 'Centrifuge',
+        href: '/parachain/crowdloan',
       },
       {
-        label: 'Documentation',
-        href: links.docs,
-        isExternal: true,
-      },
-      {
-        label: 'Brand Assets',
-        href: '/brand',
+        label: 'Altair',
+        href: '/altair/crowdloan',
       },
     ],
   },
@@ -79,13 +62,8 @@ export const footer = [
     title: 'Get in touch',
     items: [
       {
-        label: 'Partnerships: bizdev@centrifuge.io',
+        label: 'Press & Partnerships: bizdev@centrifuge.io',
         href: 'mailto:bizdev@centrifuge.io',
-        isExternal: true,
-      },
-      {
-        label: 'Media: press@centrifuge.io',
-        href: 'mailto:press@centrifuge.io',
         isExternal: true,
       },
       {
@@ -93,5 +71,38 @@ export const footer = [
         href: '/contributors/#careers',
       },
     ],
+  },
+]
+
+export const socials = [
+  {
+    label: 'Twitter',
+    href: links.twitter,
+    icon: 'twitter',
+  },
+  {
+    label: 'Discord',
+    href: links.discord,
+    icon: 'discord',
+  },
+  {
+    label: 'Forum',
+    href: links.forum,
+    icon: 'forum',
+  },
+  {
+    label: 'LinkedIn',
+    href: links.linkedin,
+    icon: 'linkedin',
+  },
+  {
+    label: 'YouTube',
+    href: links.youtube,
+    icon: 'youtube',
+  },
+  {
+    label: 'Telegram',
+    href: links.telegram,
+    icon: 'telegram',
   },
 ]
