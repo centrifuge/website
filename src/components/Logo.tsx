@@ -1,60 +1,47 @@
 import * as React from 'react'
+import styled, { keyframes, css } from 'styled-components'
 
-const duration = 400
-const stagger = 100
-const iterationDelay = 4000
+const initial = css`
+  opacity: 0;
+  transform: translateX(15px);
+`
 
-const keyframes = [
-  { transform: 'translate(15px, 0px)', opacity: 0 },
-  { transform: 'translate(0px, 0px)', opacity: 1 },
-]
+const fadeIn = keyframes`
+ 0% { 
+  ${initial}
+}
+ 100% { 
+  opacity: 1; 
+  transform: translateX(0px); 
+}
+`
 
-export function Logo() {
-  let animations: Animation[] | undefined
-  const group = React.useRef<SVGGElement>(null)
+function getAnimationDelay() {
+  let styles = ''
 
-  React.useEffect(() => {
-    if (group?.current?.children) {
-      const { length } = group?.current?.children
-
-      animations = Array.from(group.current?.children).map(
-        (child, index) =>
-          new Animation(
-            new KeyframeEffect(child, keyframes, {
-              duration,
-              delay: index * stagger,
-              easing: 'ease-out',
-              fill: 'both',
-            })
-          )
-      )
-
-      const animation = new Animation(
-        new KeyframeEffect(group.current, [{ opacity: 1 }, { opacity: 0 }], {
-          duration,
-          delay: stagger * length + iterationDelay,
-          easing: 'linear',
-          fill: 'both',
-        })
-      )
-      animation.onfinish = () => setTimeout(play, iterationDelay)
-
-      animations.push(animation)
-    }
-  }, [])
-
-  React.useEffect(() => {
-    if (animations && animations.length) {
-      play()
-    }
-  }, [animations])
-
-  function play() {
-    if (animations && animations.length) {
-      animations.forEach((animation) => animation.play())
-    }
+  for (let i = 1; i <= 9; i++) {
+    styles += `
+     > path:nth-child(${i}) {
+         animation-delay: ${2 + i * 0.1}s;
+       }
+     `
   }
 
+  return css`
+    ${styles}
+  `
+}
+
+const Group = styled.g`
+  > path {
+    ${initial}
+    animation: ${fadeIn} 0.3s ease-out forwards;
+  }
+
+  ${getAnimationDelay()}
+`
+
+export function Logo() {
   return (
     <svg
       width="139"
@@ -85,7 +72,7 @@ export function Logo() {
         />
       </g>
 
-      <g ref={group}>
+      <Group>
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -140,7 +127,7 @@ export function Logo() {
           d="M130.111 23.8904C130.787 23.3088 131.612 23.0173 132.585 23.0173C133.108 23.0173 133.563 23.1026 133.951 23.2726C134.339 23.4431 134.658 23.6713 134.911 23.9576C135.163 24.2443 135.348 24.5754 135.466 24.9516C135.583 25.3276 135.641 25.7218 135.641 26.1335H128.988C129.06 25.2203 129.435 24.4726 130.111 23.8904ZM136.128 29.9483C135.767 30.4679 135.308 30.8751 134.749 31.1704C134.19 31.466 133.505 31.6138 132.693 31.6138C132.224 31.6138 131.774 31.5332 131.341 31.372C130.908 31.2108 130.521 30.9916 130.178 30.7138C129.836 30.4364 129.56 30.1051 129.353 29.7199C129.146 29.3349 129.024 28.9098 128.988 28.4439H138.86C138.878 28.3008 138.887 28.1576 138.887 28.014V27.5843C138.887 26.4203 138.729 25.404 138.414 24.5351C138.098 23.6667 137.66 22.9414 137.102 22.3592C136.543 21.7775 135.88 21.3384 135.114 21.0429C134.347 20.7474 133.514 20.5996 132.612 20.5996C131.639 20.5996 130.733 20.7655 129.894 21.0967C129.056 21.4282 128.33 21.8938 127.717 22.4936C127.104 23.0938 126.622 23.8191 126.27 24.6694C125.919 25.5203 125.743 26.4652 125.743 27.5036C125.743 28.5605 125.919 29.5049 126.27 30.3377C126.622 31.1704 127.109 31.8735 127.731 32.4466C128.353 33.0199 129.087 33.4631 129.935 33.7763C130.782 34.0894 131.711 34.2465 132.721 34.2465C134.9 34.2465 136.616 33.5567 137.871 32.1782L136.128 29.9483Z"
           fill="black"
         />
-      </g>
+      </Group>
     </svg>
   )
 }
