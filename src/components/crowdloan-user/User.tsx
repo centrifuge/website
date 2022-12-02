@@ -15,6 +15,7 @@ import { useTotalRewards, useDidClaim, getAccountDetails } from './utils'
 import { Spinner } from '../Spinner'
 
 export function User() {
+  const [isClaiming, setIsClaiming] = React.useState(false)
   const { selectedAccount } = useWallet()
   const didClaim = useDidClaim(selectedAccount?.address)
   const totalRewards = useTotalRewards()
@@ -63,6 +64,8 @@ export function User() {
       return
     }
 
+    setIsClaiming(true)
+
     await getAccountDetails(account)
       .then((payload) => {
         if (payload) {
@@ -70,6 +73,9 @@ export function User() {
         }
       })
       .catch((error) => console.log(error))
+      .finally(() => {
+        setIsClaiming(false)
+      })
   }
 
   return (
@@ -101,7 +107,7 @@ export function User() {
                 </Text>
               </Text>
               {totalRewards.gt(new BN(0)) && (
-                <Button onClick={() => claim(selectedAccount, execute)} loading={isLoading}>
+                <Button onClick={() => claim(selectedAccount, execute)} loading={isLoading} disabled={isClaiming}>
                   Claim rewards
                 </Button>
               )}
