@@ -37,9 +37,11 @@ export function HeroCrowdloan({ title, amount, contributors, anchor }: HeroCrowd
         <Em>{amount}</Em> raised from <Em>{contributors}</Em> contributions
       </Text>
       {anchor && (
-        <AnchorButton href={anchor.href} rel="noopener noreferrer" target="_blank" variant="secondary" small>
-          {anchor.label}
-        </AnchorButton>
+        <Box mt={4}>
+          <AnchorButton href={anchor.href} rel="noopener noreferrer" target="_blank" variant="secondary" small>
+            {anchor.label}
+          </AnchorButton>
+        </Box>
       )}
     </Container>
   )

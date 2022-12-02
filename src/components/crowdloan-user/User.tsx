@@ -12,7 +12,6 @@ import type { WalletAccount } from '@subwallet/wallet-connect/types'
 import BN from 'bn.js'
 import { switchMap } from 'rxjs'
 import { useTotalRewards, useDidClaim, getAccountDetails } from './utils'
-import { Spinner } from '../Spinner'
 
 export function User() {
   const [isClaiming, setIsClaiming] = React.useState(false)
@@ -91,8 +90,8 @@ export function User() {
       >
         <WalletMenu />
 
-        {didClaim != null ? (
-          didClaim ? (
+        {didClaim != null &&
+          (didClaim ? (
             <Text varaint="body1" as="p">
               <Text as="strong" variant="emphasized">
                 Rewards already claimed
@@ -112,10 +111,7 @@ export function User() {
                 </Button>
               )}
             </Shelf>
-          )
-        ) : (
-          <Spinner />
-        )}
+          ))}
 
         <Text
           as="a"
