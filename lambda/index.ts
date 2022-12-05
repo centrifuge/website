@@ -13,7 +13,7 @@ exports.handler = async (req: Request, res: Response) => {
 
   if (corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
     res.set('Access-Control-Allow-Origin', origin)
-    res.set('Access-Control-Allow-Methods', 'GET')
+    res.set('Access-Control-Allow-Methods', ['GET', 'POST'])
   } else {
     return res.status(405).send('Not allowed')
   }
