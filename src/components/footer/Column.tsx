@@ -5,7 +5,7 @@ import { Anchor } from './Anchor'
 import { ColumnTitle } from './ColumnTitle'
 
 type ColumnProps = {
-  title: string
+  title?: string
   items: AnchorProps[]
 }
 

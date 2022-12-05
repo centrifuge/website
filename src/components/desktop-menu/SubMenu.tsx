@@ -32,12 +32,12 @@ export function SubMenu({ label, items, href, isExternal, isButton, buttonVarian
               {label}
             </AnchorButton>
           ) : (
-            <Text as="a" href={href} rel="noopener noreferrer" target="_blank">
+            <Text as="a" variant="body1" href={href} rel="noopener noreferrer" target="_blank">
               {label}
             </Text>
           )
         ) : (
-          <Text as={Link} to={href}>
+          <Text as={Link} to={href} variant="body1">
             {label}
           </Text>
         )
