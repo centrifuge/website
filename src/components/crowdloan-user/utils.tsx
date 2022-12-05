@@ -1,13 +1,44 @@
+import { useQuery } from 'react-query'
 import { CurrencyBalance } from '@centrifuge/centrifuge-js'
 import { useCentrifugeQuery } from '@centrifuge/centrifuge-react'
 import type { WalletAccount } from '@subwallet/wallet-connect/types'
 import { map, switchMap } from 'rxjs'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
 import jsonBigInt from 'json-bigint'
+import BN from 'bn.js'
+import type { CrowdloanUserProps } from './index'
 const JsonBig = jsonBigInt({ useNativeBigInt: true, alwaysParseAsBig: true })
 
-export function useTotalRewards() {
-  return CurrencyBalance.fromFloat(100, 18)
+export function useTotalRewards({
+  address,
+  parachain,
+}: {
+  address: WalletAccount | null
+  parachain: CrowdloanUserProps['network']
+}) {
+  const { data } = useQuery(
+    ['getRewardData', address, parachain],
+    async () => {
+      const response = await fetch(`${process.env.GATSBY_LAMBDA_URL}/getRewardData`, {
+        method: 'POST',
+        body: JSON.stringify({
+          address,
+          parachain,
+        }),
+      })
+
+      const json = await response.json()
+      const stakingReward = new BN(json.contributionAmount).mul(new BN(10 ** 6)).mul(new BN(430))
+      const earlyBirdReward = new BN(json?.earlyBirdBonus).add(new BN(json?.firstCrowdloanBonus))
+
+      return stakingReward.add(earlyBirdReward).add(new BN(json?.referralBonus))
+    },
+    {
+      enabled: !!address,
+    }
+  )
+
+  return data
 }
 
 export function useDidClaim(address?: string) {

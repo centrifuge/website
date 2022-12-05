@@ -130,7 +130,7 @@ export default async function getRewardData(req: Request, res: Response) {
     return res.status(405).send('Method not allowed. Use POST.')
   }
 
-  const { address, parachain } = req.body
+  const { address, parachain } = JSON.parse(req.body)
   const curConfig = getConfig(parachain)
 
   if (!curConfig.URL_CONTRIBUTIONS || !curConfig.URL_CONTRIBUTOR) {

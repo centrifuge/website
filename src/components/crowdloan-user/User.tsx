@@ -15,10 +15,10 @@ import { useTotalRewards, useDidClaim, getAccountDetails } from './utils'
 
 export function User() {
   const [isClaiming, setIsClaiming] = React.useState(false)
+  const centrifuge = useCentrifuge()
   const { selectedAccount } = useWallet()
   const didClaim = useDidClaim(selectedAccount?.address)
-  const totalRewards = useTotalRewards()
-  const centrifuge = useCentrifuge()
+  const totalRewards = useTotalRewards({ address: selectedAccount, parachain: centrifuge.config.network })
   const currency = centrifuge.config.network === 'altair' ? 'AIR' : 'CFG'
 
   const { execute, isLoading } = useCentrifugeTransaction(
@@ -101,11 +101,15 @@ export function User() {
             <Shelf gap={3} rowGap={1} flexWrap="wrap" justifyContent="space-between" width="100%" mb={2}>
               <Text as="p" variant="body1">
                 Total rewards:{' '}
-                <Text as="strong" variant="emphasized">
-                  {formatBalanceAbbreviated(totalRewards, currency)}
-                </Text>
+                {totalRewards ? (
+                  <Text as="strong" variant="emphasized">
+                    {formatBalanceAbbreviated(totalRewards.toNumber(), currency)}
+                  </Text>
+                ) : (
+                  '-'
+                )}
               </Text>
-              {totalRewards.gt(new BN(0)) && (
+              {!!totalRewards && totalRewards?.gt(new BN(0)) && (
                 <Button onClick={() => claim(selectedAccount, execute)} loading={isLoading} disabled={isClaiming}>
                   Claim rewards
                 </Button>
