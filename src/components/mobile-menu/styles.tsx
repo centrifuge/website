@@ -1,5 +1,5 @@
-import { Box } from '@centrifuge/fabric'
-import styled from 'styled-components'
+import { Box, Text } from '@centrifuge/fabric'
+import styled, { css } from 'styled-components'
 
 const List = styled.ul<{ open: boolean }>`
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
@@ -48,13 +48,22 @@ export const Wrapper = styled(Box)<{ open: boolean }>`
   }
 `
 
+const sharedFontStyle = css`
+  font-size: 36px;
+  font-weight: 400;
+`
+
+export const Link = styled(Text)`
+  ${sharedFontStyle}
+  color: ${({ theme }) => theme.colors.textPrimary};
+`
+
 export const Toggle = styled.button`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 36px;
-  font-weight: 400;
+  ${sharedFontStyle}
 `
 
 export const ToogleIcon = styled.span<{ open: boolean }>`

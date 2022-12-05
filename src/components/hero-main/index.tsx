@@ -6,8 +6,9 @@ import { useVisibilityChecker } from '../../hooks/use-visibility-checker'
 import { ChainStats } from '../chain-stats/ChainStats'
 import type { PartnerProps } from '../partner-list'
 import { PartnerList } from '../partner-list'
-import { Swirl } from './Swirl'
 import { Typewriter } from '../Typewriter'
+import type { ImageProps } from '../Image'
+import { Image } from '../Image'
 import { Root, Inner, Title, Content, Graphic, CTA } from './styles'
 
 export const query = graphql`
@@ -15,6 +16,10 @@ export const query = graphql`
     title
     ticker
     body
+    image {
+      publicURL
+      extension
+    }
     partners {
       image {
         publicURL
@@ -29,32 +34,18 @@ export type HeroMainProps = {
   title: string
   ticker: string[]
   body: string[]
+  image: ImageProps
   partners: PartnerProps[]
 }
 
-export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
+export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps) {
   const [animate, setAnimate] = React.useState(false)
-  const [delta, setDelta] = React.useState(0)
   const ref = React.useRef<HTMLElement>(null)
   useVisibilityChecker({
     ref,
     onEnter: () => setAnimate(true),
     onLeave: () => setAnimate(false),
   })
-
-  function onScroll() {
-    setDelta(window.pageYOffset)
-  }
-
-  React.useEffect(() => {
-    if (animate) {
-      window.addEventListener('scroll', onScroll)
-    } else {
-      window.removeEventListener('scroll', onScroll)
-    }
-
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [animate])
 
   return (
     <Root as="section" ref={ref} flexDirection="column">
@@ -68,7 +59,7 @@ export function HeroMain({ title, ticker, body, partners }: HeroMainProps) {
 
           <Content>
             <Graphic>
-              <Swirl animate={animate} delta={delta} />
+              <Image data={image} />
             </Graphic>
 
             {body.map((entry, index) => (

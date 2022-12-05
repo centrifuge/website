@@ -5,8 +5,13 @@ const menu = [
     label: 'Connect',
     items: [
       {
-        label: 'Discord',
-        href: links.discord,
+        label: 'Blog',
+        href: links.medium,
+        isExternal: true,
+      },
+      {
+        label: 'Forum',
+        href: links.forum,
         isExternal: true,
       },
       {
@@ -15,16 +20,13 @@ const menu = [
         isExternal: true,
       },
       {
-        label: 'LinkedIn',
-        href: links.linkedin,
+        label: 'Discord',
+        href: links.discord,
         isExternal: true,
-      },
-      {
-        label: 'Crowdloan',
-        href: '',
       },
     ],
   },
+
   {
     label: 'Learn',
     items: [
@@ -33,42 +35,9 @@ const menu = [
         href: '/governance',
       },
       {
-        label: 'FAQs',
-        href: 'https://docs.centrifuge.io/faq/',
-        isExternal: true,
-      },
-      {
-        label: 'Contributors',
-        href: '/contributors',
-      },
-      {
-        label: 'Blog',
-        href: links.medium,
-        isExternal: true,
-      },
-      {
-        label: 'Youtube',
-        href: links.youtube,
-        isExternal: true,
-      },
-    ],
-  },
-  {
-    label: 'Develop',
-    items: [
-      {
         label: 'Documentation',
         href: links.docs,
         isExternal: true,
-      },
-      {
-        label: 'Altair',
-        href: 'https://centrifuge.io/altair/',
-        isExternal: true,
-      },
-      {
-        label: 'Brand',
-        href: '/brand',
       },
       {
         label: 'GitHub',
@@ -76,6 +45,10 @@ const menu = [
         isExternal: true,
       },
     ],
+  },
+  {
+    label: 'About',
+    href: '/about',
   },
 ]
 

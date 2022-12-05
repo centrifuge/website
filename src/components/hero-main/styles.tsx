@@ -81,7 +81,7 @@ export const Graphic = styled.div`
     margin-inline: auto;
   }
 
-  svg {
+  img {
     display: block;
     width: 100%;
     height: 100%;
