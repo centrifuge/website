@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Text } from '@centrifuge/fabric'
 import type { AnchorProps } from './Anchor'
 import { Anchor } from './Anchor'
 import { Wrapper, Link, Toggle, ToogleIcon, Collapsable } from './styles'
