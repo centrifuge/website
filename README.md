@@ -44,7 +44,7 @@ Each page gets its data from a json file in `/data/<page-name>.json`. Data is av
 
 Mandatory entries in each json file (except for `index.tsx`)
 
-- slug: same as file name in pages folder (eg: `pages/contributors.tsx` -> `"slug": "/contributors"`)
+- slug: same as file name in pages folder (eg: `pages/about.tsx` -> `"slug": "/about"`)
 - seo: `title` and `description` (if not set it falls back to `siteMetadata` in `gatsby-config.ts`)
 
 ```javascript
