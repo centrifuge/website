@@ -106,7 +106,9 @@ export function User() {
                     {formatBalanceAbbreviated(totalRewards.toNumber(), currency)}
                   </Text>
                 ) : (
-                  '-'
+                  <Text as="strong" variant="emphasized" style={{ opacity: 0.3 }}>
+                    0.0
+                  </Text>
                 )}
               </Text>
               {!!totalRewards && totalRewards?.gt(new BN(0)) && (

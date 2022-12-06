@@ -77,7 +77,6 @@ export function NewsSection({ title, count, link, note }: NewsSectionProps) {
               {posts.map(({ guid, title, link, thumbnail, description, pubDate }, index) => (
                 <Box as="li" key={`${guid}${index}`} width={[300, 400, 480]} flexShrink={0}>
                   <NewsCard
-                    // label={isLoading ? pubDate : toLocaleDate(pubDate)}
                     label={!!pubDate ? toLocaleDate(pubDate.replace(' ', 'T')) : ' '}
                     title={title}
                     body={description}
