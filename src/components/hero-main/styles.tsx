@@ -68,6 +68,7 @@ export const Content = styled.div`
 export const Graphic = styled.div`
   display: none;
   width: 100%;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
   margin-bottom: 1rem;
 

@@ -16,7 +16,7 @@ export function Layout({ menuButtonVariant = 'primary', children }: LayoutProps)
   return (
     <Base>
       <Header menuButtonVariant={menuButtonVariant} />
-      <Box as="main" pt={theme.sizes.headerHeight} pb={200} flexGrow={2}>
+      <Box as="main" pt={theme.sizes.headerHeight} pb={['layoutSmall', 'layoutMedium', 'layoutLarge']} flexGrow={2}>
         {children}
       </Box>
       <GDPRBanner />

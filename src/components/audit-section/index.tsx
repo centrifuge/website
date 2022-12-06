@@ -30,7 +30,13 @@ export function AuditSection({ title, items }: AuditSectionProps) {
   return (
     <Box as="section" px={2}>
       <Container>
-        <Shelf alignItems="center" flexWrap="wrap" gap={4} rowGap={1}>
+        <Shelf
+          justifyContent={['space-between', 'space-between', 'start']}
+          alignItems="center"
+          flexWrap="wrap"
+          gap={4}
+          rowGap={1}
+        >
           <Text as="h2" variant="heading2">
             {title}
           </Text>
@@ -39,7 +45,16 @@ export function AuditSection({ title, items }: AuditSectionProps) {
           </AnchorButton>
         </Shelf>
 
-        <Shelf as="ul" role="list" alignItems="center" flexWrap="wrap" gap={[4, 6, 10]} rowGap={3} mt={[4, 6]}>
+        <Shelf
+          as="ul"
+          role="list"
+          justifyContent={['space-around', 'space-around', 'start']}
+          alignItems="center"
+          flexWrap="wrap"
+          gap={[4, 6, 10]}
+          rowGap={[4, 6]}
+          mt={[4, 6]}
+        >
           {items.map(({ alt, image }, index) => (
             <Media key={`${alt}${index}`}>
               <Image data={image} alt={alt} />
