@@ -169,7 +169,7 @@ export default async function getRewardData(req: Request, res: Response) {
   // someone used a referral code owned by this user
   const incomingReferralBonus = getIncomingReferralBonus(allContributions, referralCodes)
 
-  const referralBonus = incomingReferralBonus.plus(outgoingReferralBonus).toString()
+  const referralBonus = incomingReferralBonus.add(outgoingReferralBonus).toString()
 
   return res.status(200).send(
     JSON.stringify({
