@@ -18,7 +18,7 @@ export function User() {
   const centrifuge = useCentrifuge()
   const { selectedAccount } = useWallet()
   const didClaim = useDidClaim(selectedAccount?.address)
-  const totalRewards = useTotalRewards({ address: selectedAccount, parachain: centrifuge.config.network })
+  const totalRewards = useTotalRewards({ address: selectedAccount?.address, parachain: centrifuge.config.network })
   const currency = centrifuge.config.network === 'altair' ? 'AIR' : 'CFG'
 
   const { execute, isLoading } = useCentrifugeTransaction(

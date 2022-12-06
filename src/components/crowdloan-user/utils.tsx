@@ -13,7 +13,7 @@ export function useTotalRewards({
   address,
   parachain,
 }: {
-  address: WalletAccount | null
+  address?: WalletAccount['address']
   parachain: CrowdloanUserProps['network']
 }) {
   const { data } = useQuery(
