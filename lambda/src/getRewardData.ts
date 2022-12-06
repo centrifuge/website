@@ -131,16 +131,6 @@ export default async function getRewardData(req: Request, res: Response) {
   }
 
   const { address, parachain } = JSON.parse(req.body)
-
-  if (address || parachain) {
-    return res.status(400).send(
-      JSON.stringify({
-        addressIs: address,
-        parachainIs: parachain,
-      })
-    )
-  }
-
   const curConfig = getConfig(parachain)
 
   if (!curConfig.URL_CONTRIBUTIONS || !curConfig.URL_CONTRIBUTOR) {
