@@ -51,6 +51,8 @@ export const Wrapper = styled(Box)<{ open: boolean }>`
 const sharedFontStyle = css`
   font-size: 36px;
   font-weight: 400;
+  line-height: 1.4em;
+  color: inherit;
 `
 
 export const Link = styled(Text)`
@@ -58,11 +60,12 @@ export const Link = styled(Text)`
   color: ${({ theme }) => theme.colors.textPrimary};
 `
 
-export const Toggle = styled.button`
+export const Toggle = styled(Text)`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-right: 6px;
   ${sharedFontStyle}
 `
 
