@@ -11,7 +11,9 @@ export default async function getRewardData(req: Request, res: Response) {
   const { address, parachain } = JSON.parse(req.body)
 
   const merkleTree =
-    parachain === 'centrifuge' ? require('../../config/crowdloan/centrifuge-reward-merkle-tree.js').merkleTree : {}
+    parachain === 'centrifuge'
+      ? require('../../config/crowdloan/centrifuge-reward-merkle-tree.js').merkleTree
+      : require('../../config/crowdloan/altair-reward-merkle-tree.js').merkleTree
 
   const hexAddress = u8aToHex(decodeAddress(address))
 
