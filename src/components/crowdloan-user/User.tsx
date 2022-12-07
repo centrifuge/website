@@ -66,9 +66,9 @@ export function User() {
     setIsClaiming(true)
 
     await getAccountDetails(account, centrifuge.config.network)
-      .then((payload) => {
-        if (payload) {
-          execute(payload)
+      .then((response) => {
+        if (response) {
+          execute(response)
         }
       })
       .catch((error) => console.log(error))
