@@ -6,7 +6,7 @@
     "name": "getLeverPositions"
   },
   {
-    "name": "createCentrifugeProof"
+    "name": "createProof"
   },
   {
     "name": "getRewardData"
