@@ -89,8 +89,10 @@ export const createProof = async (id, merkleTree) => {
   }
 }
 
-export const getContributionAmount = async (key, merkleTree) => {
+export const getContributionAmount = (key, merkleTree) => {
   const contr = merkleTree.data.find((contribution) => contribution.account === key)
 
-  return contr !== undefined ? contr.contribution : Promise.reject(`Account ${key} is no contributor`)
+  if (contr == null) return 0
+
+  return contr.contribution
 }

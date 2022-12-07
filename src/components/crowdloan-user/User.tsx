@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   formatBalanceAbbreviated,
   useCentrifuge,
@@ -10,8 +9,9 @@ import { Button, Container, Shelf, Stack, Text } from '@centrifuge/fabric'
 import { decodeAddress, signatureVerify } from '@polkadot/util-crypto'
 import type { WalletAccount } from '@subwallet/wallet-connect/types'
 import BN from 'bn.js'
+import * as React from 'react'
 import { switchMap } from 'rxjs'
-import { useTotalRewards, useDidClaim, getAccountDetails } from './utils'
+import { getAccountDetails, useDidClaim, useTotalRewards } from './utils'
 
 export function User() {
   const [isClaiming, setIsClaiming] = React.useState(false)
@@ -58,8 +58,8 @@ export function User() {
       }
   )
 
-  async function claim(account: WalletAccount | null, callback: typeof execute) {
-    if (!account || !callback) {
+  async function claim(account: WalletAccount | null) {
+    if (!account) {
       return
     }
 
@@ -68,7 +68,7 @@ export function User() {
     await getAccountDetails(account)
       .then((payload) => {
         if (payload) {
-          callback(payload)
+          execute(payload)
         }
       })
       .catch((error) => console.log(error))
@@ -103,7 +103,7 @@ export function User() {
                 Total rewards:{' '}
                 {totalRewards ? (
                   <Text as="strong" variant="emphasized">
-                    {formatBalanceAbbreviated(totalRewards.toNumber(), currency)}
+                    {formatBalanceAbbreviated(totalRewards, currency)}
                   </Text>
                 ) : (
                   <Text as="strong" variant="emphasized" style={{ opacity: 0.3 }}>
@@ -112,7 +112,7 @@ export function User() {
                 )}
               </Text>
               {!!totalRewards && totalRewards?.gt(new BN(0)) && (
-                <Button onClick={() => claim(selectedAccount, execute)} loading={isLoading} disabled={isClaiming}>
+                <Button onClick={() => claim(selectedAccount)} loading={isLoading} disabled={isClaiming}>
                   Claim rewards
                 </Button>
               )}
