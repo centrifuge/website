@@ -19,8 +19,7 @@ export function useTotalRewards({
   const { data } = useQuery(
     ['getRewardData', address, parachain],
     async () => {
-      const url = new URL('/getRewardData', process.env.GATSBY_LAMBDA_URL)
-      const response = await fetch(url, {
+      const response = await fetch(`${process.env.GATSBY_LAMBDA_URL}/getRewardData`, {
         method: 'POST',
         body: JSON.stringify({
           address,
