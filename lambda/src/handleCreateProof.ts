@@ -1,4 +1,4 @@
-export const createProof = async (id, merkleTree) => {
+export function createProof(id, merkleTree) {
   let startIndex
   let contr = merkleTree.data.filter((val, idx) => {
     if (val.account === id) {
@@ -10,7 +10,7 @@ export const createProof = async (id, merkleTree) => {
   })
 
   if (startIndex === undefined || contr.length !== 1) {
-    return Promise.reject('Tree not generated correctly.')
+    throw new Error('Tree not generated correctly.')
   }
 
   let sortedHashes = []
@@ -48,7 +48,7 @@ export const createProof = async (id, merkleTree) => {
           i++
         }
         if (!found) {
-          return Promise.reject('Proof generation not working.')
+          throw new Error('Proof generation not working.')
         }
       } else {
         // Check first row above yourself for unevenness, and if so take the last element
@@ -64,7 +64,7 @@ export const createProof = async (id, merkleTree) => {
           i--
         }
         if (!found) {
-          return Promise.reject('Proof generation not working.')
+          throw new Error('Proof generation not working.')
         }
 
         index = merkleTree.tree[i].length
@@ -89,7 +89,7 @@ export const createProof = async (id, merkleTree) => {
   }
 }
 
-export const getContributionAmount = (key, merkleTree) => {
+export function getContributionAmount(key, merkleTree) {
   const contr = merkleTree.data.find((contribution) => contribution.account === key)
 
   if (contr == null) return 0

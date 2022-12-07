@@ -60,14 +60,17 @@ export function useDidClaim(address?: string) {
   return data
 }
 
-export async function getAccountDetails(account: WalletAccount): Promise<[any, string, string] | null> {
+export async function getAccountDetails(
+  account: WalletAccount,
+  parachain: CrowdloanUserProps['network']
+): Promise<[any, string, string] | null> {
   if (!account) {
     return null
   }
 
-  const proof = await fetch(`${process.env.GATSBY_LAMBDA_URL}/createCentrifugeProof`, {
+  const proof = await fetch(`${process.env.GATSBY_LAMBDA_URL}/createProof`, {
     method: 'POST',
-    body: JSON.stringify({ address: account.address }),
+    body: JSON.stringify({ address: account.address, parachain }),
   })
     .then(async (response) => {
       if (!response.ok) {
