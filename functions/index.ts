@@ -2,7 +2,7 @@ import routes from './routes.json'
 import { Request, Response } from 'express'
 
 const corsWhitelist = ['http://localhost:8000', 'https://centrifuge.io']
-const testEnvRegex = new RegExp('https://[a-z0-9-]*test-website-centrifuge-2022.netlify.app')
+const testEnvRegex = new RegExp('https://[a-z0-9-]*website-centrifuge-22.netlify.app')
 
 exports.handler = async (req: Request, res: Response) => {
   if (routes.length < 0) {

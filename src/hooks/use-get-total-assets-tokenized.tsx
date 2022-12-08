@@ -10,7 +10,7 @@ export function useTotalAssetsTokenized() {
 
     async function getData() {
       try {
-        await fetch(`${process.env.GATSBY_LAMBDA_URL}/getTotalAssetsTokenized`)
+        await fetch(`${process.env.GATSBY_FUNCTIONS_URL}/getTotalAssetsTokenized`)
           .then((res) => res.json())
           .then((obj) => setData(obj.totalAssetsTokenized))
       } catch (error) {
