@@ -6,6 +6,12 @@
     "name": "getLeverPositions"
   },
   {
+    "name": "createProof"
+  },
+  {
+    "name": "getRewardData"
+  },
+  {
     "name": "getPoolsData"
   },
   {

@@ -44,7 +44,7 @@ Each page gets its data from a json file in `/data/<page-name>.json`. Data is av
 
 Mandatory entries in each json file (except for `index.tsx`)
 
-- slug: same as file name in pages folder (eg: `pages/contributors.tsx` -> `"slug": "/contributors"`)
+- slug: same as file name in pages folder (eg: `pages/about.tsx` -> `"slug": "/about"`)
 - seo: `title` and `description` (if not set it falls back to `siteMetadata` in `gatsby-config.ts`)
 
 ```javascript
@@ -71,6 +71,17 @@ Because of it's repetitive content, legal pages
 - `/data-privacy-policy`
 
 are generated in `gatsby-node.ts`. The pages text content is stored in markdown files `/data/legal/<site-slug>.md`. Loaded markdown files are transfomed via `gatsby-transformer-remark`.
+
+---
+
+## Crowdloan Pages
+
+Both crowdloan pages
+
+- `/parachain/crowdloan`
+- `/altair/crowdloan`
+
+are generated in `gatsby-node.ts`. Most of their content is static because the auctions are closed already. The routes are taken over from the former site to keep urls alive.
 
 ---
 

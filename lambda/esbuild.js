@@ -14,6 +14,8 @@ esbuild
       'lambda/src/getExample.ts',
       'lambda/src/getMediumPosts.ts',
       'lambda/src/getLeverPositions.ts',
+      'lambda/src/createProof.ts',
+      'lambda/src/getRewardData.ts',
       'lambda/src/getPoolsData.ts',
       'lambda/src/getTotalAssetsTokenized.ts',
     ],
