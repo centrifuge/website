@@ -1,0 +1,64 @@
+{
+  "slug": "/altair",
+  "seo": {
+    "title": "Altair Wins 9th Slot in Kusama Auctions | Centrifuge"
+  },
+  "network": "altair",
+  "hero_crowdloan": {
+    "title": "Altair Wins 9th Slot in Kusama Auctions",
+    "amount": "187.84K KSM",
+    "contributors": "18,342"
+  },
+  "stats": [
+    {
+      "title": "Top referrers",
+      "items": [
+        {
+          "address": "Fc2rXRok…Gu",
+          "amount": "641"
+        },
+        {
+          "address": "CxZXGR8q…2v",
+          "amount": "570"
+        },
+        {
+          "address": "EoqDfBE7…tF",
+          "amount": "367"
+        },
+        {
+          "address": "DVSTJwhk…gu",
+          "amount": "354"
+        },
+        {
+          "address": "G4SrBW47…ac",
+          "amount": "153"
+        }
+      ]
+    },
+    {
+      "title": "Top contributors",
+      "items": [
+        {
+          "address": "HNf7Bz3Q…ic",
+          "amount": "25,000 KSM"
+        },
+        {
+          "address": "DDTVgKoS…c1",
+          "amount": "11,000 KSM"
+        },
+        {
+          "address": "FFis2qYe…yr",
+          "amount": "7,000 KSM"
+        },
+        {
+          "address": "J6bvL3mh…ZW",
+          "amount": "5,000 KSM"
+        },
+        {
+          "address": "EkTrycMC…Ck",
+          "amount": "3,000 KSM"
+        }
+      ]
+    }
+  ]
+}

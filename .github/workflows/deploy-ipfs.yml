@@ -1,0 +1,89 @@
+name: deploy
+# on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v2
+
+      - name: install Nix
+        uses: cachix/install-nix-action@v16
+
+      - uses: cachix/cachix-action@v8
+        with:
+          name: centrifuge-website
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: build
+        id: build
+        run: |
+          nix build -L .
+          echo "::set-output name=dist::$(readlink result)"
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: centrifuge-website-${{ github.sha }}
+          path: ${{ steps.build.outputs.dist }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: centrifuge-website-${{ github.sha }}
+          path: centrifuge-website
+
+      - uses: ipfs/download-ipfs-distribution-action@v1
+
+      - name: initialize ipfs configuration
+        run: ipfs init --profile server
+      # See https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#autorelay
+      - run: ipfs config --json Swarm.RelayClient.Enabled true
+
+      - uses: ipfs/start-ipfs-daemon-action@v1
+        with:
+          args: '' # skip config init because we already did it above
+
+      - name: publish the website on ipfs
+        id: publish
+        run: |
+          ipfs add -rQ centrifuge-website | tee ipfs_cid
+          echo "::set-output name=cid::$(cat ipfs_cid)"
+
+      - name: pin the website using pinata
+        run: |
+          ipfs pin remote service add pinata https://api.pinata.cloud/psa ${{ secrets.PINATA_JWT }}
+
+          cid=${{ steps.publish.outputs.cid }}
+          if ! ipfs pin remote ls --service=pinata --cid=$cid | grep pinned; then
+            ipfs pin remote add --service=pinata --name=centrifuge-website $cid
+          fi
+
+  comment-on-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: jwalton/gh-find-current-pr@v1
+        id: finder
+      - uses: marocchino/sticky-pull-request-comment@v2.2.0
+        with:
+          number: ${{ steps.finder.outputs.pr }}
+          hide_and_recreate: true
+          hide_classify: 'OUTDATED'
+          message: |
+            <h2 align="center">IPFS Preview for ${{ github.sha }} is ready</h2>
+            <p align="center">
+              <a href="https://ipfs.io/ipfs/${{ steps.publish.outputs.cid }}/" target="_blank">
+                <code>${{ steps.publish.outputs.cid }}</code>
+                :mag_right:
+              </a>
+            </p>
