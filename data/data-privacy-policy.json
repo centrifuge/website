@@ -1,0 +1,9 @@
+{
+  "slug": "/data-privacy-policy",
+  "title": "Privacy Policy",
+  "seo": {
+    "title": "Privacy Policy | Centrifuge"
+  },
+
+  "markdown_section": "./legal/data-privacy-policy.md"
+}

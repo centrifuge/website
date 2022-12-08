@@ -1,0 +1,23 @@
+[
+  {
+    "name": "getMediumPosts"
+  },
+  {
+    "name": "getLeverPositions"
+  },
+  {
+    "name": "createProof"
+  },
+  {
+    "name": "getRewardData"
+  },
+  {
+    "name": "getPoolsData"
+  },
+  {
+    "name": "getTotalAssetsTokenized"
+  },
+  {
+    "name": "getExample"
+  }
+]
