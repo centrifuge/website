@@ -40,7 +40,7 @@ export function GDPRBanner() {
       >
         <Text variant="body1">
           By continuing your visit on this site, you accept the use of cookies from Google Analytics.{' '}
-          <Text as={Link} to="/privacy" underline variant="body1">
+          <Text as={Link} to="/data-privacy-policy" underline variant="body1">
             Read our privacy statement
           </Text>
         </Text>
