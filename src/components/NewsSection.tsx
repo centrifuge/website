@@ -59,7 +59,7 @@ export function NewsSection({ title, count, link, note }: NewsSectionProps) {
             </InternalLink>
           )}
 
-          {!isError && (
+          {!isError && !isLoading && (
             <Shelf gap={2} ml="auto" width={['100%', '100%', 'auto']} justifyContent="end">
               <Control onClick={scrollPrev} disabled={!prevBtnEnabled} title="Previous">
                 <IconArrowLeft />
@@ -71,13 +71,12 @@ export function NewsSection({ title, count, link, note }: NewsSectionProps) {
           )}
         </Shelf>
 
-        {!isError ? (
+        {!isError && !isLoading ? (
           <Box ref={viewportRef} style={{ overflow: 'visible' }} mt={[1, 1, 6]} py={1}>
             <Shelf as="ul" p={0} m={0} role="list" gap={2} alignItems="normal">
               {posts.map(({ guid, title, link, thumbnail, description, pubDate }, index) => (
                 <Box as="li" key={`${guid}${index}`} width={[300, 400, 480]} flexShrink={0}>
                   <NewsCard
-                    // label={isLoading ? pubDate : toLocaleDate(pubDate)}
                     label={!!pubDate ? toLocaleDate(pubDate.replace(' ', 'T')) : ' '}
                     title={title}
                     body={description}
