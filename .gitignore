@@ -9,7 +9,7 @@ src/gatsby-types.d.ts
 # Mac files
 .DS_Store**
 
-# lambda dist
+# functions dist
 dist/
 
 # dotenv environment variables file

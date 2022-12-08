@@ -19,7 +19,7 @@ export function useTotalRewards({
   const { data } = useQuery(
     ['getRewardData', address, parachain],
     async () => {
-      const response = await fetch(`${process.env.GATSBY_LAMBDA_URL}/getRewardData`, {
+      const response = await fetch(`${process.env.GATSBY_FUNCTIONS_URL}/getRewardData`, {
         method: 'POST',
         body: JSON.stringify({
           address,
@@ -67,7 +67,7 @@ export async function getAccountDetails(
     return null
   }
 
-  const proof = await fetch(`${process.env.GATSBY_LAMBDA_URL}/createProof`, {
+  const proof = await fetch(`${process.env.GATSBY_FUNCTIONS_URL}/createProof`, {
     method: 'POST',
     body: JSON.stringify({ address: account.address, parachain }),
   })

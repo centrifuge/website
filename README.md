@@ -164,13 +164,13 @@ image {
 
 Code should be automaically formatted by config set in `.prettierrc.js`. If working with VisualStudioCode, one can install and enable the plugin [prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## Lambdas (gcloud)
+## Functions (gcloud)
 
 ### Development
 
-Starting the gatsby dev server will also start a server on `http://localhost:8080` as the lambda API endpoint.
+Starting the gatsby dev server will also start a server on `http://localhost:8080` as the functions API endpoint.
 
-To add a new endpoint create a typescript file in `lambda/src/exampleEndpoint.ts`
+To add a new endpoint create a typescript file in `functions/src/exampleEndpoint.ts`
 
 Next add the new route in the `routes.json` file using the same `name` as the file. Here you can add additional rules per route if necessary.
 
@@ -201,11 +201,11 @@ Next add the new route in the `routes.json` file using the same `name` as the fi
 4. Build the application locally
 
 ```
-  yarn build:lambda
+  yarn build:functions
 ```
 
 5. Finally, deploy the bundled application
 
 ```
-  yarn deploy:lambda
+  yarn deploy:functions
 ```
