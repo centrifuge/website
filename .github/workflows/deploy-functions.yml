@@ -26,7 +26,7 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn build:lambda
+        run: yarn build:functions
 
       - id: Auth gcloud
         uses: google-github-actions/auth@v0
@@ -40,7 +40,7 @@ jobs:
           name: 'api'
           runtime: 'nodejs16'
           region: 'central1'
-          source_dir: 'lambda/dist'
+          source_dir: 'functions/dist'
           project: 'peak-vista-185616'
           service_account: 'functions-firestore@peak-vista-185616.iam.gserviceaccount.com'
           allow_unauthenticated: true

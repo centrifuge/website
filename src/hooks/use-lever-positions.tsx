@@ -16,7 +16,7 @@ export function useLeverPositions() {
 
     async function getPositions() {
       try {
-        await fetch(`${process.env.GATSBY_LAMBDA_URL}/getLeverPositions`)
+        await fetch(`${process.env.GATSBY_FUNCTIONS_URL}/getLeverPositions`)
           .then((res) => res.json())
           .then((data) => setPositions(data))
       } catch (error) {

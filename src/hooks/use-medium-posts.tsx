@@ -22,7 +22,7 @@ export function useMediumPosts(count = 10) {
 
     async function getArticles() {
       try {
-        await fetch(`${process.env.GATSBY_LAMBDA_URL}/getMediumPosts`)
+        await fetch(`${process.env.GATSBY_FUNCTIONS_URL}/getMediumPosts`)
           .then((res) => res.json())
           .then(({ items }) => setPosts(items.slice(0, count)))
       } catch (error) {

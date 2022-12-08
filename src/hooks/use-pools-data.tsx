@@ -10,7 +10,7 @@ export function usePoolsData() {
 
     async function getData() {
       try {
-        await fetch(`${process.env.GATSBY_LAMBDA_URL}/getPoolsData`)
+        await fetch(`${process.env.GATSBY_FUNCTIONS_URL}/getPoolsData`)
           .then((res) => res.json())
           .then((_data) => setData(_data))
       } catch (error) {

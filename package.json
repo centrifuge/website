@@ -9,17 +9,17 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
-    "start": "run-p -l start:gatsby start:lambda",
+    "start": "run-p -l start:gatsby start:functions",
     "start:gatsby": "npm run develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "deploy:lambda": "gcloud functions deploy website --region=us-central1 --source=lambda/dist --project=peak-vista-185616 --trigger-http --runtime=nodejs16 --service-account=functions-firestore@peak-vista-185616.iam.gserviceaccount.com --allow-unauthenticated --entry-point=handler",
-    "start:lambda": "run-p types:lambda watch:lambda",
-    "types:lambda": "node lambda/esbuild dev",
-    "build:lambda": "node lambda/esbuild",
-    "watch:lambda": "nodemon --watch ./lambda/dist/ --exec npx functions-framework --source=lambda/dist --target=handler"
+    "deploy:functions": "gcloud functions deploy website --region=us-central1 --source=functions/dist --project=peak-vista-185616 --trigger-http --runtime=nodejs16 --service-account=functions-firestore@peak-vista-185616.iam.gserviceaccount.com --allow-unauthenticated --entry-point=handler",
+    "start:functions": "run-p types:functions watch:functions",
+    "types:functions": "node functions/esbuild dev",
+    "build:functions": "node functions/esbuild",
+    "watch:functions": "nodemon --watch ./functions/dist/ --exec npx functions-framework --source=functions/dist --target=handler"
   },
   "dependencies": {
     "@centrifuge/centrifuge-js": "0.3.1",
