@@ -18,6 +18,7 @@
     "name": "getTotalAssetsTokenized"
   },
   {
-    "name": "getExample"
+    "name": "getExample",
+    "options": {}
   }
 ]
