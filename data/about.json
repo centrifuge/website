@@ -243,7 +243,7 @@
         }
       },
       {
-        "name": "Filippo",
+        "name": "Filippo Fontana",
         "role": "Engineering",
         "image": "./images/contributors/filippo.jpg",
         "entity": {
@@ -451,7 +451,7 @@
         }
       },
       {
-        "name": "Sandro",
+        "name": "Sandro Lenz",
         "role": "Product",
         "image": "./images/contributors/sandro.jpg",
         "entity": {
@@ -470,7 +470,7 @@
         }
       },
       {
-        "name": "Timon",
+        "name": "Timon Heinis",
         "role": "Engineering",
         "image": "./images/contributors/timon.jpg",
         "entity": {
