@@ -29,6 +29,14 @@
       {
         "title": "Centrifuge Network Foundation",
         "body": "The Centrifuge Network Foundation (CNF) nurtures the Centrifuge ecosystem by funding protocol development and grants."
+      },
+      {
+        "title": "EMBRIO.tech",
+        "body": "EMBRIO.tech is a software agency with expertise in data processing and visualisation. They contributed to the Centrifuge project making decentralised chain data accessible for end user applications and developed CFG insights, an analytics platform providing insights and financial metrics about the CFG ecosystem.",
+        "link": {
+          "label": "Learn about EMBRIO.tech",
+          "href": "https://embrio.tech/en"
+        }
       }
     ]
   },
@@ -235,6 +243,15 @@
         }
       },
       {
+        "name": "Filippo",
+        "role": "Engineering",
+        "image": "./images/contributors/filippo.jpg",
+        "entity": {
+          "name": "EMBRIO.tech",
+          "href": "hhttps://embrio.tech/en"
+        }
+      },
+      {
         "name": "Frederik Gartenmeister",
         "role": "Product and Engineering",
         "social": "https://twitter.com/mustermeiszer2",
@@ -434,6 +451,15 @@
         }
       },
       {
+        "name": "Sandro",
+        "role": "Product",
+        "image": "./images/contributors/sandro.jpg",
+        "entity": {
+          "name": "EMBRIO.tech",
+          "href": "hhttps://embrio.tech/en"
+        }
+      },
+      {
         "name": "Sophia Littlejohn",
         "role": "Engineer",
         "social": "https://www.linkedin.com/in/sophia-littlejohn/",
@@ -441,6 +467,15 @@
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
+        }
+      },
+      {
+        "name": "Timon",
+        "role": "Engineering",
+        "image": "./images/contributors/timon.jpg",
+        "entity": {
+          "name": "EMBRIO.tech",
+          "href": "hhttps://embrio.tech/en"
         }
       },
       {
