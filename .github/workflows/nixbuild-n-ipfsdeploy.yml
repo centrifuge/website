@@ -1,8 +1,12 @@
-name: deploy
-# on: push
+name: deploy-to-ipfs
+# on: 
+#   push:
+#     branch: 'main'
+#     path: '!functions/'
+on: workflow_call
 
 jobs:
-  build:
+  nix-build:
     runs-on: ubuntu-latest
     steps:
       - uses: styfle/cancel-workflow-action@0.6.0

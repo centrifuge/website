@@ -1,0 +1,71 @@
+name: Build and deploy to GCloud functions
+on:
+  # workflow_call:
+  #   inputs:
+  #     env: # Used to determine the environment secrets and permissions dynamically
+  #       required: true
+  #       type: string
+  #       default: 'preview'
+  #     gcloud_project:
+  #       required: true
+  #       default: 'peak-vista-185616'
+  #       type: string
+  pull_request:
+    path: 'functions'
+  
+jobs:
+  build:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@93ea575 #@v3.1.0
+
+      - name: Set .env for functions
+        run: cat "CENTRIFUGE_SUBGRAPH_URL=https://api.thegraph.com/subgraphs/name/astox/main" > functions/.env
+      
+      - name: Node setup
+        uses: ./.github/actions/node-setup
+        with:
+          build_command: 'yarn build:functions'
+
+      - name: Archive functions artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: func-dist
+          retention-days: 1
+          path: functions/dist
+          # !dist/**/*.md
+      
+      - name: Set GH environment for main branch
+        run: echo "DEPLOY_ENV=production" >> $GITHUB_ENV
+        if: startsWith(github.ref, 'refs/heads/main')
+
+  deployment:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: ${{ env.DEPLOY_ENV || 'preview' }} 
+    # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
+    steps:
+      - name: download the distribution package
+        uses: actions/download-artifact@v3
+        with:
+          name: func-dist
+      - name: Auth gcloud
+        id: gauth
+        uses: google-github-actions/auth@ef5d53e # @v1
+        with:
+          workload_identity_provider: '${{ secrets.GWIP }}'
+          service_account: '${{ secrets.GSA }}' # 'functions-firestore@peak-vista-185616.iam.gserviceaccount.com'    
+      - name: Deploy to google functions
+        id: gclouddeploy
+        uses: google-github-actions/deploy-cloud-functions@14509ca #@v1
+        with:
+          name: 'webapi'
+          runtime: 'nodejs16'
+          region: 'europe-west-1'
+          source_dir: 'functions/dist'
+          project: '${{ env.gcloud_project }}'
+          service_account: '${{ secrets.GSA }}'
+          allow_unauthenticated: true
+          entry_point: 'handler'
+      - name: 'Gcloud functions URL:'
+        run: 'curl "${{ steps.gclouddeploy.outputs.url }}"' 
