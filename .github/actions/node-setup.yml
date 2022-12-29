@@ -1,0 +1,28 @@
+name: Setup node and yarn install
+on:
+  workflow_call:
+    inputs:
+      install_command:
+        required: true
+        default: 'yarn install'
+        type: string
+      build_command:
+        required: true
+        default: 'yarn build'
+        type: string
+      node_version:
+        required: true
+        default: 16
+        type: number
+jobs:
+  - name: Setup Node
+    uses: actions/setup-node@8c91899 #@v3
+    with:
+      node-version: ${{ inputs.node_version }}
+      cache: yarn
+
+  - name: Install Dependencies
+    run: yarn ${{ inputs.install_command }}
+
+  - name: Build
+    run: yarn ${{ inputs.build_command }}
