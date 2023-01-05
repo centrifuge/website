@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@centrifuge/centrifuge-js": "0.3.1",
-    "@centrifuge/centrifuge-react": "0.0.3",
+    "@centrifuge/centrifuge-react": "0.0.4",
     "@centrifuge/fabric": "1.2.0",
     "@polkadot/util-crypto": "^10.1.14",
     "babel-plugin-styled-components": "^2.0.7",
