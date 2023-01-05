@@ -1073,10 +1073,10 @@
     jw3t "^1.0.8"
     rxjs "^7.4.0"
 
-"@centrifuge/centrifuge-react@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@centrifuge/centrifuge-react/-/centrifuge-react-0.0.3.tgz#23161e674b52fcb13d7efbf2f61e736dcc415018"
-  integrity sha512-58ufCEM59CRyINfJ5ded+HmiZNEo4I8JqH+RYbShegnYN/MBEAx2tYD+jEf/vq7hPjcMXp9jGun+/zS5wnvZ4w==
+"@centrifuge/centrifuge-react@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@centrifuge/centrifuge-react/-/centrifuge-react-0.0.4.tgz#4f00f381d7d33b738f04e3b8cb2db607d73aceb2"
+  integrity sha512-wTNhFQ4EwjdsqR7A9HN4KNO/XWxeSpVa9kp4j3Ot+G41HoaQspynYzI3EOKe1/4XXPVOEOQZ45z8uaz1iNx5NQ==
   dependencies:
     "@polkadot/extension-dapp" "^0.44.6"
     "@polkadot/react-identicon" "^2.9.12"
