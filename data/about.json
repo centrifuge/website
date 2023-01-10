@@ -60,10 +60,6 @@
       }
     ]
   },
-  "value_section": {
-    "title": "Our values",
-    "items": ["Bold", "Inclusive", "Trustworthy", "Collaborative"]
-  },
   "beliefs_section": {
     "title": "Our Beliefs",
     "items": [
