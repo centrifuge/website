@@ -8,8 +8,8 @@
     "image": "./images/home/hero-main-shape.svg",
     "partners": [
       {
-        "image": "./images/partner/polkadot.svg",
-        "alt": "Polkadot"
+        "image": "./images/partner/blocktower.svg",
+        "alt": "Block Tower"
       },
       {
         "image": "./images/partner/maker.svg",
@@ -20,12 +20,12 @@
         "alt": "AAVE"
       },
       {
-        "image": "./images/partner/ethereum.svg",
-        "alt": "Ethereum"
+        "image": "./images/partner/polkadot.svg",
+        "alt": "Polkadot"
       },
       {
-        "image": "./images/partner/blocktower.svg",
-        "alt": "Block Tower"
+        "image": "./images/partner/ethereum.svg",
+        "alt": "Ethereum"
       },
       {
         "image": "./images/partner/acala.svg",
