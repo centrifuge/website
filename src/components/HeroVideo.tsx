@@ -41,6 +41,7 @@ export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
         <Text variant="tag" as="h1">
           {title}
         </Text>
+
         <Box maxWidth={950}>
           <Text variant="heading5" as="p">
             {body}
@@ -53,13 +54,13 @@ export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
           </AnchorButton>
         )}
 
-        <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(3, minmax(0, 1fr))']} gap={6} mt={6} width="100%">
+        <Box width="100%" maxWidth={940} mt={6}>
           {'youtubeId' in video ? (
             <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
           ) : (
             <Box as="video" aspectRatio="16 / 9" width="100%" src={video.url} autoPlay muted loop />
           )}
-        </Grid>
+        </Box>
       </Stack>
     </CenterContainer>
   )
