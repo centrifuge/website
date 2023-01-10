@@ -12,7 +12,7 @@ export function ChainStats() {
     <Root as="ul" role="list" py={[2, 1, 1, 2]}>
       {pools && (
         <Item>
-          <Label>Assets Financed</Label>
+          <Label>Total Assets Financed</Label>
           <Value isLoading={pools.isLoading}>
             {pools?.isLoading || !pools?.data?.totalAssetsFinanced ? '—' : `$ ${pools?.data?.totalAssetsFinanced}M`}
           </Value>
@@ -20,7 +20,7 @@ export function ChainStats() {
       )}
 
       <Item>
-        <Label>Total Assets Tokenized</Label>
+        <Label>Assets Tokenized</Label>
         <Value isLoading={totalAssetsTokenized.isLoading}>
           {totalAssetsTokenized?.isLoading || !totalAssetsTokenized?.data ? '—' : totalAssetsTokenized?.data}
         </Value>
