@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Container, Box, Text, Grid, Stack } from '@centrifuge/fabric'
+import { Container, Text, Grid, Stack } from '@centrifuge/fabric'
 import { Reveal, RevealWrapper } from '../Reveal'
 import type { ImageProps } from '../Image'
 import { Image } from '../Image'
@@ -28,12 +28,11 @@ export type WorkPrincipleProps = {
 
 export function WorkPrinciple({ title, items }: WorkPrincipleProps) {
   const [inView, setIsInview] = React.useState(false)
-  const delay = 0.4
 
   return (
     <RevealWrapper as="section" px={2} py={8} onEnter={() => setIsInview(true)}>
       <Container>
-        <Reveal isRevealed={inView} delay={delay}>
+        <Reveal isRevealed={inView}>
           <Text as="h2" variant="heading2">
             {title}
           </Text>
@@ -42,7 +41,7 @@ export function WorkPrinciple({ title, items }: WorkPrincipleProps) {
         <Container maxWidth="containerNarrow">
           <Stack gap={10} mt={[6, 6, 10]} p={0} as="ul" role="list" style={{ listStyle: 'none' }}>
             {items.map((item, index) => (
-              <Reveal as="li" key={`${item.label}${index}`} isRevealed={inView} delay={delay + index * 0.07}>
+              <Reveal as="li" key={`${item.label}${index}`} isRevealed={inView} staggerIndex={index}>
                 <Principle {...item} flipped={index % 2 > 0} />
               </Reveal>
             ))}

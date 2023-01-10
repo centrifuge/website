@@ -1,6 +1,7 @@
 import React from 'react'
-import { Shelf, Box, Stack, Text } from '@centrifuge/fabric'
+import { Shelf, Stack, Text } from '@centrifuge/fabric'
 import { useTheme } from 'styled-components'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { Unit } from './Unit'
 
 export type ColorsProps = {
@@ -13,15 +14,25 @@ export type ColorsProps = {
 }
 
 export function Colors({ title, items }: ColorsProps) {
+  const [inView, setIsInview] = React.useState(false)
+
   return (
-    <Box>
-      <Text as="h3" variant="heading2">
-        {title}
-      </Text>
+    <RevealWrapper onEnter={() => setIsInview(true)}>
+      <Reveal isRevealed={inView}>
+        <Text as="h3" variant="heading2">
+          {title}
+        </Text>
+      </Reveal>
 
       <Stack gap={6} mt={4}>
         {items.map((item, index) => (
-          <Unit key={`${item.title}${index}`} title={item.title} body={item.body}>
+          <Unit
+            key={`${item.title}${index}`}
+            title={item.title}
+            body={item.body}
+            isRevealed={inView}
+            staggerIndex={index + 1}
+          >
             <Stack as="dl" gap={2}>
               {item.colors.map((color, i) => (
                 <ColorBlock key={`${color.title}${i}`} {...color} />
@@ -30,7 +41,7 @@ export function Colors({ title, items }: ColorsProps) {
           </Unit>
         ))}
       </Stack>
-    </Box>
+    </RevealWrapper>
   )
 }
 

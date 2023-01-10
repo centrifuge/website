@@ -1,15 +1,18 @@
 import React from 'react'
 import { Box, Text } from '@centrifuge/fabric'
+import { Reveal } from '../Reveal'
 
 export type UnitProps = {
   title?: string
   body: string
   children: React.ReactNode
+  isRevealed: boolean
+  staggerIndex: number
 }
 
-export function Unit({ title, body, children }: UnitProps) {
+export function Unit({ title, body, children, isRevealed, staggerIndex }: UnitProps) {
   return (
-    <Box>
+    <Reveal isRevealed={isRevealed} staggerIndex={staggerIndex}>
       {title && (
         <Text as="h4" variant="heading4">
           {title}
@@ -20,6 +23,6 @@ export function Unit({ title, body, children }: UnitProps) {
       </Box>
 
       <Box mt={2}>{children}</Box>
-    </Box>
+    </Reveal>
   )
 }

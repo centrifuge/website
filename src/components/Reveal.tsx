@@ -28,21 +28,30 @@ export function RevealWrapper({ onEnter, marginTop = 0, marginBottom = 0, childr
 
 export type RevealProps = {
   isRevealed: boolean
+  staggerIndex?: number
+  stagger?: number
   delay?: number
 } & BoxProps
 
 const duration = '0.5s'
 
-const Root = styled(Box)<{ isRevealed: boolean; delay: number }>`
+const Root = styled(Box)<{ isRevealed: boolean; delay: number; stagger: number; staggerIndex: number }>`
   opacity: ${({ isRevealed }) => (isRevealed ? 1 : 0)};
   transform: ${({ isRevealed }) => (isRevealed ? 'translateY(0)' : 'translateY(30px)')};
   transition: opacity ${duration} linear, transform ${duration} ease-out;
-  transition-delay: ${({ delay }) => `${delay}s`};
+  transition-delay: ${({ delay, stagger, staggerIndex }) => `${delay + stagger * staggerIndex}s`};
 `
 
-export function Reveal({ isRevealed = false, delay = 0, children, ...rest }: RevealProps) {
+export function Reveal({
+  isRevealed = false,
+  staggerIndex = 0,
+  stagger = 0.1,
+  delay = 0.4,
+  children,
+  ...rest
+}: RevealProps) {
   return (
-    <Root isRevealed={isRevealed} delay={delay} {...rest}>
+    <Root isRevealed={isRevealed} delay={delay} stagger={stagger} staggerIndex={staggerIndex} {...rest}>
       {children}
     </Root>
   )

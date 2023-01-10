@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from '../CenterContainer'
 import { HeroTitle } from '../HeroTitle'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { ImageProps } from '../Image'
 import circles from './circles.svg'
 
@@ -38,51 +39,67 @@ export type HeroGovernanceProps = {
 }
 
 export function HeroGovernance({ title, subtitle, body, items }: HeroGovernanceProps) {
+  const [inView, setIsInview] = React.useState(false)
+
   return (
-    <CenterContainer as="section">
-      <Stack gap={8} pt={8}>
-        <Shelf gap={8} alignItems="flex-start">
-          <Box flex="1 1 65%">
-            <HeroTitle title={title} subtitle={subtitle} body={body} />
-          </Box>
-          <Box flex="0 1 30%" minWidth={0} ml="auto" display={['none', 'none', 'block']}>
-            <Box as="img" src={circles} alt="" width="100%" />
-          </Box>
-        </Shelf>
-        <Grid columns={[1, 2, 3]} equalColumns gap={3}>
-          {items.map((item) => (
-            <Card
-              p={3}
-              variant="interactive"
-              as="a"
-              rel="noopener noreferrer"
-              target="_blank"
-              href={item.link}
-              key={item.title}
+    <RevealWrapper onEnter={() => setIsInview(true)}>
+      <CenterContainer as="section">
+        <Stack gap={8} pt={8}>
+          <Shelf gap={8} alignItems="flex-start">
+            <Reveal isRevealed={inView} flex="1 1 65%">
+              <HeroTitle title={title} subtitle={subtitle} body={body} />
+            </Reveal>
+
+            <Reveal
+              isRevealed={inView}
+              staggerIndex={1}
+              flex="0 1 30%"
+              minWidth={0}
+              ml="auto"
+              display={['none', 'none', 'block']}
             >
-              <Stack gap={2}>
-                <Shelf
-                  justifyContent="center"
-                  borderWidth={1}
-                  borderStyle="solid"
-                  borderColor="borderPrimary"
-                  backgroundColor="yellowScale.30"
-                  height={140}
-                  p={1}
+              <Box as="img" src={circles} alt="" width="100%" />
+            </Reveal>
+          </Shelf>
+
+          <Grid columns={[1, 2, 3]} equalColumns gap={3}>
+            {items.map((item, index) => (
+              <Reveal isRevealed={inView} staggerIndex={index + 1} key={item.title}>
+                <Card
+                  p={3}
+                  variant="interactive"
+                  as="a"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={item.link}
+                  minHeight="100%"
+                  display="block"
                 >
-                  <Box as="img" src={item.image.publicURL} alt="" maxWidth="100%" />
-                </Shelf>
-                <Text variant="heading4" as="h2">
-                  {item.title}
-                </Text>
-                <Text as="p" variant="body1">
-                  {item.body}
-                </Text>
-              </Stack>
-            </Card>
-          ))}
-        </Grid>
-      </Stack>
-    </CenterContainer>
+                  <Stack gap={2}>
+                    <Shelf
+                      justifyContent="center"
+                      borderWidth={1}
+                      borderStyle="solid"
+                      borderColor="borderPrimary"
+                      backgroundColor="yellowScale.30"
+                      height={140}
+                      p={1}
+                    >
+                      <Box as="img" src={item.image.publicURL} alt="" maxWidth="100%" />
+                    </Shelf>
+                    <Text variant="heading4" as="h2">
+                      {item.title}
+                    </Text>
+                    <Text as="p" variant="body1">
+                      {item.body}
+                    </Text>
+                  </Stack>
+                </Card>
+              </Reveal>
+            ))}
+          </Grid>
+        </Stack>
+      </CenterContainer>
+    </RevealWrapper>
   )
 }

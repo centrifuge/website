@@ -1,17 +1,19 @@
 import React from 'react'
 import { Shelf, Box, Stack, IconArrowLeft, IconArrowRight } from '@centrifuge/fabric'
 import { useCarousel } from '../../hooks/use-carousel'
+import { Reveal } from '../Reveal'
 import { Contributor, ContributorProps } from './Contributor'
 import { Viewport } from './styles'
 import { Control } from '../Control'
 
 type MobileCarouselProps = {
   items: ContributorProps[]
+  isRevealed: boolean
 }
 
 const ITEMS_PER_CHUNK = 5
 
-export function MobileCarousel({ items }: MobileCarouselProps) {
+export function MobileCarousel({ items, isRevealed }: MobileCarouselProps) {
   const chunks = React.useMemo(
     () =>
       items.reduce((chunks: ContributorProps[][], item: ContributorProps, index) => {
@@ -27,7 +29,7 @@ export function MobileCarousel({ items }: MobileCarouselProps) {
   })
 
   return (
-    <Box display={['block', 'none']}>
+    <Reveal display={['block', 'none']} isRevealed={isRevealed} staggerIndex={1}>
       <Shelf justifyContent="end" px={2} gap={1}>
         <Control type="button" title="Previous" onClick={scrollPrev} disabled={!prevBtnEnabled}>
           <IconArrowLeft />
@@ -48,6 +50,6 @@ export function MobileCarousel({ items }: MobileCarouselProps) {
           ))}
         </Shelf>
       </Viewport>
-    </Box>
+    </Reveal>
   )
 }

@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from './CenterContainer'
 import { YoutubeEmbed } from './YoutubeEmbed'
+import { Reveal, RevealWrapper } from './Reveal'
 
 export const query = graphql`
   fragment HeroVideoFragment on DataJsonHero_video {
@@ -35,32 +36,40 @@ export type HeroVideoProps = {
 }
 
 export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
+  const [inView, setIsInview] = React.useState(false)
+
   return (
-    <CenterContainer as="section" pt={8}>
-      <Stack gap={2} alignItems="start">
-        <Text variant="tag" as="h1">
-          {title}
-        </Text>
-        <Box maxWidth={950}>
-          <Text variant="heading5" as="p">
-            {body}
-          </Text>
-        </Box>
+    <RevealWrapper onEnter={() => setIsInview(true)}>
+      <CenterContainer as="section" pt={8}>
+        <Stack gap={2} alignItems="start">
+          <Reveal isRevealed={inView}>
+            <Text variant="tag" as="h1">
+              {title}
+            </Text>
+          </Reveal>
+          <Reveal maxWidth={950} isRevealed={inView} staggerIndex={1}>
+            <Text variant="heading5" as="p">
+              {body}
+            </Text>
+          </Reveal>
 
-        {cta && (
-          <AnchorButton href={cta.href} variant="secondary">
-            {cta.title}
-          </AnchorButton>
-        )}
-
-        <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(3, minmax(0, 1fr))']} gap={6} mt={6} width="100%">
-          {'youtubeId' in video ? (
-            <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
-          ) : (
-            <Box as="video" aspectRatio="16 / 9" width="100%" src={video.url} autoPlay muted loop />
+          {cta && (
+            <Reveal isRevealed={inView} staggerIndex={2}>
+              <AnchorButton href={cta.href} variant="secondary">
+                {cta.title}
+              </AnchorButton>
+            </Reveal>
           )}
-        </Grid>
-      </Stack>
-    </CenterContainer>
+
+          <Reveal width="100%" maxWidth={940} mt={6} isRevealed={inView} staggerIndex={2}>
+            {'youtubeId' in video ? (
+              <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
+            ) : (
+              <Box as="video" aspectRatio="16 / 9" width="100%" src={video.url} autoPlay muted loop />
+            )}
+          </Reveal>
+        </Stack>
+      </CenterContainer>
+    </RevealWrapper>
   )
 }

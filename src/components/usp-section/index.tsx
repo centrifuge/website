@@ -28,12 +28,11 @@ export type UspSectionProps = {
 
 export function UspSection({ title, body, items }: UspSectionProps) {
   const [inView, setIsInview] = React.useState(false)
-  const delay = 0.4
 
   return (
     <RevealWrapper as="section" px={2} onEnter={() => setIsInview(true)}>
       <Container maxWidth="container">
-        <Reveal isRevealed={inView} delay={delay}>
+        <Reveal isRevealed={inView}>
           <Text as="h2" variant="heading2">
             {title}
           </Text>
@@ -48,7 +47,7 @@ export function UspSection({ title, body, items }: UspSectionProps) {
         <Container maxWidth="containerNarrow">
           <Grid as="ul" role="list" columns={[1, 1, 2]} gap={10} rowGap={8} mt={10}>
             {items.map((item, index) => (
-              <Reveal as="li" key={`${item.title}${index}`} isRevealed={inView} delay={delay + index * 0.1}>
+              <Reveal as="li" key={`${item.title}${index}`} isRevealed={inView} staggerIndex={index + 1}>
                 <UspItem {...item} />
               </Reveal>
             ))}

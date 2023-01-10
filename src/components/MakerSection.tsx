@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Box, Container, Grid, Stack, Text } from '@centrifuge/fabric'
+import { Reveal, RevealWrapper } from './Reveal'
 
 export const query = graphql`
   fragment MakerSectionFragment on DataJsonMaker_section {
@@ -22,12 +23,16 @@ export type MakerSectionProps = {
 }
 
 export function MakerSection({ title, items }: MakerSectionProps) {
+  const [inView, setIsInview] = React.useState(false)
+
   return (
-    <Box as="section" p={2}>
+    <RevealWrapper as="section" p={2} onEnter={() => setIsInview(true)}>
       <Container>
-        <Text as="h2" variant="heading2">
-          {title}
-        </Text>
+        <Reveal isRevealed={inView}>
+          <Text as="h2" variant="heading2">
+            {title}
+          </Text>
+        </Reveal>
 
         <Grid
           gap={6}
@@ -35,11 +40,13 @@ export function MakerSection({ title, items }: MakerSectionProps) {
           mt={[4, 4, 6]}
         >
           {items.map((item, index) => (
-            <Item {...item} key={index} />
+            <Reveal isRevealed={inView} staggerIndex={index + 1} key={`${index}${item.title}`}>
+              <Item {...item} />
+            </Reveal>
           ))}
         </Grid>
       </Container>
-    </Box>
+    </RevealWrapper>
   )
 }
 

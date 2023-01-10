@@ -1,17 +1,19 @@
 import React from 'react'
 import { Container, Shelf, Box, Grid, IconArrowLeft, IconArrowRight } from '@centrifuge/fabric'
 import { useCarousel } from '../../hooks/use-carousel'
+import { Reveal } from '../Reveal'
 import { Control } from '../Control'
 import { Contributor, ContributorProps } from './Contributor'
 import { Viewport } from './styles'
 
 type DesktopCarouselProps = {
   items: ContributorProps[]
+  isRevealed: boolean
 }
 
 const desktopMaxWidth = 2500
 
-export function DesktopCarousel({ items }: DesktopCarouselProps) {
+export function DesktopCarousel({ items, isRevealed }: DesktopCarouselProps) {
   const { viewportRef, prevBtnEnabled, nextBtnEnabled, scrollPrev, scrollNext } = useCarousel({
     dragFree: true,
     startIndex: Math.floor(items.length * 0.25),
@@ -20,7 +22,7 @@ export function DesktopCarousel({ items }: DesktopCarouselProps) {
   const columnCount = Math.ceil(items.length * 0.5)
 
   return (
-    <Box display={['none', 'block']}>
+    <Reveal display={['none', 'block']} isRevealed={isRevealed} staggerIndex={1}>
       <Controls
         scrollPrev={scrollPrev}
         scrollNext={scrollNext}
@@ -47,7 +49,7 @@ export function DesktopCarousel({ items }: DesktopCarouselProps) {
           ))}
         </Grid>
       </Viewport>
-    </Box>
+    </Reveal>
   )
 }
 
