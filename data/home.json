@@ -147,23 +147,28 @@
     "items": [
       {
         "image": "./images/audit/trails-of-bits.svg",
-        "alt": "Trails of Bits"
+        "alt": "Trails of Bits",
+        "href": "https://github.com/centrifuge/security/blob/main/audits/node/Trail-of-Bits-Audit.pdf"
       },
       {
         "image": "./images/audit/security-research-labs.svg",
-        "alt": "Security Reseach Labs"
+        "alt": "Security Reseach Labs",
+        "href": "https://github.com/centrifuge/security/blob/main/audits/chain/SRLabs-baseline-report_2022.pdf"
       },
       {
         "image": "./images/audit/dapp-org.svg",
-        "alt": "dapp.org"
+        "alt": "dapp.org",
+        "href": "https://dapp.org.uk/reports/tinlake.html"
       },
       {
         "image": "./images/audit/least-authority.png",
-        "alt": "Least Authority - Privacy matters"
+        "alt": "Least Authority - Privacy matters",
+        "href": "https://leastauthority.com/static/publications/LeastAuthority_Centrifuge_Tinlake_0.3.0_Audit_Report.pdf"
       },
       {
         "image": "./images/audit/consensys-diligence.svg",
-        "alt": "Consensys Diligence"
+        "alt": "Consensys Diligence",
+        "href": "https://consensys.net/diligence/audits/private/adash47d-chainbridge/chainbridge-audit-2020-04.pdf"
       }
     ]
   }
