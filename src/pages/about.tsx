@@ -71,9 +71,9 @@ export default function Contributors({ data }: ContributorsProps) {
       <Stack gap={168}>
         <HeroVideo {...hero_video} />
         <MakerSection {...maker_section} />
+        <ContributorsSection {...contributors_section} />
         <OrgSection {...org_section} />
         <BeliefsSection {...beliefs_section} />
-        <ContributorsSection {...contributors_section} />
         <CareerSection {...career_section} />
       </Stack>
     </Layout>
