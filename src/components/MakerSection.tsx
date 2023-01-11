@@ -23,12 +23,10 @@ export type MakerSectionProps = {
 }
 
 export function MakerSection({ title, items }: MakerSectionProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper as="section" p={2} onEnter={() => setIsInview(true)}>
+    <RevealWrapper as="section" p={2}>
       <Container>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Text as="h2" variant="heading2">
             {title}
           </Text>
@@ -40,7 +38,7 @@ export function MakerSection({ title, items }: MakerSectionProps) {
           mt={[4, 4, 6]}
         >
           {items.map((item, index) => (
-            <Reveal isRevealed={inView} staggerIndex={index + 1} key={`${index}${item.title}`}>
+            <Reveal staggerIndex={index + 1} key={`${index}${item.title}`}>
               <Item {...item} />
             </Reveal>
           ))}

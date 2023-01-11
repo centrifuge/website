@@ -26,19 +26,17 @@ export type CareerSectionProps = {
 
 export function CareerSection({ title, fallback, note }: CareerSectionProps) {
   const { positions, isLoading, isError } = useLeverPositions()
-  const [inView, setIsInview] = React.useState(false)
 
   return (
-    <RevealWrapper px={2} as="section" id="careers" onEnter={() => setIsInview(true)}>
+    <RevealWrapper px={2} as="section" id="careers">
       <Container>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Text as="h2" variant="heading2">
             {title}
           </Text>
         </Reveal>
 
         <Reveal
-          isRevealed={inView}
           staggerIndex={1}
           borderStyle="solid"
           borderColor="borderPrimary"
@@ -82,7 +80,6 @@ export function CareerSection({ title, fallback, note }: CareerSectionProps) {
         </Reveal>
 
         <Reveal
-          isRevealed={inView}
           staggerIndex={2}
           py={3}
           borderStyle="solid"

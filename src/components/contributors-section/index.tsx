@@ -48,23 +48,21 @@ export type ContributorsSectionProps = {
 }
 
 export function ContributorsSection({ title, cta, items }: ContributorsSectionProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper as="section" onEnter={() => setIsInview(true)}>
+    <RevealWrapper as="section">
       <CenterContainer>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Text variant="heading2" as="h2">
             {title}
           </Text>
         </Reveal>
       </CenterContainer>
 
-      <MobileCarousel items={items} isRevealed={inView} />
-      <DesktopCarousel items={items} isRevealed={inView} />
+      <MobileCarousel items={items} />
+      <DesktopCarousel items={items} />
 
       {cta && (
-        <Reveal isRevealed={inView} staggerIndex={2}>
+        <Reveal staggerIndex={2}>
           <CenterContainer textAlign="center" mt={6}>
             <Text variant="body2" as="p" style={{ marginBottom: '1em' }}>
               {cta.body}

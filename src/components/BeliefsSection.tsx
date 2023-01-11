@@ -20,13 +20,11 @@ export type BeliefsSectionProps = {
 }
 
 export function BeliefsSection({ title, items }: BeliefsSectionProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper onEnter={() => setIsInview(true)}>
+    <RevealWrapper>
       <CenterContainer as="section">
         <Stack gap={5}>
-          <Reveal isRevealed={inView}>
+          <Reveal>
             <Stack gap={1}>
               <Text variant="heading2" as="h2">
                 {title}
@@ -35,7 +33,7 @@ export function BeliefsSection({ title, items }: BeliefsSectionProps) {
             </Stack>
           </Reveal>
 
-          <Reveal isRevealed={inView} staggerIndex={1}>
+          <Reveal staggerIndex={1}>
             <Grid gridTemplateColumns={['1fr', '1fr', '1fr 2fr']}>
               <span />
               <Grid columns={[1, 2]} gap={8} rowGap={[4, 10]} role="list">

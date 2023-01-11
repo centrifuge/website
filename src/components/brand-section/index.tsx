@@ -61,12 +61,10 @@ export type BrandSectionProps = {
 }
 
 export function BrandSection({ title, color, font, logo }: BrandSectionProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper as="article" px={2} onEnter={() => setIsInview(true)}>
+    <RevealWrapper as="article" px={2}>
       <Container>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Text as="h2" variant="tag">
             {title}
           </Text>

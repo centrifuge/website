@@ -18,8 +18,8 @@ export function Logos({ title, items }: LogosProps) {
   const [inView, setIsInview] = React.useState(false)
 
   return (
-    <RevealWrapper as="section" onEnter={() => setIsInview(true)}>
-      <Reveal isRevealed={inView} mb={2}>
+    <RevealWrapper as="section">
+      <Reveal mb={2}>
         <Text as="h3" variant="heading2">
           {title}
         </Text>
@@ -27,13 +27,7 @@ export function Logos({ title, items }: LogosProps) {
 
       <Stack gap={10} mt={4}>
         {items.map((item, index) => (
-          <Unit
-            key={`${item.title}${index}`}
-            title={item.title}
-            body={item.body}
-            isRevealed={inView}
-            staggerIndex={index + 1}
-          >
+          <Unit key={`${item.title}${index}`} title={item.title} body={item.body} staggerIndex={index + 1}>
             <Gallery images={item.images} />
           </Unit>
         ))}

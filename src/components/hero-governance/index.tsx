@@ -39,32 +39,23 @@ export type HeroGovernanceProps = {
 }
 
 export function HeroGovernance({ title, subtitle, body, items }: HeroGovernanceProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper onEnter={() => setIsInview(true)}>
+    <RevealWrapper>
       <CenterContainer as="section">
         <Stack gap={8} pt={8}>
           <Shelf gap={8} alignItems="flex-start">
-            <Reveal isRevealed={inView} flex="1 1 65%">
+            <Reveal flex="1 1 65%">
               <HeroTitle title={title} subtitle={subtitle} body={body} />
             </Reveal>
 
-            <Reveal
-              isRevealed={inView}
-              staggerIndex={1}
-              flex="0 1 30%"
-              minWidth={0}
-              ml="auto"
-              display={['none', 'none', 'block']}
-            >
+            <Reveal staggerIndex={1} flex="0 1 30%" minWidth={0} ml="auto" display={['none', 'none', 'block']}>
               <Box as="img" src={circles} alt="" width="100%" />
             </Reveal>
           </Shelf>
 
           <Grid columns={[1, 2, 3]} equalColumns gap={3}>
             {items.map((item, index) => (
-              <Reveal isRevealed={inView} staggerIndex={index + 1} key={item.title}>
+              <Reveal staggerIndex={index + 1} key={item.title}>
                 <Card
                   p={3}
                   variant="interactive"

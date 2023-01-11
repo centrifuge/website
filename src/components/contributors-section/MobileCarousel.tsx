@@ -8,12 +8,11 @@ import { Control } from '../Control'
 
 type MobileCarouselProps = {
   items: ContributorProps[]
-  isRevealed: boolean
 }
 
 const ITEMS_PER_CHUNK = 5
 
-export function MobileCarousel({ items, isRevealed }: MobileCarouselProps) {
+export function MobileCarousel({ items }: MobileCarouselProps) {
   const chunks = React.useMemo(
     () =>
       items.reduce((chunks: ContributorProps[][], item: ContributorProps, index) => {
@@ -29,7 +28,7 @@ export function MobileCarousel({ items, isRevealed }: MobileCarouselProps) {
   })
 
   return (
-    <Reveal display={['block', 'none']} isRevealed={isRevealed} staggerIndex={1}>
+    <Reveal display={['block', 'none']} staggerIndex={1}>
       <Shelf justifyContent="end" px={2} gap={1}>
         <Control type="button" title="Previous" onClick={scrollPrev} disabled={!prevBtnEnabled}>
           <IconArrowLeft />

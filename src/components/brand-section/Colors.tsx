@@ -14,11 +14,9 @@ export type ColorsProps = {
 }
 
 export function Colors({ title, items }: ColorsProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper onEnter={() => setIsInview(true)}>
-      <Reveal isRevealed={inView}>
+    <RevealWrapper>
+      <Reveal>
         <Text as="h3" variant="heading2">
           {title}
         </Text>
@@ -26,13 +24,7 @@ export function Colors({ title, items }: ColorsProps) {
 
       <Stack gap={6} mt={4}>
         {items.map((item, index) => (
-          <Unit
-            key={`${item.title}${index}`}
-            title={item.title}
-            body={item.body}
-            isRevealed={inView}
-            staggerIndex={index + 1}
-          >
+          <Unit key={`${item.title}${index}`} title={item.title} body={item.body} staggerIndex={index + 1}>
             <Stack as="dl" gap={2}>
               {item.colors.map((color, i) => (
                 <ColorBlock key={`${color.title}${i}`} {...color} />

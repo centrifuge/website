@@ -28,23 +28,21 @@ export type TestimonialsProps = {
 }
 
 export function Testimonials({ title, items }: TestimonialsProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   const { viewportRef, selectedIndex, scrollTo } = useCarousel({
     axis: 'x',
     draggable: false,
   })
 
   return (
-    <RevealWrapper as="section" px={2} onEnter={() => setIsInview(true)}>
+    <RevealWrapper as="section" px={2}>
       <Container>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Text as="h2" variant="heading2">
             {title}
           </Text>
         </Reveal>
 
-        <Reveal isRevealed={inView} staggerIndex={1} maxWidth="containerNarrow" mr="auto" ml="auto">
+        <Reveal staggerIndex={1} maxWidth="containerNarrow" mr="auto" ml="auto">
           <Content pt={[100, 100, 150]} gridTemplateColumns={['1fr', '1fr 30px']} gap={4}>
             <Box ref={viewportRef} style={{ overflow: 'hidden' }}>
               <Shelf as="ul" p={0} m={0} role="list">

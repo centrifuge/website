@@ -59,13 +59,11 @@ export type OrgSectionProps = {
 }
 
 export function OrgSection({ title, items }: OrgSectionProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper onEnter={() => setIsInview(true)}>
+    <RevealWrapper>
       <CenterContainer>
         <Stack as="section" gap={8}>
-          <Reveal isRevealed={inView}>
+          <Reveal>
             <Text variant="heading2" as="h2">
               {title}
             </Text>
@@ -73,7 +71,7 @@ export function OrgSection({ title, items }: OrgSectionProps) {
 
           <Grid columns={[1, 1, 3]} gap={[8, 8, 5]} equalColumns as="ul" role="list">
             {items.map((item, index) => (
-              <Reveal isRevealed={inView} staggerIndex={index + 1} key={`${index}${item.title}`}>
+              <Reveal staggerIndex={index + 1} key={`${index}${item.title}`}>
                 <Item {...item} />
               </Reveal>
             ))}

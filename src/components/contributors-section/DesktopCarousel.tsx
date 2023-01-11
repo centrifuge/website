@@ -8,12 +8,11 @@ import { Viewport } from './styles'
 
 type DesktopCarouselProps = {
   items: ContributorProps[]
-  isRevealed: boolean
 }
 
 const desktopMaxWidth = 2500
 
-export function DesktopCarousel({ items, isRevealed }: DesktopCarouselProps) {
+export function DesktopCarousel({ items }: DesktopCarouselProps) {
   const { viewportRef, prevBtnEnabled, nextBtnEnabled, scrollPrev, scrollNext } = useCarousel({
     dragFree: true,
     startIndex: Math.floor(items.length * 0.25),
@@ -22,7 +21,7 @@ export function DesktopCarousel({ items, isRevealed }: DesktopCarouselProps) {
   const columnCount = Math.ceil(items.length * 0.5)
 
   return (
-    <Reveal display={['none', 'block']} isRevealed={isRevealed} staggerIndex={1}>
+    <Reveal display={['none', 'block']} staggerIndex={1}>
       <Controls
         scrollPrev={scrollPrev}
         scrollNext={scrollNext}

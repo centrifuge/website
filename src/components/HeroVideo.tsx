@@ -36,32 +36,30 @@ export type HeroVideoProps = {
 }
 
 export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper onEnter={() => setIsInview(true)}>
+    <RevealWrapper>
       <CenterContainer as="section" pt={8}>
         <Stack gap={2} alignItems="start">
-          <Reveal isRevealed={inView}>
+          <Reveal>
             <Text variant="tag" as="h1">
               {title}
             </Text>
           </Reveal>
-          <Reveal maxWidth={950} isRevealed={inView} staggerIndex={1}>
+          <Reveal maxWidth={950} staggerIndex={1}>
             <Text variant="heading5" as="p">
               {body}
             </Text>
           </Reveal>
 
           {cta && (
-            <Reveal isRevealed={inView} staggerIndex={2}>
+            <Reveal staggerIndex={2}>
               <AnchorButton href={cta.href} variant="secondary">
                 {cta.title}
               </AnchorButton>
             </Reveal>
           )}
 
-          <Reveal width="100%" maxWidth={940} mt={6} isRevealed={inView} staggerIndex={2}>
+          <Reveal width="100%" maxWidth={940} mt={6} staggerIndex={2}>
             {'youtubeId' in video ? (
               <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
             ) : (

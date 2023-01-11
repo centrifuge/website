@@ -27,12 +27,10 @@ export type WorkPrincipleProps = {
 }
 
 export function WorkPrinciple({ title, items }: WorkPrincipleProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper as="section" px={2} py={8} onEnter={() => setIsInview(true)}>
+    <RevealWrapper as="section" px={2} py={8}>
       <Container>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Text as="h2" variant="heading2">
             {title}
           </Text>
@@ -41,7 +39,7 @@ export function WorkPrinciple({ title, items }: WorkPrincipleProps) {
         <Container maxWidth="containerNarrow">
           <Stack gap={10} mt={[6, 6, 10]} p={0} as="ul" role="list" style={{ listStyle: 'none' }}>
             {items.map((item, index) => (
-              <Reveal as="li" key={`${item.label}${index}`} isRevealed={inView} staggerIndex={index}>
+              <Reveal as="li" key={`${item.label}${index}`} staggerIndex={index}>
                 <Principle {...item} flipped={index % 2 > 0} />
               </Reveal>
             ))}

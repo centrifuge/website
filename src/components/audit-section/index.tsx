@@ -28,12 +28,10 @@ export type AuditSectionProps = {
 }
 
 export function AuditSection({ title, items }: AuditSectionProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper as="section" px={2} onEnter={() => setIsInview(true)}>
+    <RevealWrapper as="section" px={2}>
       <Container>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Shelf
             justifyContent={['space-between', 'space-between', 'start']}
             alignItems="center"
@@ -50,7 +48,7 @@ export function AuditSection({ title, items }: AuditSectionProps) {
           </Shelf>
         </Reveal>
 
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Shelf
             as="ul"
             role="list"

@@ -34,7 +34,6 @@ export type NewsSectionProps = {
 }
 
 export function NewsSection({ title, count, link, note }: NewsSectionProps) {
-  const [inView, setIsInview] = React.useState(false)
   const { isLoading, isError, posts } = useMediumPosts(count)
 
   const { viewportRef, prevBtnEnabled, nextBtnEnabled, scrollPrev, scrollNext } = useCarousel({
@@ -44,9 +43,9 @@ export function NewsSection({ title, count, link, note }: NewsSectionProps) {
   })
 
   return (
-    <RevealWrapper as="section" px={2} style={{ overflow: 'hidden' }} onEnter={() => setIsInview(true)}>
+    <RevealWrapper as="section" px={2} style={{ overflow: 'hidden' }}>
       <Container>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Shelf alignItems="center" flexWrap="wrap" gap={4} rowGap={[4, 4, 0]}>
             <Text as="h2" variant="heading2">
               {title}
@@ -75,7 +74,7 @@ export function NewsSection({ title, count, link, note }: NewsSectionProps) {
           </Shelf>
         </Reveal>
 
-        <Reveal isRevealed={inView}>
+        <Reveal>
           {!isError && !isLoading ? (
             <Box ref={viewportRef} style={{ overflow: 'visible' }} mt={[1, 1, 6]} py={1}>
               <Shelf as="ul" p={0} m={0} role="list" gap={2} alignItems="normal">

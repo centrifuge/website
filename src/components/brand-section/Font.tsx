@@ -12,18 +12,16 @@ export type FontProps = {
 }
 
 export function Font({ title, body, image }: FontProps) {
-  const [inView, setIsInview] = React.useState(false)
-
   return (
-    <RevealWrapper onEnter={() => setIsInview(true)}>
+    <RevealWrapper>
       <Stack as="section" gap={2}>
-        <Reveal isRevealed={inView}>
+        <Reveal>
           <Text as="h3" variant="heading2">
             {title}
           </Text>
         </Reveal>
 
-        <Unit body={body} isRevealed={inView} staggerIndex={1}>
+        <Unit body={body} staggerIndex={1}>
           <Gallery images={[image]} />
         </Unit>
       </Stack>
