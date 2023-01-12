@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Box, Container, Grid, Text } from '@centrifuge/fabric'
+import { Reveal, RevealWrapper } from '../Reveal'
 import type { UspItemProps } from './UspItem'
 import { UspItem } from './UspItem'
 
@@ -27,27 +28,30 @@ export type UspSectionProps = {
 
 export function UspSection({ title, body, items }: UspSectionProps) {
   return (
-    <Box as="section" px={2}>
+    <RevealWrapper as="section" px={2}>
       <Container maxWidth="container">
-        <Text as="h2" variant="heading2">
-          {title}
-        </Text>
-        <Box mt={2}>
-          <Text variant="body1" as="p" color="textSecondary">
-            {body}
+        <Reveal>
+          <Text as="h2" variant="heading2">
+            {title}
           </Text>
-        </Box>
+
+          <Box mt={2}>
+            <Text variant="body1" as="p" color="textSecondary">
+              {body}
+            </Text>
+          </Box>
+        </Reveal>
 
         <Container maxWidth="containerNarrow">
           <Grid as="ul" role="list" columns={[1, 1, 2]} gap={10} rowGap={8} mt={10}>
             {items.map((item, index) => (
-              <li key={`${item.title}${index}`}>
+              <Reveal as="li" key={`${item.title}${index}`} staggerIndex={index + 1}>
                 <UspItem {...item} />
-              </li>
+              </Reveal>
             ))}
           </Grid>
         </Container>
       </Container>
-    </Box>
+    </RevealWrapper>
   )
 }

@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 import { links } from '../../../config/links'
 import { useVisibilityChecker } from '../../hooks/use-visibility-checker'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { ChainStats } from '../chain-stats/ChainStats'
 import type { PartnerProps } from '../partner-list'
 import { PartnerList } from '../partner-list'
@@ -40,6 +41,7 @@ export type HeroMainProps = {
 
 export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps) {
   const [animate, setAnimate] = React.useState(false)
+
   const ref = React.useRef<HTMLElement>(null)
   useVisibilityChecker({
     ref,
@@ -48,38 +50,50 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
   })
 
   return (
-    <Root as="section" ref={ref} flexDirection="column">
-      <Shelf px={2} pt={[2, 4, 6]}>
-        <Inner maxWidth="container" alignSelf="start">
-          <Title>
-            {title}
-            <br />
-            <Typewriter phrases={ticker} paused={!animate} />
-          </Title>
+    <RevealWrapper>
+      <Root as="section" ref={ref} flexDirection="column">
+        <Shelf px={2} pt={[2, 4, 6]}>
+          <Inner maxWidth="container" alignSelf="start">
+            <Reveal gridArea={['none', 'inner']}>
+              <Title>
+                {title}
+                <br />
+                <Typewriter phrases={ticker} paused={!animate} />
+              </Title>
+            </Reveal>
 
-          <Content>
-            <Graphic>
-              <Image data={image} />
-            </Graphic>
+            <Content>
+              <Reveal staggerIndex={1}>
+                <Graphic>
+                  <Image data={image} />
+                </Graphic>
+              </Reveal>
 
-            {body.map((entry, index) => (
-              <Text key={`${index}`} variant="body1" as="p">
-                {entry}
-              </Text>
-            ))}
+              <Reveal staggerIndex={2}>
+                {body.map((entry, index) => (
+                  <Text key={`${index}`} variant="body1" as="p">
+                    {entry}
+                  </Text>
+                ))}
+              </Reveal>
 
-            <CTA href={links.app} target="_blank" small>
-              Enter App
-            </CTA>
-          </Content>
-        </Inner>
-      </Shelf>
+              <Reveal staggerIndex={3}>
+                <CTA href={links.app} target="_blank" small>
+                  Enter App
+                </CTA>
+              </Reveal>
+            </Content>
+          </Inner>
+        </Shelf>
 
-      <Box px={2} mt="auto">
-        <ChainStats />
-      </Box>
+        <Reveal px={2} mt="auto" staggerIndex={1}>
+          <ChainStats />
+        </Reveal>
 
-      <PartnerList partners={partners} />
-    </Root>
+        <Reveal staggerIndex={2}>
+          <PartnerList partners={partners} />
+        </Reveal>
+      </Root>
+    </RevealWrapper>
   )
 }

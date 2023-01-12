@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Box, Container, Text, IconArrowUpRight, IconBrandSpinner } from '@centrifuge/fabric'
 import { useLeverPositions } from '../../hooks/use-lever-positions'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { NoteCard } from '../NoteCard'
 import { Spinner } from '../Spinner'
 import { Vacancy } from './styles'
@@ -27,13 +28,16 @@ export function CareerSection({ title, fallback, note }: CareerSectionProps) {
   const { positions, isLoading, isError } = useLeverPositions()
 
   return (
-    <Box px={2} as="section" id="careers">
+    <RevealWrapper px={2} as="section" id="careers">
       <Container>
-        <Text as="h2" variant="heading2">
-          {title}
-        </Text>
+        <Reveal>
+          <Text as="h2" variant="heading2">
+            {title}
+          </Text>
+        </Reveal>
 
-        <Box
+        <Reveal
+          staggerIndex={1}
           borderStyle="solid"
           borderColor="borderPrimary"
           borderWidth={0}
@@ -73,17 +77,24 @@ export function CareerSection({ title, fallback, note }: CareerSectionProps) {
               </Text>
             </NoteCard>
           )}
-        </Box>
+        </Reveal>
 
-        <Box py={3} borderStyle="solid" borderColor="borderPrimary" borderWidth={0} borderBottomWidth={1}>
+        <Reveal
+          staggerIndex={2}
+          py={3}
+          borderStyle="solid"
+          borderColor="borderPrimary"
+          borderWidth={0}
+          borderBottomWidth={1}
+        >
           <Text variant="body1" as="p" textAlign="right">
             Don’t see your role? Send us a{' '}
             <Text as="a" href="mailto:hello@centrifuge.io" variant="body1" style={{ textDecoration: 'underline' }}>
               message
             </Text>
           </Text>
-        </Box>
+        </Reveal>
       </Container>
-    </Box>
+    </RevealWrapper>
   )
 }

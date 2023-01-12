@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Container, Box, Text, Grid, Stack } from '@centrifuge/fabric'
+import { Container, Text, Grid, Stack } from '@centrifuge/fabric'
+import { Reveal, RevealWrapper } from '../Reveal'
 import type { ImageProps } from '../Image'
 import { Image } from '../Image'
 import { Column } from './styles'
@@ -27,23 +28,25 @@ export type WorkPrincipleProps = {
 
 export function WorkPrinciple({ title, items }: WorkPrincipleProps) {
   return (
-    <Box as="section" px={2} py={8}>
+    <RevealWrapper as="section" px={2} py={8}>
       <Container>
-        <Text as="h2" variant="heading2">
-          {title}
-        </Text>
+        <Reveal>
+          <Text as="h2" variant="heading2">
+            {title}
+          </Text>
+        </Reveal>
 
         <Container maxWidth="containerNarrow">
           <Stack gap={10} mt={[6, 6, 10]} p={0} as="ul" role="list" style={{ listStyle: 'none' }}>
             {items.map((item, index) => (
-              <li key={`${item.label}${index}`}>
+              <Reveal as="li" key={`${item.label}${index}`} staggerIndex={index}>
                 <Principle {...item} flipped={index % 2 > 0} />
-              </li>
+              </Reveal>
             ))}
           </Stack>
         </Container>
       </Container>
-    </Box>
+    </RevealWrapper>
   )
 }
 

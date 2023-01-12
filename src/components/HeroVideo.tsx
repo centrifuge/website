@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from './CenterContainer'
 import { YoutubeEmbed } from './YoutubeEmbed'
+import { Reveal, RevealWrapper } from './Reveal'
 
 export const query = graphql`
   fragment HeroVideoFragment on DataJsonHero_video {
@@ -36,32 +37,37 @@ export type HeroVideoProps = {
 
 export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
   return (
-    <CenterContainer as="section" pt={8}>
-      <Stack gap={2} alignItems="start">
-        <Text variant="tag" as="h1">
-          {title}
-        </Text>
+    <RevealWrapper>
+      <CenterContainer as="section" pt={8}>
+        <Stack gap={2} alignItems="start">
+          <Reveal>
+            <Text variant="tag" as="h1">
+              {title}
+            </Text>
+          </Reveal>
+          <Reveal maxWidth={950} staggerIndex={1}>
+            <Text variant="heading5" as="p">
+              {body}
+            </Text>
+          </Reveal>
 
-        <Box maxWidth={950}>
-          <Text variant="heading5" as="p">
-            {body}
-          </Text>
-        </Box>
-
-        {cta && (
-          <AnchorButton href={cta.href} variant="secondary">
-            {cta.title}
-          </AnchorButton>
-        )}
-
-        <Box width="100%" maxWidth={940} mt={6}>
-          {'youtubeId' in video ? (
-            <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
-          ) : (
-            <Box as="video" aspectRatio="16 / 9" width="100%" src={video.url} autoPlay muted loop />
+          {cta && (
+            <Reveal staggerIndex={2}>
+              <AnchorButton href={cta.href} variant="secondary">
+                {cta.title}
+              </AnchorButton>
+            </Reveal>
           )}
-        </Box>
-      </Stack>
-    </CenterContainer>
+
+          <Reveal width="100%" maxWidth={940} mt={6} staggerIndex={2}>
+            {'youtubeId' in video ? (
+              <YoutubeEmbed videoId={video.youtubeId} width="100%" gridColumn={['1', '1', '2/4']} />
+            ) : (
+              <Box as="video" aspectRatio="16 / 9" width="100%" src={video.url} autoPlay muted loop />
+            )}
+          </Reveal>
+        </Stack>
+      </CenterContainer>
+    </RevealWrapper>
   )
 }

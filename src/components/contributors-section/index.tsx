@@ -2,6 +2,7 @@ import { AnchorButton, Box, Text } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from '../CenterContainer'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { ContributorProps } from './Contributor'
 import { DesktopCarousel } from './DesktopCarousel'
 import { MobileCarousel } from './MobileCarousel'
@@ -48,26 +49,30 @@ export type ContributorsSectionProps = {
 
 export function ContributorsSection({ title, cta, items }: ContributorsSectionProps) {
   return (
-    <Box as="section">
+    <RevealWrapper as="section">
       <CenterContainer>
-        <Text variant="heading2" as="h2">
-          {title}
-        </Text>
+        <Reveal>
+          <Text variant="heading2" as="h2">
+            {title}
+          </Text>
+        </Reveal>
       </CenterContainer>
 
       <MobileCarousel items={items} />
       <DesktopCarousel items={items} />
 
       {cta && (
-        <CenterContainer textAlign="center" mt={6}>
-          <Text variant="body2" as="p" style={{ marginBottom: '1em' }}>
-            {cta.body}
-          </Text>
-          <AnchorButton href={cta.href} variant="secondary" small target="_blank">
-            {cta.label}
-          </AnchorButton>
-        </CenterContainer>
+        <Reveal staggerIndex={2}>
+          <CenterContainer textAlign="center" mt={6}>
+            <Text variant="body2" as="p" style={{ marginBottom: '1em' }}>
+              {cta.body}
+            </Text>
+            <AnchorButton href={cta.href} variant="secondary" small target="_blank">
+              {cta.label}
+            </AnchorButton>
+          </CenterContainer>
+        </Reveal>
       )}
-    </Box>
+    </RevealWrapper>
   )
 }

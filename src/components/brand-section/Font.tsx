@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, Stack } from '@centrifuge/fabric'
 import type { ImageProps } from '../Image'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { Unit } from './Unit'
 import { Gallery } from './Gallery'
 
@@ -12,14 +13,18 @@ export type FontProps = {
 
 export function Font({ title, body, image }: FontProps) {
   return (
-    <Stack as="section" gap={2}>
-      <Text as="h3" variant="heading2">
-        {title}
-      </Text>
+    <RevealWrapper>
+      <Stack as="section" gap={2}>
+        <Reveal>
+          <Text as="h3" variant="heading2">
+            {title}
+          </Text>
+        </Reveal>
 
-      <Unit body={body}>
-        <Gallery images={[image]} />
-      </Unit>
-    </Stack>
+        <Unit body={body} staggerIndex={1}>
+          <Gallery images={[image]} />
+        </Unit>
+      </Stack>
+    </RevealWrapper>
   )
 }

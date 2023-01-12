@@ -2,6 +2,7 @@ import { Divider, Grid, Shelf, Stack, Text } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from '../CenterContainer'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { Image, ImageProps } from '../Image'
 import { Media } from './styles'
 
@@ -59,17 +60,24 @@ export type OrgSectionProps = {
 
 export function OrgSection({ title, items }: OrgSectionProps) {
   return (
-    <CenterContainer>
-      <Stack as="section" gap={8}>
-        <Text variant="heading2" as="h2">
-          {title}
-        </Text>
-        <Grid columns={[1, 1, 3]} gap={[8, 8, 5]} equalColumns as="ul" role="list">
-          {items.map((i) => (
-            <Item {...i} key={i.title} />
-          ))}
-        </Grid>
-      </Stack>
-    </CenterContainer>
+    <RevealWrapper>
+      <CenterContainer>
+        <Stack as="section" gap={8}>
+          <Reveal>
+            <Text variant="heading2" as="h2">
+              {title}
+            </Text>
+          </Reveal>
+
+          <Grid columns={[1, 1, 3]} gap={[8, 8, 5]} equalColumns as="ul" role="list">
+            {items.map((item, index) => (
+              <Reveal staggerIndex={index + 1} key={`${index}${item.title}`}>
+                <Item {...item} />
+              </Reveal>
+            ))}
+          </Grid>
+        </Stack>
+      </CenterContainer>
+    </RevealWrapper>
   )
 }

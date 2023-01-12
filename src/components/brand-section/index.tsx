@@ -1,7 +1,7 @@
-import { Box, Container, Stack, Text } from '@centrifuge/fabric'
+import { Container, Stack, Text } from '@centrifuge/fabric'
 import React from 'react'
 import { graphql } from 'gatsby'
-
+import { Reveal, RevealWrapper } from '../Reveal'
 import { Colors } from './Colors'
 import { Font } from './Font'
 import { Logos } from './Logo'
@@ -62,11 +62,13 @@ export type BrandSectionProps = {
 
 export function BrandSection({ title, color, font, logo }: BrandSectionProps) {
   return (
-    <Box as="article" px={2}>
+    <RevealWrapper as="article" px={2}>
       <Container>
-        <Text as="h2" variant="tag">
-          {title}
-        </Text>
+        <Reveal>
+          <Text as="h2" variant="tag">
+            {title}
+          </Text>
+        </Reveal>
 
         <Stack gap={['layoutSmall', 'layoutMedium', 'layoutLarge']}>
           {color && <Colors {...color} />}
@@ -74,6 +76,6 @@ export function BrandSection({ title, color, font, logo }: BrandSectionProps) {
           {logo && <Logos {...logo} />}
         </Stack>
       </Container>
-    </Box>
+    </RevealWrapper>
   )
 }

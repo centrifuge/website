@@ -2,6 +2,7 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import { Shelf, Box, Container, Text } from '@centrifuge/fabric'
 import { useCarousel } from '../../hooks/use-carousel'
+import { Reveal, RevealWrapper } from '../Reveal'
 import { Testimonial } from './Testimonial'
 import type { TestimonialProps } from './Testimonial'
 import { Content, Slide, Dot } from './styles'
@@ -33,49 +34,46 @@ export function Testimonials({ title, items }: TestimonialsProps) {
   })
 
   return (
-    <Box as="section" px={2}>
+    <RevealWrapper as="section" px={2}>
       <Container>
-        <Text as="h2" variant="heading2">
-          {title}
-        </Text>
+        <Reveal>
+          <Text as="h2" variant="heading2">
+            {title}
+          </Text>
+        </Reveal>
 
-        <Content
-          maxWidth="containerNarrow"
-          pt={[100, 100, 150]}
-          gridTemplateColumns={['1fr', '1fr 30px']}
-          gap={4}
-          mr="auto"
-          ml="auto"
-        >
-          <Box ref={viewportRef} style={{ overflow: 'hidden' }}>
-            <Shelf as="ul" p={0} m={0} role="list">
-              {items.map((item, index) => (
-                <Slide
-                  key={`${item.cite}-${index}`}
-                  offsetX={index}
-                  offsetY={index - selectedIndex}
-                  selected={index === selectedIndex}
-                >
-                  <Testimonial {...item} />
-                </Slide>
+        <Reveal staggerIndex={1} maxWidth="containerNarrow" mr="auto" ml="auto">
+          <Content pt={[100, 100, 150]} gridTemplateColumns={['1fr', '1fr 30px']} gap={4}>
+            <Box ref={viewportRef} style={{ overflow: 'hidden' }}>
+              <Shelf as="ul" p={0} m={0} role="list">
+                {items.map((item, index) => (
+                  <Slide
+                    key={`${item.cite}-${index}`}
+                    offsetX={index}
+                    offsetY={index - selectedIndex}
+                    selected={index === selectedIndex}
+                  >
+                    <Testimonial {...item} />
+                  </Slide>
+                ))}
+              </Shelf>
+            </Box>
+
+            <Shelf as="ul" role="list" flexDirection={['row', 'column']} justifyContent={['center', 'start']}>
+              {items.map(({ cite }, index) => (
+                <li key={`${cite}${index}`}>
+                  <Dot
+                    role="button"
+                    title={`Go to testimonial by "${cite}"`}
+                    onClick={() => scrollTo(index)}
+                    selected={index === selectedIndex}
+                  />
+                </li>
               ))}
             </Shelf>
-          </Box>
-
-          <Shelf as="ul" role="list" flexDirection={['row', 'column']} justifyContent={['center', 'start']}>
-            {items.map(({ cite }, index) => (
-              <li key={`${cite}${index}`}>
-                <Dot
-                  role="button"
-                  title={`Go to testimonial by "${cite}"`}
-                  onClick={() => scrollTo(index)}
-                  selected={index === selectedIndex}
-                />
-              </li>
-            ))}
-          </Shelf>
-        </Content>
+          </Content>
+        </Reveal>
       </Container>
-    </Box>
+    </RevealWrapper>
   )
 }
