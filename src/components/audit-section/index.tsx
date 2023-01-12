@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { AnchorButton, Box, Container, Shelf, Text } from '@centrifuge/fabric'
 import { Image, ImageProps } from '../Image'
 import { links } from '../../../config/links'
-import { Media } from './styles'
+import { Media, Anchor } from './styles'
 
 export const query = graphql`
   fragment AuditSectionFragment on DataJsonAudit_section {
@@ -17,13 +17,14 @@ export const query = graphql`
         extension
       }
       alt
+      href
     }
   }
 `
 
 export type AuditSectionProps = {
   title: string
-  items: { alt: string; image: ImageProps }[]
+  items: { alt: string; image: ImageProps; href: string }[]
 }
 
 export function AuditSection({ title, items }: AuditSectionProps) {
@@ -55,9 +56,11 @@ export function AuditSection({ title, items }: AuditSectionProps) {
           rowGap={[4, 6]}
           mt={[4, 6]}
         >
-          {items.map(({ alt, image }, index) => (
+          {items.map(({ alt, image, href }, index) => (
             <Media key={`${alt}${index}`}>
-              <Image data={image} alt={alt} />
+              <Anchor href={href} title={`Visit audit report of ${alt}`} rel="noopener noreferrer" target="_blank">
+                <Image data={image} alt={alt} />
+              </Anchor>
             </Media>
           ))}
         </Shelf>
