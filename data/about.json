@@ -40,56 +40,11 @@
       }
     ]
   },
-  "org_section": {
-    "title": "How we work",
-    "items": [
-      {
-        "title": "Philosophy of Self-Management",
-        "body": "At k/factory, we believe Self-Managed Organizations (SMO) are the future of work. We work to minimize hierarchy and decentralize power, similar to the way our product is built. We're a fully distributed team of 40+ people in 5+ time zones committed to designing better ways to work together. We're passionate about transparency, autonomy, and freedom in the workplace.",
-        "image": "./images/organisation/center.svg"
-      },
-      {
-        "title": "Global Community",
-        "body": "Centrifuge’s core contributors build from all over the world. And, to nurture and deepen our connection, we come together for regular, off-site team retreats. We take time to invest in building trusted relationships and a sense of community with one another.",
-        "image": "./images/organisation/remote.svg"
-      },
-      {
-        "title": "Core values principles in practice",
-        "body": "We’re practicing principles such as shared responsibility (avoiding a \"somebody should\" mindset), healthy feedback culture, and genuine interest in each other. We're committed to trusting first while managing our attention economy, working to create safe space and communicating openly and thoughtfully.",
-        "image": "./images/organisation/group.svg"
-      }
-    ]
-  },
-  "value_section": {
-    "title": "Our values",
-    "items": ["Bold", "Inclusive", "Trustworthy", "Collaborative"]
-  },
-  "beliefs_section": {
-    "title": "Our Beliefs",
-    "items": [
-      {
-        "title": "No Boundaries",
-        "body": "We’re building a culture of deep curiosity: one that nurtures intellectual exploration above all. We want to give space for presenting ideas, exploring tangents, and releasing ourselves from rigid thought patterns."
-      },
-      {
-        "title": "Autonomy & Accountability",
-        "body": "We nurture a high sense of responsibility to ourselves, to our team members, and to the mission carried out. We work on our own terms, but keep our eye on the collective goal."
-      },
-      {
-        "title": "Knowledge Sharing",
-        "body": "We believe that a collective brain is more valuable than individual ones, so we foster a culture of knowledge sharing, transparency, and working in public."
-      },
-      {
-        "title": "Enthusiasm!",
-        "body": "We want people to be excited to work for Centrifuge — and we respect that people get out of bed for different reasons. We aim to build an inclusive organization, onboarding people from different backgrounds with a passion for something outside themselves, whether for alternative governance or techno, community activism or decentralization."
-      }
-    ]
-  },
   "contributors_section": {
     "title": "DAO Contributors",
     "cta": {
       "body": "Would you like to be added as a Centrifuge Contributor?",
-      "label": "Apply as contributor ✨",
+      "label": "Add contributor ✨",
       "href": "https://github.com/centrifuge/website/issues/new?assignees=&labels=contributor-page&template=add-contributor.md&title=Add+Contributor%3A+%5BNAME%5D"
     },
     "items": [
@@ -174,12 +129,12 @@
         }
       },
       {
-        "name": "Christian",
-        "role": "Centrifuge DAO Forum Facilitator",
+        "name": "Christian Schrott",
+        "role": "Forum Facilitator",
         "image": "./images/contributors/christian.jpg",
         "entity": {
-          "name": "GCG",
-          "href": "https://gov.centrifuge.io/t/rfc-proposal-for-mandate-for-governance-coordination-group/4609"
+          "name": "Centrifuge Ambassador",
+          "href": "https://gov.centrifuge.io/u/tjure07/summary"
         }
       },
       {
@@ -401,19 +356,9 @@
         }
       },
       {
-        "name": "Nicolò Montagna",
-        "role": "DeFi Analyst",
-        "social": "https://www.linkedin.com/in/nicolo-montagna/",
-        "image": "./images/contributors/nicolo.jpg",
-        "entity": {
-          "name": "DCM",
-          "href": "https://gov.centrifuge.io/t/council-candidate-introduction-defi-capital-markets/4205"
-        }
-      },
-      {
         "name": "Nuno Alexandre",
         "role": "Protocol Engineer",
-        "social": "nunoalexandre.com",
+        "social": "https://nunoalexandre.com",
         "image": "./images/contributors/nuno-alexandre.jpg",
         "entity": {
           "name": "k/factory",
@@ -487,6 +432,57 @@
           "name": "CNF",
           "href": "http://centrifuge.foundation/"
         }
+      },
+      {
+        "name": "William Freudenberger",
+        "role": "Engineering",
+        "social": "https://twitter.com/WilliamFreude",
+        "image": "./images/contributors/william.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
+      }
+    ]
+  },
+  "org_section": {
+    "title": "How we work",
+    "items": [
+      {
+        "title": "Philosophy of Self-Management",
+        "body": "At k/factory, we believe Self-Managed Organizations (SMO) are the future of work. We work to minimize hierarchy and decentralize power, similar to the way our product is built. We're a fully distributed team of 40+ people in 5+ time zones committed to designing better ways to work together. We're passionate about transparency, autonomy, and freedom in the workplace.",
+        "image": "./images/organisation/center.svg"
+      },
+      {
+        "title": "Global Community",
+        "body": "Centrifuge’s core contributors build from all over the world. And, to nurture and deepen our connection, we come together for regular, off-site team retreats. We take time to invest in building trusted relationships and a sense of community with one another.",
+        "image": "./images/organisation/remote.svg"
+      },
+      {
+        "title": "Core values principles in practice",
+        "body": "We’re practicing principles such as shared responsibility (avoiding a \"somebody should\" mindset), healthy feedback culture, and genuine interest in each other. We're committed to trusting first while managing our attention economy, working to create safe space and communicating openly and thoughtfully.",
+        "image": "./images/organisation/group.svg"
+      }
+    ]
+  },
+  "beliefs_section": {
+    "title": "Our Beliefs",
+    "items": [
+      {
+        "title": "No Boundaries",
+        "body": "We’re building a culture of deep curiosity: one that nurtures intellectual exploration above all. We want to give space for presenting ideas, exploring tangents, and releasing ourselves from rigid thought patterns."
+      },
+      {
+        "title": "Autonomy & Accountability",
+        "body": "We nurture a high sense of responsibility to ourselves, to our team members, and to the mission carried out. We work on our own terms, but keep our eye on the collective goal."
+      },
+      {
+        "title": "Knowledge Sharing",
+        "body": "We believe that a collective brain is more valuable than individual ones, so we foster a culture of knowledge sharing, transparency, and working in public."
+      },
+      {
+        "title": "Enthusiasm!",
+        "body": "We want people to be excited to work for Centrifuge — and we respect that people get out of bed for different reasons. We aim to build an inclusive organization, onboarding people from different backgrounds with a passion for something outside themselves, whether for alternative governance or techno, community activism or decentralization."
       }
     ]
   },

@@ -9167,11 +9167,6 @@ match-sorter@^6.0.2:
     "@babel/runtime" "^7.12.5"
     remove-accents "0.4.2"
 
-matter-js@^0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/matter-js/-/matter-js-0.18.0.tgz#083ced04eb6768f7664dc7ca8948a10e46ad3ed6"
-  integrity sha512-/ZVem4WygUnbmo/iE4oHZpZS97btfBtYy5Iwn1396vUZU7YhgVEN8J4UWwfZwY1ZqoTYlPgjvSw9WXauuXL0mg==
-
 md5-file@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/md5-file/-/md5-file-5.0.0.tgz#e519f631feca9c39e7f9ea1780b63c4745012e20"
