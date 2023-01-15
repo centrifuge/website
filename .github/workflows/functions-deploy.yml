@@ -9,7 +9,7 @@ on:
   workflow_call:
     
 jobs:
-  build:
+  build-functions:
     concurrency:
       group: functions-${{ github.ref }}
       cancel-in-progress: true     
@@ -38,14 +38,14 @@ jobs:
           path: functions/dist
           # !dist/**/*.md
 
-  deployment:
+  deploy-functions:
     concurrency:
       group: functions-${{ github.ref }}
       cancel-in-progress: true    
     permissions:
       contents: 'read'
       id-token: 'write'  
-    needs: build
+    needs: build-functions
     runs-on: ubuntu-latest
     # Deployment strategy:
     # prod if deploying from main branch or preview from PRs

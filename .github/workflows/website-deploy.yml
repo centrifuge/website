@@ -118,5 +118,5 @@ jobs:
     needs: publish
     if: needs.publish.outputs.deploy_function == 'true'
     uses: ./.github/workflows/functions-deploy.yml
-
+    secrets: inherit
 
