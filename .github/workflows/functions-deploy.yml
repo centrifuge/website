@@ -1,9 +1,9 @@
 name: Deploy /functions to Gcloud
 on:
   pull_request:
-    paths: 
-    - 'functions'
-    - '.github/workflows/functions-deploy.yml'
+  push:
+    branches:
+      - "main"
   
 jobs:
   build:
