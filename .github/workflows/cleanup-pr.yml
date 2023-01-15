@@ -1,0 +1,19 @@
+name: Deploy /functions to Gcloud
+on:
+  pull_request:
+    types:
+      - "closed"
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'    
+    environment: development        
+    steps:
+      - name: Delete Function created on PR
+        run: gcloud functions delete  webapi-${{ github.head_ref || github.ref_name }}
+
+      - name: delete the bucket if PR is closed
+        if: github.event.action == 'closed' && github.event.name == 'pull_request' && steps.check_bucket.output.bucket_exists == 1
+        run: gsutil rm -r gs://preview${{ github.event.numbers }}.k-f.dev     
