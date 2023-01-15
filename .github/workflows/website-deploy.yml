@@ -85,7 +85,7 @@ jobs:
         run: gsutil -m rsync -d -c -r ./public gs://{{ env.site_url }}
 
       - name: PR comment with preview URL
-        if: github.event.name == 'pull_request' && step.push.outcome == 'sucess'
+        if: github.event.name == 'pull_request' && steps.push.outcome == 'sucess'
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
