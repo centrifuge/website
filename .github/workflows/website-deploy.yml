@@ -77,24 +77,16 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
 
-      - name: check if bucket exists
-        id: check_bucket
-        continue-on-error: true
-        shell: bash
-        run: gsutil -q stat gs://${{ env.site_url }}/index.html
-
-      - name: create the bucket if PR is new
+      - name: try to create bucket
         id: create_bucket
-        # if: github.event.action == 'opened' || github.event.action == 'reopened' && github.event.name == 'pull_request'
-        if: steps.check_bucket.outcome == 'failure'
+        continue-on-error: true
         run: |
           gsutil mb gs://${{ env.site_url }}
           gsutil iam ch allUsers:objectViewer gs://${{ env.site_url }}
           gsutil web set -m index.html -e 404.html gs://${{ env.site_url }}
 
-      - name: push to bucket otherwise
+      - name: push to bucket
         id: push
-        if: steps.create_bucket.outcome == 'success' || steps.check_bucket.outcome == 'success' 
         run: gsutil -m rsync -d -c -r ./ gs://${{ env.site_url }}
 
       - name: PR comment with preview URL
