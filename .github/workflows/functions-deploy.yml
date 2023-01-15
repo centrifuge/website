@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     concurrency:
-      group: ${{ github.ref }}
+      group: functions-${{ github.ref }}
       cancel-in-progress: true     
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +37,7 @@ jobs:
 
   deployment:
     concurrency:
-      group: ${{ github.ref }}
+      group: functions-${{ github.ref }}
       cancel-in-progress: true    
     permissions:
       contents: 'read'

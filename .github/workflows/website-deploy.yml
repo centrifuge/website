@@ -46,7 +46,7 @@ jobs:
           path: public/    
   publish:
     concurrency:
-      group: ${{ github.ref }}
+      group: web-${{ github.ref }}
       cancel-in-progress: true    
     needs: build
     permissions:
