@@ -64,10 +64,8 @@ jobs:
         with:
           name: webapi-${{ github.head_ref || github.ref_name }}
           runtime: nodejs16
-          region: 'europe-west-3'
+          region: ${{ env.region }}
           source_dir: './'
-          # project_id: '${{ env.gcloud_project }}'
-          allow_unauthenticated: true
           entry_point: 'handler'
       - name: Print Gcloud functions URL
         run: echo "::notice title=Function_URL::${{ steps.gclouddeploy.outputs.url }}"
