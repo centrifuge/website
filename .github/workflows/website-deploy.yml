@@ -54,8 +54,9 @@ jobs:
       cancel-in-progress: true    
     needs: build
     permissions:
-      contents: 'read'
-      id-token: 'write'  
+      contents: read
+      id-token: write 
+      pull-requests: write
     runs-on: ubuntu-latest
     environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
     steps:
