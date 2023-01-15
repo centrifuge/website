@@ -98,11 +98,15 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         if: github.event_name == 'pull_request' && steps.push.outcome == 'success'
         with:
-          message: echo "Deployed webiste in http://${{ env.site_url }} with commit ${{ github.sha }}"
+          message: |
+            Deployed webiste in Google Cloud
+            URL: http://${{ env.site_url }}
+            Commit #: ${{ github.event.pull_request.base.sha }}
       
       - name: check if function exists
        # Deploy function for every website PR deployed for previews
         id: check_function
+        shell: bash
         run: |
           if gcloud functions describe --region europe-central2 webapi-${{ github.head_ref || github.ref_name }}; then
             echo "deploy=true" >> $GITHUB_OUTPUT
