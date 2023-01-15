@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     # Deployment strategy:
     # prod if deploying from main branch or preview from PRs
-    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
     env:
       region: "europe-central2"
