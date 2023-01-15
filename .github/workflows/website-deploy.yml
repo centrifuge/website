@@ -46,6 +46,7 @@ jobs:
           retention-days: 1
           path: public/    
   publish:
+    needs: build
     permissions:
       contents: 'read'
       id-token: 'write'  
