@@ -11,22 +11,26 @@ on:
   #       default: 'peak-vista-185616'
   #       type: string
   pull_request:
-    path: 'functions'
+    paths: 
+    - 'functions'
   
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@93ea575 #@v3.1.0
-
       - name: Set .env for functions
-        run: cat "CENTRIFUGE_SUBGRAPH_URL=https://api.thegraph.com/subgraphs/name/astox/main" > functions/.env
-      
-      - name: Node setup
-        uses: ./.github/actions/node-setup
+        run: cat "CENTRIFUGE_SUBGRAPH_URL=https://graph.centrifuge.io/subgraphs/name/allow-null-maturity-date" > functions/.env
+      - name: Setup Node
+        uses: actions/setup-node@8c91899 #@v3
         with:
-          build_command: 'yarn build:functions'
-
+          node-version: 16
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build:functions
       - name: Archive functions artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -34,16 +38,16 @@ jobs:
           retention-days: 1
           path: functions/dist
           # !dist/**/*.md
-      
-      - name: Set GH environment for main branch
-        run: echo "DEPLOY_ENV=production" >> $GITHUB_ENV
-        if: startsWith(github.ref, 'refs/heads/main')
 
   deployment:
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{ env.DEPLOY_ENV || 'preview' }} 
+    # Deployment strategy:
+    # prod if deploying from main branch or preview from PRs
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
+    env:
+      region: "europe-central2"
     steps:
       - name: download the distribution package
         uses: actions/download-artifact@v3
@@ -59,13 +63,19 @@ jobs:
         id: gclouddeploy
         uses: google-github-actions/deploy-cloud-functions@14509ca #@v1
         with:
-          name: 'webapi'
-          runtime: 'nodejs16'
-          region: 'europe-west-1'
-          source_dir: 'functions/dist'
-          project: '${{ env.gcloud_project }}'
-          service_account: '${{ secrets.GSA }}'
+          name: webapi-${{ github.head_ref || github.ref_name }}
+          runtime: nodejs16
+          region: 'europe-west-3'
+          source_dir: './'
+          # project_id: '${{ env.gcloud_project }}'
           allow_unauthenticated: true
           entry_point: 'handler'
-      - name: 'Gcloud functions URL:'
-        run: 'curl "${{ steps.gclouddeploy.outputs.url }}"' 
+      - name: Print Gcloud functions URL
+        run: echo "::notice title=Function_URL::${{ steps.gclouddeploy.outputs.url }}"
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@d51b5346f85640ec2aa2fa057354d2b82c2fcbce # v1.0.1 
+      - name: Change function to allow_unathorized calls 
+        run: |
+          gcloud functions add-iam-policy-binding ${{ needs.prepare_deploy.outputs.app_name }} \
+          --region=${{ env.region }} \
+          --member="allUsers" --role="roles/cloudfunctions.invoker"
