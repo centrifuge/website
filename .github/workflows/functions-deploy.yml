@@ -1,4 +1,4 @@
-name: Build and deploy to GCloud functions
+name: Deploy /functions to Gcloud
 on:
   # workflow_call:
   #   inputs:
@@ -20,11 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@93ea575 #@v3.1.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
       - name: Set .env for functions
         run: cat "CENTRIFUGE_SUBGRAPH_URL=https://graph.centrifuge.io/subgraphs/name/allow-null-maturity-date" > functions/.env
       - name: Setup Node
-        uses: actions/setup-node@8c91899 #@v3
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 #@v3
         with:
           node-version: 16
           cache: yarn
@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: yarn build:functions
       - name: Archive functions artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # @v3.1.2
         with:
           name: func-dist
           retention-days: 1
@@ -51,18 +51,18 @@ jobs:
       region: "europe-central2"
     steps:
       - name: download the distribution package
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
         with:
           name: func-dist
       - name: Auth gcloud
         id: gauth
-        uses: google-github-actions/auth@ef5d53e # @v1
+        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
           service_account: '${{ secrets.GSA }}' # 'functions-firestore@peak-vista-185616.iam.gserviceaccount.com'    
       - name: Deploy to google functions
         id: gclouddeploy
-        uses: google-github-actions/deploy-cloud-functions@14509ca #@v1
+        uses: google-github-actions/deploy-cloud-functions@14509ca55199d9348161571e36c48e44f855030d #@v1
         with:
           name: webapi-${{ github.head_ref || github.ref_name }}
           runtime: nodejs16
