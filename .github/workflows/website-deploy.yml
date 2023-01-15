@@ -59,7 +59,7 @@ jobs:
       - name: set preview URL
         shell: bash
         run: | 
-          if github.base_ref != 'refs/heads/main'; then
+          if ${{github.base_ref != 'refs/heads/main'}}; then
             echo "site_url=centrifuge.io" >> $GITHUB_ENV
           else
             echo "site_url=preview${{ github.event.numbers }}.k-f.dev" >> $GITHUB_ENV
@@ -74,12 +74,16 @@ jobs:
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
           service_account: '${{ secrets.GSA }}'
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1' 
+
       - name: check if bucket exists
         id: check_bucket
         continue-on-error: true
         shell: bash
         run: |
-          RETURN_VALUE=$(gsutil -q stat gs://${{ env.site_url }})
+          RETURN_VALUE=$(gsutil -q stat gs://${{ env.site_url }}/index.html)
           echo "bucket_exists=$RETURN_VALUE" >> $GITHUB_OUTPUT
 
       - name: create the bucket if PR is new
