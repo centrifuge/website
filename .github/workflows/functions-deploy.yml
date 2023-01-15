@@ -1,10 +1,13 @@
 name: Deploy /functions to Gcloud
 on:
   pull_request:
+    paths: 
+      - 'functions/*'
   push:
     branches:
       - "main"
-  
+  workflow_call:
+    
 jobs:
   build:
     concurrency:

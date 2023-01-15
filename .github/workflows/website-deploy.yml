@@ -43,7 +43,11 @@ jobs:
         with:
           name: web-package
           retention-days: 1
-          path: public/    
+          path: public/
+
+
+
+
   publish:
     concurrency:
       group: web-${{ github.ref }}
@@ -91,10 +95,26 @@ jobs:
 
       - name: PR comment with preview URL
         uses: thollander/actions-comment-pull-request@v2
-        if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request' && steps.push.outcome == 'success'
+        if: github.event_name == 'pull_request' && steps.push.outcome == 'success'
         with:
           message: echo "Deployed webiste in http://${{ env.site_url }} with commit ${{ github.sha }}"
-            
+      
+      - name: check if function exists
+       # Deploy function for every website PR deployed for previews
+        id: check_function
+        run: |
+          if gcloud functions describe --region europe-central2 webapi-${{ github.head_ref || github.ref_name }}; then
+            echo "deploy=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy=false" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true    
+    outputs:
+      create_func: ${{ steps.check_function.output.create }}     
 
+  create_function:
+    needs: publish
+    if: needs.publish.outputs.deploy == 'true'
+    uses: ./.github/workflows/functions-deploy.yml
 
 
