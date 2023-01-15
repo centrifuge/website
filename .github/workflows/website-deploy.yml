@@ -1,0 +1,96 @@
+name: Deploy Static Website
+on:
+# Adding triggers other than PRs will break a lot of the code here 
+#   (anything using github.event or github.ref)
+  push:
+    branches:
+      - "main"
+  pull_request:
+    types:
+      - "opened"
+      - "synchronize"
+      - "reopened"
+      - "closed"     
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set env variables
+        shell: bash
+        working-directory: functions
+        run: |
+          echo "Discovering the environment stage:"
+          if [[ ${{ github.ref == 'refs/heads/master' }} ]]; then
+            echo "GATSBY_FUNCTIONS_URL=" >> .env
+          else
+            echo "GATSBY_FUNCTIONS_URL=" >> .env
+          fi
+        if: github.base_ref != 'refs/heads/main'
+
+      - name: Setup Node
+        uses: actions/setup-node@8c91899 #@v3
+        with:
+          node-version: 16
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Archive functions artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-package
+          retention-days: 1
+          path: public/    
+  publish:
+    permissions:
+      contents: 'read'
+      id-token: 'write'  
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+    steps:
+      - name: set preview URL
+        shell: bash
+        run: | 
+          if github.base_ref != 'refs/heads/main'; then
+            echo "site_url=centrifuge.io" >> $GITHUB_ENV
+          else
+            echo "site_url=preview${{ github.event.numbers }}.k-f.dev" >> $GITHUB_ENV
+          fi
+      - name: download webpack
+        uses: actions/download-artifact
+        with:
+          name: web-package
+      - name: Auth gcloud
+        id: gauth
+        uses: google-github-actions/auth@ef5d53e # @v1
+        with:
+          workload_identity_provider: '${{ secrets.GWIP }}'
+          service_account: '${{ secrets.GSA }}'
+      - name: create the bucket if PR is new
+        if: github.event.action == 'opened' || github.event.action == 'reopened' && github.event.name == 'pull_request'
+        run: |
+          gsutil mb -p centrifuge-production-x gs://{{ env.site_url }}
+          gsutil iam ch allUsers:objectViewer gs://{{ env.site_url }}
+          gsutil web set -m index.html -e 404.html gs://{{ env.site_url }}
+      - name: delete the bucket if PR is closed
+        if: github.event.action == 'closed' && github.event.name == 'pull_request'
+        run: gsutil rm -r gs://{{ env.site_url }}
+      - name: push to bucket otherwise
+        id: push
+        if: github.event.action != 'closed'
+        run: gsutil -m rsync -d -c -r ./public gs://{{ env.site_url }}
+
+      - name: PR comment with preview URL
+        if: github.event.name == 'pull_request' && step.push.outcome == 'sucess'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+           Preview website http://{{ env.site_url }} refreshed with commit {{ github.sha }} 
+            
+
+
+
