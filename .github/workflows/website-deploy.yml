@@ -90,11 +90,12 @@ jobs:
         run: gsutil -m rsync -d -c -r ./ gs://${{ env.site_url }}
 
       - name: PR comment with preview URL
-        if: github.event.name == 'pull_request' && steps.push.outcome == 'success'
-        uses: thollander/actions-comment-pull-request@v2
+        uses: mb2dev/github-action-comment-pull-request@1.0.0
+        if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request'
         with:
-          message: |
-           Preview website http://${{ env.site_url }} refreshed with commit ${{ github.sha }} 
+          message: echo "Deployed webiste in http://${{ env.site_url }} with commit ${{ github.sha }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          reactions: "rocket"
             
 
 
