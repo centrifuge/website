@@ -81,7 +81,7 @@ jobs:
         id: check_bucket
         continue-on-error: true
         shell: bash
-        run: gsutil -q stat gs://${{ env.site_url }}/index.html)
+        run: gsutil -q stat gs://${{ env.site_url }}/index.html
 
       - name: create the bucket if PR is new
         id: create_bucket
