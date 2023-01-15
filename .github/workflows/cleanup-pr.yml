@@ -1,4 +1,4 @@
-name: Deploy /functions to Gcloud
+name: Clean up closed PR
 on:
   pull_request:
     types:
