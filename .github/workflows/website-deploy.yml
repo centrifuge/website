@@ -79,7 +79,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          RETURN_VALUE=$(gsutil -q stat gs://{{ env.site_url }})
+          RETURN_VALUE=$(gsutil -q stat gs://${{ env.site_url }})
           echo "bucket_exists=$RETURN_VALUE" >> $GITHUB_OUTPUT
 
       - name: create the bucket if PR is new
@@ -87,24 +87,21 @@ jobs:
         # if: github.event.action == 'opened' || github.event.action == 'reopened' && github.event.name == 'pull_request'
         if: steps.check_bucket.output.bucket_exists == 0
         run: |
-          gsutil mb gs://{{ env.site_url }}
-          gsutil iam ch allUsers:objectViewer gs://{{ env.site_url }}
-          gsutil web set -m index.html -e 404.html gs://{{ env.site_url }}
-      - name: delete the bucket if PR is closed
-        if: github.event.action == 'closed' && github.event.name == 'pull_request' && steps.check_bucket.output.bucket_exists == 1
-        run: gsutil rm -r gs://{{ env.site_url }}
+          gsutil mb gs://${{ env.site_url }}
+          gsutil iam ch allUsers:objectViewer gs://${{ env.site_url }}
+          gsutil web set -m index.html -e 404.html gs://${{ env.site_url }}
 
       - name: push to bucket otherwise
         id: push
         if: github.event.action != 'closed' && steps.create_bucket.outcome == 'sucess'
-        run: gsutil -m rsync -d -c -r ./public gs://{{ env.site_url }}
+        run: gsutil -m rsync -d -c -r ./public gs://${{ env.site_url }}
 
       - name: PR comment with preview URL
         if: github.event.name == 'pull_request' && steps.push.outcome == 'sucess'
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-           Preview website http://{{ env.site_url }} refreshed with commit {{ github.sha }} 
+           Preview website http://${{ env.site_url }} refreshed with commit ${{ github.sha }} 
             
 
 
