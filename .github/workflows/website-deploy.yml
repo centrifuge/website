@@ -23,12 +23,11 @@ jobs:
         working-directory: functions
         run: |
           echo "Discovering the environment stage:"
-          if [[ ${{ github.ref == 'refs/heads/master' }} ]]; then
+          if [[ ${{ github.ref == 'refs/heads/main' }} ]]; then
             echo "GATSBY_FUNCTIONS_URL=https://europe-central2-centrifuge-production-x.cloudfunctions.net/webapi-main" >> .env
           else
             echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-${{ github.head_ref || github.ref_name }}" >> .env
           fi
-        if: github.base_ref != 'refs/heads/main'
 
       - name: Setup Node
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 #@v3
@@ -59,7 +58,7 @@ jobs:
       - name: set preview URL
         shell: bash
         run: | 
-          if ${{github.base_ref != 'refs/heads/main'}}; then
+          if ${{github.ref == 'refs/heads/main'}}; then
             echo "site_url=centrifuge.io" >> $GITHUB_ENV
           else
             echo "site_url=preview${{ github.event.numbers }}.k-f.dev" >> $GITHUB_ENV
