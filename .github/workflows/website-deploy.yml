@@ -24,9 +24,9 @@ jobs:
         run: |
           echo "Discovering the environment stage:"
           if [[ ${{ github.ref == 'refs/heads/master' }} ]]; then
-            echo "GATSBY_FUNCTIONS_URL=" >> .env
+            echo "GATSBY_FUNCTIONS_URL=https://europe-central2-centrifuge-production-x.cloudfunctions.net/webapi-main" >> .env
           else
-            echo "GATSBY_FUNCTIONS_URL=" >> .env
+            echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-${{ github.head_ref || github.ref_name }}" >> .env
           fi
         if: github.base_ref != 'refs/heads/main'
 
