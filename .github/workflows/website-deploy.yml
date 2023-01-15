@@ -98,7 +98,7 @@ jobs:
           message: |
             Deployed webiste in Google Cloud
             URL: http://${{ env.site_url }}
-            Commit #: ${{ github.event.pull_request.base.sha }}
+            Commit #: ${{ github.event.pull_request.head.sha }}
       
       - name: check if function exists
        # Deploy function for every website PR deployed for previews
