@@ -7,9 +7,6 @@ on:
   
 jobs:
   build:
-    concurrency:
-      group: ${{ github.ref }}
-      cancel-in-progress: true  
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,6 +33,9 @@ jobs:
           # !dist/**/*.md
 
   deployment:
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true    
     permissions:
       contents: 'read'
       id-token: 'write'  
