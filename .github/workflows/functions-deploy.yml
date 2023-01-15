@@ -1,15 +1,5 @@
 name: Deploy /functions to Gcloud
 on:
-  # workflow_call:
-  #   inputs:
-  #     env: # Used to determine the environment secrets and permissions dynamically
-  #       required: true
-  #       type: string
-  #       default: 'preview'
-  #     gcloud_project:
-  #       required: true
-  #       default: 'peak-vista-185616'
-  #       type: string
   pull_request:
     paths: 
     - 'functions'
@@ -46,6 +36,9 @@ jobs:
           # !dist/**/*.md
 
   deployment:
+    permissions:
+      contents: 'read'
+      id-token: 'write'  
     needs: build
     runs-on: ubuntu-latest
     # Deployment strategy:
