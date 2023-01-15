@@ -61,7 +61,7 @@ jobs:
           if ${{github.ref == 'refs/heads/main'}}; then
             echo "site_url=centrifuge.io" >> $GITHUB_ENV
           else
-            echo "site_url=preview${{ github.event.numbers }}.k-f.dev" >> $GITHUB_ENV
+            echo "site_url=preview${{ github.event.number }}.k-f.dev" >> $GITHUB_ENV
           fi
       - name: download webpack
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
@@ -81,14 +81,12 @@ jobs:
         id: check_bucket
         continue-on-error: true
         shell: bash
-        run: |
-          RETURN_VALUE=$(gsutil -q stat gs://${{ env.site_url }}/index.html)
-          echo "bucket_exists=$RETURN_VALUE" >> $GITHUB_OUTPUT
+        run: gsutil -q stat gs://${{ env.site_url }}/index.html)
 
       - name: create the bucket if PR is new
         id: create_bucket
         # if: github.event.action == 'opened' || github.event.action == 'reopened' && github.event.name == 'pull_request'
-        if: steps.check_bucket.output.bucket_exists == 0
+        if: steps.check_bucket.outcome == 'failure'
         run: |
           gsutil mb gs://${{ env.site_url }}
           gsutil iam ch allUsers:objectViewer gs://${{ env.site_url }}
@@ -96,11 +94,11 @@ jobs:
 
       - name: push to bucket otherwise
         id: push
-        if: github.event.action != 'closed' && steps.create_bucket.outcome == 'sucess'
+        if: steps.create_bucket.outcome == 'success' || steps.check_bucket.outcome == 'success' 
         run: gsutil -m rsync -d -c -r ./public gs://${{ env.site_url }}
 
       - name: PR comment with preview URL
-        if: github.event.name == 'pull_request' && steps.push.outcome == 'sucess'
+        if: github.event.name == 'pull_request' && steps.push.outcome == 'success'
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
