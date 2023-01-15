@@ -23,7 +23,7 @@ jobs:
         working-directory: functions
         run: |
           echo "Discovering the environment stage:"
-          if [[ ${{ github.ref == 'refs/heads/main' }} ]]; then
+          if  ${{ github.ref == 'refs/heads/main' }} ; then
             echo "GATSBY_FUNCTIONS_URL=https://europe-central2-centrifuge-production-x.cloudfunctions.net/webapi-main" >> .env
           else
             echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-${{ github.head_ref || github.ref_name }}" >> .env
@@ -95,7 +95,7 @@ jobs:
       - name: push to bucket otherwise
         id: push
         if: steps.create_bucket.outcome == 'success' || steps.check_bucket.outcome == 'success' 
-        run: gsutil -m rsync -d -c -r ./public gs://${{ env.site_url }}
+        run: gsutil -m rsync -d -c -r ./ gs://${{ env.site_url }}
 
       - name: PR comment with preview URL
         if: github.event.name == 'pull_request' && steps.push.outcome == 'success'
