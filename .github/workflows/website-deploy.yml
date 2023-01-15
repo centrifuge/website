@@ -79,9 +79,8 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          gsutil -q stat gs://{{ env.site_url }} 
-          return_value=$?
-          echo "bucket_exists=${{ return_value }}" >> $GITHUB_OUTPUT
+          RETURN_VALUE=$(gsutil -q stat gs://{{ env.site_url }})
+          echo "bucket_exists=$RETURN_VALUE" >> $GITHUB_OUTPUT
 
       - name: create the bucket if PR is new
         id: create_bucket
