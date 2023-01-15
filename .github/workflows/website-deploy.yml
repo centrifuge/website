@@ -1,0 +1,122 @@
+name: Deploy Static Website
+on:
+# Adding triggers other than PRs will break a lot of the code here 
+#   (anything using github.event or github.ref)
+  push:
+    branches:
+      - "main"
+  pull_request:
+    types:
+      - "opened"
+      - "synchronize"
+      - "reopened"
+      - "closed"     
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set env variables
+        shell: bash
+        working-directory: functions
+        run: |
+          echo "Discovering the environment stage:"
+          if  ${{ github.ref == 'refs/heads/main' }} ; then
+            echo "GATSBY_FUNCTIONS_URL=https://europe-central2-centrifuge-production-x.cloudfunctions.net/webapi-main" >> .env
+          else
+            echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-${{ github.head_ref || github.ref_name }}" >> .env
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 #@v3
+        with:
+          node-version: 16
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Archive functions artifacts
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # @v3.1.2
+        with:
+          name: web-package
+          retention-days: 1
+          path: public/
+
+  publish:
+    concurrency:
+      group: web-${{ github.ref }}
+      cancel-in-progress: true    
+    needs: build
+    permissions:
+      contents: read
+      id-token: write 
+      pull-requests: write
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+    steps:
+      - name: set preview URL
+        shell: bash
+        run: | 
+          if ${{github.ref == 'refs/heads/main'}}; then
+            echo "site_url=centrifuge.io" >> $GITHUB_ENV
+          else
+            echo "site_url=preview${{ github.event.number }}.k-f.dev" >> $GITHUB_ENV
+          fi
+      - name: download webpack
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
+        with:
+          name: web-package
+      - name: Auth gcloud
+        id: gauth
+        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
+        with:
+          workload_identity_provider: '${{ secrets.GWIP }}'
+          service_account: '${{ secrets.GSA }}'
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1' 
+
+      - name: try to create bucket
+        id: create_bucket
+        continue-on-error: true
+        run: |
+          gsutil mb gs://${{ env.site_url }}
+          gsutil iam ch allUsers:objectViewer gs://${{ env.site_url }}
+          gsutil web set -m index.html -e 404.html gs://${{ env.site_url }}
+
+      - name: push to bucket
+        id: push
+        run: gsutil -m rsync -d -c -r ./ gs://${{ env.site_url }}
+
+      - name: PR comment with preview URL
+        uses: thollander/actions-comment-pull-request@v2
+        if: github.event_name == 'pull_request' && steps.push.outcome == 'success'
+        with:
+          message: |
+            Deployed webiste in Google Cloud
+            URL: http://${{ env.site_url }}
+            Commit #: ${{ github.event.pull_request.base.sha }}
+      
+      - name: check if function exists
+       # Deploy function for every website PR deployed for previews
+        id: check_function
+        shell: bash
+        run: |
+          if gcloud functions describe --region europe-central2 webapi-${{ github.head_ref || github.ref_name }}; then
+            echo "deploy=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy=false" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true    
+    outputs:
+      create_func: ${{ steps.check_function.output.create }}     
+
+  create_function:
+    needs: publish
+    if: needs.publish.outputs.deploy == 'true'
+    uses: ./.github/workflows/functions-deploy.yml
+
+
