@@ -69,9 +69,12 @@ jobs:
             echo "site_url=preview${{ github.event.number }}.k-f.dev" >> $GITHUB_ENV
           fi
       - name: download webpack
+        id: download
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
         with:
           name: web-package
+          path: webpack
+
       - name: Auth gcloud
         id: gauth
         uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
@@ -92,7 +95,7 @@ jobs:
 
       - name: push to bucket
         id: push
-        run: gsutil -m rsync -d -c -r ./ gs://${{ env.site_url }}
+        run: gsutil -m rsync -d -c -r ./${{steps.download.outputs.download-path}} gs://${{ env.site_url }}
 
       - name: PR comment with preview URL
         uses: thollander/actions-comment-pull-request@v2
