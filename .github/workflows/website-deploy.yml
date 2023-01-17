@@ -95,7 +95,7 @@ jobs:
 
       - name: push to bucket
         id: push
-        run: gsutil -m rsync -d -c -r ./${{steps.download.outputs.download-path}} gs://${{ env.site_url }}
+        run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ env.site_url }}
 
       - name: PR comment with preview URL
         uses: thollander/actions-comment-pull-request@v2
