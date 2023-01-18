@@ -151,5 +151,5 @@ jobs:
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit
     with:
-      deploy_prod: inputs.deploy_prod
+      deploy_prod: ${{ inputs.deploy_prod }}
 
