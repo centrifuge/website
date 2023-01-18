@@ -31,9 +31,8 @@ jobs:
         shell: bash
         working-directory: functions
         run: |
-          echo "Discovering the environment stage:"
           if  ${{ github.ref == 'refs/heads/main' }} ; then
-            if ${{ inputs.deploy_prod }}; then
+            if ${{ inputs.deploy_prod || false }}; then
               echo "GATSBY_FUNCTIONS_URL=https://europe-central2-centrifuge-production-x.cloudfunctions.net/webapi-main" >> .env
             else
               echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-staging" >> .env
@@ -74,7 +73,7 @@ jobs:
         shell: bash
         run: | 
           if ${{github.ref == 'refs/heads/main'}}; then
-            if ${{ inputs.deploy_prod }}; then
+            if ${{ inputs.deploy_prod || false }}; then
               echo "site_url=centrifuge.io" >> $GITHUB_ENV
             else
               echo "site_url=staging-website.k-f.dev" >> $GITHUB_ENV
@@ -140,7 +139,6 @@ jobs:
     if: inputs.deploy_prod
     steps:
         - name: Slack on prod publishing
-          if: inputs.deploy_prod
           uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
