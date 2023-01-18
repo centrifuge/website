@@ -1,9 +1,5 @@
 name: deploy-to-ipfs
-# on: 
-#   push:
-#     branch: 'main'
-#     path: '!functions/'
-on: workflow_call
+on: workflow_dispatch
 
 jobs:
   nix-build:
@@ -37,6 +33,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
     needs: build
     steps:
       - name: download artifact
