@@ -74,7 +74,7 @@ jobs:
         run: | 
           if ${{github.ref == 'refs/heads/main'}}; then
             if ${{ inputs.deploy_prod || false }}; then
-              echo "site_url=centrifuge.io" >> $GITHUB_ENV
+              echo "site_url=www.centrifuge.io" >> $GITHUB_ENV
             else
               echo "site_url=website-staging.k-f.dev" >> $GITHUB_ENV
             fi
