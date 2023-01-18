@@ -3,7 +3,7 @@ on:
   pull_request:
     paths: 
       - 'functions/*'
-      - '.github/workflows/funcions-deploy.yml'
+      - '.github/workflows/functions-deploy.yml'
   push:
     branches:
       - "main"
