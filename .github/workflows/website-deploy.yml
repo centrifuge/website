@@ -35,7 +35,7 @@ jobs:
             if ${{ inputs.deploy_prod || false }}; then
               echo "GATSBY_FUNCTIONS_URL=https://europe-central2-centrifuge-production-x.cloudfunctions.net/webapi-main" >> .env
             else
-              echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-staging" >> .env
+              echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-main" >> .env
             fi
           else
             echo "GATSBY_FUNCTIONS_URL=https://europe-central2-peak-vista-185616.cloudfunctions.net/webapi-${{ github.head_ref || github.ref_name }}" >> .env
