@@ -67,7 +67,7 @@ jobs:
       id-token: write 
       pull-requests: write
     runs-on: ubuntu-latest
-    environment: ${{ github.ref == 'refs/heads/main' && inputs.deploy_prod && 'production' || 'development' }}
+    environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
     steps:
       - name: set preview URL
         shell: bash
@@ -76,7 +76,7 @@ jobs:
             if ${{ inputs.deploy_prod || false }}; then
               echo "site_url=centrifuge.io" >> $GITHUB_ENV
             else
-              echo "site_url=staging-website.k-f.dev" >> $GITHUB_ENV
+              echo "site_url=website-staging.k-f.dev" >> $GITHUB_ENV
             fi
           else
             echo "site_url=preview${{ github.event.number }}.k-f.dev" >> $GITHUB_ENV
@@ -117,7 +117,8 @@ jobs:
           message: |
             Deployed webiste in Google Cloud
             URL: http://${{ env.site_url }}
-            Commit #: ${{ github.event.pull_request.head.sha }}    
+            Commit #: ${{ github.event.pull_request.head.sha }}   
+      - run: echo "::notice title=web_url::${{ env.site_url }}" 
       
       - name: check if function exists
        # Deploy function for every website PR deployed for previews
@@ -146,7 +147,9 @@ jobs:
 
   create_function:
     needs: publish
-    if: needs.publish.outputs.deploy_function == 'true' &&  github.event_name == 'pull-request'
+    if: needs.publish.outputs.deploy_function == 'true' &&  github.event_name == 'pull-request' || inputs.deploy_prod
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit
+    with:
+      deploy_prod: inputs.deploy_prod
 
