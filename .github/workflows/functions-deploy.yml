@@ -12,12 +12,12 @@ on:
         description: "Deploy to prod (requires approval and wait time 120m)"
         default: false
         type: boolean
-  workflow_dispatch:
-    inputs:
-      deploy_prod:
-        description: "Deploy to prod (requires approval and wait time 120m)"
-        default: false
-        type: boolean    
+  # workflow_dispatch:
+  #   inputs:
+  #     deploy_prod:
+  #       description: "Deploy to prod (requires approval and wait time 120m)"
+  #       default: false
+  #       type: boolean    
     
 jobs:
   build-functions:
