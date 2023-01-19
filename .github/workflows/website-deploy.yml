@@ -38,9 +38,9 @@ jobs:
         run: |
           if  ${{ github.ref == 'refs/heads/main' }} ; then
             if ${{ inputs.deploy_prod || false }}; then
-              echo "GATSBY_FUNCTIONS_URL=https://${{ env.REGION }}-${{ env.GCP_PROJECT }}.cloudfunctions.net/webapi-main" >> .env
+              echo "GATSBY_FUNCTIONS_URL=https://staging-website.k-f.dev" >> .env
             else
-              echo "GATSBY_FUNCTIONS_URL=https://${{ env.REGION }}-${{ env.GCP_PROJECT }}.cloudfunctions.net/webapi-main" >> .env
+              echo "GATSBY_FUNCTIONS_URL=https://web-api.centrifuge.io" >> .env
             fi
           else
             echo "GATSBY_FUNCTIONS_URL=https://${{ env.REGION }}-${{ env.GCP_PROJECT }}.cloudfunctions.net/${{ needs.strategy.outputs.function_name }}" >> .env
