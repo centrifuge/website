@@ -49,7 +49,7 @@ runs:
             echo "gcp_project=peak-vista-185616" >> $GITHUB_OUTPUT
             
           fi
-        elif ${{ github.event_name == 'pull_request' }}
+        elif ${{ github.event_name == 'pull_request' }}; then
           # PRs
             echo "bucket_url=preview-pr${{ github.event.number }}.k-f.dev" >> $GITHUB_OUTPUT
             echo "functions_name=webapi-${{ github.head_ref || github.ref_name }}" >> $GITHUB_OUTPUT
