@@ -118,8 +118,36 @@ jobs:
             Deployed webiste in Google Cloud
             URL: http://${{ env.site_url }}
             Commit #: ${{ github.event.pull_request.head.sha }}   
-      - run: echo "::notice title=web_url::${{ env.site_url }}" 
-      
+      - run: echo "::notice title=web_url::${{ env.site_url }}"     
+
+  notify_slack:
+    needs: publish
+    runs-on: ubuntu-latest
+    if: inputs.deploy_prod
+    steps:
+        - name: Slack on prod publishing
+          uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
+          env:
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            SLACK_MESSAGE: "centrifuge.io website deployed"
+            
+  check_function_exists:
+    permissions:
+      contents: read
+      id-token: write 
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
+    steps:   
+      - name: Auth gcloud
+        id: gauth
+        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
+        with:
+          workload_identity_provider: '${{ secrets.GWIP }}'
+          service_account: '${{ secrets.GSA }}'
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1' 
+
       - name: check if function exists
        # Deploy function for every website PR deployed for previews
         id: check_function
@@ -132,22 +160,11 @@ jobs:
           fi
         continue-on-error: true    
     outputs:
-      deploy_function: ${{ steps.check_function.outputs.deploy }}     
-
-  notify_slack:
-    needs: publish
-    runs-on: ubuntu-latest
-    if: inputs.deploy_prod
-    steps:
-        - name: Slack on prod publishing
-          uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
-          env:
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_MESSAGE: "centrifuge.io website deployed"
-
+      deploy_function: ${{ steps.check_function.outputs.deploy }} 
+  
   create_function:
-    needs: publish
-    if: needs.publish.outputs.deploy_function == 'true' &&  github.event_name == 'pull-request' || inputs.deploy_prod
+    needs: check_function_exists
+    if: needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull-request' || inputs.deploy_prod
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit
     with:
