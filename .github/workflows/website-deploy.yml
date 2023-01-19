@@ -108,27 +108,30 @@ jobs:
       - name: push to bucket
         id: push
         run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ steps.deploy_vars.outputs.bucket_url }}
+    outputs:
+      bucket_url: ${{ steps.deploy_vars.outputs.bucket_url }}
+   
 
+  notify:
+    needs: publish-to-gcs
+    runs-on: ubuntu-latest
+    steps:
       - name: PR comment with preview URL
         uses: thollander/actions-comment-pull-request@v2
         if: github.event_name == 'pull_request' && steps.push.outcome == 'success'
         with:
           message: |
             Deployed webiste in Google Cloud
-            URL: http://${{ steps.deploy_vars.outputs.bucket_url }}
+            URL: http://${{ needs.publish-to-gcs.outputs.bucket_url }}
             Commit #: ${{ github.event.pull_request.head.sha }}   
-      - run: echo "::notice title=web_url::${{ steps.deploy_vars.outputs.bucket_url }}"     
-
-  notify_slack:
-    needs: publish-to-gcs
-    runs-on: ubuntu-latest
-    if: inputs.deploy_prod
-    steps:
-        - name: Slack on prod publishing
-          uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
-          env:
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_MESSAGE: "centrifuge.io website deployed"
+      - run: echo "::notice title=web_url::${{ needs.publish-to-gcs.outputs.bucket_url  }}"      
+      
+      - name: Notify prod deploy
+        if: inputs.deploy_prod
+        uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "centrifuge.io website deployed"
 
   check_function_exists:
     permissions:
