@@ -148,7 +148,7 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
 
-      - name: check if function exists
+      - name: check function
        # Deploy function for every website PR deployed for previews
         id: check_function
         shell: bash
@@ -159,12 +159,18 @@ jobs:
             echo "deploy=true" >> $GITHUB_OUTPUT
           fi
         continue-on-error: true    
+      - run: echo "deploy == ${{ steps.check_function.outputs.deploy }} \n event == ${{ github.event_name }}"
+      - run: |
+          if ${{ steps.check_function.outputs.deploy == 'true' }} &&  ${{github.event_name == 'pull_request'}} || ${{github.ref == 'refs/heads/main'}}; then
+            echo "Deploy function!"
+          fi
     outputs:
       deploy_function: ${{ steps.check_function.outputs.deploy }} 
+
   
   func_deploy:
     needs: check_function_exists
-    if: needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull-request' || inputs.deploy_prod
+    if: ${{needs.check_function_exists.outputs.deploy_function == 'true'}} &&  ${{github.event_name == 'pull_request'}} ||  ${{github.ref == 'refs/heads/main'}}
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit
     with:
