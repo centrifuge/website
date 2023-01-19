@@ -172,7 +172,7 @@ jobs:
       deploy_prod: false
 
   func_deploy_prod:
-    if: ${{ github.event.inputs.deploy_prod != '' && github.event.inputs.deploy_prod }}
+    if: ${{ github.event.inputs.deploy_prod != '' }} && github.event.inputs.deploy_prod
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit        
     with:
