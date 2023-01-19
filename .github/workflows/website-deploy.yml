@@ -144,6 +144,7 @@ jobs:
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
           service_account: '${{ secrets.GSA }}'
+          # create_credentials_file: false
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
@@ -159,11 +160,7 @@ jobs:
             echo "deploy=true" >> $GITHUB_OUTPUT
           fi
         continue-on-error: true    
-      - run: echo "deploy == ${{ steps.check_function.outputs.deploy }} \n event == ${{ github.event_name }}"
-      - run: |
-          if ${{ steps.check_function.outputs.deploy == 'true' }} &&  ${{github.event_name == 'pull_request'}} || ${{github.ref == 'refs/heads/main'}}; then
-            echo "Deploy function!"
-          fi
+
     outputs:
       deploy_function: ${{ steps.check_function.outputs.deploy }} 
 
@@ -171,18 +168,20 @@ jobs:
   func_deploy:
     needs: check_function_exists
     if: ${{needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull_request' || github.ref == 'refs/heads/main'}}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "deploy == ${{ needs.check_function_exists.outputs.deploy }} \n event == ${{ github.event_name }}"
-      - run: |
-          if ${{ needs.check_function_exists.outputs.deploy_function == 'true' }} &&  ${{github.event_name == 'pull_request'}} || ${{github.ref == 'refs/heads/main'}}; then
-            echo "Deploy function!"
-            echo "${{github.ref}}"
-          fi
-      
-    # if: ${{needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull_request' ||  ${{github.ref == 'refs/heads/main'}}
-    # uses: ./.github/workflows/functions-deploy.yml
-    # secrets: inherit
-    # with:
-    #   deploy_prod: ${{ inputs.deploy_prod }}
+    uses: ./.github/workflows/functions-deploy.yml
+    secrets: inherit
+    with:
+      deploy_prod: ${{ inputs.deploy_prod || false }}
 
+  # debug_deploy_funct:
+  #   needs: check_function_exists
+  #   if: ${{needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull_request' || github.ref == 'refs/heads/main'}}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: |
+  #         echo "deploy == ${{ needs.check_function_exists.outputs.deploy }}"
+  #         echo "${{github.ref}}"
+  #         echo "event == ${{ github.event_name }}"
+  #         if ${{ needs.check_function_exists.outputs.deploy_function == 'true' }} &&  ${{github.event_name == 'pull_request'}} || ${{github.ref == 'refs/heads/main'}}; then
+  #           echo "Deploy function!"
+  #         fi
