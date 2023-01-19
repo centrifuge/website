@@ -38,12 +38,12 @@ jobs:
         run: |
           if  ${{ github.ref == 'refs/heads/main' }} ; then
             if ${{ inputs.deploy_prod || false }}; then
-              echo "GATSBY_FUNCTIONS_URL=https://${{ steps.deploy_vars.outputs.functions_region}} -{{ steps.deploy_vars.outputs.gcp_project }}.cloudfunctions.net/webapi-main" >> .env
+              echo "GATSBY_FUNCTIONS_URL=https://${{ steps.deploy_vars.outputs.functions_region }}-${{ steps.deploy_vars.outputs.gcp_project }}.cloudfunctions.net/webapi-main" >> .env
             else
-              echo "GATSBY_FUNCTIONS_URL=https://${{ steps.deploy_vars.outputs.functions_region}} -{{ steps.deploy_vars.outputs.gcp_project }}.cloudfunctions.net/webapi-main" >> .env
+              echo "GATSBY_FUNCTIONS_URL=https://${{ steps.deploy_vars.outputs.functions_region }}-${{ steps.deploy_vars.outputs.gcp_project }}.cloudfunctions.net/webapi-main" >> .env
             fi
           else
-            echo "GATSBY_FUNCTIONS_URL=https://${{ steps.deploy_vars.outputs.functions_region}} -{{ steps.deploy_vars.outputs.gcp_project }}.cloudfunctions.net/${{ needs.strategy.outputs.function_name }} >> .env
+            echo "GATSBY_FUNCTIONS_URL=https://${{ steps.deploy_vars.outputs.functions_region }}-${{ steps.deploy_vars.outputs.gcp_project }}.cloudfunctions.net/${{ needs.strategy.outputs.function_name }}" >> .env
           fi
 
       - name: Setup Node
