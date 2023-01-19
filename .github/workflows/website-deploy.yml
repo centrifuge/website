@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
       - name: only allow workflow_dispatch from main
         if: ${{ github.event_name == 'workflow-dispatch' }}
         run: |
@@ -61,6 +61,8 @@ jobs:
           name: web-package
           retention-days: 1
           path: public/
+    outputs:
+      bucket_url: ${{ steps.deploy_vars.outputs.bucket_url }}
 
   publish-to-gcs:
     concurrency:
@@ -73,13 +75,9 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
+    env:
+      bucket_url: ${{ needs.build-web.outputs.bucket_url }}
     steps:
-      - name: Set deployment vars
-        uses: ./.github/actions/deploy_strategy
-        id: deploy_vars
-        with: 
-          deploy_prod: ${{ inputs.deploy_prod == 'true' }}    
-
       - name: download webpack
         id: download
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
@@ -101,15 +99,15 @@ jobs:
         id: create_bucket
         continue-on-error: true
         run: |
-          gsutil mb gs://${{ steps.deploy_vars.outputs.bucket_url }}
-          gsutil iam ch allUsers:objectViewer gs://${{ steps.deploy_vars.outputs.bucket_url }}
-          gsutil web set -m index.html -e 404.html gs://${{ steps.deploy_vars.outputs.bucket_url }}
+          gsutil mb gs://${{ env.bucket_url }}
+          gsutil iam ch allUsers:objectViewer gs://${{ env.bucket_url }}
+          gsutil web set -m index.html -e 404.html gs://${{ env.bucket_url }}
 
       - name: push to bucket
         id: push
-        run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ steps.deploy_vars.outputs.bucket_url }}
+        run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ env.bucket_url }}
     outputs:
-      bucket_url: ${{ steps.deploy_vars.outputs.bucket_url }}
+      bucket_url: ${{ env.bucket_url }}
    
 
   notify:
