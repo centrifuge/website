@@ -79,7 +79,7 @@ jobs:
         with:
           name: ${{ steps.deploy_vars.outputs.function_name }}
           runtime: nodejs16
-          region: ${{ steps.deploy_vars.outputs.functions_region }}
+          region: ${{ env.REGION }}
           source_dir: './'
           entry_point: 'handler'
           https_trigger_security_level: 'secure_always'
@@ -92,5 +92,5 @@ jobs:
         shell: bash
         run: |
           gcloud functions add-iam-policy-binding ${{ steps.deploy_vars.outputs.function_name }} \
-          --region=${{ steps.deploy_vars.outputs.functions_region }} \
+          --region=${{ env.REGION }} \
           --member="allUsers" --role="roles/cloudfunctions.invoker"

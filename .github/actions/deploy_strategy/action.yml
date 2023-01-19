@@ -10,18 +10,18 @@ outputs:
   function_name: 
     description: "URL to deploy your front-end"
     value: ${{ steps.setenv.outputs.functions_name}}
-  functions_region:
-    description: "Environment name for reference"
-    value: ${{ steps.setenv.outputs.functions_region }}      
+  # functions_region:
+  #   description: "Environment name for reference"
+  #   value: ${{ steps.setenv.outputs.functions_region }}      
   bucket_url: 
     description: "URL to deploy your front-end"
     value: ${{ steps.setenv.outputs.bucket_url}}
   env_name:
     description: "Environment name for reference"
     value: ${{ steps.setenv.outputs.env_name }}
-  gcp_project:
-    description: "Environment name for reference"
-    value: ${{ steps.setenv.outputs.gcp_project }}    
+  # gcp_project:
+  #   description: "Environment name for reference"
+  #   value: ${{ steps.setenv.outputs.gcp_project }}    
   
 runs:
   using: composite
@@ -32,15 +32,15 @@ runs:
       # both will require approval to use the GCE prod secrets
       run: |
         echo "Set env vars for deployment"
-        echo "functions_region=europe-central2" >> $GITHUB_OUTPUT
+
         echo "max_instances=2" >> $GITHUB_OUTPUT
+
         if  ${{ github.ref == 'refs/heads/main' }} ; then
           if  ${{ inputs.deploy_prod == 'true' }}; then
             #  PROD
             echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
             echo "functions_name=webapi-main" >> $GITHUB_OUTPUT
             echo "env_name=production" >> $GITHUB_OUTPUT
-            echo "gcp_project=centrifuge-production-x" >> $GITHUB_OUTPUT
             echo "max_instances=10" >> $GITHUB_OUTPUT
             
           else
@@ -48,7 +48,6 @@ runs:
             echo "bucket_url=website-staging.k-f.dev" >> $GITHUB_OUTPUT
             echo "functions_name=webapi-main" >> $GITHUB_OUTPUT
             echo "env_name=staging" >> $GITHUB_OUTPUT            
-            echo "gcp_project=peak-vista-185616" >> $GITHUB_OUTPUT
             
           fi
         elif ${{ github.event_name == 'pull_request' }}; then
@@ -56,7 +55,6 @@ runs:
             echo "bucket_url=preview-pr${{ github.event.number }}.k-f.dev" >> $GITHUB_OUTPUT
             echo "functions_name=webapi-${{ github.head_ref || github.ref_name }}" >> $GITHUB_OUTPUT
             echo "env_name=pr" >> $GITHUB_OUTPUT
-            echo "gcp_project=peak-vista-185616" >> $GITHUB_OUTPUT
         else
           echo "::error title=No env to deploy::Workflow called from non-deployable branch/tag"
         fi   
