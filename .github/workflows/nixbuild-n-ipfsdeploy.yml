@@ -1,8 +1,8 @@
-name: deploy
-# on: push
+name: deploy-to-ipfs
+on: workflow_dispatch
 
 jobs:
-  build:
+  nix-build:
     runs-on: ubuntu-latest
     steps:
       - uses: styfle/cancel-workflow-action@0.6.0
@@ -33,6 +33,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
     needs: build
     steps:
       - name: download artifact
