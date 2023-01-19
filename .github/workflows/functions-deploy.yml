@@ -65,7 +65,7 @@ jobs:
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
     steps:
       - name: Set deployment vars
-        uses: ./github/actions/deploy_strategy
+        uses: ./.github/actions/deploy_strategy
         id: deploy_vars
         with: 
           deploy_prod: ${{ inputs.deploy_prod == 'true' }}    

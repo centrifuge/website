@@ -12,7 +12,7 @@ jobs:
     environment: development      
     steps:
       - name: Set deployment vars
-        uses: ./github/actions/deploy_strategy
+        uses: ./.github/actions/deploy_strategy
         id: deploy_vars
         with: 
           deploy_prod: ${{ inputs.deploy_prod == 'true' }}    

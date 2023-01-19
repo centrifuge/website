@@ -27,7 +27,7 @@ jobs:
           if ${{ github.ref == 'refs/heads/main' }} ; then
             echo "::error title=Bad branch selected::You can only run manual workflows from the main branch"
       - name: Set deployment vars
-        uses: ./github/actions/deploy_strategy
+        uses: ./.github/actions/deploy_strategy
         id: deploy_vars
         with: 
           deploy_prod: ${{ inputs.deploy_prod == 'true' }}
@@ -75,7 +75,7 @@ jobs:
     environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
     steps:
       - name: Set deployment vars
-        uses: ./github/actions/deploy_strategy
+        uses: ./.github/actions/deploy_strategy
         id: deploy_vars
         with: 
           deploy_prod: ${{ inputs.deploy_prod == 'true' }}    
@@ -171,7 +171,7 @@ jobs:
     with:
       deploy_prod: false
 
-  func_deploy_prod:
+  deploy_prod:
     if: ${{ github.event.inputs.deploy_prod != '' }} && github.event.inputs.deploy_prod
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit        
