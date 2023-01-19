@@ -68,7 +68,7 @@ jobs:
         uses: ./.github/actions/deploy_strategy
         id: deploy_vars
         with: 
-          deploy_prod: ${{ inputs.deploy_prod == 'true' }}    
+          deploy_prod: ${{ inputs.deploy_prod }}    
       - name: download the distribution package
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
         with:
