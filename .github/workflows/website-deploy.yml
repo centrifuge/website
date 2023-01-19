@@ -13,7 +13,7 @@ on:
         default: false
         type: boolean
 jobs:
-  build:
+  build-web:
     concurrency:
       group: web-${{ github.ref }}
       cancel-in-progress: true   
@@ -57,11 +57,11 @@ jobs:
           retention-days: 1
           path: public/
 
-  publish:
+  publish-to-gcs:
     concurrency:
       group: web-${{ github.ref }}
       cancel-in-progress: true    
-    needs: build
+    needs: build-web
     permissions:
       contents: read
       id-token: write 
@@ -121,7 +121,7 @@ jobs:
       - run: echo "::notice title=web_url::${{ env.site_url }}"     
 
   notify_slack:
-    needs: publish
+    needs: publish-to-gcs
     runs-on: ubuntu-latest
     if: inputs.deploy_prod
     steps:
@@ -130,7 +130,7 @@ jobs:
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
             SLACK_MESSAGE: "centrifuge.io website deployed"
-            
+
   check_function_exists:
     permissions:
       contents: read
@@ -153,7 +153,7 @@ jobs:
         id: check_function
         shell: bash
         run: |
-          if gcloud functions describe --region europe-central2 webapi-${{ github.head_ref || github.ref_name }}; then
+          if gcloud functions describe --region europe-central2 webapi-${{ github.head_ref || github.ref_name }} 2> /dev/null; then
             echo "deploy=false" >> $GITHUB_OUTPUT
           else
             echo "deploy=true" >> $GITHUB_OUTPUT
@@ -162,7 +162,7 @@ jobs:
     outputs:
       deploy_function: ${{ steps.check_function.outputs.deploy }} 
   
-  create_function:
+  func_deploy:
     needs: check_function_exists
     if: needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull-request' || inputs.deploy_prod
     uses: ./.github/workflows/functions-deploy.yml
