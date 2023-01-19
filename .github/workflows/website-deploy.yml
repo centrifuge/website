@@ -170,9 +170,19 @@ jobs:
   
   func_deploy:
     needs: check_function_exists
-    if: ${{needs.check_function_exists.outputs.deploy_function == 'true'}} &&  ${{github.event_name == 'pull_request'}} ||  ${{github.ref == 'refs/heads/main'}}
-    uses: ./.github/workflows/functions-deploy.yml
-    secrets: inherit
-    with:
-      deploy_prod: ${{ inputs.deploy_prod }}
+    if: ${{needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull_request' || github.ref == 'refs/heads/main'}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "deploy == ${{ needs.check_function_exists.outputs.deploy }} \n event == ${{ github.event_name }}"
+      - run: |
+          if ${{ needs.check_function_exists.outputs.deploy_function == 'true' }} &&  ${{github.event_name == 'pull_request'}} || ${{github.ref == 'refs/heads/main'}}; then
+            echo "Deploy function!"
+            echo "${{github.ref}}"
+          fi
+      
+    # if: ${{needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull_request' ||  ${{github.ref == 'refs/heads/main'}}
+    # uses: ./.github/workflows/functions-deploy.yml
+    # secrets: inherit
+    # with:
+    #   deploy_prod: ${{ inputs.deploy_prod }}
 
