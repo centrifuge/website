@@ -33,6 +33,7 @@ runs:
       run: |
         echo "Set env vars for deployment"
         echo "functions_region=europe-central2" >> $GITHUB_OUTPUT
+        echo "max_instances=2" >> $GITHUB_OUTPUT
         if  ${{ github.ref == 'refs/heads/main' }} ; then
           if  ${{ inputs.deploy_prod == 'true' }}; then
             #  PROD
@@ -40,6 +41,7 @@ runs:
             echo "functions_name=webapi-main" >> $GITHUB_OUTPUT
             echo "env_name=production" >> $GITHUB_OUTPUT
             echo "gcp_project=centrifuge-production-x" >> $GITHUB_OUTPUT
+            echo "max_instances=10" >> $GITHUB_OUTPUT
             
           else
             #  STAGING
