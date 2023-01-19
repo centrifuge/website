@@ -63,10 +63,12 @@ jobs:
     # prod if deploying from main branch or preview from PRs
     environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
-    env:
-      region: "europe-central2"
-      function_name: webapi-${{ github.head_ref || github.ref_name }}
     steps:
+      - name: Set deployment vars
+        uses: ./github/actions/deploy_strategy
+        id: deploy_vars
+        with: 
+          deploy_prod: ${{ inputs.deploy_prod == 'true' }}    
       - name: download the distribution package
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
         with:
@@ -81,9 +83,9 @@ jobs:
         id: gclouddeploy
         uses: google-github-actions/deploy-cloud-functions@14509ca55199d9348161571e36c48e44f855030d #@v1
         with:
-          name: ${{ env.function_name }}
+          name: ${{ steps.deploy_vars.outputs.function_name }}
           runtime: nodejs16
-          region: ${{ env.region }}
+          region: ${{ steps.deploy_vars.outputs.functions_region }}
           source_dir: './'
           entry_point: 'handler'
       - name: Print Gcloud functions URL
@@ -93,6 +95,6 @@ jobs:
       - name: Change function to allow_unathorized calls 
         shell: bash
         run: |
-          gcloud functions add-iam-policy-binding ${{ env.function_name }} \
-          --region=${{ env.region }} \
+          gcloud functions add-iam-policy-binding ${{ steps.deploy_vars.outputs.function_name }} \
+          --region=${{ steps.deploy_vars.outputs.functions_region }} \
           --member="allUsers" --role="roles/cloudfunctions.invoker"

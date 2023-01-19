@@ -10,9 +10,12 @@ jobs:
       contents: 'read'
       id-token: 'write'    
     environment: development      
-    env:
-      region: europe-central2  
     steps:
+      - name: Set deployment vars
+        uses: ./github/actions/deploy_strategy
+        id: deploy_vars
+        with: 
+          deploy_prod: ${{ inputs.deploy_prod == 'true' }}    
       - name: Auth gcloud
         id: gauth
         uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
@@ -24,8 +27,8 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1' 
             
       - name: Delete Function created on PR
-        run: gcloud functions delete --region ${{ env.region }}  webapi-${{ github.head_ref || github.ref_name }}
+        run: gcloud functions delete --region ${{ steps.deploy_vars.outputs.functions_region }}
 
       - name: delete the bucket if PR is closed
-        if: github.event.action == 'closed' && github.event.name == 'pull_request'
-        run: gsutil rm -r --region ${{ env.region }} gs://preview${{ github.event.numbers }}.k-f.dev     
+        # if: github.event.action == 'closed' && github.event.name == 'pull_request'
+        run: gsutil rm -r gs://${{ steps.deploy_vars.outputs.bucket_url }}    
