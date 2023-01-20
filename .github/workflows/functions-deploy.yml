@@ -22,20 +22,50 @@ on:
       function_URL: 
         value: ${{ jobs.deploy-functions.outputs.function_url || jobs.check_function_exists.outputs.function_url }}
         description: "function URL (if found) or empty otherwise"
-    
+concurrency:
+  group: deployfunctions-${{ github.ref }}
+
 jobs:
   check_exists:
     secrets: inherit
     uses: ./.github/workflows/check-function.yml
 
-  build-functions:
+  debug_outputs:
     needs: check_exists
-    if: (inputs.website_pr && ${{ needs.check_exists.function_URL == '' }}) || inputs.website_pr == ''   
-    # If workflow_call didn't trigger this workflow then website_pr == ''
-    # If workflow_call is triggered from website-deploy.yml website_pr always be true
-    concurrency:
-      group: functions-${{ github.ref }}
-      cancel-in-progress: true     
+    runs-on: ubuntu-latest
+    env:
+      deploy_pr: ${{ inputs.website_pr || '' }}
+    steps:
+      - run: |
+          echo "inputs.website_pr == ${{ inputs.website_pr }}" 
+          echo "inputs.deploy_prod == ${{ inputs.deploy_prod }}" 
+          echo "function URL == ${{ needs.check_exists.outputs.function_URL }}"
+          echo "event_name == ${{ github.event_name }}"
+          echo "Condition is ${{ inputs.website_pr == 'true' }}"
+          echo "Condition is ${{ inputs.website_pr }}"
+          echo "Condition is ${{ inputs.website_pr == '' }}"
+          echo "Condition is ${{ inputs.deploy_prod == '' }}"
+          
+        shell: bash
+  
+
+  build-functions:
+    name: Build functions JS bundle
+    needs: check_exists
+    # When should functions be deployed?
+    # 1. Always on main branch => github_event_name == push
+    # 2. When the function does not exist and we're on a PR (first job to get to it will deploy other will wait)
+    # 3. When web-deploy called this job with the deploy_prod == true value
+    # 4. Any time if it's a PR and the function was already deployed (by 2) and this call isn't from the web-deploy.yml:
+    #     - This implies that there's been changes to the functions/ repo on the PR but will skip if web-deploy
+    #        calls the workflow and there's no changes in functions/
+    # # inputs.website_pr == '' => Not triggered by workflow_call
+    if: |
+      github.ref == 'refs/heads/main' ||
+      ( needs.check_exists.outputs.function_URL == '' && github.event_name == 'pull_request') ||
+      ( inputs.website_pr != '' && inputs.deploy_prod == 'true') ||
+      ( needs.check_exists.outputs.function_URL != '' && github.event_name == 'pull_request' && inputs.website_pr == '' )
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -62,15 +92,13 @@ jobs:
           # !dist/**/*.md
 
   deploy-functions:
-    needs: check_exists
-    if: inputs.website_pr || inputs.website_pr == ''   
+    # needs: check_exists
+    # if: inputs.website_pr || inputs.website_pr == ''   
     # If workflow_call didn't trigger website_pr == ''
     # If workflow_call is triggered from website-deploy.yml it'll always be true  
+    needs: build-functions
     outputs:
-      function_url: ${{ steps.gclouddeploy.outputs.url }}  
-    concurrency:
-      group: functions-${{ github.ref }}
-      cancel-in-progress: true    
+      function_url: ${{ steps.gclouddeploy.outputs.url }}   
     permissions:
       contents: 'read'
       id-token: 'write'  
@@ -97,10 +125,10 @@ jobs:
         uses: google-github-actions/setup-gcloud@d51b5346f85640ec2aa2fa057354d2b82c2fcbce # v1.0.1   
 
       - name: Wait for build to succeed
-        uses: lewagon/wait-on-check-action@3a563271c3f8d1611ed7352809303617ee7e54ac
+        uses: lewagon/wait-on-check-action@master # 3a563271c3f8d1611ed7352809303617ee7e54ac
         with:
           ref: ${{ github.ref }}
-          check-name: build-functions
+          check-name: 'Build functions JS bundle'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 5
 

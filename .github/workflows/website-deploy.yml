@@ -5,7 +5,12 @@ on:
   push:
     branches:
       - "main"
+    paths-ignore:
+      - 'functions/**'      
   pull_request:
+    paths-ignore:
+      - 'functions/**'
+      
   workflow_dispatch:
     inputs:
       deploy_prod:
@@ -15,6 +20,9 @@ on:
 jobs:
 
   create_pr_function:
+    if: github.event_name == 'pull_request' || inputs.deploy_prod == 'true'
+    # Non-PR functions should be handled by the functions-deploy.yml workflow itself 
+    # (if there's code changes to functions/)
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit
     with:

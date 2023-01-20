@@ -4,7 +4,7 @@ on:
   workflow_call:
     outputs:
       function_URL: 
-        value: ${{jobs.check_function_exists.outputs.function_url}}
+        value: ${{ jobs.check_function_exists.outputs.function_url}}
         description: "function URL (if found) or empty otherwise"
 jobs:
   check_function_exists:
