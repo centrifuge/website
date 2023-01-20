@@ -30,27 +30,21 @@ jobs:
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
           service_account: '${{ secrets.GSA }}'
-          # create_credentials_file: false
+
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
 
       - name: find-function
-       # Deploy function for every website PR deployed for previews
         id: find_function
         shell: bash
         run: |
           if gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
-          # False if not in main branch and function already exist. If there's code changes the functions job will trigger itself
+           # this will run if function was found
             echo "function_url=$(gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} --format='value(httpsTrigger.url)')" >> $GITHUB_OUTPUT
           else
+            # if describe fails
             echo "function_url=''" >> $GITHUB_OUTPUT
-            if !${{ contains(github.event.action, 'open') }}; then
-              echo "::error title=Function not found::Function ${{ steps.deploy_vars.outputs.function_name }} not found and this is not a new PR. Re-run in a few minutes"
-            fi
           fi
-      - run: echo "function URL == ${{ steps.find_function.outputs.function_url }}" 
-      - run: echo "github.event_name == ${{ github.event_name }}" 
-      - run:  echo "Condition is ${{ steps.find_function.outputs.function_url == '' }}"
-      - run:  echo "Condition is ${{ github.event_name == 'pull_request' }}"
+
  

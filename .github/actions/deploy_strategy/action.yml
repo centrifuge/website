@@ -9,25 +9,23 @@ inputs:
 outputs:
   function_name: 
     description: "URL to deploy your front-end"
-    value: ${{ steps.setenv.outputs.functions_name}}
-  # functions_region:
-  #   description: "Environment name for reference"
-  #   value: ${{ steps.setenv.outputs.functions_region }}      
+    value: ${{ steps.setenv.outputs.functions_name}}    
   bucket_url: 
     description: "URL to deploy your front-end"
     value: ${{ steps.setenv.outputs.bucket_url}}
   env_name:
     description: "Environment name for reference"
     value: ${{ steps.setenv.outputs.env_name }}
-  # gcp_project:
-  #   description: "Environment name for reference"
-  #   value: ${{ steps.setenv.outputs.gcp_project }}    
-  
+
 runs:
   using: composite
   steps: 
     - id: setenv
       shell: bash
+      env: 
+       # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
+       ref: ${{ github.head_ref || github.ref_name }}
+       pr_number: ${{ github.event.number }}
       # Set Alatair and Centrifuge to deploy in the prod Gcloud account
       # both will require approval to use the GCE prod secrets
       run: |
@@ -52,8 +50,8 @@ runs:
           fi
         elif ${{ github.event_name == 'pull_request' }}; then
           # PRs
-            echo "bucket_url=preview-pr${{ github.event.number }}.k-f.dev" >> $GITHUB_OUTPUT
-            echo "functions_name=webapi-${{ github.head_ref || github.ref_name }}" >> $GITHUB_OUTPUT
+            echo "bucket_url=preview-pr${{ env.pr_number }}.k-f.dev" >> $GITHUB_OUTPUT
+            echo "functions_name=webapi-${{ env.ref }}" >> $GITHUB_OUTPUT
             echo "env_name=pr" >> $GITHUB_OUTPUT
         else
           echo "::error title=No env to deploy::Workflow called from non-deployable branch/tag"
