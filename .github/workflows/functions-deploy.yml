@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - "main"
+
   workflow_call:
     inputs:
       deploy_prod:
@@ -14,10 +15,13 @@ on:
         default: false
         type: boolean  
     outputs:
-      function_URL: jobs.deploy-functions.outputs.function_url
+      function_URL: 
+        value: ${{jobs.deploy-functions.outputs.function_url}}
+        description: "function URL (if found) or empty otherwise"
     
 jobs:
   check_exists:
+    secrets: inherit
     uses: ./.github/workflows/check-function.yml
 
   build-functions:
@@ -52,6 +56,8 @@ jobs:
           # !dist/**/*.md
 
   deploy-functions:
+    outputs:
+      function_url: ${{ steps.gclouddeploy.outputs.url }}  
     concurrency:
       group: functions-${{ github.ref }}
       cancel-in-progress: true    
@@ -100,5 +106,4 @@ jobs:
           gcloud functions add-iam-policy-binding ${{ steps.deploy_vars.outputs.function_name }} \
           --region=${{ env.REGION }} \
           --member="allUsers" --role="roles/cloudfunctions.invoker"
-    outputs:
-      function_url: ${{ steps.gclouddeploy.outputs.url }}
+

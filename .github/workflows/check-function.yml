@@ -41,8 +41,11 @@ jobs:
             echo "function_url=$FUNCTION_NAME" >> $GITHUB_OUTPUT
           else
             echo "function_url=''" >> $GITHUB_OUTPUT
-            if !${{ contains(github.event.action, 'open') }}
-              echo "::error title=Function not found::Function ${{ steps.deploy_vars.outputs.function_name }} not found and this is not a new PR"
+            if !${{ contains(github.event.action, 'open') }}; then
+              echo "::error title=Function not found::Function ${{ steps.deploy_vars.outputs.function_name }} not found and this is not a new PR. Re-run in a few minutes"
+            fi
           fi
+      - run: echo "function URL == ${{ steps.find_function.outputs.function_url }}" 
+      - run:  echo "Condition is ${{ steps.find_function.outputs.function_url == '' &&  github.event_name == 'pull_request' }}"
     outputs:
       function_URL: ${{ steps.find_function.outputs.function_url }} 
