@@ -79,6 +79,7 @@ jobs:
         with: 
           deploy_prod: ${{ inputs.deploy_prod }}    
       - name: download the distribution package
+        id: download
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
         with:
           name: func-dist
@@ -95,7 +96,7 @@ jobs:
           name: ${{ steps.deploy_vars.outputs.function_name }}
           runtime: nodejs16
           region: ${{ vars.GCP_REGION }}
-          source_dir: './'
+          source_dir: ${{steps.download.outputs.download-path}}
           entry_point: 'handler'
           https_trigger_security_level: 'secure_always'
           max_instances: ${{ steps.deploy_vars.outputs.max_instances  }}
