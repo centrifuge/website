@@ -2,7 +2,10 @@
 name: Find Gcloud Function
 on:
   workflow_call:
-
+    outputs:
+      function_URL: 
+        value: ${{jobs.deploy-functions.outputs.function_url}}
+        description: "function URL (if found) or empty otherwise"
 jobs:
   check_function_exists:
     permissions:
