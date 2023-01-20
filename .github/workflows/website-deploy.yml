@@ -13,28 +13,25 @@ on:
         default: false
         type: boolean
 jobs:
-  check_gfunction:
-    secrets: inherit
-    uses: ./.github/workflows/check-function.yml 
 
   create_pr_function:
-    concurrency:
-      group: functions-${{ github.ref }}  
-    needs: check_gfunction
-    if: ${{ needs.check_gfunction.outputs.function_URL == '' &&  github.event_name == 'pull_request' }}
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit
     with:
       deploy_prod: false
+      website_pr: true
 
   build-web:
-    if: always() && (needs.check_gfunction.outputs.function_URL != '' || needs.create_pr_function.result == 'success' )
-    needs: [check_gfunction, create_pr_function]    
+    needs: [create_pr_function]    
     concurrency:
       group: web-${{ github.ref }}
       cancel-in-progress: true   
     runs-on: ubuntu-latest
     steps:
+      - name: fail if URL empty
+        if: needs.create_pr_funciton.outputs.function_URL == ''
+        run: echo "::error title=Function URL not found::Review the create_pr_function job"
+
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
       - name: only allow workflow_dispatch from main
@@ -53,7 +50,7 @@ jobs:
         working-directory: functions
         run: |
           if ${{ needs.check_gfunction.outputs.function_URL != ''}}; then
-            echo "GATSBY_FUNCTIONS_URL=${{ needs.check_gfunction.outputs.function_URL }}>> .env
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.outputs.function_URL }}>> .env
           else
             echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.outputs.function_URL }}>> .env
           fi

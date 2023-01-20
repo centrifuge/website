@@ -13,20 +13,26 @@ on:
       deploy_prod:
         description: "Deploy to prod (requires approval and wait time 120m)"
         default: false
-        type: boolean  
+        type: boolean
+      website_pr:
+        description: "Job called from a website pr"
+        default: false
+        type: boolean
     outputs:
       function_URL: 
-        value: ${{jobs.deploy-functions.outputs.function_url}}
+        value: ${{ jobs.deploy-functions.outputs.function_url || jobs.check_function_exists.outputs.function_url }}
         description: "function URL (if found) or empty otherwise"
     
 jobs:
-  # check_exists:
-  #   secrets: inherit
-  #   uses: ./.github/workflows/check-function.yml
+  check_exists:
+    secrets: inherit
+    uses: ./.github/workflows/check-function.yml
 
   build-functions:
-    # needs: check_exists
-    # if: needs.check_exists.outputs.function_url == '' || github.event_name != 'workflow_call'
+    needs: check_exists
+    if: (inputs.website_pr && ${{ needs.check_exists.function_URL == '' }}) || inputs.website_pr == ''   
+    # If workflow_call didn't trigger this workflow then website_pr == ''
+    # If workflow_call is triggered from website-deploy.yml website_pr always be true
     concurrency:
       group: functions-${{ github.ref }}
       cancel-in-progress: true     
@@ -56,6 +62,10 @@ jobs:
           # !dist/**/*.md
 
   deploy-functions:
+    needs: check_exists
+    if: inputs.website_pr || inputs.website_pr == ''   
+    # If workflow_call didn't trigger website_pr == ''
+    # If workflow_call is triggered from website-deploy.yml it'll always be true  
     outputs:
       function_url: ${{ steps.gclouddeploy.outputs.url }}  
     concurrency:
@@ -64,7 +74,6 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'  
-    needs: build-functions
     runs-on: ubuntu-latest
     # Deployment strategy:
     # prod if deploying from main branch or preview from PRs
@@ -78,17 +87,29 @@ jobs:
         id: deploy_vars
         with: 
           deploy_prod: ${{ inputs.deploy_prod }}    
-      - name: download the distribution package
-        id: download
-        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
-        with:
-          name: func-dist
       - name: Auth gcloud
         id: gauth
         uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
-          service_account: '${{ secrets.GSA }}' # 'functions-firestore@peak-vista-185616.iam.gserviceaccount.com'    
+          service_account: '${{ secrets.GSA }}'
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@d51b5346f85640ec2aa2fa057354d2b82c2fcbce # v1.0.1   
+
+      - name: Wait for build to succeed
+        uses: lewagon/wait-on-check-action@3a563271c3f8d1611ed7352809303617ee7e54ac
+        with:
+          ref: ${{ github.ref }}
+          check-name: build-functions
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 5
+
+      - name: download the distribution package
+        id: download
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
+        with:
+          name: func-dist
+    
       - name: Deploy to google functions
         id: gclouddeploy
         uses: google-github-actions/deploy-cloud-functions@14509ca55199d9348161571e36c48e44f855030d #@v1
@@ -101,8 +122,7 @@ jobs:
           https_trigger_security_level: 'secure_always'
           max_instances: ${{ steps.deploy_vars.outputs.max_instances  }}
 
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@d51b5346f85640ec2aa2fa057354d2b82c2fcbce # v1.0.1 
+
       - name: Change function to allow_unathorized calls 
         shell: bash
         run: |
