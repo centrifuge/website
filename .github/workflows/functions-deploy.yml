@@ -27,6 +27,7 @@ on:
         description: "function URL (if found) or empty otherwise"
 concurrency:
   group: deployfunctions-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   check_exists:
