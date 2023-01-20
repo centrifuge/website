@@ -7,6 +7,9 @@ on:
   push:
     branches:
       - "main"
+    paths:
+      - 'functions/*'
+      - '.github/workflows/functions-deploy.yml'    
 
   workflow_call:
     inputs:
@@ -50,7 +53,6 @@ jobs:
   
 
   build-functions:
-    name: Build functions JS bundle
     needs: check_exists
     # When should functions be deployed?
     # 1. Always on main branch => github_event_name == push
@@ -92,11 +94,12 @@ jobs:
           # !dist/**/*.md
 
   deploy-functions:
-    # needs: check_exists
-    # if: inputs.website_pr || inputs.website_pr == ''   
-    # If workflow_call didn't trigger website_pr == ''
-    # If workflow_call is triggered from website-deploy.yml it'll always be true  
-    needs: build-functions
+    needs: check_exists
+    if: |
+      github.ref == 'refs/heads/main' ||
+      ( needs.check_exists.outputs.function_URL == '' && github.event_name == 'pull_request') ||
+      ( inputs.website_pr != '' && inputs.deploy_prod == 'true') ||
+      ( needs.check_exists.outputs.function_URL != '' && github.event_name == 'pull_request' && inputs.website_pr == '' )
     outputs:
       function_url: ${{ steps.gclouddeploy.outputs.url }}   
     permissions:
@@ -124,13 +127,11 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@d51b5346f85640ec2aa2fa057354d2b82c2fcbce # v1.0.1   
 
-      - name: Wait for build to succeed
-        uses: lewagon/wait-on-check-action@master # 3a563271c3f8d1611ed7352809303617ee7e54ac
+      - uses: yogeshlonkar/wait-for-jobs@v0
         with:
-          ref: ${{ github.ref }}
-          check-name: 'Build functions JS bundle'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 5
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          jobs: 'build-functions'
+          ttl: 3
 
       - name: download the distribution package
         id: download
