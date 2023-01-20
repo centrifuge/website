@@ -51,4 +51,5 @@ jobs:
           fi
       - run: echo "function URL == ${{ steps.find_function.outputs.function_url }}" 
       - run:  echo "Condition is ${{ steps.find_function.outputs.function_url == '' &&  github.event_name == 'pull_request' }}"
+      - run:  echo "Condition is ${{ github.event_name == 'pull_request' }}"
  

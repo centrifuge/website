@@ -18,6 +18,8 @@ jobs:
     uses: ./.github/workflows/check-function.yml 
 
   create_pr_function:
+    concurrency:
+      group: functions-${{ github.ref }}  
     needs: check_gfunction
     if: ${{ needs.check_gfunction.outputs.function_URL == '' &&  github.event_name == 'pull_request' }}
     uses: ./.github/workflows/functions-deploy.yml
