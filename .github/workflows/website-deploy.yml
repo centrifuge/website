@@ -13,11 +13,25 @@ on:
         default: false
         type: boolean
 jobs:
+  check_exists:
+    uses: ./.github/workflows/reusable/check-function.yml 
+     
+  create_pr_function:
+    needs: check_exists
+    if: ${{ needs.check_exists.outputs.deploy_function == '' &&  github.event_name == 'pull_request' }}
+    uses: ./.github/workflows/functions-deploy.yml
+    secrets: inherit
+    with:
+      deploy_prod: false
+
   build-web:
+    if: always() && (needs.check_exists.output.function_URL != '' || needs.create_pr_function.result == 'success' )
+    needs: [check_exists, create_pr_function]    
     concurrency:
       group: web-${{ github.ref }}
       cancel-in-progress: true   
     runs-on: ubuntu-latest
+    environment: development # To be able to access env.REGION and env.GCP_PROJECT
     steps:
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
@@ -36,14 +50,10 @@ jobs:
         shell: bash
         working-directory: functions
         run: |
-          if  ${{ github.ref == 'refs/heads/main' }} ; then
-            if ${{ inputs.deploy_prod || false }}; then
-              echo "GATSBY_FUNCTIONS_URL=https://staging-website.k-f.dev" >> .env
-            else
-              echo "GATSBY_FUNCTIONS_URL=https://web-api.centrifuge.io" >> .env
-            fi
+          if ${{ needs.check_exists.output.function_URL != ''}}; then
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.check_exists.output.function_URL }}>> .env
           else
-            echo "GATSBY_FUNCTIONS_URL=https://${{ env.REGION }}-${{ env.GCP_PROJECT }}.cloudfunctions.net/${{ needs.strategy.outputs.function_name }}" >> .env
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.output.function_URL }}>> .env
           fi
 
       - name: Setup Node
@@ -131,50 +141,4 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: "centrifuge.io website deployed"
 
-  check_function_exists:
-    permissions:
-      contents: read
-      id-token: write 
-    runs-on: ubuntu-latest
-    environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
-    steps:   
-      - name: Auth gcloud
-        id: gauth
-        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
-        with:
-          workload_identity_provider: '${{ secrets.GWIP }}'
-          service_account: '${{ secrets.GSA }}'
-          # create_credentials_file: false
-      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1' 
 
-      - name: check function
-       # Deploy function for every website PR deployed for previews
-        id: check_function
-        shell: bash
-        run: |
-          if gcloud functions describe --region europe-central2 webapi-${{ github.head_ref || github.ref_name }} 2> /dev/null; then
-            echo "deploy=false" >> $GITHUB_OUTPUT
-          else
-            echo "deploy=true" >> $GITHUB_OUTPUT
-          fi
-        continue-on-error: true    
-    outputs:
-      deploy_function: ${{ steps.check_function.outputs.deploy }} 
-
-  
-  deploy_pr:
-    needs: check_function_exists
-    if: ${{needs.check_function_exists.outputs.deploy_function == 'true' &&  github.event_name == 'pull_request' }}
-    uses: ./.github/workflows/functions-deploy.yml
-    secrets: inherit
-    with:
-      deploy_prod: false
-
-  deploy_prod:
-    if: github.event.inputs.deploy_prod
-    uses: ./.github/workflows/functions-deploy.yml
-    secrets: inherit        
-    with:
-      deploy_prod: true
