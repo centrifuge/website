@@ -1,5 +1,5 @@
 
-name: check_gfunction
+name: Find Gcloud Function
 on:
   workflow_call:
 
@@ -30,9 +30,9 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
 
-      - name: check function
+      - name: find-function
        # Deploy function for every website PR deployed for previews
-        id: check_function
+        id: find_function
         shell: bash
         run: |
           if gcloud functions describe --region ${{ env.REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
@@ -45,4 +45,4 @@ jobs:
               echo "::error title=Function not found::Function ${{ steps.deploy_vars.outputs.function_name }} not found and this is not a new PR"
           fi
     outputs:
-      function_URL: ${{ steps.check_function.outputs.function_url }} 
+      function_URL: ${{ steps.find_function.outputs.function_url }} 

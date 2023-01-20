@@ -13,20 +13,20 @@ on:
         default: false
         type: boolean
 jobs:
-  check_exists:
-    uses: ./.github/workflows/reusable/check-function.yml 
-     
+  check_gfunction:
+    uses: ./.github/workflows/check-function.yml 
+
   create_pr_function:
-    needs: check_exists
-    if: ${{ needs.check_exists.outputs.deploy_function == '' &&  github.event_name == 'pull_request' }}
+    needs: check_gfunction
+    if: ${{ needs.check_gfunction.outputs.deploy_function == '' &&  github.event_name == 'pull_request' }}
     uses: ./.github/workflows/functions-deploy.yml
     secrets: inherit
     with:
       deploy_prod: false
 
   build-web:
-    if: always() && (needs.check_exists.output.function_URL != '' || needs.create_pr_function.result == 'success' )
-    needs: [check_exists, create_pr_function]    
+    if: always() && (needs.check_gfunction.output.function_URL != '' || needs.create_pr_function.result == 'success' )
+    needs: [check_gfunction, create_pr_function]    
     concurrency:
       group: web-${{ github.ref }}
       cancel-in-progress: true   
@@ -50,8 +50,8 @@ jobs:
         shell: bash
         working-directory: functions
         run: |
-          if ${{ needs.check_exists.output.function_URL != ''}}; then
-            echo "GATSBY_FUNCTIONS_URL=${{ needs.check_exists.output.function_URL }}>> .env
+          if ${{ needs.check_gfunction.output.function_URL != ''}}; then
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.check_gfunction.output.function_URL }}>> .env
           else
             echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.output.function_URL }}>> .env
           fi

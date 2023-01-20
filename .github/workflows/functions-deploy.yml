@@ -18,7 +18,7 @@ on:
     
 jobs:
   check_exists:
-    uses: ./.github/workflows/reusable/check-function.yml
+    uses: ./.github/workflows/check-function.yml
 
   build-functions:
     needs: check_exists
