@@ -32,7 +32,6 @@ jobs:
       group: web-${{ github.ref }}
       cancel-in-progress: true   
     runs-on: ubuntu-latest
-    environment: development # To be able to access env.REGION and env.GCP_PROJECT
     steps:
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
@@ -51,10 +50,10 @@ jobs:
         shell: bash
         working-directory: functions
         run: |
-          if ${{ needs.check_gfunction.output.function_URL != ''}}; then
-            echo "GATSBY_FUNCTIONS_URL=${{ needs.check_gfunction.output.function_URL }}>> .env
+          if ${{ needs.check_gfunction.outputs.function_URL != ''}}; then
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.check_gfunction.outputs.function_URL }}>> .env
           else
-            echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.output.function_URL }}>> .env
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.outputs.function_URL }}>> .env
           fi
 
       - name: Setup Node

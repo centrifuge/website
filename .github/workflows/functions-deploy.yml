@@ -20,13 +20,13 @@ on:
         description: "function URL (if found) or empty otherwise"
     
 jobs:
-  check_exists:
-    secrets: inherit
-    uses: ./.github/workflows/check-function.yml
+  # check_exists:
+  #   secrets: inherit
+  #   uses: ./.github/workflows/check-function.yml
 
   build-functions:
-    needs: check_exists
-    if: needs.check_exists.output.function_url == '' || github.event_name != 'workflow_call'
+    # needs: check_exists
+    # if: needs.check_exists.outputs.function_url == '' || github.event_name != 'workflow_call'
     concurrency:
       group: functions-${{ github.ref }}
       cancel-in-progress: true     
@@ -71,6 +71,8 @@ jobs:
     environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
     steps:
+      - name: Checkout
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0    
       - name: Set deployment vars
         uses: ./.github/actions/deploy_strategy
         id: deploy_vars
@@ -92,7 +94,7 @@ jobs:
         with:
           name: ${{ steps.deploy_vars.outputs.function_name }}
           runtime: nodejs16
-          region: ${{ env.REGION }}
+          region: ${{ vars.GCP_REGION }}
           source_dir: './'
           entry_point: 'handler'
           https_trigger_security_level: 'secure_always'
@@ -104,6 +106,6 @@ jobs:
         shell: bash
         run: |
           gcloud functions add-iam-policy-binding ${{ steps.deploy_vars.outputs.function_name }} \
-          --region=${{ env.REGION }} \
+          --region=${{ vars.GCP_REGION }} \
           --member="allUsers" --role="roles/cloudfunctions.invoker"
 

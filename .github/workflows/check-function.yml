@@ -4,10 +4,12 @@ on:
   workflow_call:
     outputs:
       function_URL: 
-        value: ${{jobs.deploy-functions.outputs.function_url}}
+        value: ${{jobs.check_function_exists.outputs.function_url}}
         description: "function URL (if found) or empty otherwise"
 jobs:
   check_function_exists:
+    outputs:
+      function_URL: ${{ steps.find_function.outputs.function_url }}  
     permissions:
       contents: read
       id-token: write 
@@ -38,10 +40,9 @@ jobs:
         id: find_function
         shell: bash
         run: |
-          if gcloud functions describe --region ${{ env.REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
+          if gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
           # False if not in main branch and function already exist. If there's code changes the functions job will trigger itself
-            FUNCTION_NAME=$(gcloud functions describe --region ${{ env.REGION }} ${{ steps.deploy_vars.outputs.function_name }} --format="value(httpsTrigger.url)")
-            echo "function_url=$FUNCTION_NAME" >> $GITHUB_OUTPUT
+            echo "function_url=$(gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} --format='value(httpsTrigger.url)')" >> $GITHUB_OUTPUT
           else
             echo "function_url=''" >> $GITHUB_OUTPUT
             if !${{ contains(github.event.action, 'open') }}; then
@@ -50,5 +51,4 @@ jobs:
           fi
       - run: echo "function URL == ${{ steps.find_function.outputs.function_url }}" 
       - run:  echo "Condition is ${{ steps.find_function.outputs.function_url == '' &&  github.event_name == 'pull_request' }}"
-    outputs:
-      function_URL: ${{ steps.find_function.outputs.function_url }} 
+ 
