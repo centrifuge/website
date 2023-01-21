@@ -24,6 +24,8 @@ jobs:
   check-function:
     uses: ./.github/workflows/check-function.yml
     secrets: inherit
+    with:
+      retry: true
   
   build-web:
     needs: [check-function]      
