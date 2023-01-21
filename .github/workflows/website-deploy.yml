@@ -31,10 +31,13 @@ jobs:
     steps:
       - name: fail if URL empty
         if: needs.create_pr_funciton.outputs.function_URL == ''
-        run: echo "::error title=Function URL not found::Review the check-function job"
+        run: |
+          echo "::error title=Function URL not found::Review the check-function job"
+          exit 1
 
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
+      
       - name: only allow workflow_dispatch from main
         if: ${{ github.event_name == 'workflow-dispatch' }}
         env:
@@ -42,6 +45,8 @@ jobs:
         run: |
           if ${{ env.ref }} ; then
             echo "::error title=Bad branch selected::You can only run manual workflows from the main branch"
+            exit 1
+      
       - name: Set deployment vars
         uses: ./.github/actions/deploy_strategy
         id: deploy_vars

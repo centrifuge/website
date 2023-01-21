@@ -55,4 +55,5 @@ runs:
             echo "env_name=pr" >> $GITHUB_OUTPUT
         else
           echo "::error title=No env to deploy::Workflow called from non-deployable branch/tag"
+          exit 1
         fi   

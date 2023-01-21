@@ -41,7 +41,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@d51b5346f85640ec2aa2fa057354d2b82c2fcbce # v1.0.1
 
       - name: Discover function URL for website
-        if: inputs.retry != '' || inputs.retry == 'true'
+        if: inputs.retry
         shell: bash
         # max_retry and sleep will consume GHA minutes. It shuold only fail when a PR is still to be deployed though
         # Initial value: 6 * 60(sleep)
@@ -57,6 +57,7 @@ jobs:
           done
           if ! gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
             echo "::error title=Not_found::Function ${{ steps.deploy_vars.outputs.function_name }} not found, check functions deploy and re-run this job"
+            exit 1
           fi
 
 
