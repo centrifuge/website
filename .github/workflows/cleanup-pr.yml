@@ -7,16 +7,38 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     permissions:
-      contents: 'read'
-      id-token: 'write'    
+      contents: read
+      id-token: write
+      actions: read
+      checks: read
+      statuses: read
+      deployments: read
+
     environment: gcloud-dev      
     steps:
+      
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0    
       - name: Set deployment vars
         uses: ./.github/actions/deploy_strategy
         id: deploy_vars
 
+      - name: wait for deploy jobs to finish
+        uses: lewagon/wait-on-check-action@v1.2.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'deploy-functions'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
+      - name: wait for deploy jobs to finish
+        uses: lewagon/wait-on-check-action@v1.2.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'publish-to-gcs'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10          
+      
       - name: Auth gcloud
         id: gauth
         uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
@@ -27,7 +49,7 @@ jobs:
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
-            
+
       - name: Delete Function created on PR
         run: gcloud functions delete --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }}    
 
