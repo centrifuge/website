@@ -7,6 +7,9 @@ on:
         type: boolean
         default: false
         description: "To keep searching for the function"
+      production:
+        type: boolean
+        default: false
     outputs:
       function_URL: 
         value: ${{ jobs.check_function_url.outputs.function_url}}
@@ -20,6 +23,7 @@ jobs:
       contents: read
       id-token: write 
     runs-on: ubuntu-latest
+    environment: ${{ inputs.deploy_prod && 'production' || '' }} # Use default read-only secrets if not prod
     steps:   
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
