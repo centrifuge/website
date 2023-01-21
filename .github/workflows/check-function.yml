@@ -76,10 +76,8 @@ jobs:
         run: |
          echo "Called from function job, return result immediately"
           if gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
-           # this will run if function was found
             echo "function_url=$(gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} --format='value(httpsTrigger.url)')" >> $GITHUB_OUTPUT
           else
-            # if describe fails
             echo "function_url=''" >> $GITHUB_OUTPUT
           fi
 

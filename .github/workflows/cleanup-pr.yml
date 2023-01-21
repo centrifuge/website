@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/deploy_strategy
         id: deploy_vars
 
-      - name: wait for deploy jobs to finish
+      - name: wait for function-deploy jobs to finish
         uses: lewagon/wait-on-check-action@v1.2.0
         with:
           ref: ${{ github.head_ref || github.ref }}
@@ -31,7 +31,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
-      - name: wait for deploy jobs to finish
+      - name: wait for web-deploy jobs to finish
         uses: lewagon/wait-on-check-action@v1.2.0
         with:
           ref: ${{ github.head_ref || github.ref }}
