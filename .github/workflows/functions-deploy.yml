@@ -122,7 +122,7 @@ jobs:
           source_dir: ${{steps.download.outputs.download-path}}
           entry_point: 'handler'
           https_trigger_security_level: 'secure_always'
-          max_instances: ${{ inputs.deploy_prod && '2' || '10' }}
+          max_instances: ${{ inputs.deploy_prod && '25' || '1' }}
 
 
       - name: Change function to allow_unathorized calls 
