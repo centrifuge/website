@@ -21,24 +21,17 @@ concurrency:
   # Do not run two of this workflows at the same time, only last
 jobs:
 
-  create_pr_function:
-    if: github.event_name == 'pull_request' || inputs.deploy_prod == 'true'
-    # Non-PR functions should be handled by the functions-deploy.yml workflow itself 
-    # (if there's code changes to functions/)
-    # unless deploying to prod
-    uses: ./.github/workflows/functions-deploy.yml
+  check-function:
+    uses: ./.github/workflows/check-function.yml
     secrets: inherit
-    with:
-      deploy_prod: ${{inputs.deploy_prod == 'true'}}
-      website_pr: true
-
+  
   build-web:
-    needs: [create_pr_function]      
+    needs: [check-function]      
     runs-on: ubuntu-latest
     steps:
       - name: fail if URL empty
         if: needs.create_pr_funciton.outputs.function_URL == ''
-        run: echo "::error title=Function URL not found::Review the create_pr_function job"
+        run: echo "::error title=Function URL not found::Review the check-function job"
 
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
