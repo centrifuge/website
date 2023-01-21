@@ -9,11 +9,11 @@ on:
         description: "To keep searching for the function"
     outputs:
       function_URL: 
-        value: ${{ jobs.check_function_exists.outputs.function_url}}
+        value: ${{ jobs.check_function_url.outputs.function_url}}
         description: "function URL (if found) or empty otherwise"
 
 jobs:
-  check_function_exists:
+  check_function_url:
     outputs:
       function_URL: ${{ steps.find_function.outputs.function_url }}  
     permissions:
