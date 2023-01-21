@@ -25,9 +25,9 @@ on:
       function_URL: 
         value: ${{ jobs.deploy-functions.outputs.function_url || jobs.check_function_exists.outputs.function_url }}
         description: "function URL (if found) or empty otherwise"
-concurrency:
-  group: deployfunctions-${{ github.ref }}
-  cancel-in-progress: false
+# concurrency:
+#   group: deployfunctions-${{ github.ref }}
+#   cancel-in-progress: false
 
 jobs:
   check_exists:
@@ -35,6 +35,9 @@ jobs:
     uses: ./.github/workflows/check-function.yml
 
   build-functions:
+    concurrency:
+      group: deployfunctions-${{ github.ref }}
+      cancel-in-progress: false  
     needs: check_exists
     # When should functions be deployed?
     # 1. Always on main branch => github_event_name == push
@@ -76,6 +79,9 @@ jobs:
           # !dist/**/*.md
 
   deploy-functions:
+    concurrency:
+      group: deployfunctions-${{ github.ref }}
+      cancel-in-progress: false  
     needs: check_exists
     if: |
       github.ref == 'refs/heads/main' ||
