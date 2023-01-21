@@ -90,7 +90,7 @@ jobs:
       id-token: write 
       pull-requests: write
     runs-on: ubuntu-latest
-    environment: ${{ inputs.deploy_prod && 'production' || 'development' }}
+    environment: ${{ inputs.deploy_prod && 'production' || 'gcloud-dev' }}
     env:
       bucket_url: ${{ needs.build-web.outputs.bucket_url }}
     steps:
