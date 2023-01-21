@@ -26,7 +26,7 @@ jobs:
       - name: wait for deploy jobs to finish
         uses: lewagon/wait-on-check-action@v1.2.0
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.head_ref || github.ref }}
           check-name: 'deploy-functions'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
@@ -34,7 +34,7 @@ jobs:
       - name: wait for deploy jobs to finish
         uses: lewagon/wait-on-check-action@v1.2.0
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.head_ref || github.ref }}
           check-name: 'publish-to-gcs'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10          
