@@ -29,7 +29,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1' 
             
       - name: Delete Function created on PR
-        run: gcloud functions delete --region ${{ env.REGION }} ${{ steps.deploy_vars.outputs.function_name }}    
+        run: gcloud functions delete --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }}    
 
       - name: delete the bucket if PR is closed'
         run: gsutil rm -r gs://${{ steps.deploy_vars.outputs.bucket_url }}    
