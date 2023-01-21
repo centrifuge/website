@@ -61,7 +61,7 @@ jobs:
             counter=$((counter+1))
             
           done
-          if ! gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }}; then
+          if ! gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
             echo "::error title=Not_found::Function ${{ steps.deploy_vars.outputs.function_name }} not found, check functions deploy and re-run this job"
             exit 1
           fi

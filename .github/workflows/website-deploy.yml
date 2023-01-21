@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: fail if URL empty
-        if: needs.create_pr_funciton.outputs.function_URL == ''
+        if: needs.check-function.outputs.function_URL == ''
         run: |
           echo "::error title=Function URL not found::Review the check-function job"
           exit 1
@@ -60,9 +60,9 @@ jobs:
         working-directory: functions
         run: |
           if ${{ needs.check_gfunction.outputs.function_URL != ''}}; then
-            echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.outputs.function_URL }}>> .env
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.check-function.outputs.function_URL }}>> .env
           else
-            echo "GATSBY_FUNCTIONS_URL=${{ needs.create_pr_function.outputs.function_URL }}>> .env
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.check-function.outputs.function_URL }}>> .env
           fi
 
       - name: Setup Node
