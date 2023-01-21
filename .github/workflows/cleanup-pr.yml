@@ -32,4 +32,4 @@ jobs:
         run: gcloud functions delete --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }}    
 
       - name: delete the bucket if PR is closed'
-        run: gsutil rm -r gs://${{ steps.deploy_vars.outputs.bucket_url }}    
+        run: gsutil -m rm -r gs://${{ steps.deploy_vars.outputs.bucket_url }}    
