@@ -14,7 +14,7 @@
         "items": [
           {
             "title": "Primary Colors",
-            "body": "Solid white and orange are used as the primary brand colors. White are the primary background color and yellow is the primary accent color.",
+            "body": "Solid white and yellow are used as the primary brand colors. White are the primary background color and yellow is the primary accent color.",
             "colors": [
               {
                 "title": "White",
@@ -29,7 +29,7 @@
           },
           {
             "title": "Secondary colors",
-            "body": "Black is used predominantly as text color and sometimes used as background color. Centrifuge Blue is used as secondary highlight color, in addition to orange, and on hover states. Centrifuge Orange is used a secondary highlight color.",
+            "body": "Black is used predominantly as text color and sometimes used as background color. Centrifuge Blue is used as secondary highlight color, in addition to yellow, and on hover states. Centrifuge Orange is used a secondary highlight color.",
             "colors": [
               {
                 "title": "Black",
