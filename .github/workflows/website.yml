@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       deploy_prod:
-        description: "Deploy to prod (requires approval and wait time 120m)"
+        description: "Deploy to prod (requires approval)"
         default: false
         type: boolean
 concurrency:
