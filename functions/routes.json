@@ -18,6 +18,12 @@
     "name": "getTotalAssetsTokenized"
   },
   {
+    "name": "getCirculatingSupply"
+  },
+  {
+    "name": "getTotalIssuance"
+  },
+  {
     "name": "getExample",
     "options": {}
   }

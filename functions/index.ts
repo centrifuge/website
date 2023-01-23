@@ -3,15 +3,17 @@ import { Request, Response } from 'express'
 
 const corsWhitelist = ['http://localhost:8000', 'https://centrifuge.io']
 const testEnvRegex = new RegExp('https://[a-z0-9-]*(website-centrifuge-22.netlify.app|centrifuge-website.pages.dev)')
+const publicFunctions = ['/getCirculatingSupply', '/getTotalIssuance']
 
 exports.handler = async (req: Request, res: Response) => {
   if (routes.length < 0) {
     return res.status(400).send('No functions defined')
   }
 
-  const origin = req.get('origin')
+  const isPublicFunction = publicFunctions.includes(req.url)
+  const origin = isPublicFunction ? '*' : req.get('origin')
 
-  if (corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
+  if (isPublicFunction || corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
     res.set('Access-Control-Allow-Origin', origin)
     res.set('Access-Control-Allow-Methods', ['GET', 'POST'])
   } else {
