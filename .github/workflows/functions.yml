@@ -40,6 +40,9 @@ jobs:
   check_exists:
     secrets: inherit
     uses: ./.github/workflows/check-function.yml
+    with:
+      retry: false
+      production: inputs.deploy_prod || false
 
   build-functions:
     needs: check_exists
