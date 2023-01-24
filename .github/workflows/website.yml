@@ -8,7 +8,14 @@ on:
   pull_request:
     paths-ignore:
       - 'functions/**'
-      
+
+  workflow_call:
+    inputs:
+      deploy_prod:
+        description: "Deploy to prod: requires approval and wait time"
+        default: false
+        type: boolean
+
 concurrency:
   group: web-${{ github.ref }}
   cancel-in-progress: true 
