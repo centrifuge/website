@@ -25,11 +25,11 @@ on:
       env_name:
         description: "Environment name for reference"
         value: ${{ jobs.prepare-deployment.outputs.env_name }}
-    secrets:
-      GWIP:
-        required: true
-      GSA:
-        required: true
+    # secrets:
+    #   GWIP:
+    #     required: true
+    #   GSA:
+    #     required: true
 
 jobs:
   prepare-deployment:

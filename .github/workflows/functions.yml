@@ -38,14 +38,11 @@ concurrency:
 jobs:         
 
   prepare-deploy:
-    # secrets: inherit
+    secrets: inherit
     uses: ./.github/workflows/prepare-deploy.yml
     with:
       wait: false
-      deploy_env: ${{ inputs.deploy_env }}
-    secrets:
-      GWIP: ${{ secrets.GWIP }}
-      GSA: ${{ secrets.GSA }}      
+      deploy_env: ${{ inputs.deploy_env }}   
 
   build-functions:
     needs: prepare-deploy

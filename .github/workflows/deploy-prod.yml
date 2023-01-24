@@ -16,11 +16,13 @@ jobs:
 
   web:
     uses: ./.github/workflows/website.yml
+    secrets: inherit
     with:
       deploy_env: production
 
 
   functions:
     uses: ./.github/workflows/functions.yml
+    secrets: inherit
     with:
       deploy_env: production        
