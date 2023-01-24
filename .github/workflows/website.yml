@@ -12,31 +12,31 @@ on:
   workflow_call:
     inputs:
       deploy_prod:
-        description: "Deploy to prod: requires approval and wait time"
-        default: false
-        type: boolean
+        description: "Deploy to prod flag" # Used to make multiple decisions about deployment
+        default: 'false'
+        type: string
 
 concurrency:
   group: web-${{ github.ref }}
   cancel-in-progress: true 
-  # Do not run two of this workflows at the same time, only last
+
 jobs:
 
-  check-function:
-    uses: ./.github/workflows/check-function.yml
+  prepare-deploy:
+    uses: ./.github/workflows/prepare-deploy.yml
     secrets: inherit
     with:
-      retry: true
-      # production: ${{ inputs.deploy_prod }} || false
+      wait: true
+      production: ${{ github.event_name == 'workflow_call' && inputs.deploy_prod }}
   
   build-web:
-    needs: [check-function]      
+    needs: [prepare-deploy]      
     runs-on: ubuntu-latest
     steps:
       - name: fail if URL empty
-        if: needs.check-function.outputs.function_URL == ''
+        if: needs.prepare-deploy.outputs.function_URL == ''
         run: |
-          echo "::error title=Function URL not found::Review the check-function job"
+          echo "::error title=Function URL not found::Review the prepare-deploy job"
           exit 1
 
       - name: Checkout
@@ -50,12 +50,6 @@ jobs:
           if ${{ env.ref }} ; then
             echo "::error title=Bad branch selected::You can only run manual workflows from the main branch"
             exit 1
-      
-      - name: Set deployment vars
-        uses: ./.github/actions/deploy_strategy
-        id: deploy_vars
-        with: 
-          deploy_prod: ${{ inputs.deploy_prod }}
 
       - name: Setup Node
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 #@v3
@@ -66,7 +60,7 @@ jobs:
         run: yarn install
       - name: Build
         env:
-          GATSBY_FUNCTIONS_URL: ${{ needs.check-function.outputs.function_URL }}
+          GATSBY_FUNCTIONS_URL: ${{ needs.prepare-deploy.outputs.function_URL }}
         run: |
           yarn build
       
@@ -76,18 +70,16 @@ jobs:
           name: web-package
           retention-days: 1
           path: public/
-    outputs:
-      bucket_url: ${{ steps.deploy_vars.outputs.bucket_url }}
 
   publish-to-gcs:
-    needs: build-web
+    needs: [build-web, prepare-deploy]
     permissions:
       contents: read
       id-token: write 
     runs-on: ubuntu-latest
     environment: ${{ inputs.deploy_prod && 'production' || 'gcloud-dev' }}
     env:
-      bucket_url: ${{ needs.build-web.outputs.bucket_url }}
+      bucket_url: ${{ needs.prepare-deploy.outputs.bucket_url }}
     steps:
       - name: download webpack
         id: download

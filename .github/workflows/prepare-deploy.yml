@@ -1,0 +1,143 @@
+
+# If you change this file make sure to change the references to filename and outputs from
+# functions and website workflows
+
+name: Find Gcloud Function
+on:
+# As a reusable workflow, the only trigger is being called
+# by another workflow
+  workflow_call:
+    inputs:
+      wait:
+        type: boolean
+        default: false
+        description: "To keep searching for the function"
+      production:
+        type: boolean
+        default: false
+    outputs:
+      function_URL: 
+        description: "function URL (if found) or empty otherwise"
+        value: ${{ jobs.prepare-deployment.outputs.function_url}}
+      bucket_url: 
+        description: "URL to deploy your front-end"
+        value: ${{ jobs.prepare-deployment.outputs.bucket_url}}
+      env_name:
+        description: "Environment name for reference"
+        value: ${{ jobs.prepare-deployment.outputs.env_name }}
+
+jobs:
+  prepare-deployment:
+    name: "Set env vars"
+    outputs:
+      function_URL: ${{ steps.find_function.outputs.function_url }}  
+      bucket_url: ${{ steps.deploy_vars.outputs.bucket_url }}  
+      env_name:  ${{ steps.deploy_vars.outputs.env_name }}  
+    permissions:
+      contents: read
+      id-token: write 
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.production && 'production' || '' }} # Use default read-only secrets if not prod
+    steps:  
+    ### Debug:
+      - run: |
+          echo "Inputs:"
+          echo "production: ${{ inputs.production }}"
+          echo "wait for function to exist: ${{ inputs.wait }}"
+          echo "GH environment: ${{ inputs.production && 'production' || '' }} (empty if not prod?)"
+
+    ############################################################################################
+    # First discover the environment to deploy and set some vars 
+    ############################################################################################    
+
+      - name: Checkout
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
+      - id: deploy_vars
+        shell: bash
+        env: 
+          # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
+          ref: ${{ github.head_ref || github.ref_name }}
+          pr_number: ${{ github.event.number }}
+          # Set Alatair and Centrifuge to deploy in the prod Gcloud account
+          # both will require approval to use the GCE prod secrets
+        run: |
+          echo "Set env vars for deployment"
+
+          if  ${{ github.ref == 'refs/heads/main' || github.event_name == 'pull_request' }} ; then
+            if  ${{ inputs.deploy_prod == 'true' }}; then
+              #  PROD
+              echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
+              echo "function_name=webapi" >> $GITHUB_OUTPUT
+              echo "env_name=production" >> $GITHUB_OUTPUT
+              
+            else
+              #  STAGING
+              echo "bucket_url=website-staging.k-f.dev" >> $GITHUB_OUTPUT
+              echo "function_name=webapi-staging" >> $GITHUB_OUTPUT
+              echo "env_name=staging" >> $GITHUB_OUTPUT            
+              
+            fi
+          elif ${{ github.event_name == 'pull_request' }}; then
+            # PRs
+              echo "bucket_url=preview-pr${{ env.pr_number }}.k-f.dev" >> $GITHUB_OUTPUT
+              echo "function_name=webapi-${{ env.pr_number }}" >> $GITHUB_OUTPUT
+              echo "env_name=pr" >> $GITHUB_OUTPUT
+          else
+            echo "::error title=No env to deploy::Workflow called from non-deployable branch/tag"
+            exit 1
+          fi        
+
+      ############################################################################################
+      # Second look up the function's URL
+      # Warning: A Google Cloud token is created here, handle with care
+      ############################################################################################
+
+      - name: Auth gcloud
+        id: gauth
+        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
+        with:
+          workload_identity_provider: '${{ secrets.GWIP }}'
+          service_account: '${{ secrets.GSA }}'
+
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@d51b5346f85640ec2aa2fa057354d2b82c2fcbce # v1.0.1
+
+      - name: Discover function URL for website
+        if: inputs.wait
+        shell: bash
+        # max_retry and sleep will consume GHA minutes. It shuold only fail when a PR is still to be deployed though
+        # Initial value: 6 * 60(sleep)
+        run: |
+          echo "Called from website job, keep searching for function"
+          max_retry=7
+          counter=0
+          while ! gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null && 
+                  [ ${counter} -lt ${max_retry} ]
+          do
+            echo " Function not found - Try #${counter}"
+            echo "Wait 1 min..."
+            # Try once every minute
+            sleep 60
+            echo "Trying again:"
+            counter=$((counter+1))
+            
+          done
+          if ! gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} 1> /dev/null; then
+            echo "::error title=Not_found::Function ${{ steps.deploy_vars.outputs.function_name }} not found, check functions deploy and re-run this job"
+            exit 1
+          fi
+
+
+      - name: Fetch function URL
+        id: find_function
+        shell: bash
+        run: |
+         echo "Called from function job, return result immediately"
+          if gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
+            echo "function_url=$(gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} --format='value(httpsTrigger.url)')" >> $GITHUB_OUTPUT
+          else
+            echo "function_url=''" >> $GITHUB_OUTPUT
+          fi
+
+ 

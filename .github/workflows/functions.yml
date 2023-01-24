@@ -37,22 +37,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check_exists:
+  prepare-deploy:
     secrets: inherit
-    uses: ./.github/workflows/check-function.yml
+    uses: ./.github/workflows/prepare-deploy.yml
     with:
-      retry: false
-      # production: ${{ inputs.deploy_prod }} || false
+      wait: false
+      production: ${{ github.event_name == 'workflow_call' && inputs.deploy_prod }}
 
   build-functions:
-    needs: check_exists
+    needs: prepare-deploy
     # When should functions be deployed?
     # 1. If it's not a workflow_run => Either main branch or prod deploy 
     # 2. If it's a workflow_run (from web-deploy) and the function does not exist
     # Add more conditions if you add any more triggers
     if: |
       github.event_name != 'workflow_run'||
-      ( needs.check_exists.outputs.function_URL == '' && github.event_name == 'workflow_run' )
+      ( needs.prepare-deploy.outputs.function_URL == '' && github.event_name == 'workflow_run' )
 
     runs-on: ubuntu-latest
     steps:
@@ -80,7 +80,7 @@ jobs:
           # !dist/**/*.md
 
   deploy-functions: 
-    needs: build-functions
+    needs: [build-functions, prepare-deploy]
     outputs:
       function_url: ${{ steps.gclouddeploy.outputs.url }}   
     permissions:
@@ -91,14 +91,7 @@ jobs:
     # prod if deploying from main branch or preview from PRs
     environment: ${{ inputs.deploy_prod && 'production' || 'gcloud-dev' }}
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
-    steps:
-      - name: Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0    
-      - name: Set deployment vars
-        uses: ./.github/actions/deploy_strategy
-        id: deploy_vars
-        with: 
-          deploy_prod: ${{ inputs.deploy_prod }}   
+    steps: 
 
       - name: download the distribution package
         id: download
@@ -119,7 +112,7 @@ jobs:
         id: gclouddeploy
         uses: google-github-actions/deploy-cloud-functions@14509ca55199d9348161571e36c48e44f855030d #@v1
         with:
-          name: ${{ steps.deploy_vars.outputs.function_name }}
+          name: ${{ needs.prepare-deploy.outputs.function_name }}
           runtime: nodejs16
           region: ${{ vars.GCP_REGION }}
           source_dir: ${{steps.download.outputs.download-path}}
@@ -131,7 +124,7 @@ jobs:
       - name: Change function to allow_unathorized calls 
         shell: bash
         run: |
-          gcloud functions add-iam-policy-binding ${{ steps.deploy_vars.outputs.function_name }} \
+          gcloud functions add-iam-policy-binding ${{ needs.prepare-deploy.outputs.function_name }} \
           --region=${{ vars.GCP_REGION }} \
           --member="allUsers" --role="roles/cloudfunctions.invoker"
 
