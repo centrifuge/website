@@ -1,15 +1,26 @@
-name: Prod deployment
+name: Trigger a deployment to prod
 on:
   workflow_dispatch:
 
 jobs:
+  # web:
+  #   uses: centrifuge/website/.github/workflows/website-deploy.yml@main
+  #   with:
+  #     deploy_prod: true
+
+
+  # functions:
+  #   uses: centrifuge/website/.github/workflows/functions-deploy.yml@main
+  #   with:
+  #     deploy_prod: true  
+
   web:
-    uses: centrifuge/website/.github/workflows/website.yml@main
+    uses: ./.github/workflows/website.yml
     with:
       deploy_prod: true
 
 
   functions:
-    uses: centrifuge/website/.github/workflows/functions.yml@main
+    uses: ./.github/workflows/functions.yml
     with:
-      deploy_prod: true  
+      deploy_prod: true        
