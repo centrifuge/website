@@ -42,7 +42,7 @@ jobs:
     uses: ./.github/workflows/check-function.yml
     with:
       retry: false
-      production: inputs.deploy_prod || false
+      production: ${{ inputs.deploy_prod }} || false
 
   build-functions:
     needs: check_exists
