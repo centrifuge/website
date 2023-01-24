@@ -31,7 +31,7 @@ runs:
       run: |
         echo "Set env vars for deployment"
 
-        if  ${{ github.ref == 'refs/heads/main' }} ; then
+        if  ${{ github.ref == 'refs/heads/main' || github.event_name == 'pull_request' }} ; then
           if  ${{ inputs.deploy_prod == 'true' }}; then
             #  PROD
             echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
