@@ -1,4 +1,4 @@
-name: Trigger a deployment to prod
+name: Prod deployment
 on:
   workflow_dispatch:
 
@@ -17,10 +17,10 @@ jobs:
   web:
     uses: ./.github/workflows/website.yml
     with:
-      deploy_prod: true
+      deploy_env: production
 
 
   functions:
     uses: ./.github/workflows/functions.yml
     with:
-      deploy_prod: true        
+      deploy_env: production        

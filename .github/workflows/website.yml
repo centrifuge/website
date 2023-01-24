@@ -11,9 +11,8 @@ on:
 
   workflow_call:
     inputs:
-      deploy_prod:
-        description: "Deploy to prod flag" # Used to make multiple decisions about deployment
-        default: 'false'
+      deploy_env:
+        description: "For manual deployments (prod)"
         type: string
 
 concurrency:
@@ -27,7 +26,7 @@ jobs:
     secrets: inherit
     with:
       wait: true
-      production: ${{ github.event_name == 'workflow_call' && inputs.deploy_prod }}
+      deploy_env: ${{ inputs.deploy_env }}
   
   build-web:
     needs: [prepare-deploy]      
@@ -77,7 +76,7 @@ jobs:
       contents: read
       id-token: write 
     runs-on: ubuntu-latest
-    environment: ${{ inputs.deploy_prod && 'production' || 'gcloud-dev' }}
+    environment: ${{ inputs.deploy_env || 'gcloud-dev' }}
     env:
       bucket_url: ${{ needs.prepare-deploy.outputs.bucket_url }}
     steps:
@@ -135,7 +134,7 @@ jobs:
       - run: echo "::notice title=web_url::${{ needs.publish-to-gcs.outputs.bucket_url  }}"      
       
       - name: Notify prod deploy
-        if: inputs.deploy_prod
+        if: inputs.deploy_env == 'production'
         uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

@@ -10,11 +10,11 @@ on:
     inputs:
       wait:
         type: boolean
+        required: true
         default: false
         description: "To keep searching for the function"
-      production:
-        type: boolean
-        default: false
+      deploy_env:
+        type: string
     outputs:
       function_URL: 
         description: "function URL (if found) or empty otherwise"
@@ -37,19 +37,13 @@ jobs:
       contents: read
       id-token: write 
     runs-on: ubuntu-latest
-    environment: ${{ inputs.production && 'production' || '' }} # Use default read-only secrets if not prod
+    environment: ${{ inputs.deploy_env || '' }} # Use default read-only secrets if not prod
     steps:  
-    ### Debug:
-      - run: |
-          echo "Inputs:"
-          echo "production: ${{ inputs.production }}"
-          echo "wait for function to exist: ${{ inputs.wait }}"
-          echo "GH environment: ${{ inputs.production && 'production' || '' }} (empty if not prod?)"
-
+      - run: echo "Manual deploy to -> ${{ inputs.deploy_env || '' }}"
+        if: ${{ inputs.deploy_env != '' }}
     ############################################################################################
     # First discover the environment to deploy and set some vars 
     ############################################################################################    
-
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
       - id: deploy_vars
@@ -63,8 +57,8 @@ jobs:
         run: |
           echo "Set env vars for deployment"
 
-          if  ${{ github.ref == 'refs/heads/main' || github.event_name == 'pull_request' }} ; then
-            if  ${{ inputs.deploy_prod == 'true' }}; then
+          if  ${{ github.ref == 'refs/heads/main' }} ; then
+            if  ${{ inputs.deploy_env == 'prod' }}; then
               #  PROD
               echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
               echo "function_name=webapi" >> $GITHUB_OUTPUT

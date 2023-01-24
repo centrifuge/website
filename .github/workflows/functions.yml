@@ -14,10 +14,9 @@ on:
 
   workflow_call:
     inputs:
-      deploy_prod:
-        description: "Deploy to prod: requires approval and wait time"
-        default: false
-        type: boolean
+      deploy_env:
+        description: "For manual deployments (prod)"
+        type: string
   
   workflow_run:
     workflows: [Website]
@@ -36,13 +35,14 @@ concurrency:
   group: func-${{ github.event.workflow_run.head_branch || github.ref }}
   cancel-in-progress: true
 
-jobs:
+jobs:         
+
   prepare-deploy:
     secrets: inherit
     uses: ./.github/workflows/prepare-deploy.yml
     with:
       wait: false
-      production: ${{ github.event_name == 'workflow_call' && inputs.deploy_prod }}
+      deploy_env: ${{ inputs.deploy_env }}
 
   build-functions:
     needs: prepare-deploy
