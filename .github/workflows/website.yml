@@ -23,10 +23,13 @@ jobs:
 
   prepare-deploy:
     uses: ./.github/workflows/prepare-deploy.yml
-    secrets: inherit
+    # secrets: inherit
     with:
       wait: true
       deploy_env: ${{ inputs.deploy_env }}
+    secrets:
+      GWIP: ${{ secrets.GWIP }}
+      GSA: ${{ secrets.GSA }}
   
   build-web:
     needs: [prepare-deploy]      

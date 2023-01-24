@@ -25,6 +25,11 @@ on:
       env_name:
         description: "Environment name for reference"
         value: ${{ jobs.prepare-deployment.outputs.env_name }}
+    secrets:
+      GWIP:
+        required: true
+      GSA:
+        required: true
 
 jobs:
   prepare-deployment:
@@ -37,7 +42,7 @@ jobs:
       contents: read
       id-token: write 
     runs-on: ubuntu-latest
-    environment: ${{ inputs.deploy_env || '' }} # Use default read-only secrets if not prod
+    environment: ${{ inputs.deploy_env }} # Use default read-only secrets if not prod
     steps:  
       - run: echo "Manual deploy to -> ${{ inputs.deploy_env || '' }}"
         if: ${{ inputs.deploy_env != '' }}
