@@ -1,4 +1,4 @@
-name: Website
+name: Website # This name is referenced in the functions.yml file under workflow_run
 on:
   push:
     branches:

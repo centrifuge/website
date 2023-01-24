@@ -22,10 +22,10 @@ on:
   workflow_run:
     workflows: [Website]
     types:
-      - "requested"
+      - requested
     branches-ignore:
     # Only run this with website-deploy if it's not the main branch
-      - "main"
+      - main
       # workflow_run will always use the default branch (main) as git.ref
       # always deploying code from main unless the functions/ dir has changed
       # which will trigger this workflow differently

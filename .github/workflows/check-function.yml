@@ -1,4 +1,7 @@
 
+# If you change this file make sure to change the references to filename and outputs from
+# functions and website workflows
+
 name: Find Gcloud Function
 on:
   workflow_call:
