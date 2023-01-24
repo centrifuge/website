@@ -20,7 +20,7 @@ on:
         type: boolean
   
   workflow_run:
-    workflows: [Deploy website]
+    workflows: [Website]
     types:
       - "requested"
     branches-ignore:
