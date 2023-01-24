@@ -31,27 +31,24 @@ runs:
       run: |
         echo "Set env vars for deployment"
 
-        echo "max_instances=2" >> $GITHUB_OUTPUT
-
         if  ${{ github.ref == 'refs/heads/main' }} ; then
           if  ${{ inputs.deploy_prod == 'true' }}; then
             #  PROD
             echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
-            echo "functions_name=webapi-main" >> $GITHUB_OUTPUT
+            echo "functions_name=webapi" >> $GITHUB_OUTPUT
             echo "env_name=production" >> $GITHUB_OUTPUT
-            echo "max_instances=10" >> $GITHUB_OUTPUT
             
           else
             #  STAGING
             echo "bucket_url=website-staging.k-f.dev" >> $GITHUB_OUTPUT
-            echo "functions_name=webapi-main" >> $GITHUB_OUTPUT
+            echo "functions_name=webapi-staging" >> $GITHUB_OUTPUT
             echo "env_name=staging" >> $GITHUB_OUTPUT            
             
           fi
         elif ${{ github.event_name == 'pull_request' }}; then
           # PRs
             echo "bucket_url=preview-pr${{ env.pr_number }}.k-f.dev" >> $GITHUB_OUTPUT
-            echo "functions_name=webapi-${{ env.ref }}" >> $GITHUB_OUTPUT
+            echo "functions_name=webapi-${{ env.pr_number }}" >> $GITHUB_OUTPUT
             echo "env_name=pr" >> $GITHUB_OUTPUT
         else
           echo "::error title=No env to deploy::Workflow called from non-deployable branch/tag"

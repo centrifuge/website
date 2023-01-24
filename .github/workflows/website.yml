@@ -9,12 +9,6 @@ on:
     paths-ignore:
       - 'functions/**'
       
-  workflow_dispatch:
-    inputs:
-      deploy_prod:
-        description: "Deploy to prod (requires approval)"
-        default: false
-        type: boolean
 concurrency:
   group: web-${{ github.ref }}
   cancel-in-progress: true 
@@ -111,14 +105,20 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
 
-      - name: try to create bucket
+      - name: Create bucket (never fail)
         id: create_bucket
         continue-on-error: true
         run: |
           gsutil mb gs://${{ env.bucket_url }}
+
+
+      - name: Set bucket as website
+        id: create_bucket
+        continue-on-error: true
+        run: |          
           gsutil iam ch allUsers:objectViewer gs://${{ env.bucket_url }}
           gsutil web set -m index.html -e 404.html gs://${{ env.bucket_url }}
-
+          
       - name: push to bucket
         id: push
         run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ env.bucket_url }}
