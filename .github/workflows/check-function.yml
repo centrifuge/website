@@ -23,7 +23,7 @@ jobs:
       contents: read
       id-token: write 
     runs-on: ubuntu-latest
-    environment: ${{ inputs.deploy_prod && 'production' || '' }} # Use default read-only secrets if not prod
+    environment: ${{ inputs.production && 'production' || '' }} # Use default read-only secrets if not prod
     steps:   
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
@@ -31,7 +31,7 @@ jobs:
         uses: ./.github/actions/deploy_strategy
         id: deploy_vars
         with: 
-          deploy_prod: ${{ inputs.deploy_prod }}
+          deploy_prod: ${{ inputs.production }}
 
       - name: Auth gcloud
         id: gauth
