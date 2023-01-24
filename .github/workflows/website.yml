@@ -27,7 +27,7 @@ jobs:
     secrets: inherit
     with:
       retry: true
-      production: ${{ inputs.deploy_prod }} || false
+      # production: ${{ inputs.deploy_prod }} || false
   
   build-web:
     needs: [check-function]      
