@@ -65,11 +65,11 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Build
+        env:
+          GATSBY_FUNCTIONS_URL: ${{ needs.check-function.outputs.function_URL }}
         run: |
-          echo "GATSBY_FUNCTIONS_URL=${{ needs.check-function.outputs.function_URL }}" > .env
-          cat .env
-          ls
           yarn build
+      
       - name: Archive functions artifacts
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # @v3.1.2
         with:
@@ -84,7 +84,6 @@ jobs:
     permissions:
       contents: read
       id-token: write 
-      pull-requests: write
     runs-on: ubuntu-latest
     environment: ${{ inputs.deploy_prod && 'production' || 'gcloud-dev' }}
     env:
@@ -127,6 +126,8 @@ jobs:
 
   notify:
     needs: publish-to-gcs
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: PR comment with preview URL
