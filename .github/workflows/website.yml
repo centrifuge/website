@@ -1,0 +1,149 @@
+name: Website
+on:
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      - 'functions/**'      
+  pull_request:
+    paths-ignore:
+      - 'functions/**'
+      
+concurrency:
+  group: web-${{ github.ref }}
+  cancel-in-progress: true 
+  # Do not run two of this workflows at the same time, only last
+jobs:
+
+  check-function:
+    uses: ./.github/workflows/check-function.yml
+    secrets: inherit
+    with:
+      retry: true
+  
+  build-web:
+    needs: [check-function]      
+    runs-on: ubuntu-latest
+    steps:
+      - name: fail if URL empty
+        if: needs.check-function.outputs.function_URL == ''
+        run: |
+          echo "::error title=Function URL not found::Review the check-function job"
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
+      
+      - name: only allow workflow_dispatch from main
+        if: ${{ github.event_name == 'workflow-dispatch' }}
+        env:
+          ref: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          if ${{ env.ref }} ; then
+            echo "::error title=Bad branch selected::You can only run manual workflows from the main branch"
+            exit 1
+      
+      - name: Set deployment vars
+        uses: ./.github/actions/deploy_strategy
+        id: deploy_vars
+        with: 
+          deploy_prod: ${{ inputs.deploy_prod }}
+      
+      - name: Set build env vars
+        shell: bash
+        working-directory: functions
+        run: |
+          if ${{ needs.check_gfunction.outputs.function_URL != ''}}; then
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.check-function.outputs.function_URL }}>> .env
+          else
+            echo "GATSBY_FUNCTIONS_URL=${{ needs.check-function.outputs.function_URL }}>> .env
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 #@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Archive functions artifacts
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # @v3.1.2
+        with:
+          name: web-package
+          retention-days: 1
+          path: public/
+    outputs:
+      bucket_url: ${{ steps.deploy_vars.outputs.bucket_url }}
+
+  publish-to-gcs:
+    needs: build-web
+    permissions:
+      contents: read
+      id-token: write 
+      pull-requests: write
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.deploy_prod && 'production' || 'gcloud-dev' }}
+    env:
+      bucket_url: ${{ needs.build-web.outputs.bucket_url }}
+    steps:
+      - name: download webpack
+        id: download
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
+        with:
+          name: web-package
+          path: webpack
+
+      - name: Auth gcloud
+        id: gauth
+        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
+        with:
+          workload_identity_provider: '${{ secrets.GWIP }}'
+          service_account: '${{ secrets.GSA }}'
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1' 
+
+      - name: Create bucket
+        run: |
+          if ! gsutil ls gs://${{ env.bucket_url }} 1> /dev/null; then
+            gsutil mb gs://${{ env.bucket_url }}
+            echo "Setup bucket settings to serve the site"
+            gsutil iam ch allUsers:objectViewer gs://${{ env.bucket_url }}
+            gsutil web set -m index.html -e 404.html gs://${{ env.bucket_url }}            
+          else
+            echo "Bucket ${{ env.bucket_url }} found! No need to create it"
+          fi 
+
+      - name: push to bucket
+        id: push
+        run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ env.bucket_url }}
+    outputs:
+      bucket_url: ${{ env.bucket_url }}
+   
+
+  notify:
+    needs: publish-to-gcs
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR comment with preview URL
+        uses: thollander/actions-comment-pull-request@v2
+        if: github.event_name == 'pull_request' && needs.publish-to-gcs.outcome == 'success'
+        env:
+          pull_sha: ${{ github.event.pull_request.head.sha }}
+        with:
+          message: |
+            Deployed webiste in Google Cloud
+            URL: http://${{ needs.publish-to-gcs.outputs.bucket_url }}
+            Commit #: ${{ env.pull_sha }}   
+      - run: echo "::notice title=web_url::${{ needs.publish-to-gcs.outputs.bucket_url  }}"      
+      
+      - name: Notify prod deploy
+        if: inputs.deploy_prod
+        uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "centrifuge.io website deployed"
+
+
