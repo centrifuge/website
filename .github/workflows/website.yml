@@ -1,4 +1,4 @@
-name: Deploy website
+name: Website
 on:
   push:
     branches:
@@ -108,7 +108,6 @@ jobs:
       - name: Create bucket
         run: |
           if ! gsutil ls gs://${{ env.bucket_url }} 1> /dev/null; then
-            echo "Creating bucket ${{ env.bucket_url }}"
             gsutil mb gs://${{ env.bucket_url }}
             echo "Setup bucket settings to serve the site"
             gsutil iam ch allUsers:objectViewer gs://${{ env.bucket_url }}

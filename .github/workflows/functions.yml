@@ -1,4 +1,4 @@
-name: Deploy /functions to Gcloud
+name: Functions
 on:
 # Check job conditions if you add any triggers here
   pull_request:
