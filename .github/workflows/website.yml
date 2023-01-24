@@ -105,20 +105,18 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
 
-      - name: Create bucket (never fail)
-        id: create_bucket
-        continue-on-error: true
+      - name: Create bucket
         run: |
-          gsutil mb gs://${{ env.bucket_url }}
+          if ! gsutil ls gs://${{ env.bucket_url }} 1> /dev/null; then
+            echo "Creating bucket ${{ env.bucket_url }}"
+            gsutil mb gs://${{ env.bucket_url }}
+            echo "Setup bucket settings to serve the site"
+            gsutil iam ch allUsers:objectViewer gs://${{ env.bucket_url }}
+            gsutil web set -m index.html -e 404.html gs://${{ env.bucket_url }}            
+          else
+            echo "Bucket ${{ env.bucket_url }} found! No need to create it"
+          fi 
 
-
-      - name: Set bucket as website
-        id: create_bucket
-        continue-on-error: true
-        run: |          
-          gsutil iam ch allUsers:objectViewer gs://${{ env.bucket_url }}
-          gsutil web set -m index.html -e 404.html gs://${{ env.bucket_url }}
-          
       - name: push to bucket
         id: push
         run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ env.bucket_url }}
