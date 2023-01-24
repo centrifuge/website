@@ -56,13 +56,6 @@ jobs:
         id: deploy_vars
         with: 
           deploy_prod: ${{ inputs.deploy_prod }}
-      
-      - name: Set build env vars
-        shell: bash
-        working-directory: functions
-        run: |
-            echo "GATSBY_FUNCTIONS_URL=${{ needs.check-function.outputs.function_URL }} >> .env
-            cat .env
 
       - name: Setup Node
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 #@v3
@@ -73,7 +66,7 @@ jobs:
         run: yarn install
       - name: Build
         run: |
-          cat .env
+          echo "GATSBY_FUNCTIONS_URL=${{ needs.check-function.outputs.function_URL }}" >> .env
           yarn build
       - name: Archive functions artifacts
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # @v3.1.2

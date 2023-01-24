@@ -4,13 +4,13 @@ on:
   pull_request:
     paths: 
       - 'functions/*'
-      - '.github/workflows/functions-deploy.yml'
+      - '.github/workflows/functions.yml'
   push:
     branches:
       - "main"
     paths:
       - 'functions/*'
-      - '.github/workflows/functions-deploy.yml'    
+      - '.github/workflows/functions.yml'    
 
   workflow_call:
     inputs:
