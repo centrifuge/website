@@ -132,7 +132,7 @@ jobs:
     steps:
       - name: PR comment with preview URL
         uses: thollander/actions-comment-pull-request@v2
-        if: github.event_name == 'pull_request' && needs.publish-to-gcs.outcome == 'success'
+        if: github.event_name == 'pull_request'
         env:
           pull_sha: ${{ github.event.pull_request.head.sha }}
         with:
