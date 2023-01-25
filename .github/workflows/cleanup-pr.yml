@@ -1,8 +1,12 @@
+# If you change this file make sure to change the references to filename and outputs from
+# functions and website workflows
+
 name: Clean up PR
 on:
   pull_request:
     types:
       - "closed"
+  
 jobs:
   cleanup:
     runs-on: ubuntu-latest
