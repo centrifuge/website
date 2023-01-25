@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     # Deployment strategy:
     # prod if deploying from main branch or preview from PRs
-    environment: ${{ inputs.deploy_prod && 'production' || 'gcloud-dev' }}
+    environment: ${{ inputs.deploy_env || 'gcloud-dev' }}
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
     steps: 
 
@@ -98,6 +98,10 @@ jobs:
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
         with:
           name: func-dist
+      - name: debug
+        run: |
+          echo "Using GH environment -> ${{ inputs.deploy_env && 'production' || 'gcloud-dev' }} "
+          echo "Because inputs.deploy_env  == ${{ inputs.deploy_env }} (empty if not triggered manually)"
 
       - name: Auth gcloud
         id: gauth
@@ -118,7 +122,7 @@ jobs:
           source_dir: ${{steps.download.outputs.download-path}}
           entry_point: 'handler'
           https_trigger_security_level: 'secure_always'
-          max_instances: ${{ inputs.deploy_prod && '25' || '1' }}
+          max_instances: ${{ inputs.deploy_env == 'production' && '25' || '1' }}
 
 
       - name: Change function to allow_unathorized calls 
