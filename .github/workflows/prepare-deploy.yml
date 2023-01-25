@@ -66,7 +66,7 @@ jobs:
         run: |
           echo "Set env vars for deployment"
           echo "${{github.ref}}"
-          if  ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_prod_staging_workflows'}} ; then
+          if  ${{ github.ref == 'refs/heads/main' }} ; then
             if  ${{ inputs.deploy_env == 'production' }}; then
               #  PROD
               echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
