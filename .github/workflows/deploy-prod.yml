@@ -1,0 +1,18 @@
+name: Prod deployment
+on:
+  workflow_dispatch:
+
+jobs:
+
+  web:
+    uses: centrifuge/website/.github/workflows/website-deploy.yml@main
+    secrets: inherit
+    with:
+      deploy_env: production
+
+
+  functions:
+    uses: centrifuge/website/.github/workflows/website-deploy.yml@main
+    secrets: inherit
+    with:
+      deploy_env: production        
