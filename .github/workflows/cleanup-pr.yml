@@ -8,8 +8,16 @@ on:
       - "closed"
   
 jobs:
+  deploy_vars:
+    secrets: inherit
+    uses: ./.github/workflows/prepare-deploy.yml
+    with:
+      wait: false
+      # deploy_env: ${{ inputs.deploy_env }}    
+
   cleanup:
     runs-on: ubuntu-latest
+    needs: deploy_vars
     permissions:
       contents: read
       id-token: write
@@ -20,12 +28,6 @@ jobs:
 
     environment: gcloud-dev      
     steps:
-      
-      - name: Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0    
-      - name: Set deployment vars
-        uses: ./.github/actions/deploy_strategy
-        id: deploy_vars
 
       - name: wait for function-deploy jobs to finish
         uses: lewagon/wait-on-check-action@v1.2.0
@@ -55,7 +57,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1' 
 
       - name: Delete Function created on PR
-        run: gcloud functions delete --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }}    
+        run: gcloud functions delete --region ${{ vars.GCP_REGION }} ${{ needs.deploy_vars.outputs.function_name }}    
 
       - name: delete the bucket if PR is closed'
-        run: gsutil -m rm -r gs://${{ steps.deploy_vars.outputs.bucket_url }}    
+        run: gsutil -m rm -r gs://${{ needs.deploy_vars.outputs.bucket_url }}    
