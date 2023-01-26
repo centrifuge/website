@@ -3,14 +3,14 @@ on:
 # Check job conditions if you add any triggers here
   pull_request:
     paths: 
-      - 'functions/*'
-      # - '.github/workflows/functions.yml'
+      - 'functions/**'
+      - '.github/workflows/functions.yml'
   push:
     branches:
       - "main"
     paths:
-      - 'functions/*'
-      # - '.github/workflows/functions.yml'    
+      - 'functions/**'
+      - '.github/workflows/functions.yml'    
 
   workflow_call:
     inputs:
