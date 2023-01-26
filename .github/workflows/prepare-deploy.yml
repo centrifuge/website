@@ -69,7 +69,7 @@ jobs:
           if  ${{ github.ref == 'refs/heads/main' }} ; then
             if  ${{ inputs.deploy_env == 'production' }}; then
               #  PROD
-              echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
+              echo "bucket_url=centrifuge.io" >> $GITHUB_OUTPUT
               echo "function_name=webapi" >> $GITHUB_OUTPUT
               echo "env_name=production" >> $GITHUB_OUTPUT
               
