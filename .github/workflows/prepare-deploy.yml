@@ -95,7 +95,6 @@ jobs:
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
           service_account: '${{ secrets.GSA }}'
-          create_credentials_file: false
 
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: Set up Cloud SDK
