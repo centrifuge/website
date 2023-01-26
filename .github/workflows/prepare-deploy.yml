@@ -142,5 +142,10 @@ jobs:
           else
             echo "function_url=''" >> $GITHUB_OUTPUT
           fi
-
- 
+      
+      - name: debug output
+        run: |
+          echo "function_name  == ${{ steps.deploy_vars.outputs.function_name }}
+          echo "function_URL == ${{ steps.find_function.outputs.function_url }}
+          echo "bucket_url == ${{ steps.deploy_vars.outputs.bucket_url }}
+          echo "env_name  == ${{ steps.deploy_vars.outputs.env_name }}

@@ -50,9 +50,7 @@ jobs:
     # 1. If it's not a workflow_run => Either main branch or prod deploy 
     # 2. If it's a workflow_run (from web-deploy) and the function does not exist
     # Add more conditions if you add any more triggers
-    if: |
-      github.event_name != 'workflow_run'||
-      ( needs.prepare-deploy.outputs.function_URL == '' && github.event_name == 'workflow_run' )
+    if: github.event_name != 'workflow_run'|| needs.prepare-deploy.outputs.function_URL == '' )
 
     runs-on: ubuntu-latest
     steps:
