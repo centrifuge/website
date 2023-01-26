@@ -4,7 +4,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Centrifuge | The first protocol to bring Real-World Assets to DeFi',
     description:
-      'A DeFi protocol bringing structured credit onto the blockchain. Institutional investors earn web3 yield backed by tokenized RWAs, while SMEs get access to a cheaper cost of capital.',
+      'The on-chain ecosystem for structured credit. Institutional investors earn yield backed by tokenized RWAs, while SMEs get access to a cheaper cost of capital.',
     twitterUsername: '@centrifuge',
     image: '/ogimage.png',
     siteUrl: 'https://centrifuge.io/',
