@@ -34,7 +34,7 @@ export const Title = styled.h1`
   margin: 0;
   font-size: 15vw;
   font-weight: 400;
-  line-height: 1;
+  line-height: 0.9;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     font-size: 10vw;
