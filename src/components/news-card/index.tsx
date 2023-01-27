@@ -29,7 +29,7 @@ export function NewsCard({
     <Box>
       <Label isLoading={isLoading}>{label}</Label>
       <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(2, minmax(0, 1fr))']} gap={[2, 2, 4]} mt={[1, 1, 2]}>
-        <Media image={image} order={[1, 1, 2]} isLoading={isLoading} />
+        <Media image={image} order={[1, 1, 2]} isLoading={isLoading} featured />
 
         <Stack gap={2} order={[2, 2, 1]}>
           <Title featured={featured} isLoading={isLoading}>
@@ -108,7 +108,15 @@ function Title({
   isLoading?: boolean
 }) {
   return (
-    <TextWithPlaceholder as="h2" variant={featured ? 'heading5' : 'heading4'} isLoading={isLoading}>
+    <TextWithPlaceholder
+      as="h2"
+      variant={featured ? 'heading3' : 'heading4'}
+      lineHeight={featured ? 1.05 : 1.2}
+      isLoading={isLoading}
+      style={{
+        overflow: isLoading ? 'hidden' : 'visible',
+      }}
+    >
       {children}
     </TextWithPlaceholder>
   )
@@ -147,7 +155,7 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
     >
       {!boxed && (
         <Text as="span" variant="body1" color="textSecondary" underline>
-          'Read more…'
+          Read more…
         </Text>
       )}
     </Anchor>
@@ -160,7 +168,8 @@ function Media({
   image,
   order = 0,
   isLoading = false,
-}: MediaProps & { order?: number | number[]; isLoading?: boolean }) {
+  featured = false,
+}: MediaProps & { order?: number | number[]; isLoading?: boolean; featured?: boolean }) {
   return (
     <Box
       as={isLoading || !image ? Placeholder : 'img'}
@@ -170,7 +179,7 @@ function Media({
       aspectRatio="1.88 / 1" // 1024:545 medium article thumbnail ratio
       display="block"
       width="100%"
-      mt={1}
+      mt={featured ? 0 : 1}
       style={{ objectFit: 'cover' }}
     />
   )

@@ -44,6 +44,10 @@ const menu = [
         href: links.github,
         isExternal: true,
       },
+      {
+        label: 'News',
+        href: '/news',
+      },
     ],
   },
   {
