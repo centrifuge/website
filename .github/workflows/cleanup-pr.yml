@@ -1,31 +1,63 @@
-name: Clean up closed PR
+# If you change this file make sure to change the references to filename and outputs from
+# functions and website workflows
+
+name: Clean up PR
 on:
   pull_request:
     types:
       - "closed"
+  
 jobs:
+  deploy_vars:
+    secrets: inherit
+    uses: ./.github/workflows/prepare-deploy.yml
+    with:
+      wait: false
+      # deploy_env: ${{ inputs.deploy_env }}    
+
   cleanup:
     runs-on: ubuntu-latest
+    needs: deploy_vars
     permissions:
-      contents: 'read'
-      id-token: 'write'    
-    environment: development      
-    env:
-      region: europe-central2  
+      contents: read
+      id-token: write
+      actions: read
+      checks: read
+      statuses: read
+      deployments: read
+
+    environment: gcloud-dev      
     steps:
+
+      - name: wait for function-deploy jobs to finish
+        uses: lewagon/wait-on-check-action@v1.2.0
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+          check-name: 'deploy-functions'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
+      - name: wait for web-deploy jobs to finish
+        uses: lewagon/wait-on-check-action@v1.2.0
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+          check-name: 'publish-to-gcs'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10          
+      
       - name: Auth gcloud
         id: gauth
         uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
           service_account: '${{ secrets.GSA }}'
+
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1' 
-            
-      - name: Delete Function created on PR
-        run: gcloud functions delete --region ${{ env.region }}  webapi-${{ github.head_ref || github.ref_name }}
 
-      - name: delete the bucket if PR is closed
-        if: github.event.action == 'closed' && github.event.name == 'pull_request'
-        run: gsutil rm -r --region ${{ env.region }} gs://preview${{ github.event.numbers }}.k-f.dev     
+      - name: Delete Function created on PR
+        run: gcloud functions delete --region ${{ vars.GCP_REGION }} ${{ needs.deploy_vars.outputs.function_name }}    
+
+      - name: delete the bucket if PR is closed'
+        run: gsutil -m rm -r gs://${{ needs.deploy_vars.outputs.bucket_url }}    

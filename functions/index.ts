@@ -1,8 +1,8 @@
 import routes from './routes.json'
 import { Request, Response } from 'express'
 
-const corsWhitelist = ['http://localhost:8000', 'https://centrifuge.io']
-const testEnvRegex = new RegExp('https://[a-z0-9-]*(website-centrifuge-22.netlify.app|centrifuge-website.pages.dev)')
+const corsWhitelist = ['http://localhost:8000', 'https://centrifuge.io', 'https://www.centrifuge.io']
+const testEnvRegex = new RegExp('https://preview-pr[0-9]*(.k-f.dev)')
 const publicFunctions = ['/getCirculatingSupply', '/getTotalIssuance']
 
 exports.handler = async (req: Request, res: Response) => {
