@@ -3,34 +3,21 @@ on:
 # Check job conditions if you add any triggers here
   pull_request:
     paths: 
-      - 'functions/*'
-      # - '.github/workflows/functions.yml'
+      - 'functions/**'
+      - '.github/workflows/functions.yml'
   push:
     branches:
       - "main"
     paths:
-      - 'functions/*'
-      # - '.github/workflows/functions.yml'    
+      - 'functions/**'
+      - '.github/workflows/functions.yml'    
 
   workflow_call:
     inputs:
       deploy_env:
         description: "For manual deployments (prod)"
         type: string
-  
-  workflow_run:
-    workflows: [Website]
-    types:
-      - requested
-    branches-ignore:
-    # Only run this with website-deploy if it's not the main branch
-      - main
-      # workflow_run will always use the default branch (main) as git.ref
-      # always deploying code from main unless the functions/ dir has changed
-      # which will trigger this workflow differently
-      # Change git.ref to github.event.workflow_run.head_branch if a different behavior is desired
-      # and add an SHA to the commit in the build
-      # https://github.com/orgs/community/discussions/27124
+
 concurrency:
   group: func-${{ github.event.workflow_run.head_branch || github.ref }}
   cancel-in-progress: true
@@ -46,14 +33,6 @@ jobs:
 
   build-functions:
     needs: prepare-deploy
-    # When should functions be deployed?
-    # 1. If it's not a workflow_run => Either main branch or prod deploy 
-    # 2. If it's a workflow_run (from web-deploy) and the function does not exist
-    # Add more conditions if you add any more triggers
-    if: |
-      github.event_name != 'workflow_run'||
-      ( needs.prepare-deploy.outputs.function_URL == '' && github.event_name == 'workflow_run' )
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
