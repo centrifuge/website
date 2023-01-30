@@ -28,6 +28,12 @@ jobs:
       wait: true
       deploy_env: ${{ inputs.deploy_env }}
   
+  trigger-function-deploy:
+    if: github.event.action == 'opened' || github.event.action =='reopened'
+    uses: ./.github/workflows/functions.yml
+    secrets: inherit
+
+  
   build-web:
     needs: [prepare-deploy]      
     runs-on: ubuntu-latest
