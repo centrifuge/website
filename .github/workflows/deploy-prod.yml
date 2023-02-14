@@ -5,14 +5,14 @@ on:
 jobs:
 
   web:
-    uses: centrifuge/website/.github/workflows/website-deploy.yml@main
+    uses: centrifuge/website/.github/workflows/website.yml@main
     secrets: inherit
     with:
       deploy_env: production
 
 
   functions:
-    uses: centrifuge/website/.github/workflows/website-deploy.yml@main
+    uses: centrifuge/website/.github/workflows/functions.yml@main
     secrets: inherit
     with:
       deploy_env: production        
