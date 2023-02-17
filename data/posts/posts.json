@@ -139,7 +139,7 @@
     "label": "Medium",
     "title": "I am excited to announce I am joining Centrifuge as General Counsel!",
     "body": "First, a word about my background, I am a US lawyer with a mixed transactional and regulatory legal expertise. I have worked in the US, Europe and Asia and across the TradFi and crypto spaces.",
-    "image": false,
+    "image": "../images/posts/fallback.png",
     "alt": "",
     "href": "https://medium.com/centrifuge/i-am-excited-to-announce-i-am-joining-centrifuge-as-general-counsel-97617e3be9b8"
   },
