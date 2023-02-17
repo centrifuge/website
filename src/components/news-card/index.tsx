@@ -1,43 +1,57 @@
-import { Box, Shelf, Grid, Text, Stack, TextWithPlaceholder, Placeholder } from '@centrifuge/fabric'
+import { Box, Shelf, Grid, Text, Stack } from '@centrifuge/fabric'
 import React from 'react'
+import styled from 'styled-components'
+import { graphql } from 'gatsby'
 import { useTheme } from 'styled-components'
 import { Anchor } from './styles'
+import { Image, ImageProps } from '../Image'
 
-export type NewsCardProps = MediaProps &
+export const query = graphql`
+  fragment NewsCardFragment on PostsJsonConnection {
+    nodes {
+      id
+      label
+      title
+      body
+      image {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF], width: 1024, height: 545)
+        }
+      }
+      alt
+      href
+    }
+  }
+`
+
+export type PostProps = {
+  id: string
+  label: string
+  title: string
+  body: string
+  image: ImageProps
+  alt: string
+  href: string
+}
+
+export type NewsCardProps = Omit<PostProps, 'id'> &
   ReadMoreProps & {
-    label: string
-    title: string
-    body: string
     boxed?: boolean
     featured?: boolean
-    isLoading?: boolean
   }
 
-export function NewsCard({
-  label,
-  title,
-  body,
-  image,
-  href,
-  boxed = false,
-  featured = false,
-  isLoading = false,
-}: NewsCardProps) {
+export function NewsCard({ label, title, body, image, href, alt, boxed = false, featured = false }: NewsCardProps) {
   const { shadows } = useTheme()
 
   return featured ? (
     <Box>
-      <Label isLoading={isLoading}>{label}</Label>
+      <Label>{label}</Label>
       <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(2, minmax(0, 1fr))']} gap={[2, 2, 4]} mt={[1, 1, 2]}>
-        <Media image={image} order={[1, 1, 2]} isLoading={isLoading} featured />
+        <Media image={image} alt={alt} order={[1, 1, 2]} featured />
 
         <Stack gap={2} order={[2, 2, 1]}>
-          <Title featured={featured} isLoading={isLoading}>
-            {title}
-          </Title>
-          <Body featured={featured} isLoading={isLoading}>
-            {body}
-          </Body>
+          <Title featured={featured}>{title}</Title>
+          <Body featured={featured}>{body}</Body>
           <ReadMore href={href} boxed={false} />
         </Stack>
       </Grid>
@@ -58,17 +72,13 @@ export function NewsCard({
         boxShadow: boxed ? shadows.cardInteractive : 'none',
       }}
     >
-      <Label isLoading={isLoading}>{label}</Label>
+      <Label>{label}</Label>
 
-      <Media image={image} isLoading={isLoading} />
+      {image && <Media image={image} alt={alt} />}
 
-      <Shelf mt={2} gap={1} flexDirection="column" alignItems="start" flexGrow={2}>
-        <Title featured={featured} isLoading={isLoading}>
-          {title}
-        </Title>
-        <Body featured={featured} isLoading={isLoading}>
-          {body}
-        </Body>
+      <Shelf mt={image ? 2 : 0} gap={2} flexDirection="column" alignItems="start" flexGrow={2}>
+        <Title featured={featured}>{title}</Title>
+        <Body featured={featured}>{body}</Body>
 
         <Box mt="auto" pt={boxed ? 0 : 1}>
           <ReadMore href={href} boxed={boxed} />
@@ -78,13 +88,12 @@ export function NewsCard({
   )
 }
 
-function Label({ children, isLoading = false }: { children: React.ReactNode; isLoading?: boolean }) {
+function Label({ children }: { children: React.ReactNode }) {
   return (
-    <TextWithPlaceholder
+    <Text
       as="span"
       variant="body3"
       color="textSecondary"
-      isLoading={isLoading}
       style={{
         display: 'block',
         maxWidth: '100%',
@@ -94,52 +103,42 @@ function Label({ children, isLoading = false }: { children: React.ReactNode; isL
       }}
     >
       {children}
-    </TextWithPlaceholder>
+    </Text>
   )
 }
 
-function Title({
-  featured = false,
-  children,
-  isLoading = false,
-}: {
-  featured: boolean
-  children: React.ReactNode
-  isLoading?: boolean
-}) {
+const Clamped = styled(Text)`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+`
+
+function Title({ featured = false, children }: { featured: boolean; children: React.ReactNode }) {
   return (
-    <TextWithPlaceholder
-      as="h2"
-      variant={featured ? 'heading3' : 'heading4'}
+    <Clamped
+      forwardedAs="h2"
+      variant={featured ? 'heading3' : 'heading6'}
+      fontWeight={600}
       lineHeight={featured ? 1.05 : 1.2}
-      isLoading={isLoading}
-      style={{
-        overflow: isLoading ? 'hidden' : 'visible',
-      }}
     >
       {children}
-    </TextWithPlaceholder>
+    </Clamped>
   )
 }
 
-function Body({
-  featured = false,
-  children,
-  isLoading = false,
-}: {
-  featured: boolean
-  children: React.ReactNode
-  isLoading?: boolean
-}) {
+function Body({ featured = false, children }: { featured: boolean; children: React.ReactNode }) {
   return (
-    <TextWithPlaceholder as={isLoading ? 'div' : 'p'} variant={featured ? 'body1' : 'body2'} isLoading={isLoading}>
+    <Clamped forwardedAs="p" variant={featured ? 'body1' : 'body2'} color="textSecondary">
       {children}
-    </TextWithPlaceholder>
+    </Clamped>
   )
 }
 
 type ReadMoreProps = {
-  href: string
+  href: PostProps['href']
   boxed?: boolean
 }
 
@@ -154,7 +153,7 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
       boxed={boxed}
     >
       {!boxed && (
-        <Text as="span" variant="body1" color="textSecondary" underline>
+        <Text as="span" variant="body1" color="textSecondary">
           Read more…
         </Text>
       )}
@@ -162,25 +161,19 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
   )
 }
 
-type MediaProps = { image?: string }
-
 function Media({
   image,
   order = 0,
-  isLoading = false,
   featured = false,
-}: MediaProps & { order?: number | number[]; isLoading?: boolean; featured?: boolean }) {
+}: {
+  image: PostProps['image']
+  alt: PostProps['alt']
+  order?: number | number[]
+  featured?: boolean
+}) {
   return (
-    <Box
-      as={isLoading || !image ? Placeholder : 'img'}
-      src={image}
-      alt=""
-      order={order}
-      aspectRatio="1.88 / 1" // 1024:545 medium article thumbnail ratio
-      display="block"
-      width="100%"
-      mt={featured ? 0 : 1}
-      style={{ objectFit: 'cover' }}
-    />
+    <Box order={order} width="100%" mt={featured ? 0 : 1}>
+      <Image data={image} />
+    </Box>
   )
 }

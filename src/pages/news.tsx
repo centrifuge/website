@@ -1,14 +1,12 @@
-import { Text, Stack, Box, Container, Grid } from '@centrifuge/fabric'
+import { Stack, Container, Grid } from '@centrifuge/fabric'
 import * as React from 'react'
 import { graphql } from 'gatsby'
 
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/Seo'
 import { VisuallyHidden } from '../components/VisuallyHidden'
-import { NewsCard } from '../components/news-card'
+import { NewsCard, PostProps } from '../components/news-card'
 import { Reveal, RevealWrapper } from '../components/Reveal'
-import { useMediumPosts } from '../hooks/use-medium-posts'
-import { toLocaleDate } from '../utils/date'
 
 import type { SEOProps } from '../components/Seo'
 import type { HeadProps } from 'gatsby'
@@ -22,6 +20,10 @@ export const query = graphql`
         ...SeoFragment
       }
     }
+
+    allPostsJson {
+      ...NewsCardFragment
+    }
   }
 `
 
@@ -31,13 +33,16 @@ type NewsProps = {
       title: string
       seo: SEOProps
     }
+    allPostsJson: {
+      nodes: PostProps[]
+    }
   }
 }
 
 export default function News({ data }: NewsProps) {
   const { title } = data.dataJson
-  const { isLoading, isError, posts } = useMediumPosts()
-  console.log('posts', posts)
+  const { nodes: posts } = data.allPostsJson
+
   const featured = posts[0]
   const list = posts.slice(1)
 
@@ -49,12 +54,12 @@ export default function News({ data }: NewsProps) {
         <Stack mt={[2, 4, 6]} gap={[6]} as={Container} maxWidth="containerNarrow">
           <Reveal as="section" px={2}>
             <NewsCard
-              label={!!featured.pubDate ? toLocaleDate(featured.pubDate.replace(' ', 'T')) : ' '}
+              label={featured.label}
               title={featured.title}
-              body={featured.description}
-              image={featured.thumbnail}
-              href={featured.link}
-              isLoading={isLoading}
+              body={featured.body}
+              image={featured.image}
+              alt={featured.alt}
+              href={featured.href}
               featured
             />
           </Reveal>
@@ -78,14 +83,14 @@ export default function News({ data }: NewsProps) {
           >
             {!!list?.length &&
               list.map((post, index) => (
-                <Reveal as="li" staggerIndex={2 + index}>
+                <Reveal as="li" staggerIndex={2 + index} key={post.id}>
                   <NewsCard
-                    label={!!post.pubDate ? toLocaleDate(post.pubDate.replace(' ', 'T')) : ' '}
+                    label={post.label}
                     title={post.title}
-                    body={post.description}
-                    image={post.thumbnail}
-                    href={post.link}
-                    isLoading={isLoading}
+                    body={post.body}
+                    image={post.image}
+                    alt={post.alt}
+                    href={post.href}
                   />
                 </Reveal>
               ))}

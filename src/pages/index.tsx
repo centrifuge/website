@@ -16,6 +16,7 @@ import type { UspSectionProps } from '../components/usp-section'
 import type { WorkPrincipleProps } from '../components/work-principle'
 import type { NewsSectionProps } from '../components/NewsSection'
 import type { AuditSectionProps } from '../components/audit-section'
+import type { PostProps } from '../components/news-card'
 
 export const query = graphql`
   query {
@@ -46,6 +47,10 @@ export const query = graphql`
         ...AuditSectionFragment
       }
     }
+
+    allPostsJson(limit: 10) {
+      ...NewsCardFragment
+    }
   }
 `
 
@@ -59,11 +64,15 @@ type HomeProps = {
       news_section: NewsSectionProps
       audit_section: AuditSectionProps
     }
+    allPostsJson: {
+      nodes: PostProps[]
+    }
   }
 }
 
 export default function Home({ data }: HomeProps) {
   const { hero_main, testimonials, usp_section, work_principle, news_section, audit_section } = data.dataJson
+  const { nodes: posts } = data.allPostsJson
 
   return (
     <Layout menuButtonVariant="secondary">
@@ -72,7 +81,7 @@ export default function Home({ data }: HomeProps) {
         <UspSection {...usp_section} />
         <WorkPrinciple {...work_principle} />
         <Testimonials {...testimonials} />
-        <NewsSection {...news_section} />
+        <NewsSection {...news_section} posts={posts} />
         <AuditSection {...audit_section} />
       </Stack>
     </Layout>
