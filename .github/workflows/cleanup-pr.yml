@@ -28,24 +28,26 @@ jobs:
 
     environment: gcloud-dev      
     steps:
+    # Assume a PR won't be closed unless the deployments are finished
+    # because this wait functions will fail if developers delete the branch
+    # before this wait-on-check-action run (30s-2min)
+      # - name: wait for function-deploy jobs to finish
+      #   uses: lewagon/wait-on-check-action@v1.2.0
+      #   continue-on-error: true
+      #   with:
+      #     ref: ${{ github.head_ref || github.ref }}
+      #     check-name: 'deploy-functions'
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #     wait-interval: 10
 
-      - name: wait for function-deploy jobs to finish
-        uses: lewagon/wait-on-check-action@v1.2.0
-        continue-on-error: true
-        with:
-          ref: ${{ github.head_ref || github.ref }}
-          check-name: 'deploy-functions'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
-
-      - name: wait for web-deploy jobs to finish
-        uses: lewagon/wait-on-check-action@v1.2.0
-        continue-on-error: true
-        with:
-          ref: ${{ github.head_ref || github.ref }}
-          check-name: 'publish-to-gcs'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10          
+      # - name: wait for web-deploy jobs to finish
+      #   uses: lewagon/wait-on-check-action@v1.2.0
+      #   continue-on-error: true
+      #   with:
+      #     ref: ${{ github.head_ref || github.ref }}
+      #     check-name: 'publish-to-gcs'
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #     wait-interval: 10          
       
       - name: Auth gcloud
         id: gauth
