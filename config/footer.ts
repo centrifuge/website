@@ -62,7 +62,12 @@ export const columns = [
     title: 'Get in touch',
     items: [
       {
-        label: 'Press & Partnerships: bizdev@centrifuge.io',
+        label: 'Press: press@centrifuge.io',
+        href: 'mailto:press@centrifuge.io',
+        isExternal: true,
+      },
+      {
+        label: 'Partnerships: bizdev@centrifuge.io',
         href: 'mailto:bizdev@centrifuge.io',
         isExternal: true,
       },

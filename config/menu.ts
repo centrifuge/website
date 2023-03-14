@@ -10,6 +10,10 @@ const menu = [
         isExternal: true,
       },
       {
+        label: 'News',
+        href: '/news',
+      },
+      {
         label: 'Forum',
         href: links.forum,
         isExternal: true,

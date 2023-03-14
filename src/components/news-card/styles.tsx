@@ -18,8 +18,14 @@ export const Anchor = styled(Text)<{ boxed: boolean }>`
   }
 
   span {
+    background-image: ${({ theme }) => `linear-gradient(${theme.colors.textSecondary}, ${theme.colors.textSecondary})`};
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+
     &:hover {
       color: ${({ theme }) => theme.colors.textPrimary};
+      background-image: none;
     }
   }
 `
