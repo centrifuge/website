@@ -10,7 +10,8 @@ export const query = graphql`
   fragment NewsCardFragment on PostsJsonConnection {
     nodes {
       id
-      label
+      date
+      outlet
       title
       body
       image {
@@ -25,8 +26,9 @@ export const query = graphql`
 `
 
 export type PostProps = {
+  date: string
   id: string
-  label: string
+  outlet: string
   title: string
   body: string
   image: ImageProps
@@ -40,17 +42,29 @@ export type NewsCardProps = Omit<PostProps, 'id'> &
     featured?: boolean
   }
 
-export function NewsCard({ label, title, body, image, href, alt, boxed = false, featured = false }: NewsCardProps) {
+export function NewsCard({
+  date,
+  outlet,
+  title,
+  body,
+  image,
+  href,
+  alt,
+  boxed = false,
+  featured = false,
+}: NewsCardProps) {
   const { shadows } = useTheme()
 
   return featured ? (
     <Box>
-      <Label>{label}</Label>
+      <Label {...{ outlet, date }} />
       <Grid gridTemplateColumns={['1fr', '1fr', 'repeat(2, minmax(0, 1fr))']} gap={[2, 2, 4]} mt={[1, 1, 2]}>
-        <Media image={image} alt={alt} order={[1, 1, 2]} featured />
+        <Media image={image} alt={alt} href={href} order={[1, 1, 2]} featured />
 
         <Stack gap={2} order={[2, 2, 1]}>
-          <Title featured={featured}>{title}</Title>
+          <Title featured={featured} href={href}>
+            {title}
+          </Title>
           <Body featured={featured}>{body}</Body>
           <ReadMore href={href} boxed={false} />
         </Stack>
@@ -72,12 +86,14 @@ export function NewsCard({ label, title, body, image, href, alt, boxed = false, 
         boxShadow: boxed ? shadows.cardInteractive : 'none',
       }}
     >
-      <Label>{label}</Label>
+      <Label {...{ outlet, date }} />
 
-      {image && <Media image={image} alt={alt} />}
+      {image && <Media image={image} href={href} alt={alt} />}
 
       <Shelf mt={image ? 2 : 0} gap={2} flexDirection="column" alignItems="start" flexGrow={2}>
-        <Title featured={featured}>{title}</Title>
+        <Title featured={featured} href={href}>
+          {title}
+        </Title>
         <Body featured={featured}>{body}</Body>
 
         <Box mt="auto" pt={boxed ? 0 : 1}>
@@ -88,7 +104,7 @@ export function NewsCard({ label, title, body, image, href, alt, boxed = false, 
   )
 }
 
-function Label({ children }: { children: React.ReactNode }) {
+function Label({ outlet, date }: { outlet: string; date: string }) {
   return (
     <Text
       as="span"
@@ -102,7 +118,10 @@ function Label({ children }: { children: React.ReactNode }) {
         whiteSpace: 'nowrap',
       }}
     >
-      {children}
+      <Text as="cite" fontStyle="normal">
+        {outlet}
+      </Text>{' '}
+      - <time date-time={date}>{date}</time>
     </Text>
   )
 }
@@ -116,16 +135,22 @@ const Clamped = styled(Text)`
   white-space: normal;
 `
 
-function Title({ featured = false, children }: { featured: boolean; children: React.ReactNode }) {
+function Title({ featured = false, href, children }: { featured: boolean; href: string; children: React.ReactNode }) {
   return (
-    <Clamped
-      forwardedAs="h2"
-      variant={featured ? 'heading3' : 'heading6'}
-      fontWeight={600}
-      lineHeight={featured ? 1.05 : 1.2}
-    >
-      {children}
-    </Clamped>
+    <Box as="h2" my={0}>
+      <Clamped
+        forwardedAs="a"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        tabIndex={-1}
+        variant={featured ? 'heading3' : 'heading6'}
+        fontWeight={600}
+        lineHeight={featured ? 1.05 : 1.2}
+      >
+        {children}
+      </Clamped>
+    </Box>
   )
 }
 
@@ -163,17 +188,29 @@ function ReadMore({ href, boxed = false }: ReadMoreProps) {
 
 function Media({
   image,
+  alt,
+  href,
   order = 0,
   featured = false,
 }: {
   image: PostProps['image']
   alt: PostProps['alt']
+  href: string
   order?: number | number[]
   featured?: boolean
 }) {
   return (
-    <Box order={order} width="100%" mt={featured ? 0 : 1}>
-      <Image data={image} />
+    <Box
+      as="a"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      order={order}
+      width="100%"
+      mt={featured ? 0 : 1}
+      tabIndex={-1}
+    >
+      <Image data={image} alt={alt} />
     </Box>
   )
 }

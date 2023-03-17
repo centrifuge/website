@@ -2,6 +2,7 @@ import { Stack, Container, Grid } from '@centrifuge/fabric'
 import * as React from 'react'
 import { graphql } from 'gatsby'
 
+import { toLocaleDate } from '../utils/date'
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/Seo'
 import { VisuallyHidden } from '../components/VisuallyHidden'
@@ -43,8 +44,12 @@ export default function News({ data }: NewsProps) {
   const { title } = data.dataJson
   const { nodes: posts } = data.allPostsJson
 
-  const featured = posts[0]
-  const list = posts.slice(1)
+  const sortedByDate = posts
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .map(({ date, ...rest }) => ({ date: toLocaleDate(new Date(date)), ...rest }))
+
+  const featured = sortedByDate[0]
+  const list = sortedByDate.slice(1)
 
   return (
     <Layout>
@@ -54,7 +59,8 @@ export default function News({ data }: NewsProps) {
         <Stack mt={[2, 4, 6]} gap={[6]} as={Container} maxWidth="containerNarrow">
           <Reveal as="section" px={2}>
             <NewsCard
-              label={featured.label}
+              date={featured.date}
+              outlet={featured.outlet}
               title={featured.title}
               body={featured.body}
               image={featured.image}
@@ -85,7 +91,8 @@ export default function News({ data }: NewsProps) {
               list.map((post, index) => (
                 <Reveal as="li" staggerIndex={2 + index} key={post.id}>
                   <NewsCard
-                    label={post.label}
+                    date={post.date}
+                    outlet={post.outlet}
                     title={post.title}
                     body={post.body}
                     image={post.image}
