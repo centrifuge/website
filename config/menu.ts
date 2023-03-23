@@ -5,15 +5,6 @@ const menu = [
     label: 'Connect',
     items: [
       {
-        label: 'Blog',
-        href: links.medium,
-        isExternal: true,
-      },
-      {
-        label: 'News',
-        href: '/news',
-      },
-      {
         label: 'Forum',
         href: links.forum,
         isExternal: true,
@@ -49,6 +40,10 @@ const menu = [
         isExternal: true,
       },
     ],
+  },
+  {
+    label: 'News',
+    href: '/news',
   },
   {
     label: 'About',
