@@ -1,0 +1,200 @@
+[
+  {
+    "date": "2023/03/02",
+    "outlet": "Binance Research",
+    "title": "Real World Assets: The Bridge Between TradFi and DeFi",
+    "body": "Real World Assets (“RWAs”) are assets that exist off-chain, but are tokenized and brought on-chain to be used as a source of yield within DeFi.",
+    "image": "../images/posts/binance_research.png",
+    "alt": "",
+    "href": "https://research.binance.com/en/analysis/real-world-assets"
+  },
+  {
+    "date": "2023/02/16",
+    "outlet": "Blockworks",
+    "title": "Centrifuge Wants To Back Aave’s GHO Stablecoin With Real-world Assets",
+    "body": "A draft proposal to integrate Centrifuge infrastructure with GHO is in the works",
+    "image": "../images/posts/blockworks_gho.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/centrifuge-wants-to-back-gho-with-rwas"
+  },
+  {
+    "date": "2023/02/01",
+    "outlet": "The Defiant",
+    "title": "Real World Assets Can Deliver DeFi’s Promise",
+    "body": "RWA Isn’t Just a Buzzword But a Catalyst for a Decentralized Financial System",
+    "image": "../images/posts/defiant_rwas.png",
+    "alt": "",
+    "href": "https://thedefiant.io/real-world-assets-key-defi-growth"
+  },
+  {
+    "date": "2023/01/24",
+    "outlet": "Centrifuge",
+    "title": "DeFi Drip | Chuck Mounts, S&P Global x Centrifuge",
+    "body": "DeFi Drip, hosted by Cassidy Daly from Centrifuge, is a series talking about all things coffee and changing the world of finance. Episode 3 features Chuck Mounts, Chief DeFi Officer at S&P Global.",
+    "image": "../images/posts/defidrip_sp.png",
+    "alt": "",
+    "href": "https://youtu.be/35fLeIzSYQM"
+  },
+  {
+    "date": "2023/1/20",
+    "outlet": "The Defiant",
+    "title": "Centrifuge Quietly Sets Pace in Real World Assets Race",
+    "body": "Co-founder Lucas Vogelsang on How Any Asset Can go On-Chain and the Rise of RWAs",
+    "image": "../images/posts/defiant_sets_pace.png",
+    "alt": "",
+    "href": "https://thedefiant.io/centrifuge-quietly-sets-pace-in-real-world-assets-race"
+  },
+  {
+    "date": "2023/01/13",
+    "outlet": "Centrifuge",
+    "title": "Introducing the Centrifuge Credit Group",
+    "body": "The Centrifuge Credit Group are seasoned credit experts with specializations in different asset classes. They will provide the Centrifuge community and our partners with unbiased and objective reviews of pool onboarding proposals.",
+    "image": "../images/posts/creditgroup.png",
+    "alt": "",
+    "href": "https://gov.centrifuge.io/t/introducing-the-centrifuge-credit-group/4994"
+  },
+  {
+    "date": "2023/1/11",
+    "outlet": "Messari",
+    "title": "BlockTower Credit Embraces Real-World Assets",
+    "body": "In late December, BlockTower Credit became the first institutional credit-fund to be approved to bring their collateralized lending operations on-chain through a partnership with Maker and Centrifuge.",
+    "image": "../images/posts/messari_rwa.jpeg",
+    "alt": "",
+    "href": "https://messari.io/report/blocktower-credit-embraces-real-world-assets"
+  },
+  {
+    "date": "2022/12/30",
+    "outlet": "Centrifuge",
+    "title": "22 things from 2022",
+    "body": "What a year! 22 Highlights from Centrifuge in 2022.",
+    "image": "../images/posts/22things.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/22-things-from-2022-34e6584c78d7"
+  },
+  {
+    "date": "2022/12/28",
+    "outlet": "Centrifuge",
+    "title": "RWA Market: The Aave Market for Real World Assets goes live.",
+    "body": "RWA Market uses the Aave Protocol to bring more liquidity to Centrifuge assets.",
+    "image": "../images/posts/rwamarket.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/rwa-market-the-aave-market-for-real-world-assets-goes-live-48976b984dde"
+  },
+  {
+    "date": "2022/12/23",
+    "outlet": "The Defiant",
+    "title": "Real World Assets Poised to Be DeFi Growth Engine: Coinbase",
+    "body": "Leading Crypto Exchange Says Tie-ups Between DeFi and TradFi Assets to be Major Trend in 2023",
+    "image": "../images/posts/defiant_rwa_growth.png",
+    "alt": "",
+    "href": "https://thedefiant.io/real-world-assets-poised-to-be-defi-growth-engine-coinbase"
+  },
+  {
+    "date": "2022/12/14",
+    "outlet": "Centrifuge",
+    "title": "BlockTower Credit and MakerDAO to Fund $220 Million of Real-World Assets through Centrifuge",
+    "body": "MakerDAO has approved four RWA vaults that will finance real-world assets originated by BlockTower — all issued on-chain through Centrifuge",
+    "image": "../images/posts/bt_announcement.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/blocktower-credit-and-makerdao-to-fund-220-million-of-real-world-assets-through-centrifuge-b52d0fab0fee"
+  },
+  {
+    "date": "2022/12/9",
+    "outlet": "Blockworks",
+    "title": "MakerDAO May Expand Non-cryptoasset Portfolio With BlockTower, Centrifuge",
+    "body": "A $220 million “real-world asset” vault may soon be available to DeFi investors",
+    "image": "../images/posts/blockworks_maker.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/makerdao-may-expand-with-blocktower-centrifuge"
+  },
+  {
+    "date": "2022/11/17",
+    "outlet": "Centrifuge",
+    "title": "DeFi Drip | MakerDAO x Centrifuge",
+    "body": "DeFi Drip, hosted by Cassidy Daly from Centrifuge, is a series talking about all things coffee and changing the world of finance. Episode 2 features Sébastien Derivaux, contributor to MakerDAO.",
+    "image": "../images/posts/defidrip_makerdao.png",
+    "alt": "",
+    "href": "https://youtu.be/pEAo2tjEOV8"
+  },
+  {
+    "date": "2022/11/2",
+    "outlet": "The Block",
+    "title": "DeFi protocol Centrifuge raises $4 million in strategic round",
+    "body": "Decentralized finance protocol Centrifuge has raised $4 million in a strategic round from backers Coinbase Ventures, BlockTower, Scytale and L1 Digital.",
+    "image": "../images/posts/lucas.png",
+    "alt": "",
+    "href": "https://www.theblock.co/post/182058/centrifuge-raises-strategic-round"
+  },
+  {
+    "date": "2022/11/2",
+    "outlet": "Axios",
+    "title": "Centrifuge raises $4M to put real-world assets on the blockchain",
+    "body": "Centrifuge, a decentralized finance protocol for putting real-world assets on the blockchain, raised $4 million in new funding from strategic investors.",
+    "image": "../images/posts/axios_cfg.png",
+    "alt": "",
+    "href": "https://www.axios.com/pro/fintech-deals/2022/11/02/centrifuge-raises-4m"
+  },
+  {
+    "date": "2022/10/25",
+    "outlet": "The TIE",
+    "title": "Real World Assets",
+    "body": "Finance's Bridge to Crypto",
+    "image": "../images/posts/thetie_rwa.jpeg",
+    "alt": "",
+    "href": "https://research.thetie.io/real-world-assets/"
+  },
+  {
+    "date": "2022/9/23",
+    "outlet": "Axios",
+    "title": "Centrifuge turns real world assets into loans",
+    "body": "To Centrifuge CEO and cofounder Lucas Vogelsang, decentralized finance (DeFi) is \"the future of the financial system\" here, in the now — filling a niche that traditional finance has largely found not worth its time.",
+    "image": "../images/posts/axios_lucas.png",
+    "alt": "",
+    "href": "https://www.axios.com/2022/09/23/centrifuge-turns-real-world-assets-into-loans"
+  },
+  {
+    "date": "2022/08/12",
+    "outlet": "Centrifuge",
+    "title": "DeFi Drip | BlockTower x Centrifuge",
+    "body": "DeFi Drip, hosted by Cassidy Daly from Centrifuge, is a series talking about all things coffee and changing the world of finance. Episode 1 features Kevin Miao, Head of Credit at BlockTower.",
+    "image": "../images/posts/defidrip_blocktower.png",
+    "alt": "",
+    "href": "https://youtu.be/3uuMZ8vl9zw"
+  },
+  {
+    "date": "2022/8/8",
+    "outlet": "Not Boring by Packy McCormick",
+    "title": "Everything is Broken",
+    "body": "The Case for Real-World Lending On-Chain",
+    "image": "../images/posts/everythingisbroken.jpeg",
+    "alt": "",
+    "href": "https://www.notboring.co/p/everything-is-broken"
+  },
+  {
+    "date": "2022/6/21",
+    "outlet": "Centrifuge",
+    "title": "Pools on Centrifuge: An FAQ for Issuers",
+    "body": "Real-World Asset issuers and investors are the lifeblood of Centrifuge. Let's explore how issuers and their pools work!",
+    "image": "../images/posts/issuer_faq.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/pools-on-centrifuge-a-faq-for-issuers-9baa16f78a6c"
+  },
+  {
+    "date": "2022/4/26",
+    "outlet": "Centrifuge",
+    "title": "What Happens in an Asset Default on Tinlake?",
+    "body": "Today we're going to explore a common question about Tinlake and Real World Asset (RWA) financing: what happens in a default?",
+    "image": "../images/posts/what_happens_default.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/what-happens-in-an-asset-default-on-tinlake-b50be2e5a363"
+  },
+  {
+    "date": "2021/12/30",
+    "outlet": "Centrifuge",
+    "title": "21 Things From 2021",
+    "body": "A look back at the achievements of Centrifuge in 2021",
+    "image": "../images/posts/21things.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/21-things-from-2021-989d80f21bcf"
+  }
+]

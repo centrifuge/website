@@ -11,6 +11,11 @@ export type ImageProps = {
 }
 
 export function Image({ data, alt }: ImageProps) {
+  if (!data) {
+    console.warn('No image data')
+    return null
+  }
+
   if (data.extension === 'svg') {
     return <img src={data.publicURL} alt={alt || ''} />
   }
