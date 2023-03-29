@@ -2,13 +2,20 @@ import { links } from './links'
 
 const menu = [
   {
-    label: 'Connect',
+    label: 'News',
+    href: '/news',
+  },
+  {
+    label: 'Governance',
+    href: '/governance',
+  },
+  {
+    label: 'About',
+    href: '/about',
+  },
+  {
+    label: 'Community',
     items: [
-      {
-        label: 'Forum',
-        href: links.forum,
-        isExternal: true,
-      },
       {
         label: 'Twitter',
         href: links.twitter,
@@ -19,19 +26,9 @@ const menu = [
         href: links.discord,
         isExternal: true,
       },
-    ],
-  },
-
-  {
-    label: 'Learn',
-    items: [
       {
-        label: 'Governance',
-        href: '/governance',
-      },
-      {
-        label: 'Documentation',
-        href: links.docs,
+        label: 'Forum',
+        href: links.forum,
         isExternal: true,
       },
       {
@@ -39,15 +36,17 @@ const menu = [
         href: links.github,
         isExternal: true,
       },
+      {
+        label: 'YouTube',
+        href: links.youtube,
+        isExternal: true,
+      },
+      {
+        label: 'LinkedIn',
+        href: links.linkedin,
+        isExternal: true,
+      },
     ],
-  },
-  {
-    label: 'News',
-    href: '/news',
-  },
-  {
-    label: 'About',
-    href: '/about',
   },
 ]
 

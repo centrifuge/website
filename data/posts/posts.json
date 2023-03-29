@@ -1,5 +1,14 @@
 [
   {
+    "date": "2023/03/14",
+    "outlet": "Decrypt",
+    "title": "How Centrifuge Is Making DeFi Impactful",
+    "body": "DeFi platform Centrifuge is unlocking 'affordable access to capital' with Real-World Assets, helping small businesses access DeFi liquidity.",
+    "image": "../images/posts/decrypt_rwa.png",
+    "alt": "",
+    "href": "https://decrypt.co/122242/how-centrifuge-is-making-defi-impactful-with-real-world-assets"
+  },
+  {
     "date": "2023/03/02",
     "outlet": "Binance Research",
     "title": "Real World Assets: The Bridge Between TradFi and DeFi",
