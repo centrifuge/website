@@ -1,8 +1,9 @@
-import { Stack } from '@centrifuge/fabric'
+import { AnchorButton, Stack } from '@centrifuge/fabric'
 import type { HeadProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 
+import { useLeverPositions } from '../hooks/use-lever-positions'
 import { BeliefsSection, BeliefsSectionProps } from '../components/BeliefsSection'
 import { ContributorsSection, ContributorsSectionProps } from '../components/contributors-section'
 import { HeroVideo, HeroVideoProps } from '../components/HeroVideo'
@@ -63,18 +64,26 @@ type ContributorsProps = {
 }
 
 export default function Contributors({ data }: ContributorsProps) {
+  const { positions } = useLeverPositions()
+  const careersId = 'careers'
   const { hero_video, maker_section, org_section, beliefs_section, contributors_section, career_section } =
     data.dataJson
 
   return (
     <Layout>
       <Stack gap={168}>
-        <HeroVideo {...hero_video} />
+        <HeroVideo {...hero_video}>
+          {!!positions?.length && (
+            <AnchorButton href={`#${careersId}`} variant="secondary">
+              We are hiring 🚀
+            </AnchorButton>
+          )}
+        </HeroVideo>
         <MakerSection {...maker_section} />
         <ContributorsSection {...contributors_section} />
         <OrgSection {...org_section} />
         <BeliefsSection {...beliefs_section} />
-        <CareerSection {...career_section} />
+        <CareerSection {...career_section} id={careersId} />
       </Stack>
     </Layout>
   )
