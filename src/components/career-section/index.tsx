@@ -22,13 +22,14 @@ export type CareerSectionProps = {
   title: string
   fallback: string
   note: { title: string; body: string }
+  id?: string
 }
 
-export function CareerSection({ title, fallback, note }: CareerSectionProps) {
+export function CareerSection({ title, fallback, note, id }: CareerSectionProps) {
   const { positions, isLoading, isError } = useLeverPositions()
 
   return (
-    <RevealWrapper px={2} as="section" id="careers">
+    <RevealWrapper px={2} as="section" {...(id ? { id } : {})}>
       <Container>
         <Reveal>
           <Text as="h2" variant="heading2">
