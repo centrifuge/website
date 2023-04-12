@@ -1,6 +1,7 @@
 import { Box, Stack, Text, Grid, Button, AnchorButton } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
+import { useLeverPositions } from '../hooks/use-lever-positions'
 import { CenterContainer } from './CenterContainer'
 import { YoutubeEmbed } from './YoutubeEmbed'
 import { Reveal, RevealWrapper } from './Reveal'
@@ -36,6 +37,8 @@ export type HeroVideoProps = {
 }
 
 export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
+  const { positions } = useLeverPositions()
+
   return (
     <RevealWrapper>
       <CenterContainer as="section" pt={8}>
@@ -51,7 +54,7 @@ export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
             </Text>
           </Reveal>
 
-          {cta && (
+          {!!cta && !!positions?.length && (
             <Reveal staggerIndex={2}>
               <AnchorButton href={cta.href} variant="secondary">
                 {cta.title}
