@@ -2,9 +2,9 @@ name: Website # This name is referenced in the functions.yml file under workflow
 on:
   push:
     branches:
-      - "main"
+      - 'main'
     paths-ignore:
-      - 'functions/**'      
+      - 'functions/**'
   pull_request:
     paths-ignore:
       - 'functions/**'
@@ -12,24 +12,28 @@ on:
   workflow_call:
     inputs:
       deploy_env:
-        description: "For manual deployments (prod)"
+        description: 'For manual deployments (prod)'
         type: string
 
 concurrency:
   group: web-${{ github.ref }}
-  cancel-in-progress: true 
+  cancel-in-progress: true
 
 jobs:
-
   prepare-deploy:
     uses: ./.github/workflows/prepare-deploy.yml
     secrets: inherit
     with:
       wait: true
       deploy_env: ${{ inputs.deploy_env }}
-  
+
+  trigger-function-deploy:
+    if: github.event.action == 'opened' || github.event.action =='reopened'
+    uses: ./.github/workflows/functions.yml
+    secrets: inherit
+
   build-web:
-    needs: [prepare-deploy]      
+    needs: [prepare-deploy]
     runs-on: ubuntu-latest
     steps:
       - name: fail if URL empty
@@ -40,7 +44,7 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
-      
+
       - name: only allow workflow_dispatch from main
         if: ${{ github.event_name == 'workflow-dispatch' }}
         env:
@@ -62,19 +66,19 @@ jobs:
           GATSBY_FUNCTIONS_URL: ${{ needs.prepare-deploy.outputs.function_URL }}
         run: |
           yarn build
-      
+
       - name: Archive functions artifacts
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # @v3.1.2
         with:
           name: web-package
-          retention-days: 1
+          retention-days: 4
           path: public/
 
   publish-to-gcs:
     needs: [build-web, prepare-deploy]
     permissions:
       contents: read
-      id-token: write 
+      id-token: write
     runs-on: ubuntu-latest
     environment: ${{ inputs.deploy_env || 'gcloud-dev' }}
     env:
@@ -95,7 +99,7 @@ jobs:
           service_account: '${{ secrets.GSA }}'
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1' 
+        uses: 'google-github-actions/setup-gcloud@v1'
 
       - name: Create bucket
         run: |
@@ -106,14 +110,13 @@ jobs:
             gsutil web set -m index.html -e 404.html gs://${{ env.bucket_url }}            
           else
             echo "Bucket ${{ env.bucket_url }} found! No need to create it"
-          fi 
+          fi
 
       - name: push to bucket
         id: push
         run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ env.bucket_url }}
     outputs:
       bucket_url: ${{ env.bucket_url }}
-   
 
   notify:
     needs: publish-to-gcs
@@ -128,20 +131,17 @@ jobs:
           pull_sha: ${{ github.event.pull_request.head.sha }}
         with:
           message: |
-            Deployed webiste in Google Cloud
+            Deployed website in Google Cloud
             URL: http://${{ needs.publish-to-gcs.outputs.bucket_url }}
-            Commit #: ${{ env.pull_sha }}   
-      - run: echo "::notice title=web_url::${{ needs.publish-to-gcs.outputs.bucket_url  }}"      
-      
+            Commit #: ${{ env.pull_sha }}
+      - run: echo "::notice title=web_url::${{ needs.publish-to-gcs.outputs.bucket_url  }}"
       - name: Notify prod deploy
         if: inputs.deploy_env == 'production'
         uses: rtCamp/action-slack-notify@12e36fc18b0689399306c2e0b3e0f2978b7f1ee7
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: "Main site deployed, go to ${{ needs.publish-to-gcs.outputs.bucket_url  }} to check out what's new!"
-          SLACK_USERNAME: "Centrifuge GHA Bot"
-          SLACK_ICON: "https://centrifuge.io/favicon.ico"
-          SLACK_TITLE: "Deployment using production credentials finished"
-          SLACK_FOOTER: "Automatic message from centrifuge/website repository Actions"
-
-
+          SLACK_USERNAME: 'Centrifuge GHA Bot'
+          SLACK_ICON: 'https://centrifuge.io/favicon.ico'
+          SLACK_TITLE: 'Deployment using production credentials finished'
+          SLACK_FOOTER: 'Automatic message from centrifuge/website repository Actions'

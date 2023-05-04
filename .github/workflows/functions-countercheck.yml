@@ -1,0 +1,11 @@
+name: Functions
+on:
+  pull_request:
+    paths-ignore:
+      - 'functions/**'
+      - '.github/workflows/functions.yml'
+jobs:
+  deploy-functions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "This job is always green to ensure PRs without code changes to the main folders can also merge"'

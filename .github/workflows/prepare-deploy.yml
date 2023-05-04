@@ -28,11 +28,6 @@ on:
       env_name:
         description: "Environment name for reference"
         value: ${{ jobs.prepare-deployment.outputs.env_name }}
-    # secrets:
-    #   GWIP:
-    #     required: true
-    #   GSA:
-    #     required: true
 
 jobs:
   prepare-deployment:
@@ -53,8 +48,7 @@ jobs:
     ############################################################################################
     # First discover the environment to deploy and set some vars 
     ############################################################################################    
-      - name: Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
+
       - id: deploy_vars
         shell: bash
         env: 
@@ -69,7 +63,7 @@ jobs:
           if  ${{ github.ref == 'refs/heads/main' }} ; then
             if  ${{ inputs.deploy_env == 'production' }}; then
               #  PROD
-              echo "bucket_url=www.centrifuge.io" >> $GITHUB_OUTPUT
+              echo "bucket_url=centrifuge.io" >> $GITHUB_OUTPUT
               echo "function_name=webapi" >> $GITHUB_OUTPUT
               echo "env_name=production" >> $GITHUB_OUTPUT
               
@@ -142,5 +136,10 @@ jobs:
           else
             echo "function_url=''" >> $GITHUB_OUTPUT
           fi
-
- 
+      
+      - name: debug output
+        run: |
+          echo "function_name  == ${{ steps.deploy_vars.outputs.function_name }}
+          echo "function_URL == ${{ steps.find_function.outputs.function_url }}
+          echo "bucket_url == ${{ steps.deploy_vars.outputs.bucket_url }}
+          echo "env_name  == ${{ steps.deploy_vars.outputs.env_name }}

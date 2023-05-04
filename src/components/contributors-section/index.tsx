@@ -1,4 +1,4 @@
-import { AnchorButton, Box, Text } from '@centrifuge/fabric'
+import { AnchorButton, Text } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import { CenterContainer } from '../CenterContainer'

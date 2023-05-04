@@ -1,6 +1,7 @@
 import { Box, Stack, Text, Grid, Button, AnchorButton } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
+
 import { CenterContainer } from './CenterContainer'
 import { YoutubeEmbed } from './YoutubeEmbed'
 import { Reveal, RevealWrapper } from './Reveal'
@@ -9,10 +10,6 @@ export const query = graphql`
   fragment HeroVideoFragment on DataJsonHero_video {
     title
     body
-    cta {
-      title
-      href
-    }
     video {
       youtubeId
     }
@@ -22,10 +19,6 @@ export const query = graphql`
 export type HeroVideoProps = {
   title: string
   body: string
-  cta?: {
-    title: string
-    href: string
-  }
   video:
     | {
         youtubeId: string
@@ -33,9 +26,10 @@ export type HeroVideoProps = {
     | {
         url: string
       }
+  children?: React.ReactNode
 }
 
-export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
+export function HeroVideo({ title, body, video, children }: HeroVideoProps) {
   return (
     <RevealWrapper>
       <CenterContainer as="section" pt={8}>
@@ -51,13 +45,7 @@ export function HeroVideo({ title, body, cta, video }: HeroVideoProps) {
             </Text>
           </Reveal>
 
-          {cta && (
-            <Reveal staggerIndex={2}>
-              <AnchorButton href={cta.href} variant="secondary">
-                {cta.title}
-              </AnchorButton>
-            </Reveal>
-          )}
+          {children && <Reveal staggerIndex={2}>{children}</Reveal>}
 
           <Reveal width="100%" maxWidth={940} mt={6} staggerIndex={2}>
             {'youtubeId' in video ? (

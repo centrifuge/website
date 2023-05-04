@@ -7,12 +7,8 @@
   "hero_video": {
     "title": "Mission",
     "body": "Centrifuge unlocks economic opportunity for all by connecting people to borrow and lend money transparently and cost-effectively.",
-    "cta": {
-      "title": "We are hiring 🚀",
-      "href": "#careers"
-    },
     "video": {
-      "youtubeId": "h8tfJ9EtIpY"
+      "youtubeId": "DEZJ7heUUrQ"
     }
   },
   "maker_section": {
@@ -83,16 +79,6 @@
         "role": "DeFi Politician",
         "social": "https://twitter.com/fintech_khan",
         "image": "./images/contributors/asad-khan.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
-        "name": "Bastian Gruber",
-        "role": "Engineer",
-        "social": "https://twitter.com/recvonline",
-        "image": "./images/contributors/bastian-gruber.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
@@ -247,16 +233,6 @@
         }
       },
       {
-        "name": "Jeannice Tse",
-        "role": "Business Development",
-        "social": "https://www.linkedin.com/in/jeannicetse/",
-        "image": "./images/contributors/jeannice.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
         "name": "Jeroen Offerijns",
         "role": "Product and Engineering",
         "social": "https://twitter.com/offerijns",
@@ -326,16 +302,6 @@
         }
       },
       {
-        "name": "Mary Gribbin",
-        "role": "People Ops",
-        "social": "https://twitter.com/maryagribbin",
-        "image": "./images/contributors/mary.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
         "name": "Miguel Hervas",
         "role": "Protocol Engineer",
         "social": "https://twitter.com/mikiquantum",
@@ -383,16 +349,6 @@
         "entity": {
           "name": "GCG",
           "href": "https://gov.centrifuge.io/t/rfc-proposal-for-mandate-for-governance-coordination-group/4609"
-        }
-      },
-      {
-        "name": "Rohan Hemani",
-        "role": "Marketing",
-        "social": "https://twitter.com/RohanHemani",
-        "image": "./images/contributors/rohan.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
         }
       },
       {
