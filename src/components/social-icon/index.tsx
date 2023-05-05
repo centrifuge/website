@@ -6,6 +6,7 @@ import { Youtube } from './Youtube'
 import { Linkedin } from './Linkedin'
 import { Telegram } from './Telegram'
 import { Forum } from './Forum'
+import { Medium } from './Medium'
 
 export type SocialIconProps = {
   type: keyof typeof types
@@ -19,6 +20,7 @@ const types = {
   linkedin: Linkedin,
   telegram: Telegram,
   forum: Forum,
+  medium: Medium,
 }
 
 export function SocialIcon({ type, size = 'auto' }: SocialIconProps) {
