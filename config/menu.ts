@@ -22,11 +22,6 @@ const menu = [
         isExternal: true,
       },
       {
-        label: 'Medium',
-        href: links.medium,
-        isExternal: true,
-      },
-      {
         label: 'Discord',
         href: links.discord,
         isExternal: true,
