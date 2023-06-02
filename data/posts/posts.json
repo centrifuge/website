@@ -1,5 +1,41 @@
 [
   {
+    "date": "2023/05/22",
+    "outlet": "Centrifuge",
+    "title": "Introducing the New Centrifuge App",
+    "body": "The new Centrifuge App is here, succeeding Tinlake and making it easier than ever to jump into real-world assets on-chain.",
+    "image": "../images/posts/centrifugeapp.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/introducing-the-new-centrifuge-app-b493a3fd7348"
+  },
+  {
+    "date": "2023/05/16",
+    "outlet": "Centrifuge",
+    "title": "Facu Peláez: DAO Treasuries and Real-World Assets | DeFi Drip",
+    "body": "Facu Peláez of karpatkey and Cassidy Daly of Centrifuge discuss Real-World Assets, DAO treasuries, and risk management in this episode of DeFi Drip.",
+    "image": "../images/posts/defidrip4.png",
+    "alt": "",
+    "href": "https://www.youtube.com/watch?v=D57lY7t4pvQ"
+  },
+  {
+    "date": "2023/04/20",
+    "outlet": "Axios",
+    "title": "DeFi's Real World Assets",
+    "body": "The crew laying the rails, putting real-world assets on-chain, could end the Wild West stigma in crypto, eventually retiring Wall Street's old hat and outlasting crypto's black hats.",
+    "image": "../images/posts/axios_april.png",
+    "alt": "",
+    "href": "https://www.axios.com/newsletters/axios-crypto-544c9c0a-8f69-40f8-af5e-c30698478f68.html"
+  },
+  {
+    "date": "2023/04/07",
+    "outlet": "Centrifuge",
+    "title": "March Momentum",
+    "body": "Centrifuge's momentum stayed strong throughout March, and there's much to share! Let's dive into key updates, achievements, and moments of impact within our rapidly expanding ecosystem.",
+    "image": "../images/posts/march_momentum.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/centrifuge-monthly-march-2023-7933196bc825"
+  },
+  {
     "date": "2023/03/14",
     "outlet": "Decrypt",
     "title": "How Centrifuge Is Making DeFi Impactful",

@@ -81,6 +81,11 @@ export const columns = [
 
 export const socials = [
   {
+    label: 'Medium',
+    href: links.medium,
+    icon: 'medium',
+  },
+  {
     label: 'Twitter',
     href: links.twitter,
     icon: 'twitter',
