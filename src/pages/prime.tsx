@@ -25,16 +25,12 @@ export const query = graphql`
         ...HeroPrimeFragment
       }
 
-      prime_integration {
-        ...PrimeIntegrationFragment
-      }
-
       prime_partners {
         ...PrimePartnersFragment
       }
 
-      prime_targets {
-        ...PrimeTargetsFragment
+      prime_integration {
+        ...PrimeIntegrationFragment
       }
 
       rwa_usp {
@@ -43,6 +39,10 @@ export const query = graphql`
 
       rwa_yields {
         ...RwaYieldsFragment
+      }
+
+      prime_targets {
+        ...PrimeTargetsFragment
       }
 
       prime_cta {
@@ -57,30 +57,30 @@ type PrimeProps = {
     dataJson: {
       seo: SEOProps
       hero_prime: HeroPrimeProps
-      prime_integration: PrimeIntegrationProps
       prime_partners: PrimePartnersProps
-      prime_targets: PrimeTargetsProps
+      prime_integration: PrimeIntegrationProps
       rwa_usp: RwaUspProps
       rwa_yields: RwaYieldsProps
+      prime_targets: PrimeTargetsProps
       prime_cta: PrimeCtaProps
     }
   }
 }
 
 export default function Prime({ data }: PrimeProps) {
-  const { hero_prime, prime_integration, prime_partners, prime_targets, rwa_usp, rwa_yields, prime_cta } = data.dataJson
+  const { hero_prime, prime_partners, prime_integration, rwa_usp, rwa_yields, prime_targets, prime_cta } = data.dataJson
 
   return (
     <Layout menuButtonVariant="secondary" padded={false}>
       <Stack gap={['layoutMedium', 'layoutLarge', 'layoutXLarge']}>
-        <Stack gap="layoutMedium">
+        <Stack gap={[10, 10, 'layoutMedium']}>
           <HeroPrime {...hero_prime} />
           <PrimePartners {...prime_partners} />
         </Stack>
         <PrimeIntegration {...prime_integration} />
-        <PrimeTargets {...prime_targets} />
         <RwaUsp {...rwa_usp} />
         <RwaYields {...rwa_yields} />
+        <PrimeTargets {...prime_targets} />
         <PrimeCta {...prime_cta} />
       </Stack>
     </Layout>

@@ -29,7 +29,7 @@ export type HeroPrimeProps = {
 export function HeroPrime({ title, body, image }: HeroPrimeProps) {
   return (
     <RevealWrapper>
-      <Root as="section" flexDirection="column" px={2} pt={[2, 4, 6, 10]} pb={[2, 4, 10]}>
+      <Root as="section" flexDirection="column" px={2} pt={[2, 4, 6, 10]}>
         <Inner>
           <Stack gap={3} maxWidth={['100%', '100%', '60%', '50%']}>
             <Reveal>
@@ -57,7 +57,7 @@ export function HeroPrime({ title, body, image }: HeroPrimeProps) {
         </Inner>
 
         <Media ml="auto" mr={[-2, -2, 0]} width={['90%', '70%', '50%']}>
-          <Image data={image} alt="" objectFit="contain" objectPosition="center right" />
+          <Image data={image} alt="" objectFit="contain" objectPosition="bottom right" />
         </Media>
       </Root>
     </RevealWrapper>

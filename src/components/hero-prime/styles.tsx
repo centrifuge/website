@@ -35,7 +35,7 @@ export const Media = styled(Box)`
     position: absolute;
     top: 5%;
     right: 0;
-    height: 90%;
+    height: 95%;
   }
 
   > * {
