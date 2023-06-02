@@ -43,7 +43,9 @@ export function HeroPrime({ title, body, image }: HeroPrimeProps) {
             </Reveal>
 
             <Reveal staggerIndex={2}>
-              <Text as="p">{body}</Text>
+              <Text as="p" variant="body1">
+                {body}
+              </Text>
             </Reveal>
 
             <Reveal staggerIndex={3}>

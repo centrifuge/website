@@ -48,7 +48,7 @@ export function PrimeTargets({ title, body, items }: PrimeTargetsProps) {
             </Reveal>
 
             <Reveal staggerIndex={1}>
-              <Text as="p" color="textSecondary">
+              <Text as="p" color="textSecondary" variant="body1">
                 {body}
               </Text>
             </Reveal>

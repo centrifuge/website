@@ -73,9 +73,11 @@ export default function Prime({ data }: PrimeProps) {
   return (
     <Layout menuButtonVariant="secondary" padded={false}>
       <Stack gap={['layoutMedium', 'layoutLarge', 'layoutXLarge']}>
-        <HeroPrime {...hero_prime} />
+        <Stack gap="layoutMedium">
+          <HeroPrime {...hero_prime} />
+          <PrimePartners {...prime_partners} />
+        </Stack>
         <PrimeIntegration {...prime_integration} />
-        <PrimePartners {...prime_partners} />
         <PrimeTargets {...prime_targets} />
         <RwaUsp {...rwa_usp} />
         <RwaYields {...rwa_yields} />

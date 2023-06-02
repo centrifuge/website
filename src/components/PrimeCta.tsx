@@ -23,7 +23,7 @@ export function PrimeCta({ title, items }: PrimeCtaProps) {
         <Container maxWidth="containerHeader">
           <Stack gap={3}>
             <Reveal>
-              <Text as="h2" variant="heading3" color="textInverted" style={{ whiteSpace: 'pre' }}>
+              <Text as="h2" variant="heading2" color="textInverted" style={{ whiteSpace: 'pre' }}>
                 {title}
               </Text>
             </Reveal>

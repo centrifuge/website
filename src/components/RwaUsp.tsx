@@ -35,7 +35,7 @@ export function RwaUsp({ title, body, items, image }: RwaUspProps) {
       title={title}
       body={body}
       media={
-        <Box maxWidth={[350, 350, 450]} ml={['auto', 'auto', 'unset']} mr="auto">
+        <Box maxWidth={[350, 350, 450]} mx="auto">
           <Image data={image} alt="" />
         </Box>
       }
@@ -43,18 +43,6 @@ export function RwaUsp({ title, body, items, image }: RwaUspProps) {
         <Reveal staggerIndex={2} mt={6} as={Shelf} justifyContent={['start', 'start', 'center']}>
           <BulletList items={items} />
         </Reveal>
-      }
-      titleAddition={
-        <AnchorButton
-          href={links.prime}
-          rel="noopener noreferrer"
-          target="_blank"
-          variant="secondary"
-          style={{ whiteSpace: 'nowrap' }}
-          small
-        >
-          Join Beta
-        </AnchorButton>
       }
     />
   )

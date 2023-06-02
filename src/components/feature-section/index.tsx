@@ -25,7 +25,7 @@ export function FeatureSection({ title, items, body }: FeatureSectionProps) {
 
             {!!body && (
               <Reveal staggerIndex={1}>
-                <Text as="p" color="textSecondary">
+                <Text as="p" color="textSecondary" variant="body1">
                   {body}
                 </Text>
               </Reveal>
