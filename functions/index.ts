@@ -1,7 +1,12 @@
 import routes from './routes.json'
 import { Request, Response } from 'express'
 
-const corsWhitelist = ['http://localhost:8000', 'https://centrifuge.io', 'https://www.centrifuge.io']
+const corsWhitelist = [
+  'http://localhost:8000',
+  'https://centrifuge.io',
+  'https://www.centrifuge.io',
+  'https://website-staging.k-f.dev',
+]
 const testEnvRegex = new RegExp('https://preview-pr[0-9]*(.k-f.dev)')
 
 exports.handler = async (req: Request, res: Response) => {
