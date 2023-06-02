@@ -63,9 +63,18 @@ export function NewsSection({ title, link, posts }: NewsSectionProps) {
         <Reveal>
           <Box ref={viewportRef} style={{ overflow: 'visible' }} mt={[1, 1, 6]} py={1}>
             <Shelf as="ul" p={0} m={0} role="list" gap={2} alignItems="normal">
-              {posts.map(({ id, title, href, image, alt, body, label }, index) => (
+              {posts.map(({ id, date, outlet, title, href, image, alt, body }) => (
                 <Box as="li" key={id} width={[300, 400, 480]} flexShrink={0}>
-                  <NewsCard label={label} title={title} body={body} image={image} alt={alt} href={href} boxed />
+                  <NewsCard
+                    date={date}
+                    outlet={outlet}
+                    title={title}
+                    body={body}
+                    image={image}
+                    alt={alt}
+                    href={href}
+                    boxed
+                  />
                 </Box>
               ))}
             </Shelf>
