@@ -1,5 +1,23 @@
 [
   {
+    "date": "2023/05/22",
+    "outlet": "Centrifuge",
+    "title": "Introducing the New Centrifuge App",
+    "body": "The new Centrifuge App is here, succeeding Tinlake and making it easier than ever to jump into real-world assets on-chain.",
+    "image": "../images/posts/centrifugeapp.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/introducing-the-new-centrifuge-app-b493a3fd7348"
+  },
+  {
+    "date": "2023/05/16",
+    "outlet": "Centrifuge",
+    "title": "Facu Peláez: DAO Treasuries and Real-World Assets | DeFi Drip",
+    "body": "Facu Peláez of karpatkey and Cassidy Daly of Centrifuge discuss Real-World Assets, DAO treasuries, and risk management in this episode of DeFi Drip.",
+    "image": "../images/posts/defidrip4.png",
+    "alt": "",
+    "href": "https://www.youtube.com/watch?v=D57lY7t4pvQ"
+  },
+  {
     "date": "2023/04/20",
     "outlet": "Axios",
     "title": "DeFi's Real World Assets",
