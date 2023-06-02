@@ -6,8 +6,6 @@ on:
     paths-ignore:
       - 'functions/**'
   pull_request:
-    paths-ignore:
-      - 'functions/**'
 
   workflow_call:
     inputs:
