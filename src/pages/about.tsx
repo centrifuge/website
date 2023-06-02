@@ -2,13 +2,12 @@ import { AnchorButton, Stack } from '@centrifuge/fabric'
 import type { HeadProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import * as React from 'react'
-
 import { useLeverPositions } from '../hooks/use-lever-positions'
 import { BeliefsSection, BeliefsSectionProps } from '../components/BeliefsSection'
 import { ContributorsSection, ContributorsSectionProps } from '../components/contributors-section'
 import { HeroVideo, HeroVideoProps } from '../components/HeroVideo'
 import { Layout } from '../components/Layout'
-import { OrgSection, OrgSectionProps } from '../components/org-section'
+import { OrgSection, OrgSectionProps } from '../components/OrgSection'
 import { SEO, SEOProps } from '../components/Seo'
 import { MakerSection, MakerSectionProps } from '../components/MakerSection'
 import { CareerSection, CareerSectionProps } from '../components/career-section'
@@ -71,7 +70,7 @@ export default function Contributors({ data }: ContributorsProps) {
 
   return (
     <Layout>
-      <Stack gap={168}>
+      <Stack gap="layoutLarge">
         <HeroVideo {...hero_video}>
           {!!positions?.length && (
             <AnchorButton href={`#${careersId}`} variant="secondary">

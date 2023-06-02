@@ -2,6 +2,10 @@ import { links } from './links'
 
 const menu = [
   {
+    label: 'Prime',
+    href: '/prime',
+  },
+  {
     label: 'News',
     href: '/news',
   },

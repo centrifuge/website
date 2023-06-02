@@ -14,6 +14,7 @@ export const theme: DefaultTheme = {
     layoutSmall: 80,
     layoutMedium: 144,
     layoutLarge: 168,
+    layoutXLarge: 250,
   }),
   typography: {
     ...centrifugeLight.typography,
@@ -33,7 +34,7 @@ export const theme: DefaultTheme = {
     },
     heading3: {
       fontSize: [28, 38, 50],
-      lineHeight: 1.375,
+      lineHeight: 1.2,
       fontWeight: 500,
       color: 'textPrimary',
     },
