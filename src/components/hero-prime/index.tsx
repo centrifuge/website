@@ -8,6 +8,7 @@ import { Root, Inner, Media, Title } from './styles'
 
 export const query = graphql`
   fragment HeroPrimeFragment on DataJsonHero_prime {
+    pretitle
     title
     body
     image {
@@ -21,34 +22,43 @@ export const query = graphql`
 `
 
 export type HeroPrimeProps = {
+  pretitle: string
   title: string
   body: string
   image: ImageProps
 }
 
-export function HeroPrime({ title, body, image }: HeroPrimeProps) {
+export function HeroPrime({ pretitle, title, body, image }: HeroPrimeProps) {
   return (
     <RevealWrapper>
       <Root as="section" flexDirection="column" px={2} pt={[2, 4, 6, 10]}>
         <Inner>
           <Stack gap={3} maxWidth={['100%', '100%', '60%', '50%']}>
-            <Reveal>
-              <Title forwardedAs="h1" variant="heading2">
-                {title}
-              </Title>
-            </Reveal>
+            <Stack gap={1}>
+              <Reveal>
+                <Text variant="tag" as="span">
+                  {pretitle}
+                </Text>
+              </Reveal>
 
-            <Reveal staggerIndex={1}>
+              <Reveal staggerIndex={1}>
+                <Title forwardedAs="h1" variant="heading2" style={{ whiteSpace: 'pre' }}>
+                  {title}
+                </Title>
+              </Reveal>
+            </Stack>
+
+            <Reveal staggerIndex={2}>
               <Divider />
             </Reveal>
 
-            <Reveal staggerIndex={2}>
+            <Reveal staggerIndex={3}>
               <Text as="p" variant="body1">
                 {body}
               </Text>
             </Reveal>
 
-            <Reveal staggerIndex={3}>
+            <Reveal staggerIndex={4}>
               <AnchorButton href={links.prime} rel="noopener noreferrer" target="_blank">
                 Join Beta
               </AnchorButton>

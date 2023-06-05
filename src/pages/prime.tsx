@@ -58,29 +58,29 @@ type PrimeProps = {
       seo: SEOProps
       hero_prime: HeroPrimeProps
       prime_partners: PrimePartnersProps
-      prime_integration: PrimeIntegrationProps
-      rwa_usp: RwaUspProps
-      rwa_yields: RwaYieldsProps
       prime_targets: PrimeTargetsProps
+      rwa_yields: RwaYieldsProps
+      rwa_usp: RwaUspProps
+      prime_integration: PrimeIntegrationProps
       prime_cta: PrimeCtaProps
     }
   }
 }
 
 export default function Prime({ data }: PrimeProps) {
-  const { hero_prime, prime_partners, prime_integration, rwa_usp, rwa_yields, prime_targets, prime_cta } = data.dataJson
+  const { hero_prime, prime_partners, prime_targets, rwa_yields, rwa_usp, prime_integration, prime_cta } = data.dataJson
 
   return (
     <Layout menuButtonVariant="secondary" padded={false}>
       <Stack gap={['layoutMedium', 'layoutLarge', 'layoutXLarge']}>
-        <Stack gap={[10, 10, 'layoutMedium']}>
+        <Stack gap={[10, 10, '120px']}>
           <HeroPrime {...hero_prime} />
           <PrimePartners {...prime_partners} />
         </Stack>
-        <PrimeIntegration {...prime_integration} />
-        <RwaUsp {...rwa_usp} />
-        <RwaYields {...rwa_yields} />
         <PrimeTargets {...prime_targets} />
+        <RwaYields {...rwa_yields} />
+        <RwaUsp {...rwa_usp} />
+        <PrimeIntegration {...prime_integration} />
         <PrimeCta {...prime_cta} />
       </Stack>
     </Layout>

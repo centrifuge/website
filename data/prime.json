@@ -5,30 +5,10 @@
     "description": "Centrifuge Prime provides the critical functions and services needed to establish a diversified portfolio of real-world assets. The infrastructure, ecosystem, and assets you need are all made available in a single place, through the Centrifuge protocol."
   },
   "hero_prime": {
-    "title": "Introducing Centrifuge Prime",
-    "body": "Centrifuge Prime provides the technology and services needed to quickly and easily onboard and scale a portfolio of real-world assets. The infrastructure, ecosystem, and assets you need, all made available in a single place, through Centrifuge.",
+    "pretitle": "CENTRIFUGE PRIME",
+    "title": "Real Yields, \nReal DeFi",
+    "body": "Finally, you can quickly and easily onboard and scale a portfolio of real-world assets with Centrifuge Prime. The technology and services you need, all made available in a single place, through Centrifuge.",
     "image": "./images/prime/hero-prime.png"
-  },
-  "prime_integration": {
-    "title": "The home for all things real-world assets",
-    "body": "Centrifuge Prime combines the infrastructure for the tokenization and management of real-world assets, with an ecosystem of critical partners and services, to provide the assets and opportunities that DAOs and DeFi protocols want to see.",
-    "items": [
-      {
-        "image": "./images/prime/integration-infrastructure.svg",
-        "title": "Infrastructure",
-        "body": "RWA tokenization, securitization, and a compliant out of the box legal framework"
-      },
-      {
-        "image": "./images/prime/integration-ecosystem.svg",
-        "title": "Ecosystem",
-        "body": "Decentralized and objective credit risk reporting and analysis functions for assets and portfolio"
-      },
-      {
-        "image": "./images/prime/integration-assets.svg",
-        "title": "Assets",
-        "body": "Diversified asset classes including US Treasury Bills, Asset Backed Securities, Real Estate, and more"
-      }
-    ]
   },
   "prime_partners": {
     "title": "Built from years of experience bringing RWAs to DeFi",
@@ -65,7 +45,7 @@
   },
   "prime_targets": {
     "title": "Unlock real yields in real-world assets",
-    "body": "Centrifuge Prime was built to meet the needs of large decentralized organizations and protocols. Through Centrifuge Prime, DeFi native organizations can integrate with the largest financial markets in the world and take advantage of real yields from real economic activity. Assets tailored to your needs, processes adapted to your governance, and all through decentralized rails.",
+    "body": "Centrifuge Prime was built to meet the needs of large decentralized organizations and protocols. Through Centrifuge Prime, DeFi native organizations can integrate with the largest financial markets in the world and take advantage of real yields from real economic activity - all on-chain. Assets tailored to your needs, processes adapted to your governance, and all through decentralized rails.",
     "items": [
       {
         "title": "Generate Yields",
@@ -81,6 +61,11 @@
       }
     ]
   },
+  "rwa_yields": {
+    "title": "Create a diversified RWA portfolio",
+    "body": "Customize your portfolio based on preferences, from US treasuries and investment grade credit, to asset backed securities or real-estate financing. Get the right returns with the right amount of risk.",
+    "image": "./images/prime/prime-rwa-yields.png"
+  },
   "rwa_usp": {
     "title": "How it works",
     "body": "Centrifuge Prime allows a dedicated infrastructure to be built for DAOs and protocols that provides the necessary resources and functions to allocate, manage, and tokenize a robust and diversified portfolio of real world assets, at scale.",
@@ -92,13 +77,29 @@
     ],
     "image": "./images/prime/prime-rwa-usp.png"
   },
-  "rwa_yields": {
-    "title": "Create a diversified RWA portfolio",
-    "body": "Customize your portfolio based on preferences, from US treasuries and investment grade credit, to asset backed securities or real-estate financing. Get the right returns with the right amount of risk.",
-    "image": "./images/prime/prime-rwa-yields.png"
+  "prime_integration": {
+    "title": "The home for all things real-world assets",
+    "body": "Centrifuge Prime combines the infrastructure for the tokenization and management of real-world assets, with an ecosystem of critical partners and services, to provide the assets and opportunities that DAOs and DeFi protocols want to see.",
+    "items": [
+      {
+        "image": "./images/prime/integration-infrastructure.svg",
+        "title": "Infrastructure",
+        "body": "RWA tokenization, securitization, and a compliant out of the box legal framework"
+      },
+      {
+        "image": "./images/prime/integration-ecosystem.svg",
+        "title": "Ecosystem",
+        "body": "Decentralized and objective credit risk reporting and analysis functions for assets and portfolio"
+      },
+      {
+        "image": "./images/prime/integration-assets.svg",
+        "title": "Assets",
+        "body": "Diversified asset classes including US Treasury Bills, Asset Backed Securities, Real Estate, and more"
+      }
+    ]
   },
   "prime_cta": {
-    "title": "Put your \ntreasury to work",
+    "title": "Ready to put your \ntreasury to work?",
     "items": [
       "Optimizing treasury performance with RWAs can extend runway and create new revenue streams, making a critical difference in a project’s success.",
       "Get started with Centrifuge Prime to access a diversified set of assets and improve your portfolio’s performance under all conditions."
