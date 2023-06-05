@@ -6,12 +6,8 @@ export const Root = styled(Box)`
   min-height: calc(70vh - var(--header-height));
   position: relative;
 
-  @supports (min-height: 70dvh) {
-    min-height: calc(70dvh - var(--header-height));
-  }
-
-  @media screen and (min-height: 1200px) {
-    min-height: calc(1200px - var(--header-height));
+  @media screen and (min-height: 1000px) {
+    min-height: calc(700px - var(--header-height));
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
