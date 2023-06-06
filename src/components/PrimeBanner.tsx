@@ -1,22 +1,9 @@
 import { Box, Container, Grid, Text } from '@centrifuge/fabric'
-import { graphql } from 'gatsby'
 import * as React from 'react'
 import { Reveal, RevealWrapper } from './Reveal'
 import { InternalLink } from './InternalLink'
 
-export const query = graphql`
-  fragment PrimeBannerFragment on DataJsonPrime_banner {
-    title
-    body
-  }
-`
-
-export type PrimeBannerProps = {
-  title: string
-  body: string
-}
-
-export function PrimeBanner({ title, body }: PrimeBannerProps) {
+export function PrimeBanner() {
   return (
     <RevealWrapper>
       <Reveal as="section" px={2}>
@@ -30,10 +17,14 @@ export function PrimeBanner({ title, body }: PrimeBannerProps) {
         >
           <Grid gridTemplateColumns={['1fr', '1fr', 'auto 1fr', 'auto 1fr auto']} gap={[3, 3, 4, 6, 10]}>
             <Text as="h2" variant="heading4" style={{ whiteSpace: 'pre' }}>
-              {title}
+              Introducing Centrifuge Prime: <br />
+              Real-World Assets for DeFi
             </Text>
 
-            <Text as="p">{body}</Text>
+            <Text as="p">
+              Finally you can quickly and easily onboard and scale a portfolio of real-world assets with Centrifuge
+              Prime. The technology and services you need, all made available in a single place, through Centrifuge.
+            </Text>
 
             <Box alignSelf="center" mt={[2, 2, 0]}>
               <InternalLink to="/prime" variant="secondary">
