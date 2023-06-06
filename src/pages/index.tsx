@@ -18,7 +18,6 @@ import type { WorkPrincipleProps } from '../components/work-principle'
 import type { NewsSectionProps } from '../components/NewsSection'
 import type { AuditSectionProps } from '../components/audit-section'
 import type { PostProps } from '../components/news-card'
-import type { PrimeBannerProps } from '../components/PrimeBanner'
 
 export const query = graphql`
   query {
@@ -39,10 +38,6 @@ export const query = graphql`
 
       work_principle {
         ...WorkPrincipleFragment
-      }
-
-      prime_banner {
-        ...PrimeBannerFragment
       }
 
       news_section {
@@ -67,7 +62,6 @@ type HomeProps = {
       testimonials: TestimonialsProps
       usp_section: UspSectionProps
       work_principle: WorkPrincipleProps
-      prime_banner: PrimeBannerProps
       news_section: NewsSectionProps
       audit_section: AuditSectionProps
     }
@@ -78,8 +72,7 @@ type HomeProps = {
 }
 
 export default function Home({ data }: HomeProps) {
-  const { hero_main, testimonials, usp_section, work_principle, prime_banner, news_section, audit_section } =
-    data.dataJson
+  const { hero_main, testimonials, usp_section, work_principle, news_section, audit_section } = data.dataJson
   const { nodes: posts } = data.allPostsJson
 
   return (
@@ -88,7 +81,7 @@ export default function Home({ data }: HomeProps) {
         <HeroMain {...hero_main} />
         <UspSection {...usp_section} />
         <WorkPrinciple {...work_principle} />
-        <PrimeBanner {...prime_banner} />
+        <PrimeBanner />
         <Testimonials {...testimonials} />
         <NewsSection {...news_section} posts={posts} />
         <AuditSection {...audit_section} />
