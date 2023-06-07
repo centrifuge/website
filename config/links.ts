@@ -11,4 +11,5 @@ export const links = {
   audits: 'https://github.com/centrifuge/security/tree/main/audits',
   forum: 'https://gov.centrifuge.io/',
   prime: 'https://forms.gle/kt1GShLcWapMGzjs7',
+  primeBlogPost: 'https://medium.com/centrifuge/introducing-centrifuge-prime-real-yields-real-defi-b97a0e767f18',
 }
