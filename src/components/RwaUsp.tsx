@@ -44,6 +44,20 @@ export function RwaUsp({ title, body, items, image }: RwaUspProps) {
           <BulletList items={items} />
         </Reveal>
       }
+      titleAddition={
+        <Box ml={2}>
+          <AnchorButton
+            href={links.primeBlogPost}
+            rel="noopener noreferrer"
+            target="_blank"
+            small
+            variant="secondary"
+            style={{ whiteSpace: 'nowrap' }}
+          >
+            Learn More
+          </AnchorButton>
+        </Box>
+      }
     />
   )
 }
