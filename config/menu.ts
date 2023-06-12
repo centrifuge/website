@@ -10,12 +10,17 @@ const menu = [
     href: '/news',
   },
   {
-    label: 'Governance',
-    href: '/governance',
-  },
-  {
     label: 'About',
-    href: '/about',
+    items: [
+      {
+        label: 'Contributors',
+        href: '/contributors',
+      },
+      {
+        label: 'Governance',
+        href: '/governance',
+      },
+    ],
   },
   {
     label: 'Community',
