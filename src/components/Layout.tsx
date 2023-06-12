@@ -10,13 +10,19 @@ import { GDPRBanner } from './GDPRBanner'
 type LayoutProps = {
   menuButtonVariant?: ButtonVariant
   children: React.ReactNode
+  padded?: boolean
 }
 
-export function Layout({ menuButtonVariant = 'primary', children }: LayoutProps) {
+export function Layout({ menuButtonVariant = 'primary', children, padded = true }: LayoutProps) {
   return (
     <Base>
       <Header menuButtonVariant={menuButtonVariant} />
-      <Box as="main" pt={theme.sizes.headerHeight} pb={['layoutSmall', 'layoutMedium', 'layoutLarge']} flexGrow={2}>
+      <Box
+        as="main"
+        pt={theme.sizes.headerHeight}
+        pb={padded ? ['layoutSmall', 'layoutMedium', 'layoutLarge'] : 0}
+        flexGrow={2}
+      >
         {children}
       </Box>
       <GDPRBanner />
