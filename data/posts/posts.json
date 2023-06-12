@@ -1,8 +1,26 @@
 [
   {
+    "date": "2023/06/07",
+    "outlet": "Centrifuge",
+    "title": "Introducing Centrifuge Prime: Real Yields, Real DeFi",
+    "body": "Everything DAOs, stablecoins, and protocols need to onboard real-world assets.",
+    "image": "../images/posts/centrifugeprime.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/introducing-centrifuge-prime-real-yields-real-defi-b97a0e767f18"
+  },
+  {
+    "date": "2023/06/07",
+    "outlet": "The Defiant",
+    "title": "Centrifuge Looks To Help DAOs Invest In Real-World Assets",
+    "body": "Prime Platform Offers Legal And Technical Infrastructure.",
+    "image": "../images/posts/defiant_june.png",
+    "alt": "",
+    "href": "https://thedefiant.io/centrifuge-looks-to-help-daos-invest-in-real-world-assets"
+  },
+  {
     "date": "2023/05/22",
     "outlet": "Centrifuge",
-    "title": "Introducing the New Centrifuge App",
+    "title": "Meet the New Centrifuge App",
     "body": "The new Centrifuge App is here, succeeding Tinlake and making it easier than ever to jump into real-world assets on-chain.",
     "image": "../images/posts/centrifugeapp.png",
     "alt": "",
