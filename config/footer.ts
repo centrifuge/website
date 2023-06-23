@@ -73,8 +73,8 @@ export const columns = [
       },
       {
         label: 'Careers',
-        href: '/about/#careers',
-      },
+        href: '/contributors#careers',
+      }
     ],
   },
 ]

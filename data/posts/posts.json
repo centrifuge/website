@@ -1,5 +1,14 @@
 [
   {
+    "date": "2023/06/22",
+    "outlet": "Centrifuge",
+    "title": "Announcing The Inaugural Real-World Asset Summit",
+    "body": "At the Real-World Asset Summit, the brightest minds in TradFi and DeFi will dive into tokenization, credit, and crypto.",
+    "image": "../images/posts/summit_announce.png",
+    "alt": "",
+    "href": "https://medium.com/centrifuge/announcing-the-inaugural-real-world-asset-summit-1e63d7cf944a"
+  },
+  {
     "date": "2023/06/07",
     "outlet": "Centrifuge",
     "title": "Introducing Centrifuge Prime: Real Yields, Real DeFi",
