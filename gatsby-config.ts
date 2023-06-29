@@ -34,7 +34,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [process.env.NODE_ENV === 'production' ? 'UA-100764518-2' : null],
+        trackingIds: [process.env.NODE_ENV === 'production' ? 'G-46N87B9CHH' : null],
         gtagConfig: {
           anonymize_ip: true,
         },
