@@ -3,8 +3,18 @@
   "menuButtonVariant": "secondary",
   "hero_main": {
     "title": "Real-World",
-    "ticker": ["DeFi", "Assets", "Utility", "Impact", "Finance", "Value"],
-    "body": ["The on-chain ecosystem for structured credit.", "Transparent. Affordable. Limitless."],
+    "ticker": [
+      "DeFi",
+      "Assets",
+      "Utility",
+      "Impact",
+      "Finance",
+      "Value"
+    ],
+    "body": [
+      "The on-chain ecosystem for structured credit.",
+      "Transparent. Affordable. Limitless."
+    ],
     "image": "./images/home/hero-main-shape.svg",
     "partners": [
       {
@@ -130,7 +140,7 @@
     "body": "Finally you can quickly and easily onboard and scale a portfolio of real-world assets with Centrifuge Prime. The technology and services you need, all made available in a single place, through Centrifuge."
   },
   "news_section": {
-    "title": "Centrifuge Blog",
+    "title": "Centrifuge News",
     "link": {
       "label": "View all articles",
       "href": "/news"

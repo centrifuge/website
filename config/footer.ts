@@ -81,9 +81,9 @@ export const columns = [
 
 export const socials = [
   {
-    label: 'Medium',
-    href: links.medium,
-    icon: 'medium',
+    label: 'Blog',
+    href: links.blog,
+    icon: 'medium', // TODO: replace with blog icon
   },
   {
     label: 'Twitter',

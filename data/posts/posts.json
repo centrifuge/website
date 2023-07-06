@@ -1,21 +1,30 @@
 [
   {
+    "date": "2023/07/06",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge in Q2 2023: A Recap",
+    "body": "Centrifuge in Q2: two major product launches, growth in on-chain credit dominance, the inaugural RWA Summit, and more.",
+    "image": "../images/posts/q2recap.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/IhV9xHnoq54Fkf_zwTVGMu0rPMLNdcOB0HhKP7oB9go"
+  },
+  {
     "date": "2023/06/22",
-    "outlet": "Centrifuge",
+    "outlet": "Centrifuge Blog",
     "title": "Announcing The Inaugural Real-World Asset Summit",
     "body": "At the Real-World Asset Summit, the brightest minds in TradFi and DeFi will dive into tokenization, credit, and crypto.",
-    "image": "../images/posts/summit_announce.png",
+    "image": "../images/posts/summit_announce_new.png",
     "alt": "",
-    "href": "https://medium.com/centrifuge/announcing-the-inaugural-real-world-asset-summit-1e63d7cf944a"
+    "href": "https://centrifuge.mirror.xyz/qluuX1YQ8oJLyiFQb7Ymt_d4JyoAhtDWJqTHNB-dgfk"
   },
   {
     "date": "2023/06/07",
-    "outlet": "Centrifuge",
+    "outlet": "Centrifuge Blog",
     "title": "Introducing Centrifuge Prime: Real Yields, Real DeFi",
     "body": "Everything DAOs, stablecoins, and protocols need to onboard real-world assets.",
-    "image": "../images/posts/centrifugeprime.png",
+    "image": "../images/posts/centrifugeprime_new.png",
     "alt": "",
-    "href": "https://medium.com/centrifuge/introducing-centrifuge-prime-real-yields-real-defi-b97a0e767f18"
+    "href": "https://centrifuge.mirror.xyz/KyrMWLKMccFCNfSlvjxe7uyhba7oLrUzlBuZ7GQTn6s"
   },
   {
     "date": "2023/06/07",
@@ -28,12 +37,12 @@
   },
   {
     "date": "2023/05/22",
-    "outlet": "Centrifuge",
+    "outlet": "Centrifuge Blog",
     "title": "Meet the New Centrifuge App",
     "body": "The new Centrifuge App is here, succeeding Tinlake and making it easier than ever to jump into real-world assets on-chain.",
-    "image": "../images/posts/centrifugeapp.png",
+    "image": "../images/posts/centrifugeapp_new.png",
     "alt": "",
-    "href": "https://medium.com/centrifuge/introducing-the-new-centrifuge-app-b493a3fd7348"
+    "href": "https://centrifuge.mirror.xyz/i0DBq5T8NFjpQJny9MTeV9B2YmfRfseThjAFpW9-4Zo"
   },
   {
     "date": "2023/05/16",
@@ -52,15 +61,6 @@
     "image": "../images/posts/axios_april.png",
     "alt": "",
     "href": "https://www.axios.com/newsletters/axios-crypto-544c9c0a-8f69-40f8-af5e-c30698478f68.html"
-  },
-  {
-    "date": "2023/04/07",
-    "outlet": "Centrifuge",
-    "title": "March Momentum",
-    "body": "Centrifuge's momentum stayed strong throughout March, and there's much to share! Let's dive into key updates, achievements, and moments of impact within our rapidly expanding ecosystem.",
-    "image": "../images/posts/march_momentum.png",
-    "alt": "",
-    "href": "https://medium.com/centrifuge/centrifuge-monthly-march-2023-7933196bc825"
   },
   {
     "date": "2023/03/14",
@@ -136,16 +136,16 @@
   },
   {
     "date": "2022/12/30",
-    "outlet": "Centrifuge",
+    "outlet": "Centrifuge Blog",
     "title": "22 things from 2022",
     "body": "What a year! 22 Highlights from Centrifuge in 2022.",
-    "image": "../images/posts/22things.png",
+    "image": "../images/posts/22things_new.png",
     "alt": "",
-    "href": "https://medium.com/centrifuge/22-things-from-2022-34e6584c78d7"
+    "href": "https://centrifuge.mirror.xyz/dalGnkUGf7e-X416KqfzZUuV51It0Iep46hhU4swA38"
   },
   {
-    "date": "2022/12/28",
-    "outlet": "Centrifuge",
+    "date": "2021/12/28",
+    "outlet": "Centrifuge Blog",
     "title": "RWA Market: The Aave Market for Real World Assets goes live.",
     "body": "RWA Market uses the Aave Protocol to bring more liquidity to Centrifuge assets.",
     "image": "../images/posts/rwamarket.png",
@@ -163,12 +163,12 @@
   },
   {
     "date": "2022/12/14",
-    "outlet": "Centrifuge",
+    "outlet": "Centrifuge Blog",
     "title": "BlockTower Credit and MakerDAO to Fund $220 Million of Real-World Assets through Centrifuge",
     "body": "MakerDAO has approved four RWA vaults that will finance real-world assets originated by BlockTower — all issued on-chain through Centrifuge",
-    "image": "../images/posts/bt_announcement.png",
+    "image": "../images/posts/bt_announcement_new.png",
     "alt": "",
-    "href": "https://medium.com/centrifuge/blocktower-credit-and-makerdao-to-fund-220-million-of-real-world-assets-through-centrifuge-b52d0fab0fee"
+    "href": "https://centrifuge.mirror.xyz/yGWnk8ar_iXuoML-ZKF79NfKa9Q43o5SKgu13qR4uIg"
   },
   {
     "date": "2022/12/9",
