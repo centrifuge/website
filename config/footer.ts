@@ -74,16 +74,16 @@ export const columns = [
       {
         label: 'Careers',
         href: '/contributors#careers',
-      }
+      },
     ],
   },
 ]
 
 export const socials = [
   {
-    label: 'Medium',
-    href: links.medium,
-    icon: 'medium',
+    label: 'Blog',
+    href: links.blog,
+    icon: 'mirror',
   },
   {
     label: 'Twitter',

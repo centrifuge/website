@@ -13,6 +13,11 @@ const menu = [
     label: 'About',
     items: [
       {
+        label: 'Blog',
+        href: links.blog,
+        isExternal: true,
+      },
+      {
         label: 'Contributors',
         href: '/contributors',
       },
