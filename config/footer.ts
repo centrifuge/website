@@ -74,7 +74,7 @@ export const columns = [
       {
         label: 'Careers',
         href: '/contributors#careers',
-      }
+      },
     ],
   },
 ]
@@ -83,7 +83,7 @@ export const socials = [
   {
     label: 'Blog',
     href: links.blog,
-    icon: 'medium', // TODO: replace with blog icon
+    icon: 'mirror',
   },
   {
     label: 'Twitter',
