@@ -1,5 +1,14 @@
 [
   {
+    "date": "2023/07/18",
+    "outlet": "Coindesk",
+    "title": "Tokenize Everything: Institutions Bet That Crypto’s Future Lies in the Real World",
+    "body": "Long one of crypto’s big ideas, tokenization may finally be ready for prime-time. Wall Street is diving in, creating tokens for everything from buildings to gold bars.",
+    "image": "../images/posts/coindesk_rwa.png",
+    "alt": "",
+    "href": "https://www.coindesk.com/consensus-magazine/2023/07/18/tokenize-everything-institutions-bet-that-cryptos-future-lies-in-the-real-world/"
+  },
+  {
     "date": "2023/07/06",
     "outlet": "Centrifuge Blog",
     "title": "Centrifuge in Q2 2023: A Recap",
