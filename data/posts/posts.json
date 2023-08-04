@@ -1,5 +1,23 @@
 [
   {
+    "date": "2023/08/03",
+    "outlet": "Centrifuge Blog",
+    "title": "How the Centrifuge Credit Group Analyzes Pools",
+    "body": "How the Centrifuge Credit Group provides risk analysis for new pools on Centrifuge, utilizing methodologies from years of experience in credit.",
+    "image": "../images/posts/creditgroup2.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/CqtcDFh653_6bq3VwfyBwe2KG_La6smDyPofu8u-Jsk"
+  },
+  {
+    "date": "2023/07/26",
+    "outlet": "Centrifuge Blog",
+    "title": "An Introduction to the Centrifuge Credit Group",
+    "body": "The Centrifuge Credit Group is a team of experienced credit experts who help onboard the best real-world assets to Centrifuge.",
+    "image": "../images/posts/creditgroup1.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/4Y9HqbzNvRLR1hE_L1OmgQ2dx2JtS-mHPOQkUfsrKh0"
+  },
+  {
     "date": "2023/07/18",
     "outlet": "Coindesk",
     "title": "Tokenize Everything: Institutions Bet That Crypto’s Future Lies in the Real World",
