@@ -12,7 +12,7 @@
       "Value"
     ],
     "body": [
-      "The on-chain ecosystem for structured credit.",
+      "The institutional ecosystem for onchain credit",
       "Transparent. Affordable. Limitless."
     ],
     "image": "./images/home/hero-main-shape.svg",
@@ -77,12 +77,12 @@
     ]
   },
   "usp_section": {
-    "title": "The on-chain ecosystem for structured credit",
-    "body": "As the first protocol to bring real-world assets on-chain, we’re building a better financial system.",
+    "title": "The institutional ecosystem for onchain credit",
+    "body": "As the first protocol to bring real-world assets onchain, we’re building a better financial system.",
     "items": [
       {
         "title": "Transparency",
-        "body": "Obtain end-to-end transparency as the entire capital structure, securitization, and servicing of debt facilities is brought on-chain — multi-tranching, NAV, privacy-first tokenization, securitization, reporting, and more.",
+        "body": "Obtain end-to-end transparency as the entire capital structure, securitization, and servicing of debt facilities is brought onchain — multi-tranching, NAV, privacy-first tokenization, securitization, reporting, and more.",
         "image": "./images/usps/transparency.svg"
       },
       {
@@ -92,7 +92,7 @@
       },
       {
         "title": "Equal & open participation",
-        "body": "Decentralized on-chain governance provides equal, open access to all parties in the securitization process — new issuer proposals, underwriting, servicing, and more.",
+        "body": "Decentralized onchain governance provides equal, open access to all parties in the securitization process — new issuer proposals, underwriting, servicing, and more.",
         "image": "./images/usps/participation.svg"
       },
       {

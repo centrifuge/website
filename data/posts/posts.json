@@ -30,7 +30,7 @@
     "date": "2023/07/06",
     "outlet": "Centrifuge Blog",
     "title": "Centrifuge in Q2 2023: A Recap",
-    "body": "Centrifuge in Q2: two major product launches, growth in on-chain credit dominance, the inaugural RWA Summit, and more.",
+    "body": "Centrifuge in Q2: two major product launches, growth in onchain credit dominance, the inaugural RWA Summit, and more.",
     "image": "../images/posts/q2recap.png",
     "alt": "",
     "href": "https://centrifuge.mirror.xyz/IhV9xHnoq54Fkf_zwTVGMu0rPMLNdcOB0HhKP7oB9go"
@@ -66,7 +66,7 @@
     "date": "2023/05/22",
     "outlet": "Centrifuge Blog",
     "title": "Meet the New Centrifuge App",
-    "body": "The new Centrifuge App is here, succeeding Tinlake and making it easier than ever to jump into real-world assets on-chain.",
+    "body": "The new Centrifuge App is here, succeeding Tinlake and making it easier than ever to jump into real-world assets onchain.",
     "image": "../images/posts/centrifugeapp_new.png",
     "alt": "",
     "href": "https://centrifuge.mirror.xyz/i0DBq5T8NFjpQJny9MTeV9B2YmfRfseThjAFpW9-4Zo"
@@ -102,7 +102,7 @@
     "date": "2023/03/02",
     "outlet": "Binance Research",
     "title": "Real World Assets: The Bridge Between TradFi and DeFi",
-    "body": "Real World Assets (“RWAs”) are assets that exist off-chain, but are tokenized and brought on-chain to be used as a source of yield within DeFi.",
+    "body": "Real World Assets (“RWAs”) are assets that exist off-chain, but are tokenized and brought onchain to be used as a source of yield within DeFi.",
     "image": "../images/posts/binance_research.png",
     "alt": "",
     "href": "https://research.binance.com/en/analysis/real-world-assets"
