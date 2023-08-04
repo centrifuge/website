@@ -2,9 +2,9 @@ import type { GatsbyConfig } from 'gatsby'
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: 'Centrifuge | The first protocol to bring Real-World Assets to DeFi',
+    title: 'Centrifuge | The institutional ecosystem for onchain credit',
     description:
-      'The on-chain ecosystem for structured credit. Institutional investors earn yield backed by tokenized RWAs, while SMEs get access to a cheaper cost of capital.',
+      'Centrifuge is the institutional ecosystem for onchain credit, connecting investors and borrowers with bankless liquidity.',
     twitterUsername: '@centrifuge',
     image: '/ogimage.png',
     siteUrl: 'https://centrifuge.io/',
