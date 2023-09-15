@@ -12,38 +12,38 @@
       "Value"
     ],
     "body": [
-      "The institutional ecosystem for onchain credit",
+      "The platform for onchain credit.",
       "Transparent. Affordable. Limitless."
     ],
     "image": "./images/home/hero-main-shape.svg",
     "partners": [
-      {
-        "image": "./images/partner/blocktower.svg",
-        "alt": "Block Tower"
-      },
       {
         "image": "./images/partner/maker.svg",
         "alt": "Maker"
       },
       {
         "image": "./images/partner/aave.svg",
-        "alt": "AAVE"
+        "alt": "Aave"
       },
       {
-        "image": "./images/partner/polkadot.svg",
-        "alt": "Polkadot"
+        "image": "./images/partner/blocktower.svg",
+        "alt": "BlockTower"
+      },
+      {
+        "image": "./images/partner/base.svg",
+        "alt": "Base"
+      },
+      {
+        "image": "./images/partner/arbitrum.svg",
+        "alt": "Arbitrum"
       },
       {
         "image": "./images/partner/ethereum.svg",
         "alt": "Ethereum"
       },
       {
-        "image": "./images/partner/moonbeam.svg",
-        "alt": "Moonbeam"
-      },
-      {
-        "image": "./images/partner/flowcarbon.svg",
-        "alt": "Flowcarbon"
+        "image": "./images/partner/circle.svg",
+        "alt": "Circle"
       }
     ]
   },
@@ -77,7 +77,7 @@
     ]
   },
   "usp_section": {
-    "title": "The institutional ecosystem for onchain credit",
+    "title": "The platform for onchain credit",
     "body": "As the first protocol to bring real-world assets onchain, we’re building a better financial system.",
     "items": [
       {
