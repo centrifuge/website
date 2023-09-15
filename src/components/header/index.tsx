@@ -19,39 +19,48 @@ export function Header({ menuButtonVariant }: HeaderProps) {
   const scrollDirection = useScrollDirection(50)
 
   return (
-    <Root
-      as="header"
-      position="fixed"
-      zIndex={zIndices.sticky}
-      top={0}
-      px={0}
-      height={sizes.headerHeight}
-      isHidden={scrollDirection === 'down'}
-    >
-      <Box>
-        <Banner>
-          Centrifuge is Everywhere. Read the{' '}
-          <Text as="a" href={links.announcements} rel="noopener noreferrer" target="_blank" variant="body2">
-            Announcement
-          </Text>
-        </Banner>
-        <Container
-          px={2}
-          pt={1}
-          as={Shelf}
-          justifyContent="space-between"
-          alignItems="center"
-          height="100%"
-          maxWidth="containerHeader"
+    <>
+      <Banner>
+        Centrifuge is Everywhere. Read the{' '}
+        <Text
+          as="a"
+          style={{ textDecoration: 'underline' }}
+          href={links.announcements}
+          rel="noopener noreferrer"
+          target="_blank"
+          variant="body2"
         >
-          <LogoLink to="/" title="Home page">
-            <Logo />
-          </LogoLink>
+          Announcement
+        </Text>
+      </Banner>
+      <Root
+        as="header"
+        position="sticky"
+        zIndex={zIndices.sticky}
+        top={0}
+        px={0}
+        height={sizes.headerHeight}
+        isHidden={scrollDirection === 'down'}
+      >
+        <Box alignItems="center" justifyContent="center" height="100%">
+          <Container
+            px={2}
+            py={1}
+            as={Shelf}
+            justifyContent="space-between"
+            alignItems="center"
+            height="100%"
+            maxWidth="containerHeader"
+          >
+            <LogoLink to="/" title="Home page">
+              <Logo />
+            </LogoLink>
 
-          <MobileMenu />
-          <DesktopMenu menuButtonVariant={menuButtonVariant} />
-        </Container>
-      </Box>
-    </Root>
+            <MobileMenu />
+            <DesktopMenu menuButtonVariant={menuButtonVariant} />
+          </Container>
+        </Box>
+      </Root>
+    </>
   )
 }

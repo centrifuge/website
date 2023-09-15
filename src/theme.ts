@@ -8,7 +8,7 @@ export const theme: DefaultTheme = {
     container: '1430px',
     containerHeader: '1600px',
     containerNarrow: '1140px',
-    headerHeight: [85, 90, 90],
+    headerHeight: [50, 65, 65],
   },
   space: Object.assign([], centrifugeLight.space, {
     layoutSmall: 80,
