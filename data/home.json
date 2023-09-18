@@ -38,12 +38,12 @@
         "alt": "Arbitrum"
       },
       {
-        "image": "./images/partner/ethereum.svg",
-        "alt": "Ethereum"
-      },
-      {
         "image": "./images/partner/circle.svg",
         "alt": "Circle"
+      },
+      {
+        "image": "./images/partner/ethereum.svg",
+        "alt": "Ethereum"
       }
     ]
   },
