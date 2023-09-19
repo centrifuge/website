@@ -7,7 +7,16 @@ type BannerProps = {
 }
 
 export function Banner({ children }: BannerProps) {
-  return process.env.SHOW_ANNOUNCEMENT_BANNER === 'true' ? (
+  const [hasMounted, setHasMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if (!hasMounted) {
+    return null
+  }
+  return (
     <Box
       as="div"
       py={1}
@@ -19,5 +28,5 @@ export function Banner({ children }: BannerProps) {
     >
       <Text variant="body2">{children}</Text>
     </Box>
-  ) : null
+  )
 }
