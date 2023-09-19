@@ -1,5 +1,50 @@
 [
   {
+    "date": "2023/09/19",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge’s Real-World Asset Vision Comes to Life in NYC",
+    "body": "Centrifuge announces cross-chain launches, new ecosystem partners and institutional-quality assets to meet rapid demand for Real-World Assets",
+    "image": "../images/posts/press_release.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/1gtfV6cKo0IFqIkns1lMlqoA1748biFdR_J0WHNNX2k"
+  },
+  {
+    "date": "2023/09/19",
+    "outlet": "Blockworks",
+    "title": "Centrifuge to meet demand for Real World Assets with Liquidity Pools",
+    "body": "Centrifuge Liquidity Pool testnets have launched on Arbitrum and Base, with plans to release on other networks in the future",
+    "image": "../images/posts/blockworks_summit.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/centrifuge-real-world-assets-tokenization-ethereum"
+  },
+  {
+    "date": "2023/09/19",
+    "outlet": "Centrifuge Blog",
+    "title": "Liquidity Pools: Real-World Assets on Ethereum, Base, Arbitrum, and Beyond",
+    "body": "Liquidity Pools allow users on any supported chain—beginning with Ethereum, Arbitrum, and Base—to invest in Centrifuge’s pools of real-world assets.",
+    "image": "../images/posts/liquiditypools.jpg",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/81Iv7w30QjA1Qxv-cgogaXii7WVOpfQsM4ag-N0fga4"
+  },
+  {
+    "date": "2023/09/07",
+    "outlet": "The Defiant",
+    "title": "Coinbase and Aave Form Coalition to Promote Tokenized Assets",
+    "body": "Members Include Circle, Centrifuge and Goldfinch",
+    "image": "../images/posts/defiant_tac.png",
+    "alt": "",
+    "href": "https://thedefiant.io/coinbase-and-aave-form-coalition-to-promote-tokenized-assets"
+  },
+  {
+    "date": "2023/08/17",
+    "outlet": "Centrifuge Blog",
+    "title": "Governance Milestones of 2023",
+    "body": "Centrifuge Governance: Mandated Groups, Active Contributors, and the CFG Token",
+    "image": "../images/posts/governancemilestones.jpeg",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/dMV6h9yAWFd9MclAhL1A-QJZMS1lTal4grODqqOmMRs"
+  },
+  {
     "date": "2023/08/03",
     "outlet": "Centrifuge Blog",
     "title": "How the Centrifuge Credit Group Analyzes Pools",

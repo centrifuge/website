@@ -14,5 +14,5 @@ export const links = {
   prime: 'https://forms.gle/kt1GShLcWapMGzjs7',
   primeBlogPost: 'https://centrifuge.mirror.xyz/KyrMWLKMccFCNfSlvjxe7uyhba7oLrUzlBuZ7GQTn6s',
   podcast: 'https://linktr.ee/centrifugeconversations',
-  announcements: '@devin, please add link here',
+  announcements: 'https://centrifuge.mirror.xyz/1gtfV6cKo0IFqIkns1lMlqoA1748biFdR_J0WHNNX2k',
 }
