@@ -7,6 +7,15 @@ type BannerProps = {
 }
 
 export function Banner({ children }: BannerProps) {
+  const [hasMounted, setHasMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if (!hasMounted) {
+    return null
+  }
   return (
     <Box
       as="div"
