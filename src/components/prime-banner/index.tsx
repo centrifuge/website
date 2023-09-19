@@ -37,7 +37,7 @@ export function PrimeBanner({ title, body }: PrimeBannerProps) {
             <Text as="p">{body}</Text>
 
             <Box alignSelf="center" mt={[2, 2, 0]}>
-              <InternalLink to="https://example.com" variant="secondary">
+              <InternalLink to="https://centrifuge.mirror.xyz/1gtfV6cKo0IFqIkns1lMlqoA1748biFdR_J0WHNNX2k" variant="secondary">
                 Learn More
               </InternalLink>
             </Box>
