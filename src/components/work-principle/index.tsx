@@ -31,7 +31,7 @@ export function WorkPrinciple({ title, items }: WorkPrincipleProps) {
     <RevealWrapper as="section" px={2} py={8}>
       <Container>
         <Reveal>
-          <Text as="h2" variant="heading2">
+          <Text as="h2" variant="heading2b">
             {title}
           </Text>
         </Reveal>
@@ -70,7 +70,7 @@ function Principle({ label, title, body, image, flipped }: PrincipleProps) {
           <Text variant="tag" as="span">
             {label}
           </Text>
-          <Text as="h3" variant="heading4">
+          <Text as="h3" variant="heading4b">
             {title}
           </Text>
           <Text as="p" variant="body1">

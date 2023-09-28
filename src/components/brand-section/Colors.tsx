@@ -17,7 +17,7 @@ export function Colors({ title, items }: ColorsProps) {
   return (
     <RevealWrapper>
       <Reveal>
-        <Text as="h3" variant="heading2">
+        <Text as="h3" variant="heading2b">
           {title}
         </Text>
       </Reveal>

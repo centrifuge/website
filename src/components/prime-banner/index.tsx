@@ -30,14 +30,17 @@ export function PrimeBanner({ title, body }: PrimeBannerProps) {
           borderRadius="input"
         >
           <Grid gridTemplateColumns={['1fr', '1fr', 'auto 1fr', 'auto 1fr auto']} gap={[3, 3, 4, 6, 10]}>
-            <Title forwardedAs="h2" variant="heading4">
+            <Title forwardedAs="h2" variant="heading4b">
               {title}
             </Title>
 
             <Text as="p">{body}</Text>
 
             <Box alignSelf="center" mt={[2, 2, 0]}>
-              <InternalLink to="https://centrifuge.mirror.xyz/1gtfV6cKo0IFqIkns1lMlqoA1748biFdR_J0WHNNX2k" variant="secondary">
+              <InternalLink
+                to="https://centrifuge.mirror.xyz/1gtfV6cKo0IFqIkns1lMlqoA1748biFdR_J0WHNNX2k"
+                variant="secondary"
+              >
                 Learn More
               </InternalLink>
             </Box>

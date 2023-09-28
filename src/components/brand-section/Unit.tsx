@@ -13,7 +13,7 @@ export function Unit({ title, body, children, staggerIndex }: UnitProps) {
   return (
     <Reveal staggerIndex={staggerIndex}>
       {title && (
-        <Text as="h4" variant="heading4">
+        <Text as="h4" variant="heading4b">
           {title}
         </Text>
       )}

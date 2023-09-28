@@ -15,6 +15,9 @@ declare module 'styled-components' {
     }
     typography: FabricTheme['typography'] & {
       tag: ThemeTypography['heading1']
+      heading2b: ThemeTypography['heading1']
+      heading3b: ThemeTypography['heading1']
+      heading4b: ThemeTypography['heading1']
       menuAnchor: {
         fontSize: number
         fontWeight: number

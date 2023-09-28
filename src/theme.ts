@@ -25,20 +25,20 @@ export const theme: DefaultTheme = {
       letterSpacing: '-0.04em',
       color: 'textPrimary',
     },
-    heading2: {
+    heading2b: {
       fontSize: [32, 50, 66],
       lineHeight: 1,
       fontWeight: 500,
       letterSpacing: '-0.04em',
       color: 'textPrimary',
     },
-    heading3: {
+    heading3b: {
       fontSize: [28, 38, 50],
       lineHeight: 1.2,
       fontWeight: 500,
       color: 'textPrimary',
     },
-    heading4: {
+    heading4b: {
       fontSize: [24, 28, 30],
       lineHeight: 1.2,
       fontWeight: 500,

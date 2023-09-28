@@ -35,7 +35,7 @@ export function PrimePartners({ title, items }: PrimePartnersProps) {
       <Box as="section" px={2}>
         <Container>
           <Reveal>
-            <Text as="h2" variant="heading4" textAlign="center">
+            <Text as="h2" variant="heading4b" textAlign="center">
               {title}
             </Text>
           </Reveal>

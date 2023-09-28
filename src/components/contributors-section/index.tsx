@@ -52,7 +52,7 @@ export function ContributorsSection({ title, cta, items }: ContributorsSectionPr
     <RevealWrapper as="section">
       <CenterContainer>
         <Reveal>
-          <Text variant="heading2" as="h2">
+          <Text variant="heading2b" as="h2">
             {title}
           </Text>
         </Reveal>

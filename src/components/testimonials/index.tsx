@@ -37,7 +37,7 @@ export function Testimonials({ title, items }: TestimonialsProps) {
     <RevealWrapper as="section" px={2}>
       <Container>
         <Reveal>
-          <Text as="h2" variant="heading2">
+          <Text as="h2" variant="heading2b">
             {title}
           </Text>
         </Reveal>

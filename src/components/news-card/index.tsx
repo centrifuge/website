@@ -144,7 +144,7 @@ function Title({ featured = false, href, children }: { featured: boolean; href: 
         target="_blank"
         rel="noopener noreferrer"
         tabIndex={-1}
-        variant={featured ? 'heading3' : 'heading6'}
+        variant={featured ? 'heading3b' : 'heading6'}
         fontWeight={600}
         lineHeight={featured ? 1.05 : 1.2}
       >

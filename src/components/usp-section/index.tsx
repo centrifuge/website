@@ -31,7 +31,7 @@ export function UspSection({ title, body, items }: UspSectionProps) {
     <RevealWrapper as="section" px={2}>
       <Container maxWidth="container">
         <Reveal>
-          <Text as="h2" variant="heading2">
+          <Text as="h2" variant="heading2b">
             {title}
           </Text>
 

@@ -78,7 +78,7 @@ export function HeroGovernance({ title, subtitle, body, items }: HeroGovernanceP
                     >
                       <Box as="img" src={item.image.publicURL} alt="" maxWidth="100%" />
                     </Shelf>
-                    <Text variant="heading4" as="h2">
+                    <Text variant="heading4b" as="h2">
                       {item.title}
                     </Text>
                     <Text as="p" variant="body1">

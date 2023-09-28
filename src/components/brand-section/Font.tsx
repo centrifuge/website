@@ -16,7 +16,7 @@ export function Font({ title, body, image }: FontProps) {
     <RevealWrapper>
       <Stack as="section" gap={2}>
         <Reveal>
-          <Text as="h3" variant="heading2">
+          <Text as="h3" variant="heading2b">
             {title}
           </Text>
         </Reveal>

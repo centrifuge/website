@@ -70,7 +70,7 @@ export default function Explore({ data }: ExploreProps) {
               maxWidth={400}
               marginX="auto"
             >
-              <Text as="h2" variant="heading4">
+              <Text as="h2" variant="heading4b">
                 {section.title}
               </Text>
 

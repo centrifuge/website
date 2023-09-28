@@ -18,7 +18,7 @@ export function FeatureSection({ title, items, body }: FeatureSectionProps) {
         <Stack as="section" gap={8}>
           <Stack gap={2}>
             <Reveal>
-              <Text variant="heading2" as="h2">
+              <Text variant="heading2b" as="h2">
                 {title}
               </Text>
             </Reveal>
@@ -66,7 +66,7 @@ function FeatureCard({ image, title, body }: FeatureCardProps) {
       <Stack gap={3} flex="1">
         <Divider />
         <Stack gap={2}>
-          <Text variant="heading4" as="h3">
+          <Text variant="heading4b" as="h3">
             {title}
           </Text>
           <Text variant="body1" as="p">
