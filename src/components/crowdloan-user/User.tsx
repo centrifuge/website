@@ -19,13 +19,8 @@ export function User() {
   const {
     substrate: { selectedAccount },
   } = useWallet()
-  const addr = '0xd69e8cd8be71243cb43f96e162eb659a242bc60e635cc26c43b8dacaab689573'
-  if (selectedAccount) {
-    // selectedAccount.address = addr
-  }
-  // const addr = '13VnjW4WRa2vAcNLB5W1wz8fkLQKPPXzVcjj8TALKREyjoqy'
-  const didClaim = useDidClaim(addr)
-  const totalRewards = useTotalRewards({ address: addr, parachain: centrifuge.config.network ?? 'centrifuge' })
+  const didClaim = useDidClaim(selectedAccount?.address)
+  const totalRewards = useTotalRewards({ address: selectedAccount?.address, parachain: centrifuge.config.network })
   const currency = centrifuge.config.network === 'altair' ? 'AIR' : 'CFG'
 
   console.log('didClaim', didClaim)
@@ -36,19 +31,6 @@ export function User() {
       ([proof, signature, address]: [any, string, string], options) => {
         return cent.getApi().pipe(
           switchMap((api) => {
-            // const submittabl = api.tx.crowdloanClaim.claimReward(
-            //   selectedAccount.address,
-            //   selectedAccount.address,
-            //   '11111111111111111111111111111111',
-            //   {
-            //     leafHash: api.createType('Hash', '11111111111111111111111111111111'),
-            //     sortedHashes: api.createType('Vec<Hash>', ['11111111111111111111111111111111']),
-            //   },
-            //   '1'
-            // )
-
-            // return cent.wrapSignAndSend(api, submittabl, options)
-
             const verification = signatureVerify(proof.signMessage, signature, decodeAddress(address))
             if (!['sr25519', 'ed25519', 'ecdsa'].includes(verification.crypto)) {
               throw new Error('Verification of signature failed with given account.')
@@ -87,13 +69,9 @@ export function User() {
 
     setIsClaiming(true)
 
-    // execute([addr, addr, addr])
-
     await getAccountDetails(account, centrifuge.config.network)
       .then((response) => {
-        console.log('response', response)
         if (response) {
-          console.log('response', response)
           execute(response)
         }
       })
