@@ -23,8 +23,6 @@ export function User() {
   const totalRewards = useTotalRewards({ address: selectedAccount?.address, parachain: centrifuge.config.network })
   const currency = centrifuge.config.network === 'altair' ? 'AIR' : 'CFG'
 
-  console.log('didClaim', didClaim)
-
   const { execute, isLoading } = useCentrifugeTransaction(
     'Claiming rewards',
     (cent) =>

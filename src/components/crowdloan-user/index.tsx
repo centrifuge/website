@@ -11,7 +11,7 @@ export default function CrowdloanUser({ network }: CrowdloanUserProps) {
   const centConfig: UserProvidedConfig = React.useMemo(
     () => ({
       network,
-      ...(process.env.NODE_ENV === 'developments' && {
+      ...(process.env.NODE_ENV === 'development' && {
         centrifugeWsUrl: 'wss://fullnode.development.cntrfg.com',
         altairWsUrl: 'wss://fullnode.development.cntrfg.com',
       }),
