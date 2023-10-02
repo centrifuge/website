@@ -31,7 +31,7 @@ export function PrimeTargets({ title, body, items }: PrimeTargetsProps) {
         <Container>
           <Stack gap={2}>
             <Reveal as={Shelf} justifyContent="space-between" alignItems="center" gap={1}>
-              <Text as="h2" variant="heading2">
+              <Text as="h2" variant="heading2b">
                 {title}
               </Text>
 
@@ -72,7 +72,7 @@ type ItemProps = PrimeTargetsProps['items'][number]
 function Item({ title, body }: ItemProps) {
   return (
     <Stack gap={1}>
-      <Text as="h3" variant="heading4">
+      <Text as="h3" variant="heading4b">
         {title}
       </Text>
       <Text as="p">{body}</Text>

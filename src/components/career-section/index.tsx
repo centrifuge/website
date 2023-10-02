@@ -32,7 +32,7 @@ export function CareerSection({ title, fallback, note, id }: CareerSectionProps)
     <RevealWrapper px={2} as="section" {...(id ? { id } : {})}>
       <Container>
         <Reveal>
-          <Text as="h2" variant="heading2">
+          <Text as="h2" variant="heading2b">
             {title}
           </Text>
         </Reveal>

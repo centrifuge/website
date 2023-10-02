@@ -40,7 +40,7 @@ export function AuditSection({ title, items }: AuditSectionProps) {
             gap={4}
             rowGap={1}
           >
-            <Text as="h2" variant="heading2">
+            <Text as="h2" variant="heading2b">
               {title}
             </Text>
             <AnchorButton href={links.audits} rel="noopener noreferrer" target="_blank" variant="secondary" small>

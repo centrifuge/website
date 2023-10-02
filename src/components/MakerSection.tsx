@@ -27,7 +27,7 @@ export function MakerSection({ title, items }: MakerSectionProps) {
     <RevealWrapper as="section" p={2}>
       <Container>
         <Reveal>
-          <Text as="h2" variant="heading2">
+          <Text as="h2" variant="heading2b">
             {title}
           </Text>
         </Reveal>
@@ -60,7 +60,7 @@ type ItemProps = {
 function Item({ title, body, link }: ItemProps) {
   return (
     <Stack gap={[1, 1, 2]}>
-      <Text as="h3" variant="heading4">
+      <Text as="h3" variant="heading4b">
         {title}
       </Text>
 

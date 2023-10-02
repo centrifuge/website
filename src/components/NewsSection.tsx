@@ -35,7 +35,7 @@ export function NewsSection({ title, link, posts }: NewsSectionProps) {
       <Container>
         <Reveal>
           <Shelf alignItems="center" flexWrap="wrap" gap={4} rowGap={[4, 4, 0]}>
-            <Text as="h2" variant="heading2">
+            <Text as="h2" variant="heading2b">
               {title}
             </Text>
 

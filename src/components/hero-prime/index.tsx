@@ -42,7 +42,7 @@ export function HeroPrime({ pretitle, title, body, image }: HeroPrimeProps) {
               </Reveal>
 
               <Reveal staggerIndex={1}>
-                <Title forwardedAs="h1" variant="heading2" style={{ whiteSpace: 'pre' }}>
+                <Title forwardedAs="h1" variant="heading2b" style={{ whiteSpace: 'pre' }}>
                   {title}
                 </Title>
               </Reveal>

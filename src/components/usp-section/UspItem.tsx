@@ -17,7 +17,7 @@ export function UspItem({ title, body, image }: UspItemProps) {
         <Image data={image} />
       </Media>
       <ItemContent pt={1} gap={2}>
-        <Text as="h3" variant="heading4">
+        <Text as="h3" variant="heading4b">
           {title}
         </Text>
         <Text as="p" variant="body2">

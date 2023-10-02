@@ -16,7 +16,9 @@ import { getAccountDetails, useDidClaim, useTotalRewards } from './utils'
 export function User() {
   const [isClaiming, setIsClaiming] = React.useState(false)
   const centrifuge = useCentrifuge()
-  const { selectedAccount } = useWallet()
+  const {
+    substrate: { selectedAccount },
+  } = useWallet()
   const didClaim = useDidClaim(selectedAccount?.address)
   const totalRewards = useTotalRewards({ address: selectedAccount?.address, parachain: centrifuge.config.network })
   const currency = centrifuge.config.network === 'altair' ? 'AIR' : 'CFG'

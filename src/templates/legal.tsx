@@ -42,7 +42,7 @@ export default function LegalPage({ data }: LegalPageProps) {
     <Layout>
       <Stack px={2} pt={[6, 8, 10]}>
         <Stack maxWidth="containerNarrow" gap={4} mx="auto" width="100%">
-          <Text as="h1" variant="heading2">
+          <Text as="h1" variant="heading2b">
             {title}
           </Text>
           <MarkdownSection childMarkdownRemark={markdown_section.childMarkdownRemark} />

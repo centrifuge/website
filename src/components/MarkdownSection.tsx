@@ -46,22 +46,22 @@ export function MarkdownSection({ childMarkdownRemark }: MarkdownSectionProps) {
         children={childMarkdownRemark.internal.content}
         components={{
           h1: ({ children }) => (
-            <Text as="h2" variant="heading4">
+            <Text as="h2" variant="heading4b">
               {children}
             </Text>
           ),
           h2: ({ children }) => (
-            <Text as="h2" variant="heading4">
+            <Text as="h2" variant="heading4b">
               {children}
             </Text>
           ),
           h3: ({ children }) => (
-            <Text as="h3" variant="heading4">
+            <Text as="h3" variant="heading4b">
               {children}
             </Text>
           ),
           h4: ({ children }) => (
-            <Text as="h4" variant="heading4">
+            <Text as="h4" variant="heading4b">
               {children}
             </Text>
           ),

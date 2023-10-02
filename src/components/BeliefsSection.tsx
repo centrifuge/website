@@ -26,7 +26,7 @@ export function BeliefsSection({ title, items }: BeliefsSectionProps) {
         <Stack gap={5}>
           <Reveal>
             <Stack gap={1}>
-              <Text variant="heading2" as="h2">
+              <Text variant="heading2b" as="h2">
                 {title}
               </Text>
               <Divider />

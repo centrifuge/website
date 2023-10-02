@@ -20,7 +20,7 @@ export function Logos({ title, items }: LogosProps) {
   return (
     <RevealWrapper as="section">
       <Reveal mb={2}>
-        <Text as="h3" variant="heading2">
+        <Text as="h3" variant="heading2b">
           {title}
         </Text>
       </Reveal>

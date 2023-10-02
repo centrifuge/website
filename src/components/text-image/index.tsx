@@ -19,7 +19,7 @@ export function TextImage({ title, body, media, content, titleAddition }: RwaUsp
           <Grid columns={[1, 1, 2]} equalColumns gap={[8, 8, '100px', '200px']}>
             <Box>
               <Reveal as={Shelf} justifyContent="space-between" alignItems="center">
-                <Title forwardedAs="h2" variant="heading2">
+                <Title forwardedAs="h2" variant="heading2b">
                   {title}
                 </Title>
                 {titleAddition}

@@ -30,7 +30,7 @@ export function HeroCrowdloan({ title, amount, contributors, anchor }: HeroCrowd
       <Text as="span" variant="tag">
         Crowdloan
       </Text>
-      <Text as="h1" variant="heading2">
+      <Text as="h1" variant="heading2b">
         {title}
       </Text>
       <Text as="p" variant="heading6" style={{ marginTop: '.7em' }}>
