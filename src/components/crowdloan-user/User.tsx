@@ -33,25 +33,18 @@ export function User() {
             if (!['sr25519', 'ed25519', 'ecdsa'].includes(verification.crypto)) {
               throw new Error('Verification of signature failed with given account.')
             }
-            const signatureTypeMulti = api.createType('MultiSignature', {
-              [verification.crypto]: signature,
-            })
-
-            const proofType = api.createType('Proof', {
-              leafHash: api.createType('Hash', proof.proof.leafHash),
-              sortedHashes: api.createType('Vec<Hash>', proof.proof.sortedHashes),
-            })
-
-            const amountType = api.createType('Balance', proof.contribution)
-
-            const accountId = api.createType('AccountId', decodeAddress(address))
 
             const submittable = api.tx.crowdloanClaim.claimReward(
-              accountId,
-              accountId,
-              signatureTypeMulti,
-              proofType,
-              amountType
+              address,
+              address,
+              {
+                [verification.crypto]: signature,
+              },
+              {
+                leafHash: proof.proof.leafHash,
+                sortedHashes: proof.proof.sortedHashes,
+              },
+              proof.contribution
             )
 
             return cent.wrapSignAndSend(api, submittable, options)
