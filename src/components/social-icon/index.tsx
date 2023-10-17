@@ -8,6 +8,7 @@ import { Telegram } from './Telegram'
 import { Forum } from './Forum'
 import { Medium } from './Medium'
 import { Mirror } from './Mirror'
+import { Spotify } from './Spotify'
 
 export type SocialIconProps = {
   type: keyof typeof types
@@ -23,6 +24,7 @@ const types = {
   forum: Forum,
   medium: Medium,
   mirror: Mirror,
+  spotify: Spotify,
 }
 
 export function SocialIcon({ type, size = 'auto' }: SocialIconProps) {

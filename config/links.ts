@@ -13,6 +13,6 @@ export const links = {
   forum: 'https://gov.centrifuge.io/',
   prime: 'https://forms.gle/kt1GShLcWapMGzjs7',
   primeBlogPost: 'https://centrifuge.mirror.xyz/KyrMWLKMccFCNfSlvjxe7uyhba7oLrUzlBuZ7GQTn6s',
-  podcast: 'https://linktr.ee/centrifugeconversations',
-  announcements: 'https://centrifuge.mirror.xyz/1gtfV6cKo0IFqIkns1lMlqoA1748biFdR_J0WHNNX2k',
+  podcast: 'https://open.spotify.com/show/3mcy2eIFO9qUFlxhZeYMV4',
+  announcements: 'https://fixing.finance',
 }

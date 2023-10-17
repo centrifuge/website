@@ -111,6 +111,11 @@ export const socials = [
     icon: 'youtube',
   },
   {
+    label: 'Podcast',
+    href: links.podcast,
+    icon: 'spotify',
+  },
+  {
     label: 'Telegram',
     href: links.telegram,
     icon: 'telegram',

@@ -21,7 +21,7 @@ export function Header({ menuButtonVariant }: HeaderProps) {
   return (
     <>
       <Banner>
-        Centrifuge Everywhere:{' '}
+        Fixing Finance:{' '}
         <Text
           as="a"
           style={{ textDecoration: 'underline' }}
@@ -30,7 +30,7 @@ export function Header({ menuButtonVariant }: HeaderProps) {
           target="_blank"
           variant="body2"
         >
-          Read the announcement
+          A Tale of Suits and Hoodies
         </Text>
       </Banner>
       <Root

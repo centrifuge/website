@@ -85,26 +85,6 @@
         }
       },
       {
-        "name": "Ben Deitmer",
-        "role": "Engineer",
-        "social": "https://twitter.com/HORNEBOM",
-        "image": "./images/contributors/ben.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
-        "name": "Branan Riley",
-        "role": "Engineer",
-        "social": "https://twitter.com/brananarchy",
-        "image": "./images/contributors/branan.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
         "name": "Cassidy Daly",
         "role": "Token strategy",
         "social": "https://www.twitter.com/cassidydaly",
@@ -155,7 +135,7 @@
       },
       {
         "name": "Devin Black",
-        "role": "Marketing",
+        "role": "Product Marketing",
         "social": "https://twitter.com/d_evvy",
         "image": "./images/contributors/devin.jpg",
         "entity": {
@@ -243,15 +223,6 @@
         }
       },
       {
-        "name": "Joe Hyland",
-        "role": "Marketing",
-        "image": "./images/contributors/joe.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
         "name": "JP Angelle",
         "role": "Engineer",
         "social": "https://twitter.com/gwei_whale",
@@ -297,28 +268,8 @@
         "social": "https://twitter.com/mr_optimax",
         "image": "./images/contributors/martin.jpg",
         "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
-        "name": "Miguel Hervas",
-        "role": "Protocol Engineer",
-        "social": "https://twitter.com/mikiquantum",
-        "image": "./images/contributors/miguel.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
-        "name": "Mike Ruzic",
-        "role": "CEO",
-        "social": "https://www.linkedin.com/in/michael-ruzic-gauthier/",
-        "image": "./images/contributors/mike.jpg",
-        "entity": {
-          "name": "DCM",
-          "href": "https://gov.centrifuge.io/t/council-candidate-introduction-defi-capital-markets/4205"
+          "name": "Anemoy",
+          "href": "https://www.anemoy.io/"
         }
       },
       {
@@ -380,20 +331,70 @@
         }
       },
       {
-        "name": "Romina Bungert",
-        "role": "CFO",
-        "social": "https://twitter.com/lianefiligrane",
-        "image": "./images/contributors/romina.jpg",
-        "entity": {
-          "name": "CNF",
-          "href": "http://centrifuge.foundation/"
-        }
-      },
-      {
         "name": "William Freudenberger",
         "role": "Engineering",
         "social": "https://twitter.com/WilliamFreude",
         "image": "./images/contributors/william.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
+      },
+      {
+        "name": "Bhaji Illuminati",
+        "role": "CMO",
+        "social": "https://www.linkedin.com/in/bhajiilluminati/",
+        "image": "./images/contributors/bhaji.png",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
+      },
+      {
+        "name": "Christie Chapman",
+        "role": "Director of Marketing",
+        "social": "https://www.linkedin.com/in/christie-chapman/",
+        "image": "./images/contributors/christie.png",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
+      },
+      {
+        "name": "Ash Judge",
+        "role": "Active Contributor",
+        "social": "https://www.linkedin.com/in/christie-chapman/",
+        "image": "./images/contributors/ash.jpg",
+        "entity": {
+          "name": "Centrifuge DAO",
+          "href": "https://centrifuge.io/"
+        }
+      },
+      {
+        "name": "David Utro",
+        "role": "Active Contributor",
+        "social": "https://www.linkedin.com/in/davidutrobin7777/",
+        "image": "./images/contributors/david.png",
+        "entity": {
+          "name": "Centrifuge DAO",
+          "href": "https://centrifuge.io/"
+        }
+      },
+      {
+        "name": "Harvey Li",
+        "role": "Credit Group Facilitator",
+        "social": "https://www.linkedin.com/in/harvey-l-1357a418a/",
+        "image": "./images/contributors/harvey.jpg",
+        "entity": {
+          "name": "Centrifuge DAO",
+          "href": "https://centrifuge.io/"
+        }
+      },
+      {
+        "name": "Mike Halef",
+        "role": "Financial Accountant",
+        "social": "https://www.linkedin.com/in/mike-halef-a47791189/?originalSubdomain=ch",
+        "image": "./images/contributors/mikeh.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"

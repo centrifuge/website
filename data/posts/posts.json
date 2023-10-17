@@ -1,5 +1,41 @@
 [
   {
+    "date": "2023/10/17",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Launches Fixing Finance Campaign",
+    "body": "The Fixing Finance campaign merges the best of TradFi and DeFi while educating newcomers to Centrifuge's mission.",
+    "image": "../images/posts/fixingfinance.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/ge_o3dt3yfwrrX62YRc6t0cF1a3u38qQNmT2HtcdFpU"
+  },
+  {
+    "date": "2023/10/04",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Q3 2023",
+    "body": "Dive into Centrifuge’s vibrant Q3: Cross-chain launches, The Tokenized Asset Coalition, Real-World Asset Summit, and more.",
+    "image": "../images/posts/q32023.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/real-world-assets-kyc-centrifuge-lucas-vogelsang"
+  },
+  {
+    "date": "2023/10/04",
+    "outlet": "Blockworks",
+    "title": "Standardization coming for real-world assets sooner or later: Q&A with Centrifuge CEO",
+    "body": "Centrifuge CEO speaks on the importance of creating better market infrastructure to bring tokenized assets on-chain.",
+    "image": "../images/posts/blockworks_standardization.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/real-world-assets-kyc-centrifuge-lucas-vogelsang"
+  },
+  {
+    "date": "2023/09/29",
+    "outlet": "Centrifuge Blog",
+    "title": "Real-World Asset Summit 2023: A Reflection",
+    "body": "Centrifuge's Real-World Asset Summit united TradFi and DeFi to shape the tokenized asset industry. Here's what we learned.",
+    "image": "../images/posts/summit_reflection.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/eSXHOtiqVQTTeazVSie7q_KqRByIpEZsZAgetOYNnZ4"
+  },
+  {
     "date": "2023/09/19",
     "outlet": "Centrifuge Blog",
     "title": "Centrifuge’s Real-World Asset Vision Comes to Life in NYC",
