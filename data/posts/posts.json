@@ -15,14 +15,14 @@
     "body": "Centrifuge launched the Tokenized Asset Coalition to bring the next trillion dollars of assets onchain.",
     "image": "../images/posts/taccheckin.png",
     "alt": "",
-    "href": "https://mirror.xyz/dashboard/edit/GvbcoLjL0Off3YO4YNslQ5nDJ6SZO7CXaN5r46Fxk9I"
+    "href": "https://centrifuge.mirror.xyz/GvbcoLjL0Off3YO4YNslQ5nDJ6SZO7CXaN5r46Fxk9I"
   },
   {
     "date": "2023/10/20",
     "outlet": "Blockworks",
     "title": "A new EIP aims to revamp the tokenized vaults standard for RWAs",
     "body": "If EIP-7540 passes, protocols that have asynchronous workflows can benefit from yield-bearing vaults",
-    "image": "../images/posts/blockworksstandards.png",
+    "image": "../images/posts/blockworks_standards.png",
     "alt": "",
     "href": "https://blockworks.co/news/eip-rwa-tokenized-vault-standards"
   },
