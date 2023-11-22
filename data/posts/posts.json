@@ -1,5 +1,41 @@
 [
   {
+    "date": "2023/11/22",
+    "outlet": "Centrifuge Blog",
+    "title": "The Importance of Token Standards for Real-World Asset Tokenization",
+    "body": "How Ethereum token standards can bring efficiency and composability for real-world assets (RWAs).",
+    "image": "../images/posts/tokenstandards.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/4YyKUbQ1wm0rBtVW-M_RD4bn9rE1Q9edY-MJNxsKymY"
+  },
+  {
+    "date": "2023/11/15",
+    "outlet": "Centrifuge Blog",
+    "title": "Check-In: The Tokenized Asset Coalition",
+    "body": "Centrifuge launched the Tokenized Asset Coalition to bring the next trillion dollars of assets onchain.",
+    "image": "../images/posts/taccheckin.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/GvbcoLjL0Off3YO4YNslQ5nDJ6SZO7CXaN5r46Fxk9I"
+  },
+  {
+    "date": "2023/10/20",
+    "outlet": "Blockworks",
+    "title": "A new EIP aims to revamp the tokenized vaults standard for RWAs",
+    "body": "If EIP-7540 passes, protocols that have asynchronous workflows can benefit from yield-bearing vaults",
+    "image": "../images/posts/blockworks_standards.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/eip-rwa-tokenized-vault-standards"
+  },
+  {
+    "date": "2023/10/20",
+    "outlet": "Centrifuge Blog",
+    "title": "Real-World Assets 101 with Boys Club",
+    "body": "We teamed up with Boys Club Founders Natasha Hoskins and Deana Burke to make real-world assets (RWAs) more accessible.",
+    "image": "../images/posts/101boysclub.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/j_TukqtmCJwLbMQNr2ehHZ72NbebYKocjmaSgA85-wc"
+  },
+  {
     "date": "2023/10/17",
     "outlet": "Centrifuge Blog",
     "title": "Centrifuge Launches Fixing Finance Campaign",
@@ -15,7 +51,7 @@
     "body": "Dive into Centrifuge’s vibrant Q3: Cross-chain launches, The Tokenized Asset Coalition, Real-World Asset Summit, and more.",
     "image": "../images/posts/q32023.png",
     "alt": "",
-    "href": "https://blockworks.co/news/real-world-assets-kyc-centrifuge-lucas-vogelsang"
+    "href": "https://centrifuge.mirror.xyz/Q7792dnORTo7lkFj1Uf93xymXe8f2wdpPwYfWXeELhQ"
   },
   {
     "date": "2023/10/04",
