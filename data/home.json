@@ -12,7 +12,7 @@
       "Value"
     ],
     "body": [
-      "The platform for onchain credit.",
+      "The platform for onchain finance.",
       "Transparent. Affordable. Limitless."
     ],
     "image": "./images/home/hero-main-shape.svg",
@@ -77,7 +77,7 @@
     ]
   },
   "usp_section": {
-    "title": "The platform for onchain credit",
+    "title": "The platform for onchain finance",
     "body": "As the first protocol to bring real-world assets onchain, we’re building a better financial system.",
     "items": [
       {

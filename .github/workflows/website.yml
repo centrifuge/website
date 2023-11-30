@@ -62,7 +62,7 @@ jobs:
       - name: Build
         env:
           GATSBY_FUNCTIONS_URL: ${{ needs.prepare-deploy.outputs.function_URL }}
-          SHOW_ANNOUNCEMENT_BANNER: true
+          SHOW_ANNOUNCEMENT_BANNER: false
         run: |
           yarn build
 
