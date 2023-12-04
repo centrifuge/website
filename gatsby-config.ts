@@ -2,9 +2,9 @@ import type { GatsbyConfig } from 'gatsby'
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: 'Centrifuge | The platform for onchain credit',
+    title: 'Centrifuge | The platform for onchain finance',
     description:
-      'Centrifuge is the platform for onchain credit, connecting investors and borrowers with bankless liquidity.',
+      'Centrifuge is the platform for onchain finance, providing the infrastructure and ecosystem to tokenize, manage, and invest into real-world assets.',
     twitterUsername: '@centrifuge',
     image: '/ogimage.png',
     siteUrl: 'https://centrifuge.io/',

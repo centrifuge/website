@@ -1,5 +1,23 @@
 [
   {
+    "date": "2023/11/29",
+    "outlet": "Centrifuge Blog",
+    "title": "Web3 Foundation deploys treasury into real-world assets on Centrifuge",
+    "body": "Web3 Foundation helps bring real-world assets to DeFi via Centrifuge with a $1m pilot investment in tokenized T-bills.",
+    "image": "../images/posts/web3f.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/RPd-sjMJLK9W2UYknAM09EJwguxHJci-dbc2msd27MU"
+  },
+  {
+    "date": "2023/11/29",
+    "outlet": "The Defiant",
+    "title": "Polkadot’s Web3 Foundation To Invest $1M In On-Chain Treasuries",
+    "body": "Web3 Foundation plans to up its real-world asset allocation in the future    ",
+    "image": "../images/posts/defiant_rwas.png",
+    "alt": "",
+    "href": "https://thedefiant.io/polkadot-s-web3-foundation-to-invest-usd1m-in-on-chain-treasuries"
+  },
+  {
     "date": "2023/11/22",
     "outlet": "Centrifuge Blog",
     "title": "The Importance of Token Standards for Real-World Asset Tokenization",
