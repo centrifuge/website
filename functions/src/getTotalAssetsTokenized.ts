@@ -3,20 +3,18 @@ import { chunkedFetch } from './subgraphUtils'
 
 export default async function getTotalAssetsTokenized(req: Request, res: Response) {
   try {
-    const poolIds = await chunkedFetch({
-      getQuery: getPoolsQuery,
-      getProperty: (obj) => obj?.pools,
+    const request = await chunkedFetch({
+      getQuery: getLoansQuery,
+      getProperty: (obj) => {
+        const loans = obj.pools.reduce((acc, pool) => {
+          acc.push(pool.loans)
+          return acc
+        }, [])
+        return loans
+      },
     })
 
-    const requests = poolIds.map(({ id }) =>
-      chunkedFetch({
-        id,
-        getQuery: getLoansQuery,
-        getProperty: (obj) => obj?.pool?.loans,
-      })
-    )
-
-    let totalAssetsTokenized = await Promise.all(requests).then((results) => results.flat().length)
+    let totalAssetsTokenized = request.flat().length
 
     return res.status(200).send(JSON.stringify({ totalAssetsTokenized }))
   } catch (error) {
@@ -24,20 +22,11 @@ export default async function getTotalAssetsTokenized(req: Request, res: Respons
   }
 }
 
-function getPoolsQuery({ skip, first }: { skip: number; first: number }) {
+function getLoansQuery({ skip, first }: { skip: number; first: number; id: string }) {
   return `
     query {
-      pools(first: ${first}, skip: ${skip}) {
-        id
-      }
-    }`
-}
-
-function getLoansQuery({ skip, first, id }: { skip: number; first: number; id: string }) {
-  return `
-    query {
-      pool(id: "${id}") {
-        loans(where: {borrowsAggregatedAmount_gt: "0"}, first: ${first}, skip: ${skip}) {
+      pools {
+        loans(first: ${first}, skip: ${skip}) {
           id
         }
       }
