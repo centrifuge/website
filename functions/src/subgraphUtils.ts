@@ -13,7 +13,7 @@ async function fetchSubgraphData(query) {
     throw new Error(`Failed to retrieve pool data for TVL: ${response.statusText}`)
   }
 
-  const { data } = await response.clone().json()
+  const { data } = await response.json()
   return data
 }
 
@@ -22,7 +22,7 @@ export async function chunkedFetch({
   day,
   getQuery,
   getProperty,
-  chunkSize = 100,
+  chunkSize = 1000,
 }: {
   id?: string
   day?: number
@@ -46,7 +46,6 @@ export async function chunkedFetch({
       const response = await fetchSubgraphData(query)
 
       const property = getProperty(response)
-
       if (property && property.length) {
         data.push(...property)
       }
