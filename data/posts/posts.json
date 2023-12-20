@@ -1,21 +1,21 @@
 [
   {
     "date": "2023/12/20",
-    "outlet": "Centrifuge Blog",
-    "title": "The Year of RWAs: Centrifuge Announces Launches, Milestones, and Momentum",
-    "body": "Today, we share a number of announcements and updates as we closes out 2023 and head into the New Year with tremendous momentum.",
-    "image": "../images/posts/2023momentum.png",
-    "alt": "",
-    "href": "https://centrifuge.mirror.xyz/oFAK1aZumH9AoGdw7c6T4-6jS0VyYqDG25obVPMoEH4"
-  },
-  {
-    "date": "2023/12/19",
     "outlet": "The Defiant",
-    "title": "Frax Votes To Move $20M Of Stablecoin Collateral Into Treasury Bills",
+    "title": "Frax Votes To Move $20M Of Stablecoin Collateral Into T-Bills",
     "body": "Stablecoin protocol leverages Centrifuge Prime, a service that provides the infrastructure for DAOs to invest in real-world assets.",
     "image": "../images/posts/defiant_frax.png",
     "alt": "",
     "href": "https://thedefiant.io/frax-votes-to-move-usd20m-of-stablecoin-collateral-into-treasury-bills"
+  },
+  {
+    "date": "2023/12/19",
+    "outlet": "Centrifuge Blog",
+    "title": "The Year of RWAs: Centrifuge's 2023",
+    "body": "Today, we share a number of announcements and updates as we closes out 2023 and head into the New Year with tremendous momentum.",
+    "image": "../images/posts/2023momentum.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/oFAK1aZumH9AoGdw7c6T4-6jS0VyYqDG25obVPMoEH4"
   },
   {
     "date": "2023/12/19",
