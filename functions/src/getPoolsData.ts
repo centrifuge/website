@@ -8,7 +8,7 @@ function getPoolsQuery({ skip, first }: { skip: number; first: number }) {
       pools(first: ${first}, skip: ${skip}) {
         reserve,
         assetValue,
-        totalRepaysAggregatedAmount,
+        totalBorrowsAggregatedAmount,
         totalDebt
       }
     }`
@@ -37,7 +37,7 @@ function getTotalValueLocked(pools) {
 function getTotalAssetsFinanced(pools) {
   return pools
     .reduce((sum, pool) => {
-      return sum.add(new BN(pool.totalRepaysAggregatedAmount)).add(new BN(pool.totalDebt))
+      return sum.add(new BN(pool.totalBorrowsAggregatedAmount))
     }, new BN(0))
     .div(new BN(10).pow(new BN(24)))
     .toString()
@@ -76,6 +76,6 @@ export default async function getPoolsData(req: Request, res: Response) {
       })
     )
   } catch (error) {
-    return res.status(422).send(JSON.stringify(error))
+    return res.status(500).send(error)
   }
 }
