@@ -8,15 +8,17 @@ const corsWhitelist = [
   'https://website-staging.k-f.dev',
 ]
 const testEnvRegex = new RegExp('https://preview-pr[0-9]*(.k-f.dev)')
+const publicFunctions = ['/getCirculatingSupply', '/getTotalIssuance']
 
 exports.handler = async (req: Request, res: Response) => {
   if (routes.length < 0) {
     return res.status(400).send('No functions defined')
   }
 
-  const origin = req.get('origin')
+  const isPublicFunction = publicFunctions.includes(req.url)
+  const origin = isPublicFunction ? '*' : req.get('origin')
 
-  if (corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
+  if (isPublicFunction || corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
     res.set('Access-Control-Allow-Origin', origin)
     res.set('Access-Control-Allow-Methods', ['GET', 'POST'])
   } else {
