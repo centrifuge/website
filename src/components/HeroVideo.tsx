@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Grid, Button, AnchorButton } from '@centrifuge/fabric'
+import { Box, Stack, Text, AnchorButton } from '@centrifuge/fabric'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 

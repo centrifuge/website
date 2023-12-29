@@ -47,8 +47,9 @@ export const theme: DefaultTheme = {
     },
     heading5: {
       fontSize: [20, 24, 28],
-      lineHeight: 1.4,
+      lineHeight: 1.2,
       fontWeight: 400,
+      letterSpacing: '-0.04em',
       color: 'textPrimary',
     },
     heading6: {
