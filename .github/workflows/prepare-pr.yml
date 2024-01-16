@@ -1,0 +1,44 @@
+name: Prepare PRs
+on:
+# Check job conditions if you add any triggers here
+  pull_request:
+
+jobs:         
+  trigger-function-deploy:
+      if: github.event.action == 'opened' || github.event.action =='reopened'
+      uses: ./.github/workflows/functions-deploy.yml
+      secrets: inherit        
+
+  pr_cleanup:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'closed'
+    needs: deploy_vars
+    permissions:
+      contents: read
+      id-token: write
+    environment: gcloud-dev
+    env: 
+      # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
+      ref: ${{ github.head_ref || github.ref_name }}
+      pr_number: ${{ github.event.number }}      
+    steps:       
+      - name: Auth gcloud
+        id: gauth
+        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
+        with:
+          workload_identity_provider: '${{ secrets.GWIP }}'
+          service_account: '${{ secrets.GSA }}'
+
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1' 
+
+      - name: Delete Function created on PR
+        run: gcloud functions delete --region ${{ vars.GCP_REGION }} webapi-${{ env.pr_number }}
+
+      - name: delete the bucket if PR is closed'
+        run: gsutil -m rm -r gs://preview-pr${{ env.pr_number }}.k-f.dev
+
+
+
+

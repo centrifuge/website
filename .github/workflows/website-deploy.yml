@@ -18,28 +18,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  prepare-deploy:
-    uses: ./.github/workflows/prepare-deploy.yml
-    secrets: inherit
-    with:
-      wait: true
-      deploy_env: ${{ inputs.deploy_env }}
-
-  trigger-function-deploy:
-    if: github.event.action == 'opened' || github.event.action =='reopened'
-    uses: ./.github/workflows/functions.yml
-    secrets: inherit
-
   build-web:
-    needs: [prepare-deploy]
     runs-on: ubuntu-latest
     steps:
-      - name: fail if URL empty
-        if: needs.prepare-deploy.outputs.function_URL == ''
-        run: |
-          echo "::error title=Function URL not found::Review the prepare-deploy job"
-          exit 1
-
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
 
@@ -57,11 +38,17 @@ jobs:
         with:
           node-version: 18
           cache: yarn
+          
       - name: Install Dependencies
         run: yarn install
+
+      - name: fetch Gfunction URL
+        id: discover
+        uses: ./.github/actions/discover_function
+
       - name: Build
         env:
-          GATSBY_FUNCTIONS_URL: ${{ needs.prepare-deploy.outputs.function_URL }}
+          GATSBY_FUNCTIONS_URL: ${{ steps.discover.outputs.function_url }}
           SHOW_ANNOUNCEMENT_BANNER: false
         run: |
           yarn build
@@ -74,7 +61,7 @@ jobs:
           path: public/
 
   publish-to-gcs:
-    needs: [build-web, prepare-deploy]
+    needs: [build-web]
     permissions:
       contents: read
       id-token: write
@@ -83,6 +70,31 @@ jobs:
     env:
       bucket_url: ${{ needs.prepare-deploy.outputs.bucket_url }}
     steps:
+      - name: set bucket URL
+        id: discover
+        env: 
+          # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
+          ref: ${{ github.head_ref || github.ref_name }}
+          pr_number: ${{ github.event.number }}      
+        run: |
+          echo "Set env vars for deployment"
+          echo "Github Ref = ${{env.ref}}"
+          if  ${{ env.ref == 'refs/heads/main' }} ; then
+            if  ${{ inputs.deploy_env == 'production' }}; then
+              #  PROD (manual trigger)
+              echo "bucket_url=centrifuge.io" >> $GITHUB_OUTPUT
+            else
+              #  STAGING (main branch deploy)
+              echo "bucket_url=website-staging.k-f.dev" >> $GITHUB_OUTPUT
+            fi
+          elif ${{ github.event_name == 'pull_request' }}; then
+            # PRs
+              echo "bucket_url=preview-pr${{ env.pr_number }}.k-f.dev" >> $GITHUB_OUTPUT
+          else
+            echo "::error title=No env to deploy::Workflow called from non-deployable branch/tag"
+            exit 1
+          fi
+
       - name: download webpack
         id: download
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # @v3.0.2
@@ -96,26 +108,27 @@ jobs:
         with:
           workload_identity_provider: '${{ secrets.GWIP }}'
           service_account: '${{ secrets.GSA }}'
+
       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
 
       - name: Create bucket
         run: |
-          if ! gsutil ls gs://${{ env.bucket_url }} 1> /dev/null; then
-            gsutil mb gs://${{ env.bucket_url }}
+          if ! gsutil ls gs://${{ steps.discover.outputs.bucket_url }} 1> /dev/null; then
+            gsutil mb gs://${{ steps.discover.outputs.bucket_url }}
             echo "Setup bucket settings to serve the site"
-            gsutil iam ch allUsers:objectViewer gs://${{ env.bucket_url }}
-            gsutil web set -m index.html -e 404.html gs://${{ env.bucket_url }}            
+            gsutil iam ch allUsers:objectViewer gs://${{ steps.discover.outputs.bucket_url }}
+            gsutil web set -m index.html -e 404.html gs://${{ steps.discover.outputs.bucket_url }}            
           else
-            echo "Bucket ${{ env.bucket_url }} found! No need to create it"
+            echo "Bucket ${{ steps.discover.outputs.bucket_url }} found! No need to create it"
           fi
 
       - name: push to bucket
         id: push
-        run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ env.bucket_url }}
+        run: gsutil -m rsync -d -c -r ${{steps.download.outputs.download-path}} gs://${{ steps.discover.outputs.bucket_url }}
     outputs:
-      bucket_url: ${{ env.bucket_url }}
+      bucket_url: ${{ steps.discover.outputs.bucket_url }}
 
   notify:
     needs: publish-to-gcs
