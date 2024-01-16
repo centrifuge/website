@@ -67,8 +67,6 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     environment: ${{ inputs.deploy_env || 'gcloud-dev' }}
-    env:
-      bucket_url: ${{ needs.prepare-deploy.outputs.bucket_url }}
     steps:
       - name: set bucket URL
         id: discover
