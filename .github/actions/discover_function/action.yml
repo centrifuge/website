@@ -22,8 +22,8 @@ runs:
       id: gauth
       uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d # @v1
       with:
-        workload_identity_provider: '${{ secrets.GWIP }}'
-        service_account: '${{ secrets.GSA }}'
+        workload_identity_provider: '${{ inputs.GWIP }}'
+        service_account: '${{ inputs.GSA }}'
 
     # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
     - name: Set up Cloud SDK

@@ -56,6 +56,8 @@ jobs:
           # !dist/**/*.md
 
   deploy-functions: 
+    # opening a PR will already deploy it, skip if that's the case
+    if: github.event.action != 'opened' && github.event.action !='reopened'
     needs: [build-functions]
     outputs:
       function_url: ${{ steps.gclouddeploy.outputs.url }}   
