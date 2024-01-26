@@ -1,5 +1,32 @@
 [
   {
+    "date": "2024/01/18",
+    "outlet": "Centrifuge",
+    "title": "Martin Quensel: Anemoy and Onchain Treasury Products",
+    "body": "Martin Quensel of Anemoy and Cassidy Daly of Centrifuge discuss onchain treasury products in this episode of DeFi Drip.",
+    "image": "../images/posts/defidrip8.png",
+    "alt": "",
+    "href": "https://www.youtube.com/watch?v=xUw5go9vjkE"
+  },
+  {
+    "date": "2024/01/16",
+    "outlet": "Business Wire",
+    "title": "Tokenized Asset Coalition Unveils State of Tokenization Report; Announces New Members",
+    "body": "Bringing together key players, TAC aims to drive more than $1 trillion in assets onchain",
+    "image": "../images/posts/tac2024.jpeg",
+    "alt": "",
+    "href": "https://www.businesswire.com/news/home/20240116951128/en/Tokenized-Asset-Coalition-Unveils-State-of-Tokenization-Report-Announces-15-New-Members"
+  },
+  {
+    "date": "2024/01/11",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Q4 2023 Recap",
+    "body": "Centrifuge’s final quarter of 2023: DAO treasury allocations, cross-chain integrations, RWA Summit 2024, and more.",
+    "image": "../images/posts/q42023.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/78DJ0946Z2ou7OTii-vMAUtlscTAZJQvdTofESj0YGM"
+  },
+  {
     "date": "2023/12/20",
     "outlet": "The Defiant",
     "title": "Frax Votes To Move $20M Of Stablecoin Collateral Into T-Bills",
