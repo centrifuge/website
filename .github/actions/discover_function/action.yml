@@ -7,6 +7,9 @@ inputs:
   GSA:
     required: true
     description: Github Servicer Account
+  GCP_REGION:
+    required: true
+    description: Google Cloud region for the function
 outputs:
   function_url:
     description: "the discovered URL"
@@ -38,7 +41,7 @@ runs:
         echo "Called from website job, keep searching for function"
         max_retry=7
         counter=0
-        while ! gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} 1> /dev/null && 
+        while ! gcloud functions describe --region ${{ inputs.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} 1> /dev/null && 
                 [ ${counter} -lt ${max_retry} ]
         do
           echo " Function not found - Try #${counter}"
@@ -49,9 +52,9 @@ runs:
           counter=$((counter+1))
           
         done
-        if ! gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
+        if ! gcloud functions describe --region ${{ inputs.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} &> /dev/null; then
           echo "::error title=Not_found::Function ${{ steps.deploy_vars.outputs.function_name }} not found, check functions deploy and re-run this job"
           exit 1
         else
-          echo "url=$(gcloud functions describe --region ${{ vars.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} --format='value(httpsTrigger.url)')" >> $GITHUB_OUTPUT
+          echo "url=$(gcloud functions describe --region ${{ inputs.GCP_REGION }} ${{ steps.deploy_vars.outputs.function_name }} --format='value(httpsTrigger.url)')" >> $GITHUB_OUTPUT
         fi

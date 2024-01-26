@@ -47,7 +47,8 @@ jobs:
         uses: ./.github/actions/discover_function
         with:
           GWIP: ${{ secrets.GWIP }}
-          GSA: ${{ secrets.GSA }}          
+          GSA: ${{ secrets.GSA }}       
+          GCP_REGION: ${{ vars.GCP_REGION }}   
 
       - name: Build
         env:
