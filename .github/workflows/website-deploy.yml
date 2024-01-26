@@ -45,6 +45,9 @@ jobs:
       - name: fetch Gfunction URL
         id: discover
         uses: ./.github/actions/discover_function
+        with:
+          GWIP: ${{ secrets.GWIP }}
+          GSA: ${{ secrets.GSA }}          
 
       - name: Build
         env:

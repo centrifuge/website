@@ -1,10 +1,12 @@
 name: Discover function URL
 description: "Discover the URL given a function's name"
-# inputs:
-#   wait:
-#     required: true
-#     default: "false"
-#     description: "To keep searching for the function"
+inputs:
+  GWIP:
+    required: true
+    description: Github Workload ID
+  GSA:
+    required: true
+    description: Github Servicer Account
 outputs:
   function_url:
     description: "the discovered URL"
