@@ -35,7 +35,7 @@ In-scope repositories:
 - [https://github.com/centrifuge/tinlake-math](https://github.com/centrifuge/tinlake-math)
 - [https://github.com/centrifuge/tinlake-auth](https://github.com/centrifuge/tinlake-auth)
 - [https://github.com/centrifuge/tinlake.js](https://github.com/centrifuge/tinlake.js)
-- [https://github.com/centrifuge/cent-chain](https://github.com/centrifuge/cent-chain)
+- [hhttps://github.com/centrifuge/centrifuge-chain](https://github.com/centrifuge/centrifuge-chain)
 - [https://github.com/centrifuge/go-centrifuge](https://github.com/centrifuge/go-centrifuge)
 - [https://github.com/centrifuge/precise-proofs](https://github.com/centrifuge/precise-proofs)
 - [https://github.com/centrifuge/centrifuge-protobufs](https://github.com/centrifuge/centrifuge-protobufs)
