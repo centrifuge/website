@@ -1,5 +1,41 @@
 [
   {
+    "date": "2024/02/28",
+    "outlet": "Centrifuge Blog",
+    "title": "Revenue Projections, Partnerships, and More at ETH Denver",
+    "body": "Centrifuge, the platform for onchain finance, today announced a range of news at the ETH Denver conference as it gears up for a momentous 2024.",
+    "image": "../images/posts/blog_poolfees.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/NFKPq9w5OpgRN-3wCsEQp8X6Mp--8mpz_pJNe-Xnu1U"
+  },
+  {
+    "date": "2024/02/28",
+    "outlet": "The Defiant",
+    "title": "Centrifuge Proposal Set To Introduce Protocol Fees Collected By Treasury",
+    "body": "Centrifuge predicts it will accumulate $4M in fees this year.",
+    "image": "../images/posts/defiant_poolfees.png",
+    "alt": "",
+    "href": "https://thedefiant.io/centrifuge-proposal-set-to-introduce-protocol-fees-collected-by-treasury"
+  },
+  {
+    "date": "2024/02/28",
+    "outlet": "Coindesk",
+    "title": "Crypto Custodian Finoa Offers Centrifuge’s Tokenized T-Bill Fund",
+    "body": "Tokenized assets pioneer Centrifuge is linking its Anemoy fund to Finoa’s 300-plus crypto institutions.",
+    "image": "../images/posts/coindesk_finoa.png",
+    "alt": "",
+    "href": "https://www.coindesk.com/business/2024/02/28/crypto-custodian-finoa-offers-centrifuges-tokenized-t-bill-fund/"
+  },
+  {
+    "date": "2024/02/28",
+    "outlet": "Blockworks",
+    "title": "The role of RWAs in the evolution of stablecoins: Report",
+    "body": "Medium exchange remains the “killer function” for stablecoins, Circle’s Stephen Leahy notes in latest stablecoin report",
+    "image": "../images/posts/blockworks_stablecoins.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/stablecoin-growth-report-real-world-assets"
+  },
+  {
     "date": "2024/01/18",
     "outlet": "Centrifuge",
     "title": "Martin Quensel: Anemoy and Onchain Treasury Products",

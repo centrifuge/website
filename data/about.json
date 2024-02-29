@@ -18,13 +18,17 @@
         "title": "k/factory",
         "body": "k/factory (k/f) is a software studio founded by the original contributors to the Centrifuge protocol. k/f contributes to the Centrifuge protocol by providing core infrastructure and works with its users to ensure adoption.",
         "link": {
-          "label": "Learn about k/factory and see open roles",
+          "label": "Learn about k/factory",
           "href": "https://k-f.co/"
         }
       },
       {
         "title": "Centrifuge Network Foundation",
-        "body": "The Centrifuge Network Foundation (CNF) nurtures the Centrifuge ecosystem by funding protocol development and grants."
+        "body": "Centrifuge Network Foundation's mission is to grow the Centrifuge ecosystem by funding research, development and maintenance of the network.",
+        "link": {
+          "label": "Learn about Centrifuge Network Foundation",
+          "href": "https://www.centrifuge.foundation/"
+        }
       },
       {
         "title": "EMBRIO.tech",
