@@ -18,6 +18,11 @@ const menu = [
         isExternal: true,
       },
       {
+        label: 'Docs',
+        href: links.docs,
+        isExternal: true,
+      },
+      {
         label: 'Contributors',
         href: '/contributors',
       },
