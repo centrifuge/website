@@ -1,9 +1,19 @@
 import { links } from './links'
 
 const menu = [
+
   {
-    label: 'Prime',
-    href: '/prime',
+    label: 'Products',
+    items: [
+      {
+        label: 'Fund Management',
+        href: '/fund-management',
+      },
+      {
+        label: 'Centrifuge Prime',
+        href: '/prime',
+      },
+    ]
   },
   {
     label: 'News',

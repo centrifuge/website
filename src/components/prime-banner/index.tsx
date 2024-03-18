@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Reveal, RevealWrapper } from '../Reveal'
 import { InternalLink } from '../InternalLink'
 import { Title } from './styles'
+import {links } from "../../../config/links";
 
 export const query = graphql`
   fragment PrimeBannerFragment on DataJsonPrime_banner {
@@ -38,7 +39,7 @@ export function PrimeBanner({ title, body }: PrimeBannerProps) {
 
             <Box alignSelf="center" mt={[2, 2, 0]}>
               <InternalLink
-                to="https://centrifuge.mirror.xyz/1gtfV6cKo0IFqIkns1lMlqoA1748biFdR_J0WHNNX2k"
+                to={links.fundManagementBlogPost}
                 variant="secondary"
               >
                 Learn More

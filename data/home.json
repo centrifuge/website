@@ -136,8 +136,8 @@
     ]
   },
   "prime_banner": {
-    "title": "Introducing Liquidity Pools:\nReal-World Assets Everywhere",
-    "body": "Centrifuge Liquidity Pools allow users on any supported chain — beginning with Ethereum, Arbitrum, and Base — to invest in Centrifuge’s pools of real-world assets"
+    "title": "Onchain Fund Management",
+    "body": "Centrifuge's fund management platform brings the power of onchain finance to asset managers and investment funds. Capture your fund's onchain and offchain portfolio positions, transactions, and operations data — all via one platform."
   },
   "news_section": {
     "title": "Centrifuge News",

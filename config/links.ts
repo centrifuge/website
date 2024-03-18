@@ -13,6 +13,10 @@ export const links = {
   forum: 'https://gov.centrifuge.io/',
   prime: 'https://forms.gle/kt1GShLcWapMGzjs7',
   primeBlogPost: 'https://centrifuge.mirror.xyz/KyrMWLKMccFCNfSlvjxe7uyhba7oLrUzlBuZ7GQTn6s',
+  fundManagement: 'https://example.com/fund-management',
+  fundManagementBlogPost: 'https://example.com/fundManagementBlogPost',
   podcast: 'https://open.spotify.com/show/3mcy2eIFO9qUFlxhZeYMV4',
   announcements: 'https://fixing.finance',
+  bis: 'https://www.bis.org/publ/work1116.htm',
+  hkma: 'https://www.hkma.gov.hk/media/eng/publication-and-research/research/research-memorandums/2023/RM04-2023.pdf'
 }
