@@ -1,0 +1,110 @@
+{
+  "slug": "/fund-management",
+  "seo": {
+    "title": "Onchain Fund Management\n",
+    "description": "Centrifuge's fund management platform brings the full power of onchain finance to asset managers and investment funds."
+  },
+  "hero_fund": {
+    "pretitle": "ONCHAIN FUND MANAGEMENT",
+    "title": "Asset Management, \nOnchain",
+    "body": "Centrifuge's fund management platform brings the full power of onchain finance to asset managers and investment funds. Capture your entire fund's onchain and offchain portfolio positions, transactions, and operations data in a secure, immutable, and reportable manner.",
+    "image": "./images/prime/hero-prime.png"
+  },
+  "prime_partners": {
+    "title": "Built from years of experience bringing RWAs to DeFi",
+    "items": [
+      {
+        "image": "./images/prime/partner/the-credit-group.svg",
+        "alt": "The Credit Group"
+      },
+      {
+        "image": "./images/prime/partner/steakhouse-financial.svg",
+        "alt": "Steakhouse Financial"
+      },
+      {
+        "image": "./images/prime/partner/rwa.svg",
+        "alt": "rwa.xyz"
+      },
+      {
+        "image": "./images/prime/partner/aave.svg",
+        "alt": "Aave"
+      },
+      {
+        "image": "./images/prime/partner/blocktower.svg",
+        "alt": "Blocktower"
+      },
+      {
+        "image": "./images/prime/partner/maker.svg",
+        "alt": "Maker"
+      },
+      {
+        "image": "./images/prime/partner/circle.svg",
+        "alt": "Circle"
+      }
+    ]
+  },
+  "fund_features": {
+    "title": "Your new central control panel",
+    "body": "Tokenize your funds and streamline access to all necessary service providers and investors, saving operational overhead and increasing liquidity. Key benefits of Centrifuge's Onchain Fund Management Platform include:",
+    "items": [
+      {
+        "title": "Reporting & Transparency",
+        "body": "All portfolio positions, transactions, fees, and operational data – from offchain and onchain sources – are captured and reported for trustless verification."
+      },
+      {
+        "title": "Operational Efficiency",
+        "body": "Fund operations are automated to improve reporting cadence and more easily integrate with third-party services to reduce operational overhead and cost."
+      },
+      {
+        "title": "Securitization",
+        "body": "Enables pooling of tokenized assets into tradable instruments with tranching, waterfall distributions, loan tape management and investor management for enhanced liquidity and risk distribution."
+      },
+      {
+        "title": "Programmability",
+        "body": "Funds can be more easily integrated with other programmable interfaces to dynamically interface with DeFi protocols with programmable constraints."
+      }
+    ]
+  },
+  "rwa_yields": {
+    "title": "Streamline fund operations",
+    "body": "Easily construct portfolios that offer exactly the right risk profile and incorporate the unique complexities of markets. From single tranche liquid portfolios to multi-tranche asset-backed offerings, automatically manage loan tape, calculate distribution waterfalls, net-asset-valuations, and asset-performance. All onchain.",
+    "image": "./images/fund-management/fund1.png"
+  },
+  "rwa_usp": {
+    "title": "Why build onchain?",
+    "body": "Save costs and create efficiencies with real-time, accurate access to holdings, fully integrated with the necessary service providers for operating an institutional-grade offering. ",
+    "items": [
+      "Reduce yield spreads by 25 bps",
+      "Improve liquidity by 5.3%",
+      "Save up to 150 bps running the fund"
+    ],
+    "image": "./images/fund-management/fund2.png"
+  },
+  "prime_integration": {
+    "title": "The home for all things real-world assets",
+    "body": "Centrifuge Prime combines the infrastructure for the tokenization and management of real-world assets, with an ecosystem of critical partners and services, to provide the assets and opportunities that DAOs and DeFi protocols want to see.",
+    "items": [
+      {
+        "image": "./images/prime/integration-infrastructure.svg",
+        "title": "Infrastructure",
+        "body": "RWA tokenization, securitization, and a compliant out of the box legal framework"
+      },
+      {
+        "image": "./images/prime/integration-ecosystem.svg",
+        "title": "Ecosystem",
+        "body": "Decentralized and objective credit risk reporting and analysis functions for assets and portfolio"
+      },
+      {
+        "image": "./images/prime/integration-assets.svg",
+        "title": "Assets",
+        "body": "Diversified asset classes including US Treasury Bills, Asset Backed Securities, Real Estate, and more"
+      }
+    ]
+  },
+  "fund_cta": {
+    "title": "Ready to launch \nyour fund onchain?",
+    "items": [
+      "Centrifuge's fund management platform is available now for funds and asset managers looking to launch tokenized investment products and strategies."
+    ]
+  }
+}
