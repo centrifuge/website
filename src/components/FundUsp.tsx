@@ -6,8 +6,6 @@ import {ImageProps, Image} from './Image'
 import {BulletListFund} from './BulletListFund'
 import {TextImage} from './text-image'
 import {links} from '../../config/links'
-import {BulletList} from "./BulletList";
-import {RwaUspProps} from "./RwaUsp";
 
 export const query = graphql`
   fragment RwaUspFragment on DataJsonRwa_usp {

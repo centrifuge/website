@@ -1,7 +1,6 @@
 import {Text, Stack, IconArrowRight} from '@centrifuge/fabric'
 import * as React from 'react'
 import styled from 'styled-components'
-import ReactMarkdown from "react-markdown";
 import {links} from '../../config/links'
 
 type BulletListProps = {
