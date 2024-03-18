@@ -13,7 +13,7 @@ export const links = {
   forum: 'https://gov.centrifuge.io/',
   prime: 'https://forms.gle/kt1GShLcWapMGzjs7',
   primeBlogPost: 'https://centrifuge.mirror.xyz/KyrMWLKMccFCNfSlvjxe7uyhba7oLrUzlBuZ7GQTn6s',
-  fundManagement: 'https://example.com/fund-management',
+  fundManagement: 'https://docs.google.com/forms/d/e/1FAIpQLSdoKKJkb8RDKJrSnWTnsb3VLkK-zDWWgXTX9q65qF8wcO9Aew/viewform',
   fundManagementBlogPost: 'https://centrifuge.mirror.xyz/pn5NlZ5UY5pdtOy_FFZ1cNWr0Dn1QBk2yCeJ6ZXQQoc',
   podcast: 'https://open.spotify.com/show/3mcy2eIFO9qUFlxhZeYMV4',
   announcements: 'https://fixing.finance',
