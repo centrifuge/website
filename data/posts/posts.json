@@ -1,5 +1,14 @@
 [
   {
+    "date": "2024/03/18",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Launches Onchain Fund Management Platform",
+    "body": "Announcing the launch of Centrifuge's fund management platform designed to onboard credit funds to public blockchains.",
+    "image": "../images/posts/fund-management-blog.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/pn5NlZ5UY5pdtOy_FFZ1cNWr0Dn1QBk2yCeJ6ZXQQoc"
+  },
+  {
     "date": "2024/03/06",
     "outlet": "Centrifuge Blog",
     "title": "Report: Stablecoins, RWAs, and Onchain Capital Markets",

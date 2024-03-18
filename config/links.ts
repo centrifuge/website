@@ -14,7 +14,7 @@ export const links = {
   prime: 'https://forms.gle/kt1GShLcWapMGzjs7',
   primeBlogPost: 'https://centrifuge.mirror.xyz/KyrMWLKMccFCNfSlvjxe7uyhba7oLrUzlBuZ7GQTn6s',
   fundManagement: 'https://example.com/fund-management',
-  fundManagementBlogPost: 'https://example.com/fundManagementBlogPost',
+  fundManagementBlogPost: 'https://centrifuge.mirror.xyz/pn5NlZ5UY5pdtOy_FFZ1cNWr0Dn1QBk2yCeJ6ZXQQoc',
   podcast: 'https://open.spotify.com/show/3mcy2eIFO9qUFlxhZeYMV4',
   announcements: 'https://fixing.finance',
   bis: 'https://www.bis.org/publ/work1116.htm',
