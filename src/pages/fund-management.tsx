@@ -12,9 +12,7 @@ import {RwaYields, RwaYieldsProps} from '../components/RwaYields'
 import {PrimeIntegration, PrimeIntegrationProps} from '../components/PrimeIntegration'
 import {FundCta, FundCtaProps} from '../components/FundCta'
 
-import {HeroPrimeProps} from "../components/hero-prime";
-
-
+// This is a copy of the Prime page, so we use some components made for Prime (and some new ones for Fund)
 export const query = graphql`
   query {
     dataJson(slug: { eq: "/fund-management" }) {
@@ -28,8 +26,8 @@ export const query = graphql`
         ...HeroFundFragment
       }
 
-      prime_partners {
-        ...PrimePartnersFragment
+      fund_features {
+        ...FundFeaturesFragment
       }
 
       prime_integration {
@@ -48,8 +46,8 @@ export const query = graphql`
         ...PrimeTargetsFragment
       }
 
-      prime_cta {
-        ...PrimeCtaFragment
+      fund_cta {
+        ...FundCtaFragment
       }
     }
   }
@@ -61,29 +59,28 @@ type FundProps = {
       seo: SEOProps
       hero_fund: HeroFundProps
       prime_partners: PrimePartnersProps
-      prime_targets: FundFeaturesProps
+      fund_features: FundFeaturesProps
       rwa_yields: RwaYieldsProps
       rwa_usp: FundUspProps
       prime_integration: PrimeIntegrationProps
-      prime_cta: FundCtaProps
+      fund_cta: FundCtaProps
     }
   }
 }
 
 export default function FundManagement({data}: FundProps) {
-  const {hero_fund, prime_partners, prime_targets, rwa_yields, rwa_usp, prime_integration, prime_cta} = data.dataJson
+  const {hero_fund, prime_partners, fund_features, rwa_yields, rwa_usp, prime_integration, fund_cta} = data.dataJson
 
   return (
     <Layout menuButtonVariant="secondary" padded={false}>
       <Stack gap={['layoutMedium', 'layoutLarge', 'layoutXLarge']}>
         <Stack gap={[10, 10, '120px']}>
           <HeroFund {...hero_fund} />
-          <FundFeatures {...prime_targets} />
+          <FundFeatures {...fund_features} />
         </Stack>
         <RwaYields {...rwa_yields} />
         <FundUsp {...rwa_usp} />
-        {/*<PrimeIntegration {...prime_integration} />*/}
-        <FundCta {...prime_cta} />
+        <FundCta {...fund_cta} />
       </Stack>
     </Layout>
   )

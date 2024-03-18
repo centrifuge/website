@@ -43,7 +43,7 @@
       }
     ]
   },
-  "prime_targets": {
+  "fund_features": {
     "title": "Your new central control panel",
     "body": "Tokenize your funds and streamline access to all necessary service providers and investors, saving operational overhead and increasing liquidity. Key benefits of Centrifuge's Onchain Fund Management Platform include:",
     "items": [
@@ -101,7 +101,7 @@
       }
     ]
   },
-  "prime_cta": {
+  "fund_cta": {
     "title": "Ready to launch \nyour fund onchain?",
     "items": [
       "Centrifuge's fund management platform is available now for funds and asset managers looking to launch tokenized investment products and strategies."

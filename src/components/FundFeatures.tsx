@@ -5,7 +5,7 @@ import {links} from '../../config/links'
 import {Reveal, RevealWrapper} from './Reveal'
 
 export const query = graphql`
-  fragment PrimeTargetsFragment on DataJsonPrime_targets {
+  fragment FundFeaturesFragment on DataJsonFund_features {
     title
     body
     items {
