@@ -7,7 +7,7 @@ import { Reveal, RevealWrapper } from '../Reveal'
 import { Root, Inner, Media, Title } from './styles'
 
 export const query = graphql`
-  fragment HeroPrimeFragment on DataJsonHero_prime {
+  fragment HeroFundFragment on DataJsonHero_fund {
     pretitle
     title
     body
