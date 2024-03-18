@@ -37,7 +37,7 @@ export function FundUsp({title, body, items, image}: FundUspProps) {
       title={title}
       body={body}
       media={
-        <Box maxWidth={[350, 350, 450]} mx="auto">
+        <Box maxWidth={[350, 550, 550]} mx="auto">
           <Image data={image} alt=""/>
         </Box>
       }
