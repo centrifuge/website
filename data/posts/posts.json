@@ -1,5 +1,23 @@
 [
   {
+    "date": "2024/03/29",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Brings Treasury Bills to Celo",
+    "body": "Celo ecosystem kickstarts activity with $1M investment in Anemoy's Liquid Treasury Fund",
+    "image": "../images/posts/celo-anemoy.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/zV9ZGYiJz0mw-IsArv02pvafkJqdaTjc35cKE0R6foI"
+  },
+  {
+    "date": "2024/03/29",
+    "outlet": "The Defiant",
+    "title": "Centrifuge’s Anemoy Attracts Investment From Celo",
+    "body": "Celo’s investment follows Frax and Gnosis passing proposals to deploy $20M and $10M into Anemoy.",
+    "image": "../images/posts/defiant-celo.png",
+    "alt": "",
+    "href": "https://thedefiant.io/centrifuge-s-anemoy-attracts-investment-from-celo-as-tokenized-treasury-assets-bubble"
+  },
+  {
     "date": "2024/03/18",
     "outlet": "Centrifuge Blog",
     "title": "Centrifuge Launches Onchain Fund Management Platform",
