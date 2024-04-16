@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { AnchorButton, Text, Stack, Shelf } from '@centrifuge/fabric'
+import { AnchorButton, Text, Stack, Shelf, Box } from '@centrifuge/fabric'
 import { links } from '../../../config/links'
 import { ImageProps, Image } from '../Image'
 import { Reveal, RevealWrapper } from '../Reveal'
 import { Root, Inner, Media, Title } from './styles'
-import {PartnerList, PartnerProps} from "../partner-list";
-import {ChainStats} from "../chain-stats/ChainStats";
-import {useVisibilityChecker} from "../../hooks/use-visibility-checker";
-import FullscreenVideoOverlay from '../fullscreen-video-overlay';
+import { PartnerList, PartnerProps } from '../partner-list'
+import { ChainStats } from '../chain-stats/ChainStats'
+import { useVisibilityChecker } from '../../hooks/use-visibility-checker'
+import FullscreenVideoOverlay from '../fullscreen-video-overlay'
 
 export const query = graphql`
   fragment HeroMainFragment on DataJsonHero_main {
@@ -27,7 +27,7 @@ export const query = graphql`
       alt
     }
   }
- `
+`
 
 export type HeroMainProps = {
   title: string
@@ -44,7 +44,6 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
         <Shelf px={2} pt={[1, 2, 3]}>
           <Inner maxWidth="container" alignSelf="start">
             <Stack gap={3} maxWidth={['100%', '100%', '60%', '50%']}>
-
               <Reveal staggerIndex={1}>
                 <Title forwardedAs="h1" variant="heading2b">
                   {title}
@@ -62,7 +61,6 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
                   Enter App
                 </AnchorButton>
               </Reveal>
-
             </Stack>
 
             {/* This embeds directly onto page vs. fullscreen modal
@@ -76,20 +74,18 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
               </Media>*/}
             {/*todo: we want to wrap this in a <Reveal>, but it messes up formatting for video thumbnail + modal - unsure why*/}
             <Media>
-              {
-                image.publicURL &&
-                <FullscreenVideoOverlay thumbnail={image.publicURL} videoId={"935042824"} />
-              }
+              {/* @ts-ignore */}
+              {image.publicURL && <FullscreenVideoOverlay thumbnail={image.publicURL} videoId={'935042824'} />}
             </Media>
           </Inner>
         </Shelf>
         <Reveal px={3} mt="auto" staggerIndex={3}>
-          <ChainStats/>
+          <ChainStats />
         </Reveal>
       </Root>
 
-      <Reveal staggerIndex={3} >
-        <PartnerList partners={partners}/>
+      <Reveal staggerIndex={3}>
+        <PartnerList partners={partners} />
       </Reveal>
     </RevealWrapper>
   )
