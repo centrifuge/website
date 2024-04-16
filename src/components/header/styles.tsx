@@ -8,6 +8,7 @@ export const Root = styled(Box)<{ isHidden: boolean }>`
   background-color: ${({ theme }) => theme.colors.backgroundPage};
   transition: transform 0.25s;
   transform: ${({ isHidden }) => `translateY(${isHidden ? -100 : 0}%)`};
+  z-index: 2;
 `
 
 export const LogoLink = styled(Link)`

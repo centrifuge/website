@@ -46,19 +46,6 @@ export const columns = [
     ],
   },
   {
-    title: 'Crowdloan',
-    items: [
-      {
-        label: 'Centrifuge',
-        href: '/parachain/crowdloan',
-      },
-      {
-        label: 'Altair',
-        href: '/altair/crowdloan',
-      },
-    ],
-  },
-  {
     title: 'Get in touch',
     items: [
       {

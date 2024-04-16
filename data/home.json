@@ -2,7 +2,7 @@
   "slug": "/",
   "menuButtonVariant": "secondary",
   "hero_main": {
-    "title": "Real-World",
+    "title": "Better technology for financial products.",
     "ticker": [
       "DeFi",
       "Assets",
@@ -12,10 +12,9 @@
       "Value"
     ],
     "body": [
-      "The platform for onchain finance.",
-      "Transparent. Affordable. Limitless."
+      "Centrifuge is the platform for tokenized real-world assets onchain."
     ],
-    "image": "./images/home/hero-main-shape.svg",
+    "image": "./images/home/thumbnail.png",
     "partners": [
       {
         "image": "./images/partner/maker.svg",
@@ -34,17 +33,18 @@
         "alt": "Base"
       },
       {
-        "image": "./images/partner/arbitrum.svg",
-        "alt": "Arbitrum"
+        "image": "./images/partner/celo.svg",
+        "alt": "Celo"
       },
       {
         "image": "./images/partner/circle.svg",
         "alt": "Circle"
       },
       {
-        "image": "./images/partner/ethereum.svg",
-        "alt": "Ethereum"
+        "image": "./images/partner/arbitrum.svg",
+        "alt": "Arbitrum"
       }
+
     ]
   },
   "testimonials": {

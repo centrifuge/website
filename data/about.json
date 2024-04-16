@@ -79,16 +79,6 @@
         }
       },
       {
-        "name": "Asad Khan",
-        "role": "DeFi Politician",
-        "social": "https://twitter.com/fintech_khan",
-        "image": "./images/contributors/asad-khan.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
         "name": "Cassidy Daly",
         "role": "Token strategy",
         "social": "https://www.twitter.com/cassidydaly",
@@ -105,16 +95,6 @@
         "entity": {
           "name": "Centrifuge Ambassador",
           "href": "https://gov.centrifuge.io/u/tjure07/summary"
-        }
-      },
-      {
-        "name": "Colin Cunningham",
-        "role": "Business Development",
-        "social": "https://twitter.com/ctcunning",
-        "image": "./images/contributors/colin.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
         }
       },
       {
