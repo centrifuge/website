@@ -38,15 +38,6 @@ export type HeroMainProps = {
 }
 
 export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps) {
-  const [animate, setAnimate] = React.useState(false)
-
-  const ref = React.useRef<HTMLElement>(null)
-  useVisibilityChecker({
-    ref,
-    onEnter: () => setAnimate(true),
-    onLeave: () => setAnimate(false),
-  })
-
   return (
     <RevealWrapper>
       <Root as="section" flexDirection="column" px={2} pt={[0, 0, 0, 0]} pb={[10, 10, 10, 10]}>
@@ -83,6 +74,7 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
                 </iframe>
                 <script src="https://player.vimeo.com/api/player.js"></script>
               </Media>*/}
+            {/*todo: we want to wrap this in a <Reveal>, but it messes up formatting for video thumbnail + modal - unsure why*/}
             <Media>
               {
                 image.publicURL &&
@@ -91,7 +83,7 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
             </Media>
           </Inner>
         </Shelf>
-        <Reveal px={2} mt="auto" staggerIndex={3}>
+        <Reveal px={3} mt="auto" staggerIndex={3}>
           <ChainStats/>
         </Reveal>
       </Root>
