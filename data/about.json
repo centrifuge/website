@@ -365,16 +365,6 @@
         }
       },
       {
-        "name": "Harvey Li",
-        "role": "Credit Group Facilitator",
-        "social": "https://www.linkedin.com/in/harvey-l-1357a418a/",
-        "image": "./images/contributors/harvey.jpg",
-        "entity": {
-          "name": "Centrifuge DAO",
-          "href": "https://centrifuge.io/"
-        }
-      },
-      {
         "name": "Mike Halef",
         "role": "Financial Accountant",
         "social": "https://www.linkedin.com/in/mike-halef-a47791189/?originalSubdomain=ch",
