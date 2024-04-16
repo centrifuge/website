@@ -5,7 +5,7 @@ export const Root = styled(Container)`
   @media (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     display: flex;
     gap: ${({ theme }) => theme.space[3]}px;
-    border-top: 1px solid ${({ theme }) => theme.colors.borderPrimary};
+    // border-top: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints['M']}) {

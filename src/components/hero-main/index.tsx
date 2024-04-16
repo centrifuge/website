@@ -1,16 +1,14 @@
-import { Text, Shelf, Box } from '@centrifuge/fabric'
-import { graphql } from 'gatsby'
 import * as React from 'react'
+import { graphql } from 'gatsby'
+import { AnchorButton, Text, Stack, Shelf, Box } from '@centrifuge/fabric'
 import { links } from '../../../config/links'
-import { useVisibilityChecker } from '../../hooks/use-visibility-checker'
+import { ImageProps, Image } from '../Image'
 import { Reveal, RevealWrapper } from '../Reveal'
+import { Root, Inner, Media, Title } from './styles'
+import { PartnerList, PartnerProps } from '../partner-list'
 import { ChainStats } from '../chain-stats/ChainStats'
-import type { PartnerProps } from '../partner-list'
-import { PartnerList } from '../partner-list'
-import { Typewriter } from '../Typewriter'
-import type { ImageProps } from '../Image'
-import { Image } from '../Image'
-import { Root, Inner, Title, Content, Graphic, CTA } from './styles'
+import { useVisibilityChecker } from '../../hooks/use-visibility-checker'
+import FullscreenVideoOverlay from '../fullscreen-video-overlay'
 
 export const query = graphql`
   fragment HeroMainFragment on DataJsonHero_main {
@@ -40,60 +38,55 @@ export type HeroMainProps = {
 }
 
 export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps) {
-  const [animate, setAnimate] = React.useState(false)
-
-  const ref = React.useRef<HTMLElement>(null)
-  useVisibilityChecker({
-    ref,
-    onEnter: () => setAnimate(true),
-    onLeave: () => setAnimate(false),
-  })
-
   return (
     <RevealWrapper>
-      <Root as="section" ref={ref} flexDirection="column">
-        <Shelf px={2} pt={[2, 4, 6]}>
+      <Root as="section" flexDirection="column" px={2} pt={[0, 0, 0, 0]} pb={[10, 10, 10, 10]}>
+        <Shelf px={2} pt={[1, 2, 3]}>
           <Inner maxWidth="container" alignSelf="start">
-            <Reveal gridArea={['none', 'inner']}>
-              <Title>
-                {title}
-                <br />
-                <Typewriter phrases={ticker} paused={!animate} />
-              </Title>
-            </Reveal>
-
-            <Content>
+            <Stack gap={3} maxWidth={['100%', '100%', '60%', '50%']}>
               <Reveal staggerIndex={1}>
-                <Graphic>
-                  <Image data={image} />
-                </Graphic>
+                <Title forwardedAs="h1" variant="heading2b">
+                  {title}
+                </Title>
+              </Reveal>
+
+              <Reveal staggerIndex={1}>
+                <Text as="p" variant="body1">
+                  {body}
+                </Text>
               </Reveal>
 
               <Reveal staggerIndex={2}>
-                {body.map((entry, index) => (
-                  <Text key={`${index}`} variant="body1" as="p">
-                    {entry}
-                  </Text>
-                ))}
-              </Reveal>
-
-              <Reveal staggerIndex={3}>
-                <CTA href={links.app} target="_blank" small>
+                <AnchorButton href={links.app} rel="noopener noreferrer" target="_blank">
                   Enter App
-                </CTA>
+                </AnchorButton>
               </Reveal>
-            </Content>
+            </Stack>
+
+            {/* This embeds directly onto page vs. fullscreen modal
+            <Media ml="auto" mr={[-2, -2, 0]} width={['90%', '70%', '50%']}>
+                <iframe
+                  src="https://player.vimeo.com/video/935042824?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                  frameBorder="0" allow="fullscreen; picture-in-picture; clipboard-write"
+                  title="Introduction to Centrifuge">
+                </iframe>
+                <script src="https://player.vimeo.com/api/player.js"></script>
+              </Media>*/}
+            {/*todo: we want to wrap this in a <Reveal>, but it messes up formatting for video thumbnail + modal - unsure why*/}
+            <Media>
+              {/* @ts-ignore */}
+              {image.publicURL && <FullscreenVideoOverlay thumbnail={image.publicURL} videoId={'935042824'} />}
+            </Media>
           </Inner>
         </Shelf>
-
-        <Reveal px={2} mt="auto" staggerIndex={1}>
+        <Reveal px={3} mt="auto" staggerIndex={3}>
           <ChainStats />
         </Reveal>
-
-        <Reveal staggerIndex={2}>
-          <PartnerList partners={partners} />
-        </Reveal>
       </Root>
+
+      <Reveal staggerIndex={3}>
+        <PartnerList partners={partners} />
+      </Reveal>
     </RevealWrapper>
   )
 }
