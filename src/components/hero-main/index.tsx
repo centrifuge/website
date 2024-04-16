@@ -88,7 +88,6 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
         </Reveal>
       </Root>
 
-
       <Reveal staggerIndex={3} >
         <PartnerList partners={partners}/>
       </Reveal>

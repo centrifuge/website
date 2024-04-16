@@ -35,13 +35,13 @@ export const Media = styled(Box)`
 `*/
 
 export const Media = styled.div`
-  width: 100%;
-  max-width: 100%;
+  display:none;
+  max-width: 33%;
   position: absolute;
   right: 0;
   top: 0;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints['M']}) {
     display: block;
   }
 
