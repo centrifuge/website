@@ -17,7 +17,7 @@ export const Inner = styled(Shelf)`
   }
 
   .marquee-container img {
-    margin-left: 30px;
+    margin-right: 20px;
   }
 
   > span {
