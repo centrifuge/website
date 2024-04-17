@@ -1,5 +1,23 @@
 [
   {
+    "date": "2024/04/17",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Raises $15M",
+    "body": "Announcing our Series A raise and roadmap to propel real-world asset tokenization industry with DeFi composability and onchain utility.",
+    "image": "../images/posts/fundingblog.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/krkiQ6wV5zoisxx9PwOYOWwQURRd-iVdQZat4YfyzQ4"
+  },
+  {
+    "date": "2024/04/17",
+    "outlet": "Axios",
+    "title": "Centrifuge raises $15 million in oversubscribed funding round",
+    "body": "Centrifuge, a platform dedicated to turning real world assets (RWAs) into loans, has raised $15 million in Series A funding led by ParaFi Capital and Greenfield.",
+    "image": "../images/posts/fundingaxios.png",
+    "alt": "",
+    "href": "https://www.axios.com/2024/04/17/centrifuge-15m-seriesa-funding-round"
+  },
+  {
     "date": "2024/03/29",
     "outlet": "Centrifuge Blog",
     "title": "Centrifuge Brings Treasury Bills to Celo",

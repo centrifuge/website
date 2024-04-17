@@ -79,10 +79,11 @@ export function HeroMain({ title, ticker, body, image, partners }: HeroMainProps
             </Media>
           </Inner>
         </Shelf>
-        <Reveal px={3} mt="auto" staggerIndex={3}>
-          <ChainStats />
-        </Reveal>
       </Root>
+
+      <Reveal px={3} mt="auto" staggerIndex={3}>
+        <ChainStats />
+      </Reveal>
 
       <Reveal staggerIndex={3}>
         <PartnerList partners={partners} />

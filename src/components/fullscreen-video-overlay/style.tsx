@@ -36,4 +36,5 @@ export const ThumbnailImage = styled.img`
   height: 100%;
   cursor: pointer;
   aspect-ratio: 4/3;
+  object-fit: cover;
 `;
