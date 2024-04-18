@@ -17,7 +17,6 @@ export const Root = styled(Box)`
 
 export const Inner = styled(Container)`
   position: relative;
-  z-index: 2;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints['S']}) {
     display: grid;
