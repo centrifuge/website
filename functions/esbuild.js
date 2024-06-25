@@ -13,8 +13,6 @@ esbuild
       'functions/index.ts',
       'functions/src/getExample.ts',
       'functions/src/getLeverPositions.ts',
-      'functions/src/createProof.ts',
-      'functions/src/getRewardData.ts',
       'functions/src/getPoolsData.ts',
       'functions/src/getTotalAssetsTokenized.ts',
     ],
