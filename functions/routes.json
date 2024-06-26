@@ -23,7 +23,6 @@
     "destination": "/",
     "statusCode": 301
   },
-  ,
   {
     "source": "/altair/crowdloan",
     "destination": "/",
