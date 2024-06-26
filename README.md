@@ -74,17 +74,6 @@ are generated in `gatsby-node.ts`. The pages text content is stored in markdown 
 
 ---
 
-## Crowdloan Pages
-
-Both crowdloan pages
-
-- `/parachain/crowdloan`
-- `/altair/crowdloan`
-
-are generated in `gatsby-node.ts`. Most of their content is static because the auctions are closed already. The routes are taken over from the former site to keep urls alive.
-
----
-
 ## GraphQL Fragments
 
 Queries of component data are defined inside the component file. To be able to spread them into the page query, they are exported as fragments.

@@ -1,7 +1,7 @@
 import type { GatsbyNode } from 'gatsby'
 import path from 'path'
 
-export const createPages: GatsbyNode['createPages'] = async ({ actions: { createPage } }) => {
+export const createPages: GatsbyNode['createPages'] = async ({ actions: { createPage, createRedirect } }) => {
   try {
     const legalPages = ['/imprint', '/terms', '/security', '/data-privacy-policy']
 
@@ -15,16 +15,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions: { create
       })
     })
 
-    const crowdloanPages = ['/altair', '/parachain']
-
-    crowdloanPages.forEach((route) => {
-      createPage({
-        path: `${route}/crowdloan`,
-        component: path.resolve('./src/templates/crowdloan.tsx'),
-        context: {
-          slug: route,
-        },
-      })
+    createRedirect({
+      fromPath: `/parachain/crowdloan`,
+      toPath: `/`,
     })
   } catch (err) {
     console.log('error', err)
