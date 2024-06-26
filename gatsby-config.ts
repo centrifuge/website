@@ -15,7 +15,6 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-cloudflare-pages',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
