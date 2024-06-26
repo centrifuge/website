@@ -17,5 +17,10 @@
   {
     "name": "getExample",
     "options": {}
+  },
+  {
+    "source": "/parachain/crowdloan",
+    "destination": "/",
+    "statusCode": 301
   }
 ]
