@@ -17,15 +17,5 @@
   {
     "name": "getExample",
     "options": {}
-  },
-  {
-    "source": "/parachain/crowdloan",
-    "destination": "/",
-    "statusCode": 301
-  },
-  {
-    "source": "/altair/crowdloan",
-    "destination": "/",
-    "statusCode": 301
-  }  
+  }
 ]

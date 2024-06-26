@@ -10,27 +10,25 @@ const corsWhitelist = [
 const testEnvRegex = new RegExp('https://preview-pr[0-9]*(.k-f.dev)')
 
 exports.handler = async (req: Request, res: Response) => {
-  // Check for redirects first
-  const redirect = routes.find(route => route.source && req.path.endsWith(route.source));
-  if (redirect) {
-    return res.redirect(redirect.statusCode, redirect.destination);
+  if (routes.length < 0) {
+    return res.status(400).send('No functions defined')
   }
 
-  // Existing CORS and route handling
-  const origin = req.get('origin');
+  const origin = req.get('origin')
+
   if (corsWhitelist.indexOf(origin) !== -1 || testEnvRegex.test(origin)) {
-    res.set('Access-Control-Allow-Origin', origin);
-    res.set('Access-Control-Allow-Methods', ['GET', 'POST']);
+    res.set('Access-Control-Allow-Origin', origin)
+    res.set('Access-Control-Allow-Methods', ['GET', 'POST'])
   } else {
-    return res.status(405).send('Not allowed');
+    return res.status(405).send('Not allowed')
   }
 
   for (let route of routes) {
-    if (route.name && req.path.replace('/', '') === route.name) {
-      const method = require(`./src/${route.name}`);
-      return method.default(req, res, route?.options ?? {});
+    if (req.path.replace('/', '') === route.name) {
+      const method = require(`./src/${route.name}`)
+
+      return method.default(req, res, route?.options ?? {})
     }
   }
-
-  return res.status(500).send('An error occurred');
+  return res.status(500).send('An error occured')
 }
