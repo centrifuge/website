@@ -8,15 +8,17 @@ export const query = graphql`
   fragment FundCtaFragment on DataJsonFund_cta {
     title
     items
+    morpho
   }
 `
 
 export type FundCtaProps = {
   title: string
   items: string[]
+  morpho: string
 }
 
-export function FundCta({ title, items }: FundCtaProps) {
+export function FundCta({ title, items, morpho }: FundCtaProps) {
   return (
     <RevealWrapper>
       <Box as="section" mb="1px" px={2} py={[10, 10, '150px']} backgroundColor="textPrimary">
@@ -45,7 +47,7 @@ export function FundCta({ title, items }: FundCtaProps) {
 
               <Reveal justifySelf={['start', 'start', 'end']} staggerIndex={4}>
                 <AnchorButton href={links.fundManagement} rel="noopener noreferrer" target="_blank">
-                  Join Beta
+                  {morpho ? 'Open Morpho' : 'Join Beta'}
                 </AnchorButton>
               </Reveal>
             </Grid>

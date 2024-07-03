@@ -1,8 +1,8 @@
 import * as React from 'react'
-import {graphql} from 'gatsby'
-import {AnchorButton, Container, Shelf, Stack, Text, Grid} from '@centrifuge/fabric'
-import {links} from '../../config/links'
-import {Reveal, RevealWrapper} from './Reveal'
+import { graphql } from 'gatsby'
+import { AnchorButton, Container, Shelf, Stack, Text, Grid } from '@centrifuge/fabric'
+import { links } from '../../config/links'
+import { Reveal, RevealWrapper } from './Reveal'
 
 export const query = graphql`
   fragment FundFeaturesFragment on DataJsonFund_features {
@@ -22,9 +22,11 @@ export type FundFeaturesProps = {
     title: string
     body: string
   }[]
+  showButton?: boolean
+  columns?: number[]
 }
 
-export function FundFeatures({title, body, items}: FundFeaturesProps) {
+export function FundFeatures({ title, body, items, showButton = true, columns }: FundFeaturesProps) {
   return (
     <RevealWrapper>
       <Stack as="section" px={2} gap={[4, 4, 6, 10]}>
@@ -35,16 +37,18 @@ export function FundFeatures({title, body, items}: FundFeaturesProps) {
                 {title}
               </Text>
 
-              <AnchorButton
-                href={links.fundManagement}
-                rel="noopener noreferrer"
-                target="_blank"
-                variant="secondary"
-                style={{whiteSpace: 'nowrap'}}
-                small
-              >
-                Join Beta
-              </AnchorButton>
+              {showButton && (
+                <AnchorButton
+                  href={links.fundManagement}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  variant="secondary"
+                  style={{ whiteSpace: 'nowrap' }}
+                  small
+                >
+                  Join Beta
+                </AnchorButton>
+              )}
             </Reveal>
 
             <Reveal staggerIndex={1}>
@@ -54,10 +58,10 @@ export function FundFeatures({title, body, items}: FundFeaturesProps) {
             </Reveal>
           </Stack>
 
-          <Grid as="ul" columns={[1, 2, 2]} gap={4} mt={[6, 6, 8, 10]}>
+          <Grid as="ul" columns={columns || [1, 2, 2]} gap={4} mt={[6, 6, 8, 10]}>
             {items.map((entry, index) => (
               <Reveal as="li" staggerIndex={index + 2} key={index}>
-                <Item {...entry} />
+                <Item {...entry} breakLines={!showButton} />
               </Reveal>
             ))}
           </Grid>
@@ -67,12 +71,20 @@ export function FundFeatures({title, body, items}: FundFeaturesProps) {
   )
 }
 
-type ItemProps = FundFeaturesProps['items'][number]
+type ItemProps = {
+  title: string
+  body: string
+  breakLines?: boolean
+}
 
-function Item({title, body}: ItemProps) {
+function Item({ title, body, breakLines }: ItemProps) {
   return (
     <Stack gap={1}>
-      <Text as="h3" variant="heading4b">
+      <Text
+        as="h3"
+        variant="heading4b"
+        style={{ whiteSpace: breakLines ? 'pre-wrap' : 'inherit', width: breakLines ? 80 : 'auto' }}
+      >
         {title}
       </Text>
       <Text as="p">{body}</Text>

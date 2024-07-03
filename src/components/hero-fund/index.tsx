@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { AnchorButton, Text, Divider, Stack } from '@centrifuge/fabric'
+import { AnchorButton, Text, Divider, Stack, Box } from '@centrifuge/fabric'
 import { links } from '../../../config/links'
 import { ImageProps, Image } from '../Image'
 import { Reveal, RevealWrapper } from '../Reveal'
@@ -11,6 +11,10 @@ export const query = graphql`
     pretitle
     title
     body
+    items {
+      title
+      url
+    }
     image {
       childImageSharp {
         gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
@@ -21,14 +25,20 @@ export const query = graphql`
   }
 `
 
+type Items = {
+  title: string
+  url: keyof typeof links
+}
+
 export type HeroFundProps = {
   pretitle: string
   title: string
   body: string
   image: ImageProps
+  items: Items[]
 }
 
-export function HeroFund({ pretitle, title, body, image }: HeroFundProps) {
+export function HeroFund({ pretitle, title, body, image, items }: HeroFundProps) {
   return (
     <RevealWrapper>
       <Root as="section" flexDirection="column" px={2} pt={[2, 4, 6, 10]} pb={[0, 0, 10, 0]}>
@@ -59,9 +69,22 @@ export function HeroFund({ pretitle, title, body, image }: HeroFundProps) {
             </Reveal>
 
             <Reveal staggerIndex={4}>
-              <AnchorButton href={links.fundManagement} rel="noopener noreferrer" target="_blank">
-                Join Beta
-              </AnchorButton>
+              <Box display="flex">
+                {items?.map((item: Items, index) => {
+                  return (
+                    <Box mr={4}>
+                      <AnchorButton
+                        variant={index === items.length - 1 ? 'secondary' : 'primary'}
+                        href={links[item.url]}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {item.title}
+                      </AnchorButton>
+                    </Box>
+                  )
+                })}
+              </Box>
             </Reveal>
           </Stack>
         </Inner>
