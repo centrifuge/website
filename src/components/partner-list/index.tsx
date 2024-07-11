@@ -31,7 +31,7 @@ export function PartnerList({ partners }: PartnerListProps) {
             <Shelf as="ul" m={0} p={0} gap={4} alignItems="center" role="list" style={{ opacity: isOverflow ? 0 : 1 }}>
               {partners.map(({ image, alt }, index) => (
                 <li key={`${alt}-${index}`}>
-                  <Image data={image} />
+                  <Image data={image} objectFit="contain" styles={{ width: 120, height: 20 }} />
                 </li>
               ))}
             </Shelf>
@@ -39,7 +39,7 @@ export function PartnerList({ partners }: PartnerListProps) {
             {isOverflow && (
               <Marquee gradient={false} speed={80} className="marquee-container">
                 {partners.map(({ image, alt }, index) => (
-                  <Image key={`${alt}-${index}`} data={image} />
+                  <Image key={`${alt}-${index}`} data={image} styles={{ width: 120, height: 20, objectFit: "contain" }} />
                 ))}
               </Marquee>
             )}
