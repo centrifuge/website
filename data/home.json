@@ -43,8 +43,11 @@
       {
         "image": "./images/partner/arbitrum.svg",
         "alt": "Arbitrum"
+      },
+      {
+        "image": "./images/partner/polkadot.svg",
+        "alt": "Polkadot"
       }
-
     ]
   },
   "testimonials": {
