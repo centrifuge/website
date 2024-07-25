@@ -1,5 +1,23 @@
 [
   {
+    "date": "2024/07/16",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Q2 2024 Recap",
+    "body": "Q2 saw Centrifuge continuing to drive the real-world asset narrative forward. This quarter has been packed with the closing of our Series A, two Real-World Asset Summits, exciting product updates, and even more.",
+    "image": "../images/posts/q22024.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/sG-gDrGNFsQOyx1VrAf1XdzKockW4v24ogFy9dIwgf4"
+  },
+  {
+    "date": "2024/07/16",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Reporting Features Set Benchmark for Onchain Transparency",
+    "body": "Centrifuge has launched a suite of advanced reporting features in its App, offering asset managers and investors unprecedented access to fully transparent, real-time, onchain data.",
+    "image": "../images/posts/reportingfeat.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/dVi0DUC-9vPbKLArWtrxgcs8svgWCfLunSWhg7XR-tg"
+  },
+  {
     "date": "2024/05/28",
     "outlet": "Centrifuge Blog",
     "title": "Centrifuge Strengthens Executive Team With New COO and Head of Product",
@@ -7,6 +25,15 @@
     "image": "../images/posts/teamnews.png",
     "alt": "",
     "href": "https://centrifuge.mirror.xyz/uqpPQBLpae40tt93y2sFfQy1l1mnzeptoKyyhyboOl8"
+  },
+  {
+    "date": "2024/06/03",
+    "outlet": "Blockworks",
+    "title": "Hey regulators, here’s how to get crypto right",
+    "body": "Opinion: I know it's not their nature, but US regulators could learn a lot by researching what overseas regulators have already done right.",
+    "image": "../images/posts/cryptoregulation.png",
+    "alt": "",
+    "href": "https://blockworks.co/news/crypto-regulators-us-global-legislation"
   },
   {
     "date": "2024/05/29",
@@ -34,6 +61,15 @@
     "image": "../images/posts/fundingaxios.png",
     "alt": "",
     "href": "https://www.axios.com/2024/04/17/centrifuge-15m-seriesa-funding-round"
+  },
+  {
+    "date": "2024/04/12",
+    "outlet": "Centrifuge Blog",
+    "title": "Centrifuge Q1 2024 Recap",
+    "body": "Centrifuge’s first quarter of 2024: Our Fund Management Platform, continued cross-chain growth, protocol fees, RWA Summit updates, and more!",
+    "image": "../images/posts/q12024.png",
+    "alt": "",
+    "href": "https://centrifuge.mirror.xyz/6Xs4AVhIqLr9ImlNYE_QxtBOejmtyqZV392dq8wrXeE"
   },
   {
     "date": "2024/03/29",
