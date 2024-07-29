@@ -69,10 +69,20 @@
         }
       },
       {
-        "name": "Anna Mehrländer",
-        "role": "Product",
-        "social": "https://twitter.com/annmehr",
-        "image": "./images/contributors/anna-mehrlaender.jpg",
+        "name": "Anil Sood",
+        "role": "Director",
+        "social": "https://www.linkedin.com/in/anil-sood",
+        "image": "./images/contributors/anil.jpg",
+        "entity": {
+          "name": "Anemoy",
+          "href": "https://www.anemoy.io/"
+        }
+      },
+      {
+        "name": "Sonam Joshi",
+        "role": "Head of Product",
+        "social": "http://linkedin.com/in/sonamjoshi",
+        "image": "./images/contributors/sonam.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
@@ -108,20 +118,20 @@
         }
       },
       {
-        "name": "Dennis Wellmann",
+        "name": "Graham Nelson",
         "role": "Product",
-        "social": "https://twitter.com/financeundtech",
-        "image": "./images/contributors/dennis.jpg",
+        "social": "https://twitter.com/0x4Graham",
+        "image": "./images/contributors/graham.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
         }
       },
       {
-        "name": "Devin Black",
-        "role": "Product Marketing",
-        "social": "https://twitter.com/d_evvy",
-        "image": "./images/contributors/devin.jpg",
+        "name": "Julia Merkel",
+        "role": "COO",
+        "social": "https://www.linkedin.com/in/julia-m-17b88517/",
+        "image": "./images/contributors/julia.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
@@ -177,6 +187,16 @@
         }
       },
       {
+        "name": "Grayson Alto",
+        "role": "BD",
+        "social": "https://x.com/AltoGrayson",
+        "image": "./images/contributors/grayson.jpg",
+        "entity": {
+          "name": "k/factory",
+          "href": "https://k-f.co/"
+        }
+      },
+      {
         "name": "Ivan Postavskyy",
         "role": "Centrifuge DAO Governance Facilitator",
         "social": "https://twitter.com/Gbbigbuy",
@@ -197,20 +217,20 @@
         }
       },
       {
-        "name": "Jeroen Offerijns",
-        "role": "Product and Engineering",
-        "social": "https://twitter.com/offerijns",
-        "image": "./images/contributors/jeroen.jpg",
+        "name": "Jared Hedglin",
+        "role": "BD",
+        "social": "https://www.linkedin.com/in/jared-hedglin-37928546/",
+        "image": "./images/contributors/jared.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
         }
       },
       {
-        "name": "JP Angelle",
-        "role": "Engineer",
-        "social": "https://twitter.com/gwei_whale",
-        "image": "./images/contributors/jp-angelle.jpg",
+        "name": "Jeroen Offerijns",
+        "role": "Product and Engineering",
+        "social": "https://twitter.com/offerijns",
+        "image": "./images/contributors/jeroen.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
