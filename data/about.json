@@ -69,10 +69,10 @@
         }
       },
       {
-        "name": "Anna Mehrländer",
-        "role": "Product",
-        "social": "https://twitter.com/annmehr",
-        "image": "./images/contributors/anna-mehrlaender.jpg",
+        "name": "Sonam Joshi",
+        "role": "Head of Product",
+        "social": "http://linkedin.com/in/sonamjoshi",
+        "image": "./images/contributors/sonam.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
@@ -108,20 +108,20 @@
         }
       },
       {
-        "name": "Dennis Wellmann",
+        "name": "Graham Nelson",
         "role": "Product",
-        "social": "https://twitter.com/financeundtech",
-        "image": "./images/contributors/dennis.jpg",
+        "social": "https://twitter.com/0x4Graham",
+        "image": "./images/contributors/graham.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
         }
       },
       {
-        "name": "Devin Black",
-        "role": "Product Marketing",
-        "social": "https://twitter.com/d_evvy",
-        "image": "./images/contributors/devin.jpg",
+        "name": "Jullia Merkel",
+        "role": "COO",
+        "social": "https://www.linkedin.com/in/julia-m-17b88517/",
+        "image": "./images/contributors/julia.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
@@ -201,16 +201,6 @@
         "role": "Product and Engineering",
         "social": "https://twitter.com/offerijns",
         "image": "./images/contributors/jeroen.jpg",
-        "entity": {
-          "name": "k/factory",
-          "href": "https://k-f.co/"
-        }
-      },
-      {
-        "name": "JP Angelle",
-        "role": "Engineer",
-        "social": "https://twitter.com/gwei_whale",
-        "image": "./images/contributors/jp-angelle.jpg",
         "entity": {
           "name": "k/factory",
           "href": "https://k-f.co/"
