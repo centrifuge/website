@@ -12,6 +12,10 @@ const menu = [
       {
         label: 'Centrifuge Prime',
         href: '/prime',
+      }, 
+      {
+        label: 'RWA Market',
+        href: '/rwa-market',
       },
     ]
   },
