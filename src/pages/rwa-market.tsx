@@ -13,6 +13,12 @@ import { Morpho, MorphoProps } from '../components/Morpho'
 export const query = graphql`
   query {
     dataJson(slug: { eq: "/rwa-market" }) {
+      title
+
+      seo {
+        ...SeoFragment
+      }
+
       hero_fund {
         ...HeroFundFragment
       }
