@@ -8,7 +8,8 @@
     "pretitle": "ONCHAIN FUND MANAGEMENT",
     "title": "Asset Management, \nOnchain",
     "body": "Centrifuge's fund management platform brings the full power of onchain finance to asset managers and investment funds. Capture your entire fund's onchain and offchain portfolio positions, transactions, and operations data in a secure, immutable, and reportable manner.",
-    "image": "./images/fund-management/fund-hero.png"
+    "image": "./images/fund-management/fund-hero.png",
+    "items": [{ "title": "Join Beta", "links": "fundManagement" }]
   },
   "prime_partners": {
     "title": "Built from years of experience bringing RWAs to DeFi",
@@ -73,11 +74,7 @@
   "rwa_usp": {
     "title": "Why build onchain?",
     "body": "Save costs and create efficiencies with real-time, accurate access to holdings, fully integrated with the necessary service providers for operating an institutional-grade offering. ",
-    "items": [
-      "Reduce yield spreads by 25 bps",
-      "Improve liquidity by 5.3%",
-      "Save up to 150 bps running the fund"
-    ],
+    "items": ["Reduce yield spreads by 25 bps", "Improve liquidity by 5.3%", "Save up to 150 bps running the fund"],
     "image": "./images/fund-management/fund2.png"
   },
   "prime_integration": {
@@ -105,6 +102,7 @@
     "title": "Ready to launch \nyour fund onchain?",
     "items": [
       "Centrifuge's fund management platform is available now for funds and asset managers looking to launch tokenized investment products and strategies."
-    ]
+    ],
+    "morpho": false
   }
 }
