@@ -9,9 +9,10 @@ export type RwaUspProps = {
   media: React.ReactNode
   content?: React.ReactNode
   titleAddition?: React.ReactNode
+  isBodyHtml?: boolean
 }
 
-export function TextImage({ title, body, media, content, titleAddition }: RwaUspProps) {
+export function TextImage({ title, body, media, content, titleAddition, isBodyHtml = false }: RwaUspProps) {
   return (
     <RevealWrapper>
       <Box as="section" px={2}>
@@ -26,9 +27,13 @@ export function TextImage({ title, body, media, content, titleAddition }: RwaUsp
               </Reveal>
 
               <Reveal staggerIndex={1} mt={2}>
-                <Text as="p" color="textSecondary" variant="body1">
-                  {body}
-                </Text>
+                {isBodyHtml ? (
+                  <div dangerouslySetInnerHTML={{ __html: body }} />
+                ) : (
+                  <Text as="p" color="textSecondary" variant="body1">
+                    {body}
+                  </Text>
+                )}
               </Reveal>
 
               {content}
