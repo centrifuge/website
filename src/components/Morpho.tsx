@@ -39,7 +39,7 @@ export function Morpho({ title, body, image }: MorphoProps) {
       titleAddition={
         <Box ml={2}>
           <AnchorButton
-            href={links.primeBlogPost}
+            href={links.morpho}
             rel="noopener noreferrer"
             target="_blank"
             small
