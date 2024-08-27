@@ -1,0 +1,54 @@
+{
+  "slug": "/rwa-market",
+  "seo": {
+    "title": "RWA Market\n",
+    "description": "The RWA Market gives users the ability to lend and borrow against eligible pool tokens."
+  },
+  "hero_fund": {
+    "pretitle": "INSTITUTIONAL DEFI",
+    "title": "Creating composability \nfor a thriving RWA \necosystem",
+    "body": "The RWA Market gives users the ability to lend and borrow against eligible pool tokens. This brings additional utility to RWAs and is a critical step towards bringing financial markets onchain.",
+    "image": "./images/rwa/header.png",
+    "items": [
+      { "title": "Open Morpho", "url": "morpho" },
+      { "title": "Read News", "url": "fundManagement" }
+    ]
+  },
+  "fund_features": {
+    "title": "Increasing RWA token utility",
+    "body": "Financial products thrive with robust market infrastructure, enhancing their utility through shorting, leveraging, and immediate liquidity access. To attract institutional participation, DeFi must replicate these essential TradFi infrastructure benefits.",
+    "items": [
+      {
+        "title": "Enhanced Utility",
+        "body": "Ability to short, leverage, and gain immediate liquidity from assets."
+      },
+      {
+        "title": "Comprehensive \nFunctionality",
+        "body": "Enable programmable borrowing against assets and hedging to RWAs."
+      },
+      {
+        "title": "Market \nMaturity",
+        "body": "Development of a sophisticated DeFi ecosystem for real-world assets."
+      },
+      {
+        "title": "Institutional \nAttraction",
+        "body": "Creating infrastructure to meet institutional needs and drive adoption."
+      }
+    ]
+  },
+  "rwa_yields": {
+    "title": "Seamless Onboarding",
+    "body": "This is the first permissioned RWA market integrated with Coinbase Verifications, reducing the need for tedious and manual KYC processes. This streamlined verification process opens the market to 125 million Coinbase users, allowing them to onboard seamlessly through a single click.",
+    "image": "./images/rwa/onboarding.png"
+  },
+  "morpho": {
+    "title": "Live with \nMorpho on Base",
+    "body": "<p>Morpho is battle tested, has an active user base and the nature of isolated markets allow for easy segregation of permissioned tokens.</p> <p>\"Institutions need to justify transitioning their assets onchain, either by using these assets as collateral for refinancing or earning yield\",<strong> said Paul Frambot, Co-founder of Morpho Labs</strong>. \"Our goal with Morpho was to build the most trusted and reliable lending infrastructure, and we're excited to see RWA issuers like Centrifuge choose it to launch new lending markets.\"</p>",
+    "image": "./images/rwa/morpho.png"
+  },
+  "fund_cta": {
+    "title": "Participate in \nthe RWA Market",
+    "items": ["Open the RWA Market on Morpho to supply liquidity or borrow against Centrifuge tokens."],
+    "morpho": true
+  }
+}
