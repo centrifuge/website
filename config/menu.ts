@@ -81,6 +81,11 @@ const menu = [
       },
     ],
   },
+  {
+    label: 'RWA Summit',
+    href: links.rwasummit,
+    isExternal: true,
+  },
 ]
 
 export const mobileMenu = menu
