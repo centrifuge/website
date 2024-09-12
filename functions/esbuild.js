@@ -15,6 +15,8 @@ esbuild
       'functions/src/getLeverPositions.ts',
       'functions/src/getPoolsData.ts',
       'functions/src/getTotalAssetsTokenized.ts',
+      'functions/src/getCirculatingSupply.ts',
+      'functions/src/getTotalIssuance.ts',
     ],
     outdir: 'functions/dist',
     bundle: true,
