@@ -23,29 +23,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:         
-
-  prepare-deploy:
-    secrets: inherit
-    uses: ./.github/workflows/prepare-deploy.yml
-    with:
-      wait: false
-      deploy_env: ${{ inputs.deploy_env }}   
-
   build-functions:
-    needs: prepare-deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #@v3.1.0
+
       - name: Set .env for functions
         run: echo "CENTRIFUGE_SUBGRAPH_URL=https://api.goldsky.com/api/public/project_clhi43ef5g4rw49zwftsvd2ks/subgraphs/main/prod/gn" > functions/.env
+
       - name: print .env
         run: cat functions/.env
+
       - name: Setup Node
         uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 #@v3
         with:
           node-version: 18
           cache: yarn
+
       - name: Install Dependencies
         run: yarn install
         
@@ -58,11 +53,12 @@ jobs:
           name: func-dist
           retention-days: 4
           path: functions/dist
-          
           # !dist/**/*.md
 
   deploy-functions: 
-    needs: [build-functions, prepare-deploy]
+    # opening a PR will already deploy it, skip if that's the case
+    if: github.event.action != 'opened' && github.event.action !='reopened'
+    needs: [build-functions]
     outputs:
       function_url: ${{ steps.gclouddeploy.outputs.url }}   
     permissions:
@@ -74,6 +70,30 @@ jobs:
     environment: ${{ inputs.deploy_env || 'gcloud-dev' }}
     # https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
     steps: 
+      - name: set function name
+        id: discover
+        env: 
+          # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
+          ref: ${{ github.head_ref || github.ref_name }}
+          pr_number: ${{ github.event.number }}      
+        run: |
+          echo "Set env vars for deployment"
+          echo "Github Ref = ${{env.ref}}"
+          if  ${{ env.ref == 'refs/heads/main' }} ; then
+            if  ${{ inputs.deploy_env == 'production' }}; then
+              #  PROD (manual trigger)
+              echo "function_name=webapi" >> $GITHUB_OUTPUT
+            else
+              #  STAGING (main branch deploy)
+              echo "function_name=webapi-staging" >> $GITHUB_OUTPUT
+            fi
+          elif ${{ github.event_name == 'pull_request' }}; then
+            # PRs
+            echo "function_name=webapi-${{ env.pr_number }}" >> $GITHUB_OUTPUT
+          else
+            echo "::error title=No env to deploy::Workflow called from non-deployable branch/tag"
+            exit 1
+          fi
 
       - name: download the distribution package
         id: download
@@ -101,7 +121,7 @@ jobs:
         id: gclouddeploy
         uses: google-github-actions/deploy-cloud-functions@14509ca55199d9348161571e36c48e44f855030d #@v1
         with:
-          name: ${{ needs.prepare-deploy.outputs.function_name }}
+          name: ${{ steps.discover.outputs.function_name }}
           runtime: nodejs16
           region: ${{ vars.GCP_REGION }}
           source_dir: ${{steps.download.outputs.download-path}}
@@ -113,7 +133,7 @@ jobs:
       - name: Change function to allow_unathorized calls 
         shell: bash
         run: |
-          gcloud functions add-iam-policy-binding ${{ needs.prepare-deploy.outputs.function_name }} \
+          gcloud functions add-iam-policy-binding ${{ steps.discover.outputs.function_name }} \
           --region=${{ vars.GCP_REGION }} \
           --member="allUsers" --role="roles/cloudfunctions.invoker"
 
