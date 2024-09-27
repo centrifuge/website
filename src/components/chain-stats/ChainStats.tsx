@@ -25,15 +25,6 @@ export function ChainStats() {
           {totalAssetsTokenized?.isLoading || !totalAssetsTokenized?.data ? '—' : totalAssetsTokenized?.data}
         </Value>
       </Item>
-
-      <Item>
-        <Label>TVL Growth (YoY)</Label>
-        <Value isLoading={pools.isLoading}>
-          {pools?.isLoading || !pools?.data?.totalValueLockedGrowth
-            ? '—'
-            : `+ ${Math.round(pools?.data?.totalValueLockedGrowth)}%`}
-        </Value>
-      </Item>
     </Root>
   )
 }
