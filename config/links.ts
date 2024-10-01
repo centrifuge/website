@@ -20,4 +20,5 @@ export const links = {
   telegram: 'https://t.me/centrifuge_chat',
   twitter: 'https://twitter.com/centrifuge',
   youtube: 'https://www.youtube.com/channel/UCfNkoq7YLrr8MeSJ3a6jVcA',
+  rwasummit: 'https://www.rwasummit.io/'
 }
