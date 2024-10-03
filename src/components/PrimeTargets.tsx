@@ -43,7 +43,7 @@ export function PrimeTargets({ title, body, items }: PrimeTargetsProps) {
                 style={{ whiteSpace: 'nowrap' }}
                 small
               >
-                Join Beta
+                Join
               </AnchorButton>
             </Reveal>
 
